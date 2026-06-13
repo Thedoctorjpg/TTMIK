@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTMIK Audio Lab • Korean Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .korean { font-family: 'Noto Sans KR', sans-serif; }
+        .wave {
+            animation: wave 1.5s infinite;
+        }
+        @keyframes wave {
+            0%, 100% { height: 4px; }
+            50% { height: 20px; }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+        <!-- Sidebar -->
+        <div class="fixed left-0 top-0 h-screen w-72 bg-zinc-900 border-r border-zinc-800 flex flex-col">
+            <div class="p-6 border-b border-zinc-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-2xl">🇰🇷</div>
+                    <div>
+                        <h1 class="text-2xl font-bold tracking-tight">TTMIK Lab</h1>
+                        <p class="text-xs text-zinc-500">Audio-Powered Korean</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 flex-1 overflow-auto">
+                <nav class="space-y-1">
+                    <a href="#" onclick="switchTab(0)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl bg-zinc-800 text-white font-medium">
+                        <i class="fa-solid fa-play w-5"></i>
+                        <span>Player</span>
+                    </a>
+                    <a href="#" onclick="switchTab(1)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                        <i class="fa-solid fa-list w-5"></i>
+                        <span>My Lessons</span>
+                    </a>
+                    <a href="#" onclick="switchTab(2)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                        <i class="fa-solid fa-graduation-cap w-5"></i>
+                        <span>Practice</span>
+                    </a>
+                    <a href="#" onclick="switchTab(3)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                        <i class="fa-solid fa-chart-bar w-5"></i>
+                        <span>Progress</span>
+                    </a>
+                </nav>
+
+                <div class="mt-8 px-4">
+                    <h3 class="text-xs uppercase tracking-widest text-zinc-500 mb-3">Quick Add</h3>
+                    <button onclick="addNewLesson()" 
+                            class="w-full flex items-center justify-center gap-2 bg-white text-zinc-900 hover:bg-zinc-200 py-3 rounded-2xl font-semibold">
+                        <i class="fa-solid fa-plus"></i>
+                        New Lesson
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-zinc-800 text-xs text-zinc-500">
+                <p>Built-in lessons loaded from local audio folders</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-72 p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 id="page-title" class="text-4xl font-bold">Now Playing</h2>
+                    <p class="text-zinc-400">Talk To Me In Korean Audio Platform</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="bg-zinc-900 rounded-3xl px-4 py-2 flex items-center gap-3 text-sm">
+                        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                        <span>Level 1 • Lesson 5</span>
+                    </div>
+                    <button onclick="toggleDark()" class="w-10 h-10 flex items-center justify-center rounded-2xl hover:bg-zinc-800">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Player Tab -->
+            <div id="tab-0" class="tab-content">
+                <div class="grid grid-cols-12 gap-8">
+                    <!-- Now Playing -->
+                    <div class="col-span-8">
+                        <div class="bg-zinc-900 rounded-3xl p-8">
+                            <div id="now-playing" class="flex gap-8">
+                                <div class="w-64 h-64 bg-zinc-800 rounded-3xl flex-shrink-0 flex items-center justify-center text-8xl shadow-inner">
+                                    🇰🇷
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between">
+                                        <div>
+                                            <h3 id="lesson-title" class="text-3xl font-semibold">Lesson 1: Hello, Thank You</h3>
+                                            <p id="lesson-subtitle" class="text-zinc-400 mt-1">Talk To Me In Korean • Level 1</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <div id="playback-time" class="text-5xl font-mono tabular-nums">00:00</div>
+                                            <div class="text-xs text-zinc-500">/ <span id="duration">00:00</span></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress -->
+                                    <div class="mt-6">
+                                        <input type="range" id="progress" 
+                                               class="w-full accent-pink-500 bg-zinc-700 rounded-full h-1 cursor-pointer" 
+                                               value="0" min="0" max="100">
+                                    </div>
+
+                                    <!-- Controls -->
+                                    <div class="flex items-center justify-between mt-8">
+                                        <div class="flex items-center gap-8">
+                                            <button onclick="toggleRepeat()" id="repeat-btn"
+                                                    class="text-2xl text-zinc-400 hover:text-white transition">
+                                                <i class="fa-solid fa-repeat"></i>
+                                            </button>
+                                            <button onclick="prevTrack()" class="text-4xl hover:scale-110 transition">
+                                                <i class="fa-solid fa-backward-step"></i>
+                                            </button>
+                                            <button onclick="togglePlay()" id="play-btn"
+                                                    class="w-20 h-20 bg-white text-zinc-950 rounded-3xl flex items-center justify-center text-4xl hover:scale-105 active:scale-95 transition shadow-xl">
+                                                <i class="fa-solid fa-play ml-1"></i>
+                                            </button>
+                                            <button onclick="nextTrack()" class="text-4xl hover:scale-110 transition">
+                                                <i class="fa-solid fa-forward-step"></i>
+                                            </button>
+                                            <button onclick="toggleShuffle()" class="text-2xl text-zinc-400 hover:text-white transition">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="flex items-center gap-4">
+                                            <i class="fa-solid fa-volume-high"></i>
+                                            <input type="range" id="volume" min="0" max="100" value="80" 
+                                                   class="accent-pink-500 w-32">
+                                        </div>
+                                    </div>
+
+                                    <!-- Speed -->
+                                    <div class="mt-8 flex items-center gap-3">
+                                        <span class="text-xs uppercase tracking-widest text-zinc-500 w-12">Speed</span>
+                                        <div class="flex gap-1 bg-zinc-800 rounded-3xl p-1">
+                                            <button onclick="setSpeed(0.5)" class="speed-btn px-4 py-1 text-sm rounded-3xl">0.5x</button>
+                                            <button onclick="setSpeed(0.75)" class="speed-btn px-4 py-1 text-sm rounded-3xl">0.75x</button>
+                                            <button onclick="setSpeed(1)" class="speed-btn px-4 py-1 text-sm rounded-3xl bg-white text-zinc-900">1x</button>
+                                            <button onclick="setSpeed(1.25)" class="speed-btn px-4 py-1 text-sm rounded-3xl">1.25x</button>
+                                            <button onclick="setSpeed(1.5)" class="speed-btn px-4 py-1 text-sm rounded-3xl">1.5x</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transcript -->
+                        <div class="mt-8 bg-zinc-900 rounded-3xl p-8">
+                            <h4 class="font-semibold mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-scroll"></i>
+                                Transcript
+                            </h4>
+                            <div id="transcript" class="max-h-96 overflow-auto space-y-6 text-zinc-300 leading-relaxed pr-4">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Info -->
+                    <div class="col-span-4 space-y-6">
+                        <!-- Vocabulary -->
+                        <div class="bg-zinc-900 rounded-3xl p-6">
+                            <h4 class="font-semibold mb-4">Key Vocab</h4>
+                            <div id="vocab-list" class="space-y-4 text-sm">
+                                <!-- JS populated -->
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="bg-zinc-900 rounded-3xl p-6">
+                            <h4 class="font-semibold mb-4">Your Notes</h4>
+                            <textarea id="notes" rows="6"
+                                class="w-full bg-zinc-800 border-0 rounded-2xl p-4 text-sm focus:ring-2 focus:ring-pink-500"
+                                placeholder="Write your thoughts, new words..."></textarea>
+                            <button onclick="saveNotes()" 
+                                    class="mt-3 text-xs bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-2xl">Save Notes</button>
+                        </div>
+
+                        <!-- Upload -->
+                        <div class="bg-zinc-900 rounded-3xl p-6 border border-dashed border-zinc-700">
+                            <label class="block cursor-pointer">
+                                <input type="file" id="audio-upload" accept="audio/*" class="hidden" onchange="handleFileUpload(event)">
+                                <div class="text-center py-8">
+                                    <i class="fa-solid fa-cloud-arrow-up text-4xl mb-3 text-zinc-400"></i>
+                                    <p class="font-medium">Drop MP3 or click to upload</p>
+                                    <p class="text-xs text-zinc-500 mt-1">Upload your audio or choose a built-in lesson</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lessons Library Tab -->
+            <div id="tab-1" class="tab-content hidden">
+                <div class="grid grid-cols-3 gap-6" id="lessons-grid">
+                    <!-- JS populated cards -->
+                </div>
+            </div>
+
+            <!-- Practice Tab -->
+            <div id="tab-2" class="tab-content hidden">
+                <div class="max-w-2xl mx-auto bg-zinc-900 rounded-3xl p-12 text-center">
+                    <h3 class="text-3xl font-semibold mb-8">Shadowing Practice</h3>
+                    <p class="text-zinc-400 mb-12">Listen → Repeat → Check</p>
+                    
+                    <div class="space-y-8">
+                        <button onclick="startShadowing()" 
+                                class="w-full py-8 bg-gradient-to-r from-pink-500 to-violet-500 rounded-3xl text-2xl font-bold hover:brightness-110 transition">
+                            Start Shadowing Session
+                        </button>
+                        
+                        <div class="text-left bg-zinc-800 rounded-2xl p-6">
+                            <div id="shadowing-text" class="korean text-2xl min-h-[120px]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div id="tab-3" class="tab-content hidden">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-zinc-900 rounded-3xl p-8">
+                        <h3 class="font-semibold text-xl mb-6">Listening Streak</h3>
+                        <div class="text-7xl font-bold text-emerald-400">7</div>
+                        <p class="text-zinc-400">days in a row 🔥</p>
+                    </div>
+                    <div class="bg-zinc-900 rounded-3xl p-8">
+                        <h3 class="font-semibold text-xl mb-6">Total Hours</h3>
+                        <div class="text-7xl font-bold">14.8</div>
+                        <p class="text-zinc-400">hours practiced</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="main-audio" class="hidden"></audio>
+
+    <script>
+        // Built-in lesson library loaded from local audio files
+        let lessons = [
+            {
+                id: 1,
+                title: "10-Minute Conversation • Track 01",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 01.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 2,
+                title: "10-Minute Conversation • Track 02",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 02.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 3,
+                title: "10-Minute Conversation • Track 03",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 03.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 4,
+                title: "10-Minute Conversation • Track 04",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 04.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 5,
+                title: "10-Minute Conversation • Track 05",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 05.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 6,
+                title: "10-Minute Conversation • Track 06",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 06.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 7,
+                title: "10-Minute Conversation • Track 07",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 07.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 8,
+                title: "10-Minute Conversation • Track 08",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 08.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 9,
+                title: "10-Minute Conversation • Track 09",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 09.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 10,
+                title: "10-Minute Conversation • Track 10",
+                subtitle: "10-Minute Conversation",
+                duration: "00:00",
+                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 10.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 11,
+                title: "1100 Korean Phrases • Track 01",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 01.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 12,
+                title: "1100 Korean Phrases • Track 02",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 02.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 13,
+                title: "1100 Korean Phrases • Track 03",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 03.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 14,
+                title: "1100 Korean Phrases • Track 04",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 04.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 15,
+                title: "1100 Korean Phrases • Track 05",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 05.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 16,
+                title: "1100 Korean Phrases • Track 06",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 06.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 17,
+                title: "1100 Korean Phrases • Track 07",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 07.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 18,
+                title: "1100 Korean Phrases • Track 08",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 08.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 19,
+                title: "1100 Korean Phrases • Track 09",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 09.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            },
+            {
+                id: 20,
+                title: "1100 Korean Phrases • Track 10",
+                subtitle: "1100 Korean Phrases",
+                duration: "00:00",
+                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 10.mp3",
+                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
+                vocab: []
+            }
+        ];
+
+        let currentLesson = 0;
+        let isPlaying = false;
+        let audio = document.getElementById('main-audio');
+        let repeatMode = false;
+
+        // Tailwind script
+        function initTailwind() {
+            // Already loaded via CDN
+        }
+
+        function switchTab(n) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(`tab-${n}`).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-link').forEach(link => {
+                link.classList.remove('bg-zinc-800', 'text-white');
+                link.classList.add('text-zinc-400');
+            });
+            document.querySelectorAll('.tab-link')[n].classList.add('bg-zinc-800', 'text-white');
+        }
+
+        function renderLessons() {
+            const grid = document.getElementById('lessons-grid');
+            grid.innerHTML = '';
+            
+            lessons.forEach((lesson, i) => {
+                const card = document.createElement('div');
+                card.className = "bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer hover:ring-2 hover:ring-pink-500 transition";
+                card.innerHTML = `
+                    <div class="h-48 bg-gradient-to-br from-violet-500/20 to-pink-500/20 flex items-center justify-center text-6xl">
+                        🇰🇷
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-semibold">${lesson.title}</h4>
+                        <p class="text-xs text-zinc-500">${lesson.subtitle} • ${lesson.duration}</p>
+                    </div>
+                `;
+                card.onclick = () => loadLesson(i);
+                grid.appendChild(card);
+            });
+        }
+
+        function loadLesson(index) {
+            currentLesson = index;
+            const lesson = lessons[index];
+            
+            document.getElementById('lesson-title').textContent = lesson.title;
+            document.getElementById('lesson-subtitle').textContent = lesson.subtitle;
+            document.getElementById('transcript').innerHTML = lesson.transcript || '<p class="text-zinc-500 italic">No transcript yet. Paste one!</p>';
+            
+            const vocabHTML = lesson.vocab ? lesson.vocab.map(v => `
+                <div class="flex justify-between items-center">
+                    <span class="korean">${v.ko}</span>
+                    <span class="text-zinc-400">${v.en}</span>
+                </div>
+            `).join('') : '';
+            document.getElementById('vocab-list').innerHTML = vocabHTML;
+            
+            if (lesson.src) {
+                audio.src = encodeURI(lesson.src);
+            }
+            
+            switchTab(0);
+        }
+
+        function togglePlay() {
+            if (!audio.src) {
+                alert("Choose a built-in lesson or upload an MP3 to start listening.");
+                return;
+            }
+            
+            if (isPlaying) {
+                audio.pause();
+                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
+            } else {
+                audio.play();
+                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-pause"></i>`;
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function setSpeed(speed) {
+            audio.playbackRate = speed;
+            document.querySelectorAll('.speed-btn').forEach(btn => {
+                btn.classList.toggle('bg-white', btn.textContent === speed + 'x');
+                btn.classList.toggle('text-zinc-900', btn.textContent === speed + 'x');
+            });
+        }
+
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const url = URL.createObjectURL(file);
+            audio.src = url;
+            
+            // Add as new lesson
+            lessons.unshift({
+                id: Date.now(),
+                title: file.name.replace('.mp3', ''),
+                subtitle: "Your TTMIK Upload",
+                duration: "??:??",
+                src: url,
+                transcript: "<p>Paste transcript here...</p>",
+                vocab: []
+            });
+            
+            renderLessons();
+            loadLesson(0);
+            alert("MP3 loaded! Great work on your Korean journey 💪");
+        }
+
+        function addNewLesson() {
+            const title = prompt("Lesson title (e.g. Level 1 Lesson 5):");
+            if (!title) return;
+            
+            lessons.unshift({
+                id: Date.now(),
+                title: title,
+                subtitle: "Talk To Me In Korean",
+                duration: "00:00",
+                src: "",
+                transcript: "",
+                vocab: []
+            });
+            renderLessons();
+            loadLesson(0);
+        }
+
+        function saveNotes() {
+            const notes = document.getElementById('notes').value;
+            alert("Notes saved! (In a real app these would persist)");
+        }
+
+        function toggleRepeat() {
+            repeatMode = !repeatMode;
+            audio.loop = repeatMode;
+            document.getElementById('repeat-btn').classList.toggle('text-pink-500', repeatMode);
+        }
+
+        function toggleShuffle() {
+            alert("Shuffle coming soon! For now enjoy sequential playback.");
+        }
+
+        function prevTrack() {
+            if (currentLesson > 0) loadLesson(currentLesson - 1);
+        }
+
+        function nextTrack() {
+            if (currentLesson < lessons.length - 1) loadLesson(currentLesson + 1);
+        }
+
+        function startShadowing() {
+            const phrases = [
+                "안녕하세요! 만나서 반가워요.",
+                "오늘 날씨가 정말 좋네요.",
+                "커피 한 잔 마실까요?"
+            ];
+            let i = 0;
+            const el = document.getElementById('shadowing-text');
+            
+            setInterval(() => {
+                el.textContent = phrases[i];
+                i = (i + 1) % phrases.length;
+            }, 4000);
+        }
+
+        // Audio event listeners
+        function setupAudio() {
+            audio.addEventListener('timeupdate', () => {
+                const progress = document.getElementById('progress');
+                if (audio.duration) {
+                    progress.value = (audio.currentTime / audio.duration) * 100;
+                }
+                document.getElementById('playback-time').textContent = formatTime(audio.currentTime);
+            });
+            
+            audio.addEventListener('loadedmetadata', () => {
+                document.getElementById('duration').textContent = formatTime(audio.duration);
+            });
+            
+            audio.addEventListener('ended', () => {
+                isPlaying = false;
+                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
+            });
+            
+            // Progress scrub
+            const progressSlider = document.getElementById('progress');
+            progressSlider.addEventListener('input', () => {
+                if (audio.duration) {
+                    audio.currentTime = (progressSlider.value / 100) * audio.duration;
+                }
+            });
+            
+            audio.volume = 0.8;
+            document.getElementById('volume').addEventListener('input', (e) => {
+                audio.volume = e.target.value / 100;
+            });
+        }
+
+        function formatTime(seconds) {
+            if (!seconds || isNaN(seconds)) return "00:00";
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', e => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlay();
+            }
+        });
+
+        // Init
+        window.onload = () => {
+            renderLessons();
+            loadLesson(0);
+            setupAudio();
+            switchTab(0);
+            
+            // Demo vocab
+            console.log("%cTTMIK WebApp ready! Upload your MP3s and start practicing.", "color:#ec4899; font-size:13px");
+        };
+    </script>
+</body>
+</html>

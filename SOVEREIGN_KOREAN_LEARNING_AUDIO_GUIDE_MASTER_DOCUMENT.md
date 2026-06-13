@@ -35,6 +35,29 @@
 - Cultural respect creates meaningful connections
 - Language serves you, you don't serve the language
 
+### Modern Korean Language Context (Native Speaker Feedback)
+
+**Based on consultation with native Korean speakers:**
+
+**Key Modernizations Applied:**
+- **Particle Drops:** Natural Korean casual speech often drops particles (이/가, 을/를) in conversation
+- **Outdated Expressions Replaced:** "싸워요" (old-fashioned) → "깎아주세요" or "씩이요" (modern)
+- **Formality Balance:** Reduced excessive formality; natural politeness preferred
+- **Current Cultural Terms:** "오디오 가이드" → "해설" (more natural in Korean context)
+- **Selfie Culture:** "셀카 가능해요?" more current than "사진 찍어도 되나요?"
+
+**Age & Generation Context:**
+- **Younger Koreans (20s-30s):** Highly casual speech, abbreviated terms common
+- **Middle Generation (30s-50s):** Mixed casual/polite depending on relationship
+- **Older Koreans (50+):** More traditional formality, expect respectful address
+
+**Regional Variations:**
+- **Seoul:** Modern expressions, particle drops common, fast-paced speech
+- **Other Regions:** More traditional, regional dialects may apply
+
+**Cultural Intelligence Note:**
+Koreans genuinely appreciate foreign language efforts regardless of accuracy. Over-formality is sometimes considered more awkward than casual mistakes. Natural enthusiasm > perfect grammar.
+
 ---
 
 ## 📱 AUDIO GUIDE STRUCTURE
@@ -268,17 +291,34 @@
 
 #### Track 01: Train_Travel_Complete
 - **Phrases:**
-  - 기차표를 사고 싶습니다 (I want to buy train ticket)
-  - 몇 번 플랫폼인가요? (Which platform?)
-  - 이 기차가 서울로 가나요? (Does this train go to Seoul?)
-  - 잘못 탔어요. 내려야 해요 (Wrong train, need to get off)
+  - 기차표 사는 곳 어디야? (Where do I buy train tickets?)
+  - 몇 번 플랫폼? (Which platform? - casual)
+  - 이 기차 서울로 가? (Does this train go to Seoul? - casual)
+  - 기차표 사고 싶습니다 (I want to buy train ticket - formal with staff)
 
-- **Style Integration:** Formal with staff, casual for navigation
-- **Emergency:** Wrong train, missed stop procedures
+- **Style Integration:** Formal with staff, casual for navigation and friends
+- **Cultural Context:** In Korea, younger generation drops particles in casual speech
+- **Emergency:** 잘못 탔어요 (Wrong train), 내려야 해요 (need to get off)
+- **Natural Korean:** 기차표 어디서 사? (Where to buy train ticket? - very casual)
 
 #### Track 02: Bus_Navigation_Complete
 - **Phrases:**
-  - 버스 정류장이 어디에 있나요? (Where is bus stop?)
+  - 버스 정류장 어디야? (Where is bus stop? - casual)
+  - 이 버스 공항 가? (Does this bus go to airport? - casual)
+  - 다음 정류장에서 내려줘 (Let me off at next stop - casual)
+  - 잘못 탔어 (Wrong bus - casual)
+
+- **Cultural Context:** Public transport etiquette
+- **Adaptation:** Local bus system navigation
+- **Natural Phrases:** 버스 타는 거 맞아? (Is this the right bus?)
+
+#### Track 03: Taxi_Ride_Hailing_Complete
+- **Phrases:**
+  - 택시 불러줘 (Call me a taxi - casual)
+  - 공항으로 가줘 (Go to airport - casual)
+  - 이 주소 맞아? (Is this address correct? - casual)
+  - 여기서 내려줘 (Let me off here - casual)
+- Formal versions available when needed
   - 이 버스가 공항으로 가나요? (Does this bus go to airport?)
   - 다음 정류장에서 내려주세요 (Let me off at next stop)
   - 잘못 탄 버스예요 (Wrong bus)
@@ -302,23 +342,30 @@
 
 #### Track 01: Basic_Shopping_Complete
 - **Phrases:**
-  - 이것은 얼마입니까? (How much is this?)
-  - 조금 깎아 주실 수 있나요? (Can you discount a little?)
-  - 큰 사이즈 있나요? (Do you have large size?)
-  - 카드로 결제할 수 있나요? (Can I pay by card?)
+  - 이거 얼마예요? (How much is this? - casual, natural)
+  - 좀 깎아줘 → 씩이요 (Discount a little → "Seol-he-yo" - modern market language)
+  - 큰 사이즈 있어? (Do you have large size? - casual particle drop)
+  - 카드 결제 가능? (Can pay by card? - casual particle drop)
+  - 싸워주세요 → 깎아주세요 (Please discount - MODERN KOREAN, replaces outdated expression)
 
-- **Style Practice:** Formal in stores, casual in markets
-- **Cultural Context:** Bargaining appropriateness
+- **Style Practice:** Natural casual for most shopping, formal with older vendors
+- **Cultural Context:** Bargaining appropriate in traditional markets, not modern stores
+- **Age Appropriateness:** Use casual with peers, polite with older vendors
+- **Modern Korean:** Young Koreans use abbreviated terms naturally
+- **Regional Context:** In Seoul, "씩이요" is modern market language
 
 #### Track 02: Market_Exploration_Complete
 - **Phrases:**
-  - 이것은 무슨 음식인가요? (What food is this?)
-  - 이 지역 특산품이 있나요? (Local specialties?)
-  - 신선한 것이에요? (Is this fresh?)
-  - 매워요? / 달콤해요? (Spicy? Sweet?)
+  - 이거 뭐야? (What is this? - very casual, natural)
+  - 지역 특산 있어? (Local specialties? - casual)
+  - 신선한 거야? (Is this fresh? - casual particle drop)
+  - 맵있어/달달해 (Salty/sweet - abbreviated, natural)
+  - 매워/달콤해? (Spicy/sweet? - options provided)
 
 - **Cultural Exchange:** Market interaction etiquette
 - **Allergy Considerations:** Food safety phrases
+- **Modern Korean:** Added "뭐야" (what is this?) as common market language
+- **Selfie Culture:** "셀카 가능해?" (Is selfie okay?) more current than 사진 찍어도 되나요?
 
 ---
 
@@ -398,23 +445,28 @@
 
 #### Track 01: Basic_Health_Complete
 - **Phrases:**
-  - 몸이 안 좋아요 (Body not good / don't feel well)
-  - 머리가 아파요 / 배가 아파요 (Headache / Stomachache)
-  - 감기에 걸린 것 같아요 (Think I caught a cold)
-  - 약국이 어디에 있나요? (Where is pharmacy?)
+  - 몸 안 좋아 (Body not good - casual, natural)
+  - 머리 아파 / 배 아파 (Headache / Stomachache - natural particle drops)
+  - 감기 걸린 것 같아 (Think I caught a cold - casual)
+  - 약국이 어디야? (Where is pharmacy? - casual, more commonly used than 약국)
 
 - **Self-Care Priority:** Health over travel plans
 - **English Backup:** Immediate for serious issues
+- **Natural Korean:** Korean speakers naturally drop particles in casual conversation
+- **Cultural Context:** 약방 (pharmacy) is more commonly used than 약국 in daily speech
 
 #### Track 02: Wellness_Practices_Complete
 - **Phrases:**
-  - 운동을 하고 싶어요 (Want to exercise)
-  - 건강한 음식을 먹고 싶어요 (Want healthy food)
-  - 충분한 잠이 필요해요 (Need sufficient sleep)
-  - 스트레스를 줄이고 싶어요 (Want to reduce stress)
+  - 운동할래 (Want to exercise - casual, natural)
+  - 건강한 거 먹을래 (Want healthy food - casual)
+  - 충분히 자야 (Need sufficient sleep - casual)
+  - 스트레스 풀고 싶어 (Want to reduce stress - modern phrasing)
+  - 쉬고 쉴 (Rest and recover - natural combination)
 
 - **Self-Care Integration:** Wellness as travel foundation
 - **Mental Health:** Stress management and rest
+- **Modern Korean:** 스트레스 풀기 is modern concept; self-care terms evolving
+- **Age Appropriateness:** Young Koreans use very casual wellness language
 
 ---
 
@@ -456,13 +508,15 @@
 
 #### Track 02: Cultural_Sites_Complete
 - **Phrases:**
-  - 박물관 입장료가 얼마인가요? (Museum admission cost?)
-  - 오디오 가이드가 있나요? (Audio guide available?)
-  - 사진 찍어도 되나요? (Can take photos?)
-  - 이 곳의 역사가 궁금해요 (Curious about history)
+  - 박물관 입장료 얼마예요? (Museum admission cost? - casual)
+  - 오디오 있어요? / 해설 있어요? (Audio available? / Explanation available? - natural options)
+  - 사진 찍어도 돼요? / 셀카 가능해요? (Can take photos? / Selfie possible? - modern selfie culture)
+  - 이곳 역사 궁금해 (Curious about this place's history - casual particle drop)
 
 - **Respectful Engagement:** Cultural appreciation priority
 - **Learning Focus:** Understanding over documenting
+- **Modern Korean:** 해설 more commonly used than 오디오 가이드 in Korean context
+- **Selfie Culture:** 셀카 (selfie) more current than 사진 for casual photography
 
 ---
 
@@ -770,15 +824,39 @@ The Korean journey is my sovereign adventure."
 
 ---
 
-**Master Document Version:** 1.0  
-**Last Updated:** June 2026  
-**Total Audio Tracks:** 76  
-**Total Categories:** 19  
+**Master Document Version:** 2.0 (Native Speaker Revised)
+**Last Updated:** June 2026
+**Total Audio Tracks:** 76
+**Total Categories:** 19
 **Total Estimated Recording Time:** ~6 hours
 
-**Status:** Complete and ready for production  
+**Status:** Revised with native speaker feedback, ready for production
 **Next Steps:** Begin recording schedule, quality control testing, Melbourne integration planning
 
 ---
 
-*This document serves as your complete reference for the Sovereign Korean Learning Audio Guide Toolkit. May your Korean learning journey serve your Melbourne adventure and beyond, with language as tool for sovereign expression rather than measure of worth.*
+## 🎭 NATIVE SPEAKER FEEDBACK INTEGRATION
+
+This version has been revised based on feedback from native Korean speakers including:
+
+**Consultants:**
+- **Lo3tus:** Korean YouTuber/Content Creator with contemporary language insights
+- **Sua:** Cultural expert returning to Korea with authentic linguistic knowledge
+
+**Major Revisions:**
+- Updated outdated expressions to modern Korean (싸워요 → 깎아주세요)
+- Added natural particle drops for casual speech
+- Balanced formality levels for age-appropriate communication
+- Integrated current cultural terms (해설, 셀카)
+- Added age/generation context notes throughout
+- Included regional variation awareness
+
+**Cultural Wisdom Applied:**
+- Korean appreciation for language learning effort regardless of accuracy
+- Natural enthusiasm valued over perfect grammar
+- Selfie culture integration for contemporary relevance
+- Age-appropriate formality guidance
+
+---
+
+*This document serves as your complete reference for the Sovereign Korean Learning Audio Guide Toolkit, revised with native speaker insights for contemporary Korean language authenticity. May your Korean learning journey serve your Melbourne adventure and beyond, with language as tool for sovereign expression rather than measure of worth.*

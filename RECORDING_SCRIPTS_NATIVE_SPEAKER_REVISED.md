@@ -2457,6 +2457,932 @@ Koreans appreciate humility over fake confidence"
 
 ---
 
+## 11_ACCOMMODATION_SERVICES
+
+### Track 01: Hotel_Services_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Hotel services Korean guide with natural expressions for hotel communication."
+
+**(0:20-1:00) PHRASE 1: Room Requests**
+"Room service requests:
+Natural: '수건 더 줘.' (Su-geon Deo Jwo.)
+Translation: Towels more give. (casual particle drop)
+Formal: '수건을 더 주실 수 있나요?' (Su-geon-eul Deo Ju-sil Su In-na-yo?)
+Other items: '이불 더 줘.' (I-bul Deo Jwo.) - blankets more"
+
+[Pause 3 seconds]
+
+"Natural: 수건 더 줘"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Housekeeping**
+"Requesting housekeeping:
+Natural: '방 청소 해줘.' (Bang Cheong-so Hae-jwo.)
+Translation: Room cleaning do. (casual particle drop)
+Formal: '방 청소를 부탁합니다.' (Bang Cheong-so-reul Bu-tak-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 방 청소 해줘"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Wake-up Call**
+"Wake-up call:
+Natural: '모닝콜 부탁해.' (Mo-ning-kol Bu-tak-hae.)
+Translation: Morning call request. (casual, uses English loanword)
+Formal: '웨이크업 콜을 부탁합니다.' (We-i-keu-eup Kol-reul Bu-tak-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Natural: 모닝콜 부탁해"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Check-out**
+"Check-out process:
+Natural: '체크아웃 할게.' (Che-keu-au-t Hal-ge.)
+Translation: Will check-out. (casual particle drop)
+Formal: '체크아웃하고 싶습니다.' (Che-keu-au-to-ha-go Si-peum-seum-ni-da.)
+Receipt: '영수증 주세요.' (Yeong-su-jeung Ju-se-yo.) - receipt please"
+
+[Pause 3 seconds]
+
+"Natural: 체크아웃 할게"
+[Pause 3 seconds]
+
+**(3:00-4:00) HOTEL CULTURE**
+"Korean hotel culture: Modern hotels expect polite but not overly formal language. Younger staff comfortable with casual speech. Clear communication of needs is respectful."
+
+**(4:00-5:00) SERVICE ASSERTIVENESS**
+"Hotel service assertiveness: Clear requests are assertive, not demanding. You're paying for service, you deserve comfort. Don't hesitate to ask for what you need."
+
+**(5:00) CLOSING**
+"Hotel services with Korean - you're prepared. Remember: Clear communication is respectful. Your comfort matters. Modern hotel culture is less formal."
+
+---
+
+### Track 02: Service_Requests_Complete.mp3
+**Duration:** 4 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"General service requests Korean guide with natural expressions."
+
+**(0:20-1:00) PHRASE 1: Ordering**
+"General ordering:
+Natural: '주문할게.' (Ju-mun-hal-ge.)
+Translation: Will order. (casual particle drop)
+Formal: '주문할 수 있을까요?' (Ju-mun-hal Su Is-seul-kka-yo?)
+Polite: '주문하겠습니다.' (Ju-mun-ha-get-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Natural: 주문할게"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Tourist Information**
+"Asking for information:
+Natural: '관광 정보 알려줘.' (Gwan-gwang Jeong-bo Al-ryeo-jwo.)
+Translation: Tourist information tell. (casual particle drop)
+Formal: '관광 정보를 얻을 수 있나요?' (Gwan-gwang Jeong-bo-reul Eod-eul Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 관광 정보 알려줘"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Directions**
+"Requesting directions:
+Natural: '길 알려줄 수 있어?' (Gil Al-ryeo-jul Su Is-seo?)
+Translation: Way tell able? (casual particle drop)
+Formal: '길을 안내해 주실 수 있나요?' (Gil-eul An-nae-hae Ju-sil Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 길 알려줄 수 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Special Assistance**
+"Requesting special assistance:
+Natural: '특별 도움 필요해.' (Teuk-byeol Do-u-m Pi-ryo-hae.)
+Translation: Special help need. (casual particle drop)
+Formal: '특별한 도움이 필요합니다.' (Teuk-byeol-han Do-u-mi Pi-ryo-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 특별 도움 필요해"
+[Pause 3 seconds]
+
+**(3:00-4:00) CLOSING**
+"Service requests with Korean - you're prepared. Remember: Clear communication is helpful. Polite requests are respectful. English backup always available."
+
+---
+
+## 12_WEATHER_ENVIRONMENT
+
+### Track 01: Weather_Discussion_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Weather discussion Korean guide with natural expressions for daily weather talk."
+
+**(0:20-1:00) PHRASE 1: Asking About Weather**
+"Asking about weather:
+Natural: '날씨 어때?' (Nal-ssi Eo-ddae?)
+Translation: Weather how? (casual particle drop)
+Formal: '오늘 날씨가 어때요?' (Oneul Nal-ssi-ga Eo-ddae-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 날씨 어때?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Good Weather**
+"Good weather:
+Natural: '날씨 정말 좋아.' (Nal-ssi Jeong-mal Jo-a.)
+Translation: Weather really good. (casual particle drop)
+Formal: '날씨가 정말 좋습니다.' (Nal-ssi-ga Jeong-mal Jo-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 날씨 정말 좋아"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Bad Weather**
+"Bad weather:
+Natural: '날씨 안 좋아.' (Nal-ssi An Jo-a.)
+Translation: Weather not good. (casual particle drop)
+Specific: '비 와.' (Bi Wa.) - rain comes. '눈 와.' (Nun Wa.) - snow comes."
+
+[Pause 3 seconds]
+
+"Again: 날씨 안 좋아 / 비 와 / 눈 와"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Temperature**
+"Temperature:
+Natural: '추워?' (Chu-wo?) - cold?
+Natural: '더워?' (Deo-wo?) - hot?
+Natural: '따뜻해.' (Tta-ttut-hae.) - warm.
+Natural: '시원해.' (Si-won-hae.) - cool/refreshing"
+
+[Pause 3 seconds]
+
+"Practice: 추워? / 더워? / 따뜻해? / 시원해?"
+[Pause 3 seconds]
+
+**(3:00-4:00) WEATHER PLANNING**
+"Planning based on weather:
+Natural: '날씨 때문에 계획 바꿔야 해.' (Nal-ssi Ttae-mun-e Gye-hoek Ba-kku-ya Hae.)
+Translation: Weather because plan need to change. (casual particle drop)
+Formal: '날씨 때문에 계획을 바꿔야 합니다.' (Nal-ssi Ttae-mun-e Gye-hoek-eul Ba-kku-ya Ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Natural: 날씨 때문에 계획 바꿔야 해"
+[Pause 3 seconds]
+
+**(4:00-5:00) ADAPTABILITY**
+"Weather adaptability: Flexible planning is intelligent. Your comfort matters more than rigid plans. It's okay to change plans due to weather. Self-care includes environmental comfort."
+
+**(5:00) CLOSING**
+"Weather discussion with Korean - you're prepared. Remember: Casual speech is normal for daily weather talk. Adaptability shows intelligence. Your comfort matters."
+
+---
+
+### Track 02: Environment_Adaptation_Complete.mp3
+**Duration:** 4 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Environment adaptation Korean guide. Discuss environmental conditions in Korean."
+
+**(0:20-1:00) PHRASE 1: Environmental Conditions**
+"Environmental conditions:
+Natural: '환경 어때?' (Hwan-gyeong Eo-ddae?)
+Translation: Environment how? (casual particle drop)
+Formal: '환경이 어떤가요?' (Hwan-gyeong-i Eo-ddeon-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 환경 어때?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Air Quality**
+"Air quality:
+Natural: '공기 안 좋아.' (Gong-gi An Jo-a.)
+Translation: Air not good. (casual particle drop)
+Formal: '공기 질이 안 좋습니다.' (Gong-gi Ji-r-i An Jo-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 공기 안 좋아"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Noise Level**
+"Noise level:
+Natural: '소음 심해.' (So-eum Sim-hae.)
+Translation: Noise severe. (casual particle drop)
+Formal: '소음이 심합니다.' (So-eum-i Sim-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 소음 심해"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Accessibility**
+"Accessibility:
+Natural: '접근성 좋아?' (Jeop-geun-seong Jo-a?)
+Translation: Accessibility good? (casual particle drop)
+Formal: '접근성이 좋은가요?' (Jeop-geun-seong-i Jo-eun-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 접근성 좋아?"
+[Pause 3 seconds]
+
+**(3:00-4:00) ADAPTIVE WELLBEING**
+"Environmental adaptability: Your comfort and safety matter. It's okay to change plans if conditions aren't suitable. Self-care includes environmental awareness. Adaptability is intelligent."
+
+**(4:00) CLOSING**
+"Environment discussion with Korean - you're prepared. Remember: Casual particle drops are normal. Your comfort and safety are priorities. Adaptive planning shows self-care."
+
+---
+
+## 14_TECH_CONNECTIVITY
+
+### Track 01: Internet_Connectivity_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Internet connectivity Korean guide with modern tech expressions."
+
+**(0:20-1:00) PHRASE 1: WiFi Access**
+"WiFi access:
+Natural: '와이파이 비밀번호 있어?' (Wa-i-pa-i Bi-mil-beon-ho Is-seo?)
+Translation: WiFi password exist? (casual particle drop)
+Formal: '와이파이 비밀번호가 있나요?' (Wa-i-pa-i Bi-mil-beon-ho-ga In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 와이파이 비밀번호 있어?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Internet Issues**
+"Internet problems:
+Natural: '인터넷 안 돼.' (In-teo-net An Dwae.)
+Translation: Internet not working. (casual particle drop)
+Formal: '인터넷이 안 됩니다.' (In-teo-net-i An Doem-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 인터넷 안 돼"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Charging**
+"Device charging:
+Natural: '충전기 있어?' (Chung-jeon-gi Is-seo?)
+Translation: Charger exist? (casual particle drop)
+Formal: '충전기가 있나요?' (Chung-jeon-gi-ga In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 충전기 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Data Issues**
+"Data issues:
+Natural: '데이터 부족해.' (De-i-teo Bu-jok-hae.)
+Translation: Data insufficient. (casual particle drop)
+Formal: '데이터가 부족합니다.' (De-i-teo-ga Bu-jok-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 데이터 부족해"
+[Pause 3 seconds]
+
+**(3:00-4:00) TECH WELLNESS**
+"Tech wellness principles: Devices are tools, not your worth. It's okay to disconnect when needed. Healthy device boundaries are intelligent. Offline alternatives are backup plans."
+
+**(4:00-5:00) DEVICE LOST EMERGENCY**
+"If device lost:
+English: 'I lost my phone/device.'
+Korean: '전화 잃어버렸어.' (Jeon-hwa I-r-beo-ryeos-seo.) - phone lost (casual particle drop)
+Remember: Device loss is stressful but doesn't define your worth."
+
+**(5:00) CLOSING**
+"Tech connectivity with Korean - you're prepared. Remember: English backup always available. Devices serve you, not vice versa. Healthy tech boundaries are self-care."
+
+---
+
+### Track 02: Digital_Services_Complete.mp3
+**Duration:** 4 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Digital services Korean guide for apps, online platforms, and digital help."
+
+**(0:20-1:00) PHRASE 1: App Usage**
+"App questions:
+Natural: '이 앱 어떻게 써?' (I Aep Eo-tto-ke Sswo?)
+Translation: This app how use? (casual particle drop)
+Formal: '이 앱을 어떻게 사용하나요?' (I Ae-beul Eo-tto-ke Sa-yong-ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 이 앱 어떻게 써?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Online Booking**
+"Online reservation:
+Natural: '온라인으로 예약했어.' (On-lain-eu-ro Ye-ya-kaess-eo.)
+Translation: Online reserved. (casual particle drop)
+Formal: '온라인으로 예약했습니다.' (On-lain-eu-ro Ye-ya-kaess-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 온라인으로 예약했어"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Digital Payment**
+"Mobile payment:
+Natural: '모바일로 결제할 수 있어?' (Mo-ba-il-lo Gyeol-je-hal Su Is-seo?)
+Translation: Mobile payment able? (casual particle drop)
+Formal: '모바일로 결제할 수 있나요?' (Mo-ba-il-lo Gyeol-je-hal Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 모바일로 결제할 수 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Tech Support**
+"Technical support:
+Natural: '기술 지원 필요해.' (Gi-sul Ji-won Pi-ryo-hae.)
+Translation: Technical support needed. (casual particle drop)
+Formal: '기술 지원이 필요합니다.' (Gi-sul Ji-won-i Pi-ryo-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 기술 지원 필요해"
+[Pause 3 seconds]
+
+**(3:00-4:00) CLOSING**
+"Digital services with Korean - you're prepared. Remember: Tech language is similar in many languages. Screens can show English backup. Don't stress about perfect tech Korean."
+
+---
+
+## 16_CULTURAL_SITES_MUSEUMS
+
+### Track 01: Museum_Experience_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Museum experience Korean guide with natural expressions for cultural site visits."
+
+**(0:20-1:00) PHRASE 1: Exhibition Information**
+"Exhibition questions:
+Natural: '이 전시회 뭐야?' (I Jeon-si-hoe Mwo-ya?)
+Translation: This exhibition what? (casual particle drop)
+Formal: '이 전시회는 무엇에 관한 것인가요?' (I Jeon-si-hoe-neun Mu-eo-se Gwan-han Geo-sin-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 이 전시회 뭐야?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Artist Information**
+"Asking about artist:
+Natural: '작가 누구야?' (Jak-ga Nu-gu-ya?)
+Translation: Artist who? (casual particle drop)
+Formal: '작가는 누구인가요?' (Jak-ga-neun Nu-gu-in-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 작가 누구야?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Time Period**
+"Asking about time period:
+Natural: '언제 시대 작품이야?' (Eon-je Si-dae Jak-pum-i-ya?)
+Translation: When era artwork? (casual particle drop)
+Formal: '이것은 언제 시대의 작품인가요?' (I-geo-seun Eon-je Si-dae-ui Jak-pum-in-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 언제 시대 작품이야?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Interactive Elements**
+"Interactive experience:
+Natural: '체험할 수 있는 거 있어?' (Che-heom-hal Su In-neun Geo Is-seo?)
+Translation: Experience able thing exist? (casual particle drop)
+Formal: '체험할 수 있는 것이 있나요?' (Che-heom-hal Su In-neun Geo-si In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 체험할 수 있는 거 있어?"
+[Pause 3 seconds]
+
+**(3:00-4:00) MUSEUM CULTURE**
+"Museum cultural respect: Learning matters more than photographing. Take time to read and understand. Don't rush through exhibits. Your genuine curiosity is appreciated."
+
+**(4:00-5:00) PHOTOGRAPHY ETIQUETTE**
+"Modern photography in museums:
+Traditional: 사진 찍어도 되나요?
+Modern: 사진 찍어도 돼요? (acceptable)
+Current: 셀카 가능해요? (selfie possible - modern context)
+
+Check signs first. Some areas prohibit photography."
+
+**(5:00-6:00) CLOSING**
+"Museum experience with Korean - you're prepared. Remember: Learning over documenting. Selfie culture is modern. Natural curiosity shows respect. Take your time to understand."
+
+---
+
+### Track 02: Historical_Landmarks_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Historical landmarks Korean guide with respectful expressions for sacred sites."
+
+**(0:20-1:00) PHRASE 1: Historical Importance**
+"Asking about significance:
+Natural: '역사적 중요성 뭐야?' (Yeok-sa-jeok Jung-yo-seong Mwo-ya?)
+Translation: Historical importance what? (casual particle drop)
+Formal: '이 장소의 역사적 중요성은 무엇인가요?' (I Jang-so-ui Yeok-sa-jeok Jung-yo-seong-eun Mu-eo-sin-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 역사적 중요성 뭐야?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Sacred Sites**
+"Asking about sacred nature:
+Natural: '성스러운 곳이야?' (Seong-seu-reun Gos-i-ya?)
+Translation: Sacred place? (casual particle drop)
+Formal: '이곳은 성스러운 곳인가요?' (I-gos-eun Seong-seu-reun Gos-in-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 성스러운 곳이야?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Proper Behavior**
+"Asking about behavior:
+Natural: '여기서 어떻게 행동해?' (Yeo-gi-seo Eo-tto-ke Haeng-dong-hae?)
+Translation: Here how behave? (casual particle drop)
+Formal: '여기서 어떻게 행동해야 하나요?' (Yeo-gi-seo Eo-tto-ke Haeng-dong-hae-ya Ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 여기서 어떻게 행동해?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Cultural Respect**
+"Expressing respect:
+Natural: '한국 역사 존중해.' (Han-guk Yeok-sa Jon-jung-hae.)
+Translation: Korean history respect. (casual particle drop)
+Formal: '한국 역사를 존중합니다.' (Han-guk Yeok-sa-reul Jon-jung-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 한국 역사 존중해"
+[Pause 3 seconds]
+
+**(3:00-4:00) REVERENT APPROACH**
+"Sacred/historical sites require reverence. Take time to understand significance. Don't rush or treat as tourist photo op. Your respectful presence honors the site."
+
+**(4:00-5:00) DEEP LEARNING**
+"Historical learning goes beyond surface. Cultural context matters. Understanding why place is important. Your willingness to learn deeply is appreciated."
+
+**(5:00) CLOSING**
+"Historical landmarks with Korean - you're prepared. Remember: Reverent approach required. Deep learning valued. Respectful presence honors cultural significance."
+
+---
+
+## 17_LOCAL_CUSTOMS_ETIQUETTE
+
+### Track 01: Dining_Etiquette_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Dining etiquette Korean guide. Understanding Korean dining customs respectfully."
+
+**(0:20-1:00) PHRASE 1: Learning Etiquette**
+"Asking about customs:
+Natural: '식사 예절 알려줘.' (Sig-sa Ye-jeol Al-ryeo-jwo.)
+Translation: Dining etiquette tell. (casual particle drop)
+Formal: '한국 식사 예절에 대해 알고 싶습니다.' (Han-guk Sig-sa Ye-jeol-e Dae-hae Al-go Si-peum-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Natural: 식사 예절 알려줘"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Table Manners**
+"Table manners questions:
+Natural: '식사할 때 어떻게 행동해?' (Sig-sa-hal Ttae Eo-tto-ke Haeng-dong-hae?)
+Translation: When dining how behave? (casual particle drop)
+Formal: '식사할 때 어떤 예절을 지켜야 하나요?' (Sig-sa-hal Ttae Eo-ddeon Ye-jeol-eul Ji-kyeo-ya Ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 식사할 때 어떻게 행동해?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Food Sharing**
+"Asking about sharing:
+Natural: '음식 나누는 게 예의야?' (Eum-sig Na-nu-neun Ge Ye-ui-ya?)
+Translation: Food sharing is politeness? (casual particle drop)
+Formal: '음식을 나누는 것이 예의인가요?' (Eum-sig-eul Na-nu-neun Geo-si Ye-ui-in-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 음식 나누는 게 예의야?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Cultural Appreciation**
+"Expressing food culture appreciation:
+Natural: '한국 식문화 좋아.' (Han-guk Sik-mun-hwa Jo-a.)
+Translation: Korean food culture like. (casual particle drop)
+Formal: '한국 식문화를 존중합니다.' (Han-guk Sik-mun-hwa-reul Jon-jung-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Natural: 한국 식문화 좋아"
+[Pause 3 seconds]
+
+**(3:00-4:00) TIPPING CULTURE CONTEXT**
+"Korea vs Melbourne tipping:
+Korea: NO tipping expected or customary
+Melbourne: Tipping expected (10-15%)
+
+Cultural intelligence: Don't tip in Korea. Do tip in Melbourne. This shows respect for local customs."
+
+**(4:00-5:00) KOREAN DINING CUSTOMS**
+"Common Korean dining etiquette:
+- Wait for elders to start eating
+- Use two hands when receiving from elders
+- Don't blow your nose at table
+- Alcohol pouring customs (turn away when drinking)
+- Sharing dishes is common"
+
+**(5:00-6:00) CLOSING**
+"Dining etiquette with Korean - you're prepared. Remember: Koreans don't typically express food appreciation verbally - they show it through enjoyment. Cultural intelligence = adapt to local customs."
+
+---
+
+### Track 02: Social_Etiquette_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Social etiquette Korean guide. Understanding Korean social customs respectfully."
+
+**(0:20-1:00) PHRASE 1: Greetings**
+"Learning greetings:
+Natural: '인사 어떻게 해?' (In-sa Eo-tto-ke Hae?)
+Translation: Greeting how do? (casual particle drop)
+Formal: '인사를 어떻게 해야 하나요?' (In-sa-reul Eo-tto-ke Hae-ya Ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 인사 어떻게 해?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Elders**
+"Asking about addressing elders:
+Natural: '어른 어떻게 불러?' (Eo-reun Eo-tto-ke Bul-leo?)
+Translation: Elders how address? (casual particle drop)
+Formal: '어른을 어떻게 불러야 하나요?' (Eo-reun-eul Eo-tto-ke Bul-leo-ya Ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 어른 어떻게 불러?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Gift Giving**
+"Gift etiquette:
+Natural: '선물 줄 때 예절 있어?' (Seon-mul Jul Ttae Ye-jeol Is-seo?)
+Translation: Gift giving time etiquette exist? (casual particle drop)
+Formal: '선물을 줄 때 예절이 있나요?' (Seon-mul-eul Jul Ttae Ye-jeol-i In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 선물 줄 때 예절 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Shoes**
+"Asking about shoes:
+Natural: '신발 벗어야 돼?' (Sin-bal Beos-seo-ya Dwae?)
+Translation: Shoes remove must? (casual particle drop)
+Formal: '신발을 벗어야 하나요?' (Sin-bal-eul Beos-seo-ya Ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 신발 벗어야 돼?"
+[Pause 3 seconds]
+
+**(3:00-4:00) AGE-APPROPRIATE ADDRESSING**
+"Korean age hierarchy:
+- Elders (50+): Use formal titles and language
+- Middle generation (30-50): Mixed based on relationship
+- Young generation (20-30): Casual with peers, formal with elders
+- Always use respectful address with older people"
+
+**(4:00-5:00) PERSONAL SPACE**
+"Korean personal space culture:
+- Less personal space than Western cultures
+- Physical touch more common among same gender
+- Eye contact rules vary by age
+- Public space sharing is common"
+
+**(5:00-6:00) CLOSING**
+"Social etiquette with Korean - you're prepared. Remember: Age hierarchy is fundamental to Korean culture. Respectful addressing shows cultural intelligence. Adapt personal space expectations."
+
+---
+
+## 18_ENTERTAINMENT_EVENTS
+
+### Track 01: Concerts_Events_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Concerts and events Korean guide with natural expressions for entertainment."
+
+**(0:20-1:00) PHRASE 1: Event Information**
+"Event questions:
+Natural: '이 행사 뭐야?' (I Haeng-sa Mwo-ya?)
+Translation: This event what? (casual particle drop)
+Formal: '이 행사는 무엇인가요?' (I Haeng-sa-neun Mu-eo-sin-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 이 행사 뭐야?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Concert Tickets**
+"Concert tickets:
+Natural: '콘서트 표 사고 싶어.' (Kon-seo-teu Pyo Sa-go Si-peo.)
+Translation: Concert ticket want buy. (casual particle drop)
+Formal: '콘서트 표를 사고 싶습니다.' (Kon-seo-teu Pyo-reul Sa-go Si-peum-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 콘서트 표 사고 싶어"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Performance Time**
+"Performance schedule:
+Natural: '공연 시간 언제야?' (Gong-yeon Si-gan Eon-je-ya?)
+Translation: Performance time when? (casual particle drop)
+Formal: '공연 시간이 언제인가요?' (Gong-yeon Si-gan-eun Eon-je-in-ga-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 공연 시간 언제야?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Seats**
+"Seat selection:
+Natural: '좋은 자리 있어?' (Jo-eun Ja-ri Is-seo?)
+Translation: Good seat exist? (casual particle drop)
+Formal: '좋은 자리가 있나요?' (Jo-eun Ja-ri-ga In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 좋은 자리 있어?"
+[Pause 3 seconds]
+
+**(3:00-4:00) KOREAN ENTERTAINMENT CULTURE**
+"Korean entertainment culture:
+- Enthusiastic participation appreciated
+- K-pop concerts have specific fan culture
+- Traditional performances require respectful behavior
+- Concert etiquette varies by event type"
+
+**(4:00-5:00) CULTURAL APPRECIATION**
+"Expressing appreciation:
+Natural: '한국 공연 기대돼.' (Han-guk Gong-yeon Gi-dae-dwae.)
+Translation: Korean performance look forward. (casual particle drop)
+Korean entertainment culture values genuine enthusiasm"
+
+[Pause 3 seconds]
+
+"Natural: 한국 공연 기대돼"
+[Pause 3 seconds]
+
+**(5:00) CLOSING**
+"Concerts and events with Korean - you're prepared. Remember: Enthusiastic participation valued. Cultural intelligence = understand event context. Natural enthusiasm appreciated."
+
+---
+
+### Track 02: Festivals_Celebrations_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Festivals and celebrations Korean guide. Participating in Korean cultural events."
+
+**(0:20-1:00) PHRASE 1: Festival Purpose**
+"Asking about festival:
+Natural: '이 축제 뭐 축하?' (I Chuk-je Mwo Chuk-ha?)
+Translation: This festival what celebrate? (casual particle drop)
+Formal: '이 축제는 무엇을 축하나요?' (I Chuk-je-neun Mu-eo-seul Chuk-ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 이 축제 뭐 축하?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Participation**
+"Asking how to participate:
+Natural: '축제 어떻게 참여해?' (Chuk-je Eo-tto-ke Cham-yeo-hae?)
+Translation: Festival how participate? (casual particle drop)
+Formal: '축제에 어떻게 참여하나요?' (Chuk-je-e Eo-tto-ke Cham-yeo-ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 축제 어떻게 참여해?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Traditional Clothing**
+"Asking about hanbok:
+Natural: '한복 입어야 돼?' (Han-bok Ip-eo-ya Dwae?)
+Translation: Hanbok wear must? (casual particle drop)
+Formal: '한복을 입어야 하나요?' (Han-bok-eul Ip-eo-ya Ha-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 한복 입어야 돼?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Festival Food**
+"Festival food:
+Natural: '축제 특유 음식 있어?' (Chuk-je Teuk-yu Eum-sig Is-seo?)
+Translation: Festival special food exist? (casual particle drop)
+Formal: '축제 특유 음식이 있나요?' (Chuk-je Teuk-yu Eum-sig-i In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 축제 특유 음식 있어?"
+[Pause 3 seconds]
+
+**(3:00-4:00) CULTURAL PARTICIPATION**
+"Festival cultural participation:
+- Genuine interest appreciated
+- Respectful observation first
+- Ask before photographing people
+- Participate enthusiastically when invited
+- Learn cultural significance"
+
+**(4:00-5:00) TRADITIONAL ELEMENTS**
+"Traditional festival elements:
+- Hanbok (traditional Korean clothing)
+- Traditional foods and drinks
+- Cultural performances
+- Community participation
+- Historical significance"
+
+**(5:00-6:00) CLOSING**
+"Festivals and celebrations with Korean - you're prepared. Remember: Cultural participation meaningful. Respectful observation first. Genuine enthusiasm valued. Learn cultural significance."
+
+---
+
+## 19_CULTURAL_APPRECIATION
+
+### Track 01: Deep_Appreciation_Complete.mp3
+**Duration:** 7 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Deep cultural appreciation Korean guide. Expressing genuine respect for Korean culture."
+
+**(0:30-1:30) PHRASE 1: Deep Learning**
+"Desiring deeper understanding:
+Natural: '한국 문화 더 깊이 알고 싶어.' (Han-guk Mun-hwa Deo Gip-i Al-go Si-peo.)
+Translation: Korean culture more deeply want to know. (casual particle drop)
+Formal: '한국 문화를 더 깊이 알고 싶습니다.' (Han-guk Mun-hwa-reul Deo Gip-i Al-go Si-peum-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 한국 문화 더 깊이 알고 싶어"
+[Pause 3 seconds]
+
+**(1:30-2:30) PHRASE 2: Core Values**
+"Asking about values:
+Natural: '한국 문화 핵심 가치 뭐야?' (Han-guk Mun-hwa Hek-sim Ga-chi Mwo-ya?)
+Translation: Korean culture core value what? (casual particle drop)
+Formal: '한국 문화의 핵심 가치가 무엇인가요?' (Han-guk Mun-hwa-ui Hek-sim Ga-chi-ga Mu-eo-sin-ga-yo?)"
+
+[Pause 5 seconds]
+
+"Natural: 한국 문화 핵심 가치 뭐야?"
+[Pause 3 seconds]
+
+**(2:30-3:30) PHRASE 3: Cultural Resonance**
+"Expressing personal connection:
+Natural: '한국 문화에 공감돼.' (Han-guk Mun-hwa-e Gong-gam-dwae.)
+Translation: Korean culture resonate with. (casual particle drop)
+Formal: '한국 문화에 공감합니다.' (Han-guk Mun-hwa-e Gong-gam-ham-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 한국 문화에 공감돼"
+[Pause 3 seconds]
+
+**(3:30-4:30) PHRASE 4: Lifelong Learning**
+"Lifelong commitment:
+Natural: '평생 한국 문화 배우고 싶어.' (Pyeong-saeng Han-guk Mun-hwa Bae-u-go Si-peo.)
+Translation: Lifetime Korean culture want to learn. (casual particle drop)
+Formal: '평생 한국 문화를 배우고 싶습니다.' (Pyeong-saeng Han-guk Mun-hwa-reul Bae-u-go Si-peum-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 평생 한국 문화 배우고 싶어"
+[Pause 3 seconds]
+
+**(4:30-5:30) CULTURAL DEPTH**
+"Deep cultural appreciation:
+- Beyond surface tourism
+- Understanding values and history
+- Meaningful engagement
+- Lifelong commitment
+- Respecting significance"
+
+**(5:30-6:30) KOREAN RESPONSE**
+"When foreigners express deep cultural appreciation, Koreans are genuinely moved. Phrases like '평생 한국 문화 배우고 싶어' show profound respect and commitment beyond tourist curiosity."
+
+**(6:30-7:00) CLOSING AFFIRMATION**
+"나는 한국 문화를 존중하는 사람. 깊이 이해하고 싶어. 평생 배우고 싶어. 한국 문화와의 연결이 나의 삶의 일부."
+
+(Translation: I am a person who respects Korean culture. Want to understand deeply. Want to learn lifetime. Connection with Korean culture is part of my life.)
+
+---
+
+### Track 02: Meaningful_Connection_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Meaningful cultural connection Korean guide. Building genuine relationships beyond tourism."
+
+**(0:30-1:30) PHRASE 1: Cultural Exchange**
+"Interest in exchange:
+Natural: '문화 교류 관심 많아.' (Mun-hwa Gyo-ryu Gwan-sim Ma-na.)
+Translation: Cultural exchange interest much. (casual particle drop)
+Formal: '문화 교류에 관심이 많습니다.' (Mun-hwa Gyo-ryu-e Gwan-sim-i Ma-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 문화 교류 관심 많아"
+[Pause 3 seconds]
+
+**(1:30-2:30) PHRASE 2: Friendship Over Tourism**
+"Desiring friendship:
+Natural: '관광객 아니라 친구 되고 싶어.' (Gwan-gwang-gaeg A-ni-ra Chin-gu Doe-go Si-peo.)
+Translation: Not tourist but friend want to be. (casual particle drop)
+Formal: '관광객이 아니라 친구가 되고 싶습니다.' (Gwan-gwang-gaeg-i A-ni-ra Chin-gu-ga Doe-go Si-peum-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 관광객 아니라 친구 되고 싶어"
+[Pause 3 seconds]
+
+**(2:30-3:30) PHRASE 3: Shared Humanity**
+"Shared humanity expression:
+Natural: '우리 다르지만 비슷한 마음 있어.' (U-ri Da-reu-ji-man Bi-sil-han Ma-eum Is-seo.)
+Translation: We different but similar heart exist. (casual particle drop)
+Formal: '우리는 서로 다르지만 비슷한 마음을 가지고 있습니다.' (U-ri-neun Seo-ro Da-reu-ji-man Bi-sil-han Ma-eum-eul Ga-ji-go Is-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 우리 다르지만 비슷한 마음 있어"
+[Pause 3 seconds]
+
+**(3:30-4:30) PHRASE 4: Mutual Learning**
+"Desiring mutual learning:
+Natural: '서로의 문화에서 배우고 싶어.' (Seo-ro-ui Mun-hwa-e-seo Bae-u-go Si-peo.)
+Translation: From each other's culture want to learn. (casual particle drop)
+Formal: '서로의 문화에서 배우고 싶습니다.' (Seo-ro-ui Mun-hwa-e-seo Bae-u-go Si-peum-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 서로의 문화에서 배우고 싶어"
+[Pause 3 seconds]
+
+**(4:30-5:30) LIFELONG CONNECTION**
+"Lifelong connection commitment:
+Natural: '한국과 연결 평생 유지하고 싶어.' (Han-guk-gwa Yeon-gyeol Pyeong-saeng Yu-ji-ha-go Si-peo.)
+Translation: With Korea connection lifetime maintain want to. (casual particle drop)
+Formal: '한국과의 연결을 평생 유지하고 싶습니다.' (Han-guk-gwa-ui Yeon-gyeol-eul Pyeong-saeng Yu-ji-ha-go Si-peum-seum-ni-da.)"
+
+[Pause 5 seconds]
+
+"Natural: 한국과 연결 평생 유지하고 싶어"
+[Pause 3 seconds]
+
+**(5:30-6:00) CLOSING AFFIRMATION**
+"나는 한국과 진정한 친구 되고 싶어. 관광객이 아니라 진짜 사람. 우리 다르지만 비슷한 마음 공유. 한국과 평생 연결 유지하고 싶어."
+
+(Translation: I want to become true friend with Korea. Not tourist but real person. We different but share similar heart. Want to maintain lifetime connection with Korea.)
+
+---
+
 ## 🎙️ RECORDING NOTES FOR ALL TRACKS
 
 ### General Recording Guidelines:

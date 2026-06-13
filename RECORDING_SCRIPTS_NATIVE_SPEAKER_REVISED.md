@@ -707,7 +707,1753 @@ Formal: '이 곳의 역사가 궁금해요.' (I Gos-ui Yeok-sa-ga Gung-geum-hae-
 
 ---
 
-## [Continuing sections would follow similar pattern for remaining tracks...]
+## 02_MELBOURNE_ARRIVAL_SYSTEM
+
+### Track 01: Airport_Arrival_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Welcome to airport arrival Korean guide. These phrases will help you navigate international airports with natural Korean."
+
+**(0:20-1:00) PHRASE 1: Passport Control**
+"At passport control, use formal language:
+Formal: '여권 여기 있습니다.' (Yeo-gwon Yeo-gi Is-seum-ni-da.)
+Translation: Passport here is.
+Context: Formal required for government/immigration"
+
+[Pause 3 seconds]
+
+"Again: 여권 여기 있습니다."
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Baggage Claim**
+"At baggage area:
+Natural: '수화물 어디서 받아?' (Su-hwa-mul Eo-di-seo Ba-da?)
+Translation: Baggage where receive? (casual particle drop)
+Formal: '수화물 어디서 받나요?' (Su-hwa-mul Eo-di-seo Ba-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 수화물 어디서 받아?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: General Assistance**
+"Asking for help:
+Natural: '도와줄 수 있어?' (Do-wa-jul Su Is-seo?)
+Translation: Help able to give? (casual particle drop)
+Formal: '도움을 받을 수 있나요?' (Do-eum-eul Ba-deul Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 도와줄 수 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Lost/Confused**
+"If lost or confused:
+Natural: '길 잃었어. 도와줘.' (Gil I-riss-eo. Do-wa-jwo.)
+Translation: Lost. Help me. (casual particle drops)
+Formal: '길을 잃었습니다. 도움이 필요합니다.' (Gil-eul I-riss-seum-ni-da. Do-u-mi Pi-ryo-ham-ni-da.)
+English backup: I'm lost and need help."
+
+[Pause 3 seconds]
+
+"Again: 길 잃었어. 도와줘."
+[Pause 3 seconds]
+
+**(3:00-4:00) AIRPORT CULTURAL CONTEXT**
+"At airports, formal language is appropriate with staff but you can use casual with fellow travelers. Immigration officers expect formal language. Don't stress - airport staff are used to helping international travelers."
+
+**(4:00-5:00) SELF-INTIMACY MOMENT**
+"Airport arrival can feel overwhelming. Remember: Your worth isn't measured by how smoothly you navigate airports. It's okay to ask for help multiple times. Travel challenges don't reflect on your capability."
+
+**(5:00-6:00) CLOSING**
+"Airport arrival with Korean - you're prepared. Remember: Formal with staff, casual with peers. English backup always available. Your safety matters most."
+
+---
+
+### Track 02: Hotel_Checkin_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Hotel check-in Korean guide with natural expressions."
+
+**(0:20-1:00) PHRASE 1: Check-in Process**
+"Hotel check-in:
+Formal: '체크인하고 싶습니다.' (Che-keu-in-ha-go Si-peum-seum-ni-da.)
+Translation: Want to check-in.
+Natural: '체크인 할게.' (Che-keu-in Hal-ge.)
+Translation: Will check-in. (casual with front desk staff if appropriate)"
+
+[Pause 3 seconds]
+
+"Formal: 체크인하고 싶습니다"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Reservation Confirmation**
+"Confirming reservation:
+Natural: '예약 했어. 이름은 ___.' (Ye-ya Haess-eo. I-reum-eun ___.)
+Translation: Reserved. Name is ___. (casual particle drop)
+Formal: '예약했습니다. 예약자 이름은 ___입니다.' (Ye-ya-kaess-seum-ni-da. Ye-ya-ja I-reum-eun ___im-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 예약 했어. 이름은 ___."
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Room Requests**
+"Room preferences:
+Natural: '조용한 방 주면 좋겠어.' (Jo-yong-han Bang Ju-myeon Jo-kes-seo.)
+Translation: Quiet room give would be good. (casual)
+Formal: '조용한 방을 주시면 감사하겠습니다.' (Jo-yong-han Bang-eul Ju-si-myeon Gam-sa-ha-get-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: 조용한 방 주면 좋겠어."
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Room Issues**
+"If room has problems:
+Natural: '방 문제 있어. 바꿔줄 수 있어?' (Bang Mun-je Is-seo. Ba-kku-jul Su Is-seo?)
+Translation: Room has problem. Can change? (casual particle drops)
+Formal: '방에 문제가 있습니다. 바꿔주실 수 있나요?' (Bang-e Mun-je-ga Is-seum-ni-da. Ba-kku-ju-sil Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 방 문제 있어. 바꿔줄 수 있어?"
+[Pause 3 seconds]
+
+**(3:00-4:00) SELF-INTIMACY SOLO TRAVEL**
+"Solo hotel check-in can feel vulnerable. Remember: You deserve comfortable accommodation regardless of language ability. Clear communication about needs is assertive, not demanding. Your comfort matters."
+
+**(4:00-5:00) CLOSING**
+"Hotel check-in with Korean - you're prepared. Remember: Formal with hotel staff is safe default. Clear needs communication. Your accommodation comfort matters most."
+
+---
+
+### Track 03: Emergency_Essentials_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Emergency Korean guide. Remember: Safety first, language second in true emergencies."
+
+**(0:20-1:00) PHRASE 1: Medical Emergency**
+"Medical emergency - use English IMMEDIATELY:
+English: 'I need medical help right now.'
+Korean backup: '응급 의료 필요해.' (Eung-geub Ui-ryo Pi-ryo-hae.)
+Translation: Emergency medical need. (casual particle drop)
+Formal: '응급 의료 지원이 필요합니다.' (Eung-geub Ui-ryo Ji-won-i Pi-ryo-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"English first, then Korean backup: 응급 의료 필요해"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Police Emergency**
+"Police emergency:
+English: 'I need to call the police.'
+Korean backup: '경찰 불러줘.' (Gyeong-chal Bul-leo-jwo.)
+Translation: Police call. (casual)
+Formal: '경찰에 신고하고 싶습니다.' (Gyeong-chal-e Sin-go-ha-go Si-peum-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"English first, then: 경찰 불러줘"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Lost Items**
+"If you lost something important:
+Natural: '___ 잃어버렸어. 도와줘.' (___ I-r-beo-ryeos-seo. Do-wa-jwo.)
+Translation: ___ lost. Help me. (casual particle drops)
+Formal: '___을 잃어버렸습니다. 도움이 필요합니다.' (___eul I-r-beo-ryeos-seum-ni-da. Do-u-mi Pi-ryo-ham-ni-da.)"
+
+[Pause 3 seconds]
+
+"Again: ___ 잃어버렸어. 도와줘."
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Emergency Contact**
+"Emergency contact information:
+English: 'I need to contact emergency services.'
+Korean: '비상 연락 필요해.' (Bi-sang Yeon-rak Pi-ryo-hae.)
+Translation: Emergency contact need. (casual particle drop)"
+
+[Pause 3 seconds]
+
+"Again: 비상 연락 필요해."
+[Pause 3 seconds]
+
+**(3:00-4:00) EMERGENCY PROTOCOL**
+"In true emergencies: Use English immediately. Don't try Korean if it's not working. Your safety matters more than language practice. Have emergency contact information written down."
+
+**(4:00-5:00) SELF-CARE IN EMERGENCIES**
+"Emergencies are stressful regardless of language. Remember: Your worth isn't measured by how you handle emergencies. It's okay to need help. Seeking help is intelligent, not shameful."
+
+**(5:00-6:00) CLOSING**
+"Emergency Korean - you're prepared. Remember: English first in true emergencies. Korean as backup. Your safety is the absolute priority."
+
+---
+
+### Track 04: Getting_Help_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Getting help Korean guide with natural expressions."
+
+**(0:20-1:00) PHRASE 1: Asking Assistance**
+"General help request:
+Natural: '도와줄 수 있어?' (Do-wa-jul Su Is-seo?)
+Translation: Help able to give? (casual particle drop)
+Formal: '도움을 받을 수 있나요?' (Do-eum-eul Ba-deul Su In-na-yo?)
+Polite: '도와주실 수 있나요?' (Do-wa-ju-sil Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 도와줄 수 있어?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Directions**
+"Asking for directions:
+Natural: '이거 어디야?' (I-geo Eo-di-ya?)
+Translation: This where? (casual particle drop)
+Formal: '이것은 어디에 있나요?' (I-geo-seun Eo-di-e In-na-yo?)
+More specific: '___ 어디야?' (___ Eo-di-ya?)"
+
+[Pause 3 seconds]
+
+"Again: 이거 어디야?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Information**
+"Asking for information:
+Natural: '정보 알려줄 수 있어?' (Jeong-bo Al-ryeo-jul Su Is-seo?)
+Translation: Information tell able? (casual particle drop)
+Formal: '정보를 알려주실 수 있나요?' (Jeong-bo-reul Al-ryeo-ju-sil Su In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 정보 알려줄 수 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Understanding**
+"If you don't understand:
+Natural: '이해 못해. 다시 설명해줘.' (I-hae Mot-hae. Da-si Seol-myeong-hae-jwo.)
+Translation: Understand not. Explain again. (casual particle drops)
+Formal: '이해하지 못했습니다. 다시 설명해주시겠습니까?' (I-hae-ha-ji Mot-haess-seum-ni-da. Da-si Seol-myeong-hae-ju-si-get-seum-ni-kka?)
+English backup: I don't understand. Can you explain again?"
+
+[Pause 3 seconds]
+
+"Again: 이해 못해. 다시 설명해줘."
+[Pause 3 seconds]
+
+**(3:00-4:00) CULTURAL RESPECT**
+"Asking for help politely shows cultural respect. Korean people are generally helpful to foreigners. Don't hesitate to ask for clarification. It's better to ask than to pretend understanding."
+
+**(4:00-5:00) CLOSING**
+"Getting help with Korean - you're prepared. Remember: Asking for help is intelligent. Cultural respect comes through polite requests. English backup always available."
+
+---
+
+## 03_DAILY_LIFE_SCENARIOS
+
+### Track 01: Coffee_Shop_All_Styles.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Coffee shop Korean guide with all four styles and natural modern expressions."
+
+**(0:20-1:00) PHRASE 1: Ordering Coffee (Four Styles)**
+"Grammar Style (textbook): '아메리카노 한 잔 주시겠습니까?' (A-me-ri-ka-no Han Jan Ju-si-get-seum-ni-kka?)
+Translation: Americano one cup would you give?
+
+Polite Style (daily use): '아메리카노 한 잔 주세요.' (A-me-ri-ka-no Han Jan Ju-se-yo.)
+Translation: Americano one cup please.
+
+Casual Style (natural): '아아 한 잔 주세요.' (A-a Han Jan Ju-se-yo.)
+Translation: Iced Americano one cup please. (abbreviated)
+
+Slang Style (Seoul cafes): '아아 하나 주세요.' (A-a Ha-na Ju-se-yo.)
+Translation: Iced Americano one please. (casual counter)"
+
+[Pause 3 seconds]
+
+"Practice each style: 아아 한 잔 주세요"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Drink Preferences**
+"Modern Korean cafe language:
+Natural: '얼음 많이 넣어.' (Eol-eum Ma-ni Neo-eo.)
+Translation: Ice put much. (casual particle drop)
+Formal: '얼음을 많이 넣어주세요.' (Eol-eum-eul Ma-ni Neo-eo-ju-se-yo.)
+
+Sweetness: '단 거 주세요.' (Dan Geo Ju-se-yo.) - sweet thing please
+Size: '라지로 주세요.' (Ra-ji-ro Ju-se-yo.) - large size please"
+
+[Pause 3 seconds]
+
+"Modern: 얼음 많이 넣어"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Payment**
+"Cafe payment:
+Natural: '카드 결제 가능?' (Ka-deu Gyeol-je Ga-neung?)
+Translation: Card payment possible? (casual particle drop)
+Formal: '카드로 결제할 수 있나요?' (Ka-deu-ro Gyeol-je-hal Su In-na-yo?)
+Mobile payment: '모바일로 결제할 수 있어?' (Mo-ba-il-lo Gyeol-je-hal Su Is-seo?)"
+
+[Pause 3 seconds]
+
+"Again: 카드 결제 가능?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Cafe Small Talk**
+"Cafe conversation:
+Natural: '여기 카페 분위기 좋아.' (Yeo-gi Ka-pe Bun-wi-gi Jo-a.)
+Translation: Here cafe atmosphere good. (casual particle drop)
+Compliment: '맛있어 보여.' (Ma-sis-seo Bo-yeo.) - looks delicious"
+
+[Pause 3 seconds]
+
+"Again: 여기 카페 분위기 좋아"
+[Pause 3 seconds]
+
+**(3:00-4:00) CAFE CULTURE**
+"Korean cafe culture values natural, casual conversation. Abbreviations like '아아' for iced Americano are completely normal. Baristas expect casual speech from customers. Don't be overly formal in cafes."
+
+**(4:00-5:00) STYLE-SWITCHING PRACTICE**
+"Practice style-switching:
+With barista: Casual/polite (아아 한 잔 주세요)
+With cafe owner: More formal if older
+With friends: Slang/abbreviated (아아 하나 주세요)
+Tourist context: Polite shows cultural intelligence"
+
+**(5:00-6:00) CLOSING**
+"Coffee shop Korean - you're prepared. Remember: Abbreviations are normal in cafes. Casual speech is appropriate. Practice style-switching for different situations."
+
+---
+
+### Track 02: Restaurant_Dining_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Restaurant dining Korean guide with modern expressions and cultural context."
+
+**(0:20-1:00) PHRASE 1: Ordering Food**
+"Restaurant ordering:
+Natural: '이거 주세요.' (I-geo Ju-se-yo.)
+Translation: This please. (casual '이거' instead of '이것')
+More specific: '___ 주세요.' (___ Ju-se-yo.)
+
+Formal: '___을 주시겠습니까?' (___eul Ju-si-get-seum-ni-kka?)"
+
+[Pause 3 seconds]
+
+"Modern: 이거 주세요"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Menu Questions**
+"Menu questions:
+Natural: '메뉴 추천 있어?' (Me-nyu Chu-cheon Is-seo?)
+Translation: Menu recommendation exist? (casual particle drop)
+Formal: '메뉴 추천이 있나요?' (Me-nyu Chu-cheon-i In-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 메뉴 추천 있어?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Food Preferences**
+"Food preferences:
+Natural: '안 매운 거 주세요.' (An Mae-un Geo Ju-se-yo.)
+Translation: Not spicy thing please.
+Natural: '매운 거 가능?' (Mae-un Geo Ga-neung?)
+Translation: Spicy thing possible? (casual particle drop)"
+
+[Pause 3 seconds]
+
+"Again: 안 매운 거 주세요 / 매운 거 가능?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Cultural Appreciation**
+"Expressing appreciation:
+Natural: '맛있어.' (Ma-sis-seo.)
+Translation: Delicious. (casual particle drop)
+Compliment: '한국 음식 맛있어.' (Han-guk Eum-sig Ma-sis-seo.) - Korean food delicious
+
+Cultural context: Koreans don't typically say 'I respect Korean food culture' out loud - they show appreciation through enjoyment and compliments."
+
+[Pause 3 seconds]
+
+"Modern: 맛있어"
+[Pause 3 seconds]
+
+**(3:00-4:00) TIPPING CULTURE CONTEXT**
+"Korea vs Melbourne tipping:
+Korea: Tipping NOT expected or customary
+Melbourne: Tipping expected (10-15%)
+
+Cultural adaptation: In Korea, don't tip. In Melbourne, follow local tipping customs. This shows cultural intelligence."
+
+**(4:00-5:00) CASUAL DINING SPEECH**
+"In casual dining with friends:
+'이거 뭐야?' (What is this?)
+'얼마야?' (How much?)
+'나눠 먹자.' (Let's share eat.) - particle dropped
+This is how Koreans actually talk at meals."
+
+**(5:00-6:00) CLOSING**
+"Restaurant dining with Korean - you're prepared. Remember: Casual speech is normal. Show appreciation through enjoyment, not formal statements. Adapt tipping to local culture."
+
+---
+
+### Track 03: Shopping_Basic_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Basic shopping Korean guide with modern expressions."
+
+**(0:20-1:00) PHRASE 1: Prices**
+"Asking prices:
+Natural: '이거 얼마예요?' (I-geo Eol-ma-ye-yo?)
+Very casual: '이거 얼마?' (I-geo Eol-ma?)
+Formal: '이것은 얼마입니까?' (I-geo-seun Eol-ma-im-ni-kka?)"
+
+[Pause 3 seconds]
+
+"Modern: 이거 얼마예요?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Size Selection**
+"Size questions:
+Natural: '큰 사이즈 있어?' (Keun Sa-i-ju Is-seo?)
+Translation: Large size exist? (casual particle drop)
+Natural: '작은 사이즈 있어?' (Ja-geun Sa-i-ju Is-seo?) - small size"
+
+[Pause 3 seconds]
+
+"Again: 큰 사이즈 있어?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Color Selection**
+"Color questions:
+Natural: '검은색 있어?' (Geom-eun-saek Is-seo?)
+Translation: Black color exist? (casual particle drop)
+Natural: '다른 색 있어?' (Da-reun Saek Is-seo?) - other color exist"
+
+[Pause 3 seconds]
+
+"Again: 검은색 있어? / 다른 색 있어?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Payment**
+"Payment method:
+Natural: '카드 결제 가능?' (Ka-deu Gyeol-je Ga-neung?)
+Translation: Card payment possible? (casual particle drop)
+Natural: '현금 결제 가능?' (Hyeon-geum Gyeol-je Ga-neung?) - cash payment possible"
+
+[Pause 3 seconds]
+
+"Again: 카드 결제 가능?"
+[Pause 3 seconds]
+
+**(3:00-4:00) SHOPPING CULTURE**
+"In modern Korean stores, casual speech with staff is common. With older owners, use polite form. Particle drops are completely normal in casual shopping contexts."
+
+**(4:00-5:00) CLOSING**
+"Basic shopping with Korean - you're prepared. Remember: Casual speech is normal in stores. Adapt formality to store owner age. Particle drops are natural."
+
+---
+
+### Track 04: Transportation_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Transportation Korean guide with natural expressions for getting around."
+
+**(0:20-1:00) PHRASE 1: Movement**
+"Asking about transportation:
+Natural: '어떻게 가?' (Eo-tto-ke Ga?)
+Translation: How go? (casual particle drop)
+Formal: '어떻게 가나요?' (Eo-tto-ke Ga-na-yo?)"
+
+[Pause 3 seconds]
+
+"Modern: 어떻게 가?"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Directions**
+"Asking directions:
+Natural: '어디야?' (Eo-di-ya?)
+Translation: Where is? (casual particle drop)
+Formal: '어디에 있나요?' (Eo-di-e In-na-yo?)
+Specific: '___ 어디야?' (___ Eo-di-ya?)"
+
+[Pause 3 seconds]
+
+"Again: 어디야?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Transport Options**
+"Asking about options:
+Natural: '무엇으로 가?' (Mu-eo-seu-ro Ga?)
+Translation: With what go? (casual particle drop)
+Specific: '버스로 가?' (Beo-seu-ro Ga?) - by bus?
+'T기차로 가?' (Gi-cha-ro Ga?) - by train?"
+
+[Pause 3 seconds]
+
+"Modern: 버스로 가? / 기차로 가?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Time/Distance**
+"Asking about time:
+Natural: '얼마 걸려?' (Eol-ma Geol-ryeo?)
+Translation: How much take? (casual particle drop)
+Formal: '얼마나 걸리나요?' (Eol-ma-na Geol-ri-na-yo?)"
+
+[Pause 3 seconds]
+
+"Again: 얼마 걸려?"
+[Pause 3 seconds]
+
+**(3:00-4:00) LOCAL ADAPTATION**
+"Melbourne transportation context:
+Replace 'Seoul' with Melbourne destinations
+Use Korean phrases with Melbourne context
+Public transport: buses, trams, trains
+Private: taxi, rideshare, rental car"
+
+**(4:00-5:00) CLOSING**
+"Transportation with Korean - you're prepared. Remember: Particle drops are normal. Adapt to local Melbourne context. Casual speech works for most situations."
+
+---
+
+## 04_SELF_INTIMACY_PRACTICE
+
+### Track 01: Morning_Affirmations.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Welcome to morning affirmations in Korean. These are for self-worth, sovereign learning, and daily motivation."
+
+**(0:30-1:30) AFFIRMATION 1: Self-Worth**
+"나는 충분한 한국어 학습자."
+(Translation: I am a sufficient Korean learner.)
+
+[Pause 5 seconds]
+
+"나의 가치는 한국어 실력과 무관해."
+(Translation: My worth is unrelated to Korean ability.)
+
+[Pause 5 seconds]
+
+"오늘 하루도 나 자신을 믿어."
+(Translation: Today too, trust yourself.)
+
+**(1:30-2:30) AFFIRMATION 2: Sovereign Learning**
+"내 한국어 속도가 맞는 속도야."
+(Translation: My Korean pace is the right pace.)
+
+[Pause 5 seconds]
+
+"다른 사람과 비교하지 않아."
+(Translation: I don't compare with others.)
+
+[Pause 5 seconds]
+
+"나의 여정은 나의 것."
+(Translation: My journey is mine.)
+
+**(2:30-3:30) AFFIRMATION 3: Sufficient Practice**
+"나는 오늘 할 만큼 했어."
+(Translation: I did as much as I could today.)
+
+[Pause 5 seconds]
+
+"내 노력은 충분해."
+(Translation: My effort is sufficient.)
+
+[Pause 5 seconds]
+
+"실수해도 괜찮아. 배우는 과정이니까."
+(Translation: Mistakes are okay. It's a learning process.)
+
+**(3:30-4:30) AFFIRMATION 4: Melbourne Journey**
+"멜버른에서도 한국어 잘할 수 있어."
+(Translation: In Melbourne too, I can do Korean well.)
+
+[Pause 5 seconds]
+
+"혼자서도 충분히 한국어 연습 가능해."
+(Translation: Even alone, Korean practice is sufficiently possible.)
+
+[Pause 5 seconds]
+
+"나는 주권적인 한국어 탐험가."
+(Translation: I am a sovereign Korean explorer.)
+
+**(4:30-5:00) CLOSING AFFIRMATION**
+"오늘 하루, 나의 가치를 증명할 필요 없어. 나는 이미 충분해. 한국어 여정을 즐겨. 나의 주권적인 언어 모험을 시작해."
+
+(Translation: Today, no need to prove my worth. I am already sufficient. Enjoy Korean journey. Begin my sovereign language adventure.)
+
+---
+
+### Track 02: Emotional_Processing.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Emotional processing in Korean. Use these to check in with feelings and practice self-compassion."
+
+**(0:30-1:30) EMOTIONAL CHECK-IN**
+"오늘 내 기분은 어떤가?"
+(Translation: How is my mood today?)
+
+[Pause 5 seconds]
+
+"한국어 공부하면서 어떤 감정을 느꼈어?"
+(Translation: What emotions did I feel while studying Korean?)
+
+[Pause 5 seconds]
+
+"실망스러웠어? 기뻤어? 좌절감 느꼈어?"
+(Translation: Was I disappointed? Happy? Felt frustration?)
+
+**(1:30-2:30) FRUSTRATION PROCESSING**
+"한국어가 안 될 때 좌절감 느껴도 괜찮아."
+(Translation: When Korean doesn't work, it's okay to feel frustrated.)
+
+[Pause 5 seconds]
+
+"그 좌절감은 자연스러운 거야."
+(Translation: That frustration is natural.)
+
+[Pause 5 seconds]
+
+"내가 노력하고 있다는 증거야."
+(Translation: It's evidence that I'm trying.)
+
+**(2:30-3:30) SELF-COMPASSION**
+"나의 한국어 여정은 나의 속도에 맞춰서 돼."
+(Translation: My Korean journey happens at my pace.)
+
+[Pause 5 seconds]
+
+"다른 사람과 비교할 필요 없어."
+(Translation: No need to compare with others.)
+
+[Pause 5 seconds]
+
+"나는 나 자신에게 인내심 가지고 있어."
+(Translation: I have patience with myself.)
+
+**(3:30-4:30) PROGRESS CELEBRATION**
+"오늘 배운 것 하나만 생각해."
+(Translation: Think of just one thing learned today.)
+
+[Pause 5 seconds]
+
+"그 한 가지도 충분한 성과야."
+(Translation: That one thing is also sufficient achievement.)
+
+[Pause 5 seconds]
+
+"나는 매일 조금씩 나아지고 있어."
+(Translation: I am improving a little every day.)
+
+**(4:30-5:30) EMOTIONAL RELEASE**
+"한국어 실망한 감정, 이제 놓아줘."
+(Translation: Emotions disappointed by Korean, now let them go.)
+
+[Pause 5 seconds]
+
+"그 감정은 더 이상 나를 방해하지 못해."
+(Translation: Those emotions can no longer hinder me.)
+
+[Pause 5 seconds]
+
+"나는 내 한국어 여정을 사랑해."
+(Translation: I love my Korean journey.)
+
+**(5:30-6:00) CLOSING**
+"오늘의 감정을 인정해. 자기 자신에게 친절해. 내 한국어 여정은 나의 것. 내 감정을 한국어로 표현하는 것도 큰 성취야."
+
+(Translation: Acknowledge today's emotions. Be kind to yourself. My Korean journey is mine. Expressing my emotions in Korean is also a great achievement.)
+
+---
+
+### Track 03: Evening_Reflection.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Evening reflection in Korean. Review your day, celebrate progress, practice gratitude."
+
+**(0:30-1:30) DAY REVIEW**
+"오늘 한국어로 뭐 했어?"
+(Translation: What did I do in Korean today?)
+
+[Pause 5 seconds]
+
+"어떤 한국어 표현을 사용했어?"
+(Translation: Which Korean expressions did I use?)
+
+[Pause 5 seconds]
+
+"새로운 단어 몇 개 배웠어?"
+(Translation: How many new words did I learn?)
+
+**(1:30-2:30) PROGRESS CELEBRATION**
+"오늘 내 성취 인정해."
+(Translation: Acknowledge today's achievements.)
+
+[Pause 5 seconds]
+
+"작은 진전도 진전이야."
+(Translation: Small progress is also progress.)
+
+[Pause 5 seconds]
+
+"나는 매일 한국어로 성장하고 있어."
+(Translation: Every day, I am growing in Korean.)
+
+**(2:30-3:30) SELF-APPRECIATION**
+"나의 한국어 노력에 감사해."
+(Translation: I'm grateful for my Korean efforts.)
+
+[Pause 5 seconds]
+
+"나 자신이 한국어 공부하고 있다는 것에 자부심 가져."
+(Translation: Take pride in that I am studying Korean.)
+
+[Pause 5 seconds]
+
+"나의 주권적인 학습 방법 칭찬해."
+(Translation: Praise my sovereign learning method.)
+
+**(3:30-4:30) GRATITUDE**
+"한국어 배울 수 있는 기회에 감사."
+(Translation: Grateful for opportunity to learn Korean.)
+
+[Pause 5 seconds]
+
+"나의 한국어 여정에 감사."
+(Translation: Grateful for my Korean journey.)
+
+[Pause 5 seconds]
+
+"내가 언어 탐험가라는 것에 감사."
+(Translation: Grateful that I am a language explorer.)
+
+**(4:30-5:00) CLOSING**
+"오늘 하루 잘했어. 내가 노력했다는 것에 충분해. 오늘 밤 편안한 마음으로 자. 내일도 나의 주권적인 한국어 여정 계속해."
+
+(Translation: I did well today. Enough that I tried. Sleep with peaceful mind tonight. Continue my sovereign Korean journey tomorrow too.)
+
+---
+
+### Track 04: Self_Compassion_Practice.mp3
+**Duration:** 7 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Self-compassion practice in Korean. For mistakes, challenges, and difficult learning moments."
+
+**(0:30-1:30) MISTAKE ACCEPTANCE**
+"한국어 실수했어? 괜찮아."
+(Translation: Made Korean mistake? It's okay.)
+
+[Pause 5 seconds]
+
+"모든 사람이 실수해."
+(Translation: All people make mistakes.)
+
+[Pause 5 seconds]
+
+"실수는 배우는 방법이야."
+(Translation: Mistakes are the way to learn.)
+
+**(1:30-2:30) PATIENCE WITH SELF**
+"나에게 시간을 줘."
+(Translation: Give myself time.)
+
+[Pause 5 seconds]
+
+"내 학습 속도를 존중해."
+(Translation: Respect my learning pace.)
+
+[Pause 5 seconds]
+
+"조급할 필요 없어."
+(Translation: No need to be impatient.)
+
+**(2:30-3:30) SELF-COMFORT**
+"한국어 안 될 때, 나 자신을 위로해."
+(Translation: When Korean doesn't work, comfort myself.)
+
+[Pause 5 seconds]
+
+"'괜찮아'라고 말해줘."
+(Translation: Say 'it's okay' to myself.)
+
+[Pause 5 seconds]
+
+"내가 충분히 잘하고 있다고 확신해."
+(Translation: Be confident that I'm doing sufficiently well.)
+
+**(3:30-4:30) CHALLENGE PROCESSING**
+"어려운 한국어 과제 만나도 괜찮아."
+(Translation: Even when meeting difficult Korean tasks, it's okay.)
+
+[Pause 5 seconds]
+
+"도움 청해도 괜찮아."
+(Translation: It's okay to ask for help.)
+
+[Pause 5 seconds]
+
+"잠시 쉬어도 괜찮아."
+(Translation: It's okay to rest for a while.)
+
+**(4:30-5:30) SELF-WORTH REINFORCEMENT**
+"내 가치는 한국어 실력으로 정의되지 않아."
+(Translation: My worth is not defined by Korean ability.)
+
+[Pause 5 seconds]
+
+"나는 한국어 공부 전에도 소중했어."
+(Translation: I was precious before Korean study too.)
+
+[Pause 5 seconds]
+
+"한국어 실력과 상관없이 나는 충분해."
+(Translation: Regardless of Korean ability, I am sufficient.)
+
+**(5:30-6:30) SELF-CARE PRIORITY**
+"한국어보다 내 정신 건강이 중요해."
+(Translation: My mental health is more important than Korean.)
+
+[Pause 5 seconds]
+
+"학습보다 내 안녕이 우선이야."
+(Translation: My wellbeing takes priority over learning.)
+
+[Pause 5 seconds]
+
+"자기 돌봄은 게으름이 아니야. 현명한 거야."
+(Translation: Self-care is not laziness. It's wise.)
+
+**(6:30-7:00) CLOSING AFFIRMATION**
+"나는 내 자신에게 친절해. 내 한국어 여정을 인내해. 나의 한계를 존중해. 나의 가치를 증명할 필요 없어. 나는 이미 충분해. 오늘 하루 나 자신에게 최고의 친절 베풀어."
+
+(Translation: Be kind to myself. Have patience with my Korean journey. Respect my limits. No need to prove my worth. I am already sufficient. Today, give the best kindness to myself.)
+
+---
+
+## 05_STYLE_SWITCHING_DRILLS
+
+### Track 01: Basic_Phrase_Four_Styles.mp3
+**Duration:** 8 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Four-style practice. Learn to switch between grammar, polite, casual, and slang styles."
+
+**(0:30-1:30) PHRASE 1: Greeting**
+"Grammar Style (textbook): '안녕하십니까?' (An-nyeong-ha-sim-ni-kka?)
+Polite Style: '안녕하세요?' (An-nyeong-ha-se-yo?)
+Casual Style: '안녕!' (An-nyeong!)
+Slang Style: '뭐해?' (Mwo-hae?) - what's up? (very casual)"
+
+[Pause 3 seconds]
+
+"Practice each style in order"
+[Pause 3 seconds]
+
+**(1:30-2:30) PHRASE 2: Thank You**
+"Grammar: '감사합니다.' (Gam-sa-ham-ni-da.)
+Polite: '감사해요.' (Gam-sa-hae-yo.)
+Casual: '고마워.' (Go-ma-wo.)
+Slang: '땡큐' (Ttaeng-kyu) - thank you (English loanword slang)"
+
+[Pause 3 seconds]
+
+"Practice each style in order"
+[Pause 3 seconds]
+
+**(2:30-3:30) PHRASE 3: Goodbye**
+"Grammar: '안녕히 가십니까?' (An-nyeong-hi Ga-sim-ni-kka?)
+Polite: '안녕히 가세요.' (An-nyeong-hi Ga-se-yo.)
+Casual: '잘 가.' (Jal Ga.)
+Slang: '뿅뿅' (Ppung-ppung) - bye bye (cute slang)"
+
+[Pause 3 seconds]
+
+"Practice each style in order"
+[Pause 3 seconds]
+
+**(3:30-4:30) PHRASE 4: How Are You**
+"Grammar: '안녕하십니까?' (An-nyeong-ha-sim-ni-kka?)
+Polite: '잘 지내세요?' (Jal Ji-nae-se-yo?)
+Casual: '잘 지내?' (Jal Ji-nae?)
+Slang: '뭐하고 지내?' (Mwo-ha-go Ji-nae?) - what are you doing?"
+
+[Pause 3 seconds]
+
+"Practice each style in order"
+[Pause 3 seconds]
+
+**(4:30-5:30) PHRASE 5: I'm Sorry**
+"Grammar: '죄송합니다.' (Joe-song-ham-ni-da.)
+Polite: '죄송해요.' (Joe-song-hae-yo.)
+Casual: '미안해.' (Mi-an-hae.)
+Slang: 'ㅅㅂ' (S-sang-beu) - sorry (internet slang)"
+
+[Pause 3 seconds]
+
+"Practice each style in order"
+[Pause 3 seconds]
+
+**(5:30-6:30) CONTEXT APPLICATION**
+"Grammar Style: Business, formal announcements, elderly
+Polite Style: Customer service, general conversation, initial meetings
+Casual Style: Friends, family, peers, social media
+Slang Style: Very close friends, internet, young culture
+
+Choose style based on:
+- Age of person you're speaking to
+- Formal/informal setting
+- Relationship closeness
+- Cultural context"
+
+**(6:30-7:30) STYLE-SWITCHING PRACTICE**
+"Practice switching:
+Business meeting → Grammar
+Restaurant → Polite
+Friends meeting → Casual
+Online friends → Slang
+
+Cultural intelligence shows in appropriate style choice. Wrong style = awkward. Right style = natural."
+
+**(7:30-8:00) CLOSING**
+"Four-style mastery is cultural intelligence. Practice switching naturally. Don't stress about perfect grammar. Context awareness matters more."
+
+---
+
+### Track 02: Speed_Switching_Practice.mp3
+**Duration:** 4 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Speed switching practice. Rapid style changes to build natural adaptability."
+
+**(0:30-1:00) FAST SWITCHING EXERCISE**
+"I'll say situations, you mentally switch styles:
+Restaurant with waiter → Polite
+Meeting friend → Casual
+Speaking to elderly → Grammar
+Texting friend → Slang
+Job interview → Grammar"
+
+**(1:00-2:00) PHRASE SPEED DRILL**
+"Single phrase, rapid style changes:
+Hello:
+Grammar: 안녕하십니까?
+Polite: 안녕하세요?
+Casual: 안녕!
+Slang: 뭐해?
+
+[Fast switching practice with 2-second intervals]
+
+Thank you:
+Grammar: 감사합니다
+Polite: 감사해요
+Casual: 고마워
+Slang: 땡큐"
+
+**(2:00-3:00) SITUATION SPEED DRILL**
+"Imagine these situations, mentally prepare appropriate style:
+1. Your Korean teacher enters
+2. Your Korean friend calls
+3. You post on Instagram
+4. You speak at business meeting
+5. You meet your friend's parents
+
+Speed switching shows cultural fluency. Don't overthink. React naturally."
+
+**(3:00-4:00) NATURAL FLOW**
+"Natural switching comes with practice. Start slow, build speed. Most important: context awareness. Wrong style feels awkward. Right style feels natural. Speed comes with familiarity."
+
+---
+
+### Track 03: Context_Selection_Practice.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Context selection practice. Learn to choose appropriate style for each situation."
+
+**(0:30-1:30) SCENARIO 1: First Meeting**
+"Situation: Meeting Korean person first time
+Age: Unknown
+Setting: Professional/social mix
+
+Appropriate style: Polite (해요체)
+Phrase: '안녕하세요? 반가워요.'
+Reason: Safe default until relationship established
+Alternative: Grammar if person is much older"
+
+[Pause 5 seconds]
+
+"Mental practice: What would you say?"
+[Pause 3 seconds]
+
+**(1:30-2:30) SCENARIO 2: Close Friendship**
+"Situation: Talking to close Korean friend
+Age: Similar (20s-30s)
+Setting: Casual hangout
+
+Appropriate style: Casual (해체) or Slang
+Phrase: '뭐해?' or '잘 지내?'
+Reason: Close friendship allows casual speech
+Alternative: Polite if friend is significantly older"
+
+[Pause 5 seconds]
+
+"Mental practice: What would you say?"
+[Pause 3 seconds]
+
+**(2:30-3:30) SCENARIO 3: Professional Setting**
+"Situation: Korean business meeting
+Age: Mixed
+Setting: Formal business
+
+Appropriate style: Grammar (하십시오체)
+Phrase: '안녕하십니까? 감사합니다.'
+Reason: Professional formality required
+Alternative: Polite if less formal business"
+
+[Pause 5 seconds]
+
+"Mental practice: What would you say?"
+[Pause 3 seconds]
+
+**(3:30-4:30) SCENARIO 4: Social Media**
+"Situation: Posting on Korean social media
+Audience: Mixed, mostly young
+Setting: Digital public
+
+Appropriate style: Slang or Casual
+Phrase: '오늘 한국어 배웠어!' or '뿅뿅'
+Reason: Digital culture is slang-heavy
+Alternative: Polite if professional account"
+
+[Pause 5 seconds]
+
+"Mental practice: What would you say?"
+[Pause 3 seconds]
+
+**(4:30-5:30) SCENARIO 5: Elders**
+"Situation: Speaking to Korean elderly person
+Age: 60+
+Setting: Respectful interaction
+
+Appropriate style: Grammar or very formal Polite
+Phrase: '안녕하세요? 만나서 반갑습니다.'
+Reason: Korean culture values elder respect
+Alternative: Never use Slang with elders"
+
+[Pause 5 seconds]
+
+"Mental practice: What would you say?"
+[Pause 3 seconds]
+
+**(5:30-6:00) CLOSING**
+"Context selection is cultural intelligence. Practice mentally. Notice age, setting, relationship. Wrong style feels disrespectful. Right style shows awareness."
+
+---
+
+### Track 04: Advanced_Style_Mixing.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Advanced style mixing. Natural conversation uses style changes, not just one style."
+
+**(0:30-1:30) NATURAL MIXING EXAMPLE**
+"Conversation with Korean friend:
+Start: Polite '안녕하세요?' (first meeting)
+Middle: Casual '뭐해?' (friendship established)
+End: Casual '잘 가!' (saying goodbye)
+
+This is natural conversation flow. Single style throughout feels robotic. Mixing shows cultural intelligence."
+
+**(1:30-2:30) RELATIONSHIP PROGRESSION**
+"Style progression as relationship develops:
+Day 1: Polite '안녕하세요? 만나서 반갑습니다'
+Week 1: Polite '잘 지내세요?'
+Month 1: Casual '잘 지내?'
+Year 1: Slang '뭐하고 지내?'
+
+Natural progression = cultural intelligence. Forcing formality forever = awkward."
+
+**(2:30-3:30) SITUATION-AWARE MIXING**
+"Same person, different situations:
+Restaurant: Polite (public setting)
+Coffee: Casual (relaxed setting)
+Online: Slang (digital culture)
+Meeting parents: Grammar (respectful context)
+
+One person, multiple appropriate styles based on context. This is advanced cultural intelligence."
+
+**(3:30-4:30) MISTAKE RECOVERY**
+"If you use wrong style:
+Over-formal: Apologize, switch to casual
+Under-formal: Apologize, switch to polite
+Slang in wrong place: '죄송합니다' and switch
+
+Koreans understand foreigners make mistakes. Apologize and adjust. Shows respect and cultural awareness."
+
+**(4:30-5:00) CLOSING**
+"Advanced style mixing = cultural fluency. Practice natural conversation flow. Adapt to situation. Progress with relationship. Apologize and adjust when mistakes happen."
+
+---
+
+## 06_EMERGENCY_PROTOCOL
+
+### Track 01: Lost_Confused_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Lost and confused emergency guide. Remember: Safety first, language second."
+
+**(0:20-1:00) PHRASE 1: Getting Lost**
+"If lost:
+Natural: '길 잃었어. 도와줘.' (Gil I-riss-eo. Do-wa-jwo.)
+Translation: Lost. Help me. (casual particle drops)
+Formal: '길을 잃었습니다. 도움이 필요합니다.' (Gil-eul I-riss-seum-ni-da. Do-u-mi Pi-ryo-ham-ni-da.)
+English backup: I'm lost and need help."
+
+[Pause 3 seconds]
+
+"Natural: 길 잃었어. 도와줘"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Directions**
+"Asking directions while lost:
+Natural: '이거 어디야?' (I-geo Eo-di-ya?)
+Translation: This where? (casual particle drop)
+Specific: '___ 어디야?' (___ Eo-di-ya?)"
+
+[Pause 3 seconds]
+
+"Again: 이거 어디야?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Reorientation**
+"Trying to understand location:
+Natural: '여기 어디야?' (Yeo-gi Eo-di-ya?)
+Translation: Here where? (casual particle drop)
+Formal: '여기는 어디입니까?' (Yeo-gi-neun Eo-di-im-ni-kka?)"
+
+[Pause 3 seconds]
+
+"Again: 여기 어디야?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Emergency Contact**
+"If seriously lost:
+English: 'I need emergency help.'
+Korean: '길 잃어서 비상 연락 필요해.' (Gil I-ris-seo Bi-sang Yeon-rak Pi-ryo-hae.)
+Translation: Lost so emergency contact needed. (casual particle drop)"
+
+[Pause 3 seconds]
+
+"English first: I need emergency help"
+[Pause 3 seconds]
+
+**(3:00-4:00) SELF-INTIMACY LOST MOMENT**
+"Getting lost feels scary but doesn't reflect on your capability. Many people get lost in new places. Asking for help is intelligent. Your worth isn't measured by navigation skills."
+
+**(4:00-5:00) CALM STRATEGIES**
+"If lost:
+1. Stay calm, breathe
+2. Find safe, public place
+3. Use phone map/GPS
+4. Ask for help with clear directions
+5. Have hotel/business address written in Korean"
+
+**(5:00-6:00) CLOSING**
+"Lost and confused - you're prepared. Remember: English backup always available. Stay calm and safe. Asking for help is intelligent. Your safety matters most."
+
+---
+
+### Track 02: Medical_Help_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Medical emergency guide. Health emergency = English first, Korean second."
+
+**(0:20-1:00) PHRASE 1: Medical Emergency**
+"Medical emergency - ENGLISH FIRST:
+English: 'I need medical help immediately.'
+Korean backup: '응급 의료 필요해.' (Eung-geub Ui-ryo Pi-ryo-hae.)
+Translation: Emergency medical needed. (casual particle drop)
+Hospital: '병원에 가야 해.' (Byeong-won-e Ga-ya Hae.) - need to go to hospital"
+
+[Pause 3 seconds]
+
+"English: I need medical help immediately"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Health Issues**
+"Explaining health issues:
+Natural: '몸 안 좋아.' (Mom An Jo-a.)
+Natural: '머리 아파 / 배 아파' (Meo-ri A-pa / Bae A-pa.)
+Natural: '호흡 문제 있어.' (Heub-sik Mun-je Is-seo.) - breathing problem"
+
+[Pause 3 seconds]
+
+"Natural: 몸 안 좋아 / 머리 아파 / 배 아파"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Pharmacy**
+"Finding pharmacy:
+Natural: '약국 어디야?' (Yak-guk Eo-di-ya?)
+Translation: Pharmacy where? (casual particle drop)
+Some Koreans use: '약방 어디야?' (Yak-bang Eo-di-ya?) - alternative term"
+
+[Pause 3 seconds]
+
+"Again: 약국 어디야?"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Insurance/Medical Info**
+"If needing medical information:
+English: 'I have travel insurance.'
+Korean: '여행자 보험 있어.' (Yeo-haeng-ja Bo-heom Is-seo.)
+Translation: Traveler insurance exist. (casual particle drop)"
+
+[Pause 3 seconds]
+
+"English: I have travel insurance"
+[Pause 3 seconds]
+
+**(3:00-4:00) EMERGENCY PROTOCOL**
+"In serious medical emergencies:
+1. Use English immediately
+2. Don't try Korean if not working
+3. Show insurance information
+4. Point to body part if language fails
+5. Have emergency numbers written down
+6. Your health is absolute priority"
+
+**(4:00-5:00) SELF-CARE IN EMERGENCIES**
+"Medical emergencies are stressful regardless of language. Your worth isn't measured by health situations. Seeking medical help is intelligent. Self-care is never shameful."
+
+**(5:00-6:00) CLOSING**
+"Medical emergency - you're prepared. Remember: English first in serious cases. Korean as backup only. Your health matters most. Don't delay care for language practice."
+
+---
+
+### Track 03: Police_Emergency_Complete.mp3
+**Duration:** 5 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Police emergency guide. Safety first, use English for serious situations."
+
+**(0:20-1:00) PHRASE 1: Police Contact**
+"Police emergency - ENGLISH FIRST:
+English: 'I need to call the police.'
+Korean backup: '경찰 불러줘.' (Gyeong-chal Bul-leo-jwo.)
+Translation: Police call. (casual)
+Formal: '경찰에 신고하고 싶습니다.' (Gyeong-chal-e Sin-go-ha-go Si-peum-seum-ni-da.)"
+
+[Pause 3 seconds]
+
+"English: I need to call the police"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Emergency Numbers**
+"Korean emergency numbers:
+Police: 112
+Fire/Ambulance: 119
+Memorize these or have written down"
+
+**(1:40-2:20) PHRASE 3: Emergency Situation**
+"Describing emergency:
+English: 'There's an emergency.'
+Korean: '비상 상황이야.' (Bi-sang Sang-hwang-i-ya.)
+Translation: Emergency situation. (casual particle drop)"
+
+[Pause 3 seconds]
+
+"English: There's an emergency"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Personal Safety**
+"If you feel unsafe:
+English: 'I feel unsafe.'
+Korean: '안전하지 않아.' (An-jeon-ha-ji An-a.)
+Translation: Not safe. (casual particle drop)
+Urgent: '도와줘!' (Do-wa-jwo!) - Help me! (exclamatory)"
+
+[Pause 3 seconds]
+
+"English: I feel unsafe"
+[Pause 3 seconds]
+
+**(3:00-4:00) SAFETY PROTOCOL**
+"Police emergency protocol:
+1. Safety first, leave dangerous situation
+2. Use English immediately with police
+3. Have emergency numbers accessible
+4. Know your location
+5. If language barrier, show written address
+6. Don't delay calling for help"
+
+**(4:00-5:00) SELF-WORTH REMINDER**
+"Emergency situations don't reflect on your worth. Safety emergencies happen regardless of language ability. Seeking police help is intelligent. Your safety is absolute priority."
+
+**(5:00) CLOSING**
+"Police emergency - you're prepared. Remember: English first, Korean backup. Safety absolute priority. Don't hesitate to call for help."
+
+---
+
+### Track 04: Essential_Emergency_Phases.mp3
+**Duration:** 4 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Essential emergency phrases. Simple, direct communication for crisis situations."
+
+**(0:30-1:00) CORE EMERGENCY PHRASES**
+"English emergency phrases (use these first):
+'I need help.'
+'Call emergency.'
+'I'm lost.'
+'I don't understand.'
+'Medical emergency.'
+'Police help.'"
+
+**(1:00-1:40) KOREAN BACKUP PHRASES**
+"Simple Korean backup phrases:
+'도와줘.' (Do-wa-jwo.) - Help me.
+'길 잃었어.' (Gil I-riss-eo.) - Lost.
+'이해 못해.' (I-hae Mot-hae.) - Don't understand.
+'응급 의료.' (Eung-geub Ui-ryo.) - Emergency medical."
+
+[Pause 2 seconds each phrase]
+
+**(1:40-2:20) SIMPLICITY PRINCIPLE**
+"In true emergencies: Simple phrases work best. Don't try complex Korean. Use English immediately. Complex language fails in crisis. Simple = clear."
+
+**(2:20-3:00) EMERGENCY CONTACT INFORMATION**
+"Have written down:
+- Emergency numbers (112, 119)
+- Hotel/business address in Korean
+- Emergency contact person
+- Insurance information
+- Medical conditions"
+
+**(3:00-4:00) CLOSING**
+"Essential emergency phrases - you're prepared. Remember: Simple English first, Korean backup. Don't overcomplicate. Safety absolute priority. Have information written down."
+
+---
+
+## 07_GOPRO_CONTENT_CREATION
+
+### Track 01: Self_Dating_Korean_Comedy.mp3
+**Duration:** 8 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Lo3tus-style self-dating comedy with Korean integration. Content creation guide."
+
+**(0:30-1:30) CONCEPT: SELF-DATING IN MELBOURNE**
+"Self-dating comedy concept: Treat yourself like you're on a date, film it with GoPro, add Korean phrases naturally. This creates funny, relatable content while practicing Korean."
+
+**(1:30-2:30) KOREAN INTEGRATION EXAMPLES**
+"Self-dating in Melbourne cafe:
+Natural: '이 카페 분위기 좋아.' (This cafe atmosphere good.)
+Self-talk: '나 오늘 예쁜가?' (Am I pretty today?)
+Ordering: '아아 한 잔 주세요.' (Iced Americano one please.)"
+
+**(2:30-3:30) COMEDY ELEMENTS**
+"Comedy comes from:
+- Self-deprecating humor about Korean mistakes
+- Confident self-compliments in broken Korean
+- Cultural misunderstandings as funny moments
+- Natural awkwardness being celebrated"
+
+**(3:30-4:30) GOPRO FILMING TECHNIQUES**
+"GoPro self-dating filming:
+- Self-camera angle (GoPro on chest/gimbal)
+- Talking to yourself naturally
+- Candid moments of self-care
+- Korean phrases interspersed naturally
+- Not trying to be perfect = comedy gold"
+
+**(4:30-5:30) SAMPLE SCRIPT STRUCTURE**
+"Self-dating video structure:
+1. Intro: '오늘 나랑 데이트 시작!' (Today self-dating start!)
+2. Activity: Korean about what you're doing
+3. Self-compliment: '내가 오늘 최고야.' (I'm the best today.)
+4. Korean mistake: Comedy moment where you mess up
+5. Conclusion: '오늘 데이트 성공!' (Today dating success!)"
+
+**(5:30-6:30) LO3TUS COMEDY ENERGY**
+"Lo3tus energy for content:
+- Bold self-love declarations
+- Playful exaggeration of Korean skills
+- Celebration of awkward moments
+- Self-dating as sovereign self-care
+- Comedy as release tool, not performance pressure"
+
+**(6:30-7:30) MELBOURNE INTEGRATION**
+"Melbourne self-dating locations:
+- Melbourne cafe scenes with Korean ordering
+- Laneway walks with self-talk in Korean
+- Park scenes with Korean nature descriptions
+- Market visits with shopping Korean phrases
+- Cultural sites with appreciation phrases"
+
+**(7:30-8:00) CLOSING**
+"Self-dating Korean comedy - create authentic content. Korean mistakes become comedy gold. Self-love in Korean is beautiful. Sovereign content creation: celebrate yourself."
+
+---
+
+### Track 02: 24_Hour_Challenge_Guide.mp3
+**Duration:** 8 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"24-hour Korean challenge guide. One day, Korean focus, content creation with self-care."
+
+**(0:30-1:30) CHALLENGE STRUCTURE**
+"24-hour Korean challenge concept:
+- Speak only Korean (or mostly Korean) for 24 hours
+- Document the journey with GoPro
+- Include mistakes and struggles honestly
+- Korean self-talk throughout day
+- Create content from the challenge"
+
+**(1:30-2:30) PREPARATION PHRASES**
+"Preparation Korean phrases:
+'도전 시작!' (Challenge start!)
+'오늘 한국어만 쓸 거야.' (Today only use Korean.)
+'실수해도 괜찮아.' (Mistakes okay.)
+'재미있게 할 거야.' (Will do funly.)"
+
+**(2:30-3:30) DAILY ROUTINE INTEGRATION**
+"Morning routine Korean:
+'좋은 아침!' (Good morning!)
+'오늘 한국어 도전.' (Today Korean challenge.)
+'아침 먹을래.' (Breakfast eat want to.)
+
+Activities throughout day in Korean, honest mistakes included"
+
+**(3:30-4:30) CHALLENGE STRUGGLES**
+"Include struggles honestly:
+'한국어 안 되...' (Korean not working...)
+'뭐라는지 모르겠어.' (Don't know what they're saying.)
+'도와줘.' (Help me.)
+'English 잠시...' (English momentarily...)"
+
+**(4:30-5:30) SUCCESS MOMENTS**
+"Celebrate small successes:
+'한국어로 말했어!' (Spoke in Korean!)
+'이해했어!' (Understood!)
+'한국어로 주문했어!' (Ordered in Korean!)
+'성공!' (Success!)"
+
+**(5:30-6:30) CONTENT CREATION ELEMENTS**
+"24-hour challenge content:
+- Real-time GoPro footage
+- Self-talk in Korean
+- Honest struggle moments
+- Success celebration
+- Cultural interactions
+- Self-compassion during challenges"
+
+**(6:30-7:30) SELF-CARE INTEGRATION**
+"Challenge includes self-care:
+'쉬어도 괜찮아.' (Resting is okay.)
+'내 속도가 맞는 속도.' (My pace is right pace.)
+'충분히 잘하고 있어.' (Doing sufficiently well.)
+'자기 돌봄 중요해.' (Self-care important.)"
+
+**(7:30-8:00) CLOSING**
+"24-hour Korean challenge - content creation meets self-care. Honesty about struggles = authentic content. Self-compassion included = healthy challenge. Sovereign learning: challenge at your pace."
+
+---
+
+### Track 03: Self_Talk_Walking_Melbourne.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Melbourne walking self-talk guide. Environmental observation in Korean while exploring."
+
+**(0:30-1:30) ENVIRONMENTAL DESCRIPTION PHRASES**
+"Walking self-talk Korean phrases:
+'여기 분위기 좋아.' (Here atmosphere good.)
+'날씨 좋아.' (Weather good.)
+'예쁜 건물 많아.' (Pretty buildings many.)
+'사람 많아.' (People many.)"
+
+[Pause 3 seconds each]
+
+"Practice these while walking"
+[Pause 3 seconds]
+
+**(1:30-2:30) PERSONAL REFLECTION PHRASES**
+"Self-reflection while walking:
+'나 지금 기분 좋아.' (I now mood good.)
+'한국어 연습 재미있어.' (Korean practice fun.)
+'멜버른 좋아.' (Melbourne like.)
+'혼자 걷기 좋아.' (Alone walking good.)"
+
+[Pause 3 seconds each]
+
+"Practice these self-reflections"
+[Pause 3 seconds]
+
+**(2:30-3:30) MELBOURNE SPECIFIC PHRASES**
+"Melbourne-specific self-talk:
+'호주랑 한국 비슷해.' (Australia and Korea similar.)
+'멜버른 트램 재미있어.' (Melbourne tram fun.)
+'여기 커피 좋아.' (Here coffee good.)
+'랜웨이 예쁘다.' (Laneways beautiful.)"
+
+[Pause 3 seconds each]
+
+"Practice Melbourne-specific phrases"
+[Pause 3 seconds]
+
+**(3:30-4:30) GOPRO WALKING TECHNIQUES**
+"GoPro self-talk filming:
+- Natural walking pace
+- Environmental observation commentary
+- Self-talk not forced
+- Honest Korean expression
+- Include mistakes naturally"
+
+**(4:30-5:30) SOVEREIGN WANDERING**
+"Sovereign wandering principles:
+- No specific destination required
+- Follow curiosity
+- Korean self-talk about observations
+- Self-intimacy practice while walking
+- Enjoyment over destination"
+
+**(5:30-6:00) CLOSING**
+"Melbourne walking self-talk - sovereign exploration. Korean observations while wandering. Self-talk as self-care. Natural Korean expression over perfect grammar. Enjoy the journey."
+
+---
+
+### Track 04: Content_Creation_Tips.mp3
+**Duration:** 7 minutes
+
+**(0:00-0:30) INTRODUCTION**
+"Content creation with Korean integration. GoPro techniques and Korean incorporation."
+
+**(0:30-1:30) AUTHENTIC KOREAN INTEGRATION**
+"Authentic Korean in content:
+- Don't fake perfect Korean
+- Include mistakes honestly
+- Show learning process
+- Natural Korean in context
+- Self-talk when appropriate"
+
+**(1:30-2:30) COMEDY FROM MISTAKES**
+"Comedy potential from Korean mistakes:
+- Using outdated phrases (싸워요) intentionally
+- Over-formality with casual friends
+- Particle drop confusion
+- Cultural misunderstandings
+- Pronunciation attempts"
+
+**(2:30-3:30) GOPRO TECHNIQUES**
+"GoPro Korean content filming:
+- Self-camera for self-talk
+- First-person for activities
+- Environmental shots with Korean commentary
+- Natural lighting
+- Background music (Aoi Taira style)"
+
+**(3:30-4:30) CONTENT STRUCTURE**
+"Korean content structure:
+1. Hook: Korean phrase or situation
+2. Body: Korean practice, mistakes, learning
+3. Comedy: Korean mistakes as funny moments
+4. Resolution: Success or learning reflection
+5. Outro: Korean closing phrase"
+
+**(4:30-5:30) MELBOURNE CONTENT OPPORTUNITIES**
+"Melbourne Korean content ideas:
+- Korean ordering at Melbourne cafes
+- Korean self-talk in Melbourne laneways
+- Cultural comparison content (Korea vs Melbourne)
+- Melbourne exploration with Korean commentary
+- Self-dating in Melbourne with Korean"
+
+**(5:30-6:30) SOVEREIGN CONTENT CREATION**
+"Sovereign content principles:
+- Create for yourself, not others
+- Celebrate progress, don't hide mistakes
+- Korean as creative tool, not performance measure
+- Self-intimacy over external validation
+- Authentic over polished"
+
+**(6:30-7:00) CLOSING**
+"Content creation with Korean - sovereign self-expression. Authentic mistakes over fake perfection. Korean as creative tool. Celebrate your journey, don't perform for others."
+
+---
+
+## 10_SOCIAL_CULTURAL_INTERACTION
+
+### Track 01: Meeting_People_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Meeting people Korean guide with natural expressions and age-appropriate formality."
+
+**(0:20-1:00) PHRASE 1: Self-Introduction**
+"Self-introduction:
+Natural: '내 이름은 ___.' (Nae I-reum-eun ___.)
+Translation: My name is ___. (casual particle drop)
+Formal: '제 이름은 ___입니다.' (Je I-reum-eun ___im-ni-da.)
+Polite: '제 이름은 ___이에요.' (Je I-reum-eun ___i-e-yo.)"
+
+[Pause 3 seconds]
+
+"Natural: 내 이름은 ___"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Asking About Others**
+"Asking about origin:
+Natural: '어디서 왔어?' (Eo-di-seo Was-seo?)
+Translation: Where from? (casual particle drop)
+Formal: '어디에서 오셨나요?' (Eo-di-e-seo O-syeot-na-yo?)
+Polite: '어디서 왔어요?' (Eo-di-seo Was-seo-yo?)"
+
+[Pause 3 seconds]
+
+"Natural: 어디서 왔어?"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Travel Context**
+"Stating travel purpose:
+Natural: '여행 왔어.' (Yeo-haeng Was-seo.)
+Translation: Travel came. (casual particle drop)
+Formal: '여행하러 왔습니다.' (Yeo-haeng-ha-reo Was-seum-ni-da.)
+Polite: '여행하러 왔어요.' (Yeo-haeng-ha-reo Was-seo-yo.)"
+
+[Pause 3 seconds]
+
+"Natural: 여행 왔어"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Language Learning**
+"Stating Korean learning:
+Natural: '한국어 배우고 있어.' (Han-gu-geo Bae-u-go Is-seo.)
+Translation: Korean learning. (casual particle drop)
+Formal: '한국어를 배우고 있습니다.' (Han-gu-geo-reul Bae-u-go Is-seum-ni-da.)
+Polite: '한국어 배우고 있어요.' (Han-gu-geo Bae-u-go Is-seo-yo.)"
+
+[Pause 3 seconds]
+
+"Natural: 한국어 배우고 있어"
+[Pause 3 seconds]
+
+**(3:00-4:00) AGE APPROPRIATENESS**
+"Meeting people formality:
+Similar age (20s-30s): Casual natural speech
+Middle generation (30s-50s): Polite initially, casual as friendship develops
+Elderly (50+): Formal or very polite throughout
+
+Cultural intelligence: Start polite, relax formality as relationship develops"
+
+**(4:00-5:00) CULTURAL RESPECT**
+"Korean social culture appreciates:
+- Respectful curiosity about Korea
+- Willingness to learn Korean
+- Appropriate formality for age
+- Genuine interest over performance
+- Humility about language skills"
+
+**(5:00-6:00) CLOSING**
+"Meeting people with Korean - you're prepared. Remember: Age-appropriate formality is key. Start polite, relax as friendship develops. Natural speech shows cultural intelligence."
+
+---
+
+### Track 02: Cultural_Respect_Complete.mp3
+**Duration:** 6 minutes
+
+**(0:00-0:20) INTRODUCTION**
+"Cultural respect Korean guide. Show appreciation and humility in Korean."
+
+**(0:20-1:00) PHRASE 1: Apologies**
+"Making apologies:
+Natural: '미안해.' (Mi-an-hae.)
+Translation: Sorry. (casual)
+Formal: '죄송합니다.' (Joe-song-ham-ni-da.)
+Polite: '죄송해요.' (Joe-song-hae-yo.)"
+
+[Pause 3 seconds]
+
+"Natural: 미안해 / Formal: 죄송합니다"
+[Pause 3 seconds]
+
+**(1:00-1:40) PHRASE 2: Gratitude**
+"Expressing gratitude:
+Natural: '고마워.' (Go-ma-wo.)
+Translation: Thank you. (casual)
+Formal: '감사합니다.' (Gam-sa-ham-ni-da.)
+Polite: '감사해요.' (Gam-sa-hae-yo.)
+Specific: '도와줘서 고마워.' (Do-wa-jwo-seo Go-ma-wo.) - Thanks for help"
+
+[Pause 3 seconds]
+
+"Natural: 고마워 / Formal: 감사합니다"
+[Pause 3 seconds]
+
+**(1:40-2:20) PHRASE 3: Respect (AGE APPROPRIATE)**
+"Showing respect - AGE CRITICAL:
+With peers: '잘 부탁해.' (Jal Bu-tak-hae.) - rely on you well
+With elders: '잘 부탁드립니다.' (Jal Bu-tak-deu-rim-ni-da.) - formally rely on you
+NEVER use '존경합니다' (I respect you) with younger Koreans - too formal/awkward"
+
+[Pause 3 seconds]
+
+"With peers: 잘 부탁해 / With elders: 잘 부탁드립니다"
+[Pause 3 seconds]
+
+**(2:20-3:00) PHRASE 4: Cultural Appreciation**
+"Expressing cultural appreciation:
+Natural: '한국 문화 좋아.' (Han-guk Mun-hwa Jo-a.)
+Translation: Korean culture like. (casual)
+Formal: '한국 문화를 존중합니다.' (Han-guk Mun-hwa-reul Jon-jung-ham-ni-da.)
+Deep: '한국 문화 더 알고 싶어.' (Han-guk Mun-hwa Deo Al-go Si-peo.) - want to know Korean culture more"
+
+[Pause 3 seconds]
+
+"Natural: 한국 문화 좋아"
+[Pause 3 seconds]
+
+**(3:00-4:00) HUMILITY IN LEARNING**
+"Humble learning approach:
+Natural: '한국어 아직 못해.' (Han-gu-geo A-jik Mot-hae.)
+Translation: Korean still can't do. (casual particle drop)
+Formal: '한국어를 아직 잘 못합니다.' (Han-gu-geo-reul A-jik Jal Mot-ham-ni-da.)
+Koreans appreciate humility over fake confidence"
+
+[Pause 3 seconds]
+
+"Natural: 한국어 아직 못해"
+[Pause 3 seconds]
+
+**(4:00-5:00) CULTURAL INTELLIGENCE**
+"Cultural respect through:
+- Appropriate formality for age
+- Humility about language ability
+- Genuine curiosity
+- Willingness to learn
+- Respect for customs"
+
+**(5:00-6:00) CLOSING**
+"Cultural respect with Korean - you're prepared. Remember: Age-appropriate formality is crucial. Humility appreciated. Genuine interest matters. You don't need perfect language to show respect."
 
 ---
 

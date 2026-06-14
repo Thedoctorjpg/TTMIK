@@ -29,6 +29,16 @@ function resetState() {
 // Pure helpers
 // ---------------------------------------------------------------------------
 
+function escapeHTML(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function formatTime(seconds) {
   if (!seconds || isNaN(seconds)) return "00:00";
   const min = Math.floor(seconds / 60);
@@ -74,8 +84,8 @@ function renderLessons(lessons, doc) {
         🇰🇷
       </div>
       <div class="p-6">
-        <h4 class="font-semibold">${lesson.title}</h4>
-        <p class="text-xs text-zinc-500">${lesson.subtitle} • ${lesson.duration}</p>
+        <h4 class="font-semibold">${escapeHTML(lesson.title)}</h4>
+        <p class="text-xs text-zinc-500">${escapeHTML(lesson.subtitle)} • ${escapeHTML(lesson.duration)}</p>
       </div>
     `;
     card.dataset.index = i;
@@ -88,9 +98,9 @@ function renderLessons(lessons, doc) {
 // ---------------------------------------------------------------------------
 
 function loadLesson(index, lessons, audio, doc) {
-  currentLesson = index;
   const lesson = lessons[index];
   if (!lesson) return;
+  currentLesson = index;
 
   const titleEl = doc.getElementById('lesson-title');
   const subtitleEl = doc.getElementById('lesson-subtitle');
@@ -110,7 +120,7 @@ function loadLesson(index, lessons, audio, doc) {
       ? lesson.vocab
           .map(
             v =>
-              `<div class="flex justify-between items-center"><span class="korean">${v.ko}</span><span class="text-zinc-400">${v.en}</span></div>`
+              `<div class="flex justify-between items-center"><span class="korean">${escapeHTML(v.ko)}</span><span class="text-zinc-400">${escapeHTML(v.en)}</span></div>`
           )
           .join('')
       : '';
@@ -310,6 +320,7 @@ function setupAudio(audio, doc) {
 // ---------------------------------------------------------------------------
 
 module.exports = {
+  escapeHTML,
   formatTime,
   switchTab,
   renderLessons,

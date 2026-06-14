@@ -3,6 +3,7 @@
  */
 
 const {
+  escapeHTML,
   formatTime,
   switchTab,
   renderLessons,
@@ -118,6 +119,28 @@ beforeEach(() => {
   resetState();
 });
 
+// ---- escapeHTML -----------------------------------------------------------
+
+describe('escapeHTML', () => {
+  it('escapes HTML special characters', () => {
+    expect(escapeHTML('<script>alert(1)</script>')).toBe('&lt;script&gt;alert(1)&lt;/script&gt;');
+    expect(escapeHTML('a & b')).toBe('a &amp; b');
+    expect(escapeHTML('"quotes"')).toBe('&quot;quotes&quot;');
+    expect(escapeHTML("it's")).toBe('it&#039;s');
+  });
+
+  it('returns empty string for non-string input', () => {
+    expect(escapeHTML(null)).toBe('');
+    expect(escapeHTML(undefined)).toBe('');
+    expect(escapeHTML(123)).toBe('');
+  });
+
+  it('passes through safe strings unchanged', () => {
+    expect(escapeHTML('hello world')).toBe('hello world');
+    expect(escapeHTML('안녕하세요')).toBe('안녕하세요');
+  });
+});
+
 // ---- formatTime -----------------------------------------------------------
 
 describe('formatTime', () => {
@@ -190,6 +213,14 @@ describe('renderLessons', () => {
     const grid = document.getElementById('lessons-grid');
     expect(grid.children[0].innerHTML).toContain('Lesson 1');
     expect(grid.children[0].innerHTML).toContain('Level 1');
+  });
+
+  it('escapes HTML in lesson titles to prevent XSS', () => {
+    const xssLessons = [{ id: 1, title: '<img src=x onerror=alert(1)>', subtitle: 'safe', duration: '00:00' }];
+    renderLessons(xssLessons, document);
+    const grid = document.getElementById('lessons-grid');
+    expect(grid.innerHTML).not.toContain('<img');
+    expect(grid.innerHTML).toContain('&lt;img');
   });
 
   it('clears previous cards on re-render', () => {
@@ -267,10 +298,20 @@ describe('loadLesson', () => {
     expect(document.getElementById('tab-0').classList.contains('hidden')).toBe(false);
   });
 
-  it('handles out-of-bounds index gracefully', () => {
+  it('does not corrupt state on out-of-bounds index', () => {
     const audio = createMockAudio();
+    loadLesson(1, sampleLessons, audio, document);
     loadLesson(99, sampleLessons, audio, document);
-    // should not throw
+    expect(getState().currentLesson).toBe(1);
+  });
+
+  it('prevTrack still works after an out-of-bounds loadLesson attempt', () => {
+    const audio = createMockAudio();
+    loadLesson(2, sampleLessons, audio, document);
+    loadLesson(99, sampleLessons, audio, document);
+    const moved = prevTrack(sampleLessons, audio, document);
+    expect(moved).toBe(true);
+    expect(getState().currentLesson).toBe(1);
   });
 });
 

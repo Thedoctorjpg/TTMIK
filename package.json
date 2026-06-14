@@ -1,0 +1,13 @@
+{
+  "name": "ttmik",
+  "version": "1.0.0",
+  "description": "Korean language learning audio app using local MP3 lessons.",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import {
-  Play, Pause, SkipBack, SkipForward, Repeat, Upload,
+  Play, Pause, SkipBack, SkipForward, Repeat, Upload, Volume2, AlertCircle,
   BookOpen, BarChart3, GraduationCap, Menu, X, Sun, Moon, Send,
 } from 'lucide-react';
 import defaultLessons from './data/lessons';
@@ -9,11 +9,6 @@ import ShadowingPractice from './components/ShadowingPractice';
 import ProgressDashboard from './components/ProgressDashboard';
 
 const WEBHOOK_URL = import.meta.env.VITE_TTMIK_WEBHOOK_URL || '';
-
-function escapeText(str) {
-  if (typeof str !== 'string') return '';
-  return str;
-}
 
 function formatTime(s) {
   if (!s || isNaN(s)) return '0:00';
@@ -39,6 +34,8 @@ export default function App() {
   });
   const [notes, setNotes] = useState('');
   const [notesSaved, setNotesSaved] = useState(false);
+  const [volume, setVolume] = useState(0.8);
+  const [audioError, setAudioError] = useState(null);
 
   const audioRef = useRef(null);
   const sessionStartRef = useRef(null);
@@ -78,7 +75,12 @@ export default function App() {
       setProgressPct((audio.currentTime / audio.duration) * 100 || 0);
       setCurrentTime(audio.currentTime);
     };
-    const onMeta = () => setDuration(audio.duration);
+    const onMeta = () => { setDuration(audio.duration); setAudioError(null); };
+    const onError = () => {
+      if (audio.src && audio.src !== window.location.href) {
+        setAudioError('Failed to load audio. Check the file path or format.');
+      }
+    };
     const onEnded = () => {
       setIsPlaying(false);
       if (sessionStartRef.current) {
@@ -92,11 +94,13 @@ export default function App() {
     audio.addEventListener('timeupdate', onTimeUpdate);
     audio.addEventListener('loadedmetadata', onMeta);
     audio.addEventListener('ended', onEnded);
+    audio.addEventListener('error', onError);
 
     return () => {
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('loadedmetadata', onMeta);
       audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener('error', onError);
     };
   }, [lesson, recordSession, markLessonComplete]);
 
@@ -108,6 +112,10 @@ export default function App() {
   useEffect(() => {
     if (audioRef.current) audioRef.current.loop = repeatMode;
   }, [repeatMode]);
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume;
+  }, [volume]);
 
   // ---- Controls ----
   const togglePlay = useCallback(() => {
@@ -141,10 +149,12 @@ export default function App() {
   };
 
   // ---- File upload ----
+  const blobUrlsRef = useRef([]);
   const handleUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
+    blobUrlsRef.current.push(url);
     const newLesson = {
       id: Date.now(),
       title: file.name.replace(/\.mp3$/i, ''),
@@ -159,6 +169,12 @@ export default function App() {
     setTab('player');
   };
 
+  // Revoke blob URLs on unmount to prevent memory leaks
+  useEffect(() => {
+    const urls = blobUrlsRef.current;
+    return () => urls.forEach((u) => URL.revokeObjectURL(u));
+  }, []);
+
   // ---- Notes ----
   const handleSaveNotes = () => {
     if (lesson) persistNotes(lesson.id, notes);
@@ -168,7 +184,7 @@ export default function App() {
 
   // ---- Tweet + Webhook ----
   const tweetProgress = () => {
-    const text = `Just finished "${escapeText(lesson?.title)}" with TTMIK! 🇰🇷🔥 Progress: ${Math.round(progressPct)}% #LearnKorean #TTMIK @ADHDloganberry @elonmusk`;
+    const text = `Just finished "${lesson?.title || ''}" with TTMIK! 🇰🇷🔥 Progress: ${Math.round(progressPct)}% #LearnKorean #TTMIK @ADHDloganberry @elonmusk`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 
     const payload = {
@@ -370,6 +386,28 @@ export default function App() {
                       </div>
                     </div>
 
+                    {/* Volume */}
+                    <div className="mt-4 flex items-center gap-3 justify-center">
+                      <Volume2 className="w-4 h-4 text-zinc-500" />
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={Math.round(volume * 100)}
+                        onChange={(e) => setVolume(parseInt(e.target.value, 10) / 100)}
+                        className="w-32 accent-pink-500"
+                      />
+                      <span className="text-xs text-zinc-500 w-8">{Math.round(volume * 100)}%</span>
+                    </div>
+
+                    {/* Audio error */}
+                    {audioError && (
+                      <div className="mt-4 flex items-center gap-2 justify-center text-red-400 text-sm">
+                        <AlertCircle className="w-4 h-4" />
+                        {audioError}
+                      </div>
+                    )}
+
                     {/* Tweet button */}
                     <div className="flex justify-center mt-6">
                       <button
@@ -465,10 +503,10 @@ export default function App() {
           )}
 
           {/* ========== PRACTICE TAB ========== */}
-          {tab === 'practice' && <ShadowingPractice />}
+          {tab === 'practice' && <ShadowingPractice key={lesson?.id} lessonVocab={lesson?.vocab || []} />}
 
           {/* ========== PROGRESS TAB ========== */}
-          {tab === 'progress' && <ProgressDashboard progress={progress} />}
+          {tab === 'progress' && <ProgressDashboard progress={progress} lessons={lessons} />}
         </div>
       </div>
 

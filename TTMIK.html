@@ -390,7 +390,13 @@
 
             document.getElementById('lesson-title').textContent = lesson.title;
             document.getElementById('lesson-subtitle').textContent = lesson.subtitle;
-            document.getElementById('transcript').innerHTML = lesson.transcript || '<p class="text-zinc-500 italic">No transcript yet. Paste one!</p>';
+            const transcriptEl = document.getElementById('transcript');
+            const rawTranscript = (lesson.transcript || '').replace(/<[^>]*>/g, '').trim();
+            if (rawTranscript && rawTranscript !== 'Transcript not available.') {
+                transcriptEl.textContent = rawTranscript;
+            } else {
+                transcriptEl.innerHTML = '<p class="text-zinc-500 italic">No transcript yet. Paste one!</p>';
+            }
 
             const vocabHTML = lesson.vocab ? lesson.vocab.map(v => `
                 <div class="flex justify-between items-center">
@@ -437,11 +443,13 @@
             });
         }
 
+        let _blobUrls = [];
         function handleFileUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
 
             const url = URL.createObjectURL(file);
+            _blobUrls.push(url);
             audio.src = url;
 
             lessons.unshift({

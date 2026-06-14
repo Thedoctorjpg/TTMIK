@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Mic, RotateCcw } from 'lucide-react';
 
-const phrases = [
+const defaultPhrases = [
   { ko: "안녕하세요! 만나서 반가워요.", en: "Hello! Nice to meet you." },
   { ko: "오늘 날씨가 정말 좋네요.", en: "The weather is really nice today." },
   { ko: "커피 한 잔 마실까요?", en: "Shall we have a cup of coffee?" },
@@ -12,13 +12,18 @@ const phrases = [
   { ko: "맛있어요!", en: "It's delicious!" },
 ];
 
-export default function ShadowingPractice() {
+export default function ShadowingPractice({ lessonVocab = [] }) {
   const [index, setIndex] = useState(0);
   const [running, setRunning] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
   const intervalRef = useRef(null);
 
-  const phrase = phrases[index];
+  const phrases = useMemo(() => {
+    if (lessonVocab.length > 0) return [...lessonVocab, ...defaultPhrases];
+    return defaultPhrases;
+  }, [lessonVocab]);
+
+  const phrase = phrases[index % phrases.length];
 
   useEffect(() => {
     if (running) {
@@ -30,7 +35,7 @@ export default function ShadowingPractice() {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [running]);
+  }, [running, phrases.length]);
 
   const toggle = () => setRunning((r) => !r);
   const reset = () => {
@@ -44,7 +49,13 @@ export default function ShadowingPractice() {
     <div className="max-w-2xl mx-auto">
       <div className="bg-zinc-900 rounded-3xl p-12 text-center">
         <h3 className="text-3xl font-semibold mb-2">Shadowing Practice</h3>
-        <p className="text-zinc-400 mb-10">Listen → Repeat → Check</p>
+        <p className="text-zinc-400 mb-4">Listen → Repeat → Check</p>
+
+        {lessonVocab.length > 0 && (
+          <p className="text-xs text-pink-400 mb-6">
+            Practicing vocab from current lesson + general phrases
+          </p>
+        )}
 
         <div className="bg-zinc-800 rounded-2xl p-8 mb-8 min-h-[160px] flex flex-col items-center justify-center">
           <div className="korean text-3xl mb-4">{phrase.ko}</div>
@@ -76,7 +87,7 @@ export default function ShadowingPractice() {
           </button>
         </div>
 
-        <div className="mt-6 flex justify-center gap-2">
+        <div className="mt-6 flex justify-center gap-2 flex-wrap">
           {phrases.map((_, i) => (
             <button
               key={i}
@@ -89,7 +100,7 @@ export default function ShadowingPractice() {
         </div>
 
         <p className="text-xs text-zinc-500 mt-6">
-          Phrase {index + 1} / {phrases.length}
+          Phrase {(index % phrases.length) + 1} / {phrases.length}
         </p>
       </div>
     </div>

@@ -7,24 +7,60 @@
  *   2. Creates a Shopify draft order / metafield for tracking
  *
  * Environment variables:
- *   TWITTER_BEARER_TOKEN  — X API v2 bearer token (for automated tweets)
- *   SHOPIFY_STORE_URL     — e.g. https://your-store.myshopify.com
- *   SHOPIFY_ACCESS_TOKEN  — Shopify Admin API access token
+ *   WEBHOOK_SECRET         — shared secret for request auth (required in prod)
+ *   TWITTER_BEARER_TOKEN   — X API v2 bearer token (for automated tweets)
+ *   SHOPIFY_STORE_URL      — e.g. https://your-store.myshopify.com
+ *   SHOPIFY_ACCESS_TOKEN   — Shopify Admin API access token
  */
+
+const MAX_BODY_SIZE = 4096;
+
+function validatePayload(body) {
+  if (!body || typeof body !== 'object') return 'Missing request body';
+  if (typeof body.event !== 'string' || !body.event) return 'Missing or invalid "event"';
+  if (typeof body.lesson !== 'string' || !body.lesson) return 'Missing or invalid "lesson"';
+  if (typeof body.progress !== 'number' || body.progress < 0 || body.progress > 100) {
+    return '"progress" must be a number between 0 and 100';
+  }
+  if (body.lesson.length > 200) return '"lesson" exceeds 200 characters';
+  return null;
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Auth check: require WEBHOOK_SECRET in production
+  const secret = process.env.WEBHOOK_SECRET;
+  if (secret) {
+    const authHeader = req.headers['x-webhook-secret'] || req.headers['authorization'];
+    if (!authHeader || (authHeader !== secret && authHeader !== `Bearer ${secret}`)) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+  }
+
+  // Body size guard
+  const rawLength = req.headers['content-length'];
+  if (rawLength && parseInt(rawLength, 10) > MAX_BODY_SIZE) {
+    return res.status(413).json({ error: 'Payload too large' });
+  }
+
   try {
+    const validationError = validatePayload(req.body);
+    if (validationError) {
+      return res.status(400).json({ error: validationError });
+    }
+
     const { event, lesson, progress, timestamp, platform, user, shopifyOrderId } = req.body;
 
     console.log(`[TTMIK Webhook] ${event}: "${lesson}" — ${progress}% at ${timestamp}`);
 
     // ---- Post to X (Twitter) ----
     if (process.env.TWITTER_BEARER_TOKEN) {
-      const tweetText = `📚 ${user || 'A learner'} just completed "${lesson}" (${progress}%) on ${platform}! #LearnKorean #TTMIK`;
+      const safeName = (user || 'A learner').slice(0, 50);
+      const safeLesson = lesson.slice(0, 100);
+      const tweetText = `📚 ${safeName} just completed "${safeLesson}" (${progress}%) on ${platform || 'TTMIK'}! #LearnKorean #TTMIK`;
 
       const twitterRes = await fetch('https://api.twitter.com/2/tweets', {
         method: 'POST',

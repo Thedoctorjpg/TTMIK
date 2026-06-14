@@ -450,14 +450,24 @@
         }
 
         function switchTab(n) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
-            document.getElementById(`tab-${n}`).classList.remove('hidden');
+            const tab = document.getElementById(`tab-${n}`);
+            if (!tab) {
+                console.error(`switchTab: tab-${n} does not exist`);
+                return;
+            }
+            const tabLinks = document.querySelectorAll('.tab-link');
+            if (n < 0 || n >= tabLinks.length) {
+                console.error(`switchTab: index ${n} is out of range (0-${tabLinks.length - 1})`);
+                return;
+            }
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            tab.classList.remove('hidden');
             
-            document.querySelectorAll('.tab-link').forEach(link => {
+            tabLinks.forEach(link => {
                 link.classList.remove('bg-zinc-800', 'text-white');
                 link.classList.add('text-zinc-400');
             });
-            document.querySelectorAll('.tab-link')[n].classList.add('bg-zinc-800', 'text-white');
+            tabLinks[n].classList.add('bg-zinc-800', 'text-white');
         }
 
         function renderLessons() {
@@ -482,30 +492,41 @@
         }
 
         function loadLesson(index) {
+            if (index < 0 || index >= lessons.length) {
+                console.error(`loadLesson: index ${index} is out of range (0-${lessons.length - 1})`);
+                return;
+            }
             currentLesson = index;
             const lesson = lessons[index];
+            if (!lesson) {
+                console.error(`loadLesson: lesson at index ${index} is undefined`);
+                return;
+            }
             
-            document.getElementById('lesson-title').textContent = lesson.title;
-            document.getElementById('lesson-subtitle').textContent = lesson.subtitle;
+            document.getElementById('lesson-title').textContent = lesson.title || 'Untitled Lesson';
+            document.getElementById('lesson-subtitle').textContent = lesson.subtitle || '';
             document.getElementById('transcript').innerHTML = lesson.transcript || '<p class="text-zinc-500 italic">No transcript yet. Paste one!</p>';
             
-            const vocabHTML = lesson.vocab ? lesson.vocab.map(v => `
+            const vocabHTML = (Array.isArray(lesson.vocab) ? lesson.vocab : []).map(v => `
                 <div class="flex justify-between items-center">
-                    <span class="korean">${v.ko}</span>
-                    <span class="text-zinc-400">${v.en}</span>
+                    <span class="korean">${v.ko || ''}</span>
+                    <span class="text-zinc-400">${v.en || ''}</span>
                 </div>
-            `).join('') : '';
+            `).join('');
             document.getElementById('vocab-list').innerHTML = vocabHTML;
             
             if (lesson.src) {
                 audio.src = encodeURI(lesson.src);
+            } else {
+                audio.removeAttribute('src');
+                audio.load();
             }
             
             switchTab(0);
         }
 
         function togglePlay() {
-            if (!audio.src) {
+            if (!audio.src || audio.src === window.location.href) {
                 alert("Choose a built-in lesson or upload an MP3 to start listening.");
                 return;
             }
@@ -513,11 +534,26 @@
             if (isPlaying) {
                 audio.pause();
                 document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
+                isPlaying = false;
             } else {
-                audio.play();
-                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-pause"></i>`;
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-pause"></i>`;
+                        isPlaying = true;
+                    }).catch(err => {
+                        console.error('Audio playback failed:', err);
+                        isPlaying = false;
+                        if (err.name === 'NotAllowedError') {
+                            alert('Playback was blocked by the browser. Please interact with the page first.');
+                        } else if (err.name === 'NotSupportedError') {
+                            alert('This audio format is not supported by your browser.');
+                        } else {
+                            alert('Unable to play audio: ' + err.message);
+                        }
+                    });
+                }
             }
-            isPlaying = !isPlaying;
         }
 
         function setSpeed(speed) {
@@ -532,13 +568,34 @@
             const file = e.target.files[0];
             if (!file) return;
             
-            const url = URL.createObjectURL(file);
+            const allowedTypes = ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/ogg', 'audio/mp4', 'audio/webm'];
+            if (!allowedTypes.includes(file.type) && !file.name.match(/\.(mp3|wav|ogg|m4a|webm)$/i)) {
+                alert('Unsupported file type. Please upload an audio file (MP3, WAV, OGG, M4A, or WebM).');
+                e.target.value = '';
+                return;
+            }
+            
+            const maxSize = 500 * 1024 * 1024; // 500MB
+            if (file.size > maxSize) {
+                alert('File is too large. Please upload a file smaller than 500MB.');
+                e.target.value = '';
+                return;
+            }
+            
+            let url;
+            try {
+                url = URL.createObjectURL(file);
+            } catch (err) {
+                console.error('Failed to create object URL:', err);
+                alert('Failed to load the file. Please try again.');
+                return;
+            }
+            
             audio.src = url;
             
-            // Add as new lesson
             lessons.unshift({
                 id: Date.now(),
-                title: file.name.replace('.mp3', ''),
+                title: file.name.replace(/\.(mp3|wav|ogg|m4a|webm)$/i, ''),
                 subtitle: "Your TTMIK Upload",
                 duration: "??:??",
                 src: url,
@@ -548,16 +605,16 @@
             
             renderLessons();
             loadLesson(0);
-            alert("MP3 loaded! Great work on your Korean journey 💪");
+            alert("Audio loaded! Great work on your Korean journey.");
         }
 
         function addNewLesson() {
             const title = prompt("Lesson title (e.g. Level 1 Lesson 5):");
-            if (!title) return;
+            if (!title || !title.trim()) return;
             
             lessons.unshift({
                 id: Date.now(),
-                title: title,
+                title: title.trim(),
                 subtitle: "Talk To Me In Korean",
                 duration: "00:00",
                 src: "",
@@ -584,12 +641,26 @@
         }
 
         function prevTrack() {
-            if (currentLesson > 0) loadLesson(currentLesson - 1);
+            if (lessons.length === 0) return;
+            if (currentLesson > 0) {
+                loadLesson(currentLesson - 1);
+            } else {
+                // Wrap around to last track
+                loadLesson(lessons.length - 1);
+            }
         }
 
         function nextTrack() {
-            if (currentLesson < lessons.length - 1) loadLesson(currentLesson + 1);
+            if (lessons.length === 0) return;
+            if (currentLesson < lessons.length - 1) {
+                loadLesson(currentLesson + 1);
+            } else {
+                // Wrap around to first track
+                loadLesson(0);
+            }
         }
+
+        let shadowingInterval = null;
 
         function startShadowing() {
             const phrases = [
@@ -597,10 +668,21 @@
                 "오늘 날씨가 정말 좋네요.",
                 "커피 한 잔 마실까요?"
             ];
-            let i = 0;
             const el = document.getElementById('shadowing-text');
+            if (!el) {
+                console.error('startShadowing: shadowing-text element not found');
+                return;
+            }
             
-            setInterval(() => {
+            // Clear any existing interval to prevent stacking
+            if (shadowingInterval !== null) {
+                clearInterval(shadowingInterval);
+            }
+            
+            let i = 0;
+            el.textContent = phrases[i];
+            i = 1;
+            shadowingInterval = setInterval(() => {
                 el.textContent = phrases[i];
                 i = (i + 1) % phrases.length;
             }, 4000);
@@ -608,9 +690,14 @@
 
         // Audio event listeners
         function setupAudio() {
+            if (!audio) {
+                console.error('setupAudio: audio element not found');
+                return;
+            }
+
             audio.addEventListener('timeupdate', () => {
                 const progress = document.getElementById('progress');
-                if (audio.duration) {
+                if (audio.duration && isFinite(audio.duration)) {
                     progress.value = (audio.currentTime / audio.duration) * 100;
                 }
                 document.getElementById('playback-time').textContent = formatTime(audio.currentTime);
@@ -623,19 +710,48 @@
             audio.addEventListener('ended', () => {
                 isPlaying = false;
                 document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
+                if (!repeatMode && currentLesson < lessons.length - 1) {
+                    nextTrack();
+                }
+            });
+
+            audio.addEventListener('error', () => {
+                isPlaying = false;
+                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
+                const error = audio.error;
+                let msg = 'An unknown audio error occurred.';
+                if (error) {
+                    switch (error.code) {
+                        case MediaError.MEDIA_ERR_ABORTED:
+                            msg = 'Audio loading was aborted.';
+                            break;
+                        case MediaError.MEDIA_ERR_NETWORK:
+                            msg = 'A network error prevented the audio from loading.';
+                            break;
+                        case MediaError.MEDIA_ERR_DECODE:
+                            msg = 'The audio file could not be decoded.';
+                            break;
+                        case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                            msg = 'The audio file format is not supported or the file was not found.';
+                            break;
+                    }
+                }
+                console.error('Audio error:', msg, error);
+                document.getElementById('lesson-subtitle').textContent = msg;
             });
             
             // Progress scrub
             const progressSlider = document.getElementById('progress');
             progressSlider.addEventListener('input', () => {
-                if (audio.duration) {
+                if (audio.duration && isFinite(audio.duration)) {
                     audio.currentTime = (progressSlider.value / 100) * audio.duration;
                 }
             });
             
             audio.volume = 0.8;
             document.getElementById('volume').addEventListener('input', (e) => {
-                audio.volume = e.target.value / 100;
+                const vol = Number(e.target.value) / 100;
+                audio.volume = Math.max(0, Math.min(1, isNaN(vol) ? 0.8 : vol));
             });
         }
 
@@ -656,12 +772,23 @@
 
         // Init
         window.onload = () => {
-            renderLessons();
-            loadLesson(0);
-            setupAudio();
+            try {
+                renderLessons();
+            } catch (err) {
+                console.error('Failed to render lessons:', err);
+            }
+            try {
+                loadLesson(0);
+            } catch (err) {
+                console.error('Failed to load initial lesson:', err);
+            }
+            try {
+                setupAudio();
+            } catch (err) {
+                console.error('Failed to set up audio system:', err);
+            }
             switchTab(0);
             
-            // Demo vocab
             console.log("%cTTMIK WebApp ready! Upload your MP3s and start practicing.", "color:#ec4899; font-size:13px");
         };
     </script>

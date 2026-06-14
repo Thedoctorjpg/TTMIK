@@ -168,7 +168,7 @@ export default function App() {
 
   // ---- Tweet + Webhook ----
   const tweetProgress = () => {
-    const text = `Just finished "${escapeText(lesson?.title)}" with TTMIK! 🇰🇷🔥 Progress: ${Math.round(progressPct)}% #LearnKorean #TTMIK`;
+    const text = `Just finished "${escapeText(lesson?.title)}" with TTMIK! 🇰🇷🔥 Progress: ${Math.round(progressPct)}% #LearnKorean #TTMIK @ADHDloganberry`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
 
     const payload = {

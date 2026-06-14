@@ -1348,7 +1348,5 @@ let lessons = [
                 src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 100.mp3",
                 transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
                 vocab: []
-            },
-
+            }
 ];
-let categories = ["All","10-Minute Conversation","1100 Korean Phrases"];

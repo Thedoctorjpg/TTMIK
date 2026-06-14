@@ -20,6 +20,14 @@ const {
   setupAudio,
   getState,
   resetState,
+  loadProgress,
+  saveProgress,
+  recordListeningSession,
+  saveNotes,
+  getNotesForLesson,
+  toggleDark,
+  toggleSidebar,
+  closeSidebar,
 } = require('../src/app');
 
 // ---------------------------------------------------------------------------
@@ -93,6 +101,9 @@ function buildDOM() {
     <input type="range" id="volume" min="0" max="100" value="80" />
 
     <div id="shadowing-text"></div>
+
+    <div id="sidebar" class=""></div>
+    <div id="sidebar-overlay" class=""></div>
   `;
 }
 
@@ -653,5 +664,143 @@ describe('getState / resetState', () => {
       isPlaying: false,
       repeatMode: false,
     });
+  });
+});
+
+// ---- localStorage persistence --------------------------------------------
+
+function createMockStorage() {
+  const store = {};
+  return {
+    getItem: jest.fn(k => store[k] || null),
+    setItem: jest.fn((k, v) => { store[k] = v; }),
+    _store: store,
+  };
+}
+
+describe('loadProgress', () => {
+  it('returns defaults when storage is empty', () => {
+    const storage = createMockStorage();
+    const p = loadProgress(storage);
+    expect(p.streak).toBe(0);
+    expect(p.totalSeconds).toBe(0);
+    expect(p.lessonsPlayed).toBe(0);
+    expect(p.notes).toEqual({});
+  });
+
+  it('returns saved data', () => {
+    const storage = createMockStorage();
+    storage._store['ttmik_progress'] = JSON.stringify({ streak: 5, totalSeconds: 100, lessonsPlayed: 3, lastDate: '2025-01-01', notes: {} });
+    const p = loadProgress(storage);
+    expect(p.streak).toBe(5);
+  });
+
+  it('handles corrupt JSON gracefully', () => {
+    const storage = createMockStorage();
+    storage._store['ttmik_progress'] = 'not-json';
+    const p = loadProgress(storage);
+    expect(p.streak).toBe(0);
+  });
+});
+
+describe('saveProgress', () => {
+  it('serializes data to storage', () => {
+    const storage = createMockStorage();
+    saveProgress({ streak: 3, totalSeconds: 60 }, storage);
+    expect(storage.setItem).toHaveBeenCalledWith('ttmik_progress', expect.any(String));
+    expect(JSON.parse(storage._store['ttmik_progress']).streak).toBe(3);
+  });
+});
+
+describe('recordListeningSession', () => {
+  it('starts a new streak on first session', () => {
+    const storage = createMockStorage();
+    const p = recordListeningSession(120, storage, Date.parse('2025-06-14T12:00:00Z'));
+    expect(p.streak).toBe(1);
+    expect(p.totalSeconds).toBe(120);
+    expect(p.lessonsPlayed).toBe(1);
+  });
+
+  it('increments streak for consecutive days', () => {
+    const storage = createMockStorage();
+    const day1 = Date.parse('2025-06-14T12:00:00Z');
+    recordListeningSession(60, storage, day1);
+    const day2 = day1 + 86400000;
+    const p = recordListeningSession(60, storage, day2);
+    expect(p.streak).toBe(2);
+  });
+
+  it('does not double-count same day', () => {
+    const storage = createMockStorage();
+    const ts = Date.parse('2025-06-14T12:00:00Z');
+    recordListeningSession(60, storage, ts);
+    const p = recordListeningSession(60, storage, ts + 3600000);
+    expect(p.streak).toBe(1);
+    expect(p.lessonsPlayed).toBe(2);
+  });
+
+  it('resets streak after a gap', () => {
+    const storage = createMockStorage();
+    const day1 = Date.parse('2025-06-14T12:00:00Z');
+    recordListeningSession(60, storage, day1);
+    const day3 = day1 + 2 * 86400000;
+    const p = recordListeningSession(60, storage, day3);
+    expect(p.streak).toBe(1);
+  });
+});
+
+describe('saveNotes / getNotesForLesson', () => {
+  it('saves and retrieves notes for a lesson', () => {
+    const storage = createMockStorage();
+    saveNotes(42, 'hello world', storage);
+    expect(getNotesForLesson(42, storage)).toBe('hello world');
+  });
+
+  it('returns empty string for unsaved lesson', () => {
+    const storage = createMockStorage();
+    expect(getNotesForLesson(999, storage)).toBe('');
+  });
+});
+
+// ---- toggleDark -----------------------------------------------------------
+
+describe('toggleDark', () => {
+  it('toggles dark class on documentElement', () => {
+    document.documentElement.classList.add('dark');
+    const isDark = toggleDark(document);
+    expect(isDark).toBe(false);
+    expect(document.documentElement.classList.contains('dark')).toBe(false);
+  });
+
+  it('toggles back to dark', () => {
+    document.documentElement.classList.remove('dark');
+    const isDark = toggleDark(document);
+    expect(isDark).toBe(true);
+    expect(document.documentElement.classList.contains('dark')).toBe(true);
+  });
+});
+
+// ---- toggleSidebar / closeSidebar -----------------------------------------
+
+describe('toggleSidebar', () => {
+  it('adds open class to sidebar and overlay', () => {
+    toggleSidebar(document);
+    expect(document.getElementById('sidebar').classList.contains('open')).toBe(true);
+    expect(document.getElementById('sidebar-overlay').classList.contains('open')).toBe(true);
+  });
+
+  it('removes open class on second toggle', () => {
+    toggleSidebar(document);
+    toggleSidebar(document);
+    expect(document.getElementById('sidebar').classList.contains('open')).toBe(false);
+  });
+});
+
+describe('closeSidebar', () => {
+  it('removes open class', () => {
+    toggleSidebar(document);
+    closeSidebar(document);
+    expect(document.getElementById('sidebar').classList.contains('open')).toBe(false);
+    expect(document.getElementById('sidebar-overlay').classList.contains('open')).toBe(false);
   });
 });

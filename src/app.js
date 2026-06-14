@@ -316,6 +316,84 @@ function setupAudio(audio, doc) {
 }
 
 // ---------------------------------------------------------------------------
+// localStorage persistence
+// ---------------------------------------------------------------------------
+
+function loadProgress(storage) {
+  try {
+    return JSON.parse(storage.getItem('ttmik_progress')) || {
+      streak: 0, totalSeconds: 0, lessonsPlayed: 0,
+      lastDate: null, notes: {},
+    };
+  } catch {
+    return { streak: 0, totalSeconds: 0, lessonsPlayed: 0, lastDate: null, notes: {} };
+  }
+}
+
+function saveProgress(data, storage) {
+  storage.setItem('ttmik_progress', JSON.stringify(data));
+}
+
+function recordListeningSession(durationSeconds, storage, nowMs) {
+  const progress = loadProgress(storage);
+  const now = nowMs || Date.now();
+  const today = new Date(now).toISOString().slice(0, 10);
+  progress.totalSeconds += durationSeconds;
+  progress.lessonsPlayed += 1;
+  const yesterday = new Date(now - 86400000).toISOString().slice(0, 10);
+  if (progress.lastDate === today) {
+    // already counted today
+  } else if (progress.lastDate === yesterday) {
+    progress.streak += 1;
+  } else {
+    progress.streak = 1;
+  }
+  progress.lastDate = today;
+  saveProgress(progress, storage);
+  return progress;
+}
+
+function saveNotes(lessonId, notesText, storage) {
+  const progress = loadProgress(storage);
+  if (!progress.notes) progress.notes = {};
+  progress.notes[lessonId] = notesText;
+  saveProgress(progress, storage);
+}
+
+function getNotesForLesson(lessonId, storage) {
+  const progress = loadProgress(storage);
+  return (progress.notes && progress.notes[lessonId]) || '';
+}
+
+// ---------------------------------------------------------------------------
+// Dark mode
+// ---------------------------------------------------------------------------
+
+function toggleDark(doc) {
+  const html = doc.documentElement;
+  html.classList.toggle('dark');
+  return html.classList.contains('dark');
+}
+
+// ---------------------------------------------------------------------------
+// Responsive sidebar
+// ---------------------------------------------------------------------------
+
+function toggleSidebar(doc) {
+  const sidebar = doc.getElementById('sidebar');
+  const overlay = doc.getElementById('sidebar-overlay');
+  if (sidebar) sidebar.classList.toggle('open');
+  if (overlay) overlay.classList.toggle('open');
+}
+
+function closeSidebar(doc) {
+  const sidebar = doc.getElementById('sidebar');
+  const overlay = doc.getElementById('sidebar-overlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
+}
+
+// ---------------------------------------------------------------------------
 // Exports
 // ---------------------------------------------------------------------------
 
@@ -337,4 +415,12 @@ module.exports = {
   setupAudio,
   getState,
   resetState,
+  loadProgress,
+  saveProgress,
+  recordListeningSession,
+  saveNotes,
+  getNotesForLesson,
+  toggleDark,
+  toggleSidebar,
+  closeSidebar,
 };

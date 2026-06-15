@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-15 · 15 tracks
+ * Healed: 2026-06-15 · 16 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -24,6 +24,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     "Lantern & Humor",
     "Ignan Journey",
     "Celebration",
+    "Pre-Match Attune",
     "Daily Integration"
 ];
 
@@ -144,6 +145,19 @@ const HEALING_FACTOR_DECK = [
         "en": "So happy — cheers to the game and the meal.",
         "ilo": "Naragsak unay! Ok laeng, agnanayon.",
         "ko": "맛있어요! 축하해요!"
+    },
+    {
+        "factorId": "match-attune",
+        "title": "Attune before match — Federation pause",
+        "subtitle": "Pre-Match Attune",
+        "boot": "TTMIK.html?attune=1",
+        "note": "match-attune-ritual · quest side-fifa-celebrate",
+        "skillId": "melbourne-lantern-bard",
+        "pin": "FED",
+        "questId": "side-fifa-celebrate",
+        "edit": "match-attune-ritual",
+        "ko": "응원 전에 한 숨",
+        "en": "One breath before the cheer."
     }
 ];
 
@@ -244,6 +258,7 @@ const HEALING_COURSE_DEFS = [
     { subtitle: 'Lantern & Humor', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Lantern & Humor').length },
     { subtitle: 'Ignan Journey', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Ignan Journey').length },
     { subtitle: 'Celebration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Celebration').length },
+    { subtitle: 'Pre-Match Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Pre-Match Attune').length },
     { subtitle: 'Daily Integration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Daily Integration').length }
 ];
 

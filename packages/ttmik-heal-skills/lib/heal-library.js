@@ -15,6 +15,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     'Lantern & Humor',
     'Ignan Journey',
     'Celebration',
+    'Pre-Match Attune',
     'Daily Integration'
 ];
 
@@ -27,6 +28,7 @@ const FACTOR_CATEGORIES = {
     'cord-cut': 'Boundaries & Cord-Cut',
     'ignan-walk': 'Ignan Journey',
     'fifa-celebrate': 'Celebration',
+    'match-attune': 'Pre-Match Attune',
     'daily-ritual': 'Daily Integration',
     'no-rewatch': 'Daily Integration'
 };
@@ -34,7 +36,8 @@ const FACTOR_CATEGORIES = {
 const FACTOR_BOOTS = {
     'post-dib': 'TTMIK.html?heal=1',
     'ignan-walk': 'TTMIK.html?ignan=1',
-    'fifa-celebrate': 'TTMIK.html?fifa=1'
+    'fifa-celebrate': 'TTMIK.html?fifa=1',
+    'match-attune': 'TTMIK.html?attune=1'
 };
 
 const FACTOR_TITLES = {
@@ -46,6 +49,7 @@ const FACTOR_TITLES = {
     'cord-cut': 'Cord-cut — own timeline',
     'ignan-walk': 'Ignan healing walk — Mari leads',
     'fifa-celebrate': 'Mari FIFA cantina — joy not drama',
+    'match-attune': 'Attune before match — Federation pause',
     'daily-ritual': 'Daily integration ritual',
     'no-rewatch': 'No re-watch spiral'
 };
@@ -56,6 +60,7 @@ const FACTOR_EN = {
     'pause-breathe': "It's okay to pause and breathe.",
     'cord-cut': 'I choose my own timeline and energy field.',
     'daily-ritual': 'I write my own story.',
+    'match-attune': 'One breath before the cheer.',
     'no-rewatch': 'GoPro off before mirror · phone face-down',
     'post-dib': "It's okay, it's okay."
 };
@@ -135,6 +140,7 @@ const HEALING_COURSE_DEFS = [
     { subtitle: 'Lantern & Humor', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Lantern & Humor').length },
     { subtitle: 'Ignan Journey', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Ignan Journey').length },
     { subtitle: 'Celebration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Celebration').length },
+    { subtitle: 'Pre-Match Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Pre-Match Attune').length },
     { subtitle: 'Daily Integration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Daily Integration').length }
 ];
 

@@ -66,6 +66,31 @@ const BARDIC_INSPIRATION = {
     },
     rtdbCadence: 'Refresh every 30s · rotate boards every 45s before Auckland airport leg',
     pipeline: PIPELINE_SOURCES,
+    beforeMatchAttune: {
+        label: 'Attune before match — Federation pause',
+        duration: '60s',
+        pin: 'FED',
+        skillId: 'melbourne-lantern-bard',
+        questId: 'side-fifa-celebrate',
+        shadowIndex: 0,
+        activation: 'Attune before the match — one breath, one cheer.',
+        shadowPhrase: { en: 'One breath before the cheer.', ko: '응원 전에 한 숨.' },
+        steps: [
+            'Phone face-down · GoPro off · one breath',
+            'Pause OK — 잠시 쉬어도 괜찮아요',
+            'Attune: I cheer my way — no drama',
+            'Korean shadow: 내 방식으로 응원해요 — 드라마 없이',
+            'Open lane when ready — no performance invoice'
+        ],
+        lanes: {
+            kane: { boot: 'kane=1', label: 'Kane England · WEMBLEY' },
+            vinicus: { boot: 'vinicus=1', label: 'Vinicus Brasil · SAMBA' },
+            messi: { boot: 'messi=1', label: 'Messi Argentina · BOCA' },
+            mbappe: { boot: 'mbappe=1', label: 'Mbappé France · STADE' },
+            ronaldo: { boot: 'ronaldo=1', label: 'Ronaldo Portugal · CANTINA' },
+            fifa: { boot: 'fifa=1', label: 'Mari FIFA cantina' }
+        }
+    },
     afterBlessingHeal: {
         label: 'Quiet reflection after Divine Insight Blessing',
         duration: '45s',
@@ -98,7 +123,8 @@ const HEALING_FACTORS = {
         { id: 'daily-ritual', label: 'Daily integration', questId: 'side-ritual', skillId: 'flame-kissed-bard' },
         { id: 'no-rewatch', label: 'No re-watch spiral', note: 'GoPro off before mirror · phone face-down' },
         { id: 'ignan-walk', label: 'Ignan healing walk', skillId: 'ignan-pilgrim', edit: 'ignan-healing-journey', questId: 'side-ignan-heal', pin: 'BOTANIC' },
-        { id: 'fifa-celebrate', label: 'Mari FIFA cantina', skillId: 'ignan-pilgrim', edit: 'mari-fifa-celebration', questId: 'side-fifa-celebrate', pin: 'CANTINA' }
+        { id: 'fifa-celebrate', label: 'Mari FIFA cantina', skillId: 'ignan-pilgrim', edit: 'mari-fifa-celebration', questId: 'side-fifa-celebrate', pin: 'CANTINA' },
+        { id: 'match-attune', label: 'Attune before match', ko: '응원 전에 한 숨', skillId: 'melbourne-lantern-bard', edit: 'match-attune-ritual', questId: 'side-fifa-celebrate', pin: 'FED' }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -755,6 +781,7 @@ const TTMIK_SYNC_PRESETS = [
 
 /** Lane D — Mari FIFA celebration (after Ignan walk · optional same evening) */
 const TTMIK_FIFA_CELEBRATION_ROUTE = [
+    { time: '18:15', pin: 'FED', note: 'Attune before match — pause · breath · no re-watch spiral · ?attune=1', sync: { pin: 'FED', episode: '2.65', reel: null } },
     { time: '18:30', pin: 'CINEMA', note: 'Bend It Like Beckham rewatch — English fan meet · fast scene 30s', presetId: 16, sync: { pin: 'CINEMA', episode: '2.64', reel: null } },
     { time: '19:00', pin: 'CANTINA', note: 'Meet after walk — Mari picks the table, Bard pays his half', presetId: 12 },
     { time: '19:15', pin: 'CANTINA', note: 'Ilokano toast first — Naragsak unay before the match replay', sync: { pin: 'CANTINA', episode: '2.65', reel: null } },
@@ -791,6 +818,7 @@ const TTMIK_DATE_NIGHT_ROUTE = [
     { time: '19:15', pin: 'DEGRAVES', note: 'Score · eat · block ingredient-fee Venmos', sync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' } },
     { time: '19:30', pin: 'BOCA', note: 'After cook-off — Messi Argentina meet · ¡Vamos Argentina! · preset 18', presetId: 18, sync: { pin: 'BOCA', episode: '2.76', reel: null } },
     { time: '19:45', pin: 'SAMBA', note: 'After La Boca — Vinicus Brasil samba · Gol! Vai Brasil! · preset 19', presetId: 19, sync: { pin: 'SAMBA', episode: '2.77', reel: null } },
+    { time: '19:55', pin: 'FED', note: 'Attune before match — one breath before Kane lane · ?attune=1&lane=kane', sync: { pin: 'FED', episode: '2.78', reel: null } },
     { time: '20:00', pin: 'WEMBLEY', note: 'After Brasil — Harry Kane England striker · FIFA+ watch · Goal! Come on England! · preset 20', presetId: 20, sync: { pin: 'WEMBLEY', episode: '2.78', reel: null }, watchUrl: 'https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw' },
     { time: '06:12', pin: 'DEGRAVES', note: 'Dawn croissant — girls-love Ch.2 · phones optional', presetId: 8 }
 ];
@@ -827,6 +855,10 @@ function getDateNightRoute() {
 
 function getDibAftercareRitual() {
     return BARDIC_INSPIRATION.afterBlessingHeal;
+}
+
+function getMatchAttuneRitual() {
+    return BARDIC_INSPIRATION.beforeMatchAttune;
 }
 
 function getHealingFactors() {

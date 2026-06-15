@@ -235,6 +235,28 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'match-attune-ritual': {
+        id: 'match-attune-ritual',
+        label: 'Pre-Match · Attune Ritual · Federation Pause (60s)',
+        duration: 60,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'ATTUNE',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'FED', episode: '2.65', reel: null },
+        pins: ['FED'],
+        exportTargets: ['Webdrama insert', 'Pre-match attune deck', 'FIFA lane opener'],
+        pipeline: ['match-attune-ritual'],
+        shots: [
+            { id: 'AT1', time: '0:00', pin: 'FED', note: 'Federation Square pause — phone face-down', dur: 8 },
+            { id: 'AT2', time: '0:08', pin: 'FED', note: 'English: One breath before the cheer.', dur: 8 },
+            { id: 'AT3', time: '0:16', pin: 'FED', note: 'Korean shadow · 응원 전에 한 숨', dur: 8 },
+            { id: 'AT4', time: '0:24', pin: 'FED', note: 'Attune: I cheer my way — no drama', dur: 10 },
+            { id: 'AT5', time: '0:34', pin: 'FED', note: 'Open lane when ready — no performance invoice', dur: 8 },
+            { id: 'AT6', time: '0:42', pin: 'FED', note: 'Handoff to nation lane or FIFA+ watch', dur: 18 }
+        ]
+    },
     'harry-kane-england-striker': {
         id: 'harry-kane-england-striker',
         label: 'Ep 2.78 · Harry Kane England · Three Lions Striker (30s)',

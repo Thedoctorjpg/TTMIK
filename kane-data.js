@@ -109,7 +109,8 @@ function buildKaneTranscript(parts) {
     if (parts.beat) lines.push(`Beat: ${parts.beat}`);
     if (parts.pin) lines.push(`Pin: ${parts.pin}`);
     lines.push('\nSkill: harry-kane-england-striker · Boot: TTMIK.html?kane=1');
-    lines.push('Watch: TTMIK.html?kane=1&watch=1 · FIFA+ England clip');
+    lines.push('Attune: TTMIK.html?attune=1&lane=kane · before FIFA+ watch');
+    lines.push('Watch: TTMIK.html?kane=1&attune=1&watch=1 · attune then clip');
     lines.push('Sheet: fastcharacter.com · Kane · Fighter (Champion) · Soldier');
     if (parts.watchUrl) lines.push(`FIFA+: ${parts.watchUrl}`);
     return lines.join('\n\n');

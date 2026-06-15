@@ -547,10 +547,12 @@ const SKILLS = [
             'Ep 2.78 after Brasil samba — captain striker joy without performance debt',
             'Companion to Ep 2.77 Vinicus Brasil and Bend It Like Beckham cinema lane',
             'TTMIK.html?kane=1 — invoke Kane English shadowing boot',
-            'TTMIK.html?kane=1&watch=1 — Wembley FIFA+ watch then shadow'
+            'TTMIK.html?attune=1&lane=kane — Federation attune before Kane lane',
+            'TTMIK.html?kane=1&attune=1&watch=1 — attune · FIFA+ watch · shadow'
         ],
         procedure: [
-            'FIFA+ watch at WEMBLEY: https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw — one cheer, phone face-down',
+            'Attune before match at FED: TTMIK.html?attune=1&lane=kane — one breath, phone face-down',
+            'FIFA+ watch at WEMBLEY: https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw — one cheer after attune',
             'English native first: Melbourne is my yes — name the yes calmly',
             'Open Fast Character sheet: Kane · Fighter (Champion) · Soldier · Level 5',
             'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 득점해요',
@@ -753,7 +755,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'mbappe-france-attack': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'messi-argentina-playmaker': ['humor-release', 'pause-breathe', 'no-rewatch'],
     'vinicus-brasil-samba': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
-    'harry-kane-england-striker': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
+    'harry-kane-england-striker': ['match-attune', 'fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -770,7 +772,8 @@ const HEALING_FACTOR_LABELS = {
     'daily-ritual': 'Daily integration — flame-kissed-bard · side-ritual',
     'no-rewatch': 'No re-watch spiral — GoPro off · phone face-down',
     'ignan-walk': 'Ignan healing walk — ?ignan=1 · BOTANIC',
-    'fifa-celebrate': 'Mari FIFA cantina — ?fifa=1 · CANTINA'
+    'fifa-celebrate': 'Mari FIFA cantina — ?fifa=1 · CANTINA',
+    'match-attune': 'Attune before match — ?attune=1 · FED'
 };
 
 function buildSkillMd(skill) {

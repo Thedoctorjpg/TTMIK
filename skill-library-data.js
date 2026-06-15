@@ -168,7 +168,7 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'heal',
         factors: [
             'post-dib', 'hermit-lantern', 'humor-release', 'helen-boundary',
-            'pause-breathe', 'cord-cut', 'ignan-walk', 'fifa-celebrate',
+            'pause-breathe', 'cord-cut', 'ignan-walk', 'fifa-celebrate', 'match-attune',
             'daily-ritual', 'no-rewatch'
         ],
         boot: 'library=heal',
@@ -223,7 +223,7 @@ const LIBRARY_BUILD_MANIFEST = {
     },
     'Kane Library': {
         group: 'kane',
-        factors: ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
+        factors: ['match-attune', 'fifa-celebrate', 'pause-breathe', 'no-rewatch'],
         boot: 'library=kane'
     },
     'Melbourne Journey': {
@@ -463,13 +463,14 @@ const BOOT_ALL_HEAL_STEPS = [
     { id: 'heal-4', label: 'Post-DIB landing', boot: 'heal=1', alt: 'step=4' },
     { id: 'heal-5', label: 'Asuka maybe', boot: 'asuka=1', alt: 'step=5' },
     { id: 'heal-6', label: 'Ignan healing walk', boot: 'ignan=1', alt: 'step=6' },
-    { id: 'heal-7', label: 'Mari FIFA cantina', boot: 'fifa=1', alt: 'step=7' }
+    { id: 'heal-7', label: 'Mari FIFA cantina', boot: 'fifa=1', alt: 'step=7' },
+    { id: 'heal-8', label: 'Attune before match', boot: 'attune=1', alt: 'before-match=1' }
 ];
 
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 334
+    trackCount: 335
 };
 
 function openComposedLibrary(libId) {

@@ -281,6 +281,10 @@ function practiceHealingFactor(factorId, opts = {}) {
         practiceMariFifaCelebrate(opts);
         return true;
     }
+    if (factorId === 'match-attune') {
+        practiceMatchAttune(opts);
+        return true;
+    }
     if (factorId === 'no-rewatch') {
         if (typeof startHealCategory === 'function') {
             startHealCategory('Daily Integration');
@@ -454,6 +458,55 @@ function bootSkillById(skillId, opts = {}) {
     renderSkillDetail();
     renderSkillsGrid();
     return true;
+}
+
+function continueMatchAttuneLane(laneId, opts = {}) {
+    const handlers = {
+        kane: () => practiceHarryKaneStriker({
+            openSheet: opts.openSheet,
+            openWatch: opts.openWatch,
+            logQuest: opts.logQuest
+        }),
+        vinicus: () => practiceVinicusSamba({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
+        messi: () => practiceMessiPlaymaker({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
+        mbappe: () => practiceMbappeAttack({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
+        ronaldo: () => practiceRonaldoGlory({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
+        fifa: () => practiceMariFifaCelebrate({ logQuest: opts.logQuest })
+    };
+    const run = handlers[laneId];
+    if (run) run();
+}
+
+function practiceMatchAttune(opts = {}) {
+    const ritual = typeof getMatchAttuneRitual === 'function' ? getMatchAttuneRitual() : null;
+    const skillId = ritual?.skillId || 'melbourne-lantern-bard';
+    const shadowIdx = ritual?.shadowIndex ?? 0;
+
+    setWebdramaSyncValues(ritual?.pin || 'FED', null, null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective(ritual?.questId || 'side-fifa-celebrate');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+
+    if (opts.chainLane && opts.lane) {
+        continueMatchAttuneLane(opts.lane, opts);
+    }
 }
 
 function practiceMariFifaCelebrate(opts = {}) {
@@ -1012,6 +1065,14 @@ function renderBootAllPanel() {
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
+            else if (boot.attune === '1' || boot['before-match'] === '1') {
+                practiceMatchAttune({
+                    lane: boot.lane || null,
+                    openWatch: boot.watch === '1',
+                    openSheet: boot.sheet === '1',
+                    chainLane: boot.chain === '1'
+                });
+            }
         });
     }
 
@@ -1022,6 +1083,17 @@ function renderBootAllPanel() {
             boot: `heal-factor=${f.id}`
         })), (item) => practiceHealingFactor(item.id));
     }
+}
+
+function resolveAttuneLane(params) {
+    if (params.get('lane')) return params.get('lane');
+    if (params.get('kane') === '1') return 'kane';
+    if (params.get('vinicus') === '1') return 'vinicus';
+    if (params.get('messi') === '1') return 'messi';
+    if (params.get('mbappe') === '1') return 'mbappe';
+    if (params.get('ronaldo') === '1') return 'ronaldo';
+    if (params.get('fifa') === '1' || params.get('mari') === 'fifa') return 'fifa';
+    return null;
 }
 
 function handleTtmikSyncBoot() {
@@ -1038,6 +1110,16 @@ function handleTtmikSyncBoot() {
         bootSkillById(skillParam, {
             lessons: params.get('lessons') === '1',
             skillsTab: params.get('tab') === 'skills',
+            logQuest: params.get('quest') !== '0'
+        });
+        return;
+    }
+    if (params.get('attune') === '1' || params.get('before-match') === '1') {
+        practiceMatchAttune({
+            lane: resolveAttuneLane(params),
+            openWatch: params.get('watch') === '1',
+            openSheet: params.get('sheet') === '1',
+            chainLane: params.get('chain') === '1',
             logQuest: params.get('quest') !== '0'
         });
         return;
@@ -1519,6 +1601,54 @@ function renderSyncPanel() {
         panel.appendChild(bardBlock);
     }
 
+    if (typeof getMatchAttuneRitual === 'function') {
+        const ritual = getMatchAttuneRitual();
+        if (ritual?.steps?.length) {
+            const attuneBlock = document.createElement('div');
+            attuneBlock.className = 'mb-6 bg-violet-500/10 border border-violet-500/20 rounded-2xl p-4 text-sm';
+            const attuneTitle = document.createElement('p');
+            attuneTitle.className = 'text-violet-300 font-medium mb-2';
+            attuneTitle.textContent = ritual.label || 'Attune before match';
+            attuneBlock.appendChild(attuneTitle);
+            const attunePhrase = document.createElement('p');
+            attunePhrase.className = 'text-zinc-400 italic mb-3';
+            const sp = ritual.shadowPhrase;
+            attunePhrase.textContent = sp
+                ? `"${ritual.activation}" · ${sp.en} · ${sp.ko}`
+                : ritual.activation;
+            attuneBlock.appendChild(attunePhrase);
+            const steps = document.createElement('ol');
+            steps.className = 'list-decimal list-inside space-y-1 text-zinc-300 mb-3';
+            ritual.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                steps.appendChild(li);
+            });
+            attuneBlock.appendChild(steps);
+            const attuneActions = document.createElement('div');
+            attuneActions.className = 'flex flex-wrap gap-2';
+            const runAttune = document.createElement('button');
+            runAttune.type = 'button';
+            runAttune.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+            runAttune.textContent = 'Run attune ritual';
+            runAttune.onclick = () => practiceMatchAttune();
+            attuneActions.appendChild(runAttune);
+            if (ritual.lanes) {
+                Object.entries(ritual.lanes).forEach(([laneId, lane]) => {
+                    const laneBtn = document.createElement('button');
+                    laneBtn.type = 'button';
+                    laneBtn.className = 'px-3 py-2 rounded-xl text-xs font-medium bg-zinc-800/60 text-zinc-200 hover:bg-zinc-700/60';
+                    laneBtn.textContent = lane.label || laneId;
+                    laneBtn.title = `TTMIK.html?attune=1&lane=${laneId}`;
+                    laneBtn.onclick = () => practiceMatchAttune({ lane: laneId, chainLane: true });
+                    attuneActions.appendChild(laneBtn);
+                });
+            }
+            attuneBlock.appendChild(attuneActions);
+            panel.appendChild(attuneBlock);
+        }
+    }
+
     if (typeof HEALING_FACTORS !== 'undefined') {
         const healBlock = document.createElement('div');
         healBlock.className = 'mb-6 bg-sky-500/10 border border-sky-500/20 rounded-2xl p-4 text-sm';
@@ -1562,6 +1692,12 @@ function renderSyncPanel() {
         fifaHealRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-amber-600/30 text-amber-200 hover:bg-amber-600/50';
         fifaHealRun.textContent = 'Mari FIFA cantina (step 7)';
         fifaHealRun.onclick = () => practiceMariFifaCelebrate();
+        const attuneRun = document.createElement('button');
+        attuneRun.type = 'button';
+        attuneRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+        attuneRun.textContent = 'Attune before match';
+        attuneRun.title = 'Federation pause · one breath before cheer · TTMIK.html?attune=1';
+        attuneRun.onclick = () => practiceMatchAttune();
         const healLibRun = document.createElement('button');
         healLibRun.type = 'button';
         healLibRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-800/40 text-sky-100 hover:bg-sky-700/50';
@@ -1569,6 +1705,7 @@ function renderSyncPanel() {
         healLibRun.onclick = () => startHealCategory('Post-DIB Landing');
         healActions.appendChild(healRun);
         healActions.appendChild(ignanRun);
+        healActions.appendChild(attuneRun);
         healActions.appendChild(fifaHealRun);
         healActions.appendChild(healLibRun);
         healBlock.appendChild(healActions);

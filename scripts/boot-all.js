@@ -52,7 +52,7 @@ const LIBRARY_BOOTS = [
     'boot=all'
 ];
 
-const LANE_BOOTS = ['heal=1', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'martin=1', 'martin=1&sheet=1', 'ronaldo=1', 'ronaldo=1&sheet=1', 'mbappe=1', 'mbappe=1&sheet=1', 'messi=1', 'messi=1&sheet=1', 'vinicus=1', 'vinicus=1&sheet=1', 'kane=1', 'kane=1&sheet=1', 'kane=1&watch=1', 'cinema=1', 'beckham=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7'];
+const LANE_BOOTS = ['heal=1', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'martin=1', 'martin=1&sheet=1', 'ronaldo=1', 'ronaldo=1&sheet=1', 'mbappe=1', 'mbappe=1&sheet=1', 'messi=1', 'messi=1&sheet=1', 'vinicus=1', 'vinicus=1&sheet=1', 'kane=1', 'kane=1&sheet=1', 'kane=1&watch=1', 'attune=1', 'attune=1&lane=kane', 'attune=1&lane=kane&watch=1', 'kane=1&attune=1&watch=1', 'cinema=1', 'beckham=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7', 'before-match=1'];
 
 console.log('TTMIK boot-all\n');
 

@@ -1,0 +1,18 @@
+{
+  "name": "ttmik-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TTMIK Korean audio learning app and publishable Node packages",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "heal-skills": "node scripts/heal-skills.js",
+    "publish:packages": "npm publish --workspace ttmik-webhook --workspace ttmik-heal-skills"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thedoctorjpg/TTMIK.git"
+  },
+  "license": "MIT"
+}

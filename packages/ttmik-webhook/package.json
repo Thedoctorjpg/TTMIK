@@ -1,0 +1,34 @@
+{
+  "name": "ttmik-webhook",
+  "version": "1.0.0",
+  "description": "Secure TTMIK progress webhook handler for Vercel and serverless Node runtimes",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ttmik",
+    "webhook",
+    "vercel",
+    "korean",
+    "serverless"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thedoctorjpg/TTMIK.git",
+    "directory": "packages/ttmik-webhook"
+  },
+  "bugs": {
+    "url": "https://github.com/Thedoctorjpg/TTMIK/issues"
+  },
+  "homepage": "https://github.com/Thedoctorjpg/TTMIK#readme"
+}

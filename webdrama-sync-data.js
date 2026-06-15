@@ -252,6 +252,18 @@ const TTMIK_SYNC_PINS = {
         formats: ['webdrama', 'mbappe-counter-attack'],
         character: 'Mbappé'
     },
+    BOCA: {
+        label: 'La Boca Screen',
+        place: 'Argentina plaza watch · post cook-off playmaker · Messi pass ritual',
+        episodes: ['2.76'],
+        reels: [],
+        skillId: 'messi-argentina-playmaker',
+        categories: ['Argentine Shadowing', 'Post Cook-Off Route', 'Social & Cultural'],
+        questIds: ['side-humor', 'main-others'],
+        formats: ['webdrama', 'messi-after-cookoff'],
+        character: 'Messi',
+        pipeline: ['letsCook', 'girlsLove']
+    },
     CANTINA: {
         label: 'Mexican Restaurant',
         place: 'Federation lane cantina · FIFA watch party · Mari celebration',
@@ -369,6 +381,22 @@ const TTMIK_SYNC_EPISODES = {
         languages: ['ilo', 'es', 'ko', 'en'],
         event: 'FIFA match watch party'
     },
+    '2.76': {
+        title: 'Messi Argentina',
+        ko: '플레이메이커',
+        display: 'Ep 2.76',
+        pins: ['HOTEL', 'DEGRAVES', 'BOCA'],
+        skillId: 'messi-argentina-playmaker',
+        categories: ['Argentine Shadowing', 'Post Cook-Off Route', 'Social & Cultural'],
+        questIds: ['side-humor', 'main-others'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['messi-after-cookoff'],
+        character: 'Messi',
+        languages: ['es', 'ko', 'en'],
+        event: 'Post cook-off Argentina playmaker',
+        pipeline: ['letsCook', 'girlsLove']
+    },
     '2.75': {
         title: 'Cook-Off Not a Date',
         ko: '요리대결',
@@ -380,7 +408,7 @@ const TTMIK_SYNC_EPISODES = {
         shadowingIndex: 1,
         pipeline: ['letsCook', 'girlsLove'],
         duration: '90s',
-        formats: ['date-night-cookoff', 'after-the-date']
+        formats: ['date-night-cookoff', 'after-the-date', 'messi-after-cookoff']
     },
     3: {
         title: 'Love Bomb Speedrun',
@@ -625,6 +653,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'FIFA counter-attack · French native + Korean shadow · Fast Character Battle Master sheet',
         autoShadow: true
+    },
+    {
+        id: 18,
+        label: 'La Boca · Ep 2.76 · Messi Argentina',
+        shortLabel: 'MESSI',
+        pin: 'BOCA',
+        episode: '2.76',
+        reel: null,
+        note: 'Post cook-off · Argentine Spanish + Korean shadow · Fast Character Mastermind Rogue sheet',
+        autoShadow: true
     }
 ];
 
@@ -664,6 +702,7 @@ const TTMIK_DATE_NIGHT_ROUTE = [
     { time: '17:20', pin: 'DEGRAVES', note: 'Stroll + flat white — Bard: hydration not romance', presetId: 6 },
     { time: '18:15', pin: 'HOTEL', note: 'Kitchen stations · 45 min cook-off timer', presetId: 7 },
     { time: '19:15', pin: 'DEGRAVES', note: 'Score · eat · block ingredient-fee Venmos', sync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' } },
+    { time: '19:30', pin: 'BOCA', note: 'After cook-off — Messi Argentina meet · ¡Vamos Argentina! · preset 18', presetId: 18, sync: { pin: 'BOCA', episode: '2.76', reel: null } },
     { time: '06:12', pin: 'DEGRAVES', note: 'Dawn croissant — girls-love Ch.2 · phones optional', presetId: 8 }
 ];
 

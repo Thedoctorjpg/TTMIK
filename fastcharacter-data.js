@@ -65,6 +65,26 @@ const FAST_CHARACTER_MARTIN = {
     note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
 };
 
+/** Messi — Argentine Mastermind Rogue muse · post cook-off playmaker */
+const FAST_CHARACTER_MESSI = {
+    id: 'messi',
+    label: 'Messi — Argentina Playmaker',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Messi',
+    randomname: 'no',
+    pcname: 'Messi',
+    pcclass: 'RogueMastermind',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Urchin',
+    pcgender: 'male',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Mastermind · Level 5 · Neutral Good — post cook-off Argentina ally'
+};
+
 /** Mbappé — French Battle Master Fighter muse · FIFA counter-attack */
 const FAST_CHARACTER_MBAPPE = {
     id: 'mbappe',
@@ -110,7 +130,8 @@ const FAST_CHARACTER_PRESETS = {
     sven: FAST_CHARACTER_SVEN,
     martin: FAST_CHARACTER_MARTIN,
     ronaldo: FAST_CHARACTER_RONALDO,
-    mbappe: FAST_CHARACTER_MBAPPE
+    mbappe: FAST_CHARACTER_MBAPPE,
+    messi: FAST_CHARACTER_MESSI
 };
 
 function buildFastCharacterFormData(preset) {
@@ -170,4 +191,8 @@ function openFastCharacterRonaldo() {
 
 function openFastCharacterMbappe() {
     openFastCharacterSheet(FAST_CHARACTER_MBAPPE);
+}
+
+function openFastCharacterMessi() {
+    openFastCharacterSheet(FAST_CHARACTER_MESSI);
 }

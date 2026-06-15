@@ -98,6 +98,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'French Shadowing',
         tag: 'mbappe'
     },
+    'messi-argentina-playmaker': {
+        source: 'Messi_Argentina_Playmaker_Archetype.skill.md',
+        invoke: 'practiceMessiPlaymaker',
+        altBoot: 'messi=1',
+        preset: 18,
+        libraryGroup: 'Messi Library',
+        libraryCategory: 'Argentine Shadowing',
+        tag: 'messi'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -183,6 +192,11 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'mbappe',
         factors: ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
         boot: 'library=mbappe'
+    },
+    'Messi Library': {
+        group: 'messi',
+        factors: ['humor-release', 'helen-boundary', 'no-rewatch'],
+        boot: 'library=messi'
     },
     'Melbourne Journey': {
         group: 'melbourne',
@@ -270,6 +284,14 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=mbappe',
         skills: ['mbappe-france-attack'],
         accent: 'sky'
+    },
+    {
+        id: 'messi',
+        label: 'Messi Library',
+        description: 'Argentine Spanish · Korean shadow — Fast Character Mastermind Rogue',
+        boot: 'library=messi',
+        skills: ['messi-argentina-playmaker'],
+        accent: 'emerald'
     },
     {
         id: 'melbourne-skills',
@@ -361,7 +383,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 310
+    trackCount: 318
 };
 
 function openComposedLibrary(libId) {
@@ -378,6 +400,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'martin') startMartinCategory('Norwegian Shadowing');
     else if (lib.id === 'ronaldo') startRonaldoCategory('Portuguese Shadowing');
     else if (lib.id === 'mbappe') startMbappeCategory('French Shadowing');
+    else if (lib.id === 'messi') startMessiCategory('Argentine Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

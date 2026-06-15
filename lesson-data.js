@@ -87,6 +87,12 @@ if (typeof generateMbappeLibraryLessons === 'function') {
     nextId += mbappeLessons.length;
 }
 
+if (typeof generateMessiLibraryLessons === 'function') {
+    const messiLessons = generateMessiLibraryLessons(nextId);
+    lessons = lessons.concat(messiLessons);
+    nextId += messiLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -115,5 +121,6 @@ let libraryGroups = [
     'Sven Library',
     'Martin Library',
     'Ronaldo Library',
-    'Mbappé Library'
+    'Mbappé Library',
+    'Messi Library'
 ];

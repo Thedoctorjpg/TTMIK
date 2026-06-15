@@ -101,6 +101,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const mbappeCats = typeof MBAPPE_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => MBAPPE_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const messiCats = typeof MESSI_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => MESSI_LIBRARY_CATEGORIES.includes(c))
+        : [];
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
@@ -146,6 +149,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     } else if (mbappeCats.length) {
         activeLibraryGroup = 'Mbappé Library';
         activeCategory = mbappeCats[0];
+    } else if (messiCats.length) {
+        activeLibraryGroup = 'Messi Library';
+        activeCategory = messiCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -170,14 +176,15 @@ function openSkillLessons(skillId) {
     const hasMartin = skill.linkedGroups?.includes('martin');
     const hasRonaldo = skill.linkedGroups?.includes('ronaldo');
     const hasMbappe = skill.linkedGroups?.includes('mbappe');
+    const hasMessi = skill.linkedGroups?.includes('messi');
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMexico && !hasCanada && !hasUsa && (
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMbappe || hasMexico || hasCanada || hasUsa) {
+    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMbappe || hasMessi || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -639,6 +646,37 @@ function practiceCinemaBeckham(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceMessiPlaymaker(opts = {}) {
+    const skillId = 'messi-argentina-playmaker';
+    const shadowIdx = 0;
+
+    setWebdramaSyncValues('BOCA', '2.76', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterMessi === 'function') {
+        openFastCharacterMessi();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceMbappeAttack(opts = {}) {
     const skillId = 'mbappe-france-attack';
     const shadowIdx = 0;
@@ -873,6 +911,7 @@ function renderBootAllPanel() {
             else if (boot.martin === '1') practiceMartinGuide({ openSheet: boot.sheet === '1' });
             else if (boot.ronaldo === '1') practiceRonaldoGlory({ openSheet: boot.sheet === '1' });
             else if (boot.mbappe === '1') practiceMbappeAttack({ openSheet: boot.sheet === '1' });
+            else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -932,6 +971,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('mbappe') === '1') {
         practiceMbappeAttack({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('messi') === '1') {
+        practiceMessiPlaymaker({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('cinema') === '1' || params.get('beckham') === '1') {
@@ -1309,6 +1352,14 @@ function renderSyncPanel() {
     mbappeBtn.onclick = () => practiceMbappeAttack();
     actions.appendChild(mbappeBtn);
 
+    const messiBtn = document.createElement('button');
+    messiBtn.type = 'button';
+    messiBtn.className = 'px-5 py-3 bg-emerald-900/50 text-emerald-200 rounded-2xl text-sm font-medium hover:bg-emerald-800/70 ring-1 ring-emerald-500/30';
+    messiBtn.textContent = 'Messi playmaker (Ep 2.76 · AR)';
+    messiBtn.title = 'After cook-off · Argentine Spanish · preset 18 · Fast Character Mastermind sheet';
+    messiBtn.onclick = () => practiceMessiPlaymaker();
+    actions.appendChild(messiBtn);
+
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
     cinemaBtn.className = 'px-5 py-3 bg-blue-900/50 text-blue-200 rounded-2xl text-sm font-medium hover:bg-blue-800/70 ring-1 ring-blue-500/30';
@@ -1547,6 +1598,7 @@ function renderSkillsGrid() {
         const isMartin = skill.id === 'martin-nordic-guide';
         const isRonaldo = skill.id === 'ronaldo-portugal-glory';
         const isMbappe = skill.id === 'mbappe-france-attack';
+        const isMessi = skill.id === 'messi-argentina-playmaker';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
@@ -1561,7 +1613,9 @@ function renderSkillsGrid() {
                                 ? 'ring-orange-500 hover:ring-orange-400'
                                 : isMbappe
                                     ? 'ring-sky-500 hover:ring-sky-400'
-                                    : 'ring-pink-500 hover:ring-pink-400';
+                                    : isMessi
+                                        ? 'ring-emerald-500 hover:ring-emerald-400'
+                                        : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
@@ -1576,7 +1630,9 @@ function renderSkillsGrid() {
                                 ? 'hover:ring-orange-500/50'
                                 : isMbappe
                                     ? 'hover:ring-sky-500/50'
-                                    : 'hover:ring-pink-500/50';
+                                    : isMessi
+                                        ? 'hover:ring-emerald-500/50'
+                                        : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1611,7 +1667,9 @@ function renderSkillsGrid() {
                                     ? 'inline-block mt-3 text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded-full'
                                     : isMbappe
                                         ? 'inline-block mt-3 text-xs bg-sky-500/20 text-sky-300 px-2 py-1 rounded-full'
-                                        : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                                        : isMessi
+                                            ? 'inline-block mt-3 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full'
+                                            : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -1958,6 +2016,43 @@ function renderSkillDetail() {
         panel.appendChild(mbappeBlock);
     }
 
+    if (skill.id === 'messi-argentina-playmaker') {
+        const messiBlock = document.createElement('div');
+        messiBlock.className = 'mb-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-emerald-300 mb-2';
+        label.textContent = 'Argentine Spanish · Ep 2.76 · After cook-off';
+        messiBlock.appendChild(label);
+        const note = document.createElement('p');
+        note.className = 'text-sm text-zinc-400 mb-3';
+        note.textContent = 'Plates down at HOTEL → Degraves stroll → La Boca screen. Not a date. No performance invoice.';
+        messiBlock.appendChild(note);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.es, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        messiBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-600/30 text-emerald-200 hover:bg-emerald-600/50 mr-2';
+        runBtn.textContent = 'Invoke Messi playmaker (ES → KO)';
+        runBtn.onclick = () => practiceMessiPlaymaker();
+        messiBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Messi sheet';
+        sheetBtn.title = 'fastcharacter.com · Rogue Mastermind · Urchin · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterMessi === 'function') openFastCharacterMessi();
+        };
+        messiBlock.appendChild(sheetBtn);
+        panel.appendChild(messiBlock);
+    }
+
     const notesLabel = document.createElement('h4');
     notesLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-2';
     notesLabel.textContent = 'Your creative notes';
@@ -2101,6 +2196,7 @@ function renderSkillLibraryComposer() {
         else if (lib.accent === 'cyan') title.className += ' text-cyan-300';
         else if (lib.accent === 'indigo') title.className += ' text-indigo-300';
         else if (lib.accent === 'orange') title.className += ' text-orange-300';
+        else if (lib.accent === 'emerald') title.className += ' text-emerald-300';
         else title.className += ' text-pink-300';
         title.textContent = lib.label;
         block.appendChild(title);

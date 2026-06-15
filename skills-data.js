@@ -467,6 +467,45 @@ const SKILLS = [
         ]
     },
     {
+        id: 'messi-argentina-playmaker',
+        name: 'Messi — Argentina Playmaker',
+        icon: '\u{1F3C6}',
+        tagline: 'Argentine playmaker after the cook-off',
+        role: 'Fast Character Mastermind Rogue ally — Spanish native before Korean shadow',
+        source: 'Messi_Argentina_Playmaker_Archetype.skill.md',
+        activationPhrases: [
+            'Messi plays our way — Melbourne is my yes',
+            'Juego a mi manera — sin drama'
+        ],
+        capabilities: [
+            'Generate Messi D&D sheet via Fast Character preset',
+            'Argentine Spanish native input + Korean TTMIK shadowing drills',
+            'Post cook-off companion to Ep 2.75 date-night-cookoff',
+            'La Boca playmaker rituals — no drama · no soulmate CTAs'
+        ],
+        creativePrompts: [
+            'Create Messi Fast Character sheet — Rogue Mastermind · Urchin · Level 5',
+            'Skit: Argentine pass before Korean shadow after Degraves score',
+            'Argentina playmaker ritual for Ep 2.76 post-cook-off lane'
+        ],
+        linkedGroups: ['messi', 'mexico', 'melbourne'],
+        linkedCategories: ['Argentine Shadowing', 'Post Cook-Off Route', 'Playmaker Drills', 'Daily Life', 'Social & Cultural', 'Restaurant Dining'],
+        shadowingPhrases: [
+            { es: 'Melbourne es mi sí.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
+            { es: 'Juego a mi manera — sin drama.', ko: '내 방식으로 플레이해요 — 드라마 없이.', en: 'I play my way — no drama.' },
+            { es: '¡Gol! ¡Vamos Argentina!', ko: '골! 아르헨티나 파이팅!', en: 'Goal! Go Argentina!' },
+            { es: 'Confío en mi camino.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { es: 'Soy Messi, un viajero de Argentina.', ko: '저는 아르헨티나에서 온 방랑자 메시예요.', en: 'I am Messi, a wanderer from Argentina.' }
+        ],
+        ritualSteps: [
+            'After cook-off — plates down at HOTEL · SYSTEM mute',
+            'Open Fast Character — Messi · Rogue Mastermind · Urchin',
+            'Spanish native first: Melbourne es mi sí',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 플레이해요',
+            'One pass — phone face-down except cheer — no re-watch spiral'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

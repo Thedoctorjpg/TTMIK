@@ -95,6 +95,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Mbappé Library') {
         return lessons.filter(l => l.group === 'mbappe');
     }
+    if (activeLibraryGroup === 'Messi Library') {
+        return lessons.filter(l => l.group === 'messi');
+    }
     return lessons;
 }
 
@@ -579,6 +582,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'mbappe') {
         activeLibraryGroup = 'Mbappé Library';
         activeCategory = 'French Shadowing';
+    } else if (groupId === 'messi') {
+        activeLibraryGroup = 'Messi Library';
+        activeCategory = 'Argentine Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -666,6 +672,15 @@ function startMbappeCategory(subtitle) {
     switchTab(1);
 }
 
+function startMessiCategory(subtitle) {
+    activeLibraryGroup = 'Messi Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -741,6 +756,9 @@ function renderJourneyDashboard() {
     if (typeof MBAPPE_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(MBAPPE_JOURNEY_CATEGORY);
     }
+    if (typeof MESSI_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(MESSI_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -766,7 +784,9 @@ function renderJourneyDashboard() {
                                 ? 'hover:ring-orange-500'
                                 : journey.id === 'mbappe'
                                     ? 'hover:ring-sky-500'
-                                    : 'hover:ring-pink-500';
+                                    : journey.id === 'messi'
+                                        ? 'hover:ring-emerald-500'
+                                        : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -797,7 +817,9 @@ function renderJourneyDashboard() {
                                 ? 'text-orange-400 text-sm font-medium'
                                 : journey.id === 'mbappe'
                                     ? 'text-sky-400 text-sm font-medium'
-                                    : 'text-pink-400 text-sm font-medium';
+                                    : journey.id === 'messi'
+                                        ? 'text-emerald-400 text-sm font-medium'
+                                        : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -824,6 +846,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'ronaldo').length} tracks`;
         } else if (journey.id === 'mbappe') {
             count.textContent = `${lessons.filter(l => l.group === 'mbappe').length} tracks`;
+        } else if (journey.id === 'messi') {
+            count.textContent = `${lessons.filter(l => l.group === 'messi').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -1069,6 +1093,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const messiGrid = document.getElementById('messi-quick-grid');
+    if (messiGrid && typeof MESSI_COURSE_DEFS !== 'undefined') {
+        messiGrid.textContent = '';
+        MESSI_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-emerald-900/30 hover:bg-emerald-800/40 ring-1 ring-emerald-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-emerald-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-emerald-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startMessiCategory(def.subtitle);
+            messiGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1205,7 +1248,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1234,6 +1277,8 @@ window.onload = () => {
             startRonaldoCategory(bootParams.get('category') || 'Portuguese Shadowing');
         } else if (bootParams.get('library') === 'mbappe') {
             startMbappeCategory(bootParams.get('category') || 'French Shadowing');
+        } else if (bootParams.get('library') === 'messi') {
+            startMessiCategory(bootParams.get('category') || 'Argentine Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

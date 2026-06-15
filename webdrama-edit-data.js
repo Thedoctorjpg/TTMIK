@@ -235,6 +235,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'messi-after-cookoff': {
+        id: 'messi-after-cookoff',
+        label: 'Ep 2.76 · Messi Argentina · After Cook-Off (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'warm',
+        overlay: 'VAMOS',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'BOCA', episode: '2.76', reel: null },
+        pins: ['HOTEL', 'DEGRAVES', 'BOCA'],
+        exportTargets: ['Webdrama insert', 'Messi Argentine deck', 'lets-cook aftermath clip'],
+        pipeline: ['messi-argentina-playmaker', 'letsCook', 'girlsLove'],
+        shots: [
+            { id: 'MS1', time: '0:00', pin: 'HOTEL', note: 'Plates down — cook-off done · SYSTEM mute', dur: 5 },
+            { id: 'MS2', time: '0:05', pin: 'DEGRAVES', note: 'Degraves stroll — Argentina highlight reel on phone', dur: 4 },
+            { id: 'MS3', time: '0:09', pin: 'BOCA', note: 'Spanish: Juego a mi manera — sin drama.', dur: 8 },
+            { id: 'MS4', time: '0:17', pin: 'BOCA', note: 'Korean shadow · ¡Gol! ¡Vamos Argentina!', dur: 8 },
+            { id: 'MS5', time: '0:25', pin: 'DEGRAVES', note: 'Walk off — not a date · no performance invoice', dur: 5 }
+        ]
+    },
     'date-night-cookoff': {
         id: 'date-night-cookoff',
         label: 'Ep 2.75 · Cook-Off Not a Date (90s)',

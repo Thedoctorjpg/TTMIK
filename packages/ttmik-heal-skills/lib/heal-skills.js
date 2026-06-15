@@ -447,6 +447,51 @@ const SKILLS = [
         ]
     },
     {
+        id: 'messi-argentina-playmaker',
+        rootFile: 'Messi_Argentina_Playmaker_Archetype.skill.md',
+        description: 'Messi Argentine Mastermind Rogue muse for post-cook-off playmaker joy without drama. Spanish native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 2.76, or lets-cook / girls-love handoff rituals.',
+        activation: 'I play my way — Melbourne is my yes.',
+        whenToUse: [
+            'Argentine Spanish native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Messi preset)',
+            'Ep 2.76 after cook-off — playmaker joy without performance debt',
+            'Companion to Ep 2.75 date-night-cookoff and girls-love aftermath',
+            'TTMIK.html?messi=1 — invoke Messi Argentine shadowing boot'
+        ],
+        procedure: [
+            'Spanish native first: Melbourne es mi sí — name the yes calmly',
+            'Open Fast Character sheet: Messi · Rogue (Mastermind) · Urchin · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 플레이해요',
+            'One pass — phone face-down except the cheer — no re-watch spiral',
+            'Close: quest side-humor · preset 18'
+        ],
+        pitfalls: [
+            'Do not make Messi a rescue mission or romance subplot',
+            'Honor Argentine Spanish — not a gag subtitle line',
+            'Play without performance invoice — no algorithm tears'
+        ],
+        verification: [
+            'Spanish phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter pass than cook-off score — Argentina lane felt'
+        ],
+        korean: ['멜버른이 제 예예요.', '내 방식으로 플레이해요 — 드라마 없이.', '골! 아르헨티나 파이팅!', '제 길을 믿어요.'],
+        spanish: [
+            'Melbourne es mi sí.',
+            'Juego a mi manera — sin drama.',
+            '¡Gol! ¡Vamos Argentina!',
+            'Confío en mi camino.',
+            'Soy Messi, un viajero de Argentina.'
+        ],
+        integrations: [
+            'Ep 2.75 · date-night-cookoff · plates down at HOTEL',
+            'Ep 2.76 · preset 18 · BOCA Argentina lane',
+            'fastcharacter.com — openFastCharacterMessi() preset',
+            'TTMIK.html?messi=1 — Argentine Spanish native input boot',
+            'lets-cook · girls-love · side-humor quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -613,6 +658,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'martin-nordic-guide': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
     'ronaldo-portugal-glory': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
     'mbappe-france-attack': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
+    'messi-argentina-playmaker': ['humor-release', 'pause-breathe', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -660,6 +706,9 @@ function buildSkillMd(skill) {
     const fr = skill.french?.length
         ? `\n## French Practice (Mbappé)\n\n${skill.french.map((p) => `- ${p}`).join('\n')}\n`
         : '';
+    const es = skill.spanish?.length
+        ? `\n## Spanish Practice (Messi · Argentina)\n\n${skill.spanish.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -701,7 +750,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${pt}${fr}${enFan}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${pt}${fr}${es}${enFan}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

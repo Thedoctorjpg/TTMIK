@@ -600,6 +600,38 @@ function practiceMartinGuide(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceCinemaBeckham(opts = {}) {
+    const skillId = 'ronaldo-portugal-glory';
+    const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode('2.64') : null;
+    const shadowIdx = epCfg?.shadowingIndex ?? 5;
+
+    setWebdramaSyncValues('CINEMA', '2.64', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterRonaldo === 'function') {
+        openFastCharacterRonaldo();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceRonaldoGlory(opts = {}) {
     const skillId = 'ronaldo-portugal-glory';
     const shadowIdx = 0;
@@ -798,6 +830,7 @@ function renderBootAllPanel() {
             else if (boot.sven === '1') practiceSvenRanger({ openSheet: boot.sheet === '1' });
             else if (boot.martin === '1') practiceMartinGuide({ openSheet: boot.sheet === '1' });
             else if (boot.ronaldo === '1') practiceRonaldoGlory({ openSheet: boot.sheet === '1' });
+            else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
         });
@@ -852,6 +885,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('ronaldo') === '1') {
         practiceRonaldoGlory({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('cinema') === '1' || params.get('beckham') === '1') {
+        practiceCinemaBeckham({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
@@ -1097,6 +1134,12 @@ function renderSyncPanel() {
             no.textContent = phrase.no;
             phraseBox.appendChild(no);
         }
+        if (phrase.en && phrase.enFirst) {
+            const enLead = document.createElement('p');
+            enLead.className = 'text-blue-400/90 text-sm font-medium';
+            enLead.textContent = phrase.en;
+            phraseBox.appendChild(enLead);
+        }
         if (phrase.pt) {
             const pt = document.createElement('p');
             pt.className = 'text-orange-400/90 text-sm font-medium';
@@ -1109,11 +1152,13 @@ function renderSyncPanel() {
             es.textContent = phrase.es;
             phraseBox.appendChild(es);
         }
-        const en = document.createElement('p');
-        en.className = 'text-zinc-400 text-sm mt-1';
-        en.textContent = phrase.en;
         phraseBox.appendChild(ko);
-        phraseBox.appendChild(en);
+        if (phrase.en && !phrase.enFirst) {
+            const en = document.createElement('p');
+            en.className = 'text-zinc-400 text-sm mt-1';
+            en.textContent = phrase.en;
+            phraseBox.appendChild(en);
+        }
         panel.appendChild(phraseBox);
     }
 
@@ -1202,6 +1247,14 @@ function renderSyncPanel() {
     ronaldoBtn.title = 'Portuguese native input · preset 16 · Fast Character Glory Paladin sheet';
     ronaldoBtn.onclick = () => practiceRonaldoGlory();
     actions.appendChild(ronaldoBtn);
+
+    const cinemaBtn = document.createElement('button');
+    cinemaBtn.type = 'button';
+    cinemaBtn.className = 'px-5 py-3 bg-blue-900/50 text-blue-200 rounded-2xl text-sm font-medium hover:bg-blue-800/70 ring-1 ring-blue-500/30';
+    cinemaBtn.textContent = 'Bend It Like Beckham (Ep 2.64 · EN)';
+    cinemaBtn.title = 'Cinema encounter · English fan · fast scene 30s · prelude to cantina';
+    cinemaBtn.onclick = () => practiceCinemaBeckham();
+    actions.appendChild(cinemaBtn);
 
     const fifaBtn = document.createElement('button');
     fifaBtn.type = 'button';
@@ -1754,6 +1807,24 @@ function renderSkillDetail() {
     }
 
     if (skill.id === 'ronaldo-portugal-glory') {
+        const cinemaBlock = document.createElement('div');
+        cinemaBlock.className = 'mb-6 bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4';
+        const cinemaLabel = document.createElement('h4');
+        cinemaLabel.className = 'text-xs uppercase tracking-widest text-blue-300 mb-2';
+        cinemaLabel.textContent = 'Cinema encounter · Bend It Like Beckham · English fan';
+        cinemaBlock.appendChild(cinemaLabel);
+        const cinemaNote = document.createElement('p');
+        cinemaNote.className = 'text-sm text-zinc-400 mb-3';
+        cinemaNote.textContent = 'Ep 2.64 fast scene 30s — English fan first, Portuguese reply, Korean shadow — handoff to cantina.';
+        cinemaBlock.appendChild(cinemaNote);
+        const cinemaRun = document.createElement('button');
+        cinemaRun.type = 'button';
+        cinemaRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-blue-600/30 text-blue-200 hover:bg-blue-600/50';
+        cinemaRun.textContent = 'Open cinema encounter (EN → PT → KO)';
+        cinemaRun.onclick = () => practiceCinemaBeckham();
+        cinemaBlock.appendChild(cinemaRun);
+        panel.appendChild(cinemaBlock);
+
         const ronaldoBlock = document.createElement('div');
         ronaldoBlock.className = 'mb-6 bg-orange-500/10 border border-orange-500/20 rounded-2xl p-4';
         const label = document.createElement('h4');

@@ -339,7 +339,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 299
+    trackCount: 302
 };
 
 function openComposedLibrary(libId) {

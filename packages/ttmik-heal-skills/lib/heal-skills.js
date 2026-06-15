@@ -357,12 +357,14 @@ const SKILLS = [
         activation: 'We celebrate our way — Melbourne is my yes.',
         whenToUse: [
             'Portuguese native input before Korean shadowing practice',
+            'Cinema encounter — Bend It Like Beckham rewatch with English fan (Ep 2.64)',
             'Generating a D&D character sheet via Fast Character (Ronaldo preset)',
             'Ep 2.65 FIFA cantina — joy without performance debt or soulmate CTAs',
             'Companion to ignan-pilgrim Mari celebration lane',
             'TTMIK.html?ronaldo=1 — invoke Ronaldo Portuguese shadowing boot'
         ],
         procedure: [
+            'Cinema lobby — English fan first: Bend it like Beckham? Cheer it your way',
             'Portuguese native first: Melbourne é o meu sim — name the yes calmly',
             'Open Fast Character sheet: Ronaldo · Paladin (Oath of Glory) · Entertainer · Level 5',
             'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 축하해요',
@@ -387,7 +389,13 @@ const SKILLS = [
             'Confio no meu caminho.',
             'Sou o Ronaldo, um viajante de Portugal.'
         ],
+        english: [
+            'Bend it like Beckham? Cheer it your way — no drama.',
+            'Anyone can play. Anyone can choose their path.',
+            'Good film. Good night. See you at the match.'
+        ],
         integrations: [
+            'Ep 2.64 · CINEMA · bend-it-beckham fast scene 30s',
             'Ep 2.65 · preset 16 · CANTINA FIFA cantina',
             'fastcharacter.com — openFastCharacterRonaldo() preset',
             'TTMIK.html?ronaldo=1 — Portuguese native input boot',
@@ -601,6 +609,9 @@ function buildSkillMd(skill) {
     const pt = skill.portuguese?.length
         ? `\n## Portuguese Practice (Ronaldo)\n\n${skill.portuguese.map((p) => `- ${p}`).join('\n')}\n`
         : '';
+    const enFan = skill.english?.length
+        ? `\n## English Practice (Cinema Fan)\n\n${skill.english.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -642,7 +653,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${pt}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${pt}${enFan}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

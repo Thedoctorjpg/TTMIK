@@ -15,6 +15,7 @@ function formatShadowNativeHint(phrase) {
     if (phrase.sv) parts.push(`Swedish: ${phrase.sv}`);
     if (phrase.no) parts.push(`Norwegian: ${phrase.no}`);
     if (phrase.pt) parts.push(`Portuguese: ${phrase.pt}`);
+    if (phrase.en) parts.push(`English: ${phrase.en}`);
     if (phrase.ko) parts.push(`Korean: ${phrase.ko}`);
     if (parts.length > 1) return parts.join(' · ');
     if (phrase.ilo) return `Ignan: ${phrase.ilo} · Korean: ${phrase.ko || ''}`;
@@ -25,6 +26,7 @@ function formatShadowNativeHint(phrase) {
     if (phrase.sv) return `Swedish: ${phrase.sv} · Korean: ${phrase.ko || ''}`;
     if (phrase.no) return `Norwegian: ${phrase.no} · Korean: ${phrase.ko || ''}`;
     if (phrase.pt) return `Portuguese: ${phrase.pt} · Korean: ${phrase.ko || ''}`;
+    if (phrase.en) return `English: ${phrase.en} · Korean: ${phrase.ko || ''}`;
     return null;
 }
 

@@ -230,10 +230,21 @@ const TTMIK_SYNC_PINS = {
         questIds: ['side-ritual', 'main-veil', 'side-ignan-heal'],
         formats: ['webdrama', 'veil-lumen-16x9', 'ignan-healing-journey']
     },
+    CINEMA: {
+        label: 'Cinema',
+        place: 'Federation Square ACMI · Bend It Like Beckham rewatch · English fan encounter',
+        episodes: ['2.64'],
+        reels: [],
+        skillId: 'ronaldo-portugal-glory',
+        categories: ['Cinema Encounters', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        formats: ['webdrama', 'bend-it-beckham'],
+        character: 'English fan'
+    },
     CANTINA: {
         label: 'Mexican Restaurant',
         place: 'Federation lane cantina · FIFA watch party · Mari celebration',
-        episodes: ['2.65'],
+        episodes: ['2.65', '2.64'],
         reels: [],
         skillId: 'ignan-pilgrim',
         categories: ['Daily Life', 'Social & Cultural', 'Restaurant Dining'],
@@ -301,6 +312,21 @@ const TTMIK_SYNC_EPISODES = {
         formats: ['ignan-healing-journey'],
         character: 'Mari',
         languages: ['ilo', 'ko', 'en']
+    },
+    '2.64': {
+        title: 'Cinema Encounter',
+        ko: '영화관',
+        display: 'Ep 2.64',
+        pins: ['CINEMA', 'FED'],
+        skillId: 'ronaldo-portugal-glory',
+        categories: ['Cinema Encounters', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        shadowingIndex: 5,
+        duration: '30s',
+        formats: ['bend-it-beckham'],
+        character: 'English fan',
+        languages: ['en', 'pt', 'ko'],
+        event: 'Bend It Like Beckham rewatch'
     },
     '2.65': {
         title: 'FIFA Celebration',
@@ -568,6 +594,7 @@ const TTMIK_SYNC_PRESETS = [
 
 /** Lane D — Mari FIFA celebration (after Ignan walk · optional same evening) */
 const TTMIK_FIFA_CELEBRATION_ROUTE = [
+    { time: '18:30', pin: 'CINEMA', note: 'Bend It Like Beckham rewatch — English fan meet · fast scene 30s', presetId: 16, sync: { pin: 'CINEMA', episode: '2.64', reel: null } },
     { time: '19:00', pin: 'CANTINA', note: 'Meet after walk — Mari picks the table, Bard pays his half', presetId: 12 },
     { time: '19:15', pin: 'CANTINA', note: 'Ilokano toast first — Naragsak unay before the match replay', sync: { pin: 'CANTINA', episode: '2.65', reel: null } },
     { time: '19:45', pin: 'CANTINA', note: 'Goal cheer — Spanish salud, Korean 맛있어요, no soulmate CTAs', presetId: 12 },

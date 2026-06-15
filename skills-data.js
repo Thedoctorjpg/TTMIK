@@ -400,26 +400,30 @@ const SKILLS = [
         capabilities: [
             'Generate Ronaldo D&D sheet via Fast Character preset',
             'Portuguese native input + Korean TTMIK shadowing drills',
+            'Cinema encounter — Bend It Like Beckham rewatch with English fan',
             'FIFA cantina companion to ignan-pilgrim Mari celebration',
             'Match-day rituals — no drama · no soulmate CTAs'
         ],
         creativePrompts: [
             'Create Ronaldo Fast Character sheet — Paladin Glory · Entertainer · Level 5',
+            'Fast scene: Bend It Like Beckham lobby — English fan, Portuguese reply, Korean shadow',
             'Skit: Portuguese toast before Korean shadow at cantina',
             'Portugal cheer ritual for Ep 2.65 FIFA watch party'
         ],
-        linkedGroups: ['ronaldo', 'mexico', 'melbourne'],
-        linkedCategories: ['Portuguese Shadowing', 'Match Day Route', 'Glory Drills', 'Daily Life', 'Social & Cultural', 'Restaurant Dining'],
+        linkedGroups: ['ronaldo', 'mexico', 'usa', 'melbourne'],
+        linkedCategories: ['Portuguese Shadowing', 'Cinema Encounters', 'Match Day Route', 'Glory Drills', 'Daily Life', 'Social & Cultural', 'Restaurant Dining'],
         shadowingPhrases: [
             { pt: 'Melbourne é o meu sim.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
             { pt: 'Celebramos à nossa maneira — sem drama.', ko: '내 방식으로 축하해요 — 드라마 없이.', en: 'We celebrate our way — no drama.' },
             { pt: 'Gol! Força Portugal!', ko: '골! 포르투갈 파이팅!', en: 'Goal! Go Portugal!' },
             { pt: 'Confio no meu caminho.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
-            { pt: 'Sou o Ronaldo, um viajante de Portugal.', ko: '저는 포르투갈에서 온 방랑자 호날두예요.', en: 'I am Ronaldo, a wanderer from Portugal.' }
+            { pt: 'Sou o Ronaldo, um viajante de Portugal.', ko: '저는 포르투갈에서 온 방랑자 호날두예요.', en: 'I am Ronaldo, a wanderer from Portugal.' },
+            { en: 'Bend it like Beckham? Cheer it your way — no drama.', ko: '베컴처럼? 내 방식으로 응원해요 — 드라마 없이.', pt: 'Dobrá-lo como o Beckham? Celebramos à nossa maneira.', enFirst: true }
         ],
         ritualSteps: [
+            'Cinema lobby — English fan first: Bend it like Beckham? Cheer it your way',
             'Open Fast Character — Ronaldo · Paladin Glory · Entertainer',
-            'Portuguese native first: Melbourne é o meu sim',
+            'Portuguese native: Celebramos à nossa maneira — sem drama',
             'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 축하해요',
             'One cheer — phone face-down except toast — no re-watch spiral'
         ]

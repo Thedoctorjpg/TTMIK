@@ -15,6 +15,7 @@ metadata:
 ## When to Use
 
 - Portuguese native input before Korean shadowing practice
+- Cinema encounter — Bend It Like Beckham rewatch with English fan (Ep 2.64)
 - Generating a D&D character sheet via Fast Character (Ronaldo preset)
 - Ep 2.65 FIFA cantina — joy without performance debt or soulmate CTAs
 - Companion to ignan-pilgrim Mari celebration lane
@@ -22,6 +23,7 @@ metadata:
 
 ## Procedure
 
+- Cinema lobby — English fan first: Bend it like Beckham? Cheer it your way
 - Portuguese native first: Melbourne é o meu sim — name the yes calmly
 - Open Fast Character sheet: Ronaldo · Paladin (Oath of Glory) · Entertainer · Level 5
 - Korean shadow: 멜버른이 제 예예요 · 내 방식으로 축하해요
@@ -55,6 +57,12 @@ metadata:
 - Confio no meu caminho.
 - Sou o Ronaldo, um viajante de Portugal.
 
+## English Practice (Cinema Fan)
+
+- Bend it like Beckham? Cheer it your way — no drama.
+- Anyone can play. Anyone can choose their path.
+- Good film. Good night. See you at the match.
+
 ## Hermes Healing Factors
 
 - **fifa-celebrate** — Mari FIFA cantina — ?fifa=1 · CANTINA · Boot: `TTMIK.html?heal-factor=fifa-celebrate`
@@ -65,6 +73,7 @@ metadata:
 
 ## Cross-App Links
 
+- Ep 2.64 · CINEMA · bend-it-beckham fast scene 30s
 - Ep 2.65 · preset 16 · CANTINA FIFA cantina
 - fastcharacter.com — openFastCharacterRonaldo() preset
 - TTMIK.html?ronaldo=1 — Portuguese native input boot

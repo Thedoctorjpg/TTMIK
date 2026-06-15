@@ -116,6 +116,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'IG8', time: '1:07', pin: 'BOTANIC', note: 'Maysa nga anges — one breath; lantern pass optional', dur: 13 }
         ]
     },
+    'bend-it-beckham': {
+        id: 'bend-it-beckham',
+        label: 'Ep 2.64 · Bend It Like Beckham · Cinema Encounter (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'BEND IT',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'CINEMA', episode: '2.64', reel: null },
+        pins: ['CINEMA', 'FED'],
+        exportTargets: ['Webdrama insert', 'Ronaldo cinema deck', 'USA English fan clip'],
+        pipeline: ['ronaldo-portugal-glory'],
+        shots: [
+            { id: 'BI1', time: '0:00', pin: 'CINEMA', note: 'Lobby — English fan spots football shirt', dur: 5 },
+            { id: 'BI2', time: '0:05', pin: 'CINEMA', note: 'Bend It Like Beckham on marquee — rewatch night', dur: 4 },
+            { id: 'BI3', time: '0:09', pin: 'CINEMA', note: 'English: Bend it like Beckham? Cheer it your way.', dur: 8 },
+            { id: 'BI4', time: '0:17', pin: 'CINEMA', note: 'Portuguese reply · Korean shadow — no drama', dur: 8 },
+            { id: 'BI5', time: '0:25', pin: 'FED', note: 'Walk out — good film, see you at the match', dur: 5 }
+        ]
+    },
     'mari-fifa-celebration': {
         id: 'mari-fifa-celebration',
         label: 'Ep 2.65 · Mari FIFA Cantina (60s)',

@@ -235,6 +235,28 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'rei-mercy-ritual': {
+        id: 'rei-mercy-ritual',
+        label: 'Rei Mercy · Observe Without Absorbing · NERV Pause (60s)',
+        duration: 60,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'neon',
+        overlay: 'MERCY',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'NERV', episode: '7.1', reel: null },
+        pins: ['NERV', 'SOUTH'],
+        exportTargets: ['Webdrama insert', 'Rei mercy heal deck', 'Evangelion lane opener'],
+        pipeline: ['rei-mercy-ritual'],
+        shots: [
+            { id: 'RM1', time: '0:00', pin: 'NERV', note: 'NERV command pause — phone face-down', dur: 8 },
+            { id: 'RM2', time: '0:08', pin: 'NERV', note: 'Japanese native · 観測するだけ。吸収しない。', dur: 10 },
+            { id: 'RM3', time: '0:18', pin: 'NERV', note: 'Rei mercy: observe the storm — do not absorb', dur: 10 },
+            { id: 'RM4', time: '0:28', pin: 'SOUTH', note: 'Korean shadow · 관찰만 하고 흡수하지 않을게요', dur: 10 },
+            { id: 'RM5', time: '0:38', pin: 'SOUTH', note: 'installNeonEvangelionLook() — neon outfit · nerv background', dur: 10 },
+            { id: 'RM6', time: '0:48', pin: 'SOUTH', note: 'Lighter finish — no scroll spiral · preset 21', dur: 12 }
+        ]
+    },
     'match-attune-ritual': {
         id: 'match-attune-ritual',
         label: 'Pre-Match · Attune Ritual · Federation Pause (60s)',

@@ -16,6 +16,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     'Ignan Journey',
     'Celebration',
     'Pre-Match Attune',
+    'Moon Card',
     'Daily Integration'
 ];
 
@@ -29,6 +30,7 @@ const FACTOR_CATEGORIES = {
     'ignan-walk': 'Ignan Journey',
     'fifa-celebrate': 'Celebration',
     'match-attune': 'Pre-Match Attune',
+    'rei-mercy': 'Moon Card',
     'daily-ritual': 'Daily Integration',
     'no-rewatch': 'Daily Integration'
 };
@@ -37,7 +39,8 @@ const FACTOR_BOOTS = {
     'post-dib': 'TTMIK.html?heal=1',
     'ignan-walk': 'TTMIK.html?ignan=1',
     'fifa-celebrate': 'TTMIK.html?fifa=1',
-    'match-attune': 'TTMIK.html?attune=1'
+    'match-attune': 'TTMIK.html?attune=1',
+    'rei-mercy': 'TTMIK.html?rei=1'
 };
 
 const FACTOR_TITLES = {
@@ -50,6 +53,7 @@ const FACTOR_TITLES = {
     'ignan-walk': 'Ignan healing walk — Mari leads',
     'fifa-celebrate': 'Mari FIFA cantina — joy not drama',
     'match-attune': 'Attune before match — Federation pause',
+    'rei-mercy': 'Rei mercy heal — observe without absorbing',
     'daily-ritual': 'Daily integration ritual',
     'no-rewatch': 'No re-watch spiral'
 };
@@ -61,6 +65,7 @@ const FACTOR_EN = {
     'cord-cut': 'I choose my own timeline and energy field.',
     'daily-ritual': 'I write my own story.',
     'match-attune': 'One breath before the cheer.',
+    'rei-mercy': 'I observe without absorbing.',
     'no-rewatch': 'GoPro off before mirror · phone face-down',
     'post-dib': "It's okay, it's okay."
 };
@@ -84,6 +89,7 @@ function buildHealingTranscript(parts) {
     if (parts.phrase) lines.push(\`Anchor: \${parts.phrase}\`);
     if (parts.ilo) lines.push(\`Ilokano: \${parts.ilo}\`);
     if (parts.ko) lines.push(\`Korean (TTMIK): \${parts.ko}\`);
+    if (parts.ja) lines.push(\`Japanese: \${parts.ja}\`);
     if (parts.en) lines.push(\`English: \${parts.en}\`);
     if (parts.step) lines.push(\`Ritual: \${parts.step}\`);
     if (parts.note) lines.push(\`\\nOn-set: \${parts.note}\`);
@@ -141,6 +147,7 @@ const HEALING_COURSE_DEFS = [
     { subtitle: 'Ignan Journey', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Ignan Journey').length },
     { subtitle: 'Celebration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Celebration').length },
     { subtitle: 'Pre-Match Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Pre-Match Attune').length },
+    { subtitle: 'Moon Card', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Moon Card').length },
     { subtitle: 'Daily Integration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Daily Integration').length }
 ];
 
@@ -260,6 +267,11 @@ function buildFactorDeck(sources) {
             entry.ko = ignanFifa[0].ko;
             entry.en = ignanFifa[0].en;
             entry.note = [entry.note, ignanFifa[0].note].filter(Boolean).join(' · ');
+        }
+        if (factor.id === 'rei-mercy') {
+            entry.ja = factor.ja || '観測するだけ。吸収しない。';
+            entry.ko = factor.ko || getSkillKo(skillKo, 'neon-evangelion', 1) || '관찰만 하고 흡수하지 않을게요.';
+            entry.en = 'I observe without absorbing.';
         }
 
         return entry;

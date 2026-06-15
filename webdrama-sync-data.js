@@ -92,6 +92,29 @@ const BARDIC_INSPIRATION = {
             fifa: { boot: 'fifa=1', label: 'Mari FIFA cantina' }
         }
     },
+    reiMercyHeal: {
+        label: 'Rei mercy heal — observe without absorbing',
+        duration: '60s',
+        pin: 'NERV',
+        episode: '7.1',
+        skillId: 'neon-evangelion',
+        questId: 'side-humor',
+        shadowIndex: 1,
+        activation: 'Observe without absorbing — neon is my boundary.',
+        shadowPhrase: {
+            ja: '観測するだけ。吸収しない。',
+            ko: '관찰만 하고 흡수하지 않을게요.',
+            en: 'I observe without absorbing.'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one breath at NERV pause',
+            'Japanese native: 観測するだけ。吸収しない。',
+            'Rei mercy: observe the storm — do not absorb it',
+            'Korean shadow: 관찰만 하고 흡수하지 않을게요',
+            'installNeonEvangelionLook() — Veil neon · NERV background',
+            'Close: lighter finish — no scroll spiral'
+        ]
+    },
     afterBlessingHeal: {
         label: 'Quiet reflection after Divine Insight Blessing',
         duration: '45s',
@@ -125,7 +148,8 @@ const HEALING_FACTORS = {
         { id: 'no-rewatch', label: 'No re-watch spiral', note: 'GoPro off before mirror · phone face-down' },
         { id: 'ignan-walk', label: 'Ignan healing walk', skillId: 'ignan-pilgrim', edit: 'ignan-healing-journey', questId: 'side-ignan-heal', pin: 'BOTANIC' },
         { id: 'fifa-celebrate', label: 'Mari FIFA cantina', skillId: 'ignan-pilgrim', edit: 'mari-fifa-celebration', questId: 'side-fifa-celebrate', pin: 'CANTINA' },
-        { id: 'match-attune', label: 'Attune before match', ko: '응원 전에 한 숨', skillId: 'melbourne-lantern-bard', edit: 'match-attune-ritual', questId: 'side-fifa-celebrate', pin: 'FED' }
+        { id: 'match-attune', label: 'Attune before match', ko: '응원 전에 한 숨', skillId: 'melbourne-lantern-bard', edit: 'match-attune-ritual', questId: 'side-fifa-celebrate', pin: 'FED' },
+        { id: 'rei-mercy', label: 'Rei mercy heal', ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요', skillId: 'neon-evangelion', edit: 'rei-mercy-ritual', questId: 'side-humor', pin: 'NERV', shadowIndex: 1 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -896,6 +920,10 @@ function getDibAftercareRitual() {
 
 function getMatchAttuneRitual() {
     return BARDIC_INSPIRATION.beforeMatchAttune;
+}
+
+function getReiMercyHealRitual() {
+    return BARDIC_INSPIRATION.reiMercyHeal;
 }
 
 function getHealingFactors() {

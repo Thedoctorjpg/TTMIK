@@ -178,7 +178,7 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: [
             'post-dib', 'hermit-lantern', 'humor-release', 'helen-boundary',
             'pause-breathe', 'cord-cut', 'ignan-walk', 'fifa-celebrate', 'match-attune',
-            'daily-ritual', 'no-rewatch'
+            'rei-mercy', 'daily-ritual', 'no-rewatch'
         ],
         boot: 'library=heal',
         healFrom: 'scripts/heal-library.js',
@@ -237,7 +237,7 @@ const LIBRARY_BUILD_MANIFEST = {
     },
     'Evangelion Library': {
         group: 'evangelion',
-        factors: ['pause-breathe', 'no-rewatch', 'cord-cut'],
+        factors: ['rei-mercy', 'pause-breathe', 'no-rewatch', 'cord-cut'],
         boot: 'library=evangelion'
     },
     'Melbourne Journey': {

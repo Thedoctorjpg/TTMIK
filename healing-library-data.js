@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-15 · 16 tracks
+ * Healed: 2026-06-15 · 17 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -25,6 +25,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     "Ignan Journey",
     "Celebration",
     "Pre-Match Attune",
+    "Moon Card",
     "Daily Integration"
 ];
 
@@ -158,6 +159,21 @@ const HEALING_FACTOR_DECK = [
         "edit": "match-attune-ritual",
         "ko": "응원 전에 한 숨",
         "en": "One breath before the cheer."
+    },
+    {
+        "factorId": "rei-mercy",
+        "title": "Rei mercy heal — observe without absorbing",
+        "subtitle": "Moon Card",
+        "boot": "TTMIK.html?rei=1",
+        "note": "rei-mercy-ritual · quest side-humor",
+        "skillId": "neon-evangelion",
+        "pin": "NERV",
+        "shadowIndex": 1,
+        "questId": "side-humor",
+        "edit": "rei-mercy-ritual",
+        "ko": "관찰만 하고 흡수하지 않을게요",
+        "en": "I observe without absorbing.",
+        "ja": "観測するだけ。吸収しない。"
     }
 ];
 
@@ -202,6 +218,7 @@ function buildHealingTranscript(parts) {
     if (parts.phrase) lines.push(`Anchor: ${parts.phrase}`);
     if (parts.ilo) lines.push(`Ilokano: ${parts.ilo}`);
     if (parts.ko) lines.push(`Korean (TTMIK): ${parts.ko}`);
+    if (parts.ja) lines.push(`Japanese: ${parts.ja}`);
     if (parts.en) lines.push(`English: ${parts.en}`);
     if (parts.step) lines.push(`Ritual: ${parts.step}`);
     if (parts.note) lines.push(`\nOn-set: ${parts.note}`);
@@ -259,6 +276,7 @@ const HEALING_COURSE_DEFS = [
     { subtitle: 'Ignan Journey', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Ignan Journey').length },
     { subtitle: 'Celebration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Celebration').length },
     { subtitle: 'Pre-Match Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Pre-Match Attune').length },
+    { subtitle: 'Moon Card', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Moon Card').length },
     { subtitle: 'Daily Integration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Daily Integration').length }
 ];
 

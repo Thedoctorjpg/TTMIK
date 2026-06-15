@@ -285,6 +285,10 @@ function practiceHealingFactor(factorId, opts = {}) {
         practiceMatchAttune(opts);
         return true;
     }
+    if (factorId === 'rei-mercy') {
+        practiceReiMercyHeal(opts);
+        return true;
+    }
     if (factorId === 'no-rewatch') {
         if (typeof startHealCategory === 'function') {
             startHealCategory('Daily Integration');
@@ -477,6 +481,42 @@ function continueMatchAttuneLane(laneId, opts = {}) {
     };
     const run = handlers[laneId];
     if (run) run();
+}
+
+function practiceReiMercyHeal(opts = {}) {
+    const ritual = typeof getReiMercyHealRitual === 'function' ? getReiMercyHealRitual() : null;
+    const skillId = ritual?.skillId || 'neon-evangelion';
+    const shadowIdx = ritual?.shadowIndex ?? 1;
+
+    setWebdramaSyncValues(ritual?.pin || 'NERV', ritual?.episode || '7.1', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.installLook !== false && typeof installNeonEvangelionLook === 'function') {
+        installNeonEvangelionLook();
+    }
+
+    if (opts.openSheet && typeof openFastCharacterRei === 'function') {
+        openFastCharacterRei();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective(ritual?.questId || 'side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
 }
 
 function practiceMatchAttune(opts = {}) {
@@ -1651,6 +1691,44 @@ function renderSyncPanel() {
         panel.appendChild(bardBlock);
     }
 
+    if (typeof getReiMercyHealRitual === 'function') {
+        const ritual = getReiMercyHealRitual();
+        if (ritual?.steps?.length) {
+            const mercyBlock = document.createElement('div');
+            mercyBlock.className = 'mb-6 bg-violet-500/10 border border-violet-500/20 rounded-2xl p-4 text-sm';
+            const mercyTitle = document.createElement('p');
+            mercyTitle.className = 'text-violet-300 font-medium mb-2';
+            mercyTitle.textContent = ritual.label || 'Rei mercy heal';
+            mercyBlock.appendChild(mercyTitle);
+            const mercyPhrase = document.createElement('p');
+            mercyPhrase.className = 'text-zinc-400 italic mb-3';
+            const sp = ritual.shadowPhrase;
+            mercyPhrase.textContent = sp
+                ? `"${ritual.activation}" · ${sp.ja || ''} · ${sp.ko || ''}`
+                : ritual.activation;
+            mercyBlock.appendChild(mercyPhrase);
+            const steps = document.createElement('ol');
+            steps.className = 'list-decimal list-inside space-y-1 text-zinc-300 mb-3';
+            ritual.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                steps.appendChild(li);
+            });
+            mercyBlock.appendChild(steps);
+            const mercyActions = document.createElement('div');
+            mercyActions.className = 'flex flex-wrap gap-2';
+            const runMercy = document.createElement('button');
+            runMercy.type = 'button';
+            runMercy.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+            runMercy.textContent = 'Run Rei mercy heal';
+            runMercy.title = 'TTMIK.html?heal-factor=rei-mercy';
+            runMercy.onclick = () => practiceReiMercyHeal();
+            mercyActions.appendChild(runMercy);
+            mercyBlock.appendChild(mercyActions);
+            panel.appendChild(mercyBlock);
+        }
+    }
+
     if (typeof getMatchAttuneRitual === 'function') {
         const ritual = getMatchAttuneRitual();
         if (ritual?.steps?.length) {
@@ -1748,6 +1826,12 @@ function renderSyncPanel() {
         attuneRun.textContent = 'Attune before match';
         attuneRun.title = 'Federation pause · one breath before cheer · TTMIK.html?attune=1';
         attuneRun.onclick = () => practiceMatchAttune();
+        const reiMercyRun = document.createElement('button');
+        reiMercyRun.type = 'button';
+        reiMercyRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+        reiMercyRun.textContent = 'Rei mercy heal';
+        reiMercyRun.title = 'NERV pause · observe without absorbing · TTMIK.html?heal-factor=rei-mercy';
+        reiMercyRun.onclick = () => practiceReiMercyHeal();
         const healLibRun = document.createElement('button');
         healLibRun.type = 'button';
         healLibRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-800/40 text-sky-100 hover:bg-sky-700/50';
@@ -1756,6 +1840,7 @@ function renderSyncPanel() {
         healActions.appendChild(healRun);
         healActions.appendChild(ignanRun);
         healActions.appendChild(attuneRun);
+        healActions.appendChild(reiMercyRun);
         healActions.appendChild(fifaHealRun);
         healActions.appendChild(healLibRun);
         healBlock.appendChild(healActions);
@@ -2486,6 +2571,13 @@ function renderSkillDetail() {
         runBtn.textContent = 'Invoke Neon Evangelion (JA → KO)';
         runBtn.onclick = () => practiceNeonEvangelion();
         neonBlock.appendChild(runBtn);
+        const mercyBtn = document.createElement('button');
+        mercyBtn.type = 'button';
+        mercyBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50 mr-2';
+        mercyBtn.textContent = 'Rei mercy heal';
+        mercyBtn.title = '観測するだけ。吸収しない。 · TTMIK.html?heal-factor=rei-mercy';
+        mercyBtn.onclick = () => practiceReiMercyHeal();
+        neonBlock.appendChild(mercyBtn);
         const lookBtn = document.createElement('button');
         lookBtn.type = 'button';
         lookBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-900/40 text-violet-100 hover:bg-violet-800/50 mr-2';

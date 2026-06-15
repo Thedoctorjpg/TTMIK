@@ -20,12 +20,13 @@ metadata:
 - Companion to Sven ranger and rach3l observe-but-do-not-absorb
 - TTMIK.html?neon=1 — invoke Neon Evangelion shadowing boot
 - TTMIK.html?evangelion=1 — alias boot
+- TTMIK.html?heal-factor=rei-mercy — Rei mercy heal on Hermes
 
 ## Procedure
 
 - Phone face-down · GoPro off · one breath at SOUTH neon railing
 - Japanese native first: 混乱は通過点です — confusion is a passage
-- Open Fast Character sheet: Neon · Monk (Way of Mercy) · Hermit · Level 5
+- Open Fast Character sheet: Rei Ayanami · Cleric (Life) · Hermit · Level 5
 - Korean shadow: 혼란은 지나가는 곳이에요 · 관찰만 하고 흡수하지 않을게요
 - installNeonEvangelionLook() — Veil outfit neon · background nerv
 - One pass — no scroll spiral · preset 21
@@ -56,10 +57,11 @@ metadata:
 - 観測するだけ。吸収しない。
 - ネオンは私の境界線。
 - 自分の道を信じます。
-- 私はネオン、旅の観測者です。
+- 私はレイ、観測者です。
 
 ## Hermes Healing Factors
 
+- **rei-mercy** — Rei mercy heal — ?rei=1 · NERV · Ep 7.1 · Boot: `TTMIK.html?heal-factor=rei-mercy`
 - **pause-breathe** — Pause OK — 잠시 쉬어도 괜찮아요 · Boot: `TTMIK.html?heal-factor=pause-breathe`
 - **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
 - **cord-cut** — Cord-cut — own timeline and energy field · Boot: `TTMIK.html?heal-factor=cord-cut`
@@ -70,8 +72,9 @@ metadata:
 
 - Ep 7 · rach3l · sven-nordic-ranger · Moon card
 - Ep 7.1 · preset 21 · NERV neon lane
-- fastcharacter.com — openFastCharacterNeon() preset
+- fastcharacter.com — openFastCharacterRei() preset · TTMIK.html?rei=1&sheet=1
 - TTMIK.html?neon=1 — Japanese native input boot
+- TTMIK.html?heal-factor=rei-mercy — Rei mercy heal · NERV · shadow index 1
 - Veil-Lumen — scene-looks neon + nerv background
 
 ## TTMIK App Integration

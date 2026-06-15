@@ -597,7 +597,8 @@ const SKILLS = [
             'Ep 7.1 Moon-card neon insert — SOUTH night · NERV pause',
             'Companion to Sven ranger and rach3l observe-but-do-not-absorb',
             'TTMIK.html?neon=1 — invoke Neon Evangelion shadowing boot',
-            'TTMIK.html?evangelion=1 — alias boot'
+            'TTMIK.html?evangelion=1 — alias boot',
+            'TTMIK.html?heal-factor=rei-mercy — Rei mercy heal on Hermes'
         ],
         procedure: [
             'Phone face-down · GoPro off · one breath at SOUTH neon railing',
@@ -631,6 +632,7 @@ const SKILLS = [
             'Ep 7.1 · preset 21 · NERV neon lane',
             'fastcharacter.com — openFastCharacterRei() preset · TTMIK.html?rei=1&sheet=1',
             'TTMIK.html?neon=1 — Japanese native input boot',
+            'TTMIK.html?heal-factor=rei-mercy — Rei mercy heal · NERV · shadow index 1',
             'Veil-Lumen — scene-looks neon + nerv background'
         ]
     },
@@ -804,7 +806,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'messi-argentina-playmaker': ['humor-release', 'pause-breathe', 'no-rewatch'],
     'vinicus-brasil-samba': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
     'harry-kane-england-striker': ['match-attune', 'fifa-celebrate', 'pause-breathe', 'no-rewatch'],
-    'neon-evangelion': ['pause-breathe', 'no-rewatch', 'cord-cut'],
+    'neon-evangelion': ['rei-mercy', 'pause-breathe', 'no-rewatch', 'cord-cut'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -822,7 +824,8 @@ const HEALING_FACTOR_LABELS = {
     'no-rewatch': 'No re-watch spiral — GoPro off · phone face-down',
     'ignan-walk': 'Ignan healing walk — ?ignan=1 · BOTANIC',
     'fifa-celebrate': 'Mari FIFA cantina — ?fifa=1 · CANTINA',
-    'match-attune': 'Attune before match — ?attune=1 · FED'
+    'match-attune': 'Attune before match — ?attune=1 · FED',
+    'rei-mercy': 'Rei mercy heal — ?rei=1 · NERV · Ep 7.1'
 };
 
 function buildSkillMd(skill) {

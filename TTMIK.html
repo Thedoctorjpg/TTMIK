@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; media-src 'self' blob:; img-src 'self' data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; media-src 'self' blob:; img-src 'self' data:; connect-src 'self';">
     <title>TTMIK Audio Lab â€¢ Korean Mastery</title>
     <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
@@ -36,23 +36,23 @@
 
             <div class="p-4 flex-1 overflow-auto">
                 <nav class="space-y-1">
-                    <a href="#" onclick="switchTab(0)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl bg-zinc-800 text-white font-medium">
+                    <a href="#" data-tab="0" onclick="switchTab(0); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl bg-zinc-800 text-white font-medium">
                         <i class="fa-solid fa-play w-5"></i>
                         <span>Player</span>
                     </a>
-                    <a href="#" onclick="switchTab(1)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                    <a href="#" data-tab="1" onclick="switchTab(1); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
                         <i class="fa-solid fa-list w-5"></i>
                         <span>My Lessons</span>
                     </a>
-                    <a href="#" onclick="switchTab(2)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                    <a href="#" data-tab="2" onclick="switchTab(2); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
                         <i class="fa-solid fa-graduation-cap w-5"></i>
                         <span>Practice</span>
                     </a>
-                    <a href="#" onclick="switchTab(4)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                    <a href="#" data-tab="4" onclick="switchTab(4); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
                         <i class="fa-solid fa-route w-5"></i>
                         <span>Journey</span>
                     </a>
-                    <a href="#" onclick="switchTab(5)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                    <a href="#" data-tab="5" onclick="switchTab(5); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
                         <i class="fa-solid fa-chart-bar w-5"></i>
                         <span>Progress</span>
                     </a>

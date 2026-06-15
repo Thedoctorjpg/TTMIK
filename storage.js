@@ -21,17 +21,44 @@ function getDefaultState() {
     };
 }
 
+function sanitizeStoredLesson(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    const id = typeof raw.id === 'number' && raw.id > 0 ? raw.id : null;
+    if (!id) return null;
+
+    const src = typeof raw.src === 'string' && isSafeAudioSrc(raw.src) ? raw.src : '';
+    if (raw.src && !src) return null;
+
+    return createLesson({
+        id,
+        title: raw.title,
+        subtitle: raw.subtitle,
+        duration: raw.duration,
+        src,
+        transcript: raw.transcript,
+        vocab: raw.vocab,
+        group: 'custom'
+    });
+}
+
 function loadState() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return getDefaultState();
         const saved = JSON.parse(raw);
         const defaults = getDefaultState();
+        const customLessons = Array.isArray(saved.customLessons)
+            ? saved.customLessons.map(sanitizeStoredLesson).filter(Boolean)
+            : [];
+
         return {
             ...defaults,
-            ...saved,
-            settings: { ...defaults.settings, ...saved.settings },
-            stats: { ...defaults.stats, ...saved.stats }
+            currentLesson: typeof saved.currentLesson === 'number' ? saved.currentLesson : defaults.currentLesson,
+            settings: { ...defaults.settings, ...(saved.settings || {}) },
+            stats: { ...defaults.stats, ...(saved.stats || {}) },
+            notes: saved.notes && typeof saved.notes === 'object' ? saved.notes : defaults.notes,
+            progress: saved.progress && typeof saved.progress === 'object' ? saved.progress : defaults.progress,
+            customLessons
         };
     } catch (err) {
         console.error('Failed to load saved state:', err);
@@ -137,25 +164,22 @@ function loadNotesForLesson(lessonId) {
 
 function persistCustomLesson(lesson) {
     if (lesson.src && lesson.src.startsWith('blob:')) return;
-    const existing = appState.customLessons.findIndex(l => l.id === lesson.id);
-    const stored = {
-        id: lesson.id,
-        title: lesson.title,
-        subtitle: lesson.subtitle,
-        duration: lesson.duration,
-        src: lesson.src,
-        transcript: lesson.transcript,
-        vocab: lesson.vocab || []
-    };
-    if (existing >= 0) appState.customLessons[existing] = stored;
-    else appState.customLessons.unshift(stored);
+    const sanitized = sanitizeStoredLesson(lesson);
+    if (!sanitized) return;
+
+    const existing = appState.customLessons.findIndex(l => l.id === sanitized.id);
+    if (existing >= 0) appState.customLessons[existing] = sanitized;
+    else appState.customLessons.unshift(sanitized);
     persistState();
 }
 
 function restoreCustomLessons() {
     if (!appState.customLessons.length) return;
     const builtInIds = new Set(lessons.map(l => l.id));
-    const custom = appState.customLessons.filter(l => !builtInIds.has(l.id));
+    const custom = appState.customLessons
+        .map(sanitizeStoredLesson)
+        .filter(Boolean)
+        .filter(l => !builtInIds.has(l.id));
     if (custom.length) lessons = [...custom, ...lessons];
 }
 

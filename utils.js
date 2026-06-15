@@ -18,15 +18,54 @@ function escapeHTML(str) {
     return div.innerHTML;
 }
 
+function sanitizeLessonText(str, maxLen = 500) {
+    if (typeof str !== 'string') return '';
+    return str.replace(/<[^>]*>/g, '').replace(/[\u0000-\u001f]/g, '').trim().slice(0, maxLen);
+}
+
+function isSafeAudioSrc(src) {
+    if (typeof src !== 'string' || !src.trim()) return false;
+    if (src.startsWith('blob:')) return /^blob:[^\s]+$/.test(src);
+    if (/^[a-z][a-z0-9+.-]*:/i.test(src)) return false;
+    if (src.includes('..') || src.startsWith('/')) return false;
+    return /\.(mp3|wav|ogg|m4a|webm)$/i.test(src);
+}
+
+function sanitizeVocabEntry(entry) {
+    if (!entry || typeof entry !== 'object') return null;
+    const ko = sanitizeLessonText(entry.ko, 200);
+    const en = sanitizeLessonText(entry.en, 200);
+    if (!ko && !en) return null;
+    return { ko, en };
+}
+
+function setFaIcon(el, iconClass) {
+    if (!el) return;
+    el.replaceChildren();
+    const icon = document.createElement('i');
+    icon.className = iconClass;
+    el.appendChild(icon);
+}
+
+function setButtonIconLabel(el, iconClass, label) {
+    if (!el) return;
+    el.replaceChildren();
+    const icon = document.createElement('i');
+    icon.className = iconClass;
+    el.appendChild(icon);
+    if (label) el.appendChild(document.createTextNode(label));
+}
+
 function createLesson({ id, title, subtitle, duration, src, transcript, vocab, group }) {
+    const safeSrc = src && isSafeAudioSrc(src) ? src : '';
     return {
         id: id || Date.now(),
-        title: title || 'Untitled Lesson',
-        subtitle: subtitle || 'Talk To Me In Korean',
-        duration: duration || '00:00',
-        src: src || '',
-        transcript: transcript || DEFAULT_TRANSCRIPT,
-        vocab: vocab || [],
+        title: sanitizeLessonText(title, 200) || 'Untitled Lesson',
+        subtitle: sanitizeLessonText(subtitle, 100) || 'Talk To Me In Korean',
+        duration: sanitizeLessonText(duration, 20) || '00:00',
+        src: safeSrc,
+        transcript: sanitizeLessonText(transcript, 50000) || DEFAULT_TRANSCRIPT,
+        vocab: (Array.isArray(vocab) ? vocab : []).map(sanitizeVocabEntry).filter(Boolean),
         group: group || 'custom'
     };
 }
@@ -69,11 +108,10 @@ function deriveCategories(lessonList) {
 }
 
 function updatePlayButtonIcon(playing) {
-    const btn = document.getElementById('play-btn');
-    if (!btn) return;
-    btn.innerHTML = playing
-        ? '<i class="fa-solid fa-pause"></i>'
-        : '<i class="fa-solid fa-play ml-1"></i>';
+    setFaIcon(
+        document.getElementById('play-btn'),
+        playing ? 'fa-solid fa-pause' : 'fa-solid fa-play ml-1'
+    );
 }
 
 function setTranscriptContent(el, transcript) {

@@ -15,6 +15,7 @@ let lessonSearchQuery = '';
 let shadowingRunning = false;
 let shadowingIndex = 0;
 let shadowingShowEnglish = false;
+let activeBlobUrl = null;
 
 const DEFAULT_SHADOWING_PHRASES = [
     { ko: '\uC548\uB155\uD558\uC138\uC694! \uB9CC\uB098\uC11C \uBC18\uAC00\uC6CC\uC694.', en: 'Hello! Nice to meet you.' },
@@ -27,27 +28,24 @@ const DEFAULT_SHADOWING_PHRASES = [
     { ko: '\uB9DB\uC788\uC5B4\uC694!', en: "It's delicious!" }
 ];
 
-function switchTab(n) {
-    const tab = document.getElementById(`tab-${n}`);
+function switchTab(tabId) {
+    const tab = document.getElementById(`tab-${tabId}`);
     if (!tab) {
-        console.error(`switchTab: tab-${n} does not exist`);
-        return;
-    }
-    const tabLinks = document.querySelectorAll('.tab-link');
-    if (n < 0 || n >= tabLinks.length) {
-        console.error(`switchTab: index ${n} is out of range (0-${tabLinks.length - 1})`);
+        console.error(`switchTab: tab-${tabId} does not exist`);
         return;
     }
     document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
     tab.classList.remove('hidden');
-    tabLinks.forEach(link => {
-        link.classList.remove('bg-zinc-800', 'text-white');
-        link.classList.add('text-zinc-400');
+    document.querySelectorAll('.tab-link').forEach(link => {
+        const active = link.dataset.tab === String(tabId);
+        link.classList.toggle('bg-zinc-800', active);
+        link.classList.toggle('text-white', active);
+        link.classList.toggle('font-medium', active);
+        link.classList.toggle('text-zinc-400', !active);
     });
-    tabLinks[n].classList.add('bg-zinc-800', 'text-white');
-    if (n === 2) renderShadowingUI();
-    if (n === 4) renderJourneyDashboard();
-    if (n === 5) updateProgressUI();
+    if (tabId === 2) renderShadowingUI();
+    if (tabId === 4) renderJourneyDashboard();
+    if (tabId === 5) updateProgressUI();
 }
 
 function getLessonsForGroup() {
@@ -150,7 +148,7 @@ function renderLessons() {
         if (completed) {
             const badge = document.createElement('span');
             badge.className = 'absolute top-4 right-4 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-sm';
-            badge.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setFaIcon(badge, 'fa-solid fa-check');
             hero.appendChild(badge);
         }
 
@@ -204,7 +202,7 @@ function loadLesson(index, resumeTab = true) {
     renderVocabList(document.getElementById('vocab-list'), lesson.vocab);
     loadNotesForLesson(lesson.id);
 
-    if (lesson.src) {
+    if (lesson.src && isSafeAudioSrc(lesson.src)) {
         const resumeAt = getLessonProgress(lesson.id).lastPosition;
         audio.src = encodeURI(lesson.src);
         if (resumeAt > 0) {
@@ -216,6 +214,7 @@ function loadLesson(index, resumeTab = true) {
             });
         }
     } else {
+        if (lesson.src) console.warn('Blocked unsafe audio source for lesson:', lesson.id);
         audio.removeAttribute('src');
         audio.load();
     }
@@ -287,9 +286,15 @@ function handleFileUpload(e) {
         return;
     }
 
+    if (activeBlobUrl) {
+        URL.revokeObjectURL(activeBlobUrl);
+        activeBlobUrl = null;
+    }
+
     let url;
     try {
         url = URL.createObjectURL(file);
+        activeBlobUrl = url;
     } catch (err) {
         console.error('Failed to create object URL:', err);
         alert('Failed to load the file. Please try again.');
@@ -404,9 +409,11 @@ function renderShadowingUI() {
         counterEl.textContent = `Phrase ${(shadowingIndex % phrases.length) + 1} / ${phrases.length}`;
     }
     if (btnEl) {
-        btnEl.innerHTML = shadowingRunning
-            ? '<i class="fa-solid fa-pause mr-2"></i>Pause'
-            : '<i class="fa-solid fa-microphone mr-2"></i>Start Shadowing';
+        setButtonIconLabel(
+            btnEl,
+            shadowingRunning ? 'fa-solid fa-pause mr-2' : 'fa-solid fa-microphone mr-2',
+            shadowingRunning ? 'Pause' : 'Start Shadowing'
+        );
     }
     if (dotsEl) {
         dotsEl.textContent = '';
@@ -523,7 +530,14 @@ function renderJourneyDashboard() {
         const trackCount = def.tracks.length;
         const btn = document.createElement('button');
         btn.className = 'bg-zinc-800 hover:bg-zinc-700 rounded-2xl px-4 py-3 text-left transition';
-        btn.innerHTML = `<span class="font-medium block">${def.subtitle}</span><span class="text-xs text-zinc-500">${trackCount} track${trackCount === 1 ? '' : 's'}</span>`;
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'font-medium block';
+        titleSpan.textContent = def.subtitle;
+        const countSpan = document.createElement('span');
+        countSpan.className = 'text-xs text-zinc-500';
+        countSpan.textContent = `${trackCount} track${trackCount === 1 ? '' : 's'}`;
+        btn.appendChild(titleSpan);
+        btn.appendChild(countSpan);
         btn.onclick = () => startMelbourneCategory(def.subtitle);
         melbourneGrid.appendChild(btn);
     });

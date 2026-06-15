@@ -1,7 +1,72 @@
 /**
  * Melbourne Lantern webdrama ↔ TTMIK sync map
  * Pins, episodes, and reels → skills, lesson categories, shadowing, quest objectives
+ * Bardic inspiration unifies TTMIK · lets-cook · girls-love · Veil-Lumen · RTDB · video-editor
  */
+
+/** Cross-app pipeline — shoot order pulls optimised times from lets-cook transportSchedule */
+const PIPELINE_SOURCES = {
+    ttmik: {
+        label: 'TTMIK Skills & Quest',
+        paths: ['skills-data.js', 'Melbourne_Lantern_Bard.skill.md'],
+        url: 'TTMIK.html',
+        role: 'Shadowing · RED FLAGS · pilgrimage quest'
+    },
+    letsCook: {
+        label: 'lets-cook · Date Night',
+        paths: ['lets-cook/src/data/dateNightCookOff.js', 'lets-cook/src/data/transportSchedule.js'],
+        url: 'http://localhost:5173/date-night',
+        role: 'Degraves outing · 45 min cook-off · RTDB schedule phase 0'
+    },
+    girlsLove: {
+        label: 'girls-love · After the Date',
+        paths: ['girls-love/data/afterTheDate.js'],
+        url: 'http://localhost:5190',
+        role: 'Ch.1–4 novel beats · dawn Degraves · post-score dishes'
+    },
+    veilLumen: {
+        label: 'Veil-Lumen · Creative Corner',
+        paths: ['Veil-Lumen/js/skills-data.js'],
+        url: 'http://localhost:5180',
+        role: 'Bardic ritual · skill veil outputs · essay assembly'
+    },
+    rtdb: {
+        label: 'RTDB-Auckland',
+        paths: ['RTDB-Auckland/rtdb-config.json', 'lets-cook/src/data/rtdb-config.json'],
+        role: 'Waitemata / Britomart depart · 30s refresh · 45s rotation before AKL leg'
+    },
+    videoEditor: {
+        label: 'video-editor · Multiformat',
+        paths: ['webdrama-edit-data.js', 'video-editor/melbourne-lantern-edits.json'],
+        url: 'http://localhost:8000',
+        role: 'Reel A/B · Ep 2.5 DIB · date-night-cookoff · after-the-date exports'
+    },
+    audit: {
+        label: 'Tarot-scam audit',
+        paths: ['audit/tarot-scam-avoidance-audit.md'],
+        role: 'Scam PSA · divine insight · RED FLAG inventory'
+    }
+};
+
+/** Bardic inspiration — theme thread across all pipeline sources */
+const BARDIC_INSPIRATION = {
+    theme: 'I create from flame, not from lack.',
+    mantra: 'Not a date. Not a rescue. Lantern lit.',
+    hostLine: 'This is NOT a date. It\'s a cook-off.',
+    korean: '멜버른 골목이 정말 예뻐요',
+    shootLanes: ['morning-block', 'date-night', 'dawn-after'],
+    dateNightWindow: {
+        outingStart: '17:00',
+        ingredientCapEnd: '17:15',
+        flatWhiteBy: '17:25',
+        kitchenStart: '18:15',
+        scoreStart: '19:15',
+        homeBy: '20:10',
+        dawnBeat: '06:12'
+    },
+    rtdbCadence: 'Refresh every 30s · rotate boards every 45s before Auckland airport leg',
+    pipeline: PIPELINE_SOURCES
+};
 
 const TTMIK_SYNC_PINS = {
     HOME: {
@@ -46,23 +111,26 @@ const TTMIK_SYNC_PINS = {
     },
     DEGRAVES: {
         label: 'Degraves Street',
-        place: 'Café strip · coffee tsundere',
-        episodes: [2, 3],
+        place: 'Café strip · coffee tsundere · cook-off score · dawn croissant',
+        episodes: [2, 3, '2.75'],
         reels: ['A', 'B'],
         skillId: 'lo3tus',
         categories: ['Daily Life', 'Social & Cultural'],
         questIds: ['main-others'],
-        formats: ['webdrama', 'reel-a', 'reel-b']
+        formats: ['webdrama', 'reel-a', 'reel-b', 'date-night-cookoff', 'after-the-date'],
+        pipeline: ['letsCook', 'girlsLove'],
+        cookOffPhases: ['outing', 'cookoff']
     },
     FLINDERS: {
         label: 'Flinders Street Station',
-        place: 'Steps / clocks · tram monologue',
-        episodes: [5, 7],
+        place: 'Steps / clocks · tram monologue · date meet Flinders Lane end',
+        episodes: [5, 7, '2.75'],
         reels: [],
         skillId: 'asuka-brisbane',
         categories: ['Transportation'],
         questIds: ['main-film'],
-        formats: ['webdrama', 'veil-lumen-45']
+        formats: ['webdrama', 'veil-lumen-45', 'date-night-cookoff'],
+        pipeline: ['letsCook']
     },
     FED: {
         label: 'Federation Square',
@@ -116,13 +184,15 @@ const TTMIK_SYNC_PINS = {
     },
     HOTEL: {
         label: 'Accommodation',
-        place: 'Desk / mirror · phone scenes',
-        episodes: [1, 4],
+        place: 'Desk / mirror · phone scenes · kitchen cook-off stations',
+        episodes: [1, 4, '2.75'],
         reels: [],
         skillId: 'helen-neighbor',
         categories: ['Accommodation', 'Emergency Protocol'],
         questIds: ['side-boundary', 'side-gear'],
-        formats: ['webdrama']
+        formats: ['webdrama', 'date-night-cookoff'],
+        pipeline: ['letsCook', 'girlsLove'],
+        cookOffPhases: ['stations']
     }
 };
 
@@ -144,6 +214,19 @@ const TTMIK_SYNC_EPISODES = {
         categories: ['Melbourne Arrival', 'GoPro & Content'],
         questIds: ['main-film'],
         shadowingIndex: 0
+    },
+    '2.75': {
+        title: 'Cook-Off Not a Date',
+        ko: '요리대결',
+        display: 'Ep 2.75',
+        pins: ['FLINDERS', 'DEGRAVES', 'HOTEL'],
+        skillId: 'melbourne-lantern-bard',
+        categories: ['Daily Life', 'Social & Cultural'],
+        questIds: ['main-others', 'side-humor'],
+        shadowingIndex: 1,
+        pipeline: ['letsCook', 'girlsLove'],
+        duration: '90s',
+        formats: ['date-night-cookoff', 'after-the-date']
     },
     3: {
         title: 'Love Bomb Speedrun',
@@ -269,6 +352,34 @@ const TTMIK_SYNC_PRESETS = [
         episode: 6,
         reel: 'B',
         note: '10:15 — shadowing + SD offload'
+    },
+    {
+        id: 6,
+        label: 'Degraves · Ep 2.75 · Outing',
+        shortLabel: 'DATE OUT',
+        pin: 'DEGRAVES',
+        episode: '2.75',
+        reel: 'B',
+        note: '17:00 — meet + ingredient cap · lets-cook phase outing',
+        autoShadow: true
+    },
+    {
+        id: 7,
+        label: 'Hotel · Ep 2.75 · Kitchen',
+        shortLabel: 'COOK-OFF',
+        pin: 'HOTEL',
+        episode: '2.75',
+        reel: null,
+        note: '18:15 — 45 min stations · GoPro consent · Helen soup'
+    },
+    {
+        id: 8,
+        label: 'Degraves · Dawn · After the Date',
+        shortLabel: 'DAWN',
+        pin: 'DEGRAVES',
+        episode: '2.75',
+        reel: 'B',
+        note: '06:12 — girls-love Ch.2 croissant run'
     }
 ];
 
@@ -280,12 +391,46 @@ const TTMIK_BLOCK_ROUTE = [
     { time: '10:15', pin: 'HOSIER', note: 'Shadowing + SD offload', presetId: 5 }
 ];
 
+/** Date night lane — RTDB AKL legs + lets-cook optimiseDateWindow(17:00) */
+const TTMIK_DATE_NIGHT_ROUTE = [
+    { time: '05:30', pin: null, note: 'AKL Waitemata RTDB refresh — Britomart-bound train', rtdb: 'waitemata', skill: 'flame-kissed-bard' },
+    { time: '06:15', pin: null, note: 'Britomart bus hub — airport connector ≤20 min wait', rtdb: 'britomart', skill: 'helen-neighbor' },
+    { time: '12:30', pin: 'MEL', note: 'Land MEL → HOTEL drop bags — no love-bomb speedrun', skill: 'flame-kissed-bard' },
+    { time: '17:00', pin: 'FLINDERS', note: 'Meet Flinders Lane end — 15 min silly ingredient cap', presetId: 6 },
+    { time: '17:20', pin: 'DEGRAVES', note: 'Stroll + flat white — Bard: hydration not romance', presetId: 6 },
+    { time: '18:15', pin: 'HOTEL', note: 'Kitchen stations · 45 min cook-off timer', presetId: 7 },
+    { time: '19:15', pin: 'DEGRAVES', note: 'Score · eat · block ingredient-fee Venmos', sync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' } },
+    { time: '06:12', pin: 'DEGRAVES', note: 'Dawn croissant — girls-love Ch.2 · phones optional', presetId: 8 }
+];
+
+function resolveEpisodeKey(value) {
+    if (value == null || value === '') return null;
+    const s = String(value);
+    if (s.includes('.')) return s;
+    const n = typeof value === 'number' ? value : parseInt(s, 10);
+    return Number.isFinite(n) ? n : s;
+}
+
 function getSyncPin(pinId) {
     return TTMIK_SYNC_PINS[pinId] || null;
 }
 
 function getSyncEpisode(epNum) {
-    return TTMIK_SYNC_EPISODES[epNum] || null;
+    const key = resolveEpisodeKey(epNum);
+    if (key == null) return null;
+    return TTMIK_SYNC_EPISODES[key] || null;
+}
+
+function getBardicInspiration() {
+    return BARDIC_INSPIRATION;
+}
+
+function getPipelineSources() {
+    return PIPELINE_SOURCES;
+}
+
+function getDateNightRoute() {
+    return TTMIK_DATE_NIGHT_ROUTE;
 }
 
 function getSyncReel(reelId) {

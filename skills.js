@@ -150,8 +150,8 @@ function updateWebdramaSync(field, value) {
     }
     if (field === 'pin' && getSyncPin(value)) appState.webdramaSync.pin = value;
     if (field === 'episode') {
-        const n = parseInt(value, 10);
-        if (getSyncEpisode(n)) appState.webdramaSync.episode = n;
+        const key = typeof resolveEpisodeKey === 'function' ? resolveEpisodeKey(value) : value;
+        if (getSyncEpisode(key)) appState.webdramaSync.episode = key;
     }
     if (field === 'reel' && getSyncReel(value)) appState.webdramaSync.reel = value;
     persistState();
@@ -163,9 +163,10 @@ function setWebdramaSyncValues(pin, episode, reel) {
         appState.webdramaSync = { pin: 'HOSIER', episode: 2, reel: 'B' };
     }
     if (getSyncPin(pin)) appState.webdramaSync.pin = pin;
-    const ep = typeof episode === 'number' ? episode : parseInt(episode, 10);
+    const ep = typeof resolveEpisodeKey === 'function' ? resolveEpisodeKey(episode) : episode;
     if (getSyncEpisode(ep)) appState.webdramaSync.episode = ep;
-    if (getSyncReel(reel)) appState.webdramaSync.reel = reel;
+    if (reel == null) appState.webdramaSync.reel = null;
+    else if (getSyncReel(reel)) appState.webdramaSync.reel = reel;
     persistState();
 }
 
@@ -222,8 +223,8 @@ function handleTtmikSyncBoot() {
     }
     if (pin && getSyncPin(pin.toUpperCase())) appState.webdramaSync.pin = pin.toUpperCase();
     if (episode) {
-        const n = parseInt(episode, 10);
-        if (getSyncEpisode(n)) appState.webdramaSync.episode = n;
+        const key = typeof resolveEpisodeKey === 'function' ? resolveEpisodeKey(episode) : episode;
+        if (getSyncEpisode(key)) appState.webdramaSync.episode = key;
     }
     if (reel && getSyncReel(reel.toUpperCase())) appState.webdramaSync.reel = reel.toUpperCase();
     persistState();
@@ -269,7 +270,7 @@ function renderSyncPanel() {
 
         const presetsLabel = document.createElement('p');
         presetsLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
-        presetsLabel.textContent = 'On-set presets (1–5)';
+        presetsLabel.textContent = 'On-set presets (1–8)';
         presetsWrap.appendChild(presetsLabel);
 
         const presetsRow = document.createElement('div');
@@ -348,7 +349,7 @@ function renderSyncPanel() {
         'episode',
         Object.entries(TTMIK_SYNC_EPISODES).map(([n, e]) => ({
             value: n,
-            label: `Ep ${n} · ${e.ko} ${e.title}`
+            label: `${e.display || `Ep ${n}`} · ${e.ko} ${e.title}`
         })),
         cfg.episode
     ));
@@ -435,29 +436,51 @@ function renderSyncPanel() {
     actions.appendChild(shadowBtn);
     panel.appendChild(actions);
 
-    const routeLabel = document.createElement('h4');
-    routeLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
-    routeLabel.textContent = 'Jun 19 block route (reels + ep 2/6)';
-    panel.appendChild(routeLabel);
+    if (typeof BARDIC_INSPIRATION !== 'undefined') {
+        const bardBlock = document.createElement('div');
+        bardBlock.className = 'mb-6 bg-violet-500/10 border border-violet-500/20 rounded-2xl p-4 text-sm';
+        const bardTitle = document.createElement('p');
+        bardTitle.className = 'text-violet-300 font-medium mb-1';
+        bardTitle.textContent = 'Bardic inspiration';
+        const bardTheme = document.createElement('p');
+        bardTheme.className = 'text-zinc-400 italic';
+        bardTheme.textContent = `"${BARDIC_INSPIRATION.theme}" · ${BARDIC_INSPIRATION.mantra}`;
+        bardBlock.appendChild(bardTitle);
+        bardBlock.appendChild(bardTheme);
+        panel.appendChild(bardBlock);
+    }
 
-    const routeList = document.createElement('div');
-    routeList.className = 'space-y-2 text-sm';
-    TTMIK_BLOCK_ROUTE.forEach(step => {
-        const row = document.createElement('button');
-        row.type = 'button';
-        row.className = 'flex gap-3 text-zinc-400 w-full text-left rounded-xl px-2 py-1 -mx-2 hover:bg-zinc-800/60 hover:text-zinc-200 transition';
-        row.title = 'Tap to load this block into sync';
-        const time = document.createElement('span');
-        time.className = 'text-violet-400 font-mono shrink-0 w-12';
-        time.textContent = step.time;
-        const text = document.createElement('span');
-        text.textContent = `${step.pin} — ${step.note}`;
-        row.appendChild(time);
-        row.appendChild(text);
-        row.onclick = () => applyTtmikSyncRouteStep(step);
-        routeList.appendChild(row);
-    });
-    panel.appendChild(routeList);
+    const appendRouteList = (title, steps) => {
+        const routeLabel = document.createElement('h4');
+        routeLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3 mt-4';
+        routeLabel.textContent = title;
+        panel.appendChild(routeLabel);
+
+        const routeList = document.createElement('div');
+        routeList.className = 'space-y-2 text-sm';
+        steps.forEach(step => {
+            const row = document.createElement('button');
+            row.type = 'button';
+            row.className = 'flex gap-3 text-zinc-400 w-full text-left rounded-xl px-2 py-1 -mx-2 hover:bg-zinc-800/60 hover:text-zinc-200 transition';
+            row.title = 'Tap to load this block into sync';
+            const time = document.createElement('span');
+            time.className = 'text-violet-400 font-mono shrink-0 w-12';
+            time.textContent = step.time;
+            const text = document.createElement('span');
+            const pinLabel = step.pin || (step.rtdb ? `RTDB ${step.rtdb}` : '—');
+            text.textContent = `${pinLabel} — ${step.note}`;
+            row.appendChild(time);
+            row.appendChild(text);
+            row.onclick = () => applyTtmikSyncRouteStep(step);
+            routeList.appendChild(row);
+        });
+        panel.appendChild(routeList);
+    };
+
+    appendRouteList('Jun 19 morning block (reels + ep 2/6)', TTMIK_BLOCK_ROUTE);
+    if (typeof TTMIK_DATE_NIGHT_ROUTE !== 'undefined') {
+        appendRouteList('Date night lane · Degraves 17:00 + dawn 06:12', TTMIK_DATE_NIGHT_ROUTE);
+    }
 }
 
 function renderQuestPanel() {

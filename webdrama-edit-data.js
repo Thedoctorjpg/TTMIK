@@ -126,6 +126,69 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'date-night-cookoff': {
+        id: 'date-night-cookoff',
+        label: 'Ep 2.75 · Cook-Off Not a Date (90s)',
+        duration: 90,
+        aspect: '9:16',
+        editor: 'pro',
+        visualPreset: 'warm',
+        overlay: 'NOT A DATE',
+        overlayPosition: 'W-tw-10:10',
+        ttmikSync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' },
+        pins: ['FLINDERS', 'DEGRAVES', 'HOTEL'],
+        exportTargets: ['Webdrama insert', 'lets-cook hook', 'girls-love Ch.1'],
+        pipeline: ['letsCook', 'girlsLove'],
+        shots: [
+            { id: 'DN1', time: '0:00', pin: 'FLINDERS', note: 'Meet Flinders Lane — no love-bomb speedrun', dur: 8 },
+            { id: 'DN2', time: '0:08', pin: 'DEGRAVES', note: 'Silly ingredient picks · 15 min cap', dur: 12 },
+            { id: 'DN3', time: '0:20', pin: 'DEGRAVES', note: 'Flat white to-go — hydration not romance', dur: 10 },
+            { id: 'DN4', time: '0:30', pin: 'HOTEL', note: 'Stations set · GoPro consent · 45 min timer', dur: 25 },
+            { id: 'DN5', time: '0:55', pin: 'HOTEL', note: 'Plating montage — Lo3tus / Helen / Asuka / Rach3l', dur: 15 },
+            { id: 'DN6', time: '1:10', pin: 'DEGRAVES', note: 'Bard scorecards — boundaries category mandatory', dur: 12 },
+            { id: 'DN7', time: '1:22', pin: 'HOTEL', note: 'Dishes · SYSTEM mute · plates down hearts loud', dur: 8 }
+        ]
+    },
+    'after-the-date': {
+        id: 'after-the-date',
+        label: 'After the Date · Dawn Degraves (60s)',
+        duration: 60,
+        aspect: '9:16',
+        editor: 'pro',
+        visualPreset: 'cinematic',
+        overlay: 'CH.2 · DAWN',
+        ttmikSync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' },
+        pins: ['DEGRAVES', 'FLINDERS'],
+        exportTargets: ['girls-love novel', 'Veil Lumen soft cut', 'Morning reel'],
+        pipeline: ['girlsLove'],
+        shots: [
+            { id: 'AT1', time: '0:00', pin: 'DEGRAVES', note: '6:12 AM — pastry boxes · no GoPro', dur: 10 },
+            { id: 'AT2', time: '0:10', pin: 'FLINDERS', note: 'Flinders Lane end reunion — where it started', dur: 8 },
+            { id: 'AT3', time: '0:18', pin: 'DEGRAVES', note: 'Croissant treaty — not a date / breakfast tax', dur: 12 },
+            { id: 'AT4', time: '0:30', pin: 'DEGRAVES', note: 'Bard observes from café distance — newspaper prop', dur: 10 },
+            { id: 'AT5', time: '0:40', pin: 'DEGRAVES', note: '멜버른 골목이 정말 예뻐요 — morning edition', dur: 10 },
+            { id: 'AT6', time: '0:50', pin: 'DEGRAVES', note: 'Walk-off — phones optional boundaries intact', dur: 10 }
+        ]
+    },
+    'pipeline-montage': {
+        id: 'pipeline-montage',
+        label: 'Pipeline Montage · All Sources (45s)',
+        duration: 45,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'BARDIC INSPIRATION',
+        pins: ['MEL', 'HOSIER', 'DEGRAVES', 'HOTEL', 'PRINCES'],
+        exportTargets: ['Pitch deck', 'Creative Corner', 'TTMIK Journey tab'],
+        shots: [
+            { id: 'PM1', pin: 'MEL', note: 'RTDB AKL → MEL land — pilgrimage open', dur: 5 },
+            { id: 'PM2', pin: 'HOSIER', note: 'Morning block · Reel A/B + DIB', dur: 8 },
+            { id: 'PM3', pin: 'DEGRAVES', note: '17:00 date night outing hook', dur: 8 },
+            { id: 'PM4', pin: 'HOTEL', note: 'Cook-off timer · Helen boundaries', dur: 8 },
+            { id: 'PM5', pin: 'DEGRAVES', note: 'Score + dawn Ch.2 beat', dur: 8 },
+            { id: 'PM6', pin: 'PRINCES', note: 'World close — lantern to viewer', dur: 8 }
+        ]
+    },
     'trailer-30': {
         id: 'trailer-30',
         label: 'Season 1 Trailer (30s)',
@@ -134,14 +197,16 @@ const MULTIFORMAT_EDITS = {
         editor: 'ultimate',
         visualPreset: 'cinematic',
         overlay: 'MELBOURNE LANTERN',
-        pins: ['MEL', 'HOSIER', 'DEGRAVES', 'FLINDERS', 'SOUTH', 'PRINCES'],
-        exportTargets: ['Trailer', 'Pitch deck'],
+        pins: ['MEL', 'HOSIER', 'DEGRAVES', 'HOTEL', 'FLINDERS', 'SOUTH', 'PRINCES'],
+        exportTargets: ['Trailer', 'Pitch deck', 'pipeline-montage source'],
         shots: [
             { id: 't-mel', pin: 'MEL', dur: 2 },
-            { id: 't-hosier', pin: 'HOSIER', dur: 4 },
-            { id: 't-degraves', pin: 'DEGRAVES', dur: 3 },
-            { id: 't-flinders', pin: 'FLINDERS', dur: 3 },
+            { id: 't-hosier', pin: 'HOSIER', dur: 3 },
+            { id: 't-degraves', pin: 'DEGRAVES', dur: 2 },
+            { id: 't-cookoff', pin: 'HOTEL', note: 'Cook-off NOT a date hook', dur: 3 },
+            { id: 't-flinders', pin: 'FLINDERS', dur: 2 },
             { id: 't-south', pin: 'SOUTH', dur: 3 },
+            { id: 't-dawn', pin: 'DEGRAVES', note: 'Dawn croissant beat', dur: 2 },
             { id: 't-princes', pin: 'PRINCES', dur: 3 },
             { id: 't-lantern', pin: 'HOSIER', dur: 2 }
         ]

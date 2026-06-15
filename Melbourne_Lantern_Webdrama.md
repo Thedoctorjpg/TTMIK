@@ -6,7 +6,43 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 **Tone:** tsundere + scam-awareness PSA + sovereign pilgrimage  
 **Gear in-world:** GoPro lantern, gym bag, power bank, phone = Flame-Kissed Quill
 
-**Multiformat outputs:** Webdrama eps (9:16 · 90s) · Reels/Shorts/TikTok (9:16 · 30s) · Trailer (9:16 · 30s) · Veil Lumen essay cut (16:9 · 3–5 min) · TTMIK audio sync (any)
+**Multiformat outputs:** Webdrama eps (9:16 · 90s) · Reels/Shorts/TikTok (9:16 · 30s) · Trailer (9:16 · 30s) · Veil Lumen essay cut (16:9 · 3–5 min) · TTMIK audio sync (any) · **Ep 2.75 cook-off** (9:16 · 90s) · **After the Date dawn** (9:16 · 60s)
+
+---
+
+## Bardic optimisation (all sources)
+
+**Theme:** *I create from flame, not from lack.* · **Mantra:** Not a date. Not a rescue. Lantern lit.
+
+Unified shoot order pulls from the full pipeline — optimised in `webdrama-sync-data.js` (`BARDIC_INSPIRATION` · `PIPELINE_SOURCES` · `TTMIK_DATE_NIGHT_ROUTE`).
+
+| Source | Role in webdrama |
+|--------|------------------|
+| **TTMIK** | Skills · shadowing · quest · on-set presets 1–8 |
+| **lets-cook** | Degraves date night · 45 min cook-off · `optimizeDateWindow(17:00)` |
+| **girls-love** | After the Date Ch.1–4 · dawn Degraves 06:12 |
+| **Veil-Lumen** | Bardic ritual · essay assembly · Creative Corner veils |
+| **RTDB-Auckland** | AKL depart legs — 30s refresh · 45s rotation before flight |
+| **video-editor** | `date-night-cookoff` · `after-the-date` · `pipeline-montage` exports |
+| **audit** | Tarot-scam PSA · divine insight · RED FLAG inventory |
+
+### Two-lane shoot calendar
+
+**Lane A — Morning block (Jun 19 · ~2 hr)** — unchanged one-lane route:
+
+```
+08:00  DEGRAVES → 08:30  CENTRE → 09:00  HOSIER → 09:45  COLLINS → 10:15  wrap
+```
+
+**Lane B — Date night + dawn** — RTDB AKL → MEL land → evening cook-off → morning croissant:
+
+```
+05:30  RTDB Waitemata → 06:15  Britomart bus → 12:30  MEL/HOTEL drop bags
+17:00  FLINDERS meet → 17:20  DEGRAVES outing → 18:15  HOTEL kitchen → 19:15  score
+06:12  DEGRAVES dawn (girls-love Ch.2)
+```
+
+TTMIK Sync presets **6–8** map to Lane B. Multiformat edits: `date-night-cookoff` · `after-the-date` · updated `trailer-30` with cook-off hook.
 
 ---
 
@@ -54,6 +90,9 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 | TikTok duet cut | 9:16 | 15s | Single selfie wall at Hosier | Daily Life |
 | YouTube Short | 9:16 | 60s | Reel A+B combined | Social & Cultural |
 | **Skit insert · Divine Insight Blessing** | 9:16 | 45s (30s cut) | Hosier only · GoPro lantern | GoPro & Content · tarot-scam PSA |
+| **Insert · Cook-Off Not a Date (Ep 2.75)** | 9:16 | 90s | FLINDERS → DEGRAVES → HOTEL | Daily Life · lets-cook sync |
+| **Insert · After the Date dawn** | 9:16 | 60s | DEGRAVES · 06:12 | Daily Life · girls-love Ch.2 |
+| **Pipeline montage** | 9:16 | 45s | All pins · bardic inspiration | Mixed |
 
 ### Melbourne shoot pins (reels-first clusters)
 
@@ -63,14 +102,14 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 | **MEL** | Melbourne Airport T1 arrivals glass | Ep 1 cliffhanger | Interior day | Melbourne Arrival |
 | **HOSIER** | Hosier Lane (graffiti wall mid-lane) | Ep 2, 2.5, 6, 8 · Reel A+B · DIB skit | Golden hour | GoPro & Content |
 | **CENTRE** | Centre Place (narrow walk-through) | Ep 3 rules walk · Reel A A4 | Midday shade | Transportation |
-| **DEGRAVES** | Degraves St café strip | Ep 2 cliffhanger · Ep 3 open | Morning coffee | Daily Life |
-| **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram monologue | Overcast drama | Transportation |
+| **DEGRAVES** | Degraves St café strip | Ep 2 cliff · Ep 3 open · **Ep 2.75 score + dawn** | Morning coffee · golden hour date | Daily Life |
+| **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram · **Ep 2.75 meet** | Overcast drama · date meet | Transportation |
 | **FED** | Federation Square glass / steps | Ep 5 rain reflection | Rain or blue hour | Melbourne Arrival |
 | **SOUTH** | Southbank Promenade (Yarra railing) | Ep 4 night · Ep 7 Moon | Night neon | Emergency Protocol |
 | **COLLINS** | Collins St walk (business bustle) | Ep 3 headset gag · Reel A A6 | Day | Social & Cultural |
 | **PRINCES** | Princes Bridge (dawn timelapse) | Ep 7 cliffhanger · Ep 8 open | Sunrise | Cultural Sites |
 | **BOTANIC** | Royal Botanic Gardens lake path | Ep 8 lantern pass alt | Sunrise soft | Self-Intimacy |
-| **HOTEL** | Accommodation desk / room mirror | Ep 1 ritual · Ep 4 phone | Interior | Accommodation |
+| **HOTEL** | Accommodation desk / room mirror | Ep 1 ritual · Ep 4 phone · **Ep 2.75 kitchen** | Interior | Accommodation |
 
 ### One-lane block shoot (Reels A+B + Ep 2/6 same session)
 
@@ -256,6 +295,50 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 - [ ] Hermes tarot RED FLAG scan: any 2 = abort (see `audit/tarot-scam-avoidance-audit.md`)
 
 **Tags:** `#Tsundere #Melbourne #ScamPSA #4GoverFate #DivineInsightBlessing`
+
+---
+
+# EPISODE 2.75 — 「요리대결」COOK-OFF NOT A DATE
+
+**Insert episode** · Sovereign friend date · lets-cook sync · girls-love Ch.1 pickup  
+**Runtime:** 90 sec · **Pins:** FLINDERS (meet) → DEGRAVES (outing + score) → HOTEL (kitchen)  
+**Quest tie-in:** `main-others` · practice "It's okay to not be like the others" at the score table  
+**Formats:** `date-night-cookoff` · lets-cook `/date-night` · TTMIK Sync presets **6–7**  
+**Gear:** GoPro on bag (plating only with consent) · scorecards · flat whites · no love-bomb timer  
+**Skill:** Melbourne Lantern Bard · **Shadowing:** *멜버른 골목이 정말 예뻐요* · host line: *This is NOT a date. It's a cook-off.*
+
+**Logline:** Bard takes the girls out for a Degraves ingredient run and a 45-minute kitchen war. Helen disqualifies love-bomb seasoning. Someone wins. Everyone does dishes anyway.
+
+**Caption pitch:** *Hydration, not romance. Court order.*
+
+---
+
+## Shot-by-shot board (90s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Export |
+|------|------|-----|----------------|-------------------|--------|
+| **DN1** | 0:00 | @FLINDERS | Wide — Flinders Lane end meet; golden hour | **BARD:** "This is not a date. It's a cook-off. HR is watching." | `date-night-cookoff` open |
+| **DN2** | 0:08 | @DEGRAVES | Walk-through — silly ingredient picks | **LO3TUS:** "What if we exaggerated that ×3." · **BARD:** "Fifteen minutes. Cap. Go." | lets-cook outing phase |
+| **DN3** | 0:20 | @DEGRAVES | Flat white handoff — to-go cups | **BARD:** "Hydration. Not romance." · **HELEN (VO):** "Compassion includes saying no to seconds." | Reel B tone |
+| **DN4** | 0:30 | @HOTEL | Kitchen wide — stations · timer on phone | **BARD:** "Forty-five minutes. 4G > fate." · **SYSTEM:** *(muted)* | Preset **7** |
+| **DN5** | 0:55 | @HOTEL | Plating montage — four dishes | **ASUKA:** "Maybe-Yes Lemon Posset." · **RACH3L:** "Phones face-down for toast." | girls-love Ch.1 seed |
+| **DN6** | 1:10 | @DEGRAVES | Score table — Bard deadpan judge | **BARD:** "Boundaries category mandatory. Seven acceptable lack of soulmate declarations." | Cook-off results |
+| **DN7** | 1:22 | @HOTEL | Dishes in sink — warm light | **BARD (VO):** "The date part was never the competition. It was who stayed." · **TEXT:** `NOT A DATE · BLOCK INVOICERS` | girls-love Ch.1 |
+
+---
+
+## After the Date — dawn insert (60s · preset **8**)
+
+| Shot | Time | Pin | Beat |
+|------|------|-----|------|
+| **AT1** | 0:00 | @DEGRAVES | 6:12 AM pastry boxes — no GoPro |
+| **AT2** | 0:10 | @FLINDERS | Flinders Lane end — where it started |
+| **AT3** | 0:18 | @DEGRAVES | Croissant treaty — "breakfast tax for beating me on chaos" |
+| **AT5** | 0:40 | @DEGRAVES | *멜버른 골목이 정말 예뻐요* — morning edition |
+
+**Edit order:** `after-the-date` · girls-love Ch.2 · Veil Lumen soft cut
+
+**Tags:** `#CookOffNotADate #Degraves #SovereignDate #MelbourneLantern`
 
 ---
 
@@ -557,12 +640,24 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 
 ### Location route card (Jun 19 block — print this)
 
+**Lane A — morning**
+
 ```
 08:00  DEGRAVES — coffee + A7 + Ep 2 cliffhanger
 08:30  CENTRE — A4, A10, B6, B9, rule walk
 09:00  HOSIER — W1 W2 B3 B5 B7 B8, A1 A2 A3 A8 A9, DIB1–DIB13 (Ep 2.5), Ep 2/6 main
 09:45  COLLINS — A6 invoice beat (optional Ep 3)
 10:15  Wrap — battery swap, SD offload, TTMIK shadowing at pin
+```
+
+**Lane B — date night + dawn (presets 6–8)**
+
+```
+17:00  FLINDERS — meet · ingredient cap (DN1)
+17:20  DEGRAVES — outing + flat white (DN2–DN3)
+18:15  HOTEL — kitchen stations 45 min (DN4–DN5)
+19:15  DEGRAVES — score + eat (DN6) · dishes @ HOTEL (DN7)
+06:12  DEGRAVES — dawn croissant · girls-love Ch.2 (AT1–AT6)
 ```
 
 ### Visual language
@@ -582,6 +677,7 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | 1 | Flame-Kissed Bard | 나는 나만의 이야기를 씁니다 |
 | 2 | Melbourne Lantern Bard | 멜버른 골목이 정말 예뻐요 |
 | 2.5 | Melbourne Lantern Bard | 유머로 풀어낼게요 · divine insight block |
+| 2.75 | Melbourne Lantern Bard · Lo3tus · Helen | 멜버른 골목이 정말 예뻐요 · cook-off host line |
 | 3 | Melbourne Lantern Bard | 유머로 풀어낼게요 |
 | 4 | Helen | 죄송하지만 지금은 어려워요 |
 | 5 | Asuka | 멜버른이 제 선택이에요 |
@@ -616,7 +712,9 @@ TEXT: MELBOURNE LANTERN · 8 EPISODES · VERTICAL
 BARD: "Lantern's lit."
 ```
 
-**Trailer visual order:** MEL (2s) → HOSIER (4s) → DEGRAVES (3s) → FLINDERS (3s) → SOUTH night (3s) → PRINCES dawn (3s) → HOSIER lantern (2s)
+**Trailer visual order:** MEL (2s) → HOSIER (3s) → DEGRAVES (2s) → HOTEL cook-off (3s) → FLINDERS (2s) → SOUTH night (3s) → DEGRAVES dawn (2s) → PRINCES (3s) → HOSIER lantern (2s)
+
+**Pipeline montage (45s):** `pipeline-montage` — RTDB AKL → morning block → date night → dawn → World close
 
 ### Veil Lumen essay assembly (16:9 · 3–5 min)
 

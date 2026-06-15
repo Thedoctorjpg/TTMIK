@@ -241,6 +241,17 @@ const TTMIK_SYNC_PINS = {
         formats: ['webdrama', 'bend-it-beckham'],
         character: 'English fan'
     },
+    STADE: {
+        label: 'Stade Watch',
+        place: 'MCG plaza screen · France counter-attack lane · Mbappé burst ritual',
+        episodes: ['2.66'],
+        reels: [],
+        skillId: 'mbappe-france-attack',
+        categories: ['French Shadowing', 'Counter Attack Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        formats: ['webdrama', 'mbappe-counter-attack'],
+        character: 'Mbappé'
+    },
     CANTINA: {
         label: 'Mexican Restaurant',
         place: 'Federation lane cantina · FIFA watch party · Mari celebration',
@@ -327,6 +338,21 @@ const TTMIK_SYNC_EPISODES = {
         character: 'English fan',
         languages: ['en', 'pt', 'ko'],
         event: 'Bend It Like Beckham rewatch'
+    },
+    '2.66': {
+        title: 'France Counter-Attack',
+        ko: '역습',
+        display: 'Ep 2.66',
+        pins: ['STADE', 'FED'],
+        skillId: 'mbappe-france-attack',
+        categories: ['French Shadowing', 'Counter Attack Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['mbappe-counter-attack'],
+        character: 'Mbappé',
+        languages: ['fr', 'ko', 'en'],
+        event: 'FIFA counter-attack watch'
     },
     '2.65': {
         title: 'FIFA Celebration',
@@ -589,6 +615,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'FIFA cantina · Portuguese native + Korean shadow · Fast Character Glory Paladin sheet',
         autoShadow: true
+    },
+    {
+        id: 17,
+        label: 'Stade · Ep 2.66 · Mbappé France',
+        shortLabel: 'MBAPPE',
+        pin: 'STADE',
+        episode: '2.66',
+        reel: null,
+        note: 'FIFA counter-attack · French native + Korean shadow · Fast Character Battle Master sheet',
+        autoShadow: true
     }
 ];
 
@@ -598,7 +634,8 @@ const TTMIK_FIFA_CELEBRATION_ROUTE = [
     { time: '19:00', pin: 'CANTINA', note: 'Meet after walk — Mari picks the table, Bard pays his half', presetId: 12 },
     { time: '19:15', pin: 'CANTINA', note: 'Ilokano toast first — Naragsak unay before the match replay', sync: { pin: 'CANTINA', episode: '2.65', reel: null } },
     { time: '19:45', pin: 'CANTINA', note: 'Goal cheer — Spanish salud, Korean 맛있어요, no soulmate CTAs', presetId: 12 },
-    { time: '20:00', pin: 'CANTINA', note: 'Portugal cheer — Gol! Força Portugal · preset 16 · phones down except toast', presetId: 16 }
+    { time: '20:00', pin: 'CANTINA', note: 'Portugal cheer — Gol! Força Portugal · preset 16 · phones down except toast', presetId: 16 },
+    { time: '20:15', pin: 'STADE', note: 'France counter-attack — But! Allez les Bleus · preset 17 · burst not rescue', presetId: 17, sync: { pin: 'STADE', episode: '2.66', reel: null } }
 ];
 
 const TTMIK_BLOCK_ROUTE = [

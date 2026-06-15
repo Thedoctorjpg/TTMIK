@@ -65,6 +65,26 @@ const FAST_CHARACTER_MARTIN = {
     note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
 };
 
+/** Mbappé — French Battle Master Fighter muse · FIFA counter-attack */
+const FAST_CHARACTER_MBAPPE = {
+    id: 'mbappe',
+    label: 'Mbappé — France Attack',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Mbappe',
+    randomname: 'no',
+    pcname: 'Mbappe',
+    pcclass: 'FighterBattleMaster',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Soldier',
+    pcgender: 'male',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Battle Master · Level 5 · Chaotic Good — counter-attack FIFA ally'
+};
+
 /** Ronaldo — Portuguese Glory Paladin muse · FIFA cantina celebration */
 const FAST_CHARACTER_RONALDO = {
     id: 'ronaldo',
@@ -89,7 +109,8 @@ const FAST_CHARACTER_PRESETS = {
     heidi: FAST_CHARACTER_HEIDI,
     sven: FAST_CHARACTER_SVEN,
     martin: FAST_CHARACTER_MARTIN,
-    ronaldo: FAST_CHARACTER_RONALDO
+    ronaldo: FAST_CHARACTER_RONALDO,
+    mbappe: FAST_CHARACTER_MBAPPE
 };
 
 function buildFastCharacterFormData(preset) {
@@ -145,4 +166,8 @@ function openFastCharacterMartin() {
 
 function openFastCharacterRonaldo() {
     openFastCharacterSheet(FAST_CHARACTER_RONALDO);
+}
+
+function openFastCharacterMbappe() {
+    openFastCharacterSheet(FAST_CHARACTER_MBAPPE);
 }

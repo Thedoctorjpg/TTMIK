@@ -429,6 +429,44 @@ const SKILLS = [
         ]
     },
     {
+        id: 'mbappe-france-attack',
+        name: 'Mbappé — France Attack',
+        icon: '\u{26A1}',
+        tagline: 'French counter-attack for FIFA strike joy',
+        role: 'Fast Character Battle Master Fighter ally — French native before Korean shadow',
+        source: 'Mbappe_France_Attack_Archetype.skill.md',
+        activationPhrases: [
+            'Mbappé attacks our way — Melbourne is my yes',
+            'J\'attaque à ma manière — sans drame'
+        ],
+        capabilities: [
+            'Generate Mbappé D&D sheet via Fast Character preset',
+            'French native input + Korean TTMIK shadowing drills',
+            'STADE counter-attack companion to Ronaldo Portugal cheer',
+            'Match-day bursts — no drama · no soulmate CTAs'
+        ],
+        creativePrompts: [
+            'Create Mbappé Fast Character sheet — Fighter Battle Master · Soldier · Level 5',
+            'Skit: French burst before Korean shadow at stade watch party',
+            'France counter-attack ritual for Ep 2.66 FIFA lane'
+        ],
+        linkedGroups: ['mbappe', 'canada', 'ronaldo', 'melbourne'],
+        linkedCategories: ['French Shadowing', 'Counter Attack Route', 'Strike Drills', 'Daily Life', 'Social & Cultural'],
+        shadowingPhrases: [
+            { fr: 'Melbourne, c\'est mon oui.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
+            { fr: 'J\'attaque à ma manière — sans drame.', ko: '내 방식으로 공격해요 — 드라마 없이.', en: 'I attack my way — no drama.' },
+            { fr: 'But! Allez les Bleus!', ko: '골! 프랑스 파이팅!', en: 'Goal! Go France!' },
+            { fr: 'Je fais confiance à mon chemin.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { fr: 'Je suis Mbappé, un voyageur de France.', ko: '저는 프랑스에서 온 방랑자 음바페예요.', en: 'I am Mbappé, a wanderer from France.' }
+        ],
+        ritualSteps: [
+            'Open Fast Character — Mbappé · Fighter Battle Master · Soldier',
+            'French native first: Melbourne, c\'est mon oui',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 공격해요',
+            'One burst — phone face-down except cheer — no re-watch spiral'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

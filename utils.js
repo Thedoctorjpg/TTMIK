@@ -32,7 +32,7 @@ function formatShadowNativeHint(phrase) {
 
 function shadowPhraseCopyText(phrase) {
     if (!phrase) return '';
-    return [phrase.ilo, phrase.es, phrase.fr, phrase.ja, phrase.de, phrase.sv, phrase.no, phrase.pt, phrase.ko, phrase.en].filter(Boolean).join('\n');
+    return [phrase.ilo, phrase.es, phrase.fr, phrase.ja, phrase.de, phrase.sv, phrase.no, phrase.pt, phrase.en, phrase.ko].filter(Boolean).join('\n');
 }
 
 function formatTime(seconds) {

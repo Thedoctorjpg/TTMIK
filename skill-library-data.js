@@ -89,6 +89,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'Portuguese Shadowing',
         tag: 'ronaldo'
     },
+    'mbappe-france-attack': {
+        source: 'Mbappe_France_Attack_Archetype.skill.md',
+        invoke: 'practiceMbappeAttack',
+        altBoot: 'mbappe=1',
+        preset: 17,
+        libraryGroup: 'Mbappé Library',
+        libraryCategory: 'French Shadowing',
+        tag: 'mbappe'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -170,6 +179,11 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: ['fifa-celebrate', 'humor-release', 'no-rewatch'],
         boot: 'library=ronaldo'
     },
+    'Mbappé Library': {
+        group: 'mbappe',
+        factors: ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
+        boot: 'library=mbappe'
+    },
     'Melbourne Journey': {
         group: 'melbourne',
         factors: ['hermit-lantern', 'humor-release', 'helen-boundary', 'post-dib'],
@@ -248,6 +262,14 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=ronaldo',
         skills: ['ronaldo-portugal-glory'],
         accent: 'orange'
+    },
+    {
+        id: 'mbappe',
+        label: 'Mbappé Library',
+        description: 'French native · Korean shadow — Fast Character Battle Master Fighter',
+        boot: 'library=mbappe',
+        skills: ['mbappe-france-attack'],
+        accent: 'sky'
     },
     {
         id: 'melbourne-skills',
@@ -339,7 +361,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 302
+    trackCount: 310
 };
 
 function openComposedLibrary(libId) {
@@ -355,6 +377,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'sven') startSvenCategory('Swedish Shadowing');
     else if (lib.id === 'martin') startMartinCategory('Norwegian Shadowing');
     else if (lib.id === 'ronaldo') startRonaldoCategory('Portuguese Shadowing');
+    else if (lib.id === 'mbappe') startMbappeCategory('French Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

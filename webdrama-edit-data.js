@@ -116,6 +116,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'IG8', time: '1:07', pin: 'BOTANIC', note: 'Maysa nga anges — one breath; lantern pass optional', dur: 13 }
         ]
     },
+    'mbappe-counter-attack': {
+        id: 'mbappe-counter-attack',
+        label: 'Ep 2.66 · Mbappé Counter-Attack (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'ALLEZ',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'STADE', episode: '2.66', reel: null },
+        pins: ['STADE', 'FED'],
+        exportTargets: ['Webdrama insert', 'Mbappé French deck', 'Canada French clip'],
+        pipeline: ['mbappe-france-attack'],
+        shots: [
+            { id: 'MB1', time: '0:00', pin: 'STADE', note: 'Plaza screen — Mbappé spots the counter lane', dur: 5 },
+            { id: 'MB2', time: '0:05', pin: 'STADE', note: 'Replay freeze — burst not rescue framing', dur: 4 },
+            { id: 'MB3', time: '0:09', pin: 'STADE', note: 'French: J\'attaque à ma manière — sans drame.', dur: 8 },
+            { id: 'MB4', time: '0:17', pin: 'STADE', note: 'Korean shadow · But! Allez les Bleus!', dur: 8 },
+            { id: 'MB5', time: '0:25', pin: 'FED', note: 'Sprint out — lighter walk, no performance invoice', dur: 5 }
+        ]
+    },
     'bend-it-beckham': {
         id: 'bend-it-beckham',
         label: 'Ep 2.64 · Bend It Like Beckham · Cinema Encounter (30s)',

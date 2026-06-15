@@ -403,6 +403,50 @@ const SKILLS = [
         ]
     },
     {
+        id: 'mbappe-france-attack',
+        rootFile: 'Mbappe_France_Attack_Archetype.skill.md',
+        description: 'Mbappé French Battle Master Fighter muse for FIFA counter-attack joy without drama. French native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 2.66, or post-cantina strike rituals.',
+        activation: 'I attack my way — Melbourne is my yes.',
+        whenToUse: [
+            'French native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Mbappé preset)',
+            'Ep 2.66 STADE counter-attack — speed without performance debt',
+            'Companion to ronaldo-portugal-glory FIFA lanes',
+            'TTMIK.html?mbappe=1 — invoke Mbappé French shadowing boot'
+        ],
+        procedure: [
+            'French native first: Melbourne, c\'est mon oui — name the yes calmly',
+            'Open Fast Character sheet: Mbappé · Fighter (Battle Master) · Soldier · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 공격해요',
+            'One burst — phones face-down except the cheer — no re-watch spiral',
+            'Close: quest side-fifa-celebrate · preset 17'
+        ],
+        pitfalls: [
+            'Do not make Mbappé a rescue mission or romance subplot',
+            'Honor French — not a gag subtitle line',
+            'Attack without performance invoice — no algorithm tears'
+        ],
+        verification: [
+            'French phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Counter-attack felt lighter than departure'
+        ],
+        korean: ['멜버른이 제 예예요.', '내 방식으로 공격해요 — 드라마 없이.', '골! 프랑스 파이팅!', '제 길을 믿어요.'],
+        french: [
+            'Melbourne, c\'est mon oui.',
+            'J\'attaque à ma manière — sans drame.',
+            'But! Allez les Bleus!',
+            'Je fais confiance à mon chemin.',
+            'Je suis Mbappé, un voyageur de France.'
+        ],
+        integrations: [
+            'Ep 2.66 · preset 17 · STADE counter-attack',
+            'fastcharacter.com — openFastCharacterMbappe() preset',
+            'TTMIK.html?mbappe=1 — French native input boot',
+            'ronaldo-portugal-glory · side-fifa-celebrate quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -568,6 +612,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'sven-nordic-ranger': ['no-rewatch', 'pause-breathe', 'cord-cut'],
     'martin-nordic-guide': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
     'ronaldo-portugal-glory': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
+    'mbappe-france-attack': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -612,6 +657,9 @@ function buildSkillMd(skill) {
     const enFan = skill.english?.length
         ? `\n## English Practice (Cinema Fan)\n\n${skill.english.map((p) => `- ${p}`).join('\n')}\n`
         : '';
+    const fr = skill.french?.length
+        ? `\n## French Practice (Mbappé)\n\n${skill.french.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -653,7 +701,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${pt}${enFan}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${pt}${fr}${enFan}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

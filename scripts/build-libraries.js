@@ -22,13 +22,14 @@ const LIBRARY_GROUPS = [
     { label: 'Heidi Library', group: 'heidi', source: 'heidi-data.js' },
     { label: 'Sven Library', group: 'sven', source: 'sven-data.js' },
     { label: 'Martin Library', group: 'martin', source: 'martin-data.js' },
-    { label: 'Ronaldo Library', group: 'ronaldo', source: 'ronaldo-data.js' }
+    { label: 'Ronaldo Library', group: 'ronaldo', source: 'ronaldo-data.js' },
+    { label: 'Mbappé Library', group: 'mbappe', source: 'mbappe-data.js' }
 ];
 
 function getLibraryCounts() {
     const vm = require('vm');
     const fs = require('fs');
-    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'heidi-data.js', 'sven-data.js', 'martin-data.js', 'ronaldo-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
+    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'heidi-data.js', 'sven-data.js', 'martin-data.js', 'ronaldo-data.js', 'mbappe-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
         .map((file) => fs.readFileSync(path.join(ROOT, file), 'utf8'))
         .join('\n');
     const code = `${sources}
@@ -46,7 +47,8 @@ function getLibraryCounts() {
     heidi: generateHeidiLibraryLessons(1).length,
     sven: generateSvenLibraryLessons(1).length,
     martin: generateMartinLibraryLessons(1).length,
-    ronaldo: generateRonaldoLibraryLessons(1).length
+    ronaldo: generateRonaldoLibraryLessons(1).length,
+    mbappe: generateMbappeLibraryLessons(1).length
 });`;
     const sandbox = { console };
     vm.createContext(sandbox);

@@ -98,6 +98,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const ronaldoCats = typeof RONALDO_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => RONALDO_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const mbappeCats = typeof MBAPPE_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => MBAPPE_LIBRARY_CATEGORIES.includes(c))
+        : [];
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
@@ -140,6 +143,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     } else if (ronaldoCats.length) {
         activeLibraryGroup = 'Ronaldo Library';
         activeCategory = ronaldoCats[0];
+    } else if (mbappeCats.length) {
+        activeLibraryGroup = 'Mbappé Library';
+        activeCategory = mbappeCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -163,14 +169,15 @@ function openSkillLessons(skillId) {
     const hasSven = skill.linkedGroups?.includes('sven');
     const hasMartin = skill.linkedGroups?.includes('martin');
     const hasRonaldo = skill.linkedGroups?.includes('ronaldo');
+    const hasMbappe = skill.linkedGroups?.includes('mbappe');
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMexico && !hasCanada && !hasUsa && (
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMexico || hasCanada || hasUsa) {
+    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMbappe || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -632,6 +639,41 @@ function practiceCinemaBeckham(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceMbappeAttack(opts = {}) {
+    const skillId = 'mbappe-france-attack';
+    const shadowIdx = 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(17)) {
+        setWebdramaSyncValues('STADE', '2.66', null);
+    } else {
+        setWebdramaSyncValues('STADE', '2.66', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterMbappe === 'function') {
+        openFastCharacterMbappe();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-fifa-celebrate');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceRonaldoGlory(opts = {}) {
     const skillId = 'ronaldo-portugal-glory';
     const shadowIdx = 0;
@@ -830,6 +872,7 @@ function renderBootAllPanel() {
             else if (boot.sven === '1') practiceSvenRanger({ openSheet: boot.sheet === '1' });
             else if (boot.martin === '1') practiceMartinGuide({ openSheet: boot.sheet === '1' });
             else if (boot.ronaldo === '1') practiceRonaldoGlory({ openSheet: boot.sheet === '1' });
+            else if (boot.mbappe === '1') practiceMbappeAttack({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -885,6 +928,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('ronaldo') === '1') {
         practiceRonaldoGlory({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('mbappe') === '1') {
+        practiceMbappeAttack({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('cinema') === '1' || params.get('beckham') === '1') {
@@ -1116,6 +1163,12 @@ function renderSyncPanel() {
             ja.textContent = phrase.ja;
             phraseBox.appendChild(ja);
         }
+        if (phrase.fr) {
+            const fr = document.createElement('p');
+            fr.className = 'text-sky-400/90 text-sm font-medium';
+            fr.textContent = phrase.fr;
+            phraseBox.appendChild(fr);
+        }
         if (phrase.de) {
             const de = document.createElement('p');
             de.className = 'text-yellow-400/90 text-sm font-medium';
@@ -1247,6 +1300,14 @@ function renderSyncPanel() {
     ronaldoBtn.title = 'Portuguese native input · preset 16 · Fast Character Glory Paladin sheet';
     ronaldoBtn.onclick = () => practiceRonaldoGlory();
     actions.appendChild(ronaldoBtn);
+
+    const mbappeBtn = document.createElement('button');
+    mbappeBtn.type = 'button';
+    mbappeBtn.className = 'px-5 py-3 bg-sky-900/50 text-sky-200 rounded-2xl text-sm font-medium hover:bg-sky-800/70 ring-1 ring-sky-500/30';
+    mbappeBtn.textContent = 'Mbappé attack (Ep 2.66 · FR)';
+    mbappeBtn.title = 'French native input · preset 17 · Fast Character Battle Master sheet';
+    mbappeBtn.onclick = () => practiceMbappeAttack();
+    actions.appendChild(mbappeBtn);
 
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
@@ -1485,6 +1546,7 @@ function renderSkillsGrid() {
         const isSven = skill.id === 'sven-nordic-ranger';
         const isMartin = skill.id === 'martin-nordic-guide';
         const isRonaldo = skill.id === 'ronaldo-portugal-glory';
+        const isMbappe = skill.id === 'mbappe-france-attack';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
@@ -1497,7 +1559,9 @@ function renderSkillsGrid() {
                             ? 'ring-indigo-500 hover:ring-indigo-400'
                             : isRonaldo
                                 ? 'ring-orange-500 hover:ring-orange-400'
-                                : 'ring-pink-500 hover:ring-pink-400';
+                                : isMbappe
+                                    ? 'ring-sky-500 hover:ring-sky-400'
+                                    : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
@@ -1510,7 +1574,9 @@ function renderSkillsGrid() {
                             ? 'hover:ring-indigo-500/50'
                             : isRonaldo
                                 ? 'hover:ring-orange-500/50'
-                                : 'hover:ring-pink-500/50';
+                                : isMbappe
+                                    ? 'hover:ring-sky-500/50'
+                                    : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1543,7 +1609,9 @@ function renderSkillsGrid() {
                                 ? 'inline-block mt-3 text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full'
                                 : isRonaldo
                                     ? 'inline-block mt-3 text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded-full'
-                                    : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                                    : isMbappe
+                                        ? 'inline-block mt-3 text-xs bg-sky-500/20 text-sky-300 px-2 py-1 rounded-full'
+                                        : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -1855,6 +1923,39 @@ function renderSkillDetail() {
         };
         ronaldoBlock.appendChild(sheetBtn);
         panel.appendChild(ronaldoBlock);
+    }
+
+    if (skill.id === 'mbappe-france-attack') {
+        const mbappeBlock = document.createElement('div');
+        mbappeBlock.className = 'mb-6 bg-sky-500/10 border border-sky-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-sky-300 mb-2';
+        label.textContent = 'French native input · Ep 2.66 · Fast Character';
+        mbappeBlock.appendChild(label);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.fr, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        mbappeBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50 mr-2';
+        runBtn.textContent = 'Invoke Mbappé attack (FR → KO)';
+        runBtn.onclick = () => practiceMbappeAttack();
+        mbappeBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Mbappé sheet';
+        sheetBtn.title = 'fastcharacter.com · Fighter Battle Master · Soldier · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterMbappe === 'function') openFastCharacterMbappe();
+        };
+        mbappeBlock.appendChild(sheetBtn);
+        panel.appendChild(mbappeBlock);
     }
 
     const notesLabel = document.createElement('h4');

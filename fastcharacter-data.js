@@ -65,6 +65,26 @@ const FAST_CHARACTER_MARTIN = {
     note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
 };
 
+/** Kane — English Champion Fighter muse · Three Lions striker after Brasil samba */
+const FAST_CHARACTER_KANE = {
+    id: 'kane',
+    label: 'Kane — England Striker',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Kane',
+    randomname: 'no',
+    pcname: 'Kane',
+    pcclass: 'FighterChampion',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Soldier',
+    pcgender: 'male',
+    pcalignment: 'LG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Champion · Level 5 · Lawful Good — Three Lions captain striker ally'
+};
+
 /** Vinicus — Brazilian Open Hand Monk muse · samba jogo bonito after La Boca */
 const FAST_CHARACTER_VINICUS = {
     id: 'vinicus',
@@ -152,7 +172,8 @@ const FAST_CHARACTER_PRESETS = {
     ronaldo: FAST_CHARACTER_RONALDO,
     mbappe: FAST_CHARACTER_MBAPPE,
     messi: FAST_CHARACTER_MESSI,
-    vinicus: FAST_CHARACTER_VINICUS
+    vinicus: FAST_CHARACTER_VINICUS,
+    kane: FAST_CHARACTER_KANE
 };
 
 function buildFastCharacterFormData(preset) {
@@ -220,4 +241,8 @@ function openFastCharacterMessi() {
 
 function openFastCharacterVinicus() {
     openFastCharacterSheet(FAST_CHARACTER_VINICUS);
+}
+
+function openFastCharacterKane() {
+    openFastCharacterSheet(FAST_CHARACTER_KANE);
 }

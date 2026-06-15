@@ -101,6 +101,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Vinicus Library') {
         return lessons.filter(l => l.group === 'vinicus');
     }
+    if (activeLibraryGroup === 'Kane Library') {
+        return lessons.filter(l => l.group === 'kane');
+    }
     return lessons;
 }
 
@@ -589,7 +592,10 @@ function startJourneyCategory(groupId) {
         activeLibraryGroup = 'Messi Library';
     } else if (groupId === 'vinicus') {
         activeLibraryGroup = 'Vinicus Library';
-        activeCategory = 'Argentine Shadowing';
+        activeCategory = 'Brazilian Shadowing';
+    } else if (groupId === 'kane') {
+        activeLibraryGroup = 'Kane Library';
+        activeCategory = 'English Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -695,6 +701,15 @@ function startVinicusCategory(subtitle) {
     switchTab(1);
 }
 
+function startKaneCategory(subtitle) {
+    activeLibraryGroup = 'Kane Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -776,6 +791,9 @@ function renderJourneyDashboard() {
     if (typeof VINICUS_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(VINICUS_JOURNEY_CATEGORY);
     }
+    if (typeof KANE_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(KANE_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -805,7 +823,9 @@ function renderJourneyDashboard() {
                                         ? 'hover:ring-emerald-500'
                                         : journey.id === 'vinicus'
                                             ? 'hover:ring-lime-500'
-                                            : 'hover:ring-pink-500';
+                                            : journey.id === 'kane'
+                                                ? 'hover:ring-rose-500'
+                                                : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -840,7 +860,9 @@ function renderJourneyDashboard() {
                                         ? 'text-emerald-400 text-sm font-medium'
                                         : journey.id === 'vinicus'
                                             ? 'text-lime-400 text-sm font-medium'
-                                            : 'text-pink-400 text-sm font-medium';
+                                            : journey.id === 'kane'
+                                                ? 'text-rose-400 text-sm font-medium'
+                                                : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -871,6 +893,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'messi').length} tracks`;
         } else if (journey.id === 'vinicus') {
             count.textContent = `${lessons.filter(l => l.group === 'vinicus').length} tracks`;
+        } else if (journey.id === 'kane') {
+            count.textContent = `${lessons.filter(l => l.group === 'kane').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -1154,6 +1178,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const kaneGrid = document.getElementById('kane-quick-grid');
+    if (kaneGrid && typeof KANE_COURSE_DEFS !== 'undefined') {
+        kaneGrid.textContent = '';
+        KANE_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-rose-900/30 hover:bg-rose-800/40 ring-1 ring-rose-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-rose-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-rose-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startKaneCategory(def.subtitle);
+            kaneGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1290,7 +1333,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1323,6 +1366,8 @@ window.onload = () => {
             startMessiCategory(bootParams.get('category') || 'Argentine Shadowing');
         } else if (bootParams.get('library') === 'vinicus') {
             startVinicusCategory(bootParams.get('category') || 'Brazilian Shadowing');
+        } else if (bootParams.get('library') === 'kane') {
+            startKaneCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

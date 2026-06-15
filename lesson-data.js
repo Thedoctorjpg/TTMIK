@@ -99,6 +99,12 @@ if (typeof generateVinicusLibraryLessons === 'function') {
     nextId += vinicusLessons.length;
 }
 
+if (typeof generateKaneLibraryLessons === 'function') {
+    const kaneLessons = generateKaneLibraryLessons(nextId);
+    lessons = lessons.concat(kaneLessons);
+    nextId += kaneLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -128,5 +134,7 @@ let libraryGroups = [
     'Martin Library',
     'Ronaldo Library',
     'Mbappé Library',
-    'Messi Library'
+    'Messi Library',
+    'Vinicus Library',
+    'Kane Library'
 ];

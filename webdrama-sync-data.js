@@ -272,8 +272,30 @@ const TTMIK_SYNC_PINS = {
         skillId: 'vinicus-brasil-samba',
         categories: ['Brazilian Shadowing', 'Samba Route', 'Social & Cultural'],
         questIds: ['side-fifa-celebrate', 'side-humor'],
-        formats: ['webdrama', 'vinicus-brasil-samba'],
+        formats: ['webdrama', 'vinicus-brasil-samba', 'harry-kane-england-striker'],
         character: 'Vinicus'
+    },
+    WEMBLEY: {
+        label: 'Wembley Screen',
+        place: 'Federation Three Lions burst · post Brasil · Kane striker ritual',
+        episodes: ['2.78'],
+        reels: [],
+        skillId: 'harry-kane-england-striker',
+        categories: ['English Shadowing', 'Captain Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        formats: ['webdrama', 'harry-kane-england-striker'],
+        character: 'Kane'
+    },
+    PUB: {
+        label: 'Pub Cheer',
+        place: 'Federation pub pause · England captain chant · cheer not rescue',
+        episodes: ['2.78'],
+        reels: [],
+        skillId: 'harry-kane-england-striker',
+        categories: ['Captain Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate'],
+        formats: ['webdrama', 'harry-kane-england-striker'],
+        character: 'Kane'
     },
     CANTINA: {
         label: 'Mexican Restaurant',
@@ -418,10 +440,25 @@ const TTMIK_SYNC_EPISODES = {
         questIds: ['side-fifa-celebrate', 'side-humor'],
         shadowingIndex: 0,
         duration: '30s',
-        formats: ['vinicus-brasil-samba'],
+        formats: ['vinicus-brasil-samba', 'harry-kane-england-striker'],
         character: 'Vinicus',
         languages: ['pt', 'ko', 'en'],
         event: 'Post Argentina Brasil samba jogo bonito'
+    },
+    '2.78': {
+        title: 'Harry Kane England',
+        ko: '스트라이커',
+        display: 'Ep 2.78',
+        pins: ['WEMBLEY', 'PUB', 'COLLINS'],
+        skillId: 'harry-kane-england-striker',
+        categories: ['English Shadowing', 'Captain Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['harry-kane-england-striker'],
+        character: 'Kane',
+        languages: ['en', 'ko'],
+        event: 'Post Brasil England Three Lions striker'
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -699,6 +736,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Post Argentina · Brazilian Portuguese + Korean shadow · Fast Character Open Hand Monk sheet',
         autoShadow: true
+    },
+    {
+        id: 20,
+        label: 'Wembley · Ep 2.78 · Harry Kane England',
+        shortLabel: 'KANE',
+        pin: 'WEMBLEY',
+        episode: '2.78',
+        reel: null,
+        note: 'Post Brasil · English + Korean shadow · Fast Character Champion Fighter sheet',
+        autoShadow: true
     }
 ];
 
@@ -740,6 +787,7 @@ const TTMIK_DATE_NIGHT_ROUTE = [
     { time: '19:15', pin: 'DEGRAVES', note: 'Score · eat · block ingredient-fee Venmos', sync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' } },
     { time: '19:30', pin: 'BOCA', note: 'After cook-off — Messi Argentina meet · ¡Vamos Argentina! · preset 18', presetId: 18, sync: { pin: 'BOCA', episode: '2.76', reel: null } },
     { time: '19:45', pin: 'SAMBA', note: 'After La Boca — Vinicus Brasil samba · Gol! Vai Brasil! · preset 19', presetId: 19, sync: { pin: 'SAMBA', episode: '2.77', reel: null } },
+    { time: '20:00', pin: 'WEMBLEY', note: 'After Brasil — Harry Kane England striker · Goal! Come on England! · preset 20', presetId: 20, sync: { pin: 'WEMBLEY', episode: '2.78', reel: null } },
     { time: '06:12', pin: 'DEGRAVES', note: 'Dawn croissant — girls-love Ch.2 · phones optional', presetId: 8 }
 ];
 

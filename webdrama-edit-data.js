@@ -235,6 +235,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'harry-kane-england-striker': {
+        id: 'harry-kane-england-striker',
+        label: 'Ep 2.78 · Harry Kane England · Three Lions Striker (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'LIONS',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'WEMBLEY', episode: '2.78', reel: null },
+        pins: ['WEMBLEY', 'PUB', 'COLLINS'],
+        exportTargets: ['Webdrama insert', 'Kane English deck', 'FIFA England clip'],
+        pipeline: ['harry-kane-england-striker'],
+        shots: [
+            { id: 'HK1', time: '0:00', pin: 'WEMBLEY', note: 'Federation screen — England highlight after Brasil samba', dur: 5 },
+            { id: 'HK2', time: '0:05', pin: 'WEMBLEY', note: 'Three Lions burst — captain striker not rescue framing', dur: 4 },
+            { id: 'HK3', time: '0:09', pin: 'WEMBLEY', note: 'English: I strike my way — no drama.', dur: 8 },
+            { id: 'HK4', time: '0:17', pin: 'WEMBLEY', note: 'Korean shadow · Goal! Come on England!', dur: 8 },
+            { id: 'HK5', time: '0:25', pin: 'PUB', note: 'Pub pause — lighter walk, no performance invoice', dur: 5 }
+        ]
+    },
     'vinicus-brasil-samba': {
         id: 'vinicus-brasil-samba',
         label: 'Ep 2.77 · Vinicus Brasil · Samba Jogo Bonito (30s)',

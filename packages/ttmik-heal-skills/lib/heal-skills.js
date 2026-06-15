@@ -537,6 +537,51 @@ const SKILLS = [
         ]
     },
     {
+        id: 'harry-kane-england-striker',
+        rootFile: 'Harry_Kane_England_Striker_Archetype.skill.md',
+        description: 'Harry Kane English Champion Fighter muse for post-Brasil Three Lions striker joy without drama. English native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 2.78, or FIFA England handoff rituals.',
+        activation: 'I strike my way — Melbourne is my yes.',
+        whenToUse: [
+            'English native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Kane preset)',
+            'Ep 2.78 after Brasil samba — captain striker joy without performance debt',
+            'Companion to Ep 2.77 Vinicus Brasil and Bend It Like Beckham cinema lane',
+            'TTMIK.html?kane=1 — invoke Kane English shadowing boot'
+        ],
+        procedure: [
+            'English native first: Melbourne is my yes — name the yes calmly',
+            'Open Fast Character sheet: Kane · Fighter (Champion) · Soldier · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 득점해요',
+            'One pass — phone face-down except the cheer — no re-watch spiral',
+            'Close: quest side-fifa-celebrate · preset 20'
+        ],
+        pitfalls: [
+            'Do not make Kane a rescue mission or romance subplot',
+            'Honor English captain voice — not a gag subtitle line',
+            'Strike without performance invoice — no algorithm tears'
+        ],
+        verification: [
+            'English phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter finish than samba rhythm — England lane felt'
+        ],
+        korean: ['멜버른이 제 예예요.', '내 방식으로 득점해요 — 드라마 없이.', '골! 잉글랜드 파이팅!', '제 길을 믿어요.'],
+        englishStriker: [
+            'Melbourne is my yes.',
+            'I strike my way — no drama.',
+            'Goal! Come on England!',
+            'I trust my path.',
+            'I am Kane, a striker from England.'
+        ],
+        integrations: [
+            'Ep 2.77 · vinicus-brasil-samba · SAMBA Brasil handoff',
+            'Ep 2.78 · preset 20 · WEMBLEY England lane',
+            'fastcharacter.com — openFastCharacterKane() preset',
+            'TTMIK.html?kane=1 — English native input boot',
+            'bend-it-beckham · ronaldo-portugal-glory · side-fifa-celebrate quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -705,6 +750,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'mbappe-france-attack': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'messi-argentina-playmaker': ['humor-release', 'pause-breathe', 'no-rewatch'],
     'vinicus-brasil-samba': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
+    'harry-kane-england-striker': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -758,6 +804,9 @@ function buildSkillMd(skill) {
     const br = skill.brazilian?.length
         ? `\n## Brazilian Portuguese Practice (Vinicus · Brasil)\n\n${skill.brazilian.map((p) => `- ${p}`).join('\n')}\n`
         : '';
+    const enKane = skill.englishStriker?.length
+        ? `\n## English Practice (Harry Kane · England)\n\n${skill.englishStriker.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -799,7 +848,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${pt}${fr}${es}${br}${enFan}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${pt}${fr}${es}${br}${enKane}${enFan}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

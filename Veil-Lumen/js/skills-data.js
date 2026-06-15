@@ -76,6 +76,8 @@ export const HERMES_PRELOAD_SKILL_IDS = [
   "ronaldo-portugal-glory",
   "mbappe-france-attack",
   "messi-argentina-playmaker",
+  "vinicus-brasil-samba",
+  "harry-kane-england-striker",
   "rach3l",
   "ignan-pilgrim",
   "ignan-grounding",

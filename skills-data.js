@@ -545,6 +545,45 @@ const SKILLS = [
         ]
     },
     {
+        id: 'harry-kane-england-striker',
+        name: 'Kane — England Striker',
+        icon: '\u{1F981}',
+        tagline: 'English Three Lions after Brasil samba',
+        role: 'Fast Character Champion Fighter ally — English native before Korean shadow',
+        source: 'Harry_Kane_England_Striker_Archetype.skill.md',
+        activationPhrases: [
+            'Kane strikes our way — Melbourne is my yes',
+            'I strike my way — no drama'
+        ],
+        capabilities: [
+            'Generate Kane D&D sheet via Fast Character preset',
+            'English native input + Korean TTMIK shadowing drills',
+            'Post Brasil companion to Ep 2.77 Vinicus samba lane',
+            'Three Lions FIFA rituals — no drama · no soulmate CTAs'
+        ],
+        creativePrompts: [
+            'Create Kane Fast Character sheet — Fighter Champion · Soldier · Level 5',
+            'Skit: English captain chant before Korean shadow after SAMBA screen',
+            'England striker ritual for Ep 2.78 FIFA lane'
+        ],
+        linkedGroups: ['kane', 'usa', 'ronaldo', 'melbourne'],
+        linkedCategories: ['English Shadowing', 'Captain Route', 'Striker Drills', 'Daily Life', 'Social & Cultural'],
+        shadowingPhrases: [
+            { en: 'Melbourne is my yes.', ko: '멜버른이 제 예예요.', gloss: 'Melbourne is my yes.' },
+            { en: 'I strike my way — no drama.', ko: '내 방식으로 득점해요 — 드라마 없이.', gloss: 'I strike my way — no drama.' },
+            { en: 'Goal! Come on England!', ko: '골! 잉글랜드 파이팅!', gloss: 'Goal! Come on England!' },
+            { en: 'I trust my path.', ko: '제 길을 믿어요.', gloss: 'I trust my path.' },
+            { en: 'I am Kane, a striker from England.', ko: '저는 잉글랜드에서 온 스트라이커 케인이에요.', gloss: 'I am Kane, a striker from England.' }
+        ],
+        ritualSteps: [
+            'After Brasil samba — Wembley screen at WEMBLEY · phones face-down except cheer',
+            'Open Fast Character — Kane · Fighter Champion · Soldier',
+            'English native first: Melbourne is my yes',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 득점해요',
+            'One pass — no re-watch spiral · preset 20'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

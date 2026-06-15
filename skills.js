@@ -715,6 +715,37 @@ function practiceVinicusSamba(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceHarryKaneStriker(opts = {}) {
+    const skillId = 'harry-kane-england-striker';
+    const shadowIdx = 0;
+
+    setWebdramaSyncValues('WEMBLEY', '2.78', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterKane === 'function') {
+        openFastCharacterKane();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-fifa-celebrate');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceMbappeAttack(opts = {}) {
     const skillId = 'mbappe-france-attack';
     const shadowIdx = 0;
@@ -973,6 +1004,7 @@ function renderBootAllPanel() {
             else if (boot.mbappe === '1') practiceMbappeAttack({ openSheet: boot.sheet === '1' });
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
+            else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -1040,6 +1072,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('vinicus') === '1') {
         practiceVinicusSamba({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('kane') === '1') {
+        practiceHarryKaneStriker({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('cinema') === '1' || params.get('beckham') === '1') {
@@ -1433,6 +1469,14 @@ function renderSyncPanel() {
     vinicusBtn.onclick = () => practiceVinicusSamba();
     actions.appendChild(vinicusBtn);
 
+    const kaneBtn = document.createElement('button');
+    kaneBtn.type = 'button';
+    kaneBtn.className = 'px-5 py-3 bg-rose-900/50 text-rose-200 rounded-2xl text-sm font-medium hover:bg-rose-800/70 ring-1 ring-rose-500/30';
+    kaneBtn.textContent = 'Kane striker (Ep 2.78 · EN)';
+    kaneBtn.title = 'After Brasil samba · English captain · preset 20 · Fast Character Champion Fighter sheet';
+    kaneBtn.onclick = () => practiceHarryKaneStriker();
+    actions.appendChild(kaneBtn);
+
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
     cinemaBtn.className = 'px-5 py-3 bg-blue-900/50 text-blue-200 rounded-2xl text-sm font-medium hover:bg-blue-800/70 ring-1 ring-blue-500/30';
@@ -1673,6 +1717,7 @@ function renderSkillsGrid() {
         const isMbappe = skill.id === 'mbappe-france-attack';
         const isMessi = skill.id === 'messi-argentina-playmaker';
         const isVinicus = skill.id === 'vinicus-brasil-samba';
+        const isKane = skill.id === 'harry-kane-england-striker';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
@@ -1691,7 +1736,9 @@ function renderSkillsGrid() {
                                         ? 'ring-emerald-500 hover:ring-emerald-400'
                                         : isVinicus
                                             ? 'ring-lime-500 hover:ring-lime-400'
-                                            : 'ring-pink-500 hover:ring-pink-400';
+                                            : isKane
+                                                ? 'ring-rose-500 hover:ring-rose-400'
+                                                : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
@@ -1710,7 +1757,9 @@ function renderSkillsGrid() {
                                         ? 'hover:ring-emerald-500/50'
                                         : isVinicus
                                             ? 'hover:ring-lime-500/50'
-                                            : 'hover:ring-pink-500/50';
+                                            : isKane
+                                                ? 'hover:ring-rose-500/50'
+                                                : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1749,7 +1798,9 @@ function renderSkillsGrid() {
                                             ? 'inline-block mt-3 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full'
                                             : isVinicus
                                                 ? 'inline-block mt-3 text-xs bg-lime-500/20 text-lime-300 px-2 py-1 rounded-full'
-                                                : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                                                : isKane
+                                                    ? 'inline-block mt-3 text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full'
+                                                    : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -2168,6 +2219,43 @@ function renderSkillDetail() {
         };
         vinicusBlock.appendChild(sheetBtn);
         panel.appendChild(vinicusBlock);
+    }
+
+    if (skill.id === 'harry-kane-england-striker') {
+        const kaneBlock = document.createElement('div');
+        kaneBlock.className = 'mb-6 bg-rose-500/10 border border-rose-500/20 rounded-2xl p-4';
+        const kaneLabel = document.createElement('h4');
+        kaneLabel.className = 'text-xs uppercase tracking-widest text-rose-300 mb-2';
+        kaneLabel.textContent = 'Three Lions striker · Harry Kane · England';
+        kaneBlock.appendChild(kaneLabel);
+        const note = document.createElement('p');
+        note.className = 'text-sm text-zinc-400 mb-3';
+        note.textContent = 'After Brasil samba → Wembley screen → pub pause. Captain cheer not a date invoice.';
+        kaneBlock.appendChild(note);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.en, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        kaneBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-rose-600/30 text-rose-200 hover:bg-rose-600/50 mr-2';
+        runBtn.textContent = 'Invoke Kane striker (EN → KO)';
+        runBtn.onclick = () => practiceHarryKaneStriker();
+        kaneBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Kane sheet';
+        sheetBtn.title = 'fastcharacter.com · Fighter Champion · Soldier · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterKane === 'function') openFastCharacterKane();
+        };
+        kaneBlock.appendChild(sheetBtn);
+        panel.appendChild(kaneBlock);
     }
 
     const notesLabel = document.createElement('h4');

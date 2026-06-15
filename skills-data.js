@@ -591,6 +591,46 @@ const SKILLS = [
         }
     },
     {
+        id: 'neon-evangelion',
+        name: 'Neon — Evangelion Observer',
+        icon: '\u{1F4A0}',
+        tagline: 'Japanese neon boundary for Moon-card discernment',
+        role: 'Fast Character Hermit ally — Japanese native before Korean shadow',
+        source: 'Neon_Evangelion_Archetype.skill.md',
+        activationPhrases: [
+            'Neon observes without absorbing — confusion is a passage',
+            '観測するだけ。吸収しない。'
+        ],
+        capabilities: [
+            'Generate Neon D&D sheet via Fast Character preset',
+            'Japanese native input + Korean TTMIK shadowing drills',
+            'Moon-card neon companion to rach3l and Sven ranger',
+            'Veil Lumen neon outfit install — installNeonEvangelionLook()'
+        ],
+        creativePrompts: [
+            'Create Neon Fast Character sheet — Monk Way of Mercy · Hermit · Level 5',
+            'Skit: Japanese observe line before Korean shadow at SOUTH neon',
+            'NERV neon ritual for Ep 7.1 Moon-card lane'
+        ],
+        linkedGroups: ['evangelion', 'asuka', 'melbourne', 'sovereign'],
+        linkedCategories: ['Japanese Shadowing', 'NERV Neon Route', 'Moon Card Drills', 'Tech & Connectivity', 'Emergency Protocol'],
+        shadowingPhrases: [
+            { ja: '混乱は通過点です。', ko: '혼란은 지나가는 곳이에요.', en: 'Confusion is a passage point.' },
+            { ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요.', en: 'Observe only. Do not absorb.' },
+            { ja: 'ネオンは私の境界線。', ko: '네온은 제 경계선이에요.', en: 'Neon is my boundary.' },
+            { ja: '自分の道を信じます。', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { ja: '私はネオン、旅の観測者です。', ko: '저는 네온, 여정의 관측자예요.', en: 'I am Neon, an observer on the pilgrimage.' }
+        ],
+        ritualSteps: [
+            'SOUTH neon railing — phone face-down · GoPro off',
+            'installNeonEvangelionLook() — Veil outfit neon · background nerv',
+            'Open Fast Character — Neon · Monk Way of Mercy · Hermit',
+            'Japanese native first: 混乱は通過点です',
+            'Korean shadow: 혼란은 지나가는 곳이에요 · 관찰만 하고 흡수하지 않을게요',
+            'One pass — no scroll spiral · preset 21'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

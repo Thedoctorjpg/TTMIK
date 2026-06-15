@@ -66,6 +66,22 @@ const FAST_CHARACTER_MARTIN = {
 };
 
 /** Kane — English Champion Fighter muse · Three Lions striker after Brasil samba */
+const FAST_CHARACTER_NEON = {
+    id: 'neon',
+    label: 'Neon — Evangelion Observer',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Neon',
+    randomname: 'no',
+    pcname: 'Neon',
+    pcclass: 'MonkWayOfMercy',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Hermit',
+    pcgender: 'female',
+    pcalignment: 'LN',
+    note: 'Way of Mercy · Level 5 · Moon-card neon ally'
+};
+
 const FAST_CHARACTER_KANE = {
     id: 'kane',
     label: 'Kane — England Striker',
@@ -173,7 +189,8 @@ const FAST_CHARACTER_PRESETS = {
     mbappe: FAST_CHARACTER_MBAPPE,
     messi: FAST_CHARACTER_MESSI,
     vinicus: FAST_CHARACTER_VINICUS,
-    kane: FAST_CHARACTER_KANE
+    kane: FAST_CHARACTER_KANE,
+    neon: FAST_CHARACTER_NEON
 };
 
 function buildFastCharacterFormData(preset) {
@@ -245,4 +262,8 @@ function openFastCharacterVinicus() {
 
 function openFastCharacterKane() {
     openFastCharacterSheet(FAST_CHARACTER_KANE);
+}
+
+function openFastCharacterNeon() {
+    openFastCharacterSheet(FAST_CHARACTER_NEON);
 }

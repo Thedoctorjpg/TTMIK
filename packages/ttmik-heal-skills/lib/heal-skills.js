@@ -587,6 +587,54 @@ const SKILLS = [
         ]
     },
     {
+        id: 'neon-evangelion',
+        rootFile: 'Neon_Evangelion_Archetype.skill.md',
+        description: 'Neon Evangelion Japanese Moon-card muse for sovereign discernment without absorption. Japanese native input + Korean TTMIK shadowing. Use with Fast Character sheet, Ep 7.1 NERV neon lane, or Veil Lumen neon outfit install.',
+        activation: 'I observe without absorbing — neon is my boundary.',
+        whenToUse: [
+            'Japanese native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Neon preset)',
+            'Ep 7.1 Moon-card neon insert — SOUTH night · NERV pause',
+            'Companion to Sven ranger and rach3l observe-but-do-not-absorb',
+            'TTMIK.html?neon=1 — invoke Neon Evangelion shadowing boot',
+            'TTMIK.html?evangelion=1 — alias boot'
+        ],
+        procedure: [
+            'Phone face-down · GoPro off · one breath at SOUTH neon railing',
+            'Japanese native first: 混乱は通過点です — confusion is a passage',
+            'Open Fast Character sheet: Neon · Monk (Way of Mercy) · Hermit · Level 5',
+            'Korean shadow: 혼란은 지나가는 곳이에요 · 관찰만 하고 흡수하지 않을게요',
+            'installNeonEvangelionLook() — Veil outfit neon · background nerv',
+            'One pass — no scroll spiral · preset 21'
+        ],
+        pitfalls: [
+            'Do not make Neon a rescue mission or romance subplot',
+            'Honor Japanese voice — not a gag subtitle line',
+            'Observe without absorbing — no algorithm tears for content'
+        ],
+        verification: [
+            'Japanese phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Neon look installed in Veil Lumen (optional)',
+            'Lighter finish than the scroll temptation'
+        ],
+        korean: ['혼란은 지나가는 곳이에요.', '관찰만 하고 흡수하지 않을게요.', '네온은 제 경계선이에요.', '제 길을 믿어요.'],
+        japanese: [
+            '混乱は通過点です。',
+            '観測するだけ。吸収しない。',
+            'ネオンは私の境界線。',
+            '自分の道を信じます。',
+            '私はネオン、旅の観測者です。'
+        ],
+        integrations: [
+            'Ep 7 · rach3l · sven-nordic-ranger · Moon card',
+            'Ep 7.1 · preset 21 · NERV neon lane',
+            'fastcharacter.com — openFastCharacterNeon() preset',
+            'TTMIK.html?neon=1 — Japanese native input boot',
+            'Veil-Lumen — scene-looks neon + nerv background'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -756,6 +804,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'messi-argentina-playmaker': ['humor-release', 'pause-breathe', 'no-rewatch'],
     'vinicus-brasil-samba': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
     'harry-kane-england-striker': ['match-attune', 'fifa-celebrate', 'pause-breathe', 'no-rewatch'],
+    'neon-evangelion': ['pause-breathe', 'no-rewatch', 'cord-cut'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],

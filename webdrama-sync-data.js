@@ -84,6 +84,7 @@ const BARDIC_INSPIRATION = {
         ],
         lanes: {
             kane: { boot: 'kane=1', label: 'Kane England · WEMBLEY' },
+            neon: { boot: 'neon=1', label: 'Neon Evangelion · NERV' },
             vinicus: { boot: 'vinicus=1', label: 'Vinicus Brasil · SAMBA' },
             messi: { boot: 'messi=1', label: 'Messi Argentina · BOCA' },
             mbappe: { boot: 'mbappe=1', label: 'Mbappé France · STADE' },
@@ -218,13 +219,24 @@ const TTMIK_SYNC_PINS = {
     },
     SOUTH: {
         label: 'Southbank Promenade',
-        place: 'Yarra railing · night neon',
-        episodes: [4, 7],
+        place: 'Yarra railing · night neon · Moon-card observe lane',
+        episodes: [4, 7, '7.1'],
         reels: [],
-        skillId: 'helen-neighbor',
-        categories: ['Emergency Protocol'],
+        skillId: 'neon-evangelion',
+        categories: ['Emergency Protocol', 'Tech & Connectivity'],
         questIds: ['side-boundary', 'side-humor'],
-        formats: ['webdrama', 'veil-lumen', 'helen-clip-20']
+        formats: ['webdrama', 'veil-lumen', 'helen-clip-20', 'neon-evangelion-moon']
+    },
+    NERV: {
+        label: 'NERV Command Pause',
+        place: 'Southbank neon command aesthetic · observe without absorbing',
+        episodes: ['7.1'],
+        reels: [],
+        skillId: 'neon-evangelion',
+        categories: ['Japanese Shadowing', 'NERV Neon Route', 'Tech & Connectivity'],
+        questIds: ['side-humor', 'side-boundary'],
+        formats: ['webdrama', 'neon-evangelion-moon'],
+        character: 'Neon'
     },
     COLLINS: {
         label: 'Collins Street',
@@ -489,6 +501,21 @@ const TTMIK_SYNC_EPISODES = {
         event: 'Post Brasil England Three Lions striker',
         watchUrl: 'https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw',
         watchId: 'KpcWpp8Yj0WimV_mwGsZgw'
+    },
+    '7.1': {
+        title: 'Neon Evangelion',
+        ko: '네온',
+        display: 'Ep 7.1',
+        pins: ['NERV', 'SOUTH', 'FLINDERS'],
+        skillId: 'neon-evangelion',
+        categories: ['Japanese Shadowing', 'NERV Neon Route', 'Tech & Connectivity'],
+        questIds: ['side-humor', 'side-boundary'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['neon-evangelion-moon'],
+        character: 'Neon',
+        languages: ['ja', 'ko', 'en'],
+        event: 'Moon-card neon observe lane'
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -775,6 +802,16 @@ const TTMIK_SYNC_PRESETS = [
         episode: '2.78',
         reel: null,
         note: 'Post Brasil · English + Korean shadow · Fast Character Champion Fighter sheet',
+        autoShadow: true
+    },
+    {
+        id: 21,
+        label: 'NERV · Ep 7.1 · Neon Evangelion',
+        shortLabel: 'NEON',
+        pin: 'NERV',
+        episode: '7.1',
+        reel: null,
+        note: 'Moon-card neon · Japanese + Korean shadow · installNeonEvangelionLook() · Fast Character Monk sheet',
         autoShadow: true
     }
 ];

@@ -441,6 +441,8 @@ function bootSkillById(skillId, opts = {}) {
             startIgnanCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Asuka Library' && entry.libraryCategory) {
             startAsukaCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Evangelion Library' && entry.libraryCategory) {
+            startEvangelionCategory(entry.libraryCategory);
         } else {
             openSkillLessons(skillId);
         }
@@ -768,6 +770,41 @@ function practiceVinicusSamba(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceNeonEvangelion(opts = {}) {
+    const skillId = 'neon-evangelion';
+    const shadowIdx = 0;
+
+    setWebdramaSyncValues('NERV', '7.1', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.installLook !== false && typeof installNeonEvangelionLook === 'function') {
+        installNeonEvangelionLook();
+    }
+
+    if (opts.openSheet && typeof openFastCharacterNeon === 'function') {
+        openFastCharacterNeon();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceHarryKaneStriker(opts = {}) {
     const skillId = 'harry-kane-england-striker';
     const shadowIdx = 0;
@@ -1062,6 +1099,7 @@ function renderBootAllPanel() {
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
             else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1', openWatch: boot.watch === '1' });
+            else if (boot.neon === '1' || boot.evangelion === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -1165,6 +1203,10 @@ function handleTtmikSyncBoot() {
             openSheet: params.get('sheet') === '1',
             openWatch: params.get('watch') === '1'
         });
+        return;
+    }
+    if (params.get('neon') === '1' || params.get('evangelion') === '1') {
+        practiceNeonEvangelion({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('cinema') === '1' || params.get('beckham') === '1') {
@@ -1565,6 +1607,14 @@ function renderSyncPanel() {
     kaneBtn.title = 'After Brasil samba · English captain · preset 20 · Fast Character Champion Fighter sheet';
     kaneBtn.onclick = () => practiceHarryKaneStriker();
     actions.appendChild(kaneBtn);
+
+    const neonBtn = document.createElement('button');
+    neonBtn.type = 'button';
+    neonBtn.className = 'px-5 py-3 bg-violet-900/50 text-violet-200 rounded-2xl text-sm font-medium hover:bg-violet-800/70 ring-1 ring-violet-500/30';
+    neonBtn.textContent = 'Neon Evangelion (Ep 7.1 · JA)';
+    neonBtn.title = 'Moon-card neon · Japanese native · preset 21 · install neon look';
+    neonBtn.onclick = () => practiceNeonEvangelion();
+    actions.appendChild(neonBtn);
 
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
@@ -2409,6 +2459,52 @@ function renderSkillDetail() {
         };
         kaneBlock.appendChild(watchBtn);
         panel.appendChild(kaneBlock);
+    }
+
+    if (skill.id === 'neon-evangelion') {
+        const neonBlock = document.createElement('div');
+        neonBlock.className = 'mb-6 bg-violet-500/10 border border-violet-500/20 rounded-2xl p-4';
+        const neonLabel = document.createElement('h4');
+        neonLabel.className = 'text-xs uppercase tracking-widest text-violet-300 mb-2';
+        neonLabel.textContent = 'Neon Evangelion · Ep 7.1 · Moon-card observe';
+        neonBlock.appendChild(neonLabel);
+        const note = document.createElement('p');
+        note.className = 'text-sm text-zinc-400 mb-3';
+        note.textContent = 'NERV pause → SOUTH neon railing → observe without absorbing. Installs Veil neon + NERV background.';
+        neonBlock.appendChild(note);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.ja, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        neonBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50 mr-2';
+        runBtn.textContent = 'Invoke Neon Evangelion (JA → KO)';
+        runBtn.onclick = () => practiceNeonEvangelion();
+        neonBlock.appendChild(runBtn);
+        const lookBtn = document.createElement('button');
+        lookBtn.type = 'button';
+        lookBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-900/40 text-violet-100 hover:bg-violet-800/50 mr-2';
+        lookBtn.textContent = 'Install neon look';
+        lookBtn.title = 'Veil Lumen · outfit neon · background nerv';
+        lookBtn.onclick = () => {
+            if (typeof installNeonEvangelionLook === 'function') installNeonEvangelionLook();
+        };
+        neonBlock.appendChild(lookBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Neon sheet';
+        sheetBtn.title = 'fastcharacter.com · Monk Way of Mercy · Hermit · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterNeon === 'function') openFastCharacterNeon();
+        };
+        neonBlock.appendChild(sheetBtn);
+        panel.appendChild(neonBlock);
     }
 
     const notesLabel = document.createElement('h4');

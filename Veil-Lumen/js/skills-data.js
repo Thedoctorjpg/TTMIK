@@ -78,6 +78,7 @@ export const HERMES_PRELOAD_SKILL_IDS = [
   "messi-argentina-playmaker",
   "vinicus-brasil-samba",
   "harry-kane-england-striker",
+  "neon-evangelion",
   "rach3l",
   "ignan-pilgrim",
   "ignan-grounding",

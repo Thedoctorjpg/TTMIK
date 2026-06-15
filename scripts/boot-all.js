@@ -25,6 +25,7 @@ const SKILL_MD_FILES = [
     'Messi_Argentina_Playmaker_Archetype.skill.md',
     'Vinicus_Brasil_Samba_Archetype.skill.md',
     'Harry_Kane_England_Striker_Archetype.skill.md',
+    'Neon_Evangelion_Archetype.skill.md',
     'rach3l.skill.md',
     'Ignan_Pilgrim.skill.md',
     'Ignan_Grounding.skill.md',
@@ -47,12 +48,13 @@ const LIBRARY_BOOTS = [
     'library=messi',
     'library=vinicus',
     'library=kane',
+    'library=evangelion',
     'library=melbourne-skills',
     'library=sovereign-skills',
     'boot=all'
 ];
 
-const LANE_BOOTS = ['heal=1', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'martin=1', 'martin=1&sheet=1', 'ronaldo=1', 'ronaldo=1&sheet=1', 'mbappe=1', 'mbappe=1&sheet=1', 'messi=1', 'messi=1&sheet=1', 'vinicus=1', 'vinicus=1&sheet=1', 'kane=1', 'kane=1&sheet=1', 'kane=1&watch=1', 'attune=1', 'attune=1&lane=kane', 'attune=1&lane=kane&watch=1', 'kane=1&attune=1&watch=1', 'cinema=1', 'beckham=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7', 'before-match=1'];
+const LANE_BOOTS = ['heal=1', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'martin=1', 'martin=1&sheet=1', 'ronaldo=1', 'ronaldo=1&sheet=1', 'mbappe=1', 'mbappe=1&sheet=1', 'messi=1', 'messi=1&sheet=1', 'vinicus=1', 'vinicus=1&sheet=1', 'kane=1', 'kane=1&sheet=1', 'kane=1&watch=1', 'neon=1', 'neon=1&sheet=1', 'evangelion=1', 'attune=1', 'attune=1&lane=kane', 'attune=1&lane=kane&watch=1', 'kane=1&attune=1&watch=1', 'cinema=1', 'beckham=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7', 'before-match=1'];
 
 console.log('TTMIK boot-all\n');
 

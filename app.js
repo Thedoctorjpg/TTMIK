@@ -710,6 +710,15 @@ function startKaneCategory(subtitle) {
     switchTab(1);
 }
 
+function startEvangelionCategory(subtitle) {
+    activeLibraryGroup = 'Evangelion Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -794,6 +803,9 @@ function renderJourneyDashboard() {
     if (typeof KANE_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(KANE_JOURNEY_CATEGORY);
     }
+    if (typeof EVANGELION_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(EVANGELION_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -825,7 +837,9 @@ function renderJourneyDashboard() {
                                             ? 'hover:ring-lime-500'
                                             : journey.id === 'kane'
                                                 ? 'hover:ring-rose-500'
-                                                : 'hover:ring-pink-500';
+                                                : journey.id === 'evangelion'
+                                                    ? 'hover:ring-violet-500'
+                                                    : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -1197,6 +1211,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const evangelionGrid = document.getElementById('evangelion-quick-grid');
+    if (evangelionGrid && typeof EVANGELION_COURSE_DEFS !== 'undefined') {
+        evangelionGrid.textContent = '';
+        EVANGELION_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-violet-900/30 hover:bg-violet-800/40 ring-1 ring-violet-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-violet-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-violet-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startEvangelionCategory(def.subtitle);
+            evangelionGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1333,7 +1366,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('evangelion') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1368,6 +1401,8 @@ window.onload = () => {
             startVinicusCategory(bootParams.get('category') || 'Brazilian Shadowing');
         } else if (bootParams.get('library') === 'kane') {
             startKaneCategory(bootParams.get('category') || 'English Shadowing');
+        } else if (bootParams.get('library') === 'evangelion') {
+            startEvangelionCategory(bootParams.get('category') || 'Japanese Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

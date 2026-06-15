@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+/**
+ * Validate TTMIK app sources and npm workspace packages.
+ */
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+const ROOT = path.join(__dirname, '..');
+
+const JS_FILES = [
+    'app.js',
+    'utils.js',
+    'storage.js',
+    'social.js',
+    'skills.js',
+    'skills-data.js',
+    'lesson-data.js',
+    'sovereign-data.js',
+    'api/ttmik-webhook.js',
+    'scripts/heal-skills.js',
+    'packages/ttmik-webhook/index.js',
+    'packages/ttmik-heal-skills/lib/heal-skills.js',
+    'packages/ttmik-heal-skills/bin/cli.js'
+];
+
+const HTML_SCRIPTS = [
+    'utils.js',
+    'lesson-data.js',
+    'sovereign-data.js',
+    'storage.js',
+    'social.js',
+    'skills-data.js',
+    'skills.js',
+    'app.js'
+];
+
+function checkJsSyntax(relPath) {
+    const abs = path.join(ROOT, relPath);
+    if (!fs.existsSync(abs)) {
+        throw new Error(`Missing file: ${relPath}`);
+    }
+    execSync(`node --check "${abs}"`, { stdio: 'pipe' });
+    console.log(`  ok  ${relPath}`);
+}
+
+function checkHtml() {
+    const htmlPath = path.join(ROOT, 'TTMIK.html');
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    for (const script of HTML_SCRIPTS) {
+        if (!html.includes(script)) {
+            throw new Error(`TTMIK.html missing script reference: ${script}`);
+        }
+    }
+    console.log('  ok  TTMIK.html script references');
+}
+
+function checkPackages() {
+    execSync('npm pack --workspace ttmik-webhook --dry-run', {
+        cwd: ROOT,
+        stdio: 'pipe'
+    });
+    console.log('  ok  ttmik-webhook pack');
+
+    execSync('npm pack --workspace ttmik-heal-skills --dry-run', {
+        cwd: ROOT,
+        stdio: 'pipe'
+    });
+    console.log('  ok  ttmik-heal-skills pack');
+}
+
+console.log('TTMIK build — syntax and package checks\n');
+
+console.log('JavaScript:');
+JS_FILES.forEach(checkJsSyntax);
+
+console.log('\nHTML:');
+checkHtml();
+
+console.log('\nPackages:');
+checkPackages();
+
+console.log('\nBuild passed.');

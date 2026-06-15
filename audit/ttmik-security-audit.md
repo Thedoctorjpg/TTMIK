@@ -1,11 +1,11 @@
 # Security Audit: TTMIK Audio Lab (Re-audit)
 
 **Repository:** https://github.com/Thedoctorjpg/TTMIK  
-**Commit:** `39cb3d9` — *Add Skills tab and heal archetype skills for Hermes*  
-**Prior audit:** `9a9dad9` (2026-06-16 deep pass) · remediated in `089a60a`  
-**Auditor:** Hermes CLI + static code review (Grok Build)  
+**Commit:** `82b5c0f` — *Heal Healing Factors Library from source files*  
+**Prior audit:** `39cb3d9` (2026-06-16) · supply-chain re-run below  
+**Auditor:** Hermes CLI (`security audit`, `doctor`) + `node scripts/boot-all.js`  
 **Date:** 2026-06-16  
-**Scope:** Full client app (`TTMIK.html`, `app.js`, `utils.js`, `storage.js`, `social.js`, `skills.js`, `skills-data.js`, `lesson-data.js`, `sovereign-data.js`), serverless webhook (`api/ttmik-webhook.js`), dev tooling (`scripts/heal-skills.js`)
+**Scope:** Full client app + specialty libraries (`healing-library-data.js`, `fifa-nations-data.js`, `ignan-data.js`, `asuka-data.js`, `skill-library-data.js`), serverless webhook (`api/ttmik-webhook.js`), Hermes tooling (`scripts/heal-skills.js`, `scripts/heal-library.js`, `scripts/boot-all.js`, `packages/ttmik-heal-skills/`)
 
 ---
 
@@ -27,25 +27,43 @@ The `089a60a` hardening pass resolved all prior **high** and most **medium** fin
 
 ---
 
-## Hermes CLI Results (supply chain)
+## Hermes CLI Results (2026-06-16 re-run)
 
 ```bash
 hermes security audit --json
+hermes doctor
+node scripts/boot-all.js
 ```
+
+### Supply chain (`hermes security audit --json`)
 
 | Metric | Result |
 | ------ | ------ |
-| Components scanned | 64 (Hermes venv only) |
-| Findings | 6 (PyJWT 2.12.1 ×5, pip 26.1.1 ×1) |
-| TTMIK app lockfile deps | **None** |
+| Components scanned | 64 (Hermes venv) |
+| Findings | **0** |
+| TTMIK app lockfile deps | **None** (root); `packages/ttmik-*` workspaces validated via `npm pack --dry-run` in `scripts/build.js` |
 
-TTMIK ships no `package.json`, `requirements.txt`, or lockfile. Supply-chain findings apply to the **Hermes Agent installation**, not application runtime.
+TTMIK browser runtime has no npm lockfile at repo root. Prior PyJWT/pip advisories are **cleared** in the current Hermes install.
 
-| Severity | Package | Advisory | Fix |
-| -------- | ------- | -------- | --- |
-| LOW | PyJWT 2.12.1 | GHSA-fhv5-28vv-h8m8 | ≥ 2.13.0 |
-| UNKNOWN | pip 26.1.1 | PYSEC-2026-196 | ≥ 26.1.2 |
-| UNKNOWN | PyJWT 2.12.1 | PYSEC-2026-175–179 | ≥ 2.13.0 |
+### Environment (`hermes doctor`)
+
+| Check | Status |
+| ----- | ------ |
+| `~/.hermes/.env` | ✓ exists |
+| `~/.hermes/config.yaml` | ✓ v24 |
+| `~/.hermes/skills/` | ✓ includes `creative/` (10 healed archetypes) |
+| xAI OAuth | ✓ logged in |
+| Security advisories | ✓ none active |
+| Optional tools (browser, web search, discord) | ⚠ not configured — expected for static TTMIK client |
+
+### File / library audit (`node scripts/boot-all.js`)
+
+| Step | Result |
+| ---- | ------ |
+| Heal library from sources | 15 tracks (`healing-library-data.js` generated) |
+| Hermes heal-skills | 10 `.skill.md` → `.devin/skills/` + `~/.hermes/skills/creative/` |
+| Library build | 267 tracks · syntax + HTML script refs **passed** |
+| Boot registry | 10 skills · 8 composed libraries · all `.skill.md` present |
 
 ---
 
@@ -114,15 +132,15 @@ TTMIK ships no `package.json`, `requirements.txt`, or lockfile. Supply-chain fin
 - **Remediation**: Run `sanitizeLessonText` over each `skillNotes` value in `loadState()`.
 - **Status**: open
 
-### Finding E: `heal-skills.js` writes outside repo (dev-only)
+### Finding E: Hermes heal scripts write outside repo (dev-only)
 
 - **Severity**: informational
 - **Category**: Tooling / Supply Chain
-- **Location**: `scripts/heal-skills.js:281-304`
-- **Description**: Dev script writes SKILL.md files to `~/.hermes/skills/creative/` and may append to `~/.hermes/config.yaml`. Not invoked at runtime by the web app.
-- **Impact**: Running the script on an untrusted machine could overwrite Hermes config; no browser exposure.
-- **Remediation**: Document that heal script is maintainer-only; run only from trusted checkout.
-- **Status**: open (informational)
+- **Location**: `scripts/heal-skills.js`, `scripts/heal-library.js`, `scripts/boot-all.js`, `packages/ttmik-heal-skills/lib/`
+- **Description**: Maintainer scripts write SKILL.md to `~/.hermes/skills/creative/`, regenerate `healing-library-data.js`, and may append `external_dirs` to `~/.hermes/config.yaml`. Not invoked at browser runtime.
+- **Impact**: Running on an untrusted machine could overwrite Hermes config; no browser exposure.
+- **Remediation**: Run `node scripts/boot-all.js` only from trusted checkout; audit with `hermes security audit` after Hermes upgrades.
+- **Status**: open (informational) — **audited 2026-06-16 via boot-all**
 
 ---
 
@@ -203,5 +221,11 @@ POST /api/ttmik-webhook      →   secret + validatePayload    →   Twitter API
 | `skills-data.js` | Static archetype + Melbourne quest data |
 | `api/ttmik-webhook.js` | Serverless progress webhook |
 | `scripts/heal-skills.js` | Hermes skill sync (dev tooling) |
+| `scripts/heal-library.js` | Healing library generator from source files |
+| `scripts/boot-all.js` | Full heal + library build + boot registry validation |
+| `healing-library-data.js` | Generated heal-factor lesson deck |
+| `fifa-nations-data.js` | FIFA 2026 nation libraries |
+| `ignan-data.js` / `asuka-data.js` | Specialty language libraries |
+| `skill-library-data.js` | Boot registry + composed libraries |
 | `sovereign-data.js` | Static lesson metadata |
 | `lesson-data.js` | TTMIK course definitions |

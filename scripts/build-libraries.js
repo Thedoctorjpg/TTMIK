@@ -13,7 +13,7 @@ const LIBRARY_GROUPS = [
     { label: 'TTMIK Courses', group: 'ttmik', source: 'lesson-data.js (COURSE_DEFS)' },
     { label: 'Sovereign Guide', group: 'sovereign', source: 'sovereign-data.js' },
     { label: 'Melbourne Journey', group: 'melbourne', source: 'sovereign-data.js' },
-    { label: 'Healing Factors Library', group: 'heal', source: 'healing-library-data.js' },
+    { label: 'Healing Factors Library', group: 'heal', source: 'heal-library.js → healing-library-data.js' },
     { label: 'Mexico Library', group: 'mexico', source: 'fifa-nations-data.js' },
     { label: 'Canada Library', group: 'canada', source: 'fifa-nations-data.js' },
     { label: 'USA Library', group: 'usa', source: 'fifa-nations-data.js' },
@@ -47,6 +47,11 @@ function getLibraryCounts() {
 }
 
 console.log('TTMIK library build\n');
+
+console.log('Heal library from sources:');
+const { healLibrary } = require('../packages/ttmik-heal-skills/lib/heal-library');
+healLibrary(ROOT);
+console.log('');
 
 console.log('Hermes heal-skills:');
 const healed = healSkills(ROOT);

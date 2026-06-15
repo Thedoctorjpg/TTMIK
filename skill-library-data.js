@@ -100,6 +100,8 @@ const LIBRARY_BUILD_MANIFEST = {
             'daily-ritual', 'no-rewatch'
         ],
         boot: 'library=heal',
+        healFrom: 'scripts/heal-library.js',
+        sources: ['webdrama-sync-data.js', 'heal-skills.js', 'ignan-data.js'],
         mantra: 'One breath · one boundary · no re-watch spiral'
     },
     'Ignan Library': {

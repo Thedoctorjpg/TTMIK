@@ -40,14 +40,19 @@ const LANE_BOOTS = ['heal=1', 'asuka=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5'
 
 console.log('TTMIK boot-all\n');
 
-console.log('1. Hermes heal-skills');
+console.log('1. Heal library from sources');
+const { healLibrary } = require('../packages/ttmik-heal-skills/lib/heal-library');
+healLibrary(ROOT);
+console.log('');
+
+console.log('2. Hermes heal-skills');
 const healed = healSkills(ROOT);
 console.log(`   ${healed} skills healed\n`);
 
-console.log('2. Library build');
+console.log('3. Library build');
 execSync('node scripts/build-libraries.js', { cwd: ROOT, stdio: 'inherit' });
 
-console.log('\n3. Boot registry validation');
+console.log('\n4. Boot registry validation');
 const registrySrc = fs.readFileSync(path.join(ROOT, 'skill-library-data.js'), 'utf8');
 const vm = require('vm');
 const sandbox = { console };
@@ -67,7 +72,7 @@ if (missingMd.length) {
 }
 console.log('   All .skill.md files present');
 
-console.log('\n4. Boot URLs (copy into browser or Hermes preload)');
+console.log('\n5. Boot URLs (copy into browser or Hermes preload)');
 console.log('   TTMIK.html?boot=all');
 LIBRARY_BOOTS.forEach((b) => console.log(`   TTMIK.html?${b}`));
 LANE_BOOTS.forEach((b) => console.log(`   TTMIK.html?${b}`));

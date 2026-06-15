@@ -1,161 +1,179 @@
 /**
- * Healing Factors Library — Hermes heal pipeline lessons
- * Audio folder: Healing_Library/ (drop MP3s to match track filenames)
+ * Healing Factors Library — GENERATED from source files
+ * Run: node scripts/heal-library.js
+ *
+ * Sources:
+ *   webdrama-sync-data.js  → HEALING_FACTORS · BARDIC_INSPIRATION.afterBlessingHeal
+ *   heal-skills.js         → SKILLS korean phrases
+ *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
+ *
+ * Healed: 2026-06-15 · 15 tracks
  */
+
+const HEALING_LIBRARY_SOURCES = [
+    'webdrama-sync-data.js',
+    'packages/ttmik-heal-skills/lib/heal-skills.js',
+    'ignan-data.js'
+];
 
 const HEALING_BASE = 'Healing_Library';
 
 const HEALING_LIBRARY_CATEGORIES = [
-    'Post-DIB Landing',
-    'Boundaries & Cord-Cut',
-    'Lantern & Humor',
-    'Ignan Journey',
-    'Celebration',
-    'Daily Integration'
+    "Post-DIB Landing",
+    "Boundaries & Cord-Cut",
+    "Lantern & Humor",
+    "Ignan Journey",
+    "Celebration",
+    "Daily Integration"
 ];
 
-/** Mirrors HEALING_FACTORS.factors + postBlessing steps from webdrama-sync-data.js */
 const HEALING_FACTOR_DECK = [
     {
-        factorId: 'post-dib',
-        title: 'Post-DIB landing — HOTEL mirror',
-        subtitle: 'Post-DIB Landing',
-        pin: 'HOTEL',
-        ko: '괜찮아요, 괜찮아요.',
-        en: "It's okay, it's okay.",
-        phrase: 'GoPro off · phone face-down · one breath',
-        skillId: 'helen-neighbor',
-        boot: 'TTMIK.html?heal=1',
-        note: 'preset 9 · dib-aftercare · quest side-dib-heal'
+        "factorId": "post-dib",
+        "title": "Post-DIB landing — HOTEL mirror",
+        "subtitle": "Post-DIB Landing",
+        "boot": "TTMIK.html?heal=1",
+        "note": "preset 9 · dib-aftercare · quest side-dib-heal",
+        "pin": "HOTEL",
+        "questId": "side-dib-heal",
+        "edit": "dib-aftercare",
+        "en": "It's okay, it's okay.",
+        "ko": "괜찮아요, 괜찮아요.",
+        "phrase": "GoPro off · phone face-down · one breath",
+        "skillId": "helen-neighbor"
     },
     {
-        factorId: 'hermit-lantern',
-        title: 'Hermit Lantern — one breath, one laugh',
-        subtitle: 'Lantern & Humor',
-        ko: '멜버른 골목이 정말 예뻐요!',
-        en: 'One breath, one laugh.',
-        phrase: 'One breath, one laugh',
-        skillId: 'melbourne-lantern-bard',
-        boot: 'TTMIK.html?heal-factor=hermit-lantern',
-        note: 'Center humor before skit — no re-watch spiral'
+        "factorId": "hermit-lantern",
+        "title": "Hermit Lantern — one breath, one laugh",
+        "subtitle": "Lantern & Humor",
+        "boot": "TTMIK.html?heal-factor=hermit-lantern",
+        "note": "",
+        "skillId": "melbourne-lantern-bard",
+        "phrase": "One breath, one laugh",
+        "en": "One breath, one laugh",
+        "ko": "멜버른 골목이 정말 예뻐요!"
     },
     {
-        factorId: 'humor-release',
-        title: 'Humor alchemy — release without dramatizing',
-        subtitle: 'Lantern & Humor',
-        ko: '유머로 풀어낼게요.',
-        en: "I'll release it with humor.",
-        skillId: 'melbourne-lantern-bard',
-        edit: 'ep-2-5-dib',
-        boot: 'TTMIK.html?heal-factor=humor-release',
-        note: 'Ep 2.5 DIB wrap — name what released'
+        "factorId": "humor-release",
+        "title": "Humor alchemy — release without dramatizing",
+        "subtitle": "Lantern & Humor",
+        "boot": "TTMIK.html?heal-factor=humor-release",
+        "note": "ep-2-5-dib",
+        "skillId": "melbourne-lantern-bard",
+        "edit": "ep-2-5-dib",
+        "ko": "유머로 풀어낼게요",
+        "en": "I'll release it with humor."
     },
     {
-        factorId: 'helen-boundary',
-        title: 'Helen boundary whisper',
-        subtitle: 'Boundaries & Cord-Cut',
-        ko: '괜찮아요, 괜찮아요.',
-        en: "It's okay, it's okay.",
-        skillId: 'helen-neighbor',
-        shadowIndex: 2,
-        boot: 'TTMIK.html?heal-factor=helen-boundary',
-        note: 'Compassion includes protecting your peace'
+        "factorId": "helen-boundary",
+        "title": "Helen boundary whisper",
+        "subtitle": "Boundaries & Cord-Cut",
+        "boot": "TTMIK.html?heal-factor=helen-boundary",
+        "note": "",
+        "skillId": "helen-neighbor",
+        "shadowIndex": 2,
+        "ko": "괜찮아요, 괜찮아요",
+        "en": "It's okay, it's okay."
     },
     {
-        factorId: 'pause-breathe',
-        title: 'Pause OK — rest is allowed',
-        subtitle: 'Boundaries & Cord-Cut',
-        ko: '잠시 쉬어도 괜찮아요.',
-        en: "It's okay to pause and breathe.",
-        skillId: 'helen-neighbor',
-        shadowIndex: 4,
-        boot: 'TTMIK.html?heal-factor=pause-breathe',
-        note: 'Shoulders drop before Korean shadow'
+        "factorId": "pause-breathe",
+        "title": "Pause OK — rest is allowed",
+        "subtitle": "Boundaries & Cord-Cut",
+        "boot": "TTMIK.html?heal-factor=pause-breathe",
+        "note": "",
+        "skillId": "helen-neighbor",
+        "shadowIndex": 4,
+        "ko": "잠시 쉬어도 괜찮아요",
+        "en": "It's okay to pause and breathe."
     },
     {
-        factorId: 'cord-cut',
-        title: 'Cord-cut — own timeline',
-        subtitle: 'Boundaries & Cord-Cut',
-        ko: '제 시간표를 선택해요.',
-        en: 'I choose my own timeline and energy field.',
-        phrase: 'I choose my own timeline and energy field',
-        skillId: 'helen-neighbor',
-        boot: 'TTMIK.html?heal-factor=cord-cut',
-        note: 'No reply owed to expired blessings'
+        "factorId": "cord-cut",
+        "title": "Cord-cut — own timeline",
+        "subtitle": "Boundaries & Cord-Cut",
+        "boot": "TTMIK.html?heal-factor=cord-cut",
+        "note": "",
+        "skillId": "helen-neighbor",
+        "phrase": "I choose my own timeline and energy field",
+        "en": "I choose my own timeline and energy field.",
+        "ko": "잠시 쉬어도 괜찮아요."
     },
     {
-        factorId: 'ignan-walk',
-        title: 'Ignan healing walk — Mari leads',
-        subtitle: 'Ignan Journey',
-        ilo: 'Ok laeng, aginana.',
-        ko: '괜찮아요, 괜찮아요.',
-        en: "It's okay — walk your own dalan.",
-        pin: 'BOTANIC',
-        skillId: 'ignan-pilgrim',
-        boot: 'TTMIK.html?ignan=1',
-        note: 'Ep 2.6 · preset 10 · quest side-ignan-heal'
+        "factorId": "daily-ritual",
+        "title": "Daily integration ritual",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=daily-ritual",
+        "note": "quest side-ritual",
+        "skillId": "flame-kissed-bard",
+        "questId": "side-ritual",
+        "en": "I write my own story.",
+        "ko": "나는 나만의 이야기를 씁니다."
     },
     {
-        factorId: 'fifa-celebrate',
-        title: 'Mari FIFA cantina — joy not drama',
-        subtitle: 'Celebration',
-        ilo: 'Naragsak unay! Ok laeng, agnanayon.',
-        ko: '맛있어요! 축하해요!',
-        en: 'Celebrate without posting — own joy.',
-        pin: 'CANTINA',
-        skillId: 'ignan-pilgrim',
-        boot: 'TTMIK.html?fifa=1',
-        note: 'Ep 2.65 · preset 12 · quest side-fifa-celebrate'
+        "factorId": "no-rewatch",
+        "title": "No re-watch spiral",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=no-rewatch",
+        "note": "GoPro off before mirror · phone face-down",
+        "en": "GoPro off before mirror · phone face-down",
+        "phrase": "One breath · one boundary · no re-watch spiral"
     },
     {
-        factorId: 'daily-ritual',
-        title: 'Daily integration ritual',
-        subtitle: 'Daily Integration',
-        ko: '나는 나만의 이야기를 씁니다.',
-        en: 'I write my own story.',
-        skillId: 'flame-kissed-bard',
-        questId: 'side-ritual',
-        boot: 'TTMIK.html?heal-factor=daily-ritual',
-        note: 'Morning activation — flame not lack'
+        "factorId": "ignan-walk",
+        "title": "Ignan healing walk — Mari leads",
+        "subtitle": "Ignan Journey",
+        "boot": "TTMIK.html?ignan=1",
+        "note": "ignan-healing-journey · quest side-ignan-heal · Shoulders drop — body before app",
+        "skillId": "ignan-pilgrim",
+        "pin": "BOTANIC",
+        "questId": "side-ignan-heal",
+        "edit": "ignan-healing-journey",
+        "en": "It's okay, it's okay.",
+        "ilo": "Ok laeng, ok laeng.",
+        "ko": "괜찮아요, 괜찮아요."
     },
     {
-        factorId: 'no-rewatch',
-        title: 'No re-watch spiral',
-        subtitle: 'Daily Integration',
-        en: 'GoPro off before mirror · phone face-down',
-        phrase: 'One breath · one boundary · no re-watch spiral',
-        boot: 'TTMIK.html?heal-factor=no-rewatch',
-        note: 'Name what released once — do not re-open the hook'
+        "factorId": "fifa-celebrate",
+        "title": "Mari FIFA cantina — joy not drama",
+        "subtitle": "Celebration",
+        "boot": "TTMIK.html?fifa=1",
+        "note": "mari-fifa-celebration · quest side-fifa-celebrate · Mari speaks Ilokano first at the cantina booth",
+        "skillId": "ignan-pilgrim",
+        "pin": "CANTINA",
+        "questId": "side-fifa-celebrate",
+        "edit": "mari-fifa-celebration",
+        "en": "So happy — cheers to the game and the meal.",
+        "ilo": "Naragsak unay! Ok laeng, agnanayon.",
+        "ko": "맛있어요! 축하해요!"
     }
 ];
 
 const HEALING_POST_BLESSING_STEPS = [
     {
-        title: 'Step 1 — gear down',
-        step: 'GoPro off · phone face-down · one breath',
-        subtitle: 'Post-DIB Landing'
+        "title": "Step 1 — gear down",
+        "step": "GoPro off · phone face-down · one breath",
+        "subtitle": "Post-DIB Landing"
     },
     {
-        title: 'Step 2 — name the release',
-        step: 'Name what the skit released — no re-watch spiral',
-        subtitle: 'Post-DIB Landing'
+        "title": "Step 2 — name the release",
+        "step": "Name what the skit released — no re-watch spiral",
+        "subtitle": "Post-DIB Landing"
     },
     {
-        title: 'Step 3 — cord-cut phrase',
-        step: 'Helen cord-cut: "I choose my own timeline and energy field"',
-        ko: '제 시간표를 선택해요.',
-        subtitle: 'Post-DIB Landing'
+        "title": "Step 3 — cord-cut phrase",
+        "step": "Helen cord-cut: \"I choose my own timeline and energy field\"",
+        "subtitle": "Post-DIB Landing",
+        "ko": "제 시간표를 선택해요."
     },
     {
-        title: 'Step 4 — boundary whisper',
-        step: 'Whisper 괜찮아요, 괜찮아요',
-        ko: '괜찮아요, 괜찮아요.',
-        subtitle: 'Post-DIB Landing'
+        "title": "Step 4 — boundary whisper",
+        "step": "Whisper boundary phrase · 괜찮아요, 괜찮아요",
+        "subtitle": "Post-DIB Landing",
+        "ko": "괜찮아요, 괜찮아요."
     },
     {
-        title: 'Step 5 — close the loop',
-        step: 'Humor tended the wound — you do not owe the algorithm a reply',
-        subtitle: 'Post-DIB Landing'
+        "title": "Step 5 — close the loop",
+        "step": "Close: humor tended the wound — you do not owe the algorithm a reply",
+        "subtitle": "Post-DIB Landing"
     }
 ];
 
@@ -230,5 +248,12 @@ const HEALING_COURSE_DEFS = [
 ];
 
 function getHealingFactorById(factorId) {
-    return HEALING_FACTOR_DECK.find(f => f.factorId === factorId) || null;
+    const deck = HEALING_FACTOR_DECK.find(f => f.factorId === factorId);
+    if (deck) return deck;
+    if (typeof HEALING_FACTORS !== 'undefined') {
+        const sync = HEALING_FACTORS.factors.find(f => f.id === factorId);
+        if (sync) return { factorId: sync.id, ...sync };
+    }
+    return null;
 }
+

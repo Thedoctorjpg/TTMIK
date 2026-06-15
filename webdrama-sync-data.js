@@ -222,12 +222,62 @@ const TTMIK_SYNC_REELS = {
     }
 };
 
+/** On-set quick presets — type 1–5 or ?preset=N in URL */
+const TTMIK_SYNC_PRESETS = [
+    {
+        id: 1,
+        label: 'Hosier · Ep 2 · Reel B',
+        shortLabel: 'HOSIER B',
+        pin: 'HOSIER',
+        episode: 2,
+        reel: 'B',
+        note: '09:00 block — wides + Ep 2 main',
+        autoShadow: true
+    },
+    {
+        id: 2,
+        label: 'Hosier · Ep 2 · Reel A',
+        shortLabel: 'HOSIER A',
+        pin: 'HOSIER',
+        episode: 2,
+        reel: 'A',
+        note: 'Scam PSA pickups at graffiti wall'
+    },
+    {
+        id: 3,
+        label: 'Degraves · Ep 2 · Reel A',
+        shortLabel: 'DEGRAVES',
+        pin: 'DEGRAVES',
+        episode: 2,
+        reel: 'A',
+        note: '08:00 — coffee + A7 + Ep 2 cliff'
+    },
+    {
+        id: 4,
+        label: 'Centre · Ep 2 · Reel B',
+        shortLabel: 'CENTRE',
+        pin: 'CENTRE',
+        episode: 2,
+        reel: 'B',
+        note: '08:30 — A4, A10, B6, B9 rule walk'
+    },
+    {
+        id: 5,
+        label: 'Hosier · Ep 6 · Reel B',
+        shortLabel: 'WRAP',
+        pin: 'HOSIER',
+        episode: 6,
+        reel: 'B',
+        note: '10:15 — shadowing + SD offload'
+    }
+];
+
 const TTMIK_BLOCK_ROUTE = [
-    { time: '08:00', pin: 'DEGRAVES', note: 'Coffee + A7 + Ep 2 cliff' },
-    { time: '08:30', pin: 'CENTRE', note: 'A4, A10, B6, B9 rule walk' },
-    { time: '09:00', pin: 'HOSIER', note: 'Reels A+B + Ep 2/6 main' },
-    { time: '09:45', pin: 'COLLINS', note: 'A6 invoice (optional)' },
-    { time: '10:15', pin: 'HOSIER', note: 'Shadowing + SD offload' }
+    { time: '08:00', pin: 'DEGRAVES', note: 'Coffee + A7 + Ep 2 cliff', presetId: 3 },
+    { time: '08:30', pin: 'CENTRE', note: 'A4, A10, B6, B9 rule walk', presetId: 4 },
+    { time: '09:00', pin: 'HOSIER', note: 'Reels A+B + Ep 2/6 main', presetId: 1 },
+    { time: '09:45', pin: 'COLLINS', note: 'A6 invoice (optional)', sync: { pin: 'COLLINS', episode: 3, reel: 'A' } },
+    { time: '10:15', pin: 'HOSIER', note: 'Shadowing + SD offload', presetId: 5 }
 ];
 
 function getSyncPin(pinId) {
@@ -240,6 +290,12 @@ function getSyncEpisode(epNum) {
 
 function getSyncReel(reelId) {
     return TTMIK_SYNC_REELS[reelId] || null;
+}
+
+function getSyncPreset(presetId) {
+    const n = typeof presetId === 'number' ? presetId : parseInt(presetId, 10);
+    if (!n) return null;
+    return TTMIK_SYNC_PRESETS.find(p => p.id === n) || null;
 }
 
 function getShadowingPhraseForSkill(skillId, index = 0) {

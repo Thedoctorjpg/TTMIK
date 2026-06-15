@@ -672,7 +672,13 @@ window.onload = () => {
 
         const resumeIndex = Math.min(appState.currentLesson, lessons.length - 1);
         loadLesson(Math.max(0, resumeIndex), false);
-        switchTab(0);
+
+        if (new URLSearchParams(window.location.search).has('preset')
+            || new URLSearchParams(window.location.search).has('pin')) {
+            handleTtmikSyncBoot();
+        } else {
+            switchTab(0);
+        }
     } catch (err) {
         console.error('Failed to initialize TTMIK app:', err);
     }

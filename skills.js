@@ -158,6 +158,82 @@ function updateWebdramaSync(field, value) {
     renderSyncPanel();
 }
 
+function setWebdramaSyncValues(pin, episode, reel) {
+    if (!appState.webdramaSync) {
+        appState.webdramaSync = { pin: 'HOSIER', episode: 2, reel: 'B' };
+    }
+    if (getSyncPin(pin)) appState.webdramaSync.pin = pin;
+    const ep = typeof episode === 'number' ? episode : parseInt(episode, 10);
+    if (getSyncEpisode(ep)) appState.webdramaSync.episode = ep;
+    if (getSyncReel(reel)) appState.webdramaSync.reel = reel;
+    persistState();
+}
+
+function applyTtmikSyncPreset(presetId, opts = {}) {
+    const preset = getSyncPreset(presetId);
+    if (!preset) return false;
+
+    setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    applyTtmikSync();
+
+    if (opts.skillsTab !== false) switchTab(5);
+
+    if (opts.shadow) practiceTtmikSyncShadowing();
+    else if (opts.lessons) openTtmikSyncLessons();
+
+    return true;
+}
+
+function applyTtmikSyncRouteStep(step) {
+    if (step.presetId) {
+        applyTtmikSyncPreset(step.presetId, { skillsTab: false });
+        return;
+    }
+    if (step.sync) {
+        const { pin, episode, reel } = step.sync;
+        setWebdramaSyncValues(pin, episode, reel);
+        applyTtmikSync();
+    }
+}
+
+function handleTtmikSyncBoot() {
+    const params = new URLSearchParams(window.location.search);
+    const presetId = parseInt(params.get('preset'), 10);
+
+    if (presetId && getSyncPreset(presetId)) {
+        const preset = getSyncPreset(presetId);
+        const shadowParam = params.get('shadow');
+        const shadow = shadowParam === '1'
+            || (shadowParam !== '0' && preset.autoShadow);
+        applyTtmikSyncPreset(presetId, {
+            shadow,
+            lessons: params.get('lessons') === '1'
+        });
+        return;
+    }
+
+    const pin = params.get('pin');
+    const episode = params.get('episode');
+    const reel = params.get('reel');
+    if (!pin && !episode && !reel) return;
+
+    if (!appState.webdramaSync) {
+        appState.webdramaSync = { pin: 'HOSIER', episode: 2, reel: 'B' };
+    }
+    if (pin && getSyncPin(pin.toUpperCase())) appState.webdramaSync.pin = pin.toUpperCase();
+    if (episode) {
+        const n = parseInt(episode, 10);
+        if (getSyncEpisode(n)) appState.webdramaSync.episode = n;
+    }
+    if (reel && getSyncReel(reel.toUpperCase())) appState.webdramaSync.reel = reel.toUpperCase();
+    persistState();
+    applyTtmikSync();
+    switchTab(5);
+
+    if (params.get('shadow') === '1') practiceTtmikSyncShadowing();
+    else if (params.get('lessons') === '1') openTtmikSyncLessons();
+}
+
 function renderSyncPanel() {
     const panel = document.getElementById('ttmik-sync-panel');
     if (!panel || typeof TTMIK_SYNC_PINS === 'undefined') return;
@@ -186,6 +262,56 @@ function renderSyncPanel() {
     header.appendChild(titleBlock);
     header.appendChild(badge);
     panel.appendChild(header);
+
+    if (typeof TTMIK_SYNC_PRESETS !== 'undefined' && TTMIK_SYNC_PRESETS.length) {
+        const presetsWrap = document.createElement('div');
+        presetsWrap.className = 'mb-6';
+
+        const presetsLabel = document.createElement('p');
+        presetsLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
+        presetsLabel.textContent = 'On-set presets (1–5)';
+        presetsWrap.appendChild(presetsLabel);
+
+        const presetsRow = document.createElement('div');
+        presetsRow.className = 'flex flex-wrap gap-2';
+
+        TTMIK_SYNC_PRESETS.forEach(preset => {
+            const active = cfg.pin === preset.pin
+                && cfg.episode === preset.episode
+                && cfg.reel === preset.reel;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.title = `${preset.label} — ${preset.note}`;
+            btn.className = active
+                ? 'px-4 py-2 rounded-2xl text-sm font-semibold bg-violet-500/30 text-violet-200 ring-2 ring-violet-500'
+                : 'px-4 py-2 rounded-2xl text-sm font-medium bg-zinc-800 text-zinc-300 hover:bg-zinc-700';
+            btn.textContent = `${preset.id} · ${preset.shortLabel}`;
+            btn.onclick = () => applyTtmikSyncPreset(preset.id, { skillsTab: false });
+            presetsRow.appendChild(btn);
+        });
+
+        const shootBtn = document.createElement('button');
+        shootBtn.type = 'button';
+        shootBtn.className = 'px-4 py-2 rounded-2xl text-sm font-semibold bg-gradient-to-r from-violet-500 to-pink-500 hover:brightness-110';
+        shootBtn.textContent = 'Shoot now → shadow';
+        shootBtn.title = 'Apply current sync and open shadowing practice';
+        shootBtn.onclick = () => practiceTtmikSyncShadowing();
+        presetsRow.appendChild(shootBtn);
+
+        presetsWrap.appendChild(presetsRow);
+
+        const activePreset = TTMIK_SYNC_PRESETS.find(p =>
+            p.pin === cfg.pin && p.episode === cfg.episode && p.reel === cfg.reel
+        );
+        if (activePreset) {
+            const note = document.createElement('p');
+            note.className = 'text-xs text-zinc-500 mt-2';
+            note.textContent = `Preset ${activePreset.id}: ${activePreset.note}`;
+            presetsWrap.appendChild(note);
+        }
+
+        panel.appendChild(presetsWrap);
+    }
 
     const grid = document.createElement('div');
     grid.className = 'grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6';
@@ -317,8 +443,10 @@ function renderSyncPanel() {
     const routeList = document.createElement('div');
     routeList.className = 'space-y-2 text-sm';
     TTMIK_BLOCK_ROUTE.forEach(step => {
-        const row = document.createElement('div');
-        row.className = 'flex gap-3 text-zinc-400';
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.className = 'flex gap-3 text-zinc-400 w-full text-left rounded-xl px-2 py-1 -mx-2 hover:bg-zinc-800/60 hover:text-zinc-200 transition';
+        row.title = 'Tap to load this block into sync';
         const time = document.createElement('span');
         time.className = 'text-violet-400 font-mono shrink-0 w-12';
         time.textContent = step.time;
@@ -326,6 +454,7 @@ function renderSyncPanel() {
         text.textContent = `${step.pin} — ${step.note}`;
         row.appendChild(time);
         row.appendChild(text);
+        row.onclick = () => applyTtmikSyncRouteStep(step);
         routeList.appendChild(row);
     });
     panel.appendChild(routeList);

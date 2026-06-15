@@ -349,6 +349,44 @@ const SKILLS = [
         ]
     },
     {
+        id: 'martin-nordic-guide',
+        name: 'Martin — Nordic Guide',
+        icon: '\u{1F30A}',
+        tagline: 'Norwegian calm for World-card completion',
+        role: 'Fast Character Guide ally — Norwegian native before Korean shadow',
+        source: 'Martin_Nordic_Guide_Archetype.skill.md',
+        activationPhrases: [
+            'Martin walks home lighter — Melbourne is my yes',
+            'Jeg går lettere hjem'
+        ],
+        capabilities: [
+            'Generate Martin D&D sheet via Fast Character preset',
+            'Norwegian native input + Korean TTMIK shadowing drills',
+            'World-card close companion to Melbourne Lantern finale',
+            'Fjord walk rituals — Veil Lumen export without performance debt'
+        ],
+        creativePrompts: [
+            'Create Martin Fast Character sheet — Barbarian World Tree · Guide · Level 5',
+            'Skit: Norwegian calm monologue before Korean shadow',
+            'World-card ritual for Ep 8 BOTANIC close'
+        ],
+        linkedGroups: ['martin', 'melbourne', 'sovereign'],
+        linkedCategories: ['Norwegian Shadowing', 'Fjord Walk Route', 'Guide Drills', 'Cultural Sites', 'Self-Intimacy Practice'],
+        shadowingPhrases: [
+            { no: 'Melbourne er mitt ja.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
+            { no: 'Jeg er nok — alene og hel.', ko: '혼자서도 충분해요 — 완전하게.', en: 'I am enough — alone and whole.' },
+            { no: 'Jeg slipper med humor.', ko: '웃음으로 놓아줄게요.', en: 'I release with humor.' },
+            { no: 'Jeg stoler på min vei.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { no: 'Jeg er Martin, en vandrer fra Norge.', ko: '저는 노르웨이에서 온 방랑자 마틴이에요.', en: 'I am Martin, a wanderer from Norway.' }
+        ],
+        ritualSteps: [
+            'Open Fast Character — Martin · Barbarian World Tree · Guide',
+            'Norwegian native first: Melbourne er mitt ja',
+            'Korean shadow: 멜버른이 제 예예요 · 혼자서도 충분해요',
+            'One breath — lighter return — no re-watch spiral'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

@@ -71,6 +71,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'Swedish Shadowing',
         tag: 'sven'
     },
+    'martin-nordic-guide': {
+        source: 'Martin_Nordic_Guide_Archetype.skill.md',
+        invoke: 'practiceMartinGuide',
+        altBoot: 'martin=1',
+        preset: 15,
+        libraryGroup: 'Martin Library',
+        libraryCategory: 'Norwegian Shadowing',
+        tag: 'martin'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -142,6 +151,11 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: ['no-rewatch', 'pause-breathe', 'cord-cut'],
         boot: 'library=sven'
     },
+    'Martin Library': {
+        group: 'martin',
+        factors: ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
+        boot: 'library=martin'
+    },
     'Melbourne Journey': {
         group: 'melbourne',
         factors: ['hermit-lantern', 'humor-release', 'helen-boundary', 'post-dib'],
@@ -204,6 +218,14 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=sven',
         skills: ['sven-nordic-ranger'],
         accent: 'cyan'
+    },
+    {
+        id: 'martin',
+        label: 'Martin Library',
+        description: 'Norwegian native · Korean shadow — Fast Character Nordic Guide',
+        boot: 'library=martin',
+        skills: ['martin-nordic-guide'],
+        accent: 'indigo'
     },
     {
         id: 'melbourne-skills',
@@ -295,7 +317,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 283
+    trackCount: 291
 };
 
 function openComposedLibrary(libId) {
@@ -309,6 +331,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
     else if (lib.id === 'heidi') startHeidiCategory('German Shadowing');
     else if (lib.id === 'sven') startSvenCategory('Swedish Shadowing');
+    else if (lib.id === 'martin') startMartinCategory('Norwegian Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

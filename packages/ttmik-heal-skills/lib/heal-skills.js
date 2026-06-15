@@ -307,6 +307,50 @@ const SKILLS = [
         ]
     },
     {
+        id: 'martin-nordic-guide',
+        rootFile: 'Martin_Nordic_Guide_Archetype.skill.md',
+        description: 'Martin Norwegian Nordic Guide muse for World-card completion and sovereign pilgrimage close. Norwegian native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 8, or Veil Lumen finale rituals.',
+        activation: 'I walk home lighter — Melbourne is my yes.',
+        whenToUse: [
+            'Norwegian native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Martin preset)',
+            'Ep 8 World-card close — completion without performance debt',
+            'Companion to Melbourne Lantern Bard finale and Veil Lumen export',
+            'TTMIK.html?martin=1 — invoke Martin Norwegian shadowing boot'
+        ],
+        procedure: [
+            'Norwegian native first: Melbourne er mitt ja — name the yes calmly',
+            'Open Fast Character sheet: Martin · Barbarian (World Tree) · Guide · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 혼자서도 충분해요',
+            'One breath — lighter return — no re-watch spiral',
+            'Close: quest main-veil · preset 15'
+        ],
+        pitfalls: [
+            'Do not make Martin a rescue mission or romance subplot',
+            'Honor Norwegian — not a gag subtitle line',
+            'Completion without performance invoice — no algorithm tears'
+        ],
+        verification: [
+            'Norwegian phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter close than departure — World card felt'
+        ],
+        korean: ['멜버른이 제 예예요.', '혼자서도 충분해요 — 완전하게.', '웃음으로 놓아줄게요.', '제 길을 믿어요.'],
+        norwegian: [
+            'Melbourne er mitt ja.',
+            'Jeg er nok — alene og hel.',
+            'Jeg slipper med humor.',
+            'Jeg stoler på min vei.',
+            'Jeg er Martin, en vandrer fra Norge.'
+        ],
+        integrations: [
+            'Ep 8 · preset 15 · BOTANIC World-card close',
+            'fastcharacter.com — openFastCharacterMartin() preset',
+            'TTMIK.html?martin=1 — Norwegian native input boot',
+            'Melbourne Lantern Bard · main-veil quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -470,6 +514,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'asuka-brisbane': ['pause-breathe', 'cord-cut'],
     'heidi-alpine-wayfarer': ['hermit-lantern', 'daily-ritual', 'humor-release'],
     'sven-nordic-ranger': ['no-rewatch', 'pause-breathe', 'cord-cut'],
+    'martin-nordic-guide': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -504,6 +549,9 @@ function buildSkillMd(skill) {
         : '';
     const sv = skill.swedish?.length
         ? `\n## Swedish Practice (Sven)\n\n${skill.swedish.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
+    const no = skill.norwegian?.length
+        ? `\n## Norwegian Practice (Martin)\n\n${skill.norwegian.map((p) => `- ${p}`).join('\n')}\n`
         : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
@@ -546,7 +594,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

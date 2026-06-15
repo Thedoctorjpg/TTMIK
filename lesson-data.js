@@ -69,6 +69,12 @@ if (typeof generateSvenLibraryLessons === 'function') {
     nextId += svenLessons.length;
 }
 
+if (typeof generateMartinLibraryLessons === 'function') {
+    const martinLessons = generateMartinLibraryLessons(nextId);
+    lessons = lessons.concat(martinLessons);
+    nextId += martinLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -94,5 +100,6 @@ let libraryGroups = [
     'Ignan Library',
     'Asuka Library',
     'Heidi Library',
-    'Sven Library'
+    'Sven Library',
+    'Martin Library'
 ];

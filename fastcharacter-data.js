@@ -45,9 +45,30 @@ const FAST_CHARACTER_SVEN = {
     note: 'Fey Wanderer · Level 5 · True Neutral — Moon-card calm ally'
 };
 
+/** Martin — Norwegian Nordic Guide muse · Ep 8 World-card completion */
+const FAST_CHARACTER_MARTIN = {
+    id: 'martin',
+    label: 'Martin — Nordic Guide',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Martin',
+    randomname: 'no',
+    pcname: 'Martin',
+    pcclass: 'BarbarianWorldTree',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Guide',
+    pcgender: 'male',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
+};
+
 const FAST_CHARACTER_PRESETS = {
     heidi: FAST_CHARACTER_HEIDI,
-    sven: FAST_CHARACTER_SVEN
+    sven: FAST_CHARACTER_SVEN,
+    martin: FAST_CHARACTER_MARTIN
 };
 
 function buildFastCharacterFormData(preset) {
@@ -95,4 +116,8 @@ function openFastCharacterHeidi() {
 
 function openFastCharacterSven() {
     openFastCharacterSheet(FAST_CHARACTER_SVEN);
+}
+
+function openFastCharacterMartin() {
+    openFastCharacterSheet(FAST_CHARACTER_MARTIN);
 }

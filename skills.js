@@ -92,6 +92,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const svenCats = typeof SVEN_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => SVEN_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const martinCats = typeof MARTIN_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => MARTIN_LIBRARY_CATEGORIES.includes(c))
+        : [];
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
@@ -128,6 +131,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     } else if (svenCats.length) {
         activeLibraryGroup = 'Sven Library';
         activeCategory = svenCats[0];
+    } else if (martinCats.length) {
+        activeLibraryGroup = 'Martin Library';
+        activeCategory = martinCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -149,14 +155,15 @@ function openSkillLessons(skillId) {
     const hasAsuka = skill.linkedGroups?.includes('asuka');
     const hasHeidi = skill.linkedGroups?.includes('heidi');
     const hasSven = skill.linkedGroups?.includes('sven');
+    const hasMartin = skill.linkedGroups?.includes('martin');
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMexico && !hasCanada && !hasUsa && (
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMexico || hasCanada || hasUsa) {
+    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -551,6 +558,41 @@ function practiceSvenRanger(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceMartinGuide(opts = {}) {
+    const skillId = 'martin-nordic-guide';
+    const shadowIdx = 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(15)) {
+        setWebdramaSyncValues('BOTANIC', 8, null);
+    } else {
+        setWebdramaSyncValues('BOTANIC', 8, null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterMartin === 'function') {
+        openFastCharacterMartin();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('main-veil');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceTtmikSyncShadowing() {
     const cfg = getResolvedSyncConfig();
     applyTtmikSync();
@@ -712,6 +754,7 @@ function renderBootAllPanel() {
             else if (boot.asuka === '1') practiceAsukaMaybe();
             else if (boot.heidi === '1') practiceHeidiWayfarer({ openSheet: boot.sheet === '1' });
             else if (boot.sven === '1') practiceSvenRanger({ openSheet: boot.sheet === '1' });
+            else if (boot.martin === '1') practiceMartinGuide({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
         });
@@ -758,6 +801,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('sven') === '1') {
         practiceSvenRanger({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('martin') === '1') {
+        practiceMartinGuide({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
@@ -997,6 +1044,12 @@ function renderSyncPanel() {
             sv.textContent = phrase.sv;
             phraseBox.appendChild(sv);
         }
+        if (phrase.no) {
+            const no = document.createElement('p');
+            no.className = 'text-indigo-400/90 text-sm font-medium';
+            no.textContent = phrase.no;
+            phraseBox.appendChild(no);
+        }
         if (phrase.es) {
             const es = document.createElement('p');
             es.className = 'text-amber-400/90 text-sm font-medium';
@@ -1080,6 +1133,14 @@ function renderSyncPanel() {
     svenBtn.title = 'Swedish native input · preset 14 · Fast Character Ranger sheet';
     svenBtn.onclick = () => practiceSvenRanger();
     actions.appendChild(svenBtn);
+
+    const martinBtn = document.createElement('button');
+    martinBtn.type = 'button';
+    martinBtn.className = 'px-5 py-3 bg-indigo-900/50 text-indigo-200 rounded-2xl text-sm font-medium hover:bg-indigo-800/70 ring-1 ring-indigo-500/30';
+    martinBtn.textContent = 'Martin guide (Ep 8 · NO)';
+    martinBtn.title = 'Norwegian native input · preset 15 · Fast Character Guide sheet';
+    martinBtn.onclick = () => practiceMartinGuide();
+    actions.appendChild(martinBtn);
 
     const fifaBtn = document.createElement('button');
     fifaBtn.type = 'button';
@@ -1308,6 +1369,7 @@ function renderSkillsGrid() {
         const isAsuka = skill.id === 'asuka-brisbane';
         const isHeidi = skill.id === 'heidi-alpine-wayfarer';
         const isSven = skill.id === 'sven-nordic-ranger';
+        const isMartin = skill.id === 'martin-nordic-guide';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
@@ -1316,7 +1378,9 @@ function renderSkillsGrid() {
                     ? 'ring-yellow-500 hover:ring-yellow-400'
                     : isSven
                         ? 'ring-cyan-500 hover:ring-cyan-400'
-                        : 'ring-pink-500 hover:ring-pink-400';
+                        : isMartin
+                            ? 'ring-indigo-500 hover:ring-indigo-400'
+                            : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
@@ -1325,7 +1389,9 @@ function renderSkillsGrid() {
                     ? 'hover:ring-yellow-500/50'
                     : isSven
                         ? 'hover:ring-cyan-500/50'
-                        : 'hover:ring-pink-500/50';
+                        : isMartin
+                            ? 'hover:ring-indigo-500/50'
+                            : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1354,7 +1420,9 @@ function renderSkillsGrid() {
                         ? 'inline-block mt-3 text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full'
                         : isSven
                             ? 'inline-block mt-3 text-xs bg-cyan-500/20 text-cyan-300 px-2 py-1 rounded-full'
-                            : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                            : isMartin
+                                ? 'inline-block mt-3 text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full'
+                                : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -1582,6 +1650,39 @@ function renderSkillDetail() {
         };
         svenBlock.appendChild(sheetBtn);
         panel.appendChild(svenBlock);
+    }
+
+    if (skill.id === 'martin-nordic-guide') {
+        const martinBlock = document.createElement('div');
+        martinBlock.className = 'mb-6 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-indigo-300 mb-2';
+        label.textContent = 'Norwegian native input · Ep 8 · Fast Character';
+        martinBlock.appendChild(label);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.no, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        martinBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-indigo-600/30 text-indigo-200 hover:bg-indigo-600/50 mr-2';
+        runBtn.textContent = 'Invoke Martin guide (NO → KO)';
+        runBtn.onclick = () => practiceMartinGuide();
+        martinBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Martin sheet';
+        sheetBtn.title = 'fastcharacter.com · Barbarian World Tree · Guide · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterMartin === 'function') openFastCharacterMartin();
+        };
+        martinBlock.appendChild(sheetBtn);
+        panel.appendChild(martinBlock);
     }
 
     const notesLabel = document.createElement('h4');

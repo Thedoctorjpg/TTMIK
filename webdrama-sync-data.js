@@ -379,8 +379,8 @@ const TTMIK_SYNC_EPISODES = {
         title: 'The World',
         ko: '세계',
         pins: ['PRINCES', 'HOSIER', 'BOTANIC'],
-        skillId: 'melbourne-lantern-bard',
-        categories: ['Cultural Sites', 'Self-Intimacy Practice', 'GoPro & Content'],
+        skillId: 'martin-nordic-guide',
+        categories: ['Cultural Sites', 'Self-Intimacy Practice', 'Norwegian Shadowing'],
         questIds: ['main-veil', 'main-film'],
         shadowingIndex: 0
     }
@@ -542,6 +542,16 @@ const TTMIK_SYNC_PRESETS = [
         episode: 7,
         reel: null,
         note: 'Moon-card calm · Swedish native + Korean shadow · Fast Character Ranger sheet',
+        autoShadow: true
+    },
+    {
+        id: 15,
+        label: 'Botanic · Ep 8 · Martin Guide',
+        shortLabel: 'MARTIN',
+        pin: 'BOTANIC',
+        episode: 8,
+        reel: null,
+        note: 'World-card close · Norwegian native + Korean shadow · Fast Character Guide sheet',
         autoShadow: true
     }
 ];

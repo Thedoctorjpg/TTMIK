@@ -42,7 +42,7 @@ Unified shoot order pulls from the full pipeline — optimised in `webdrama-sync
 06:12  DEGRAVES dawn (girls-love Ch.2)
 ```
 
-TTMIK Sync presets **6–8** map to Lane B. Multiformat edits: `date-night-cookoff` · `after-the-date` · updated `trailer-30` with cook-off hook.
+TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal. Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · updated `trailer-30` with cook-off hook.
 
 ---
 
@@ -92,6 +92,7 @@ TTMIK Sync presets **6–8** map to Lane B. Multiformat edits: `date-night-cooko
 | **Skit insert · Divine Insight Blessing** | 9:16 | 45s (30s cut) | Hosier only · GoPro lantern | GoPro & Content · tarot-scam PSA |
 | **Insert · Cook-Off Not a Date (Ep 2.75)** | 9:16 | 90s | FLINDERS → DEGRAVES → HOTEL | Daily Life · lets-cook sync |
 | **Insert · After the Date dawn** | 9:16 | 60s | DEGRAVES · 06:12 | Daily Life · girls-love Ch.2 |
+| **Post-DIB quiet heal coda** | 9:16 | 45s | HOTEL mirror · Helen VO | Self-Intimacy · side-dib-heal |
 | **Pipeline montage** | 9:16 | 45s | All pins · bardic inspiration | Mixed |
 
 ### Melbourne shoot pins (reels-first clusters)
@@ -293,8 +294,44 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 - [ ] RED FLAG #2 physical prop (DIB11)
 - [ ] TTMIK Sync preset **2** → shadowing before wrap
 - [ ] Hermes tarot RED FLAG scan: any 2 = abort (see `audit/tarot-scam-avoidance-audit.md`)
+- [ ] **After skit:** preset **9** · HOTEL quiet heal — GoPro off before mirror (see below)
 
 **Tags:** `#Tsundere #Melbourne #ScamPSA #4GoverFate #DivineInsightBlessing`
+
+---
+
+## Post-DIB coda — quiet reflection & self-healing
+
+**Insert** · Not performance energy · **45s optional** · **Pin:** HOTEL only (mirror / desk)  
+**Quest:** `side-dib-heal` · **Skill:** Helen — Boundary Teacher · **Edit:** `dib-aftercare`  
+**TTMIK:** Preset **9** · button **Quiet heal after blessing skit** in Sync panel
+
+**Why:** The blessing skit alchemizes scam energy through humor. The nervous system still needs a landing — without re-watching footage or replying to expired SYSTEM overlays.
+
+**Logline:** Bard puts the GoPro down. Helen asks for one breath. The divine insight stays declined. The peace stays chosen.
+
+### Shot board (`dib-aftercare` · 45s)
+
+| Shot | Time | Pin | Beat |
+|------|------|-----|------|
+| **HEAL1** | 0:00 | @HOTEL | GoPro off · phone face-down |
+| **HEAL2** | 0:08 | @HOTEL | Mirror or window — one breath, one laugh (Hermit Lantern) |
+| **HEAL3** | 0:18 | @HOTEL | **HELEN (VO):** "Compassion includes protecting your peace." |
+| **HEAL4** | 0:26 | @HOTEL | Whisper **괜찮아요, 괜찮아요** — no re-watch spiral |
+| **HEAL5** | 0:35 | @HOTEL | Cord-cut gesture · blessing UI stays `expired` |
+| **HEAL6** | 0:41 | @HOTEL | Lantern dim · *I create from flame, not from lack* |
+
+### Self-healing ritual (on set or hotel room)
+
+1. **Pause** — sit before checking takes; humor tended the wound, you do not owe the algorithm proof
+2. **Name** — what the skit released (urgency, soulmate push, invoice shame) without dramatizing
+3. **Boundary phrase** — 죄송하지만 지금은 어려워요 or 괜찮아요, 괜찮아요
+4. **Cord-cut** — "I choose my own timeline and energy field"
+5. **Close** — log `side-dib-heal` · optional Veil Lumen soft cut · return to Lane A at 09:45 COLLINS or rest
+
+**Morning block insert:** `09:30 HOTEL` between Hosier DIB (09:00) and Collins optional beat.
+
+**Tags:** `#SelfHealing #PostSkit #HelenBoundary #QuietReflection`
 
 ---
 
@@ -646,6 +683,7 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 08:00  DEGRAVES — coffee + A7 + Ep 2 cliffhanger
 08:30  CENTRE — A4, A10, B6, B9, rule walk
 09:00  HOSIER — W1 W2 B3 B5 B7 B8, A1 A2 A3 A8 A9, DIB1–DIB13 (Ep 2.5), Ep 2/6 main
+09:30  HOTEL — HEAL1–HEAL6 post-DIB quiet reflection (preset 9)
 09:45  COLLINS — A6 invoice beat (optional Ep 3)
 10:15  Wrap — battery swap, SD offload, TTMIK shadowing at pin
 ```
@@ -677,6 +715,7 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | 1 | Flame-Kissed Bard | 나는 나만의 이야기를 씁니다 |
 | 2 | Melbourne Lantern Bard | 멜버른 골목이 정말 예뻐요 |
 | 2.5 | Melbourne Lantern Bard | 유머로 풀어낼게요 · divine insight block |
+| 2.5 heal | Helen | 괜찮아요, 괜찮아요 · 잠시 쉬어도 괜찮아요 (post-DIB coda) |
 | 2.75 | Melbourne Lantern Bard · Lo3tus · Helen | 멜버른 골목이 정말 예뻐요 · cook-off host line |
 | 3 | Melbourne Lantern Bard | 유머로 풀어낼게요 |
 | 4 | Helen | 죄송하지만 지금은 어려워요 |

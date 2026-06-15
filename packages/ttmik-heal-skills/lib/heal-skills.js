@@ -20,12 +20,14 @@ const SKILLS = [
             'Name what is being released without dramatizing it',
             'Draft a 30–60s vertical skit hook with chaotic neutral tone',
             'Offer optional integration ritual tied to the trip moment',
-            'Suggest linked TTMIK Melbourne audio categories if language practice fits'
+            'Suggest linked TTMIK Melbourne audio categories if language practice fits',
+            'After Ep 2.5 blessing skit: hand off to Helen quiet heal — preset 9, dib-aftercare, quest side-dib-heal'
         ],
         pitfalls: [
             'Do not re-traumatize — humor releases, it does not mock wounds',
             'Avoid parasocial attachment or comparison spirals',
-            'Keep gear minimal: gym bag, GoPro, power bank — no laptop bloat'
+            'Keep gear minimal: gym bag, GoPro, power bank — no laptop bloat',
+            'Do not skip post-skit landing — humor without aftercare can re-open the scam hook'
         ],
         verification: [
             'Output is light, empowering, and tied to self-love',
@@ -103,7 +105,8 @@ const SKILLS = [
             'Need for humorous skit material from real boundary moments',
             'After the date / cook-off — soulmate speedruns, ingredient-fee Venmos, or rescue framing',
             'Post-Degraves morning: warmth without becoming everyone\'s rescue soup',
-            'Tarot-predicted romance scam DMs — Helen procedure, not debate'
+            'Tarot-predicted romance scam DMs — Helen procedure, not debate',
+            'After Divine Insight Blessing skit — quiet reflection, no re-watch spiral'
         ],
         procedure: [
             'Quick cord-cutting + neighbor release (no drama narrative)',
@@ -114,7 +117,9 @@ const SKILLS = [
             'Draft boundary script or chaotic-neutral skit beat',
             'Recommend minimal engagement / delete protocol if needed',
             'After the date: offer tea before feelings — mean both',
-            'Practice Korean boundary phrases for real situations'
+            'Practice Korean boundary phrases for real situations',
+            'Post-DIB self-healing: GoPro off · phone face-down · one breath · whisper 괜찮아요, 괜찮아요',
+            'Cord-cut after humor: no reply owed to expired blessings — optional dib-aftercare at HOTEL'
         ],
         pitfalls: [
             'Do not encourage rescue energy or re-engagement',
@@ -132,7 +137,8 @@ const SKILLS = [
             '죄송하지만 지금은 어려워요.',
             '제 시간을 지킬게요.',
             '괜찮아요, 괜찮아요.',
-            '공유는 괜찮아요. 거래는 아니에요.'
+            '공유는 괜찮아요. 거래는 아니에요.',
+            '잠시 쉬어도 괜찮아요.'
         ],
         integrations: [
             'lets-cook `/date-night` — Helen station: Boundary Miso-Ginger Soup',

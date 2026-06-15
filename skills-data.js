@@ -18,7 +18,8 @@ const MELBOURNE_QUEST = {
         { id: 'side-ritual', text: 'Perform daily self-intimacy integration ritual', type: 'side' },
         { id: 'side-gear', text: 'Travel light — power bank, GoPro, gym bag sorted', type: 'side' },
         { id: 'side-humor', text: 'Turn one triggering moment into creative fuel', type: 'side' },
-        { id: 'side-tarot-scam', text: 'Name a tarot-predicted scam pattern before takeoff — block, don\'t fund fate', type: 'side' }
+        { id: 'side-tarot-scam', text: 'Name a tarot-predicted scam pattern before takeoff — block, don\'t fund fate', type: 'side' },
+        { id: 'side-dib-heal', text: 'After the blessing skit — quiet breath, Helen boundary, no re-watch spiral', type: 'side' }
     ]
 };
 
@@ -70,6 +71,12 @@ const SKILLS = [
             'Name what you are releasing without drama',
             'Film or write one sovereign skit beat',
             'Close: “I create from flame, not from lack”'
+        ],
+        dibAftercareSteps: [
+            'After Ep 2.5 skit wraps — GoPro off before mirror',
+            'Sit with what humor released; do not re-watch to “check” feelings',
+            'One Korean line soft: 유머로 풀어낼게요 — then silence',
+            'Preset 9 · HOTEL heal or Veil Lumen soft cut'
         ]
     },
     {
@@ -174,13 +181,21 @@ const SKILLS = [
             { ko: '죄송하지만 지금은 어려워요.', en: 'Sorry, not possible right now.' },
             { ko: '제 시간을 지킬게요.', en: 'I will protect my time.' },
             { ko: '괜찮아요, 괜찮아요.', en: "It's okay, it's okay." },
-            { ko: '공유는 괜찮아요. 거래는 아니에요.', en: "Sharing is fine. This isn't a transaction." }
+            { ko: '공유는 괜찮아요. 거래는 아니에요.', en: "Sharing is fine. This isn't a transaction." },
+            { ko: '잠시 쉬어도 괜찮아요.', en: "It's okay to pause and breathe." }
         ],
         ritualSteps: [
             'Quick cord-cutting + neighbor release',
             'Affirm: “I choose my own timeline and energy field”',
             'Turn the trigger into humorous observation or skit',
             'Minimal engagement / delete protocol if needed'
+        ],
+        dibAftercareSteps: [
+            'Post–Divine Insight Blessing: phone face-down · GoPro off',
+            'One breath — name what the skit alchemized, not what the scam claimed',
+            'Whisper 괜찮아요, 괜찮아요 until shoulders drop',
+            'Cord-cut: no reply owed to expired blessings or twin-flame loaders',
+            'Log quest side-dib-heal · optional dib-aftercare 45s film (mirror only)'
         ]
     },
     {

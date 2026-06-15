@@ -138,6 +138,26 @@ function openTtmikSyncLessons() {
     openLessonsForCategories(cfg.categories, true);
 }
 
+function practiceDibAftercare() {
+    if (typeof getDibAftercareRitual === 'function') {
+        const ritual = getDibAftercareRitual();
+        if (ritual?.skillId) setActiveSkill(ritual.skillId);
+    } else {
+        setActiveSkill('helen-neighbor');
+    }
+    selectedSkillId = appState.activeSkillId || 'helen-neighbor';
+    if (typeof getSyncPreset === 'function' && getSyncPreset(9)) {
+        applyTtmikSyncPreset(9, { skillsTab: false });
+    } else {
+        setWebdramaSyncValues('HOTEL', '2.5', null);
+        applyTtmikSync();
+    }
+    switchTab(5);
+    renderSkillDetail();
+    renderSkillsGrid();
+    practiceTtmikSyncShadowing();
+}
+
 function practiceTtmikSyncShadowing() {
     const cfg = getResolvedSyncConfig();
     applyTtmikSync();
@@ -199,6 +219,10 @@ function applyTtmikSyncRouteStep(step) {
 
 function handleTtmikSyncBoot() {
     const params = new URLSearchParams(window.location.search);
+    if (params.get('heal') === '1' || params.get('dib-aftercare') === '1') {
+        practiceDibAftercare();
+        return;
+    }
     const presetId = parseInt(params.get('preset'), 10);
 
     if (presetId && getSyncPreset(presetId)) {
@@ -270,7 +294,7 @@ function renderSyncPanel() {
 
         const presetsLabel = document.createElement('p');
         presetsLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
-        presetsLabel.textContent = 'On-set presets (1–8)';
+        presetsLabel.textContent = 'On-set presets (1–9)';
         presetsWrap.appendChild(presetsLabel);
 
         const presetsRow = document.createElement('div');
@@ -430,6 +454,14 @@ function renderSyncPanel() {
         copyBtn.onclick = () => copyToClipboard(`${phrase.ko}\n${phrase.en}`);
         actions.appendChild(copyBtn);
     }
+
+    const healBtn = document.createElement('button');
+    healBtn.type = 'button';
+    healBtn.className = 'px-5 py-3 bg-sky-900/60 text-sky-200 rounded-2xl text-sm font-medium hover:bg-sky-800/80 ring-1 ring-sky-500/30';
+    healBtn.textContent = 'Quiet heal after blessing skit';
+    healBtn.title = 'Post-DIB reflection · preset 9 · Helen self-healing';
+    healBtn.onclick = () => practiceDibAftercare();
+    actions.appendChild(healBtn);
 
     actions.appendChild(syncBtn);
     actions.appendChild(lessonsBtn);
@@ -682,6 +714,30 @@ function renderSkillDetail() {
         });
         ritual.appendChild(ol);
         panel.appendChild(ritual);
+    }
+
+    if (skill.dibAftercareSteps?.length) {
+        const aftercare = document.createElement('div');
+        aftercare.className = 'mb-6 bg-sky-500/10 border border-sky-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-sky-400 mb-3';
+        label.textContent = 'After blessing skit — quiet reflection';
+        aftercare.appendChild(label);
+        const ol = document.createElement('ol');
+        ol.className = 'list-decimal list-inside space-y-2 text-sm text-zinc-300';
+        skill.dibAftercareSteps.forEach(step => {
+            const li = document.createElement('li');
+            li.textContent = step;
+            ol.appendChild(li);
+        });
+        aftercare.appendChild(ol);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'mt-3 px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50';
+        runBtn.textContent = 'Run post-DIB heal now';
+        runBtn.onclick = () => practiceDibAftercare();
+        aftercare.appendChild(runBtn);
+        panel.appendChild(aftercare);
     }
 
     const notesLabel = document.createElement('h4');

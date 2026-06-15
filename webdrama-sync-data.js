@@ -65,7 +65,21 @@ const BARDIC_INSPIRATION = {
         dawnBeat: '06:12'
     },
     rtdbCadence: 'Refresh every 30s · rotate boards every 45s before Auckland airport leg',
-    pipeline: PIPELINE_SOURCES
+    pipeline: PIPELINE_SOURCES,
+    afterBlessingHeal: {
+        label: 'Quiet reflection after Divine Insight Blessing',
+        duration: '45s',
+        pin: 'HOTEL',
+        skillId: 'helen-neighbor',
+        questId: 'side-dib-heal',
+        steps: [
+            'GoPro off · phone face-down · one breath',
+            'Name what the skit released — no re-watch spiral',
+            'Helen cord-cut: "I choose my own timeline and energy field"',
+            'Whisper boundary phrase · 괜찮아요, 괜찮아요',
+            'Close: humor tended the wound — you do not owe the algorithm a reply'
+        ]
+    }
 };
 
 const TTMIK_SYNC_PINS = {
@@ -92,12 +106,12 @@ const TTMIK_SYNC_PINS = {
     HOSIER: {
         label: 'Hosier Lane',
         place: 'Graffiti wall mid-lane',
-        episodes: [2, 6, 8],
+        episodes: [2, '2.5', 6, 8],
         reels: ['A', 'B'],
         skillId: 'melbourne-lantern-bard',
         categories: ['GoPro & Content', 'Melbourne Arrival'],
-        questIds: ['main-film', 'main-skit'],
-        formats: ['webdrama', 'reel-a', 'reel-b', 'tiktok-15', 'youtube-short']
+        questIds: ['main-film', 'main-skit', 'side-tarot-scam'],
+        formats: ['webdrama', 'reel-a', 'reel-b', 'ep-2-5-dib', 'tiktok-15', 'youtube-short']
     },
     CENTRE: {
         label: 'Centre Place',
@@ -184,13 +198,13 @@ const TTMIK_SYNC_PINS = {
     },
     HOTEL: {
         label: 'Accommodation',
-        place: 'Desk / mirror · phone scenes · kitchen cook-off stations',
-        episodes: [1, 4, '2.75'],
+        place: 'Desk / mirror · phone scenes · kitchen cook-off · post-DIB quiet heal',
+        episodes: [1, 4, '2.5', '2.75'],
         reels: [],
         skillId: 'helen-neighbor',
-        categories: ['Accommodation', 'Emergency Protocol'],
-        questIds: ['side-boundary', 'side-gear'],
-        formats: ['webdrama', 'date-night-cookoff'],
+        categories: ['Accommodation', 'Emergency Protocol', 'Self-Intimacy Practice'],
+        questIds: ['side-boundary', 'side-gear', 'side-dib-heal'],
+        formats: ['webdrama', 'date-night-cookoff', 'dib-aftercare'],
         pipeline: ['letsCook', 'girlsLove'],
         cookOffPhases: ['stations']
     }
@@ -214,6 +228,19 @@ const TTMIK_SYNC_EPISODES = {
         categories: ['Melbourne Arrival', 'GoPro & Content'],
         questIds: ['main-film'],
         shadowingIndex: 0
+    },
+    '2.5': {
+        title: 'Divine Insight Blessing',
+        ko: '신성한 통찰',
+        display: 'Ep 2.5',
+        pins: ['HOSIER', 'HOTEL'],
+        skillId: 'melbourne-lantern-bard',
+        categories: ['GoPro & Content', 'Self-Intimacy Practice'],
+        questIds: ['side-tarot-scam', 'side-dib-heal'],
+        shadowingIndex: 2,
+        duration: '45s',
+        formats: ['ep-2-5-dib', 'dib-aftercare'],
+        aftercare: 'helen-neighbor'
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -380,13 +407,25 @@ const TTMIK_SYNC_PRESETS = [
         episode: '2.75',
         reel: 'B',
         note: '06:12 — girls-love Ch.2 croissant run'
+    },
+    {
+        id: 9,
+        label: 'Hotel · Post-DIB quiet heal',
+        shortLabel: 'HEAL',
+        pin: 'HOTEL',
+        episode: '2.5',
+        reel: null,
+        note: '09:30 — reflection after blessing skit · Helen self-healing',
+        autoShadow: true,
+        aftercare: true
     }
 ];
 
 const TTMIK_BLOCK_ROUTE = [
     { time: '08:00', pin: 'DEGRAVES', note: 'Coffee + A7 + Ep 2 cliff', presetId: 3 },
     { time: '08:30', pin: 'CENTRE', note: 'A4, A10, B6, B9 rule walk', presetId: 4 },
-    { time: '09:00', pin: 'HOSIER', note: 'Reels A+B + Ep 2/6 main', presetId: 1 },
+    { time: '09:00', pin: 'HOSIER', note: 'Reels A+B + Ep 2.5 DIB skit', presetId: 2 },
+    { time: '09:30', pin: 'HOTEL', note: 'Quiet reflection after blessing skit', presetId: 9 },
     { time: '09:45', pin: 'COLLINS', note: 'A6 invoice (optional)', sync: { pin: 'COLLINS', episode: 3, reel: 'A' } },
     { time: '10:15', pin: 'HOSIER', note: 'Shadowing + SD offload', presetId: 5 }
 ];
@@ -431,6 +470,10 @@ function getPipelineSources() {
 
 function getDateNightRoute() {
     return TTMIK_DATE_NIGHT_ROUTE;
+}
+
+function getDibAftercareRitual() {
+    return BARDIC_INSPIRATION.afterBlessingHeal;
 }
 
 function getSyncReel(reelId) {

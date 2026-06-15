@@ -78,9 +78,9 @@ const MULTIFORMAT_EDITS = {
         visualPreset: 'warm',
         overlay: '4G > FATE',
         overlayPosition: 'W/2-tw/2:H-th-10',
-        ttmikSync: { pin: 'HOSIER', episode: 2, reel: 'A' },
+        ttmikSync: { pin: 'HOSIER', episode: '2.5', reel: 'A' },
         pins: ['HOSIER'],
-        exportTargets: ['Standalone Short', 'Reel A insert', 'Scam PSA'],
+        exportTargets: ['Standalone Short', 'Reel A insert', 'Scam PSA', 'dib-aftercare follow-up'],
         shots: [
             { id: 'DIB2', time: '0:00', pin: 'HOSIER', note: 'Not impressed selfie', dur: 3 },
             { id: 'DIB3', time: '0:03', pin: 'HOSIER', note: 'SYSTEM blessing UI', dur: 3 },
@@ -90,6 +90,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'DIB10', time: '0:20', pin: 'HOSIER', note: 'Korean lane slip', dur: 5 },
             { id: 'DIB11', time: '0:25', pin: 'HOSIER', note: 'RED FLAG #2 toss', dur: 3 },
             { id: 'DIB12', time: '0:28', pin: 'HOSIER', note: 'Expire faster walk-off', dur: 2 }
+        ]
+    },
+    'dib-aftercare': {
+        id: 'dib-aftercare',
+        label: 'Post-DIB · Quiet Reflection & Self-Healing (45s)',
+        duration: 45,
+        aspect: '9:16',
+        editor: 'pro',
+        visualPreset: 'noir',
+        overlay: '괜찮아요',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'HOTEL', episode: '2.5', reel: null },
+        pins: ['HOTEL'],
+        exportTargets: ['Ep 2.5 coda', 'Helen ritual clip', 'Veil Lumen soft cut', 'Self-intimacy reel'],
+        shots: [
+            { id: 'HEAL1', time: '0:00', pin: 'HOTEL', note: 'GoPro off · phone face-down on desk', dur: 8 },
+            { id: 'HEAL2', time: '0:08', pin: 'HOTEL', note: 'Mirror or window — one breath, one laugh', dur: 10 },
+            { id: 'HEAL3', time: '0:18', pin: 'HOTEL', note: 'HELEN VO: compassion includes protecting your peace', dur: 8 },
+            { id: 'HEAL4', time: '0:26', pin: 'HOTEL', note: 'Whisper 괜찮아요, 괜찮아요 — no re-watch spiral', dur: 9 },
+            { id: 'HEAL5', time: '0:35', pin: 'HOTEL', note: 'Cord-cut gesture · SYSTEM blessing UI stays expired', dur: 6 },
+            { id: 'HEAL6', time: '0:41', pin: 'HOTEL', note: 'Lantern dim · I create from flame, not from lack', dur: 4 }
         ]
     },
     'tiktok-15': {

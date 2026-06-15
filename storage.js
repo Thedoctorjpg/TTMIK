@@ -20,8 +20,16 @@ function getDefaultState() {
         customLessons: [],
         activeSkillId: null,
         questProgress: {},
-        skillNotes: {}
+        skillNotes: {},
+        webdramaSync: { pin: 'HOSIER', episode: 2, reel: 'B' }
     };
+}
+
+function sanitizeWebdramaSync(raw, defaults) {
+    const pin = typeof raw?.pin === 'string' && getSyncPin(raw.pin) ? raw.pin : defaults.pin;
+    const episode = typeof raw?.episode === 'number' && getSyncEpisode(raw.episode) ? raw.episode : defaults.episode;
+    const reel = typeof raw?.reel === 'string' && getSyncReel(raw.reel) ? raw.reel : defaults.reel;
+    return { pin, episode, reel };
 }
 
 function sanitizeStoredLesson(raw) {
@@ -64,7 +72,8 @@ function loadState() {
             customLessons,
             activeSkillId: typeof saved.activeSkillId === 'string' ? saved.activeSkillId : defaults.activeSkillId,
             questProgress: saved.questProgress && typeof saved.questProgress === 'object' ? saved.questProgress : defaults.questProgress,
-            skillNotes: saved.skillNotes && typeof saved.skillNotes === 'object' ? saved.skillNotes : defaults.skillNotes
+            skillNotes: saved.skillNotes && typeof saved.skillNotes === 'object' ? saved.skillNotes : defaults.skillNotes,
+            webdramaSync: sanitizeWebdramaSync(saved.webdramaSync, defaults.webdramaSync)
         };
     } catch (err) {
         console.error('Failed to load saved state:', err);

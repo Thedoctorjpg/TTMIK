@@ -68,26 +68,267 @@ function startSkillPractice(skillId) {
     switchTab(2);
 }
 
-function openSkillLessons(skillId) {
-    const skill = getSkillById(skillId);
-    if (!skill) return;
-
-    if (skill.linkedGroups?.includes('melbourne')) {
+function openLessonsForCategories(categories, preferMelbourne = true) {
+    const cats = Array.isArray(categories) ? categories.filter(Boolean) : [];
+    if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
-    } else if (skill.linkedGroups?.includes('sovereign')) {
+    } else {
         activeLibraryGroup = 'Sovereign Guide';
     }
-
-    if (skill.linkedCategories?.length) {
-        activeCategory = skill.linkedCategories[0];
-    } else {
-        activeCategory = 'All';
-    }
-
+    activeCategory = cats.length ? cats[0] : 'All';
     renderLibraryGroupFilters();
     renderCategoryFilters();
     renderLessons();
     switchTab(1);
+}
+
+function openSkillLessons(skillId) {
+    const skill = getSkillById(skillId);
+    if (!skill) return;
+
+    const preferMelbourne = skill.linkedGroups?.includes('melbourne')
+        || !(skill.linkedGroups?.includes('sovereign'));
+    if (skill.linkedGroups?.includes('sovereign') && !skill.linkedGroups?.includes('melbourne')) {
+        activeLibraryGroup = 'Sovereign Guide';
+    } else if (skill.linkedGroups?.includes('melbourne')) {
+        activeLibraryGroup = 'Melbourne Journey';
+    }
+
+    openLessonsForCategories(skill.linkedCategories, preferMelbourne);
+}
+
+function getResolvedSyncConfig() {
+    if (!appState.webdramaSync) {
+        appState.webdramaSync = { pin: 'HOSIER', episode: 2, reel: 'B' };
+    }
+    const { pin, episode, reel } = appState.webdramaSync;
+    const pinCfg = getSyncPin(pin);
+    const epCfg = getSyncEpisode(episode);
+    const reelCfg = getSyncReel(reel);
+
+    const skillId = pinCfg?.skillId || epCfg?.skillId || reelCfg?.skillId || 'melbourne-lantern-bard';
+    const categories = [
+        ...(pinCfg?.categories || []),
+        ...(epCfg?.categories || []),
+        ...(reelCfg?.categories || [])
+    ].filter((c, i, arr) => arr.indexOf(c) === i);
+
+    const questIds = [
+        ...(pinCfg?.questIds || []),
+        ...(epCfg?.questIds || []),
+        ...(reelCfg?.questIds || [])
+    ].filter((q, i, arr) => arr.indexOf(q) === i);
+
+    const shadowIdx = epCfg?.shadowingIndex ?? 0;
+    return { pin, episode, reel, pinCfg, epCfg, reelCfg, skillId, categories, questIds, shadowIdx };
+}
+
+function applyTtmikSync() {
+    const cfg = getResolvedSyncConfig();
+    setActiveSkill(cfg.skillId);
+    selectedSkillId = cfg.skillId;
+    persistState();
+    renderSyncPanel();
+    renderSkillsUI();
+}
+
+function openTtmikSyncLessons() {
+    const cfg = getResolvedSyncConfig();
+    applyTtmikSync();
+    openLessonsForCategories(cfg.categories, true);
+}
+
+function practiceTtmikSyncShadowing() {
+    const cfg = getResolvedSyncConfig();
+    applyTtmikSync();
+    startSkillPractice(cfg.skillId);
+}
+
+function updateWebdramaSync(field, value) {
+    if (!appState.webdramaSync) {
+        appState.webdramaSync = { pin: 'HOSIER', episode: 2, reel: 'B' };
+    }
+    if (field === 'pin' && getSyncPin(value)) appState.webdramaSync.pin = value;
+    if (field === 'episode') {
+        const n = parseInt(value, 10);
+        if (getSyncEpisode(n)) appState.webdramaSync.episode = n;
+    }
+    if (field === 'reel' && getSyncReel(value)) appState.webdramaSync.reel = value;
+    persistState();
+    renderSyncPanel();
+}
+
+function renderSyncPanel() {
+    const panel = document.getElementById('ttmik-sync-panel');
+    if (!panel || typeof TTMIK_SYNC_PINS === 'undefined') return;
+    panel.textContent = '';
+
+    const cfg = getResolvedSyncConfig();
+    const phrase = getShadowingPhraseForSkill(cfg.skillId, cfg.shadowIdx);
+    const skill = getSkillById(cfg.skillId);
+
+    const header = document.createElement('div');
+    header.className = 'flex flex-wrap items-start justify-between gap-4 mb-6';
+    const titleBlock = document.createElement('div');
+    const h3 = document.createElement('h3');
+    h3.className = 'text-2xl font-semibold';
+    h3.textContent = 'TTMIK Sync';
+    const meta = document.createElement('p');
+    meta.className = 'text-zinc-400 text-sm mt-1';
+    meta.textContent = 'Webdrama pins · episodes · reels → skills & Melbourne audio';
+    titleBlock.appendChild(h3);
+    titleBlock.appendChild(meta);
+
+    const badge = document.createElement('div');
+    badge.className = 'bg-violet-500/20 text-violet-300 px-4 py-2 rounded-2xl text-sm font-medium';
+    badge.textContent = skill ? skill.name : 'Melbourne Lantern Bard';
+
+    header.appendChild(titleBlock);
+    header.appendChild(badge);
+    panel.appendChild(header);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6';
+
+    const makeSelect = (label, field, options, current) => {
+        const wrap = document.createElement('label');
+        wrap.className = 'block';
+        const lbl = document.createElement('span');
+        lbl.className = 'text-xs uppercase tracking-widest text-zinc-500 block mb-2';
+        lbl.textContent = label;
+        const sel = document.createElement('select');
+        sel.className = 'w-full bg-zinc-800 border-0 rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-violet-500';
+        options.forEach(opt => {
+            const o = document.createElement('option');
+            o.value = opt.value;
+            o.textContent = opt.label;
+            if (String(opt.value) === String(current)) o.selected = true;
+            sel.appendChild(o);
+        });
+        sel.onchange = () => updateWebdramaSync(field, sel.value);
+        wrap.appendChild(lbl);
+        wrap.appendChild(sel);
+        return wrap;
+    };
+
+    grid.appendChild(makeSelect(
+        'Shoot pin',
+        'pin',
+        Object.entries(TTMIK_SYNC_PINS).map(([id, p]) => ({ value: id, label: `${id} · ${p.label}` })),
+        cfg.pin
+    ));
+    grid.appendChild(makeSelect(
+        'Episode',
+        'episode',
+        Object.entries(TTMIK_SYNC_EPISODES).map(([n, e]) => ({
+            value: n,
+            label: `Ep ${n} · ${e.ko} ${e.title}`
+        })),
+        cfg.episode
+    ));
+    grid.appendChild(makeSelect(
+        'Reel',
+        'reel',
+        Object.entries(TTMIK_SYNC_REELS).map(([id, r]) => ({ value: id, label: r.label })),
+        cfg.reel
+    ));
+    panel.appendChild(grid);
+
+    const detail = document.createElement('div');
+    detail.className = 'bg-zinc-800/50 rounded-2xl p-4 mb-6 text-sm space-y-2';
+    const pinLine = document.createElement('p');
+    pinLine.className = 'text-zinc-300';
+    pinLine.textContent = cfg.pinCfg
+        ? `📍 ${cfg.pinCfg.label} — ${cfg.pinCfg.place}`
+        : '';
+    const catLine = document.createElement('p');
+    catLine.className = 'text-zinc-400';
+    catLine.textContent = cfg.categories.length
+        ? `Lessons: ${cfg.categories.join(' · ')}`
+        : '';
+    const questLine = document.createElement('p');
+    questLine.className = 'text-zinc-500 text-xs';
+    if (cfg.questIds.length) {
+        const labels = cfg.questIds.map(id => {
+            const obj = MELBOURNE_QUEST.objectives.find(o => o.id === id);
+            return obj ? obj.text : id;
+        });
+        questLine.textContent = `Quest tie-in: ${labels.join(' · ')}`;
+    }
+    detail.appendChild(pinLine);
+    detail.appendChild(catLine);
+    if (cfg.questIds.length) detail.appendChild(questLine);
+    panel.appendChild(detail);
+
+    if (phrase) {
+        const phraseBox = document.createElement('div');
+        phraseBox.className = 'border-l-2 border-violet-500 pl-4 mb-6';
+        const ko = document.createElement('p');
+        ko.className = 'korean text-lg text-white';
+        ko.textContent = phrase.ko;
+        const en = document.createElement('p');
+        en.className = 'text-zinc-400 text-sm mt-1';
+        en.textContent = phrase.en;
+        phraseBox.appendChild(ko);
+        phraseBox.appendChild(en);
+        panel.appendChild(phraseBox);
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'flex flex-wrap gap-3 mb-6';
+
+    const syncBtn = document.createElement('button');
+    syncBtn.type = 'button';
+    syncBtn.className = 'px-5 py-3 bg-gradient-to-r from-violet-500 to-pink-500 rounded-2xl text-sm font-semibold hover:brightness-110';
+    syncBtn.textContent = 'Sync & activate skill';
+    syncBtn.onclick = () => applyTtmikSync();
+
+    const lessonsBtn = document.createElement('button');
+    lessonsBtn.type = 'button';
+    lessonsBtn.className = 'px-5 py-3 bg-zinc-800 rounded-2xl text-sm font-medium hover:bg-zinc-700';
+    lessonsBtn.textContent = 'Open synced lessons';
+    lessonsBtn.onclick = () => openTtmikSyncLessons();
+
+    const shadowBtn = document.createElement('button');
+    shadowBtn.type = 'button';
+    shadowBtn.className = 'px-5 py-3 bg-zinc-800 rounded-2xl text-sm font-medium hover:bg-zinc-700';
+    shadowBtn.textContent = 'Practice shadowing';
+    shadowBtn.onclick = () => practiceTtmikSyncShadowing();
+
+    if (phrase) {
+        const copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'px-5 py-3 bg-zinc-800 rounded-2xl text-sm font-medium hover:bg-zinc-700';
+        copyBtn.textContent = 'Copy phrase';
+        copyBtn.onclick = () => copyToClipboard(`${phrase.ko}\n${phrase.en}`);
+        actions.appendChild(copyBtn);
+    }
+
+    actions.appendChild(syncBtn);
+    actions.appendChild(lessonsBtn);
+    actions.appendChild(shadowBtn);
+    panel.appendChild(actions);
+
+    const routeLabel = document.createElement('h4');
+    routeLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
+    routeLabel.textContent = 'Jun 19 block route (reels + ep 2/6)';
+    panel.appendChild(routeLabel);
+
+    const routeList = document.createElement('div');
+    routeList.className = 'space-y-2 text-sm';
+    TTMIK_BLOCK_ROUTE.forEach(step => {
+        const row = document.createElement('div');
+        row.className = 'flex gap-3 text-zinc-400';
+        const time = document.createElement('span');
+        time.className = 'text-violet-400 font-mono shrink-0 w-12';
+        time.textContent = step.time;
+        const text = document.createElement('span');
+        text.textContent = `${step.pin} — ${step.note}`;
+        row.appendChild(time);
+        row.appendChild(text);
+        routeList.appendChild(row);
+    });
+    panel.appendChild(routeList);
 }
 
 function renderQuestPanel() {
@@ -351,6 +592,7 @@ function appendSection(parent, title, items, copyFirst) {
 }
 
 function renderSkillsUI() {
+    renderSyncPanel();
     renderQuestPanel();
     renderSkillsGrid();
     renderSkillDetail();

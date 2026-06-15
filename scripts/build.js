@@ -15,6 +15,7 @@ const JS_FILES = [
     'social.js',
     'skills.js',
     'skills-data.js',
+    'webdrama-sync-data.js',
     'lesson-data.js',
     'sovereign-data.js',
     'api/ttmik-webhook.js',
@@ -31,6 +32,7 @@ const HTML_SCRIPTS = [
     'storage.js',
     'social.js',
     'skills-data.js',
+    'webdrama-sync-data.js',
     'skills.js',
     'app.js'
 ];

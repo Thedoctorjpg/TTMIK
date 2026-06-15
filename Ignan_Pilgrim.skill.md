@@ -55,6 +55,8 @@ metadata:
 ## Cross-App Links
 
 - Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC
+- TTMIK.html?skill=ignan-pilgrim — boot registry
+- TTMIK.html?library=ignan — Ignan Library compose
 - Post-DIB preset 9 → hand off when Mari is ready
 - TTMIK.html?ignan=1 — Ignan healing journey boot
 - Veil Lumen — trilingual spoken clip

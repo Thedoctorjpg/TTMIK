@@ -256,8 +256,8 @@ const SKILLS = [
             'Reflection: Melbourne is my yes',
             'Creative piece on distant flames and sovereign paths'
         ],
-        linkedGroups: ['melbourne'],
-        linkedCategories: ['Melbourne Arrival', 'Transportation'],
+        linkedGroups: ['asuka', 'melbourne'],
+        linkedCategories: ['Japanese Shadowing', 'Maybe Walk Route', 'Sovereign Choice', 'Melbourne Arrival', 'Transportation'],
         shadowingPhrases: [
             { ja: 'メルボルンが私の選択です。', ko: '멜버른이 제 선택이에요.', en: 'Melbourne is my choice.' },
             { ja: '美しい「もしも」も手放せます。', ko: '아름다운 “만약에”도 놓을 수 있어요.', en: 'I can release a beautiful “what if.”' },

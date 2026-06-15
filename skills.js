@@ -83,9 +83,15 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const ignanCats = typeof IGNAN_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => IGNAN_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const asukaCats = typeof ASUKA_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => ASUKA_LIBRARY_CATEGORIES.includes(c))
+        : [];
     if (ignanCats.length) {
         activeLibraryGroup = 'Ignan Library';
         activeCategory = ignanCats[0];
+    } else if (asukaCats.length) {
+        activeLibraryGroup = 'Asuka Library';
+        activeCategory = asukaCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -104,11 +110,12 @@ function openSkillLessons(skillId) {
     if (!skill) return;
 
     const hasIgnan = skill.linkedGroups?.includes('ignan');
-    const preferMelbourne = !hasIgnan && (
+    const hasAsuka = skill.linkedGroups?.includes('asuka');
+    const preferMelbourne = !hasIgnan && !hasAsuka && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan) {
+    if (hasIgnan || hasAsuka) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -239,6 +246,64 @@ function practiceIgnanHealingJourney(opts = {}) {
     renderSkillsGrid();
 }
 
+function bootSkillById(skillId, opts = {}) {
+    const skill = getSkillById(skillId);
+    if (!skill) return false;
+
+    const entry = typeof getSkillBootEntry === 'function' ? getSkillBootEntry(skillId) : null;
+
+    if (entry?.invoke && typeof window[entry.invoke] === 'function') {
+        window[entry.invoke]({ logQuest: opts.logQuest !== false });
+        return true;
+    }
+
+    if (entry?.sync) {
+        setWebdramaSyncValues(entry.sync.pin, entry.sync.episode, entry.sync.reel);
+    } else if (entry?.preset && typeof getSyncPreset === 'function' && getSyncPreset(entry.preset)) {
+        const preset = getSyncPreset(entry.preset);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    }
+
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    const shadowIdx = entry?.shadowIndex ?? 0;
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    }
+
+    if (opts.logQuest !== false && entry?.questId) {
+        completeQuestObjective(entry.questId);
+    }
+
+    if (opts.lessons || opts.openLibrary) {
+        if (entry?.libraryGroup === 'Ignan Library' && entry.libraryCategory) {
+            startIgnanCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Asuka Library' && entry.libraryCategory) {
+            startAsukaCategory(entry.libraryCategory);
+        } else {
+            openSkillLessons(skillId);
+        }
+        return true;
+    }
+
+    if (opts.skillsTab) {
+        switchTab(3);
+        renderSkillDetail();
+        renderSkillsGrid();
+        return true;
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+    return true;
+}
+
 function practiceAsukaMaybe(opts = {}) {
     const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode(5) : null;
     const skillId = epCfg?.skillId || 'asuka-brisbane';
@@ -335,6 +400,15 @@ function applyTtmikSyncRouteStep(step) {
 
 function handleTtmikSyncBoot() {
     const params = new URLSearchParams(window.location.search);
+    const skillParam = params.get('skill');
+    if (skillParam && getSkillById(skillParam)) {
+        bootSkillById(skillParam, {
+            lessons: params.get('lessons') === '1',
+            skillsTab: params.get('tab') === 'skills',
+            logQuest: params.get('quest') !== '0'
+        });
+        return;
+    }
     if (params.get('asuka') === '1' || params.get('step') === '5') {
         practiceAsukaMaybe();
         return;
@@ -952,6 +1026,22 @@ function renderSkillDetail() {
         panel.appendChild(aftercare);
     }
 
+    if (skill.id === 'ignan-grounding' || skill.id === 'ignan-dalan') {
+        const ignanBlock = document.createElement('div');
+        ignanBlock.className = 'mb-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-emerald-300 mb-2';
+        label.textContent = skill.id === 'ignan-grounding' ? 'Boot Ilokano grounding' : 'Boot own-path dalan';
+        ignanBlock.appendChild(label);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-600/30 text-emerald-200 hover:bg-emerald-600/50';
+        runBtn.textContent = `Invoke ${skill.name}`;
+        runBtn.onclick = () => bootSkillById(skill.id);
+        ignanBlock.appendChild(runBtn);
+        panel.appendChild(ignanBlock);
+    }
+
     if (skill.id === 'asuka-brisbane') {
         const asukaBlock = document.createElement('div');
         asukaBlock.className = 'mb-6 bg-rose-500/10 border border-rose-500/20 rounded-2xl p-4';
@@ -1065,6 +1155,107 @@ function appendSection(parent, title, items, copyFirst) {
     });
     block.appendChild(ul);
     parent.appendChild(block);
+}
+
+function renderSkillLibraryComposer() {
+    const panel = document.getElementById('skill-library-composer');
+    if (!panel || typeof COMPOSED_LIBRARIES === 'undefined') return;
+    panel.textContent = '';
+
+    const header = document.createElement('div');
+    header.className = 'mb-6';
+    const h3 = document.createElement('h3');
+    h3.className = 'text-xl font-semibold text-violet-200 mb-2';
+    h3.textContent = 'Skill Library Composer';
+    const meta = document.createElement('p');
+    meta.className = 'text-zinc-400 text-sm';
+    meta.textContent = 'Boot every .skill.md — specialty libraries + archetype shadowing';
+    header.appendChild(h3);
+    header.appendChild(meta);
+    panel.appendChild(header);
+
+    const bootAll = document.createElement('button');
+    bootAll.type = 'button';
+    bootAll.className = 'mb-6 px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+    bootAll.textContent = 'Open compose index (Journey tab)';
+    bootAll.title = 'TTMIK.html?library=compose';
+    bootAll.onclick = () => switchTab(4);
+    panel.appendChild(bootAll);
+
+    COMPOSED_LIBRARIES.forEach(lib => {
+        const block = document.createElement('div');
+        block.className = 'mb-6 last:mb-0';
+
+        const title = document.createElement('h4');
+        title.className = 'text-sm font-semibold mb-1';
+        if (lib.accent === 'emerald') title.className += ' text-emerald-300';
+        else if (lib.accent === 'rose') title.className += ' text-rose-300';
+        else if (lib.accent === 'violet') title.className += ' text-violet-300';
+        else title.className += ' text-pink-300';
+        title.textContent = lib.label;
+        block.appendChild(title);
+
+        const desc = document.createElement('p');
+        desc.className = 'text-xs text-zinc-500 mb-3';
+        desc.textContent = lib.description;
+        block.appendChild(desc);
+
+        const skillGrid = document.createElement('div');
+        skillGrid.className = 'grid grid-cols-1 md:grid-cols-2 gap-2';
+
+        lib.skills.forEach(skillId => {
+            const skill = getSkillById(skillId);
+            const entry = typeof getSkillBootEntry === 'function' ? getSkillBootEntry(skillId) : null;
+            if (!skill) return;
+
+            const row = document.createElement('div');
+            row.className = 'flex flex-wrap items-center gap-2 bg-zinc-800/60 rounded-xl px-3 py-2 text-sm';
+
+            const label = document.createElement('span');
+            label.className = 'text-zinc-200 font-medium flex-1 min-w-[10rem]';
+            label.textContent = skill.name;
+            row.appendChild(label);
+
+            const src = document.createElement('span');
+            src.className = 'text-xs text-zinc-500 hidden lg:inline';
+            src.textContent = entry?.source || `${skillId}.skill.md`;
+            row.appendChild(src);
+
+            const bootBtn = document.createElement('button');
+            bootBtn.type = 'button';
+            bootBtn.className = 'px-3 py-1 rounded-lg text-xs font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+            bootBtn.textContent = 'Boot';
+            bootBtn.title = typeof getSkillBootUrl === 'function' ? getSkillBootUrl(skillId) : `?skill=${skillId}`;
+            bootBtn.onclick = () => bootSkillById(skillId);
+            row.appendChild(bootBtn);
+
+            const libBtn = document.createElement('button');
+            libBtn.type = 'button';
+            libBtn.className = 'px-3 py-1 rounded-lg text-xs font-medium bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
+            libBtn.textContent = 'Library';
+            libBtn.onclick = () => bootSkillById(skillId, { openLibrary: true });
+            row.appendChild(libBtn);
+
+            skillGrid.appendChild(row);
+        });
+
+        block.appendChild(skillGrid);
+
+        if (lib.boot) {
+            const openLib = document.createElement('button');
+            openLib.type = 'button';
+            openLib.className = 'mt-3 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700';
+            openLib.textContent = `Open ${lib.label}`;
+            openLib.onclick = () => {
+                if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
+                else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
+                else switchTab(3);
+            };
+            block.appendChild(openLib);
+        }
+
+        panel.appendChild(block);
+    });
 }
 
 function renderSkillsUI() {

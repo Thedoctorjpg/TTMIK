@@ -279,6 +279,8 @@ const SKILLS = [
         korean: ['괜찮아요, 괜찮아요.', '잠시 쉬어도 괜찮아요.', '제 길을 믿어요.'],
         integrations: [
             'Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC',
+            'TTMIK.html?skill=ignan-pilgrim — boot registry',
+            'TTMIK.html?library=ignan — Ignan Library compose',
             'Post-DIB preset 9 → hand off when Mari is ready',
             'TTMIK.html?ignan=1 — Ignan healing journey boot',
             'Veil Lumen — trilingual spoken clip'
@@ -317,6 +319,8 @@ const SKILLS = [
         ilokano: ['Ok laeng, ok laeng.', 'Nasaem met ti aginana.', 'Aginana met.'],
         integrations: [
             'Ignan Library · Ilokano Grounding category',
+            'TTMIK.html?skill=ignan-grounding — boot skill + shadowing',
+            'TTMIK.html?skill=ignan-grounding&lessons=1 — open library lane',
             'Post-DIB preset 9 → ignan-grounding → ignan-pilgrim',
             'HEALING_FACTORS step 4 companion'
         ]
@@ -353,6 +357,8 @@ const SKILLS = [
         ilokano: ['Piliem ti bukodko a dalan.', 'Maysa nga anges, maysa a talna.', 'Bukodko a panawen.'],
         integrations: [
             'Ignan Library · Healing Walk Route + Trilingual Shadowing',
+            'TTMIK.html?skill=ignan-dalan — boot BOTANIC close + shadowing',
+            'TTMIK.html?skill=ignan-dalan&lessons=1 — open library lane',
             'Ep 2.6 IG7–IG8 · preset 10',
             'TTMIK.html?ignan=1&step=6'
         ]

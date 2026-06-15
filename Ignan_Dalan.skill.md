@@ -54,6 +54,8 @@ metadata:
 ## Cross-App Links
 
 - Ignan Library · Healing Walk Route + Trilingual Shadowing
+- TTMIK.html?skill=ignan-dalan — boot BOTANIC close + shadowing
+- TTMIK.html?skill=ignan-dalan&lessons=1 — open library lane
 - Ep 2.6 IG7–IG8 · preset 10
 - TTMIK.html?ignan=1&step=6
 

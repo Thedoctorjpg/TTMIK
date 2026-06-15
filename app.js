@@ -65,6 +65,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Ignan Library') {
         return lessons.filter(l => l.group === 'ignan');
     }
+    if (activeLibraryGroup === 'Asuka Library') {
+        return lessons.filter(l => l.group === 'asuka');
+    }
     return lessons;
 }
 
@@ -499,6 +502,9 @@ function startJourneyCategory(groupId) {
     if (groupId === 'ignan') {
         activeLibraryGroup = 'Ignan Library';
         activeCategory = 'Trilingual Shadowing';
+    } else if (groupId === 'asuka') {
+        activeLibraryGroup = 'Asuka Library';
+        activeCategory = 'Japanese Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -532,6 +538,15 @@ function startIgnanCategory(subtitle) {
     switchTab(1);
 }
 
+function startAsukaCategory(subtitle) {
+    activeLibraryGroup = 'Asuka Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function renderJourneyDashboard() {
     const grid = document.getElementById('journey-grid');
     if (!grid || typeof JOURNEY_CATEGORIES === 'undefined') return;
@@ -541,10 +556,17 @@ function renderJourneyDashboard() {
     if (typeof IGNAN_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(IGNAN_JOURNEY_CATEGORY);
     }
+    if (typeof ASUKA_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(ASUKA_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
-        const ring = journey.id === 'ignan' ? 'hover:ring-emerald-500' : 'hover:ring-pink-500';
+        const ring = journey.id === 'ignan'
+            ? 'hover:ring-emerald-500'
+            : journey.id === 'asuka'
+                ? 'hover:ring-rose-500'
+                : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -555,13 +577,17 @@ function renderJourneyDashboard() {
         const count = document.createElement('p');
         count.className = journey.id === 'ignan'
             ? 'text-emerald-400 text-sm font-medium'
-            : 'text-pink-400 text-sm font-medium';
+            : journey.id === 'asuka'
+                ? 'text-rose-400 text-sm font-medium'
+                : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign').length} tracks`;
         } else if (journey.id === 'ignan') {
             count.textContent = `${lessons.filter(l => l.group === 'ignan').length} tracks`;
+        } else if (journey.id === 'asuka') {
+            count.textContent = `${lessons.filter(l => l.group === 'asuka').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -611,6 +637,29 @@ function renderJourneyDashboard() {
         btn.onclick = () => startIgnanCategory(def.subtitle);
         ignanGrid.appendChild(btn);
     });
+
+    const asukaGrid = document.getElementById('asuka-quick-grid');
+    if (!asukaGrid || typeof ASUKA_COURSE_DEFS === 'undefined') return;
+    asukaGrid.textContent = '';
+
+    ASUKA_COURSE_DEFS.forEach(def => {
+        const btn = document.createElement('button');
+        btn.className = 'bg-rose-900/30 hover:bg-rose-800/40 ring-1 ring-rose-500/20 rounded-2xl px-4 py-3 text-left transition';
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'font-medium block text-rose-100';
+        titleSpan.textContent = def.subtitle;
+        const countSpan = document.createElement('span');
+        countSpan.className = 'text-xs text-rose-400/70';
+        countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+        btn.appendChild(titleSpan);
+        btn.appendChild(countSpan);
+        btn.onclick = () => startAsukaCategory(def.subtitle);
+        asukaGrid.appendChild(btn);
+    });
+
+    if (typeof renderSkillLibraryComposer === 'function') {
+        renderSkillLibraryComposer();
+    }
 }
 
 function setupAudio() {
@@ -737,11 +786,16 @@ window.onload = () => {
         loadLesson(Math.max(0, resumeIndex), false);
 
         const bootParams = new URLSearchParams(window.location.search);
-        if (bootParams.has('preset') || bootParams.has('pin') || bootParams.has('heal')
-            || bootParams.has('ignan') || bootParams.has('asuka') || bootParams.has('step')) {
+        if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
+            || bootParams.has('heal') || bootParams.has('ignan') || bootParams.has('asuka')
+            || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'ignan') {
             startIgnanCategory(bootParams.get('category') || 'Trilingual Shadowing');
+        } else if (bootParams.get('library') === 'asuka') {
+            startAsukaCategory(bootParams.get('category') || 'Japanese Shadowing');
+        } else if (bootParams.get('library') === 'compose') {
+            switchTab(4);
         } else if (bootParams.has('format')) {
             switchTab(4);
         } else {

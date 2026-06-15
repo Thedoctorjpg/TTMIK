@@ -54,6 +54,8 @@ metadata:
 ## Cross-App Links
 
 - Ignan Library · Ilokano Grounding category
+- TTMIK.html?skill=ignan-grounding — boot skill + shadowing
+- TTMIK.html?skill=ignan-grounding&lessons=1 — open library lane
 - Post-DIB preset 9 → ignan-grounding → ignan-pilgrim
 - HEALING_FACTORS step 4 companion
 

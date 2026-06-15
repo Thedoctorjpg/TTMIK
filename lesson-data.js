@@ -51,5 +51,18 @@ if (typeof generateIgnanLibraryLessons === 'function') {
     nextId += ignanLessons.length;
 }
 
+if (typeof generateAsukaLibraryLessons === 'function') {
+    const asukaLessons = generateAsukaLibraryLessons(nextId);
+    lessons = lessons.concat(asukaLessons);
+    nextId += asukaLessons.length;
+}
+
 let categories = deriveCategories(lessons);
-let libraryGroups = ['All', 'TTMIK Courses', 'Sovereign Guide', 'Melbourne Journey', 'Ignan Library'];
+let libraryGroups = [
+    'All',
+    'TTMIK Courses',
+    'Sovereign Guide',
+    'Melbourne Journey',
+    'Ignan Library',
+    'Asuka Library'
+];

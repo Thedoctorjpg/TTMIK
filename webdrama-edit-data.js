@@ -116,6 +116,28 @@ const MULTIFORMAT_EDITS = {
             { id: 'IG8', time: '1:07', pin: 'BOTANIC', note: 'Maysa nga anges — one breath; lantern pass optional', dur: 13 }
         ]
     },
+    'mari-fifa-celebration': {
+        id: 'mari-fifa-celebration',
+        label: 'Ep 2.65 · Mari FIFA Cantina (60s)',
+        duration: 60,
+        aspect: '9:16',
+        editor: 'pro',
+        visualPreset: 'cinematic',
+        overlay: 'NARAGSAK',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'CANTINA', episode: '2.65', reel: null },
+        pins: ['CANTINA'],
+        exportTargets: ['Webdrama insert', 'TTMIK restaurant deck', 'Veil Lumen joy clip'],
+        pipeline: ['ignan-pilgrim'],
+        shots: [
+            { id: 'FC1', time: '0:00', pin: 'CANTINA', note: 'Mari leads to booth — Bard asks if celebration is okay', dur: 8 },
+            { id: 'FC2', time: '0:08', pin: 'CANTINA', note: 'TV FIFA replay — phones face-down except one cheer', dur: 10 },
+            { id: 'FC3', time: '0:18', pin: 'CANTINA', note: 'Ilokano native: Naragsak unay! Ok laeng, agnanayon.', dur: 12 },
+            { id: 'FC4', time: '0:30', pin: 'CANTINA', note: 'Spanish toast: ¡Salud! · Korean: 맛있어요! 축하해요!', dur: 12 },
+            { id: 'FC5', time: '0:42', pin: 'CANTINA', note: 'Guac + goal replay — joy not performance', dur: 10 },
+            { id: 'FC6', time: '0:52', pin: 'CANTINA', note: 'Wide hold — side-fifa-celebrate · no invoice', dur: 8 }
+        ]
+    },
     'dib-aftercare': {
         id: 'dib-aftercare',
         label: 'Post-DIB · Quiet Reflection & Self-Healing (45s)',

@@ -97,7 +97,8 @@ const HEALING_FACTORS = {
         { id: 'post-dib', label: 'Post-DIB landing', pin: 'HOTEL', preset: 9, edit: 'dib-aftercare', questId: 'side-dib-heal' },
         { id: 'daily-ritual', label: 'Daily integration', questId: 'side-ritual', skillId: 'flame-kissed-bard' },
         { id: 'no-rewatch', label: 'No re-watch spiral', note: 'GoPro off before mirror · phone face-down' },
-        { id: 'ignan-walk', label: 'Ignan healing walk', skillId: 'ignan-pilgrim', edit: 'ignan-healing-journey', questId: 'side-ignan-heal', pin: 'BOTANIC' }
+        { id: 'ignan-walk', label: 'Ignan healing walk', skillId: 'ignan-pilgrim', edit: 'ignan-healing-journey', questId: 'side-ignan-heal', pin: 'BOTANIC' },
+        { id: 'fifa-celebrate', label: 'Mari FIFA cantina', skillId: 'ignan-pilgrim', edit: 'mari-fifa-celebration', questId: 'side-fifa-celebrate', pin: 'CANTINA' }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -229,6 +230,17 @@ const TTMIK_SYNC_PINS = {
         questIds: ['side-ritual', 'main-veil', 'side-ignan-heal'],
         formats: ['webdrama', 'veil-lumen-16x9', 'ignan-healing-journey']
     },
+    CANTINA: {
+        label: 'Mexican Restaurant',
+        place: 'Federation lane cantina · FIFA watch party · Mari celebration',
+        episodes: ['2.65'],
+        reels: [],
+        skillId: 'ignan-pilgrim',
+        categories: ['Daily Life', 'Social & Cultural', 'Restaurant Dining'],
+        questIds: ['side-fifa-celebrate', 'side-ignan-heal'],
+        formats: ['webdrama', 'mari-fifa-celebration', 'ignan-healing-journey'],
+        character: 'Mari'
+    },
     HOTEL: {
         label: 'Accommodation',
         place: 'Desk / mirror · phone scenes · kitchen cook-off · post-DIB quiet heal',
@@ -289,6 +301,21 @@ const TTMIK_SYNC_EPISODES = {
         formats: ['ignan-healing-journey'],
         character: 'Mari',
         languages: ['ilo', 'ko', 'en']
+    },
+    '2.65': {
+        title: 'FIFA Celebration',
+        ko: '축하',
+        display: 'Ep 2.65',
+        pins: ['CANTINA', 'FED'],
+        skillId: 'ignan-pilgrim',
+        categories: ['Daily Life', 'Social & Cultural', 'Restaurant Dining'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        shadowingIndex: 4,
+        duration: '60s',
+        formats: ['mari-fifa-celebration'],
+        character: 'Mari',
+        languages: ['ilo', 'es', 'ko', 'en'],
+        event: 'FIFA match watch party'
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -486,7 +513,24 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Rain glass · Brisbane maybe · Japanese native + Korean shadow',
         autoShadow: true
+    },
+    {
+        id: 12,
+        label: 'Cantina · Ep 2.65 · FIFA',
+        shortLabel: 'FIFA',
+        pin: 'CANTINA',
+        episode: '2.65',
+        reel: null,
+        note: 'Mexican restaurant · Mari Ilokano native · FIFA joy · preset after BOTANIC walk',
+        autoShadow: true
     }
+];
+
+/** Lane D — Mari FIFA celebration (after Ignan walk · optional same evening) */
+const TTMIK_FIFA_CELEBRATION_ROUTE = [
+    { time: '19:00', pin: 'CANTINA', note: 'Meet after walk — Mari picks the table, Bard pays his half', presetId: 12 },
+    { time: '19:15', pin: 'CANTINA', note: 'Ilokano toast first — Naragsak unay before the match replay', sync: { pin: 'CANTINA', episode: '2.65', reel: null } },
+    { time: '19:45', pin: 'CANTINA', note: 'Goal cheer — Spanish salud, Korean 맛있어요, no soulmate CTAs', presetId: 12 }
 ];
 
 const TTMIK_BLOCK_ROUTE = [
@@ -558,6 +602,10 @@ function getHealingFactors() {
 
 function getIgnanHealRoute() {
     return TTMIK_IGNAN_HEAL_ROUTE;
+}
+
+function getFifaCelebrationRoute() {
+    return TTMIK_FIFA_CELEBRATION_ROUTE;
 }
 
 function getSyncReel(reelId) {

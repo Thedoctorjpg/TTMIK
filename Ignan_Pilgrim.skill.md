@@ -51,10 +51,13 @@ metadata:
 - Ok laeng, ok laeng.
 - Nasaem met ti aginana.
 - Piliem ti bukodko a dalan.
+- Naragsak unay! Ok laeng, agnanayon.
 
 ## Cross-App Links
 
 - Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC
+- Ep 2.65 · mari-fifa-celebration · preset 12 · CANTINA
+- TTMIK.html?fifa=1 — Mari Mexican restaurant FIFA · Ilokano native first
 - TTMIK.html?skill=ignan-pilgrim — boot registry
 - TTMIK.html?library=ignan — Ignan Library compose
 - Post-DIB preset 9 → hand off when Mari is ready

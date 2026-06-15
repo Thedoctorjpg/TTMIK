@@ -304,6 +304,34 @@ function bootSkillById(skillId, opts = {}) {
     return true;
 }
 
+function practiceMariFifaCelebrate(opts = {}) {
+    const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode('2.65') : null;
+    const skillId = epCfg?.skillId || 'ignan-pilgrim';
+    const shadowIdx = epCfg?.shadowingIndex ?? 4;
+
+    setWebdramaSyncValues('CANTINA', '2.65', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-fifa-celebrate');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceAsukaMaybe(opts = {}) {
     const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode(5) : null;
     const skillId = epCfg?.skillId || 'asuka-brisbane';
@@ -409,6 +437,10 @@ function handleTtmikSyncBoot() {
         });
         return;
     }
+    if (params.get('fifa') === '1' || params.get('mari') === 'fifa' || params.get('step') === '7') {
+        practiceMariFifaCelebrate();
+        return;
+    }
     if (params.get('asuka') === '1' || params.get('step') === '5') {
         practiceAsukaMaybe();
         return;
@@ -492,7 +524,7 @@ function renderSyncPanel() {
 
         const presetsLabel = document.createElement('p');
         presetsLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
-        presetsLabel.textContent = 'On-set presets (1–11)';
+        presetsLabel.textContent = 'On-set presets (1–12)';
         presetsWrap.appendChild(presetsLabel);
 
         const presetsRow = document.createElement('div');
@@ -630,6 +662,12 @@ function renderSyncPanel() {
             ja.textContent = phrase.ja;
             phraseBox.appendChild(ja);
         }
+        if (phrase.es) {
+            const es = document.createElement('p');
+            es.className = 'text-amber-400/90 text-sm font-medium';
+            es.textContent = phrase.es;
+            phraseBox.appendChild(es);
+        }
         const en = document.createElement('p');
         en.className = 'text-zinc-400 text-sm mt-1';
         en.textContent = phrase.en;
@@ -691,6 +729,14 @@ function renderSyncPanel() {
     asukaBtn.title = 'Japanese native input · preset 11 · FED rain glass';
     asukaBtn.onclick = () => practiceAsukaMaybe();
     actions.appendChild(asukaBtn);
+
+    const fifaBtn = document.createElement('button');
+    fifaBtn.type = 'button';
+    fifaBtn.className = 'px-5 py-3 bg-amber-900/50 text-amber-200 rounded-2xl text-sm font-medium hover:bg-amber-800/70 ring-1 ring-amber-500/30';
+    fifaBtn.textContent = 'Mari FIFA cantina (Ep 2.65)';
+    fifaBtn.title = 'Mexican restaurant · Ilokano native · preset 12';
+    fifaBtn.onclick = () => practiceMariFifaCelebrate();
+    actions.appendChild(fifaBtn);
 
     actions.appendChild(syncBtn);
     actions.appendChild(lessonsBtn);
@@ -782,6 +828,9 @@ function renderSyncPanel() {
     }
     if (typeof TTMIK_IGNAN_HEAL_ROUTE !== 'undefined') {
         appendRouteList('Lane C · Ignan self-healing walk (Mari)', TTMIK_IGNAN_HEAL_ROUTE);
+    }
+    if (typeof TTMIK_FIFA_CELEBRATION_ROUTE !== 'undefined') {
+        appendRouteList('Lane D · Mari FIFA cantina celebration', TTMIK_FIFA_CELEBRATION_ROUTE);
     }
 }
 
@@ -1024,6 +1073,26 @@ function renderSkillDetail() {
         runBtn.onclick = () => practiceDibAftercare();
         aftercare.appendChild(runBtn);
         panel.appendChild(aftercare);
+    }
+
+    if (skill.id === 'ignan-pilgrim') {
+        const fifaBlock = document.createElement('div');
+        fifaBlock.className = 'mb-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4';
+        const fifaLabel = document.createElement('h4');
+        fifaLabel.className = 'text-xs uppercase tracking-widest text-amber-300 mb-2';
+        fifaLabel.textContent = 'FIFA cantina · Ilokano native tongue';
+        fifaBlock.appendChild(fifaLabel);
+        const fifaNote = document.createElement('p');
+        fifaNote.className = 'text-sm text-zinc-400 mb-3';
+        fifaNote.textContent = 'Mexican restaurant celebration — Mari speaks Ilokano first, then Spanish toast + Korean shadow.';
+        fifaBlock.appendChild(fifaNote);
+        const fifaRun = document.createElement('button');
+        fifaRun.type = 'button';
+        fifaRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-amber-600/30 text-amber-200 hover:bg-amber-600/50';
+        fifaRun.textContent = 'Take Mari to FIFA cantina (Ep 2.65)';
+        fifaRun.onclick = () => practiceMariFifaCelebrate();
+        fifaBlock.appendChild(fifaRun);
+        panel.appendChild(fifaBlock);
     }
 
     if (skill.id === 'ignan-grounding' || skill.id === 'ignan-dalan') {

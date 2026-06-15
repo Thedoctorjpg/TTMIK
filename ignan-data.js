@@ -9,7 +9,8 @@ const IGNAN_BASE = 'Ignan_Library';
 const IGNAN_LIBRARY_CATEGORIES = [
     'Trilingual Shadowing',
     'Ilokano Grounding',
-    'Healing Walk Route'
+    'Healing Walk Route',
+    'FIFA Celebration'
 ];
 
 const IGNAN_PHRASE_DECK = [
@@ -96,9 +97,37 @@ const IGNAN_JOURNEY_CATEGORY = {
     description: 'Ilokano grounding + Korean shadowing + Ep 2.6 healing walk deck'
 };
 
+const IGNAN_FIFA_CELEBRATION = [
+    {
+        title: 'Ilokano toast — Naragsak unay',
+        ilo: 'Naragsak unay! Ok laeng, agnanayon.',
+        es: '¡Salud! ¡Qué buen partido!',
+        ko: '맛있어요! 축하해요!',
+        en: 'So happy — cheers to the game and the meal.',
+        note: 'Mari speaks Ilokano first at the cantina booth'
+    },
+    {
+        title: 'Goal cheer — joy not drama',
+        ilo: 'Naragsak ti pusok — saan a drama.',
+        es: '¡Gol! ¡Buen provecho, amigos!',
+        ko: '정말 재미있었어요!',
+        en: 'Joy in my chest — not for the algorithm.',
+        note: 'FIFA replay on TV · phones face-down except one cheer'
+    },
+    {
+        title: 'Cantina close — own celebration',
+        ilo: 'Bukodko a ragsak — ok laeng.',
+        es: '¡Hasta luego! Gracias.',
+        ko: '오늘 정말 좋았어요.',
+        en: 'My own joy — okay to celebrate without posting.',
+        note: 'log side-fifa-celebrate · preset 12'
+    }
+];
+
 function buildIgnanTranscript(parts) {
     const lines = [];
     if (parts.ilo) lines.push(`Ilokano (Ignan): ${parts.ilo}`);
+    if (parts.es) lines.push(`Spanish (cantina): ${parts.es}`);
     if (parts.ko) lines.push(`Korean (TTMIK): ${parts.ko}`);
     if (parts.en) lines.push(`English: ${parts.en}`);
     if (parts.note) lines.push(`\nOn-set: ${parts.note}`);
@@ -156,6 +185,22 @@ function buildIgnanGroundingLessons(startId) {
     });
 }
 
+function buildIgnanFifaLessons(startId) {
+    return IGNAN_FIFA_CELEBRATION.map((d, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        return createLesson({
+            id: startId + i,
+            title: d.title,
+            subtitle: 'FIFA Celebration',
+            duration: '00:45',
+            src: `${IGNAN_BASE}/FIFA_Celebration/Celebration_${n}.mp3`,
+            transcript: buildIgnanTranscript(d),
+            vocab: [{ ko: d.ko, en: d.en, note: [d.ilo, d.es].filter(Boolean).join(' · ') }],
+            group: 'ignan'
+        });
+    });
+}
+
 function generateIgnanLibraryLessons(startId) {
     let id = startId;
     const phrase = buildIgnanPhraseLessons(id);
@@ -163,7 +208,9 @@ function generateIgnanLibraryLessons(startId) {
     const route = buildIgnanRouteLessons(id);
     id += route.length;
     const ground = buildIgnanGroundingLessons(id);
-    return phrase.concat(route, ground);
+    id += ground.length;
+    const fifa = buildIgnanFifaLessons(id);
+    return phrase.concat(route, ground, fifa);
 }
 
 const IGNAN_COURSE_DEFS = [
@@ -178,5 +225,9 @@ const IGNAN_COURSE_DEFS = [
     {
         subtitle: 'Ilokano Grounding',
         trackCount: IGNAN_GROUNDING_DRILLS.length
+    },
+    {
+        subtitle: 'FIFA Celebration',
+        trackCount: IGNAN_FIFA_CELEBRATION.length
     }
 ];

@@ -407,6 +407,30 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 
 ---
 
+# EPISODE 2.65 — 「축하」MARI FIFA CANTINA
+
+**Joy insert** · Mexican restaurant watch party · Mari (Ignan native)  
+**Runtime:** 60 sec · **Pin:** CANTINA (Federation lane cantina)  
+**Quest:** `side-fifa-celebrate` · **Skill:** `ignan-pilgrim` · **Edit:** `mari-fifa-celebration` · **Preset:** **12**  
+**Boot:** `TTMIK.html?fifa=1` · **Lane D** after Ep 2.6 BOTANIC walk (same evening optional)
+
+**Logline:** After the healing walk, Mari asks for one normal thing: tacos, a FIFA replay, and permission to be happy in her own tongue. Bard films the toast, not the tears.
+
+**Caption pitch:** *Naragsak unay. ¡Salud! 맛있어요.*
+
+**TTMIK team note:** Ilokano leads every cheer — Spanish is cantina ambiance, Korean is practice, English is anchor. No performance invoice.
+
+| Ilokano (native) | Spanish (cantina) | Korean (TTMIK) | English |
+|------------------|-------------------|----------------|---------|
+| Naragsak unay! Ok laeng, agnanayon. | ¡Salud! ¡Qué buen partido! | 맛있어요! 축하해요! | So happy — cheers to the game. |
+| Naragsak ti pusok — saan a drama. | ¡Gol! ¡Buen provecho! | 정말 재미있었어요! | Joy in my chest — not for the algorithm. |
+
+**On-set:** Mari picks the booth · TV replay only · GoPro on bag · log `side-fifa-celebrate` at close
+
+**Tags:** `#Ignan #FIFA #Mari #Cantina #Naragsak #NativeTongue`
+
+---
+
 # EPISODE 2.75 — 「요리대결」COOK-OFF NOT A DATE
 
 **Insert episode** · Sovereign friend date · lets-cook sync · girls-love Ch.1 pickup  

@@ -389,6 +389,8 @@ function stopShadowingTimer() {
 function renderShadowingUI() {
     const phrases = getShadowingPhrases();
     const phrase = phrases[shadowingIndex % phrases.length];
+    const iloEl = document.getElementById('shadowing-ilo');
+    const esEl = document.getElementById('shadowing-es');
     const jaEl = document.getElementById('shadowing-ja');
     const koEl = document.getElementById('shadowing-ko');
     const enEl = document.getElementById('shadowing-en');
@@ -397,6 +399,24 @@ function renderShadowingUI() {
     const btnEl = document.getElementById('shadowing-toggle-btn');
     const dotsEl = document.getElementById('shadowing-dots');
 
+    if (iloEl) {
+        if (phrase?.ilo) {
+            iloEl.textContent = phrase.ilo;
+            iloEl.classList.remove('hidden');
+        } else {
+            iloEl.textContent = '';
+            iloEl.classList.add('hidden');
+        }
+    }
+    if (esEl) {
+        if (phrase?.es) {
+            esEl.textContent = phrase.es;
+            esEl.classList.remove('hidden');
+        } else {
+            esEl.textContent = '';
+            esEl.classList.add('hidden');
+        }
+    }
     if (jaEl) {
         if (phrase?.ja) {
             jaEl.textContent = phrase.ja;
@@ -788,6 +808,7 @@ window.onload = () => {
         const bootParams = new URLSearchParams(window.location.search);
         if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('ignan') || bootParams.has('asuka')
+            || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'ignan') {

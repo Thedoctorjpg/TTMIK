@@ -20,7 +20,8 @@ const MELBOURNE_QUEST = {
         { id: 'side-humor', text: 'Turn one triggering moment into creative fuel', type: 'side' },
         { id: 'side-tarot-scam', text: 'Name a tarot-predicted scam pattern before takeoff — block, don\'t fund fate', type: 'side' },
         { id: 'side-dib-heal', text: 'After the blessing skit — quiet breath, Helen boundary, no re-watch spiral', type: 'side' },
-        { id: 'side-ignan-heal', text: 'Walk with Ignan native Mari — Ilokano + Korean + English healing phrases, no performance invoice', type: 'side' }
+        { id: 'side-ignan-heal', text: 'Walk with Ignan native Mari — Ilokano + Korean + English healing phrases, no performance invoice', type: 'side' },
+        { id: 'side-fifa-celebrate', text: 'Mari at Mexican restaurant — Ilokano native tongue first, FIFA joy, no performance invoice', type: 'side' }
     ]
 };
 
@@ -330,12 +331,14 @@ const SKILLS = [
             'TTMIK team deck: Korean line + Ilokano line side by side'
         ],
         linkedGroups: ['ignan', 'melbourne', 'sovereign'],
-        linkedCategories: ['Trilingual Shadowing', 'Healing Walk Route', 'Ilokano Grounding', 'Self-Intimacy Practice', 'Cultural Sites'],
+        linkedCategories: ['Trilingual Shadowing', 'Healing Walk Route', 'Ilokano Grounding', 'FIFA Celebration', 'Self-Intimacy Practice', 'Cultural Sites'],
         shadowingPhrases: [
             { ko: '괜찮아요, 괜찮아요.', ilo: 'Ok laeng, ok laeng.', en: "It's okay, it's okay." },
             { ko: '잠시 쉬어도 괜찮아요.', ilo: 'Nasaem met ti aginana.', en: "It's okay to pause and breathe." },
             { ko: '제 길을 믿어요.', ilo: 'Piliem ti bukodko a dalan.', en: 'Choose your own path.' },
-            { ko: '나는 나만의 이야기를 씁니다.', ilo: 'Maysa nga anges, maysa a talna.', en: 'One breath, one peace.' }
+            { ko: '나는 나만의 이야기를 씁니다.', ilo: 'Maysa nga anges, maysa a talna.', en: 'One breath, one peace.' },
+            { ko: '맛있어요! 축하해요!', ilo: 'Naragsak unay! Ok laeng, agnanayon.', es: '¡Salud! ¡Qué buen partido!', en: 'So happy — cheers to the game and the meal.' },
+            { ko: '정말 재미있었어요!', ilo: 'Naragsak ti pusok — saan a drama.', es: '¡Buen provecho, amigos!', en: 'Joy in my chest — not for the algorithm.' }
         ],
         ritualSteps: [
             'Mari leads — Bard films only with consent; GoPro not in her face',

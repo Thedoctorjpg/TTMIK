@@ -92,6 +92,30 @@ const MULTIFORMAT_EDITS = {
             { id: 'DIB12', time: '0:28', pin: 'HOSIER', note: 'Expire faster walk-off', dur: 2 }
         ]
     },
+    'ignan-healing-journey': {
+        id: 'ignan-healing-journey',
+        label: 'Ep 2.6 · Ignan Healing Walk (90s)',
+        duration: 90,
+        aspect: '9:16',
+        editor: 'pro',
+        visualPreset: 'cinematic',
+        overlay: 'OK LAENG',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'BOTANIC', episode: '2.6', reel: null },
+        pins: ['HOTEL', 'FED', 'BOTANIC'],
+        exportTargets: ['Webdrama insert', 'TTMIK trilingual deck', 'Veil Lumen spoken clip'],
+        pipeline: ['ignan-pilgrim'],
+        shots: [
+            { id: 'IG1', time: '0:00', pin: 'HOTEL', note: 'Mari asks for walk — Bard puts GoPro on bag', dur: 8 },
+            { id: 'IG2', time: '0:08', pin: 'HOTEL', note: 'Consent frame — not a rescue mission', dur: 7 },
+            { id: 'IG3', time: '0:15', pin: 'FED', note: 'Rain glass optional — homeward grief named once', dur: 12 },
+            { id: 'IG4', time: '0:27', pin: 'BOTANIC', note: 'Lake path wide — Mari leads, Bard follows', dur: 10 },
+            { id: 'IG5', time: '0:37', pin: 'BOTANIC', note: 'Ilokano: Ok laeng, ok laeng', dur: 10 },
+            { id: 'IG6', time: '0:47', pin: 'BOTANIC', note: 'Korean: 괜찮아요, 괜찮아요 — TTMIK shadow', dur: 10 },
+            { id: 'IG7', time: '0:57', pin: 'BOTANIC', note: 'English anchor — own timeline, own dalan', dur: 10 },
+            { id: 'IG8', time: '1:07', pin: 'BOTANIC', note: 'Maysa nga anges — one breath; lantern pass optional', dur: 13 }
+        ]
+    },
     'dib-aftercare': {
         id: 'dib-aftercare',
         label: 'Post-DIB · Quiet Reflection & Self-Healing (45s)',

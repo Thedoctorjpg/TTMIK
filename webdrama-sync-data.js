@@ -96,8 +96,16 @@ const HEALING_FACTORS = {
         { id: 'cord-cut', label: 'Cord-cut', phrase: 'I choose my own timeline and energy field', skillId: 'helen-neighbor' },
         { id: 'post-dib', label: 'Post-DIB landing', pin: 'HOTEL', preset: 9, edit: 'dib-aftercare', questId: 'side-dib-heal' },
         { id: 'daily-ritual', label: 'Daily integration', questId: 'side-ritual', skillId: 'flame-kissed-bard' },
-        { id: 'no-rewatch', label: 'No re-watch spiral', note: 'GoPro off before mirror · phone face-down' }
+        { id: 'no-rewatch', label: 'No re-watch spiral', note: 'GoPro off before mirror · phone face-down' },
+        { id: 'ignan-walk', label: 'Ignan healing walk', skillId: 'ignan-pilgrim', edit: 'ignan-healing-journey', questId: 'side-ignan-heal', pin: 'BOTANIC' }
     ],
+    ignanJourney: {
+        character: 'Mari',
+        languages: ['ilo', 'ko', 'en'],
+        activation: 'Mari walks her own dalan — ok laeng, aginana',
+        episode: '2.6',
+        preset: 10
+    },
     postBlessing: null,
     urls: {
         ttmikStep4: 'TTMIK.html?step=4',
@@ -173,13 +181,13 @@ const TTMIK_SYNC_PINS = {
     },
     FED: {
         label: 'Federation Square',
-        place: 'Rain on glass · maybe reflection',
-        episodes: [5],
+        place: 'Rain on glass · maybe reflection · Ignan grief pause',
+        episodes: [5, '2.6'],
         reels: [],
         skillId: 'asuka-brisbane',
-        categories: ['Melbourne Arrival'],
-        questIds: [],
-        formats: ['webdrama', 'veil-lumen']
+        categories: ['Melbourne Arrival', 'Self-Intimacy Practice'],
+        questIds: ['side-ignan-heal'],
+        formats: ['webdrama', 'veil-lumen', 'ignan-healing-journey']
     },
     SOUTH: {
         label: 'Southbank Promenade',
@@ -213,13 +221,13 @@ const TTMIK_SYNC_PINS = {
     },
     BOTANIC: {
         label: 'Royal Botanic Gardens',
-        place: 'Lake path · lantern pass',
-        episodes: [8],
+        place: 'Lake path · lantern pass · Ignan healing walk',
+        episodes: [8, '2.6'],
         reels: ['B'],
-        skillId: 'flame-kissed-bard',
-        categories: ['Self-Intimacy Practice'],
-        questIds: ['side-ritual', 'main-veil'],
-        formats: ['webdrama', 'veil-lumen-16x9']
+        skillId: 'ignan-pilgrim',
+        categories: ['Self-Intimacy Practice', 'Cultural Sites'],
+        questIds: ['side-ritual', 'main-veil', 'side-ignan-heal'],
+        formats: ['webdrama', 'veil-lumen-16x9', 'ignan-healing-journey']
     },
     HOTEL: {
         label: 'Accommodation',
@@ -267,6 +275,20 @@ const TTMIK_SYNC_EPISODES = {
         formats: ['ep-2-5-dib', 'dib-aftercare'],
         aftercare: 'helen-neighbor',
         aftercareShadowIndex: 2
+    },
+    '2.6': {
+        title: 'Ignan Healing Walk',
+        ko: '치유의 걸음',
+        display: 'Ep 2.6',
+        pins: ['HOTEL', 'FED', 'BOTANIC'],
+        skillId: 'ignan-pilgrim',
+        categories: ['Self-Intimacy Practice', 'Cultural Sites', 'Daily Life'],
+        questIds: ['side-ignan-heal', 'side-ritual'],
+        shadowingIndex: 0,
+        duration: '90s',
+        formats: ['ignan-healing-journey'],
+        character: 'Mari',
+        languages: ['ilo', 'ko', 'en']
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -444,6 +466,16 @@ const TTMIK_SYNC_PRESETS = [
         note: '09:30 — reflection after blessing skit · Helen self-healing',
         autoShadow: true,
         aftercare: true
+    },
+    {
+        id: 10,
+        label: 'Botanic · Ep 2.6 · Ignan heal',
+        shortLabel: 'IGNAN',
+        pin: 'BOTANIC',
+        episode: '2.6',
+        reel: null,
+        note: '10:30 — Mari trilingual walk · Ilokano + Korean + English',
+        autoShadow: true
     }
 ];
 
@@ -453,7 +485,15 @@ const TTMIK_BLOCK_ROUTE = [
     { time: '09:00', pin: 'HOSIER', note: 'Reels A+B + Ep 2.5 DIB skit', presetId: 2 },
     { time: '09:30', pin: 'HOTEL', note: 'Quiet reflection after blessing skit', presetId: 9 },
     { time: '09:45', pin: 'COLLINS', note: 'A6 invoice (optional)', sync: { pin: 'COLLINS', episode: 3, reel: 'A' } },
-    { time: '10:15', pin: 'HOSIER', note: 'Shadowing + SD offload', presetId: 5 }
+    { time: '10:15', pin: 'HOSIER', note: 'Shadowing + SD offload', presetId: 5 },
+    { time: '10:30', pin: 'BOTANIC', note: 'Ep 2.6 Ignan healing walk with Mari', presetId: 10 }
+];
+
+/** Lane C — Ignan self-healing journey (after post-DIB · optional FED rain) */
+const TTMIK_IGNAN_HEAL_ROUTE = [
+    { time: '09:30', pin: 'HOTEL', note: 'Post-DIB landing — ask Mari if she wants the walk', presetId: 9 },
+    { time: '10:00', pin: 'FED', note: 'Optional rain pause — name homeward grief without drama', sync: { pin: 'FED', episode: '2.6', reel: null } },
+    { time: '10:30', pin: 'BOTANIC', note: 'Trilingual release · Ok laeng + 괜찮아요 + own path', presetId: 10 }
 ];
 
 /** Date night lane — RTDB AKL legs + lets-cook optimiseDateWindow(17:00) */
@@ -504,6 +544,10 @@ function getDibAftercareRitual() {
 
 function getHealingFactors() {
     return HEALING_FACTORS;
+}
+
+function getIgnanHealRoute() {
+    return TTMIK_IGNAN_HEAL_ROUTE;
 }
 
 function getSyncReel(reelId) {

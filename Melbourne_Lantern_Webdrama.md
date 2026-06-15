@@ -42,7 +42,7 @@ Unified shoot order pulls from the full pipeline — optimised in `webdrama-sync
 06:12  DEGRAVES dawn (girls-love Ch.2)
 ```
 
-TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal. Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · updated `trailer-30` with cook-off hook.
+TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk. **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey`.
 
 ---
 
@@ -54,6 +54,7 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **Protagonist** | **THE BARD** — deadpan, tsundere, creatively feral, spiritually tired but funny |
 | **Antagonist** | **THE ALGORITHM** — love bombs, urgency, "soulmate" push notifications |
 | **Allies (VO / text / cutaways)** | **HELEN** (boundaries), **LO3TUS** (chaos muse), **ASUKA** ("beautiful maybe" texts), **SYSTEM** (scam UI) |
+| **Guest pilgrim** | **MARI** — Ignan (Ilokano) native on trilingual self-healing walk (Ep 2.6) |
 | **Theme** | *I create from flame, not from lack.* |
 | **Quest** | Melbourne Lantern Pilgrimage · 19–22 Jun 2026 |
 | **Hidden ending** | **The World** — quiet completion, lantern passed to viewer |
@@ -74,6 +75,8 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 
 **RED FLAG (visual gag)** — Collected like items; inventory full by Ep 4.
 
+**MARI (Ignan pilgrim)** — Ilocano native; diaspora grief without rescue framing. Wants a walk, not a documentary about her pain. Tell: speaks Ilokano to her body before Korean to the app before English to the city. Arc: borrowed shame → *bukodko a dalan* (my own path). Bard films from the bag — never her tears for the algorithm.
+
 ---
 
 ## Multiformat location bible
@@ -93,6 +96,7 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **Insert · Cook-Off Not a Date (Ep 2.75)** | 9:16 | 90s | FLINDERS → DEGRAVES → HOTEL | Daily Life · lets-cook sync |
 | **Insert · After the Date dawn** | 9:16 | 60s | DEGRAVES · 06:12 | Daily Life · girls-love Ch.2 |
 | **Post-DIB quiet heal coda** | 9:16 | 45s | HOTEL mirror · Helen VO | Self-Intimacy · side-dib-heal |
+| **Ep 2.6 · Ignan Healing Walk** | 9:16 | 90s | HOTEL → FED → BOTANIC · Mari | Self-Intimacy · side-ignan-heal |
 | **Pipeline montage** | 9:16 | 45s | All pins · bardic inspiration | Mixed |
 
 ### Melbourne shoot pins (reels-first clusters)
@@ -105,11 +109,11 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **CENTRE** | Centre Place (narrow walk-through) | Ep 3 rules walk · Reel A A4 | Midday shade | Transportation |
 | **DEGRAVES** | Degraves St café strip | Ep 2 cliff · Ep 3 open · **Ep 2.75 score + dawn** | Morning coffee · golden hour date | Daily Life |
 | **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram · **Ep 2.75 meet** | Overcast drama · date meet | Transportation |
-| **FED** | Federation Square glass / steps | Ep 5 rain reflection | Rain or blue hour | Melbourne Arrival |
+| **FED** | Federation Square glass / steps | Ep 5 rain · **Ep 2.6 grief pause** | Rain or blue hour | Melbourne Arrival |
 | **SOUTH** | Southbank Promenade (Yarra railing) | Ep 4 night · Ep 7 Moon | Night neon | Emergency Protocol |
 | **COLLINS** | Collins St walk (business bustle) | Ep 3 headset gag · Reel A A6 | Day | Social & Cultural |
 | **PRINCES** | Princes Bridge (dawn timelapse) | Ep 7 cliffhanger · Ep 8 open | Sunrise | Cultural Sites |
-| **BOTANIC** | Royal Botanic Gardens lake path | Ep 8 lantern pass alt | Sunrise soft | Self-Intimacy |
+| **BOTANIC** | Royal Botanic Gardens lake path | Ep 8 lantern · **Ep 2.6 Ignan walk** | Sunrise soft | Self-Intimacy |
 | **HOTEL** | Accommodation desk / room mirror | Ep 1 ritual · Ep 4 phone · **Ep 2.75 kitchen** | Interior | Accommodation |
 
 ### One-lane block shoot (Reels A+B + Ep 2/6 same session)
@@ -332,6 +336,74 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 **Morning block insert:** `09:30 HOTEL` between Hosier DIB (09:00) and Collins optional beat.
 
 **Tags:** `#SelfHealing #PostSkit #HelenBoundary #QuietReflection`
+
+---
+
+# EPISODE 2.6 — 「치유의 걸음」IGNAN HEALING WALK
+
+**Guest episode** · Trilingual self-healing · Mari (Ignan / Ilokano native)  
+**Runtime:** 90 sec · **Pins:** HOTEL (ask/consent) → FED (optional rain) → BOTANIC (lake path)  
+**Quest:** `side-ignan-heal` · **Skill:** `ignan-pilgrim` · **Edit:** `ignan-healing-journey` · **Preset:** **10**  
+**Boot:** `TTMIK.html?ignan=1` · **Lane C** after post-DIB preset 9
+
+**Logline:** After the blessing skit lands, Mari — an Ignan native — asks Bard for one thing: film the walk, not the wound. Three languages, one path, zero performance invoice.
+
+**Caption pitch:** *Ok laeng. 괜찮아요. My own dalan.*
+
+**TTMIK team note:** Korean lines are practice targets; Ilokano lines are Mari's grounding — honor both, don't collapse into one subtitle joke.
+
+---
+
+## Character · MARI
+
+| Field | Detail |
+|-------|--------|
+| **Name** | Mari (she/her) |
+| **Heritage** | Ignan — Ilokano-speaking; Ilocos homeland in VO memory only |
+| **Want** | A sovereign healing walk; Korean practice with TTMIK; no rescue |
+| **Fear** | Becoming content about diaspora pain |
+| **Tell** | Touches rain glass before she speaks; walks ahead of Bard |
+| **Arc** | Carried shame → named once → released in three languages |
+
+---
+
+## Shot-by-shot board (90s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **IG1** | 0:00 | @HOTEL | Mari at door; Bard with bag GoPro | **MARI:** "Film the walk. Not the wound." · **BARD:** "…Copy." | Door close |
+| **IG2** | 0:08 | @HOTEL | Two-shot — consent | **MARI:** "If I say stop, you stop." · **BARD:** "HR approves." · **HELEN (VO):** "Consent is compassion." | — |
+| **IG3** | 0:15 | @FED | Rain on glass; Mari reflection CU optional | **MARI (Ilokano):** "Ditoy ko pinangged ti balay… no diak ibaga iti drama." · **TEXT:** *I miss home — I won't sell the missing.* | Rain |
+| **IG4** | 0:27 | @BOTANIC | Wide — lake path; Mari leads | **BARD (VO):** "Episode 2.6 lesson: healing isn't a rescue mission. It's a path you choose." | Birds / soft |
+| **IG5** | 0:37 | @BOTANIC | Medium — Mari to lake, not lens | **MARI:** "Ok laeng, ok laeng." · **TEXT:** Ilokano · *It's okay* | — |
+| **IG6** | 0:47 | @BOTANIC | Same — Korean practice beat | **MARI:** "괜찮아요, 괜찮아요." · **BARD (whisper):** "TTMIK team: that's the one." | — |
+| **IG7** | 0:57 | @BOTANIC | Walk continues — English anchor | **MARI:** "I choose my own timeline." · **MARI (Ilokano):** "Piliem ti bukodko a dalan." | Footsteps |
+| **IG8** | 1:07 | @BOTANIC | Wide hold — breath | **MARI:** "Maysa nga anges, maysa a talna." · **TEXT:** `IGNAN HEALING WALK` · `side-ignan-heal` | Ambient fade |
+
+---
+
+## Trilingual shadowing deck (TTMIK team)
+
+| Ilokano (Ignan) | Korean (TTMIK) | English |
+|-----------------|----------------|---------|
+| Ok laeng, ok laeng. | 괜찮아요, 괜찮아요. | It's okay, it's okay. |
+| Nasaem met ti aginana. | 잠시 쉬어도 괜찮아요. | It's okay to pause and breathe. |
+| Piliem ti bukodko a dalan. | 제 길을 믿어요. | Choose your own path. |
+| Maysa nga anges, maysa a talna. | 나는 나만의 이야기를 씁니다. | One breath, one peace. |
+
+---
+
+## Lane C route card (after post-DIB)
+
+```
+09:30  HOTEL — preset 9 · ask Mari if she wants the walk
+10:00  FED — optional rain grief beat (IG3)
+10:30  BOTANIC — Ep 2.6 full walk · preset 10
+```
+
+**On-set:** Mari leads pace · GoPro on Bard's bag only · no soulmate/subscriber CTAs · log `side-ignan-heal` at IG8
+
+**Tags:** `#Ignan #Ilokano #SelfHealing #Trilingual #BukodkoADalan #MelbourneLantern`
 
 ---
 
@@ -716,6 +788,7 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | 2 | Melbourne Lantern Bard | 멜버른 골목이 정말 예뻐요 |
 | 2.5 | Melbourne Lantern Bard | 유머로 풀어낼게요 · divine insight block |
 | 2.5 heal | Helen | 괜찮아요, 괜찮아요 · 잠시 쉬어도 괜찮아요 (post-DIB coda) |
+| 2.6 | Mari · Ignan pilgrim | Ok laeng ↔ 괜찮아요, 괜찮아요 · Piliem ti bukodko a dalan ↔ 제 길을 믿어요 |
 | 2.75 | Melbourne Lantern Bard · Lo3tus · Helen | 멜버른 골목이 정말 예뻐요 · cook-off host line |
 | 3 | Melbourne Lantern Bard | 유머로 풀어낼게요 |
 | 4 | Helen | 죄송하지만 지금은 어려워요 |

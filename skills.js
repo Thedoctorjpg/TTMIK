@@ -177,6 +177,38 @@ function practiceDibAftercare(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceIgnanHealingJourney(opts = {}) {
+    const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode('2.6') : null;
+    const skillId = epCfg?.skillId || 'ignan-pilgrim';
+    const shadowIdx = epCfg?.shadowingIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(10)) {
+        setWebdramaSyncValues('BOTANIC', '2.6', null);
+    } else {
+        setWebdramaSyncValues('BOTANIC', '2.6', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-ignan-heal');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceTtmikSyncShadowing() {
     const cfg = getResolvedSyncConfig();
     applyTtmikSync();
@@ -238,6 +270,10 @@ function applyTtmikSyncRouteStep(step) {
 
 function handleTtmikSyncBoot() {
     const params = new URLSearchParams(window.location.search);
+    if (params.get('ignan') === '1' || params.get('step') === '6') {
+        practiceIgnanHealingJourney();
+        return;
+    }
     if (params.get('heal') === '1' || params.get('dib-aftercare') === '1' || params.get('step') === '4') {
         practiceDibAftercare();
         return;
@@ -313,7 +349,7 @@ function renderSyncPanel() {
 
         const presetsLabel = document.createElement('p');
         presetsLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
-        presetsLabel.textContent = 'On-set presets (1–9)';
+        presetsLabel.textContent = 'On-set presets (1–10)';
         presetsWrap.appendChild(presetsLabel);
 
         const presetsRow = document.createElement('div');
@@ -436,6 +472,12 @@ function renderSyncPanel() {
         const ko = document.createElement('p');
         ko.className = 'korean text-lg text-white';
         ko.textContent = phrase.ko;
+        if (phrase.ilo) {
+            const ilo = document.createElement('p');
+            ilo.className = 'text-emerald-400/90 text-sm mt-1 font-medium';
+            ilo.textContent = phrase.ilo;
+            phraseBox.appendChild(ilo);
+        }
         const en = document.createElement('p');
         en.className = 'text-zinc-400 text-sm mt-1';
         en.textContent = phrase.en;
@@ -470,7 +512,7 @@ function renderSyncPanel() {
         copyBtn.type = 'button';
         copyBtn.className = 'px-5 py-3 bg-zinc-800 rounded-2xl text-sm font-medium hover:bg-zinc-700';
         copyBtn.textContent = 'Copy phrase';
-        copyBtn.onclick = () => copyToClipboard(`${phrase.ko}\n${phrase.en}`);
+        copyBtn.onclick = () => copyToClipboard([phrase.ilo, phrase.ko, phrase.en].filter(Boolean).join('\n'));
         actions.appendChild(copyBtn);
     }
 
@@ -481,6 +523,14 @@ function renderSyncPanel() {
     healBtn.title = 'Post-DIB reflection · preset 9 · Helen self-healing';
     healBtn.onclick = () => practiceDibAftercare();
     actions.appendChild(healBtn);
+
+    const ignanBtn = document.createElement('button');
+    ignanBtn.type = 'button';
+    ignanBtn.className = 'px-5 py-3 bg-emerald-900/50 text-emerald-200 rounded-2xl text-sm font-medium hover:bg-emerald-800/70 ring-1 ring-emerald-500/30';
+    ignanBtn.textContent = 'Ignan healing walk (Ep 2.6)';
+    ignanBtn.title = 'Mari trilingual walk · preset 10 · BOTANIC';
+    ignanBtn.onclick = () => practiceIgnanHealingJourney();
+    actions.appendChild(ignanBtn);
 
     actions.appendChild(syncBtn);
     actions.appendChild(lessonsBtn);
@@ -560,6 +610,9 @@ function renderSyncPanel() {
     appendRouteList('Jun 19 morning block (reels + ep 2/6)', TTMIK_BLOCK_ROUTE);
     if (typeof TTMIK_DATE_NIGHT_ROUTE !== 'undefined') {
         appendRouteList('Date night lane · Degraves 17:00 + dawn 06:12', TTMIK_DATE_NIGHT_ROUTE);
+    }
+    if (typeof TTMIK_IGNAN_HEAL_ROUTE !== 'undefined') {
+        appendRouteList('Lane C · Ignan self-healing walk (Mari)', TTMIK_IGNAN_HEAL_ROUTE);
     }
 }
 

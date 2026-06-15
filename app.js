@@ -407,7 +407,9 @@ function renderShadowingUI() {
         const lesson = lessons[currentLesson];
         const hasVocab = lesson?.vocab?.length > 0;
         const activeSkill = typeof getActiveSkill === 'function' ? getActiveSkill() : null;
-        if (activeSkill) {
+        if (phrase?.ilo) {
+            hintEl.textContent = `Ignan: ${phrase.ilo} · Korean: ${phrase.ko || ''}`;
+        } else if (activeSkill) {
             hintEl.textContent = `Active skill: ${activeSkill.name} + lesson vocab`;
         } else if (hasVocab) {
             hintEl.textContent = 'Practicing vocab from current lesson + general phrases';
@@ -678,7 +680,8 @@ window.onload = () => {
         loadLesson(Math.max(0, resumeIndex), false);
 
         const bootParams = new URLSearchParams(window.location.search);
-        if (bootParams.has('preset') || bootParams.has('pin')) {
+        if (bootParams.has('preset') || bootParams.has('pin') || bootParams.has('heal')
+            || bootParams.has('ignan') || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.has('format')) {
             switchTab(4);

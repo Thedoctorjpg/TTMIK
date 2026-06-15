@@ -19,7 +19,8 @@ const MELBOURNE_QUEST = {
         { id: 'side-gear', text: 'Travel light — power bank, GoPro, gym bag sorted', type: 'side' },
         { id: 'side-humor', text: 'Turn one triggering moment into creative fuel', type: 'side' },
         { id: 'side-tarot-scam', text: 'Name a tarot-predicted scam pattern before takeoff — block, don\'t fund fate', type: 'side' },
-        { id: 'side-dib-heal', text: 'After the blessing skit — quiet breath, Helen boundary, no re-watch spiral', type: 'side' }
+        { id: 'side-dib-heal', text: 'After the blessing skit — quiet breath, Helen boundary, no re-watch spiral', type: 'side' },
+        { id: 'side-ignan-heal', text: 'Walk with Ignan native Mari — Ilokano + Korean + English healing phrases, no performance invoice', type: 'side' }
     ]
 };
 
@@ -303,6 +304,49 @@ const SKILLS = [
             'Say aloud: “Not my circus, not my energy”',
             'One breath — ground feet',
             'Redirect to Flame-Kissed Bard creative outlet'
+        ]
+    },
+    {
+        id: 'ignan-pilgrim',
+        name: 'Mari — Ignan Pilgrim',
+        icon: '\u{1F33F}',
+        tagline: 'Ilokano self-healing walk · trilingual release',
+        role: 'Ignan native on sovereign healing journey — not a rescue subplot',
+        source: 'Ignan_Pilgrim.skill.md',
+        activationPhrases: [
+            'Mari walks her own dalan — ok laeng, aginana',
+            'Ignan healing journey — three languages, one peace'
+        ],
+        capabilities: [
+            'Trilingual self-healing ritual (Ilokano · Korean · English)',
+            'Botanic Gardens / Federation Square quiet-walk scripts',
+            'Post-DIB handoff without performance debt',
+            'TTMIK shadowing paired with Ilokano grounding'
+        ],
+        creativePrompts: [
+            'Ep 2.6: Mari names what she carried from Ilocos without dramatizing',
+            'Veil Lumen spoken clip: Ok laeng over lake-path ambient',
+            'TTMIK team deck: Korean line + Ilokano line side by side'
+        ],
+        linkedGroups: ['melbourne', 'sovereign'],
+        linkedCategories: ['Self-Intimacy Practice', 'Cultural Sites', 'Daily Life'],
+        shadowingPhrases: [
+            { ko: '괜찮아요, 괜찮아요.', ilo: 'Ok laeng, ok laeng.', en: "It's okay, it's okay." },
+            { ko: '잠시 쉬어도 괜찮아요.', ilo: 'Nasaem met ti aginana.', en: "It's okay to pause and breathe." },
+            { ko: '제 길을 믿어요.', ilo: 'Piliem ti bukodko a dalan.', en: 'Choose your own path.' },
+            { ko: '나는 나만의 이야기를 씁니다.', ilo: 'Maysa nga anges, maysa a talna.', en: 'One breath, one peace.' }
+        ],
+        ritualSteps: [
+            'Mari leads — Bard films only with consent; GoPro not in her face',
+            'Ilokano first: Ok laeng, ok laeng — shoulders drop',
+            'Korean practice: 괜찮아요, 괜찮아요 — TTMIK shadowing',
+            'English anchor: I choose my own timeline and energy field',
+            'BOTANIC lake path close — log side-ignan-heal'
+        ],
+        dibAftercareSteps: [
+            'After preset 9 — ask Mari if she wants the Ignan walk (never assume)',
+            'FED rain optional · BOTANIC required for Ep 2.6',
+            'Export ignan-healing-journey only if Mari says yes'
         ]
     }
 ];

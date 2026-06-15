@@ -854,6 +854,9 @@ function renderJourneyDashboard() {
         asukaGrid.appendChild(btn);
     });
 
+    if (typeof renderBootAllPanel === 'function') {
+        renderBootAllPanel();
+    }
     if (typeof renderSkillLibraryComposer === 'function') {
         renderSkillLibraryComposer();
     }
@@ -983,11 +986,17 @@ window.onload = () => {
         loadLesson(Math.max(0, resumeIndex), false);
 
         const bootParams = new URLSearchParams(window.location.search);
-        if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
+        if (bootParams.get('boot') === 'all') {
+            handleTtmikSyncBoot();
+        } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
             || bootParams.has('asuka') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
+        } else if (bootParams.get('library') === 'melbourne-skills') {
+            startMelbourneCategory(bootParams.get('category') || 'GoPro & Content');
+        } else if (bootParams.get('library') === 'sovereign-skills') {
+            startJourneyCategory('sovereign');
         } else if (bootParams.get('library') === 'heal') {
             startHealCategory(bootParams.get('category') || 'Post-DIB Landing');
         } else if (bootParams.get('library') === 'mexico') {

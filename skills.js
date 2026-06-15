@@ -529,8 +529,126 @@ function applyTtmikSyncRouteStep(step) {
     }
 }
 
+function bootAllLibrariesAndSkills(opts = {}) {
+    if (opts.composeTab !== false) {
+        switchTab(4);
+        renderJourneyDashboard();
+    }
+    if (typeof renderBootAllPanel === 'function') {
+        renderBootAllPanel();
+    }
+    const anchorId = opts.anchorSkill || 'melbourne-lantern-bard';
+    if (opts.anchorSkill !== false && getSkillById(anchorId)) {
+        bootSkillById(anchorId, { logQuest: opts.logQuest !== false, skillsTab: false });
+        if (opts.composeTab !== false) switchTab(4);
+    }
+    return true;
+}
+
+function renderBootAllPanel() {
+    const panel = document.getElementById('boot-all-panel');
+    if (!panel || typeof getAllSkillBootIds !== 'function') return;
+    panel.textContent = '';
+
+    const header = document.createElement('div');
+    header.className = 'mb-6';
+    const h3 = document.createElement('h3');
+    h3.className = 'text-xl font-semibold text-violet-200 mb-1';
+    h3.textContent = 'Boot All — Skills · Libraries · Heal · FIFA 2026';
+    const meta = document.createElement('p');
+    meta.className = 'text-zinc-400 text-sm';
+    const skillCount = getAllSkillBootIds().length;
+    const libCount = typeof getAllLibraryBootEntries === 'function' ? getAllLibraryBootEntries().length : 0;
+    const trackNote = typeof BOOT_ALL_INDEX !== 'undefined' ? ` · ${BOOT_ALL_INDEX.trackCount} library tracks` : '';
+    meta.textContent = `${skillCount} archetype skills · ${libCount} composed libraries${trackNote} · TTMIK.html?boot=all`;
+    header.appendChild(h3);
+    header.appendChild(meta);
+    panel.appendChild(header);
+
+    const runAll = document.createElement('button');
+    runAll.type = 'button';
+    runAll.className = 'mb-6 px-5 py-2.5 rounded-xl text-sm font-semibold bg-violet-600 text-white hover:bg-violet-500';
+    runAll.textContent = 'Boot all (anchor Lantern Bard + compose index)';
+    runAll.title = 'TTMIK.html?boot=all';
+    runAll.onclick = () => bootAllLibrariesAndSkills();
+    panel.appendChild(runAll);
+
+    const appendSection = (title, items, onItem) => {
+        const block = document.createElement('div');
+        block.className = 'mb-6';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
+        label.textContent = title;
+        block.appendChild(label);
+        const grid = document.createElement('div');
+        grid.className = 'flex flex-wrap gap-2';
+        items.forEach((item) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white transition';
+            btn.textContent = item.label;
+            btn.title = item.url || item.boot || '';
+            btn.onclick = () => onItem(item);
+            grid.appendChild(btn);
+        });
+        block.appendChild(grid);
+        panel.appendChild(block);
+    };
+
+    const skillItems = getAllSkillBootIds().map((id) => {
+        const skill = getSkillById(id);
+        const entry = getSkillBootEntry(id);
+        return {
+            id,
+            label: skill?.name || id,
+            url: typeof getSkillBootUrl === 'function' ? getSkillBootUrl(id) : `?skill=${id}`,
+            source: entry?.source
+        };
+    });
+    appendSection('Archetype skills (.skill.md)', skillItems, (item) => bootSkillById(item.id));
+
+    if (typeof getAllLibraryBootEntries === 'function') {
+        const libItems = getAllLibraryBootEntries().map((lib) => ({
+            id: lib.id,
+            label: lib.label,
+            boot: lib.boot
+        }));
+        appendSection('Composed libraries', libItems, (item) => openComposedLibrary(item.id));
+    }
+
+    if (typeof BOOT_ALL_HEAL_STEPS !== 'undefined') {
+        appendSection('Heal lane steps', BOOT_ALL_HEAL_STEPS.map((s) => ({
+            id: s.id,
+            label: s.label,
+            boot: s.boot
+        })), (item) => {
+            const params = new URLSearchParams(item.boot);
+            const boot = Object.fromEntries(params);
+            if (boot.heal === '1') practiceDibAftercare();
+            else if (boot.asuka === '1') practiceAsukaMaybe();
+            else if (boot.ignan === '1') practiceIgnanHealingJourney();
+            else if (boot.fifa === '1') practiceMariFifaCelebrate();
+        });
+    }
+
+    if (typeof HEALING_FACTORS !== 'undefined' && HEALING_FACTORS.factors) {
+        appendSection('Healing factors', HEALING_FACTORS.factors.map((f) => ({
+            id: f.id,
+            label: f.label,
+            boot: `heal-factor=${f.id}`
+        })), (item) => practiceHealingFactor(item.id));
+    }
+}
+
 function handleTtmikSyncBoot() {
     const params = new URLSearchParams(window.location.search);
+    if (params.get('boot') === 'all') {
+        bootAllLibrariesAndSkills({
+            anchorSkill: params.get('anchor') || 'melbourne-lantern-bard',
+            logQuest: params.get('quest') !== '0'
+        });
+        return;
+    }
     const skillParam = params.get('skill');
     if (skillParam && getSkillById(skillParam)) {
         bootSkillById(skillParam, {
@@ -1372,13 +1490,23 @@ function renderSkillLibraryComposer() {
     header.appendChild(meta);
     panel.appendChild(header);
 
+    const bootActions = document.createElement('div');
+    bootActions.className = 'mb-6 flex flex-wrap gap-2';
     const bootAll = document.createElement('button');
     bootAll.type = 'button';
-    bootAll.className = 'mb-6 px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
-    bootAll.textContent = 'Open compose index (Journey tab)';
-    bootAll.title = 'TTMIK.html?library=compose';
-    bootAll.onclick = () => switchTab(4);
-    panel.appendChild(bootAll);
+    bootAll.className = 'px-4 py-2 rounded-xl text-sm font-semibold bg-violet-600 text-white hover:bg-violet-500';
+    bootAll.textContent = 'Boot all';
+    bootAll.title = 'TTMIK.html?boot=all';
+    bootAll.onclick = () => bootAllLibrariesAndSkills();
+    const composeBtn = document.createElement('button');
+    composeBtn.type = 'button';
+    composeBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+    composeBtn.textContent = 'Compose index';
+    composeBtn.title = 'TTMIK.html?library=compose';
+    composeBtn.onclick = () => switchTab(4);
+    bootActions.appendChild(bootAll);
+    bootActions.appendChild(composeBtn);
+    panel.appendChild(bootActions);
 
     COMPOSED_LIBRARIES.forEach(lib => {
         const block = document.createElement('div');
@@ -1448,15 +1576,7 @@ function renderSkillLibraryComposer() {
             openLib.type = 'button';
             openLib.className = 'mt-3 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700';
             openLib.textContent = `Open ${lib.label}`;
-            openLib.onclick = () => {
-                if (lib.id === 'heal') startHealCategory('Post-DIB Landing');
-                else if (lib.id === 'mexico') startMexicoCategory('Spanish Shadowing');
-                else if (lib.id === 'canada') startCanadaCategory('French Shadowing');
-                else if (lib.id === 'usa') startUsaCategory('English Shadowing');
-                else if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
-                else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
-                else switchTab(3);
-            };
+            openLib.onclick = () => openComposedLibrary(lib.id);
             block.appendChild(openLib);
         }
 

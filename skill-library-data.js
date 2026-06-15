@@ -223,3 +223,46 @@ function getSkillBootUrl(skillId) {
 function getComposedLibrary(id) {
     return COMPOSED_LIBRARIES.find(l => l.id === id) || null;
 }
+
+function getAllSkillBootIds() {
+    return Object.keys(SKILL_BOOT_REGISTRY);
+}
+
+function getAllLibraryBootEntries() {
+    return COMPOSED_LIBRARIES.map((lib) => ({
+        id: lib.id,
+        label: lib.label,
+        boot: lib.boot,
+        accent: lib.accent,
+        skills: lib.skills
+    }));
+}
+
+/** Ordered lane boots — skills · libraries · heal steps · FIFA 2026 */
+const BOOT_ALL_HEAL_STEPS = [
+    { id: 'heal-4', label: 'Post-DIB landing', boot: 'heal=1', alt: 'step=4' },
+    { id: 'heal-5', label: 'Asuka maybe', boot: 'asuka=1', alt: 'step=5' },
+    { id: 'heal-6', label: 'Ignan healing walk', boot: 'ignan=1', alt: 'step=6' },
+    { id: 'heal-7', label: 'Mari FIFA cantina', boot: 'fifa=1', alt: 'step=7' }
+];
+
+const BOOT_ALL_INDEX = {
+    compose: 'library=compose',
+    bootAll: 'boot=all',
+    trackCount: 267
+};
+
+function openComposedLibrary(libId) {
+    const lib = getComposedLibrary(libId);
+    if (!lib) return false;
+    if (lib.id === 'heal') startHealCategory('Post-DIB Landing');
+    else if (lib.id === 'mexico') startMexicoCategory('Spanish Shadowing');
+    else if (lib.id === 'canada') startCanadaCategory('French Shadowing');
+    else if (lib.id === 'usa') startUsaCategory('English Shadowing');
+    else if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
+    else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
+    else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
+    else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
+    else switchTab(3);
+    return true;
+}

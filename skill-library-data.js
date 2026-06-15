@@ -39,7 +39,10 @@ const SKILL_BOOT_REGISTRY = {
     },
     'sua-tattoo': {
         source: 'Sua_Tattoo_Artist.skill.md',
-        shadowIndex: 0,
+        invoke: 'practiceCicadaAttune',
+        altBoot: 'sua=1',
+        shadowIndex: 2,
+        questId: 'side-boundary',
         libraryGroup: 'Sovereign Guide',
         libraryCategory: 'Self-Intimacy Practice',
         tag: 'sovereign'
@@ -178,7 +181,7 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: [
             'post-dib', 'hermit-lantern', 'humor-release', 'helen-boundary',
             'pause-breathe', 'cord-cut', 'ignan-walk', 'fifa-celebrate', 'match-attune',
-            'rei-mercy', 'daily-ritual', 'no-rewatch'
+            'rei-mercy', 'cicada-attune', 'daily-ritual', 'no-rewatch'
         ],
         boot: 'library=heal',
         healFrom: 'scripts/heal-library.js',
@@ -247,7 +250,7 @@ const LIBRARY_BUILD_MANIFEST = {
     },
     'Sovereign Guide': {
         group: 'sovereign',
-        factors: ['daily-ritual', 'cord-cut', 'no-rewatch'],
+        factors: ['cicada-attune', 'daily-ritual', 'cord-cut', 'no-rewatch'],
         boot: 'library=sovereign-skills'
     },
     'Mexico Library': {

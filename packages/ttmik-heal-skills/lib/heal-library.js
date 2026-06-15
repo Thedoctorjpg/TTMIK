@@ -17,6 +17,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     'Celebration',
     'Pre-Match Attune',
     'Moon Card',
+    'Cicada Attune',
     'Daily Integration'
 ];
 
@@ -31,6 +32,7 @@ const FACTOR_CATEGORIES = {
     'fifa-celebrate': 'Celebration',
     'match-attune': 'Pre-Match Attune',
     'rei-mercy': 'Moon Card',
+    'cicada-attune': 'Cicada Attune',
     'daily-ritual': 'Daily Integration',
     'no-rewatch': 'Daily Integration'
 };
@@ -40,7 +42,8 @@ const FACTOR_BOOTS = {
     'ignan-walk': 'TTMIK.html?ignan=1',
     'fifa-celebrate': 'TTMIK.html?fifa=1',
     'match-attune': 'TTMIK.html?attune=1',
-    'rei-mercy': 'TTMIK.html?rei=1'
+    'rei-mercy': 'TTMIK.html?rei=1',
+    'cicada-attune': 'TTMIK.html?sua=1'
 };
 
 const FACTOR_TITLES = {
@@ -54,6 +57,7 @@ const FACTOR_TITLES = {
     'fifa-celebrate': 'Mari FIFA cantina — joy not drama',
     'match-attune': 'Attune before match — Federation pause',
     'rei-mercy': 'Rei mercy heal — observe without absorbing',
+    'cicada-attune': 'Sua cicada attune — shed before you cheer',
     'daily-ritual': 'Daily integration ritual',
     'no-rewatch': 'No re-watch spiral'
 };
@@ -66,6 +70,7 @@ const FACTOR_EN = {
     'daily-ritual': 'I write my own story.',
     'match-attune': 'One breath before the cheer.',
     'rei-mercy': 'I observe without absorbing.',
+    'cicada-attune': 'I will shed my old skin.',
     'no-rewatch': 'GoPro off before mirror · phone face-down',
     'post-dib': "It's okay, it's okay."
 };
@@ -148,6 +153,7 @@ const HEALING_COURSE_DEFS = [
     { subtitle: 'Celebration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Celebration').length },
     { subtitle: 'Pre-Match Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Pre-Match Attune').length },
     { subtitle: 'Moon Card', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Moon Card').length },
+    { subtitle: 'Cicada Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Cicada Attune').length },
     { subtitle: 'Daily Integration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Daily Integration').length }
 ];
 
@@ -272,6 +278,11 @@ function buildFactorDeck(sources) {
             entry.ja = factor.ja || '観測するだけ。吸収しない。';
             entry.ko = factor.ko || getSkillKo(skillKo, 'neon-evangelion', 1) || '관찰만 하고 흡수하지 않을게요.';
             entry.en = 'I observe without absorbing.';
+        }
+        if (factor.id === 'cicada-attune') {
+            entry.ko = factor.ko || getSkillKo(skillKo, 'sua-tattoo-artist', 2) || '새 껍질을 벗을게요.';
+            entry.en = 'I will shed my old skin.';
+            entry.phrase = 'One breath before I shed my old skin.';
         }
 
         return entry;

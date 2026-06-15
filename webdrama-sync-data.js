@@ -89,8 +89,34 @@ const BARDIC_INSPIRATION = {
             messi: { boot: 'messi=1', label: 'Messi Argentina · BOCA' },
             mbappe: { boot: 'mbappe=1', label: 'Mbappé France · STADE' },
             ronaldo: { boot: 'ronaldo=1', label: 'Ronaldo Portugal · CANTINA' },
-            fifa: { boot: 'fifa=1', label: 'Mari FIFA cantina' }
+            fifa: { boot: 'fifa=1', label: 'Mari FIFA cantina' },
+            sua: { boot: 'sua=1', label: 'Sua cicada attune · shedding pause' }
         }
+    },
+    cicadaAttune: {
+        label: 'Sua cicada attune — shed before you cheer',
+        duration: '60s',
+        pin: 'FED',
+        skillId: 'sua-tattoo',
+        questId: 'side-boundary',
+        shadowIndex: 2,
+        activation: "One breath before I shed my old skin — Sua's flame taught me release.",
+        shadowPhrase: {
+            en: 'I will shed my old skin.',
+            ko: '새 껍질을 벗을게요.'
+        },
+        attunePhrase: {
+            en: 'One breath before the cheer.',
+            ko: '응원 전에 한 숨.'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one breath at Federation pause',
+            'Attune: 응원 전에 한 숨 — one breath before the shed',
+            'Sua cicada: acknowledge the flame · release with gratitude',
+            'Korean shadow: 새 껍질을 벗을게요 — I will shed my old skin',
+            'Anchor: 나만의 불꽃이면 충분해요 — my own creative fire is enough',
+            'Open lane when ready — shed the skin, not the self'
+        ]
     },
     reiMercyHeal: {
         label: 'Rei mercy heal — observe without absorbing',
@@ -149,7 +175,8 @@ const HEALING_FACTORS = {
         { id: 'ignan-walk', label: 'Ignan healing walk', skillId: 'ignan-pilgrim', edit: 'ignan-healing-journey', questId: 'side-ignan-heal', pin: 'BOTANIC' },
         { id: 'fifa-celebrate', label: 'Mari FIFA cantina', skillId: 'ignan-pilgrim', edit: 'mari-fifa-celebration', questId: 'side-fifa-celebrate', pin: 'CANTINA' },
         { id: 'match-attune', label: 'Attune before match', ko: '응원 전에 한 숨', skillId: 'melbourne-lantern-bard', edit: 'match-attune-ritual', questId: 'side-fifa-celebrate', pin: 'FED' },
-        { id: 'rei-mercy', label: 'Rei mercy heal', ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요', skillId: 'neon-evangelion', edit: 'rei-mercy-ritual', questId: 'side-humor', pin: 'NERV', shadowIndex: 1 }
+        { id: 'rei-mercy', label: 'Rei mercy heal', ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요', skillId: 'neon-evangelion', edit: 'rei-mercy-ritual', questId: 'side-humor', pin: 'NERV', shadowIndex: 1 },
+        { id: 'cicada-attune', label: 'Sua cicada attune', ko: '새 껍질을 벗을게요', skillId: 'sua-tattoo', edit: 'cicada-attune-ritual', questId: 'side-boundary', pin: 'FED', shadowIndex: 2 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -924,6 +951,10 @@ function getMatchAttuneRitual() {
 
 function getReiMercyHealRitual() {
     return BARDIC_INSPIRATION.reiMercyHeal;
+}
+
+function getCicadaAttuneRitual() {
+    return BARDIC_INSPIRATION.cicadaAttune;
 }
 
 function getHealingFactors() {

@@ -1366,7 +1366,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {

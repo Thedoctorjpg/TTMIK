@@ -46,10 +46,18 @@ metadata:
 
 ## Hermes Healing Factors
 
+- **cicada-attune** — Sua cicada attune — ?sua=1 · FED · shedding pause · Boot: `TTMIK.html?heal-factor=cicada-attune`
 - **cord-cut** — Cord-cut — own timeline and energy field · Boot: `TTMIK.html?heal-factor=cord-cut`
 - **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
 - Mantra: *One breath · one boundary · no re-watch spiral*
 - Library: `TTMIK.html?library=heal`
+
+## Cross-App Links
+
+- TTMIK.html?sua=1 — Sua cicada attune boot
+- TTMIK.html?heal-factor=cicada-attune — cicada shedding · FED attune
+- TTMIK.html?attune=1&lane=sua — Federation pause then Sua shed
+- cicada-attune-ritual · side-boundary quest
 
 ## TTMIK App Integration
 

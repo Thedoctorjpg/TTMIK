@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-15 · 17 tracks
+ * Healed: 2026-06-15 · 18 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -26,6 +26,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     "Celebration",
     "Pre-Match Attune",
     "Moon Card",
+    "Cicada Attune",
     "Daily Integration"
 ];
 
@@ -174,6 +175,21 @@ const HEALING_FACTOR_DECK = [
         "ko": "관찰만 하고 흡수하지 않을게요",
         "en": "I observe without absorbing.",
         "ja": "観測するだけ。吸収しない。"
+    },
+    {
+        "factorId": "cicada-attune",
+        "title": "Sua cicada attune — shed before you cheer",
+        "subtitle": "Cicada Attune",
+        "boot": "TTMIK.html?sua=1",
+        "note": "cicada-attune-ritual · quest side-boundary",
+        "skillId": "sua-tattoo",
+        "pin": "FED",
+        "shadowIndex": 2,
+        "questId": "side-boundary",
+        "edit": "cicada-attune-ritual",
+        "ko": "새 껍질을 벗을게요",
+        "en": "I will shed my old skin.",
+        "phrase": "One breath before I shed my old skin."
     }
 ];
 
@@ -277,6 +293,7 @@ const HEALING_COURSE_DEFS = [
     { subtitle: 'Celebration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Celebration').length },
     { subtitle: 'Pre-Match Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Pre-Match Attune').length },
     { subtitle: 'Moon Card', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Moon Card').length },
+    { subtitle: 'Cicada Attune', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Cicada Attune').length },
     { subtitle: 'Daily Integration', trackCount: HEALING_FACTOR_DECK.filter(f => f.subtitle === 'Daily Integration').length }
 ];
 

@@ -289,6 +289,10 @@ function practiceHealingFactor(factorId, opts = {}) {
         practiceReiMercyHeal(opts);
         return true;
     }
+    if (factorId === 'cicada-attune') {
+        practiceCicadaAttune(opts);
+        return true;
+    }
     if (factorId === 'no-rewatch') {
         if (typeof startHealCategory === 'function') {
             startHealCategory('Daily Integration');
@@ -477,7 +481,8 @@ function continueMatchAttuneLane(laneId, opts = {}) {
         messi: () => practiceMessiPlaymaker({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
         mbappe: () => practiceMbappeAttack({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
         ronaldo: () => practiceRonaldoGlory({ openSheet: opts.openSheet, logQuest: opts.logQuest }),
-        fifa: () => practiceMariFifaCelebrate({ logQuest: opts.logQuest })
+        fifa: () => practiceMariFifaCelebrate({ logQuest: opts.logQuest }),
+        sua: () => practiceCicadaAttune({ logQuest: opts.logQuest })
     };
     const run = handlers[laneId];
     if (run) run();
@@ -521,6 +526,34 @@ function practiceHealAll(opts = {}) {
     switchTab(3);
     renderSyncPanel();
     return true;
+}
+
+function practiceCicadaAttune(opts = {}) {
+    const ritual = typeof getCicadaAttuneRitual === 'function' ? getCicadaAttuneRitual() : null;
+    const skillId = ritual?.skillId || 'sua-tattoo';
+    const shadowIdx = ritual?.shadowIndex ?? 2;
+
+    setWebdramaSyncValues(ritual?.pin || 'FED', null, null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective(ritual?.questId || 'side-boundary');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
 }
 
 function practiceReiMercyHeal(opts = {}) {
@@ -1190,6 +1223,7 @@ function renderBootAllPanel() {
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
             else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1', openWatch: boot.watch === '1' });
+            else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true });
             else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
@@ -1216,6 +1250,7 @@ function renderBootAllPanel() {
 
 function resolveAttuneLane(params) {
     if (params.get('lane')) return params.get('lane');
+    if (params.get('sua') === '1' || params.get('cicada') === '1') return 'sua';
     if (params.get('kane') === '1') return 'kane';
     if (params.get('vinicus') === '1') return 'vinicus';
     if (params.get('messi') === '1') return 'messi';
@@ -1293,6 +1328,14 @@ function handleTtmikSyncBoot() {
         practiceHarryKaneStriker({
             openSheet: params.get('sheet') === '1',
             openWatch: params.get('watch') === '1'
+        });
+        return;
+    }
+    if (params.get('sua') === '1' || params.get('cicada') === '1') {
+        practiceCicadaAttune({
+            logQuest: params.get('quest') !== '0',
+            chainLane: params.get('chain') === '1',
+            lane: resolveAttuneLane(params)
         });
         return;
     }
@@ -1750,6 +1793,52 @@ function renderSyncPanel() {
         bardBlock.appendChild(bardTitle);
         bardBlock.appendChild(bardTheme);
         panel.appendChild(bardBlock);
+    }
+
+    if (typeof getCicadaAttuneRitual === 'function') {
+        const ritual = getCicadaAttuneRitual();
+        if (ritual?.steps?.length) {
+            const cicadaBlock = document.createElement('div');
+            cicadaBlock.className = 'mb-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 text-sm';
+            const cicadaTitle = document.createElement('p');
+            cicadaTitle.className = 'text-amber-300 font-medium mb-2';
+            cicadaTitle.textContent = ritual.label || 'Sua cicada attune';
+            cicadaBlock.appendChild(cicadaTitle);
+            const cicadaPhrase = document.createElement('p');
+            cicadaPhrase.className = 'text-zinc-400 italic mb-3';
+            const sp = ritual.shadowPhrase;
+            const ap = ritual.attunePhrase;
+            cicadaPhrase.textContent = sp
+                ? `"${ritual.activation}" · ${ap?.ko || ''} · ${sp.ko || ''}`
+                : ritual.activation;
+            cicadaBlock.appendChild(cicadaPhrase);
+            const steps = document.createElement('ol');
+            steps.className = 'list-decimal list-inside space-y-1 text-zinc-300 mb-3';
+            ritual.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                steps.appendChild(li);
+            });
+            cicadaBlock.appendChild(steps);
+            const cicadaActions = document.createElement('div');
+            cicadaActions.className = 'flex flex-wrap gap-2';
+            const runCicada = document.createElement('button');
+            runCicada.type = 'button';
+            runCicada.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-amber-600/30 text-amber-200 hover:bg-amber-600/50';
+            runCicada.textContent = 'Run Sua cicada attune';
+            runCicada.title = 'TTMIK.html?heal-factor=cicada-attune';
+            runCicada.onclick = () => practiceCicadaAttune();
+            cicadaActions.appendChild(runCicada);
+            const attuneSua = document.createElement('button');
+            attuneSua.type = 'button';
+            attuneSua.className = 'px-3 py-2 rounded-xl text-xs font-medium bg-zinc-800/60 text-zinc-200 hover:bg-zinc-700/60';
+            attuneSua.textContent = 'Attune → Sua lane';
+            attuneSua.title = 'TTMIK.html?attune=1&lane=sua';
+            attuneSua.onclick = () => practiceMatchAttune({ lane: 'sua', chainLane: true });
+            cicadaActions.appendChild(attuneSua);
+            cicadaBlock.appendChild(cicadaActions);
+            panel.appendChild(cicadaBlock);
+        }
     }
 
     if (typeof getReiMercyHealRitual === 'function') {
@@ -2612,6 +2701,42 @@ function renderSkillDetail() {
         };
         kaneBlock.appendChild(watchBtn);
         panel.appendChild(kaneBlock);
+    }
+
+    if (skill.id === 'sua-tattoo') {
+        const suaBlock = document.createElement('div');
+        suaBlock.className = 'mb-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4';
+        const suaLabel = document.createElement('h4');
+        suaLabel.className = 'text-xs uppercase tracking-widest text-amber-300 mb-2';
+        suaLabel.textContent = 'Sua Tattoo · Cicada attune · FED shedding pause';
+        suaBlock.appendChild(suaLabel);
+        const note = document.createElement('p');
+        note.className = 'text-sm text-zinc-400 mb-3';
+        note.textContent = 'Attune at Federation → shed old skin at Hosier. Release the flame with gratitude — not re-contact.';
+        suaBlock.appendChild(note);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.ko, p.en].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        suaBlock.appendChild(deck);
+        const cicadaBtn = document.createElement('button');
+        cicadaBtn.type = 'button';
+        cicadaBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-amber-600/30 text-amber-200 hover:bg-amber-600/50 mr-2';
+        cicadaBtn.textContent = 'Sua cicada attune';
+        cicadaBtn.title = '새 껍질을 벗을게요 · TTMIK.html?heal-factor=cicada-attune';
+        cicadaBtn.onclick = () => practiceCicadaAttune();
+        suaBlock.appendChild(cicadaBtn);
+        const attuneBtn = document.createElement('button');
+        attuneBtn.type = 'button';
+        attuneBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50';
+        attuneBtn.textContent = 'Attune → Sua lane';
+        attuneBtn.title = 'TTMIK.html?attune=1&lane=sua';
+        attuneBtn.onclick = () => practiceMatchAttune({ lane: 'sua', chainLane: true });
+        suaBlock.appendChild(attuneBtn);
+        panel.appendChild(suaBlock);
     }
 
     if (skill.id === 'neon-evangelion') {

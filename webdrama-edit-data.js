@@ -235,6 +235,28 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'cicada-attune-ritual': {
+        id: 'cicada-attune-ritual',
+        label: 'Sua Cicada Attune · Shed Before Cheer · Federation Pause (60s)',
+        duration: 60,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'CICADA',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'FED', episode: null, reel: null },
+        pins: ['FED', 'HOSIER'],
+        exportTargets: ['Webdrama insert', 'Sua cicada attune deck', 'Sovereign shedding lane'],
+        pipeline: ['cicada-attune-ritual'],
+        shots: [
+            { id: 'CA1', time: '0:00', pin: 'FED', note: 'Federation pause — phone face-down · one breath', dur: 8 },
+            { id: 'CA2', time: '0:08', pin: 'FED', note: 'Attune · 응원 전에 한 숨', dur: 8 },
+            { id: 'CA3', time: '0:16', pin: 'FED', note: 'Sua cicada — acknowledge flame · release with gratitude', dur: 10 },
+            { id: 'CA4', time: '0:26', pin: 'HOSIER', note: 'Korean shadow · 새 껍질을 벗을게요', dur: 10 },
+            { id: 'CA5', time: '0:36', pin: 'HOSIER', note: 'Anchor · 나만의 불꽃이면 충분해요', dur: 10 },
+            { id: 'CA6', time: '0:46', pin: 'HOSIER', note: 'Shed the skin, not the self — open lane', dur: 14 }
+        ]
+    },
     'rei-mercy-ritual': {
         id: 'rei-mercy-ritual',
         label: 'Rei Mercy · Observe Without Absorbing · NERV Pause (60s)',

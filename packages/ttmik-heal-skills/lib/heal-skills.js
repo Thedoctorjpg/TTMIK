@@ -173,7 +173,13 @@ const SKILLS = [
             'User has a ritual or creative next step',
             'Status remains: released with love'
         ],
-        korean: ['고마웠어요. 이제 놓아줄게요.', '나만의 불꽃이면 충분해요.', '새 껍질을 벗을게요.']
+        korean: ['고마웠어요. 이제 놓아줄게요.', '나만의 불꽃이면 충분해요.', '새 껍질을 벗을게요.'],
+        integrations: [
+            'TTMIK.html?sua=1 — Sua cicada attune boot',
+            'TTMIK.html?heal-factor=cicada-attune — cicada shedding · FED attune',
+            'TTMIK.html?attune=1&lane=sua — Federation pause then Sua shed',
+            'cicada-attune-ritual · side-boundary quest'
+        ]
     },
     {
         id: 'asuka-brisbane',
@@ -796,7 +802,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'flame-kissed-bard': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
     'lo3tus': ['humor-release', 'hermit-lantern'],
     'helen-neighbor': ['helen-boundary', 'pause-breathe', 'cord-cut', 'post-dib'],
-    'sua-tattoo-artist': ['cord-cut', 'no-rewatch'],
+    'sua-tattoo-artist': ['cicada-attune', 'cord-cut', 'no-rewatch'],
     'asuka-brisbane': ['pause-breathe', 'cord-cut'],
     'heidi-alpine-wayfarer': ['hermit-lantern', 'daily-ritual', 'humor-release'],
     'sven-nordic-ranger': ['no-rewatch', 'pause-breathe', 'cord-cut'],
@@ -825,7 +831,8 @@ const HEALING_FACTOR_LABELS = {
     'ignan-walk': 'Ignan healing walk — ?ignan=1 · BOTANIC',
     'fifa-celebrate': 'Mari FIFA cantina — ?fifa=1 · CANTINA',
     'match-attune': 'Attune before match — ?attune=1 · FED',
-    'rei-mercy': 'Rei mercy heal — ?rei=1 · NERV · Ep 7.1'
+    'rei-mercy': 'Rei mercy heal — ?rei=1 · NERV · Ep 7.1',
+    'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause'
 };
 
 function buildSkillMd(skill) {

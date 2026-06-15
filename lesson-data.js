@@ -63,6 +63,12 @@ if (typeof generateHealingLibraryLessons === 'function') {
     nextId += healLessons.length;
 }
 
+if (typeof generateFifaNationsLibraryLessons === 'function') {
+    const fifaLessons = generateFifaNationsLibraryLessons(nextId);
+    lessons = lessons.concat(fifaLessons);
+    nextId += fifaLessons.length;
+}
+
 let categories = deriveCategories(lessons);
 let libraryGroups = [
     'All',
@@ -70,6 +76,9 @@ let libraryGroups = [
     'Sovereign Guide',
     'Melbourne Journey',
     'Healing Factors Library',
+    'Mexico Library',
+    'Canada Library',
+    'USA Library',
     'Ignan Library',
     'Asuka Library'
 ];

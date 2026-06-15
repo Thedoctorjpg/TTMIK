@@ -67,6 +67,8 @@ const SKILL_BOOT_REGISTRY = {
         preset: 10,
         libraryGroup: 'Ignan Library',
         libraryCategory: 'Trilingual Shadowing',
+        fifaLibrary: 'Mexico Library',
+        fifaCategory: 'Spanish Shadowing',
         tag: 'ignan'
     },
     'ignan-grounding': {
@@ -119,6 +121,24 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'sovereign',
         factors: ['daily-ritual', 'cord-cut', 'no-rewatch'],
         boot: 'library=sovereign-skills'
+    },
+    'Mexico Library': {
+        group: 'mexico',
+        factors: ['fifa-celebrate'],
+        boot: 'library=mexico',
+        hosts: ['CDMX', 'GDL', 'MTY']
+    },
+    'Canada Library': {
+        group: 'canada',
+        factors: ['pause-breathe', 'cord-cut'],
+        boot: 'library=canada',
+        hosts: ['YVR', 'YYZ']
+    },
+    'USA Library': {
+        group: 'usa',
+        factors: ['hermit-lantern', 'no-rewatch', 'fifa-celebrate'],
+        boot: 'library=usa',
+        hosts: ['LAX', 'MIA', 'NYC', 'SEA', 'DAL']
     }
 };
 
@@ -162,6 +182,30 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=heal',
         skills: ['helen-neighbor', 'melbourne-lantern-bard', 'flame-kissed-bard', 'ignan-pilgrim', 'ignan-grounding'],
         accent: 'sky'
+    },
+    {
+        id: 'mexico',
+        label: 'Mexico Library',
+        description: 'Spanish native · Korean shadow — FIFA 2026 CDMX · Guadalajara · Monterrey',
+        boot: 'library=mexico',
+        skills: ['ignan-pilgrim'],
+        accent: 'amber'
+    },
+    {
+        id: 'canada',
+        label: 'Canada Library',
+        description: 'French · English · Korean — Vancouver · Toronto 2026',
+        boot: 'library=canada',
+        skills: ['flame-kissed-bard', 'helen-neighbor'],
+        accent: 'red'
+    },
+    {
+        id: 'usa',
+        label: 'USA Library',
+        description: 'English native · Korean shadow — LA · Miami · NYC · Seattle · Dallas',
+        boot: 'library=usa',
+        skills: ['melbourne-lantern-bard', 'lo3tus'],
+        accent: 'blue'
     }
 ];
 

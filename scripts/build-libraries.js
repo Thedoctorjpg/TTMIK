@@ -14,6 +14,9 @@ const LIBRARY_GROUPS = [
     { label: 'Sovereign Guide', group: 'sovereign', source: 'sovereign-data.js' },
     { label: 'Melbourne Journey', group: 'melbourne', source: 'sovereign-data.js' },
     { label: 'Healing Factors Library', group: 'heal', source: 'healing-library-data.js' },
+    { label: 'Mexico Library', group: 'mexico', source: 'fifa-nations-data.js' },
+    { label: 'Canada Library', group: 'canada', source: 'fifa-nations-data.js' },
+    { label: 'USA Library', group: 'usa', source: 'fifa-nations-data.js' },
     { label: 'Ignan Library', group: 'ignan', source: 'ignan-data.js' },
     { label: 'Asuka Library', group: 'asuka', source: 'asuka-data.js' }
 ];
@@ -21,7 +24,7 @@ const LIBRARY_GROUPS = [
 function getLibraryCounts() {
     const vm = require('vm');
     const fs = require('fs');
-    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'healing-library-data.js']
+    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
         .map((file) => fs.readFileSync(path.join(ROOT, file), 'utf8'))
         .join('\n');
     const code = `${sources}
@@ -31,6 +34,9 @@ function getLibraryCounts() {
     melbourne: SOVEREIGN_COURSE_DEFS.filter((d) => d.group === 'melbourne')
         .reduce((sum, d) => sum + d.tracks.length, 0),
     heal: generateHealingLibraryLessons(1).length,
+    mexico: generateMexicoLibraryLessons(1).length,
+    canada: generateCanadaLibraryLessons(1).length,
+    usa: generateUsaLibraryLessons(1).length,
     ignan: generateIgnanLibraryLessons(1).length,
     asuka: generateAsukaLibraryLessons(1).length
 });`;

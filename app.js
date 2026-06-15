@@ -65,6 +65,15 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Healing Factors Library') {
         return lessons.filter(l => l.group === 'heal');
     }
+    if (activeLibraryGroup === 'Mexico Library') {
+        return lessons.filter(l => l.group === 'mexico');
+    }
+    if (activeLibraryGroup === 'Canada Library') {
+        return lessons.filter(l => l.group === 'canada');
+    }
+    if (activeLibraryGroup === 'USA Library') {
+        return lessons.filter(l => l.group === 'usa');
+    }
     if (activeLibraryGroup === 'Ignan Library') {
         return lessons.filter(l => l.group === 'ignan');
     }
@@ -525,6 +534,15 @@ function startJourneyCategory(groupId) {
     if (groupId === 'heal') {
         activeLibraryGroup = 'Healing Factors Library';
         activeCategory = 'Post-DIB Landing';
+    } else if (groupId === 'mexico') {
+        activeLibraryGroup = 'Mexico Library';
+        activeCategory = 'Spanish Shadowing';
+    } else if (groupId === 'canada') {
+        activeLibraryGroup = 'Canada Library';
+        activeCategory = 'French Shadowing';
+    } else if (groupId === 'usa') {
+        activeLibraryGroup = 'USA Library';
+        activeCategory = 'English Shadowing';
     } else if (groupId === 'ignan') {
         activeLibraryGroup = 'Ignan Library';
         activeCategory = 'Trilingual Shadowing';
@@ -582,6 +600,33 @@ function startHealCategory(subtitle) {
     switchTab(1);
 }
 
+function startMexicoCategory(subtitle) {
+    activeLibraryGroup = 'Mexico Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startCanadaCategory(subtitle) {
+    activeLibraryGroup = 'Canada Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startUsaCategory(subtitle) {
+    activeLibraryGroup = 'USA Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function renderJourneyDashboard() {
     const grid = document.getElementById('journey-grid');
     if (!grid || typeof JOURNEY_CATEGORIES === 'undefined') return;
@@ -594,6 +639,15 @@ function renderJourneyDashboard() {
     if (typeof HEALING_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(HEALING_JOURNEY_CATEGORY);
     }
+    if (typeof MEXICO_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(MEXICO_JOURNEY_CATEGORY);
+    }
+    if (typeof CANADA_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(CANADA_JOURNEY_CATEGORY);
+    }
+    if (typeof USA_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(USA_JOURNEY_CATEGORY);
+    }
     if (typeof ASUKA_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(ASUKA_JOURNEY_CATEGORY);
     }
@@ -602,7 +656,13 @@ function renderJourneyDashboard() {
         const card = document.createElement('button');
         const ring = journey.id === 'heal'
             ? 'hover:ring-sky-500'
-            : journey.id === 'ignan'
+            : journey.id === 'mexico'
+                ? 'hover:ring-amber-500'
+                : journey.id === 'canada'
+                    ? 'hover:ring-red-500'
+                    : journey.id === 'usa'
+                        ? 'hover:ring-blue-500'
+                        : journey.id === 'ignan'
             ? 'hover:ring-emerald-500'
             : journey.id === 'asuka'
                 ? 'hover:ring-rose-500'
@@ -617,7 +677,13 @@ function renderJourneyDashboard() {
         const count = document.createElement('p');
         count.className = journey.id === 'heal'
             ? 'text-sky-400 text-sm font-medium'
-            : journey.id === 'ignan'
+            : journey.id === 'mexico'
+                ? 'text-amber-400 text-sm font-medium'
+                : journey.id === 'canada'
+                    ? 'text-red-400 text-sm font-medium'
+                    : journey.id === 'usa'
+                        ? 'text-blue-400 text-sm font-medium'
+                        : journey.id === 'ignan'
             ? 'text-emerald-400 text-sm font-medium'
             : journey.id === 'asuka'
                 ? 'text-rose-400 text-sm font-medium'
@@ -628,6 +694,12 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign').length} tracks`;
         } else if (journey.id === 'heal') {
             count.textContent = `${lessons.filter(l => l.group === 'heal').length} tracks`;
+        } else if (journey.id === 'mexico') {
+            count.textContent = `${lessons.filter(l => l.group === 'mexico').length} tracks`;
+        } else if (journey.id === 'canada') {
+            count.textContent = `${lessons.filter(l => l.group === 'canada').length} tracks`;
+        } else if (journey.id === 'usa') {
+            count.textContent = `${lessons.filter(l => l.group === 'usa').length} tracks`;
         } else if (journey.id === 'ignan') {
             count.textContent = `${lessons.filter(l => l.group === 'ignan').length} tracks`;
         } else if (journey.id === 'asuka') {
@@ -681,6 +753,68 @@ function renderJourneyDashboard() {
         btn.onclick = () => startIgnanCategory(def.subtitle);
         ignanGrid.appendChild(btn);
     });
+
+    const fifaMeta = document.getElementById('fifa-2026-meta');
+    if (fifaMeta && typeof FIFA_2026_META !== 'undefined') {
+        fifaMeta.textContent = `${FIFA_2026_META.tournament} · ${FIFA_2026_META.dates} · ${FIFA_2026_META.nations.join(' · ')}`;
+    }
+
+    const mexicoGrid = document.getElementById('mexico-quick-grid');
+    if (mexicoGrid && typeof MEXICO_COURSE_DEFS !== 'undefined') {
+        mexicoGrid.textContent = '';
+        MEXICO_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-amber-900/30 hover:bg-amber-800/40 ring-1 ring-amber-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-amber-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-amber-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startMexicoCategory(def.subtitle);
+            mexicoGrid.appendChild(btn);
+        });
+    }
+
+    const canadaGrid = document.getElementById('canada-quick-grid');
+    if (canadaGrid && typeof CANADA_COURSE_DEFS !== 'undefined') {
+        canadaGrid.textContent = '';
+        CANADA_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-red-900/30 hover:bg-red-800/40 ring-1 ring-red-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-red-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-red-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startCanadaCategory(def.subtitle);
+            canadaGrid.appendChild(btn);
+        });
+    }
+
+    const usaGrid = document.getElementById('usa-quick-grid');
+    if (usaGrid && typeof USA_COURSE_DEFS !== 'undefined') {
+        usaGrid.textContent = '';
+        USA_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-blue-900/30 hover:bg-blue-800/40 ring-1 ring-blue-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-blue-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-blue-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startUsaCategory(def.subtitle);
+            usaGrid.appendChild(btn);
+        });
+    }
 
     const healGrid = document.getElementById('heal-quick-grid');
     if (healGrid && typeof HEALING_COURSE_DEFS !== 'undefined') {
@@ -856,6 +990,12 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'heal') {
             startHealCategory(bootParams.get('category') || 'Post-DIB Landing');
+        } else if (bootParams.get('library') === 'mexico') {
+            startMexicoCategory(bootParams.get('category') || 'Spanish Shadowing');
+        } else if (bootParams.get('library') === 'canada') {
+            startCanadaCategory(bootParams.get('category') || 'French Shadowing');
+        } else if (bootParams.get('library') === 'usa') {
+            startUsaCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'ignan') {
             startIgnanCategory(bootParams.get('category') || 'Trilingual Shadowing');
         } else if (bootParams.get('library') === 'asuka') {

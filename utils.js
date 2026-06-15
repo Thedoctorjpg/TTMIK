@@ -9,17 +9,20 @@ function formatShadowNativeHint(phrase) {
     const parts = [];
     if (phrase.ilo) parts.push(`Ignan: ${phrase.ilo}`);
     if (phrase.es) parts.push(`Spanish: ${phrase.es}`);
+    if (phrase.fr) parts.push(`French: ${phrase.fr}`);
     if (phrase.ja) parts.push(`Japanese: ${phrase.ja}`);
     if (phrase.ko) parts.push(`Korean: ${phrase.ko}`);
     if (parts.length > 1) return parts.join(' · ');
     if (phrase.ilo) return `Ignan: ${phrase.ilo} · Korean: ${phrase.ko || ''}`;
+    if (phrase.es) return `Spanish: ${phrase.es} · Korean: ${phrase.ko || ''}`;
+    if (phrase.fr) return `French: ${phrase.fr} · Korean: ${phrase.ko || ''}`;
     if (phrase.ja) return `Japanese: ${phrase.ja} · Korean: ${phrase.ko || ''}`;
     return null;
 }
 
 function shadowPhraseCopyText(phrase) {
     if (!phrase) return '';
-    return [phrase.ilo, phrase.es, phrase.ja, phrase.ko, phrase.en].filter(Boolean).join('\n');
+    return [phrase.ilo, phrase.es, phrase.fr, phrase.ja, phrase.ko, phrase.en].filter(Boolean).join('\n');
 }
 
 function formatTime(seconds) {

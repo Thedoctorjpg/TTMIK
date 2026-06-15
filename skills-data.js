@@ -61,8 +61,8 @@ const SKILLS = [
             'Tsundere dating skit in a Melbourne laneway',
             'Turn 10 of Wands burdens into 9 of Pentacles fulfillment'
         ],
-        linkedGroups: ['melbourne'],
-        linkedCategories: ['GoPro & Content', 'Melbourne Arrival'],
+        linkedGroups: ['melbourne', 'usa'],
+        linkedCategories: ['GoPro & Content', 'Melbourne Arrival', 'English Shadowing', 'Host City Route', 'Match Day Fans'],
         shadowingPhrases: [
             { ko: '멜버른 골목이 정말 예뻐요!', en: 'Melbourne laneways are so beautiful!' },
             { ko: '오늘 영상 찍을까요?', en: 'Shall we film something today?' },
@@ -104,8 +104,8 @@ const SKILLS = [
             'Write a romance scam TikTok skit',
             'Design a Bardic ritual for the Melbourne trip'
         ],
-        linkedGroups: ['sovereign', 'melbourne'],
-        linkedCategories: ['Self-Intimacy Practice', 'Style Switching'],
+        linkedGroups: ['sovereign', 'melbourne', 'canada'],
+        linkedCategories: ['Self-Intimacy Practice', 'Style Switching', 'French Shadowing', 'Host City Route', 'Bilingual Drills'],
         shadowingPhrases: [
             { ko: '나는 나만의 이야기를 씁니다.', en: 'I write my own story.' },
             { ko: '웃음으로 놓아줄게요.', en: 'I will let go with laughter.' },
@@ -141,8 +141,8 @@ const SKILLS = [
             'Romance scam TikTok idea in Lo3tus vibe',
             'Absurd exaggeration skit about Melbourne coffee'
         ],
-        linkedGroups: ['melbourne'],
-        linkedCategories: ['Daily Life', 'Social & Cultural'],
+        linkedGroups: ['melbourne', 'usa'],
+        linkedCategories: ['Daily Life', 'Social & Cultural', 'English Shadowing', 'Match Day Fans'],
         shadowingPhrases: [
             { ko: '커피 한 잔 할래요?', en: 'Want to grab a coffee?' },
             { ko: '오늘 기분 어때요?', en: 'How are you feeling today?' },
@@ -177,8 +177,8 @@ const SKILLS = [
             'Boundary performance in Flame-Kissed Bard style',
             '“It’s okay to not be like the others — and okay to say no”'
         ],
-        linkedGroups: ['sovereign', 'melbourne'],
-        linkedCategories: ['Emergency Protocol', 'Customs & Etiquette'],
+        linkedGroups: ['sovereign', 'melbourne', 'canada'],
+        linkedCategories: ['Emergency Protocol', 'Customs & Etiquette', 'French Shadowing', 'Bilingual Drills'],
         shadowingPhrases: [
             { ko: '죄송하지만 지금은 어려워요.', en: 'Sorry, not possible right now.' },
             { ko: '제 시간을 지킬게요.', en: 'I will protect my time.' },
@@ -330,8 +330,8 @@ const SKILLS = [
             'Veil Lumen spoken clip: Ok laeng over lake-path ambient',
             'TTMIK team deck: Korean line + Ilokano line side by side'
         ],
-        linkedGroups: ['ignan', 'melbourne', 'sovereign'],
-        linkedCategories: ['Trilingual Shadowing', 'Healing Walk Route', 'Ilokano Grounding', 'FIFA Celebration', 'Self-Intimacy Practice', 'Cultural Sites'],
+        linkedGroups: ['ignan', 'melbourne', 'sovereign', 'mexico'],
+        linkedCategories: ['Trilingual Shadowing', 'Healing Walk Route', 'Ilokano Grounding', 'FIFA Celebration', 'Spanish Shadowing', 'Host City Route', 'Cantina Celebration', 'Self-Intimacy Practice', 'Cultural Sites'],
         shadowingPhrases: [
             { ko: '괜찮아요, 괜찮아요.', ilo: 'Ok laeng, ok laeng.', en: "It's okay, it's okay." },
             { ko: '잠시 쉬어도 괜찮아요.', ilo: 'Nasaem met ti aginana.', en: "It's okay to pause and breathe." },

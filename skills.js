@@ -89,7 +89,25 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
-    if (healCats.length) {
+    const mexicoCats = typeof MEXICO_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => MEXICO_LIBRARY_CATEGORIES.includes(c))
+        : [];
+    const canadaCats = typeof CANADA_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => CANADA_LIBRARY_CATEGORIES.includes(c))
+        : [];
+    const usaCats = typeof USA_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => USA_LIBRARY_CATEGORIES.includes(c))
+        : [];
+    if (mexicoCats.length) {
+        activeLibraryGroup = 'Mexico Library';
+        activeCategory = mexicoCats[0];
+    } else if (canadaCats.length) {
+        activeLibraryGroup = 'Canada Library';
+        activeCategory = canadaCats[0];
+    } else if (usaCats.length) {
+        activeLibraryGroup = 'USA Library';
+        activeCategory = usaCats[0];
+    } else if (healCats.length) {
         activeLibraryGroup = 'Healing Factors Library';
         activeCategory = healCats[0];
     } else if (ignanCats.length) {
@@ -117,11 +135,14 @@ function openSkillLessons(skillId) {
 
     const hasIgnan = skill.linkedGroups?.includes('ignan');
     const hasAsuka = skill.linkedGroups?.includes('asuka');
-    const preferMelbourne = !hasIgnan && !hasAsuka && (
+    const hasMexico = skill.linkedGroups?.includes('mexico');
+    const hasCanada = skill.linkedGroups?.includes('canada');
+    const hasUsa = skill.linkedGroups?.includes('usa');
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka) {
+    if (hasIgnan || hasAsuka || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -357,6 +378,12 @@ function bootSkillById(skillId, opts = {}) {
     if (opts.lessons || opts.openLibrary) {
         if (entry?.libraryGroup === 'Healing Factors Library' && entry.libraryCategory) {
             startHealCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Mexico Library' && entry.libraryCategory) {
+            startMexicoCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Canada Library' && entry.libraryCategory) {
+            startCanadaCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'USA Library' && entry.libraryCategory) {
+            startUsaCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Ignan Library' && entry.libraryCategory) {
             startIgnanCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Asuka Library' && entry.libraryCategory) {
@@ -1363,6 +1390,9 @@ function renderSkillLibraryComposer() {
         else if (lib.accent === 'rose') title.className += ' text-rose-300';
         else if (lib.accent === 'violet') title.className += ' text-violet-300';
         else if (lib.accent === 'sky') title.className += ' text-sky-300';
+        else if (lib.accent === 'amber') title.className += ' text-amber-300';
+        else if (lib.accent === 'red') title.className += ' text-red-300';
+        else if (lib.accent === 'blue') title.className += ' text-blue-300';
         else title.className += ' text-pink-300';
         title.textContent = lib.label;
         block.appendChild(title);
@@ -1420,6 +1450,9 @@ function renderSkillLibraryComposer() {
             openLib.textContent = `Open ${lib.label}`;
             openLib.onclick = () => {
                 if (lib.id === 'heal') startHealCategory('Post-DIB Landing');
+                else if (lib.id === 'mexico') startMexicoCategory('Spanish Shadowing');
+                else if (lib.id === 'canada') startCanadaCategory('French Shadowing');
+                else if (lib.id === 'usa') startUsaCategory('English Shadowing');
                 else if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
                 else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
                 else switchTab(3);

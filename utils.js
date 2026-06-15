@@ -14,6 +14,7 @@ function formatShadowNativeHint(phrase) {
     if (phrase.de) parts.push(`German: ${phrase.de}`);
     if (phrase.sv) parts.push(`Swedish: ${phrase.sv}`);
     if (phrase.no) parts.push(`Norwegian: ${phrase.no}`);
+    if (phrase.pt) parts.push(`Portuguese: ${phrase.pt}`);
     if (phrase.ko) parts.push(`Korean: ${phrase.ko}`);
     if (parts.length > 1) return parts.join(' · ');
     if (phrase.ilo) return `Ignan: ${phrase.ilo} · Korean: ${phrase.ko || ''}`;
@@ -23,12 +24,13 @@ function formatShadowNativeHint(phrase) {
     if (phrase.de) return `German: ${phrase.de} · Korean: ${phrase.ko || ''}`;
     if (phrase.sv) return `Swedish: ${phrase.sv} · Korean: ${phrase.ko || ''}`;
     if (phrase.no) return `Norwegian: ${phrase.no} · Korean: ${phrase.ko || ''}`;
+    if (phrase.pt) return `Portuguese: ${phrase.pt} · Korean: ${phrase.ko || ''}`;
     return null;
 }
 
 function shadowPhraseCopyText(phrase) {
     if (!phrase) return '';
-    return [phrase.ilo, phrase.es, phrase.fr, phrase.ja, phrase.de, phrase.sv, phrase.no, phrase.ko, phrase.en].filter(Boolean).join('\n');
+    return [phrase.ilo, phrase.es, phrase.fr, phrase.ja, phrase.de, phrase.sv, phrase.no, phrase.pt, phrase.ko, phrase.en].filter(Boolean).join('\n');
 }
 
 function formatTime(seconds) {

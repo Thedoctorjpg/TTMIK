@@ -65,10 +65,31 @@ const FAST_CHARACTER_MARTIN = {
     note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
 };
 
+/** Ronaldo — Portuguese Glory Paladin muse · FIFA cantina celebration */
+const FAST_CHARACTER_RONALDO = {
+    id: 'ronaldo',
+    label: 'Ronaldo — Portugal Glory',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Ronaldo',
+    randomname: 'no',
+    pcname: 'Ronaldo',
+    pcclass: 'PaladinGlory',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Entertainer',
+    pcgender: 'male',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Oath of Glory · Level 5 · Chaotic Good — FIFA cantina ally'
+};
+
 const FAST_CHARACTER_PRESETS = {
     heidi: FAST_CHARACTER_HEIDI,
     sven: FAST_CHARACTER_SVEN,
-    martin: FAST_CHARACTER_MARTIN
+    martin: FAST_CHARACTER_MARTIN,
+    ronaldo: FAST_CHARACTER_RONALDO
 };
 
 function buildFastCharacterFormData(preset) {
@@ -120,4 +141,8 @@ function openFastCharacterSven() {
 
 function openFastCharacterMartin() {
     openFastCharacterSheet(FAST_CHARACTER_MARTIN);
+}
+
+function openFastCharacterRonaldo() {
+    openFastCharacterSheet(FAST_CHARACTER_RONALDO);
 }

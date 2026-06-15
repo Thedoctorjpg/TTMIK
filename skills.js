@@ -95,6 +95,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const martinCats = typeof MARTIN_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => MARTIN_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const ronaldoCats = typeof RONALDO_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => RONALDO_LIBRARY_CATEGORIES.includes(c))
+        : [];
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
@@ -134,6 +137,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     } else if (martinCats.length) {
         activeLibraryGroup = 'Martin Library';
         activeCategory = martinCats[0];
+    } else if (ronaldoCats.length) {
+        activeLibraryGroup = 'Ronaldo Library';
+        activeCategory = ronaldoCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -156,14 +162,15 @@ function openSkillLessons(skillId) {
     const hasHeidi = skill.linkedGroups?.includes('heidi');
     const hasSven = skill.linkedGroups?.includes('sven');
     const hasMartin = skill.linkedGroups?.includes('martin');
+    const hasRonaldo = skill.linkedGroups?.includes('ronaldo');
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasMexico && !hasCanada && !hasUsa && (
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasMexico || hasCanada || hasUsa) {
+    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -593,6 +600,41 @@ function practiceMartinGuide(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceRonaldoGlory(opts = {}) {
+    const skillId = 'ronaldo-portugal-glory';
+    const shadowIdx = 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(16)) {
+        setWebdramaSyncValues('CANTINA', '2.65', null);
+    } else {
+        setWebdramaSyncValues('CANTINA', '2.65', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterRonaldo === 'function') {
+        openFastCharacterRonaldo();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-fifa-celebrate');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceTtmikSyncShadowing() {
     const cfg = getResolvedSyncConfig();
     applyTtmikSync();
@@ -755,6 +797,7 @@ function renderBootAllPanel() {
             else if (boot.heidi === '1') practiceHeidiWayfarer({ openSheet: boot.sheet === '1' });
             else if (boot.sven === '1') practiceSvenRanger({ openSheet: boot.sheet === '1' });
             else if (boot.martin === '1') practiceMartinGuide({ openSheet: boot.sheet === '1' });
+            else if (boot.ronaldo === '1') practiceRonaldoGlory({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
         });
@@ -805,6 +848,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('martin') === '1') {
         practiceMartinGuide({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('ronaldo') === '1') {
+        practiceRonaldoGlory({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
@@ -1050,6 +1097,12 @@ function renderSyncPanel() {
             no.textContent = phrase.no;
             phraseBox.appendChild(no);
         }
+        if (phrase.pt) {
+            const pt = document.createElement('p');
+            pt.className = 'text-orange-400/90 text-sm font-medium';
+            pt.textContent = phrase.pt;
+            phraseBox.appendChild(pt);
+        }
         if (phrase.es) {
             const es = document.createElement('p');
             es.className = 'text-amber-400/90 text-sm font-medium';
@@ -1141,6 +1194,14 @@ function renderSyncPanel() {
     martinBtn.title = 'Norwegian native input · preset 15 · Fast Character Guide sheet';
     martinBtn.onclick = () => practiceMartinGuide();
     actions.appendChild(martinBtn);
+
+    const ronaldoBtn = document.createElement('button');
+    ronaldoBtn.type = 'button';
+    ronaldoBtn.className = 'px-5 py-3 bg-orange-900/50 text-orange-200 rounded-2xl text-sm font-medium hover:bg-orange-800/70 ring-1 ring-orange-500/30';
+    ronaldoBtn.textContent = 'Ronaldo glory (Ep 2.65 · PT)';
+    ronaldoBtn.title = 'Portuguese native input · preset 16 · Fast Character Glory Paladin sheet';
+    ronaldoBtn.onclick = () => practiceRonaldoGlory();
+    actions.appendChild(ronaldoBtn);
 
     const fifaBtn = document.createElement('button');
     fifaBtn.type = 'button';
@@ -1370,6 +1431,7 @@ function renderSkillsGrid() {
         const isHeidi = skill.id === 'heidi-alpine-wayfarer';
         const isSven = skill.id === 'sven-nordic-ranger';
         const isMartin = skill.id === 'martin-nordic-guide';
+        const isRonaldo = skill.id === 'ronaldo-portugal-glory';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
@@ -1380,7 +1442,9 @@ function renderSkillsGrid() {
                         ? 'ring-cyan-500 hover:ring-cyan-400'
                         : isMartin
                             ? 'ring-indigo-500 hover:ring-indigo-400'
-                            : 'ring-pink-500 hover:ring-pink-400';
+                            : isRonaldo
+                                ? 'ring-orange-500 hover:ring-orange-400'
+                                : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
@@ -1391,7 +1455,9 @@ function renderSkillsGrid() {
                         ? 'hover:ring-cyan-500/50'
                         : isMartin
                             ? 'hover:ring-indigo-500/50'
-                            : 'hover:ring-pink-500/50';
+                            : isRonaldo
+                                ? 'hover:ring-orange-500/50'
+                                : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1422,7 +1488,9 @@ function renderSkillsGrid() {
                             ? 'inline-block mt-3 text-xs bg-cyan-500/20 text-cyan-300 px-2 py-1 rounded-full'
                             : isMartin
                                 ? 'inline-block mt-3 text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full'
-                                : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                                : isRonaldo
+                                    ? 'inline-block mt-3 text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded-full'
+                                    : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -1685,6 +1753,39 @@ function renderSkillDetail() {
         panel.appendChild(martinBlock);
     }
 
+    if (skill.id === 'ronaldo-portugal-glory') {
+        const ronaldoBlock = document.createElement('div');
+        ronaldoBlock.className = 'mb-6 bg-orange-500/10 border border-orange-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-orange-300 mb-2';
+        label.textContent = 'Portuguese native input · Ep 2.65 · Fast Character';
+        ronaldoBlock.appendChild(label);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.pt, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        ronaldoBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-orange-600/30 text-orange-200 hover:bg-orange-600/50 mr-2';
+        runBtn.textContent = 'Invoke Ronaldo glory (PT → KO)';
+        runBtn.onclick = () => practiceRonaldoGlory();
+        ronaldoBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Ronaldo sheet';
+        sheetBtn.title = 'fastcharacter.com · Paladin Glory · Entertainer · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterRonaldo === 'function') openFastCharacterRonaldo();
+        };
+        ronaldoBlock.appendChild(sheetBtn);
+        panel.appendChild(ronaldoBlock);
+    }
+
     const notesLabel = document.createElement('h4');
     notesLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-2';
     notesLabel.textContent = 'Your creative notes';
@@ -1824,6 +1925,10 @@ function renderSkillLibraryComposer() {
         else if (lib.accent === 'amber') title.className += ' text-amber-300';
         else if (lib.accent === 'red') title.className += ' text-red-300';
         else if (lib.accent === 'blue') title.className += ' text-blue-300';
+        else if (lib.accent === 'yellow') title.className += ' text-yellow-300';
+        else if (lib.accent === 'cyan') title.className += ' text-cyan-300';
+        else if (lib.accent === 'indigo') title.className += ' text-indigo-300';
+        else if (lib.accent === 'orange') title.className += ' text-orange-300';
         else title.className += ' text-pink-300';
         title.textContent = lib.label;
         block.appendChild(title);

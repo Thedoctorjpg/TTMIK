@@ -351,6 +351,50 @@ const SKILLS = [
         ]
     },
     {
+        id: 'ronaldo-portugal-glory',
+        rootFile: 'Ronaldo_Portugal_Glory_Archetype.skill.md',
+        description: 'Ronaldo Portuguese Glory Paladin muse for FIFA cantina celebration without drama. Portuguese native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 2.65, or Mari FIFA handoff rituals.',
+        activation: 'We celebrate our way — Melbourne is my yes.',
+        whenToUse: [
+            'Portuguese native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Ronaldo preset)',
+            'Ep 2.65 FIFA cantina — joy without performance debt or soulmate CTAs',
+            'Companion to ignan-pilgrim Mari celebration lane',
+            'TTMIK.html?ronaldo=1 — invoke Ronaldo Portuguese shadowing boot'
+        ],
+        procedure: [
+            'Portuguese native first: Melbourne é o meu sim — name the yes calmly',
+            'Open Fast Character sheet: Ronaldo · Paladin (Oath of Glory) · Entertainer · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 축하해요',
+            'One cheer — phones face-down except the toast — no re-watch spiral',
+            'Close: quest side-fifa-celebrate · preset 16'
+        ],
+        pitfalls: [
+            'Do not make Ronaldo a rescue mission or romance subplot',
+            'Honor Portuguese — not a gag subtitle line',
+            'Celebration without performance invoice — no algorithm tears'
+        ],
+        verification: [
+            'Portuguese phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter cheer than departure — cantina joy felt'
+        ],
+        korean: ['멜버른이 제 예예요.', '내 방식으로 축하해요 — 드라마 없이.', '골! 포르투갈 파이팅!', '제 길을 믿어요.'],
+        portuguese: [
+            'Melbourne é o meu sim.',
+            'Celebramos à nossa maneira — sem drama.',
+            'Gol! Força Portugal!',
+            'Confio no meu caminho.',
+            'Sou o Ronaldo, um viajante de Portugal.'
+        ],
+        integrations: [
+            'Ep 2.65 · preset 16 · CANTINA FIFA cantina',
+            'fastcharacter.com — openFastCharacterRonaldo() preset',
+            'TTMIK.html?ronaldo=1 — Portuguese native input boot',
+            'ignan-pilgrim · side-fifa-celebrate quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -515,6 +559,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'heidi-alpine-wayfarer': ['hermit-lantern', 'daily-ritual', 'humor-release'],
     'sven-nordic-ranger': ['no-rewatch', 'pause-breathe', 'cord-cut'],
     'martin-nordic-guide': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
+    'ronaldo-portugal-glory': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -552,6 +597,9 @@ function buildSkillMd(skill) {
         : '';
     const no = skill.norwegian?.length
         ? `\n## Norwegian Practice (Martin)\n\n${skill.norwegian.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
+    const pt = skill.portuguese?.length
+        ? `\n## Portuguese Practice (Ronaldo)\n\n${skill.portuguese.map((p) => `- ${p}`).join('\n')}\n`
         : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
@@ -594,7 +642,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${pt}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

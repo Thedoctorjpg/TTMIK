@@ -553,6 +553,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'World-card close · Norwegian native + Korean shadow · Fast Character Guide sheet',
         autoShadow: true
+    },
+    {
+        id: 16,
+        label: 'Cantina · Ep 2.65 · Ronaldo Portugal',
+        shortLabel: 'RONALDO',
+        pin: 'CANTINA',
+        episode: '2.65',
+        reel: null,
+        note: 'FIFA cantina · Portuguese native + Korean shadow · Fast Character Glory Paladin sheet',
+        autoShadow: true
     }
 ];
 
@@ -560,7 +570,8 @@ const TTMIK_SYNC_PRESETS = [
 const TTMIK_FIFA_CELEBRATION_ROUTE = [
     { time: '19:00', pin: 'CANTINA', note: 'Meet after walk — Mari picks the table, Bard pays his half', presetId: 12 },
     { time: '19:15', pin: 'CANTINA', note: 'Ilokano toast first — Naragsak unay before the match replay', sync: { pin: 'CANTINA', episode: '2.65', reel: null } },
-    { time: '19:45', pin: 'CANTINA', note: 'Goal cheer — Spanish salud, Korean 맛있어요, no soulmate CTAs', presetId: 12 }
+    { time: '19:45', pin: 'CANTINA', note: 'Goal cheer — Spanish salud, Korean 맛있어요, no soulmate CTAs', presetId: 12 },
+    { time: '20:00', pin: 'CANTINA', note: 'Portugal cheer — Gol! Força Portugal · preset 16 · phones down except toast', presetId: 16 }
 ];
 
 const TTMIK_BLOCK_ROUTE = [

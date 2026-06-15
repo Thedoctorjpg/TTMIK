@@ -89,6 +89,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Martin Library') {
         return lessons.filter(l => l.group === 'martin');
     }
+    if (activeLibraryGroup === 'Ronaldo Library') {
+        return lessons.filter(l => l.group === 'ronaldo');
+    }
     return lessons;
 }
 
@@ -567,6 +570,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'martin') {
         activeLibraryGroup = 'Martin Library';
         activeCategory = 'Norwegian Shadowing';
+    } else if (groupId === 'ronaldo') {
+        activeLibraryGroup = 'Ronaldo Library';
+        activeCategory = 'Portuguese Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -629,6 +635,15 @@ function startSvenCategory(subtitle) {
 
 function startMartinCategory(subtitle) {
     activeLibraryGroup = 'Martin Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startRonaldoCategory(subtitle) {
+    activeLibraryGroup = 'Ronaldo Library';
     activeCategory = subtitle;
     renderLibraryGroupFilters();
     renderCategoryFilters();
@@ -705,6 +720,9 @@ function renderJourneyDashboard() {
     if (typeof MARTIN_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(MARTIN_JOURNEY_CATEGORY);
     }
+    if (typeof RONALDO_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(RONALDO_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -726,7 +744,9 @@ function renderJourneyDashboard() {
                         ? 'hover:ring-cyan-500'
                         : journey.id === 'martin'
                             ? 'hover:ring-indigo-500'
-                            : 'hover:ring-pink-500';
+                            : journey.id === 'ronaldo'
+                                ? 'hover:ring-orange-500'
+                                : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -753,7 +773,9 @@ function renderJourneyDashboard() {
                         ? 'text-cyan-400 text-sm font-medium'
                         : journey.id === 'martin'
                             ? 'text-indigo-400 text-sm font-medium'
-                            : 'text-pink-400 text-sm font-medium';
+                            : journey.id === 'ronaldo'
+                                ? 'text-orange-400 text-sm font-medium'
+                                : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -776,6 +798,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'sven').length} tracks`;
         } else if (journey.id === 'martin') {
             count.textContent = `${lessons.filter(l => l.group === 'martin').length} tracks`;
+        } else if (journey.id === 'ronaldo') {
+            count.textContent = `${lessons.filter(l => l.group === 'ronaldo').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -983,6 +1007,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const ronaldoGrid = document.getElementById('ronaldo-quick-grid');
+    if (ronaldoGrid && typeof RONALDO_COURSE_DEFS !== 'undefined') {
+        ronaldoGrid.textContent = '';
+        RONALDO_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-orange-900/30 hover:bg-orange-800/40 ring-1 ring-orange-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-orange-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-orange-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startRonaldoCategory(def.subtitle);
+            ronaldoGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1119,7 +1162,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1144,6 +1187,8 @@ window.onload = () => {
             startSvenCategory(bootParams.get('category') || 'Swedish Shadowing');
         } else if (bootParams.get('library') === 'martin') {
             startMartinCategory(bootParams.get('category') || 'Norwegian Shadowing');
+        } else if (bootParams.get('library') === 'ronaldo') {
+            startRonaldoCategory(bootParams.get('category') || 'Portuguese Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

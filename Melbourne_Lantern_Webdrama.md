@@ -53,6 +53,7 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 | Veil Lumen essay | 16:9 | 3–5 min | Southbank night + Botanic sunrise | Self-Intimacy |
 | TikTok duet cut | 9:16 | 15s | Single selfie wall at Hosier | Daily Life |
 | YouTube Short | 9:16 | 60s | Reel A+B combined | Social & Cultural |
+| **Skit insert · Divine Insight Blessing** | 9:16 | 45s (30s cut) | Hosier only · GoPro lantern | GoPro & Content · tarot-scam PSA |
 
 ### Melbourne shoot pins (reels-first clusters)
 
@@ -60,7 +61,7 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 |--------|----------|----------|-------|-------------|
 | **HOME** | Pre-trip accommodation | Ep 1 pack, VO | Any | Essential Foundations |
 | **MEL** | Melbourne Airport T1 arrivals glass | Ep 1 cliffhanger | Interior day | Melbourne Arrival |
-| **HOSIER** | Hosier Lane (graffiti wall mid-lane) | Ep 2, 6, 8 · Reel B wides | Golden hour | GoPro & Content |
+| **HOSIER** | Hosier Lane (graffiti wall mid-lane) | Ep 2, 2.5, 6, 8 · Reel A+B · DIB skit | Golden hour | GoPro & Content |
 | **CENTRE** | Centre Place (narrow walk-through) | Ep 3 rules walk · Reel A A4 | Midday shade | Transportation |
 | **DEGRAVES** | Degraves St café strip | Ep 2 cliffhanger · Ep 3 open | Morning coffee | Daily Life |
 | **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram monologue | Overcast drama | Transportation |
@@ -188,6 +189,73 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 **TEXT:** `NEXT: LOVE BOMB SPEEDRUN`
 
 **TTMIK:** Melbourne Arrival · *멜버른 골목이 정말 예뻐요!*
+
+---
+
+# EPISODE 2.5 — 「신성한 통찰 축복」DIVINE INSIGHT BLESSING
+
+**Insert skit** · Tsundere dating · GoPro lantern · tarot-scam PSA  
+**Runtime:** 45 sec full · **30s Reels cut** · **Pin:** HOSIER only  
+**Quest tie-in:** `side-tarot-scam` · name divine-insight invoice before block  
+**Formats:** Standalone Short · Reel A companion · Ep 2 B-roll · TikTok · TTMIK Sync preset **2** (HOSIER · Ep 2 · Reel A)  
+**Gear:** Chest-mount GoPro · LED lantern prop · phone SYSTEM overlays · RED FLAG #2 prop  
+**Skill:** Melbourne Lantern Bard · **Shadowing:** *유머로 풀어낼게요* · *멜버른 골목이 정말 예뻐요*
+
+**Logline:** Bard insists he's not on a date with the universe. SYSTEM sells a **Divine Insight Blessing** for $49.99. He films the content. He declines the invoice.
+
+**Caption pitch:** *He didn't want a soulmate. He wanted B-roll. The universe sent an invoice anyway.*
+
+---
+
+## Shot-by-shot board (full 45s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio | Export |
+|------|------|-----|----------------|-------------------|-------|--------|
+| **DIB1** | 0:00 | @HOSIER | GoPro chest POV — mid-lane graffiti drift; lantern bobbing in lower frame | **BARD (VO):** "Day two. Melbourne humidity: aggressive. My interest in destiny: not aggressive." | Street ambience · faint *ding* | Reel A insert · Ep 2.5 · Trailer |
+| **DIB2** | 0:03 | @HOSIER | Selfie MCU snap — deadpan to lens, arms optional cross | **BARD:** "It's fine. Whatever. I'm not impressed." | Snap SFX on cut | Reel A · Ep 2 · 30s cut open |
+| **DIB3** | 0:06 | @HOSIER | Same selfie — hold; **SYSTEM overlay** (post) slides pink UI over lower third | **SYSTEM:** `✨ New Blessing Available` · `Divine Insight · Soul-Path Reading` · `"The cards saw you in Hosier Lane before you landed."` | UI *whoosh* | Reel A insert · scam PSA |
+| **DIB4** | 0:10 | @HOSIER | Bard reads phone, eyes on screen not lens | **BARD:** "…Wow. The cards have GPS. Rude." · **LO3TUS** (yellow cap): `lie louder the wall's gorgeous` | — | Ep 2.5 |
+| **DIB5** | 0:14 | @HOSIER | Wide vertical — subject small in alley; golden hour | **BARD:** "I said I'm not blushing. It's the **lantern**. Warm. That's physics. Not fate." | Ambient | Reel B tone · Trailer |
+| **DIB6** | 0:18 | @HOSIER | CU — lantern + phone; blessing pop-up reflected in glass / screen | **SYSTEM:** `Unlock Full Divine Insight Blessing` · `$49.99` · `Twin Flame Clarity™ · Curse Buffer · Melbourne Synchronicity Pack` | *Ding* | Reel A · Ep 3 cross-ref |
+| **DIB7** | 0:22 | @HOSIER | Selfie MCU — imaginary headset optional | **BARD:** "Thank you for calling Scam Prevention. Press one if they said **soulmate** before **surname**." | — | Reel A A6 echo · Ep 3 |
+| **DIB8** | 0:26 | @HOSIER | GoPro mount on bag (match B5); lantern held up — parody oracle, not sincere | **BARD:** "I'm not here for romance. I'm here for **content**. HR said no." · **BARD:** "오늘 영상 찍을까요… I mean the camera turned on itself. Rude." | Mount click | Ep 2 · Ep 6 · TikTok |
+| **DIB9** | 0:30 | @HOSIER | Selfie — phone shows loader spinner; lantern under chin (mock reading) | **HELEN** (blue cap): `Compassion includes protecting your peace. Mute.` · **BARD:** "Helen's rude. I'm listening." · *(tap mute)* · **BARD (VO):** "If divine insight texts faster than this alley loads — **scam**, not blessing." · **BARD:** "The only divine insight I need: **4G > fate.**" | Mute tap | Ep 2 scene 3 · tarot audit |
+| **DIB10** | 0:34 | @HOSIER | Golden hour selfie — graffiti bokeh; soft then defensive | **BARD:** "멜버른 골목이 정말 예뻐요… I mean the **lane** is pretty. Not you. Not fate. The **lane**." · **BARD:** "…Okay it's *kind of* pretty. Don't make it weird." | — | Reel B B7 · Ep 2 |
+| **DIB11** | 0:38 | @HOSIER | Pick up **RED FLAG #2** · toss in bag | **BARD:** "Inventory: two. Plenty of room. Unfortunately for scammers." | Paper rustle | RED FLAG gag · Ep 4 seed |
+| **DIB12** | 0:42 | @HOSIER | Wide vertical — walk-off; lantern passes lens; Bard OC | **BARD (VO):** "I don't fund predictions. I don't fund feelings." · **BARD (OC):** "I'll take the blessing where you **block** without an essay. That's sovereign. That's free." · **KOREAN on-screen:** **유머로 풀어낼게요.** · **SYSTEM (fade):** `Your Divine Insight Blessing expired.` · **BARD (OC):** "Good. Expire faster." | Footsteps | Reel A insert end · Short |
+| **DIB13** | 0:45 | @HOSIER | End card 2s — black or graffiti freeze | **TEXT:** `DIVINE INSIGHT BLESSING` · `declined · filmed · blocked` · `TTMIK · Melbourne Lantern Bard` | Sting optional | All exports |
+
+---
+
+## 30s Reels cutdown (edit order)
+
+`DIB2@HOSIER → DIB3@HOSIER → DIB4@HOSIER → DIB8@HOSIER → DIB9@HOSIER → DIB10@HOSIER → DIB11@HOSIER → DIB12@HOSIER`
+
+| Time | Shot | Line / beat |
+|------|------|-------------|
+| 0:00 | DIB2 | "I'm not impressed." |
+| 0:03 | DIB3 | "The cards saw you in Hosier Lane." |
+| 0:06 | DIB4 | "The cards have GPS. Rude." |
+| 0:10 | DIB8 | "Content department. HR said no." |
+| 0:15 | DIB9 | "4G > fate." |
+| 0:20 | DIB10 | "멜버른 골목이 정말 예뻐요… the **lane**." |
+| 0:25 | DIB11 | "Inventory: two." |
+| 0:28 | DIB12 | "Expire faster." |
+
+**15s TikTok duet:** DIB10 Korean line only · or DIB9 loader + "4G > fate" punch
+
+---
+
+## On-set checklist (@HOSIER · golden hour)
+
+- [ ] Chest GoPro + bag mount (DIB1, DIB8)
+- [ ] LED lantern charged (DIB1, DIB5, DIB9, DIB12 pass)
+- [ ] Phone mockups: blessing UI + $49.99 (DIB3, DIB6) — shoot clean plate if post
+- [ ] RED FLAG #2 physical prop (DIB11)
+- [ ] TTMIK Sync preset **2** → shadowing before wrap
+- [ ] Hermes tarot RED FLAG scan: any 2 = abort (see `audit/tarot-scam-avoidance-audit.md`)
+
+**Tags:** `#Tsundere #Melbourne #ScamPSA #4GoverFate #DivineInsightBlessing`
 
 ---
 
@@ -457,6 +525,7 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 | Shot | Time | Pin | Setup | Export |
 |------|------|-----|-------|--------|
 | A1 cold open | 0:00 | HOSIER | Selfie MCU, graffiti bokeh | Reel · Ep 3 · Trailer |
+| A2 divine insight | 0:02 | HOSIER | SYSTEM blessing UI + GPS gag | Reel · **Ep 2.5** · 30s cut |
 | A3 tsundere | 0:03 | HOSIER | Pan wall → selfie snap | Reel · Ep 2 |
 | A4 rule 1 | 0:07 | CENTRE | Front-cam walk north | Reel · Ep 3 |
 | A6 rule 2 | 0:12 | COLLINS | Selfie stopped, wallet prop | Reel · Ep 3 |
@@ -483,7 +552,7 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 ```
 08:00  DEGRAVES — coffee + A7 + Ep 2 cliffhanger
 08:30  CENTRE — A4, A10, B6, B9, rule walk
-09:00  HOSIER — W1 W2 B3 B5 B7 B8, A1 A3 A8 A9, Ep 2/6 main
+09:00  HOSIER — W1 W2 B3 B5 B7 B8, A1 A2 A3 A8 A9, DIB1–DIB13 (Ep 2.5), Ep 2/6 main
 09:45  COLLINS — A6 invoice beat (optional Ep 3)
 10:15  Wrap — battery swap, SD offload, TTMIK shadowing at pin
 ```
@@ -504,6 +573,7 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 |----|-------|------------------|
 | 1 | Flame-Kissed Bard | 나는 나만의 이야기를 씁니다 |
 | 2 | Melbourne Lantern Bard | 멜버른 골목이 정말 예뻐요 |
+| 2.5 | Melbourne Lantern Bard | 유머로 풀어낼게요 · divine insight block |
 | 3 | Melbourne Lantern Bard | 유머로 풀어낼게요 |
 | 4 | Helen | 죄송하지만 지금은 어려워요 |
 | 5 | Asuka | 멜버른이 제 선택이에요 |
@@ -515,6 +585,9 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 
 **Reel A — Tsundere Scam PSA** (pins: HOSIER → CENTRE → COLLINS → DEGRAVES)  
 `A1@HOSIER → A3@HOSIER → A4@CENTRE → A6@COLLINS → A7@DEGRAVES → A8@HOSIER → A9@HOSIER → A10@CENTRE`
+
+**Ep 2.5 — Divine Insight Blessing** (pin: HOSIER only · 30s)  
+`DIB2@HOSIER → DIB3@HOSIER → DIB4@HOSIER → DIB8@HOSIER → DIB9@HOSIER → DIB10@HOSIER → DIB11@HOSIER → DIB12@HOSIER`
 
 **Reel B — Not Enjoying Melbourne** (pins: HOSIER → CENTRE)  
 `W1@HOSIER → W2@HOSIER → B3@HOSIER → B5@HOSIER → B6@CENTRE → B7@HOSIER → B8@HOSIER → B9@CENTRE`

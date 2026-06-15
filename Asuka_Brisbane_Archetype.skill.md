@@ -1,7 +1,7 @@
 ---
 name: asuka-brisbane
 description: Asuka distant-flame muse for sovereign choice and releasing "what if" paths. Use when user reflects on Brisbane maybe vs Melbourne yes, or graceful release of extra trip legs.
-version: 1.1.0
+version: 1.2.0
 metadata:
   hermes:
     tags: [creative, korean, melbourne, ttmtk, sovereign]

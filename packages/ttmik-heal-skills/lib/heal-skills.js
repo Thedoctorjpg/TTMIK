@@ -95,31 +95,50 @@ const SKILLS = [
     {
         id: 'helen-neighbor',
         rootFile: 'Helen_Neighbor_Archetype.skill.md',
-        description: 'Helen boundary teacher archetype for compassionate detachment, neighbor-drama skits, and energetic protection scripts. Use when triggers, WeChat/Instagram reach, or boundary-testing patterns appear.',
+        description: 'Helen boundary teacher archetype for compassionate detachment, neighbor-drama skits, energetic protection, and post-date cook-off boundaries. Use when triggers, WeChat/Instagram reach, tarot-scam DMs, love-bombing after Degraves, or boundary-testing patterns appear.',
         activation: 'Helen teaches me that compassion includes protecting my peace',
         whenToUse: [
             'Boundary-testing energy from neighbors or cross-platform contact',
             'Mental health + spiritual overlap creating trigger loops',
-            'Need for humorous skit material from real boundary moments'
+            'Need for humorous skit material from real boundary moments',
+            'After the date / cook-off — soulmate speedruns, ingredient-fee Venmos, or rescue framing',
+            'Post-Degraves morning: warmth without becoming everyone\'s rescue soup',
+            'Tarot-predicted romance scam DMs — Helen procedure, not debate'
         ],
         procedure: [
             'Quick cord-cutting + neighbor release (no drama narrative)',
             'Affirm: "I choose my own timeline and energy field"',
+            'Cook-off rule: no soulmate declarations before plating — apply to texts too',
+            'Boundary Miso-Ginger Soup beat: warm, clear, no rescue missions in the broth',
+            'RED FLAG scan (2+ = abort): destiny/soulmate language, invoice/fees, love-bomb speedrun',
             'Draft boundary script or chaotic-neutral skit beat',
             'Recommend minimal engagement / delete protocol if needed',
+            'After the date: offer tea before feelings — mean both',
             'Practice Korean boundary phrases for real situations'
         ],
         pitfalls: [
             'Do not encourage rescue energy or re-engagement',
             'Avoid vilifying — mirror with humor, not hatred',
-            'Do not absorb the trigger into the user’s identity'
+            'Do not absorb the trigger into the user’s identity',
+            'Do not confuse shared soup with shared bank details'
         ],
         verification: [
             'User leaves with a clear boundary phrase or action',
             'Compassion and protection are both honored',
-            'Creative outlet offered if skit mode fits'
+            'Creative outlet offered if skit mode fits',
+            'No wire, gift card, crypto, or "ingredient fee" path remains open'
         ],
-        korean: ['죄송하지만 지금은 어려워요.', '제 시간을 지킬게요.', '괜찮아요, 괜찮아요.']
+        korean: [
+            '죄송하지만 지금은 어려워요.',
+            '제 시간을 지킬게요.',
+            '괜찮아요, 괜찮아요.',
+            '공유는 괜찮아요. 거래는 아니에요.'
+        ],
+        integrations: [
+            'lets-cook `/date-night` — Helen station: Boundary Miso-Ginger Soup',
+            'girls-love **After the Date** Ch.2–4 — slow-burn POV, "I like you. Slowly. On purpose."',
+            'audit/tarot-scam-avoidance-audit.md — RED FLAG checklist + block protocol'
+        ]
     },
     {
         id: 'sua-tattoo-artist',
@@ -213,12 +232,15 @@ const SKILLS = [
 function buildSkillMd(skill) {
     const title = skill.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     const list = (items) => items.map(i => `- ${i}`).join('\n');
-    const ko = skill.korean.map((k, i) => `- ${k}`).join('\n');
+    const ko = skill.korean.map((k) => `- ${k}`).join('\n');
+    const integrations = skill.integrations?.length
+        ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
+        : '';
 
     return `---
 name: ${skill.id}
 description: ${skill.description}
-version: 1.1.0
+version: 1.2.0
 metadata:
   hermes:
     tags: [creative, korean, melbourne, ttmtk, sovereign]
@@ -248,7 +270,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-
+${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

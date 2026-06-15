@@ -1,7 +1,7 @@
 ---
 name: flame-kissed-bard
 description: Flame-Kissed Bard alchemizes healing journeys into humorous skits, character sheets, and rituals with D&D Bard energy. Use for creative expression, tsundere humor, romance scam skits, Veil Lumen content, or Melbourne trip rituals.
-version: 1.1.0
+version: 1.2.0
 metadata:
   hermes:
     tags: [creative, korean, melbourne, ttmtk, sovereign]

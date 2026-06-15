@@ -1,7 +1,7 @@
 ---
 name: melbourne-lantern-bard
 description: Melbourne Lantern Bard for laneway skits, trip rituals, sovereign humor, and Korean practice during the Melbourne pilgrimage. Use when user says Ignite the Melbourne Lantern Bard, Melbourne trip creative ritual, or romance scam / tsundere skits.
-version: 1.1.0
+version: 1.2.0
 metadata:
   hermes:
     tags: [creative, korean, melbourne, ttmtk, sovereign]

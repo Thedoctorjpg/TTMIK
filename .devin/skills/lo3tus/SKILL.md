@@ -1,7 +1,7 @@
 ---
 name: lo3tus
 description: Lo3tus Muse for playful dating skits, TikTok/YouTube inspiration, and chaotic neutral creative fuel. Use when user mentions Lo3tus energy, dating skits, or Veil Lumen / Creative Corner ideas.
-version: 1.1.0
+version: 1.2.0
 metadata:
   hermes:
     tags: [creative, korean, melbourne, ttmtk, sovereign]

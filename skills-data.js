@@ -173,7 +173,8 @@ const SKILLS = [
         shadowingPhrases: [
             { ko: '죄송하지만 지금은 어려워요.', en: 'Sorry, not possible right now.' },
             { ko: '제 시간을 지킬게요.', en: 'I will protect my time.' },
-            { ko: '괜찮아요, 괜찮아요.', en: "It's okay, it's okay." }
+            { ko: '괜찮아요, 괜찮아요.', en: "It's okay, it's okay." },
+            { ko: '공유는 괜찮아요. 거래는 아니에요.', en: "Sharing is fine. This isn't a transaction." }
         ],
         ritualSteps: [
             'Quick cord-cutting + neighbor release',

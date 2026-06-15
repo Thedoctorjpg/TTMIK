@@ -1,7 +1,7 @@
 ---
 name: sua-tattoo-artist
 description: Sua tattoo flame muse for releasing intimate creative attachments with gratitude. Use for cord-cutting rituals, temporary-flame skits, cicada/shedding metaphors, or Veil Lumen pieces.
-version: 1.1.0
+version: 1.2.0
 metadata:
   hermes:
     tags: [creative, korean, melbourne, ttmtk, sovereign]

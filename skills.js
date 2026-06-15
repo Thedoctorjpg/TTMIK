@@ -501,6 +501,35 @@ function renderSyncPanel() {
         panel.appendChild(bardBlock);
     }
 
+    if (typeof HEALING_FACTORS !== 'undefined') {
+        const healBlock = document.createElement('div');
+        healBlock.className = 'mb-6 bg-sky-500/10 border border-sky-500/20 rounded-2xl p-4 text-sm';
+        const healTitle = document.createElement('p');
+        healTitle.className = 'text-sky-300 font-medium mb-2';
+        healTitle.textContent = 'Healing factors';
+        const healMantra = document.createElement('p');
+        healMantra.className = 'text-zinc-400 italic mb-3';
+        healMantra.textContent = HEALING_FACTORS.mantra;
+        healBlock.appendChild(healTitle);
+        healBlock.appendChild(healMantra);
+        const list = document.createElement('ul');
+        list.className = 'space-y-1 text-zinc-400 text-xs';
+        HEALING_FACTORS.factors.forEach(f => {
+            const li = document.createElement('li');
+            const bit = f.ko || f.phrase || f.note || f.edit || f.questId || '';
+            li.textContent = `${f.label}${bit ? ` — ${bit}` : ''}`;
+            list.appendChild(li);
+        });
+        healBlock.appendChild(list);
+        const healRun = document.createElement('button');
+        healRun.type = 'button';
+        healRun.className = 'mt-3 px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50';
+        healRun.textContent = 'Run healing factors (step 4)';
+        healRun.onclick = () => practiceDibAftercare();
+        healBlock.appendChild(healRun);
+        panel.appendChild(healBlock);
+    }
+
     const appendRouteList = (title, steps) => {
         const routeLabel = document.createElement('h4');
         routeLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3 mt-4';

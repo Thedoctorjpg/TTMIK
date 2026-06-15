@@ -20,7 +20,7 @@ metadata:
 - After the date / cook-off — soulmate speedruns, ingredient-fee Venmos, or rescue framing
 - Post-Degraves morning: warmth without becoming everyone's rescue soup
 - Tarot-predicted romance scam DMs — Helen procedure, not debate
-- **After Divine Insight Blessing skit** — quiet reflection, no re-watch spiral
+- After Divine Insight Blessing skit — quiet reflection, no re-watch spiral
 
 ## Procedure
 
@@ -33,9 +33,8 @@ metadata:
 - Recommend minimal engagement / delete protocol if needed
 - After the date: offer tea before feelings — mean both
 - Practice Korean boundary phrases for real situations
-- **Post-DIB self-healing:** GoPro off · phone face-down · one breath · whisper 괜찮아요, 괜찮아요
-- Cord-cut after humor: no reply owed to expired blessings or twin-flame loaders
-- Optional 45s `dib-aftercare` at HOTEL mirror — TTMIK preset **9**
+- Post-DIB self-healing: GoPro off · phone face-down · one breath · whisper 괜찮아요, 괜찮아요
+- Cord-cut after humor: no reply owed to expired blessings — optional dib-aftercare at HOTEL
 
 ## Pitfalls
 

@@ -84,6 +84,29 @@ const BARDIC_INSPIRATION = {
     }
 };
 
+/** Self-healing factors — post-skit landing, boundaries, Veil soft cuts */
+const HEALING_FACTORS = {
+    theme: 'Humor tends the wound — quiet lands the peace.',
+    mantra: 'One breath · one boundary · no re-watch spiral',
+    factors: [
+        { id: 'hermit-lantern', label: 'Hermit Lantern', phrase: 'One breath, one laugh', skillId: 'melbourne-lantern-bard' },
+        { id: 'humor-release', label: 'Humor alchemy', ko: '유머로 풀어낼게요', skillId: 'melbourne-lantern-bard', edit: 'ep-2-5-dib' },
+        { id: 'helen-boundary', label: 'Helen boundary', ko: '괜찮아요, 괜찮아요', skillId: 'helen-neighbor', shadowIndex: 2 },
+        { id: 'pause-breathe', label: 'Pause OK', ko: '잠시 쉬어도 괜찮아요', skillId: 'helen-neighbor', shadowIndex: 4 },
+        { id: 'cord-cut', label: 'Cord-cut', phrase: 'I choose my own timeline and energy field', skillId: 'helen-neighbor' },
+        { id: 'post-dib', label: 'Post-DIB landing', pin: 'HOTEL', preset: 9, edit: 'dib-aftercare', questId: 'side-dib-heal' },
+        { id: 'daily-ritual', label: 'Daily integration', questId: 'side-ritual', skillId: 'flame-kissed-bard' },
+        { id: 'no-rewatch', label: 'No re-watch spiral', note: 'GoPro off before mirror · phone face-down' }
+    ],
+    postBlessing: null,
+    urls: {
+        ttmikStep4: 'TTMIK.html?step=4',
+        ttmikHeal: 'TTMIK.html?heal=1',
+        dibAftercare: 'http://localhost:8000/video-editor-ultimate.html?project=melbourne-lantern&format=dib-aftercare&aspect=9:16'
+    }
+};
+HEALING_FACTORS.postBlessing = BARDIC_INSPIRATION.afterBlessingHeal;
+
 const TTMIK_SYNC_PINS = {
     HOME: {
         label: 'Pre-trip home',
@@ -477,6 +500,10 @@ function getDateNightRoute() {
 
 function getDibAftercareRitual() {
     return BARDIC_INSPIRATION.afterBlessingHeal;
+}
+
+function getHealingFactors() {
+    return HEALING_FACTORS;
 }
 
 function getSyncReel(reelId) {

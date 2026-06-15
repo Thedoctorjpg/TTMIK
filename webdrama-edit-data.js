@@ -235,6 +235,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'cliff', time: '0:58', pin: 'DEGRAVES', note: 'Coffee cliffhanger', dur: 32 }
         ]
     },
+    'vinicus-brasil-samba': {
+        id: 'vinicus-brasil-samba',
+        label: 'Ep 2.77 · Vinicus Brasil · Samba Jogo Bonito (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'VAI BR',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'SAMBA', episode: '2.77', reel: null },
+        pins: ['SAMBA', 'FED', 'FLINDERS'],
+        exportTargets: ['Webdrama insert', 'Vinicus Brazilian deck', 'FIFA Brasil clip'],
+        pipeline: ['vinicus-brasil-samba'],
+        shots: [
+            { id: 'VN1', time: '0:00', pin: 'SAMBA', note: 'Federation screen — Brasil highlight after La Boca', dur: 5 },
+            { id: 'VN2', time: '0:05', pin: 'SAMBA', note: 'Samba burst — jogo bonito not rescue framing', dur: 4 },
+            { id: 'VN3', time: '0:09', pin: 'SAMBA', note: 'Portuguese: Jogo do meu jeito — sem drama.', dur: 8 },
+            { id: 'VN4', time: '0:17', pin: 'SAMBA', note: 'Korean shadow · Gol! Vai Brasil!', dur: 8 },
+            { id: 'VN5', time: '0:25', pin: 'FED', note: 'Square pause — lighter walk, no performance invoice', dur: 5 }
+        ]
+    },
     'messi-after-cookoff': {
         id: 'messi-after-cookoff',
         label: 'Ep 2.76 · Messi Argentina · After Cook-Off (30s)',

@@ -93,6 +93,12 @@ if (typeof generateMessiLibraryLessons === 'function') {
     nextId += messiLessons.length;
 }
 
+if (typeof generateVinicusLibraryLessons === 'function') {
+    const vinicusLessons = generateVinicusLibraryLessons(nextId);
+    lessons = lessons.concat(vinicusLessons);
+    nextId += vinicusLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);

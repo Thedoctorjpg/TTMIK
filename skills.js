@@ -104,6 +104,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const messiCats = typeof MESSI_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => MESSI_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const vinicusCats = typeof VINICUS_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => VINICUS_LIBRARY_CATEGORIES.includes(c))
+        : [];
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
@@ -152,6 +155,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     } else if (messiCats.length) {
         activeLibraryGroup = 'Messi Library';
         activeCategory = messiCats[0];
+    } else if (vinicusCats.length) {
+        activeLibraryGroup = 'Vinicus Library';
+        activeCategory = vinicusCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -177,14 +183,15 @@ function openSkillLessons(skillId) {
     const hasRonaldo = skill.linkedGroups?.includes('ronaldo');
     const hasMbappe = skill.linkedGroups?.includes('mbappe');
     const hasMessi = skill.linkedGroups?.includes('messi');
+    const hasVinicus = skill.linkedGroups?.includes('vinicus');
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasMexico && !hasCanada && !hasUsa && (
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMbappe || hasMessi || hasMexico || hasCanada || hasUsa) {
+    if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMbappe || hasMessi || hasVinicus || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -677,6 +684,37 @@ function practiceMessiPlaymaker(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceVinicusSamba(opts = {}) {
+    const skillId = 'vinicus-brasil-samba';
+    const shadowIdx = 0;
+
+    setWebdramaSyncValues('SAMBA', '2.77', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterVinicus === 'function') {
+        openFastCharacterVinicus();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-fifa-celebrate');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceMbappeAttack(opts = {}) {
     const skillId = 'mbappe-france-attack';
     const shadowIdx = 0;
@@ -934,6 +972,7 @@ function renderBootAllPanel() {
             else if (boot.ronaldo === '1') practiceRonaldoGlory({ openSheet: boot.sheet === '1' });
             else if (boot.mbappe === '1') practiceMbappeAttack({ openSheet: boot.sheet === '1' });
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
+            else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -997,6 +1036,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('messi') === '1') {
         practiceMessiPlaymaker({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('vinicus') === '1') {
+        practiceVinicusSamba({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('cinema') === '1' || params.get('beckham') === '1') {
@@ -1382,6 +1425,14 @@ function renderSyncPanel() {
     messiBtn.onclick = () => practiceMessiPlaymaker();
     actions.appendChild(messiBtn);
 
+    const vinicusBtn = document.createElement('button');
+    vinicusBtn.type = 'button';
+    vinicusBtn.className = 'px-5 py-3 bg-lime-900/50 text-lime-200 rounded-2xl text-sm font-medium hover:bg-lime-800/70 ring-1 ring-lime-500/30';
+    vinicusBtn.textContent = 'Vinicus samba (Ep 2.77 · BR)';
+    vinicusBtn.title = 'After La Boca · Brazilian Portuguese · preset 19 · Fast Character Open Hand Monk sheet';
+    vinicusBtn.onclick = () => practiceVinicusSamba();
+    actions.appendChild(vinicusBtn);
+
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
     cinemaBtn.className = 'px-5 py-3 bg-blue-900/50 text-blue-200 rounded-2xl text-sm font-medium hover:bg-blue-800/70 ring-1 ring-blue-500/30';
@@ -1621,6 +1672,7 @@ function renderSkillsGrid() {
         const isRonaldo = skill.id === 'ronaldo-portugal-glory';
         const isMbappe = skill.id === 'mbappe-france-attack';
         const isMessi = skill.id === 'messi-argentina-playmaker';
+        const isVinicus = skill.id === 'vinicus-brasil-samba';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
@@ -1637,7 +1689,9 @@ function renderSkillsGrid() {
                                     ? 'ring-sky-500 hover:ring-sky-400'
                                     : isMessi
                                         ? 'ring-emerald-500 hover:ring-emerald-400'
-                                        : 'ring-pink-500 hover:ring-pink-400';
+                                        : isVinicus
+                                            ? 'ring-lime-500 hover:ring-lime-400'
+                                            : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
@@ -1654,7 +1708,9 @@ function renderSkillsGrid() {
                                     ? 'hover:ring-sky-500/50'
                                     : isMessi
                                         ? 'hover:ring-emerald-500/50'
-                                        : 'hover:ring-pink-500/50';
+                                        : isVinicus
+                                            ? 'hover:ring-lime-500/50'
+                                            : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1691,7 +1747,9 @@ function renderSkillsGrid() {
                                         ? 'inline-block mt-3 text-xs bg-sky-500/20 text-sky-300 px-2 py-1 rounded-full'
                                         : isMessi
                                             ? 'inline-block mt-3 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full'
-                                            : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                                            : isVinicus
+                                                ? 'inline-block mt-3 text-xs bg-lime-500/20 text-lime-300 px-2 py-1 rounded-full'
+                                                : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -2075,6 +2133,43 @@ function renderSkillDetail() {
         panel.appendChild(messiBlock);
     }
 
+    if (skill.id === 'vinicus-brasil-samba') {
+        const vinicusBlock = document.createElement('div');
+        vinicusBlock.className = 'mb-6 bg-lime-500/10 border border-lime-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-lime-300 mb-2';
+        label.textContent = 'Brazilian Portuguese · Ep 2.77 · Samba jogo bonito';
+        vinicusBlock.appendChild(label);
+        const note = document.createElement('p');
+        note.className = 'text-sm text-zinc-400 mb-3';
+        note.textContent = 'After La Boca → Federation samba screen → laneway stroll. Jogo bonito not a date invoice.';
+        vinicusBlock.appendChild(note);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.pt, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        vinicusBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-lime-600/30 text-lime-200 hover:bg-lime-600/50 mr-2';
+        runBtn.textContent = 'Invoke Vinicus samba (PT-BR → KO)';
+        runBtn.onclick = () => practiceVinicusSamba();
+        vinicusBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Vinicus sheet';
+        sheetBtn.title = 'fastcharacter.com · Monk Open Hand · Entertainer · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterVinicus === 'function') openFastCharacterVinicus();
+        };
+        vinicusBlock.appendChild(sheetBtn);
+        panel.appendChild(vinicusBlock);
+    }
+
     const notesLabel = document.createElement('h4');
     notesLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-2';
     notesLabel.textContent = 'Your creative notes';
@@ -2228,6 +2323,7 @@ function renderSkillLibraryComposer() {
         else if (lib.accent === 'indigo') title.className += ' text-indigo-300';
         else if (lib.accent === 'orange') title.className += ' text-orange-300';
         else if (lib.accent === 'emerald') title.className += ' text-emerald-300';
+        else if (lib.accent === 'lime') title.className += ' text-lime-300';
         else title.className += ' text-pink-300';
         title.textContent = lib.label;
         block.appendChild(title);

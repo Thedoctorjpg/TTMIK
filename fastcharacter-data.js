@@ -65,6 +65,26 @@ const FAST_CHARACTER_MARTIN = {
     note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
 };
 
+/** Vinicus — Brazilian Open Hand Monk muse · samba jogo bonito after La Boca */
+const FAST_CHARACTER_VINICUS = {
+    id: 'vinicus',
+    label: 'Vinicus — Brasil Samba',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Vinicus',
+    randomname: 'no',
+    pcname: 'Vinicus',
+    pcclass: 'MonkOpenHand',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Entertainer',
+    pcgender: 'male',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Open Hand · Level 5 · Chaotic Good — samba jogo bonito Brasil ally'
+};
+
 /** Messi — Argentine Mastermind Rogue muse · post cook-off playmaker */
 const FAST_CHARACTER_MESSI = {
     id: 'messi',
@@ -131,7 +151,8 @@ const FAST_CHARACTER_PRESETS = {
     martin: FAST_CHARACTER_MARTIN,
     ronaldo: FAST_CHARACTER_RONALDO,
     mbappe: FAST_CHARACTER_MBAPPE,
-    messi: FAST_CHARACTER_MESSI
+    messi: FAST_CHARACTER_MESSI,
+    vinicus: FAST_CHARACTER_VINICUS
 };
 
 function buildFastCharacterFormData(preset) {
@@ -195,4 +216,8 @@ function openFastCharacterMbappe() {
 
 function openFastCharacterMessi() {
     openFastCharacterSheet(FAST_CHARACTER_MESSI);
+}
+
+function openFastCharacterVinicus() {
+    openFastCharacterSheet(FAST_CHARACTER_VINICUS);
 }

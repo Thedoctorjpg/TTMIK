@@ -107,6 +107,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'Argentine Shadowing',
         tag: 'messi'
     },
+    'vinicus-brasil-samba': {
+        source: 'Vinicus_Brasil_Samba_Archetype.skill.md',
+        invoke: 'practiceVinicusSamba',
+        altBoot: 'vinicus=1',
+        preset: 19,
+        libraryGroup: 'Vinicus Library',
+        libraryCategory: 'Brazilian Shadowing',
+        tag: 'vinicus'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -197,6 +206,11 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'messi',
         factors: ['humor-release', 'helen-boundary', 'no-rewatch'],
         boot: 'library=messi'
+    },
+    'Vinicus Library': {
+        group: 'vinicus',
+        factors: ['fifa-celebrate', 'humor-release', 'no-rewatch'],
+        boot: 'library=vinicus'
     },
     'Melbourne Journey': {
         group: 'melbourne',
@@ -294,6 +308,14 @@ const COMPOSED_LIBRARIES = [
         accent: 'emerald'
     },
     {
+        id: 'vinicus',
+        label: 'Vinicus Library',
+        description: 'Brazilian Portuguese · Korean shadow — Fast Character Open Hand Monk',
+        boot: 'library=vinicus',
+        skills: ['vinicus-brasil-samba'],
+        accent: 'lime'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -377,6 +399,7 @@ const HERMES_PRELOAD_SKILL_IDS = [
     'ronaldo-portugal-glory',
     'mbappe-france-attack',
     'messi-argentina-playmaker',
+    'vinicus-brasil-samba',
     'rach3l',
     'ignan-pilgrim',
     'ignan-grounding',
@@ -423,7 +446,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 318
+    trackCount: 326
 };
 
 function openComposedLibrary(libId) {
@@ -441,6 +464,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'ronaldo') startRonaldoCategory('Portuguese Shadowing');
     else if (lib.id === 'mbappe') startMbappeCategory('French Shadowing');
     else if (lib.id === 'messi') startMessiCategory('Argentine Shadowing');
+    else if (lib.id === 'vinicus') startVinicusCategory('Brazilian Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

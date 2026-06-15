@@ -98,6 +98,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Messi Library') {
         return lessons.filter(l => l.group === 'messi');
     }
+    if (activeLibraryGroup === 'Vinicus Library') {
+        return lessons.filter(l => l.group === 'vinicus');
+    }
     return lessons;
 }
 
@@ -584,6 +587,8 @@ function startJourneyCategory(groupId) {
         activeCategory = 'French Shadowing';
     } else if (groupId === 'messi') {
         activeLibraryGroup = 'Messi Library';
+    } else if (groupId === 'vinicus') {
+        activeLibraryGroup = 'Vinicus Library';
         activeCategory = 'Argentine Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
@@ -681,6 +686,15 @@ function startMessiCategory(subtitle) {
     switchTab(1);
 }
 
+function startVinicusCategory(subtitle) {
+    activeLibraryGroup = 'Vinicus Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -759,6 +773,9 @@ function renderJourneyDashboard() {
     if (typeof MESSI_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(MESSI_JOURNEY_CATEGORY);
     }
+    if (typeof VINICUS_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(VINICUS_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -786,7 +803,9 @@ function renderJourneyDashboard() {
                                     ? 'hover:ring-sky-500'
                                     : journey.id === 'messi'
                                         ? 'hover:ring-emerald-500'
-                                        : 'hover:ring-pink-500';
+                                        : journey.id === 'vinicus'
+                                            ? 'hover:ring-lime-500'
+                                            : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -819,7 +838,9 @@ function renderJourneyDashboard() {
                                     ? 'text-sky-400 text-sm font-medium'
                                     : journey.id === 'messi'
                                         ? 'text-emerald-400 text-sm font-medium'
-                                        : 'text-pink-400 text-sm font-medium';
+                                        : journey.id === 'vinicus'
+                                            ? 'text-lime-400 text-sm font-medium'
+                                            : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -848,6 +869,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'mbappe').length} tracks`;
         } else if (journey.id === 'messi') {
             count.textContent = `${lessons.filter(l => l.group === 'messi').length} tracks`;
+        } else if (journey.id === 'vinicus') {
+            count.textContent = `${lessons.filter(l => l.group === 'vinicus').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -1112,6 +1135,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const vinicusGrid = document.getElementById('vinicus-quick-grid');
+    if (vinicusGrid && typeof VINICUS_COURSE_DEFS !== 'undefined') {
+        vinicusGrid.textContent = '';
+        VINICUS_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-lime-900/30 hover:bg-lime-800/40 ring-1 ring-lime-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-lime-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-lime-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startVinicusCategory(def.subtitle);
+            vinicusGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1248,7 +1290,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1279,6 +1321,8 @@ window.onload = () => {
             startMbappeCategory(bootParams.get('category') || 'French Shadowing');
         } else if (bootParams.get('library') === 'messi') {
             startMessiCategory(bootParams.get('category') || 'Argentine Shadowing');
+        } else if (bootParams.get('library') === 'vinicus') {
+            startVinicusCategory(bootParams.get('category') || 'Brazilian Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

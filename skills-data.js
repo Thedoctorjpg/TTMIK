@@ -506,6 +506,45 @@ const SKILLS = [
         ]
     },
     {
+        id: 'vinicus-brasil-samba',
+        name: 'Vinicus — Brasil Samba',
+        icon: '\u{1F3B6}',
+        tagline: 'Brazilian jogo bonito after La Boca',
+        role: 'Fast Character Open Hand Monk ally — Brazilian Portuguese native before Korean shadow',
+        source: 'Vinicus_Brasil_Samba_Archetype.skill.md',
+        activationPhrases: [
+            'Vinicus dances our way — Melbourne is my yes',
+            'Jogo do meu jeito — sem drama'
+        ],
+        capabilities: [
+            'Generate Vinicus D&D sheet via Fast Character preset',
+            'Brazilian Portuguese native input + Korean TTMIK shadowing drills',
+            'Post Argentina companion to Ep 2.76 Messi La Boca lane',
+            'Samba FIFA rituals — no drama · no soulmate CTAs'
+        ],
+        creativePrompts: [
+            'Create Vinicus Fast Character sheet — Monk Open Hand · Entertainer · Level 5',
+            'Skit: Brazilian samba step before Korean shadow after BOCA screen',
+            'Brasil jogo bonito ritual for Ep 2.77 FIFA lane'
+        ],
+        linkedGroups: ['vinicus', 'mexico', 'ronaldo', 'melbourne'],
+        linkedCategories: ['Brazilian Shadowing', 'Samba Route', 'Jogo Bonito Drills', 'Daily Life', 'Social & Cultural'],
+        shadowingPhrases: [
+            { pt: 'Melbourne é o meu sim.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
+            { pt: 'Jogo do meu jeito — sem drama.', ko: '내 방식으로 플레이해요 — 드라마 없이.', en: 'I play my way — no drama.' },
+            { pt: 'Gol! Vai Brasil!', ko: '골! 브라질 파이팅!', en: 'Goal! Go Brazil!' },
+            { pt: 'Confio no meu caminho.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { pt: 'Sou Vinicus, um viajante do Brasil.', ko: '저는 브라질에서 온 방랑자 비니쿠스예요.', en: 'I am Vinicus, a wanderer from Brazil.' }
+        ],
+        ritualSteps: [
+            'After La Boca — samba screen at SAMBA · phones face-down except cheer',
+            'Open Fast Character — Vinicus · Monk Open Hand · Entertainer',
+            'Brazilian Portuguese first: Melbourne é o meu sim',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 플레이해요',
+            'One pass — no re-watch spiral · preset 19'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

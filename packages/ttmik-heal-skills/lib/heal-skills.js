@@ -492,6 +492,51 @@ const SKILLS = [
         ]
     },
     {
+        id: 'vinicus-brasil-samba',
+        rootFile: 'Vinicus_Brasil_Samba_Archetype.skill.md',
+        description: 'Vinicus Brazilian Open Hand Monk muse for post-Argentina samba joy without drama. Brazilian Portuguese native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 2.77, or FIFA Brasil handoff rituals.',
+        activation: 'I dance my way — Melbourne is my yes.',
+        whenToUse: [
+            'Brazilian Portuguese native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Vinicus preset)',
+            'Ep 2.77 after La Boca — samba jogo bonito without performance debt',
+            'Companion to Ep 2.76 Messi Argentina and FIFA celebration lanes',
+            'TTMIK.html?vinicus=1 — invoke Vinicus Brazilian shadowing boot'
+        ],
+        procedure: [
+            'Portuguese (Brasil) native first: Melbourne é o meu sim — name the yes calmly',
+            'Open Fast Character sheet: Vinicus · Monk (Open Hand) · Entertainer · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 플레이해요',
+            'One pass — phone face-down except the cheer — no re-watch spiral',
+            'Close: quest side-fifa-celebrate · preset 19'
+        ],
+        pitfalls: [
+            'Do not make Vinicus a rescue mission or romance subplot',
+            'Honor Brazilian Portuguese — not a gag subtitle line',
+            'Samba without performance invoice — no algorithm tears'
+        ],
+        verification: [
+            'Brazilian Portuguese phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter rhythm than Argentina pass — Brasil lane felt'
+        ],
+        korean: ['멜버른이 제 예예요.', '내 방식으로 플레이해요 — 드라마 없이.', '골! 브라질 파이팅!', '제 길을 믿어요.'],
+        brazilian: [
+            'Melbourne é o meu sim.',
+            'Jogo do meu jeito — sem drama.',
+            'Gol! Vai Brasil!',
+            'Confio no meu caminho.',
+            'Sou Vinicus, um viajante do Brasil.'
+        ],
+        integrations: [
+            'Ep 2.76 · messi-after-cookoff · La Boca Argentina handoff',
+            'Ep 2.77 · preset 19 · SAMBA Brasil lane',
+            'fastcharacter.com — openFastCharacterVinicus() preset',
+            'TTMIK.html?vinicus=1 — Brazilian Portuguese native input boot',
+            'ronaldo-portugal-glory · mbappe-france-attack · side-fifa-celebrate quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -659,6 +704,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'ronaldo-portugal-glory': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
     'mbappe-france-attack': ['fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'messi-argentina-playmaker': ['humor-release', 'pause-breathe', 'no-rewatch'],
+    'vinicus-brasil-samba': ['fifa-celebrate', 'humor-release', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -709,6 +755,9 @@ function buildSkillMd(skill) {
     const es = skill.spanish?.length
         ? `\n## Spanish Practice (Messi · Argentina)\n\n${skill.spanish.map((p) => `- ${p}`).join('\n')}\n`
         : '';
+    const br = skill.brazilian?.length
+        ? `\n## Brazilian Portuguese Practice (Vinicus · Brasil)\n\n${skill.brazilian.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -750,7 +799,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${pt}${fr}${es}${enFan}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${no}${pt}${fr}${es}${br}${enFan}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

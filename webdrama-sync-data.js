@@ -260,9 +260,20 @@ const TTMIK_SYNC_PINS = {
         skillId: 'messi-argentina-playmaker',
         categories: ['Argentine Shadowing', 'Post Cook-Off Route', 'Social & Cultural'],
         questIds: ['side-humor', 'main-others'],
-        formats: ['webdrama', 'messi-after-cookoff'],
+        formats: ['webdrama', 'messi-after-cookoff', 'vinicus-brasil-samba'],
         character: 'Messi',
         pipeline: ['letsCook', 'girlsLove']
+    },
+    SAMBA: {
+        label: 'Samba Screen',
+        place: 'Federation samba burst · post Argentina · Vinicus jogo bonito ritual',
+        episodes: ['2.77'],
+        reels: [],
+        skillId: 'vinicus-brasil-samba',
+        categories: ['Brazilian Shadowing', 'Samba Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        formats: ['webdrama', 'vinicus-brasil-samba'],
+        character: 'Vinicus'
     },
     CANTINA: {
         label: 'Mexican Restaurant',
@@ -391,11 +402,26 @@ const TTMIK_SYNC_EPISODES = {
         questIds: ['side-humor', 'main-others'],
         shadowingIndex: 0,
         duration: '30s',
-        formats: ['messi-after-cookoff'],
+        formats: ['messi-after-cookoff', 'vinicus-brasil-samba'],
         character: 'Messi',
         languages: ['es', 'ko', 'en'],
         event: 'Post cook-off Argentina playmaker',
         pipeline: ['letsCook', 'girlsLove']
+    },
+    '2.77': {
+        title: 'Vinicus Brasil',
+        ko: '삼바',
+        display: 'Ep 2.77',
+        pins: ['SAMBA', 'FED', 'FLINDERS'],
+        skillId: 'vinicus-brasil-samba',
+        categories: ['Brazilian Shadowing', 'Samba Route', 'Social & Cultural'],
+        questIds: ['side-fifa-celebrate', 'side-humor'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['vinicus-brasil-samba'],
+        character: 'Vinicus',
+        languages: ['pt', 'ko', 'en'],
+        event: 'Post Argentina Brasil samba jogo bonito'
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -663,6 +689,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Post cook-off · Argentine Spanish + Korean shadow · Fast Character Mastermind Rogue sheet',
         autoShadow: true
+    },
+    {
+        id: 19,
+        label: 'Samba · Ep 2.77 · Vinicus Brasil',
+        shortLabel: 'VINICUS',
+        pin: 'SAMBA',
+        episode: '2.77',
+        reel: null,
+        note: 'Post Argentina · Brazilian Portuguese + Korean shadow · Fast Character Open Hand Monk sheet',
+        autoShadow: true
     }
 ];
 
@@ -703,6 +739,7 @@ const TTMIK_DATE_NIGHT_ROUTE = [
     { time: '18:15', pin: 'HOTEL', note: 'Kitchen stations · 45 min cook-off timer', presetId: 7 },
     { time: '19:15', pin: 'DEGRAVES', note: 'Score · eat · block ingredient-fee Venmos', sync: { pin: 'DEGRAVES', episode: '2.75', reel: 'B' } },
     { time: '19:30', pin: 'BOCA', note: 'After cook-off — Messi Argentina meet · ¡Vamos Argentina! · preset 18', presetId: 18, sync: { pin: 'BOCA', episode: '2.76', reel: null } },
+    { time: '19:45', pin: 'SAMBA', note: 'After La Boca — Vinicus Brasil samba · Gol! Vai Brasil! · preset 19', presetId: 19, sync: { pin: 'SAMBA', episode: '2.77', reel: null } },
     { time: '06:12', pin: 'DEGRAVES', note: 'Dawn croissant — girls-love Ch.2 · phones optional', presetId: 8 }
 ];
 

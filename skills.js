@@ -107,6 +107,22 @@ function openSkillLessons(skillId) {
     openLessonsForCategories(skill.linkedCategories, preferMelbourne);
 }
 
+function syncMatchesPreset(cfg, preset) {
+    const epMatch = String(cfg.episode) === String(preset.episode);
+    const reelMatch = (cfg.reel == null && preset.reel == null)
+        || String(cfg.reel) === String(preset.reel);
+    return cfg.pin === preset.pin && epMatch && reelMatch;
+}
+
+function sortSyncEpisodeKeys(keys) {
+    return [...keys].sort((a, b) => {
+        const na = parseFloat(a);
+        const nb = parseFloat(b);
+        if (Number.isFinite(na) && Number.isFinite(nb)) return na - nb;
+        return String(a).localeCompare(String(b), undefined, { numeric: true });
+    });
+}
+
 function getResolvedSyncConfig() {
     if (!appState.webdramaSync) {
         appState.webdramaSync = { pin: 'HOSIER', episode: 2, reel: 'B' };
@@ -224,7 +240,10 @@ function updateWebdramaSync(field, value) {
         const key = typeof resolveEpisodeKey === 'function' ? resolveEpisodeKey(value) : value;
         if (getSyncEpisode(key)) appState.webdramaSync.episode = key;
     }
-    if (field === 'reel' && getSyncReel(value)) appState.webdramaSync.reel = value;
+    if (field === 'reel') {
+        if (!value) appState.webdramaSync.reel = null;
+        else if (getSyncReel(value)) appState.webdramaSync.reel = value;
+    }
     persistState();
     renderSyncPanel();
 }
@@ -248,7 +267,7 @@ function applyTtmikSyncPreset(presetId, opts = {}) {
     setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
     applyTtmikSync();
 
-    if (opts.skillsTab !== false) switchTab(5);
+    if (opts.skillsTab !== false) switchTab(3);
 
     if (opts.shadow) practiceTtmikSyncShadowing();
     else if (opts.lessons) openTtmikSyncLessons();
@@ -308,7 +327,7 @@ function handleTtmikSyncBoot() {
     if (reel && getSyncReel(reel.toUpperCase())) appState.webdramaSync.reel = reel.toUpperCase();
     persistState();
     applyTtmikSync();
-    switchTab(5);
+    switchTab(3);
 
     if (params.get('shadow') === '1') practiceTtmikSyncShadowing();
     else if (params.get('lessons') === '1') openTtmikSyncLessons();
@@ -356,9 +375,7 @@ function renderSyncPanel() {
         presetsRow.className = 'flex flex-wrap gap-2';
 
         TTMIK_SYNC_PRESETS.forEach(preset => {
-            const active = cfg.pin === preset.pin
-                && cfg.episode === preset.episode
-                && cfg.reel === preset.reel;
+            const active = syncMatchesPreset(cfg, preset);
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.title = `${preset.label} — ${preset.note}`;
@@ -380,9 +397,7 @@ function renderSyncPanel() {
 
         presetsWrap.appendChild(presetsRow);
 
-        const activePreset = TTMIK_SYNC_PRESETS.find(p =>
-            p.pin === cfg.pin && p.episode === cfg.episode && p.reel === cfg.reel
-        );
+        const activePreset = TTMIK_SYNC_PRESETS.find(p => syncMatchesPreset(cfg, p));
         if (activePreset) {
             const note = document.createElement('p');
             note.className = 'text-xs text-zinc-500 mt-2';
@@ -408,7 +423,8 @@ function renderSyncPanel() {
             const o = document.createElement('option');
             o.value = opt.value;
             o.textContent = opt.label;
-            if (String(opt.value) === String(current)) o.selected = true;
+            const cur = current == null ? '' : String(current);
+            if (String(opt.value) === cur) o.selected = true;
             sel.appendChild(o);
         });
         sel.onchange = () => updateWebdramaSync(field, sel.value);
@@ -426,16 +442,22 @@ function renderSyncPanel() {
     grid.appendChild(makeSelect(
         'Episode',
         'episode',
-        Object.entries(TTMIK_SYNC_EPISODES).map(([n, e]) => ({
-            value: n,
-            label: `${e.display || `Ep ${n}`} · ${e.ko} ${e.title}`
-        })),
+        sortSyncEpisodeKeys(Object.keys(TTMIK_SYNC_EPISODES)).map(n => {
+            const e = TTMIK_SYNC_EPISODES[n];
+            return {
+                value: n,
+                label: `${e.display || `Ep ${n}`} · ${e.ko} ${e.title}`
+            };
+        }),
         cfg.episode
     ));
     grid.appendChild(makeSelect(
         'Reel',
         'reel',
-        Object.entries(TTMIK_SYNC_REELS).map(([id, r]) => ({ value: id, label: r.label })),
+        [
+            { value: '', label: '— none —' },
+            ...Object.entries(TTMIK_SYNC_REELS).map(([id, r]) => ({ value: id, label: r.label }))
+        ],
         cfg.reel
     ));
     panel.appendChild(grid);
@@ -571,12 +593,21 @@ function renderSyncPanel() {
             list.appendChild(li);
         });
         healBlock.appendChild(list);
+        const healActions = document.createElement('div');
+        healActions.className = 'mt-3 flex flex-wrap gap-2';
         const healRun = document.createElement('button');
         healRun.type = 'button';
-        healRun.className = 'mt-3 px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50';
+        healRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50';
         healRun.textContent = 'Run healing factors (step 4)';
         healRun.onclick = () => practiceDibAftercare();
-        healBlock.appendChild(healRun);
+        const ignanRun = document.createElement('button');
+        ignanRun.type = 'button';
+        ignanRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-600/30 text-emerald-200 hover:bg-emerald-600/50';
+        ignanRun.textContent = 'Ignan healing walk (step 6)';
+        ignanRun.onclick = () => practiceIgnanHealingJourney();
+        healActions.appendChild(healRun);
+        healActions.appendChild(ignanRun);
+        healBlock.appendChild(healActions);
         panel.appendChild(healBlock);
     }
 

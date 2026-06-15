@@ -25,13 +25,38 @@ const FAST_CHARACTER_HEIDI = {
     note: 'College of Lore · Level 5 · Chaotic Neutral — lantern pilgrimage ally'
 };
 
+/** Sven — Swedish Nordic Ranger muse · rach3l discernment companion */
+const FAST_CHARACTER_SVEN = {
+    id: 'sven',
+    label: 'Sven — Nordic Ranger',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Sven',
+    randomname: 'no',
+    pcname: 'Sven',
+    pcclass: 'RangerFeyWanderer',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Outlander',
+    pcgender: 'male',
+    pcalignment: 'TN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Fey Wanderer · Level 5 · True Neutral — Moon-card calm ally'
+};
+
+const FAST_CHARACTER_PRESETS = {
+    heidi: FAST_CHARACTER_HEIDI,
+    sven: FAST_CHARACTER_SVEN
+};
+
 function buildFastCharacterFormData(preset) {
     const p = preset || FAST_CHARACTER_HEIDI;
     return {
         playername: p.playername || '',
         playercode: p.playercode || '',
         randomname: p.randomname || 'no',
-        pcname: p.pcname || 'Heidi',
+        pcname: p.pcname || '',
         pcclass: p.pcclass || 'BardLore',
         pclevel: p.pclevel || '5',
         pcrace: p.pcrace || 'human',
@@ -66,4 +91,8 @@ function openFastCharacterSheet(preset) {
 
 function openFastCharacterHeidi() {
     openFastCharacterSheet(FAST_CHARACTER_HEIDI);
+}
+
+function openFastCharacterSven() {
+    openFastCharacterSheet(FAST_CHARACTER_SVEN);
 }

@@ -263,6 +263,50 @@ const SKILLS = [
         ]
     },
     {
+        id: 'sven-nordic-ranger',
+        rootFile: 'Sven_Nordic_Ranger_Archetype.skill.md',
+        description: 'Sven Swedish Nordic Ranger muse for calm discernment and Moon-card reflection. Swedish native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 7, or rach3l observe-without-absorb practice.',
+        activation: 'I observe without absorbing — Melbourne is my yes.',
+        whenToUse: [
+            'Swedish native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Sven preset)',
+            'Ep 7 Moon-card calm — discernment without scroll spiral',
+            'Companion to rach3l cautionary mirror and sovereign boundaries',
+            'TTMIK.html?sven=1 — invoke Sven Swedish shadowing boot'
+        ],
+        procedure: [
+            'Swedish native first: Melbourne är mitt ja — name the yes calmly',
+            'Open Fast Character sheet: Sven · Ranger (Fey Wanderer) · Outlander · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 관찰만 하고 흡수하지 않을게요',
+            'One breath — feet on floor — no re-watch spiral',
+            'Release: observe pattern, not person · preset 14'
+        ],
+        pitfalls: [
+            'Do not make Sven a rescue mission or romance subplot',
+            'Honor Swedish — not a gag subtitle line',
+            'Observe without absorbing — no scroll engagement hooks'
+        ],
+        verification: [
+            'Swedish phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Calmer breath than scroll spiral'
+        ],
+        korean: ['멜버른이 제 예예요.', '관찰만 하고 흡수하지 않을게요.', '웃음으로 놓아줄게요.', '제 길을 믿어요.'],
+        swedish: [
+            'Melbourne är mitt ja.',
+            'Jag iakttar utan att absorbera.',
+            'Jag släpper med humor.',
+            'Jag litar på min väg.',
+            'Jag är Sven, en vandrare från Sverige.'
+        ],
+        integrations: [
+            'Ep 7 · preset 14 · FLINDERS Moon-card calm',
+            'fastcharacter.com — openFastCharacterSven() preset',
+            'TTMIK.html?sven=1 — Swedish native input boot',
+            'rach3l · observe-but-do-not-absorb mirror'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -425,6 +469,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'sua-tattoo-artist': ['cord-cut', 'no-rewatch'],
     'asuka-brisbane': ['pause-breathe', 'cord-cut'],
     'heidi-alpine-wayfarer': ['hermit-lantern', 'daily-ritual', 'humor-release'],
+    'sven-nordic-ranger': ['no-rewatch', 'pause-breathe', 'cord-cut'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -456,6 +501,9 @@ function buildSkillMd(skill) {
         : '';
     const de = skill.german?.length
         ? `\n## German Practice (Heidi)\n\n${skill.german.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
+    const sv = skill.swedish?.length
+        ? `\n## Swedish Practice (Sven)\n\n${skill.swedish.map((p) => `- ${p}`).join('\n')}\n`
         : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
@@ -498,7 +546,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${healingFactors}${integrations}
+${ilo}${ja}${de}${sv}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

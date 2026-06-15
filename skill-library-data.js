@@ -62,6 +62,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'German Shadowing',
         tag: 'heidi'
     },
+    'sven-nordic-ranger': {
+        source: 'Sven_Nordic_Ranger_Archetype.skill.md',
+        invoke: 'practiceSvenRanger',
+        altBoot: 'sven=1',
+        preset: 14,
+        libraryGroup: 'Sven Library',
+        libraryCategory: 'Swedish Shadowing',
+        tag: 'sven'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -128,6 +137,11 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: ['hermit-lantern', 'daily-ritual', 'humor-release'],
         boot: 'library=heidi'
     },
+    'Sven Library': {
+        group: 'sven',
+        factors: ['no-rewatch', 'pause-breathe', 'cord-cut'],
+        boot: 'library=sven'
+    },
     'Melbourne Journey': {
         group: 'melbourne',
         factors: ['hermit-lantern', 'humor-release', 'helen-boundary', 'post-dib'],
@@ -182,6 +196,14 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=heidi',
         skills: ['heidi-alpine-wayfarer'],
         accent: 'yellow'
+    },
+    {
+        id: 'sven',
+        label: 'Sven Library',
+        description: 'Swedish native · Korean shadow — Fast Character Nordic Ranger',
+        boot: 'library=sven',
+        skills: ['sven-nordic-ranger'],
+        accent: 'cyan'
     },
     {
         id: 'melbourne-skills',
@@ -273,7 +295,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 275
+    trackCount: 283
 };
 
 function openComposedLibrary(libId) {
@@ -286,6 +308,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
     else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
     else if (lib.id === 'heidi') startHeidiCategory('German Shadowing');
+    else if (lib.id === 'sven') startSvenCategory('Swedish Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

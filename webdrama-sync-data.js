@@ -370,10 +370,10 @@ const TTMIK_SYNC_EPISODES = {
         title: 'The Moon Card',
         ko: '달',
         pins: ['SOUTH', 'FLINDERS', 'PRINCES'],
-        skillId: 'rach3l',
-        categories: ['Tech & Connectivity', 'Emergency Protocol'],
+        skillId: 'sven-nordic-ranger',
+        categories: ['Tech & Connectivity', 'Emergency Protocol', 'Swedish Shadowing'],
         questIds: ['side-humor'],
-        shadowingIndex: 2
+        shadowingIndex: 0
     },
     8: {
         title: 'The World',
@@ -532,6 +532,16 @@ const TTMIK_SYNC_PRESETS = [
         episode: 6,
         reel: null,
         note: 'Laneway lantern · German native + Korean shadow · Fast Character Bard sheet',
+        autoShadow: true
+    },
+    {
+        id: 14,
+        label: 'Flinders · Ep 7 · Sven Ranger',
+        shortLabel: 'SVEN',
+        pin: 'FLINDERS',
+        episode: 7,
+        reel: null,
+        note: 'Moon-card calm · Swedish native + Korean shadow · Fast Character Ranger sheet',
         autoShadow: true
     }
 ];

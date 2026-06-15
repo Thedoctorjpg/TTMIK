@@ -18,6 +18,7 @@ const SKILL_MD_FILES = [
     'Sua_Tattoo_Artist.skill.md',
     'Asuka_Brisbane_Archetype.skill.md',
     'Heidi_Alpine_Wayfarer_Archetype.skill.md',
+    'Sven_Nordic_Ranger_Archetype.skill.md',
     'rach3l.skill.md',
     'Ignan_Pilgrim.skill.md',
     'Ignan_Grounding.skill.md',
@@ -33,12 +34,13 @@ const LIBRARY_BOOTS = [
     'library=ignan',
     'library=asuka',
     'library=heidi',
+    'library=sven',
     'library=melbourne-skills',
     'library=sovereign-skills',
     'boot=all'
 ];
 
-const LANE_BOOTS = ['heal=1', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7'];
+const LANE_BOOTS = ['heal=1', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7'];
 
 console.log('TTMIK boot-all\n');
 

@@ -83,6 +83,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Heidi Library') {
         return lessons.filter(l => l.group === 'heidi');
     }
+    if (activeLibraryGroup === 'Sven Library') {
+        return lessons.filter(l => l.group === 'sven');
+    }
     return lessons;
 }
 
@@ -555,6 +558,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'heidi') {
         activeLibraryGroup = 'Heidi Library';
         activeCategory = 'German Shadowing';
+    } else if (groupId === 'sven') {
+        activeLibraryGroup = 'Sven Library';
+        activeCategory = 'Swedish Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -599,6 +605,15 @@ function startAsukaCategory(subtitle) {
 
 function startHeidiCategory(subtitle) {
     activeLibraryGroup = 'Heidi Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startSvenCategory(subtitle) {
+    activeLibraryGroup = 'Sven Library';
     activeCategory = subtitle;
     renderLibraryGroupFilters();
     renderCategoryFilters();
@@ -669,6 +684,9 @@ function renderJourneyDashboard() {
     if (typeof HEIDI_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(HEIDI_JOURNEY_CATEGORY);
     }
+    if (typeof SVEN_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(SVEN_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -686,7 +704,9 @@ function renderJourneyDashboard() {
                 ? 'hover:ring-rose-500'
                 : journey.id === 'heidi'
                     ? 'hover:ring-yellow-500'
-                    : 'hover:ring-pink-500';
+                    : journey.id === 'sven'
+                        ? 'hover:ring-cyan-500'
+                        : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -709,7 +729,9 @@ function renderJourneyDashboard() {
                 ? 'text-rose-400 text-sm font-medium'
                 : journey.id === 'heidi'
                     ? 'text-yellow-400 text-sm font-medium'
-                    : 'text-pink-400 text-sm font-medium';
+                    : journey.id === 'sven'
+                        ? 'text-cyan-400 text-sm font-medium'
+                        : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -728,6 +750,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'asuka').length} tracks`;
         } else if (journey.id === 'heidi') {
             count.textContent = `${lessons.filter(l => l.group === 'heidi').length} tracks`;
+        } else if (journey.id === 'sven') {
+            count.textContent = `${lessons.filter(l => l.group === 'sven').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -897,6 +921,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const svenGrid = document.getElementById('sven-quick-grid');
+    if (svenGrid && typeof SVEN_COURSE_DEFS !== 'undefined') {
+        svenGrid.textContent = '';
+        SVEN_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-cyan-900/30 hover:bg-cyan-800/40 ring-1 ring-cyan-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-cyan-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-cyan-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startSvenCategory(def.subtitle);
+            svenGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1033,7 +1076,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1054,6 +1097,8 @@ window.onload = () => {
             startAsukaCategory(bootParams.get('category') || 'Japanese Shadowing');
         } else if (bootParams.get('library') === 'heidi') {
             startHeidiCategory(bootParams.get('category') || 'German Shadowing');
+        } else if (bootParams.get('library') === 'sven') {
+            startSvenCategory(bootParams.get('category') || 'Swedish Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

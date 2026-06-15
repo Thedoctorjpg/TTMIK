@@ -311,6 +311,44 @@ const SKILLS = [
         ]
     },
     {
+        id: 'sven-nordic-ranger',
+        name: 'Sven — Nordic Ranger',
+        icon: '\u{1F332}',
+        tagline: 'Swedish calm for Moon-card discernment',
+        role: 'Fast Character Outlander ally — Swedish native before Korean shadow',
+        source: 'Sven_Nordic_Ranger_Archetype.skill.md',
+        activationPhrases: [
+            'Sven observes without absorbing — Melbourne is my yes',
+            'Jag iakttar utan att absorbera'
+        ],
+        capabilities: [
+            'Generate Sven D&D sheet via Fast Character preset',
+            'Swedish native input + Korean TTMIK shadowing drills',
+            'Moon-card calm companion to rach3l discernment',
+            'Nordic walk rituals — no scroll spiral'
+        ],
+        creativePrompts: [
+            'Create Sven Fast Character sheet — Ranger Fey Wanderer · Outlander · Level 5',
+            'Skit: Swedish calm monologue before Korean shadow',
+            'Moon-card ritual for Ep 7 FLINDERS reflection'
+        ],
+        linkedGroups: ['sven', 'melbourne', 'sovereign'],
+        linkedCategories: ['Swedish Shadowing', 'Nordic Walk Route', 'Ranger Drills', 'Tech & Connectivity', 'Emergency Protocol'],
+        shadowingPhrases: [
+            { sv: 'Melbourne är mitt ja.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
+            { sv: 'Jag iakttar utan att absorbera.', ko: '관찰만 하고 흡수하지 않을게요.', en: 'I observe without absorbing.' },
+            { sv: 'Jag släpper med humor.', ko: '웃음으로 놓아줄게요.', en: 'I release with humor.' },
+            { sv: 'Jag litar på min väg.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { sv: 'Jag är Sven, en vandrare från Sverige.', ko: '저는 스웨덴에서 온 방랑자 스벤이에요.', en: 'I am Sven, a wanderer from Sweden.' }
+        ],
+        ritualSteps: [
+            'Open Fast Character — Sven · Ranger Fey Wanderer · Outlander',
+            'Swedish native first: Melbourne är mitt ja',
+            'Korean shadow: 멜버른이 제 예예요 · 관찰만 하고 흡수하지 않을게요',
+            'One breath — phone face-down — no re-watch spiral'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

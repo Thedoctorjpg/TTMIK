@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TTMIK Audio Lab • Korean Mastery</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; media-src 'self' blob:; img-src 'self' data:;">
+    <title>TTMIK Audio Lab â€¢ Korean Mastery</title>
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;family=Inter:wght@400;500;600&display=swap');
         body { font-family: 'Inter', system-ui, sans-serif; }
@@ -25,7 +26,7 @@
         <div class="fixed left-0 top-0 h-screen w-72 bg-zinc-900 border-r border-zinc-800 flex flex-col">
             <div class="p-6 border-b border-zinc-800">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-2xl">🇰🇷</div>
+                    <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-2xl">ðŸ‡°ðŸ‡·</div>
                     <div>
                         <h1 class="text-2xl font-bold tracking-tight">TTMIK Lab</h1>
                         <p class="text-xs text-zinc-500">Audio-Powered Korean</p>
@@ -47,7 +48,11 @@
                         <i class="fa-solid fa-graduation-cap w-5"></i>
                         <span>Practice</span>
                     </a>
-                    <a href="#" onclick="switchTab(3)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                    <a href="#" onclick="switchTab(4)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                        <i class="fa-solid fa-route w-5"></i>
+                        <span>Journey</span>
+                    </a>
+                    <a href="#" onclick="switchTab(5)" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
                         <i class="fa-solid fa-chart-bar w-5"></i>
                         <span>Progress</span>
                     </a>
@@ -63,8 +68,9 @@
                 </div>
             </div>
 
-            <div class="p-4 border-t border-zinc-800 text-xs text-zinc-500">
+            <div class="p-4 border-t border-zinc-800 text-xs text-zinc-500 space-y-2">
                 <p>Built-in lessons loaded from local audio folders</p>
+                <button onclick="configureWebhook()" class="text-pink-400 hover:text-pink-300">Configure webhook</button>
             </div>
         </div>
 
@@ -79,7 +85,7 @@
                 <div class="flex items-center gap-4">
                     <div class="bg-zinc-900 rounded-3xl px-4 py-2 flex items-center gap-3 text-sm">
                         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                        <span id="header-lesson-badge">Level 1 • Lesson 1</span>
+                        <span id="header-lesson-badge">Level 1 â€¢ Lesson 1</span>
                     </div>
                     <button onclick="toggleDark()" class="w-10 h-10 flex items-center justify-center rounded-2xl hover:bg-zinc-800">
                         <i class="fa-solid fa-moon"></i>
@@ -95,13 +101,13 @@
                         <div class="bg-zinc-900 rounded-3xl p-8">
                             <div id="now-playing" class="flex gap-8">
                                 <div class="w-64 h-64 bg-zinc-800 rounded-3xl flex-shrink-0 flex items-center justify-center text-8xl shadow-inner">
-                                    🇰🇷
+                                    ðŸ‡°ðŸ‡·
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex justify-between">
                                         <div>
                                             <h3 id="lesson-title" class="text-3xl font-semibold">Lesson 1: Hello, Thank You</h3>
-                                            <p id="lesson-subtitle" class="text-zinc-400 mt-1">Talk To Me In Korean • Level 1</p>
+                                            <p id="lesson-subtitle" class="text-zinc-400 mt-1">Talk To Me In Korean â€¢ Level 1</p>
                                         </div>
                                         <div class="text-right">
                                             <div id="playback-time" class="text-5xl font-mono tabular-nums">00:00</div>
@@ -155,6 +161,14 @@
                                             <button onclick="setSpeed(1.25)" class="speed-btn px-4 py-1 text-sm rounded-3xl">1.25x</button>
                                             <button onclick="setSpeed(1.5)" class="speed-btn px-4 py-1 text-sm rounded-3xl">1.5x</button>
                                         </div>
+                                    </div>
+
+                                    <div class="mt-6 flex justify-center">
+                                        <button onclick="tweetProgress()"
+                                                class="flex items-center gap-3 bg-black border border-white/20 text-white px-6 py-3 rounded-3xl hover:bg-zinc-900 transition">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                            Tweet Progress
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -212,6 +226,13 @@
 
             <!-- Lessons Library Tab -->
             <div id="tab-1" class="tab-content hidden">
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <input type="search" id="lesson-search" placeholder="Search lessons..."
+                           oninput="handleLessonSearch(this.value)"
+                           class="flex-1 bg-zinc-900 border-0 rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-pink-500">
+                </div>
+                <div id="library-group-filters" class="flex flex-wrap gap-2 mb-4"></div>
+                <div id="category-filters" class="flex flex-wrap gap-2 mb-6"></div>
                 <div class="grid grid-cols-3 gap-6" id="lessons-grid">
                     <!-- JS populated cards -->
                 </div>
@@ -220,29 +241,56 @@
             <!-- Practice Tab -->
             <div id="tab-2" class="tab-content hidden">
                 <div class="max-w-2xl mx-auto bg-zinc-900 rounded-3xl p-12 text-center">
-                    <h3 class="text-3xl font-semibold mb-8">Shadowing Practice</h3>
-                    <p class="text-zinc-400 mb-12">Listen → Repeat → Check</p>
-                    
-                    <div class="space-y-8">
-                        <button onclick="startShadowing()" 
-                                class="w-full py-8 bg-gradient-to-r from-pink-500 to-violet-500 rounded-3xl text-2xl font-bold hover:brightness-110 transition">
-                            Start Shadowing Session
+                    <h3 class="text-3xl font-semibold mb-2">Shadowing Practice</h3>
+                    <p class="text-zinc-400 mb-4">Listen &rarr; Repeat &rarr; Check</p>
+                    <p id="shadowing-hint" class="text-xs text-pink-400 mb-8 hidden"></p>
+
+                    <div class="bg-zinc-800 rounded-2xl p-8 mb-8 min-h-[160px] flex flex-col items-center justify-center">
+                        <div id="shadowing-ko" class="korean text-3xl mb-4"></div>
+                        <div id="shadowing-en" class="text-zinc-400 text-lg hidden"></div>
+                        <button id="shadowing-show-btn" onclick="showShadowingTranslation()"
+                                class="text-sm text-pink-400 hover:text-pink-300 mt-2">
+                            Show translation
                         </button>
-                        
-                        <div class="text-left bg-zinc-800 rounded-2xl p-6">
-                            <div id="shadowing-text" class="korean text-2xl min-h-[120px]"></div>
-                        </div>
                     </div>
+
+                    <div class="flex items-center justify-center gap-4">
+                        <button id="shadowing-toggle-btn" onclick="toggleShadowing()"
+                                class="flex-1 py-6 bg-gradient-to-r from-pink-500 to-violet-500 rounded-3xl text-xl font-bold hover:brightness-110 transition">
+                            <i class="fa-solid fa-microphone mr-2"></i>Start Shadowing
+                        </button>
+                        <button onclick="resetShadowing()"
+                                class="w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center hover:bg-zinc-700 transition">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+
+                    <div id="shadowing-dots" class="mt-6 flex justify-center gap-2 flex-wrap"></div>
+                    <p id="shadowing-counter" class="text-xs text-zinc-500 mt-6"></p>
+                </div>
+            </div>
+
+            <!-- Journey Tab -->
+            <div id="tab-4" class="tab-content hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold mb-2">Sovereign Korean Journey</h2>
+                    <p class="text-zinc-400">Melbourne trip audio toolkit — 48 guided tracks across 19 categories</p>
+                </div>
+                <div id="journey-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"></div>
+                <div class="bg-zinc-900 rounded-3xl p-8">
+                    <h3 class="text-xl font-semibold mb-4">Melbourne Quick Start</h3>
+                    <p class="text-zinc-400 text-sm mb-6">Jump directly into a trip category</p>
+                    <div id="melbourne-quick-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
                 </div>
             </div>
 
             <!-- Progress Tab -->
-            <div id="tab-3" class="tab-content hidden">
-                <div class="grid grid-cols-3 gap-6">
+            <div id="tab-5" class="tab-content hidden">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-zinc-900 rounded-3xl p-8">
                         <h3 class="font-semibold text-xl mb-6">Listening Streak</h3>
                         <div id="streak-value" class="text-7xl font-bold text-emerald-400">0</div>
-                        <p class="text-zinc-400">days in a row 🔥</p>
+                        <p class="text-zinc-400">days in a row</p>
                     </div>
                     <div class="bg-zinc-900 rounded-3xl p-8">
                         <h3 class="font-semibold text-xl mb-6">Total Hours</h3>
@@ -254,6 +302,15 @@
                         <div id="completed-value" class="text-7xl font-bold text-pink-400">0</div>
                         <p id="completed-subtitle" class="text-zinc-400">of 0 lessons</p>
                     </div>
+                    <div class="bg-zinc-900 rounded-3xl p-8">
+                        <h3 class="font-semibold text-xl mb-6">Lessons Played</h3>
+                        <div id="played-value" class="text-7xl font-bold text-violet-400">0</div>
+                        <p class="text-zinc-400">total sessions</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-zinc-900 rounded-3xl p-8">
+                    <h3 class="font-semibold text-xl mb-6">Completed Lessons</h3>
+                    <div id="completed-list" class="max-h-64 overflow-auto"></div>
                 </div>
             </div>
         </div>
@@ -262,655 +319,11 @@
     <!-- Audio Element -->
     <audio id="main-audio" class="hidden"></audio>
 
-    <script>
-        // Built-in lesson library loaded from local audio files
-        let lessons = [
-            {
-                id: 1,
-                title: "10-Minute Conversation • Track 01",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 01.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 2,
-                title: "10-Minute Conversation • Track 02",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 02.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 3,
-                title: "10-Minute Conversation • Track 03",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 03.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 4,
-                title: "10-Minute Conversation • Track 04",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 04.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 5,
-                title: "10-Minute Conversation • Track 05",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 05.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 6,
-                title: "10-Minute Conversation • Track 06",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 06.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 7,
-                title: "10-Minute Conversation • Track 07",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 07.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 8,
-                title: "10-Minute Conversation • Track 08",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 08.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 9,
-                title: "10-Minute Conversation • Track 09",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 09.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 10,
-                title: "10-Minute Conversation • Track 10",
-                subtitle: "10-Minute Conversation",
-                duration: "00:00",
-                src: "10-Minute-Korean-Daily-Conversation-Practice-For-Beginners/Track 10.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 11,
-                title: "1100 Korean Phrases • Track 01",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 01.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 12,
-                title: "1100 Korean Phrases • Track 02",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 02.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 13,
-                title: "1100 Korean Phrases • Track 03",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 03.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 14,
-                title: "1100 Korean Phrases • Track 04",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 04.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 15,
-                title: "1100 Korean Phrases • Track 05",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 05.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 16,
-                title: "1100 Korean Phrases • Track 06",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 06.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 17,
-                title: "1100 Korean Phrases • Track 07",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 07.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 18,
-                title: "1100 Korean Phrases • Track 08",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 08.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 19,
-                title: "1100 Korean Phrases • Track 09",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 09.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            },
-            {
-                id: 20,
-                title: "1100 Korean Phrases • Track 10",
-                subtitle: "1100 Korean Phrases",
-                duration: "00:00",
-                src: "1100_Short__Useful_Korean_Phrases-Audio_Files/Track 10.mp3",
-                transcript: "<p class=\"text-zinc-500 italic\">Transcript not available.</p>",
-                vocab: []
-            }
-        ];
-
-        let currentLesson = 0;
-        let isPlaying = false;
-        let audio = document.getElementById('main-audio');
-        let repeatMode = false;
-        let appState = null;
-        let lastListenTimestamp = null;
-        let notesSaveTimer = null;
-        let positionSaveTimer = null;
-
-        const STORAGE_KEY = 'ttmik_lab_v1';
-
-        function getDefaultState() {
-            return {
-                version: 1,
-                currentLesson: 0,
-                settings: { volume: 80, playbackRate: 1, repeatMode: false },
-                notes: {},
-                progress: {},
-                stats: { totalListenSeconds: 0, streak: 0, lastActiveDate: null },
-                customLessons: []
-            };
-        }
-
-        function loadState() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return getDefaultState();
-                return { ...getDefaultState(), ...JSON.parse(raw) };
-            } catch {
-                return getDefaultState();
-            }
-        }
-
-        function persistState() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-        }
-
-        function getLessonProgress(lessonId) {
-            if (!appState.progress[lessonId]) {
-                appState.progress[lessonId] = {
-                    lastPosition: 0,
-                    completed: false,
-                    listenTime: 0,
-                    completedAt: null
-                };
-            }
-            return appState.progress[lessonId];
-        }
-
-        function todayString() {
-            return new Date().toISOString().slice(0, 10);
-        }
-
-        function updateStreak() {
-            const today = todayString();
-            const last = appState.stats.lastActiveDate;
-            if (last === today) return;
-
-            if (last) {
-                const yesterday = new Date();
-                yesterday.setDate(yesterday.getDate() - 1);
-                const yesterdayStr = yesterday.toISOString().slice(0, 10);
-                appState.stats.streak = last === yesterdayStr ? appState.stats.streak + 1 : 1;
-            } else {
-                appState.stats.streak = 1;
-            }
-            appState.stats.lastActiveDate = today;
-            persistState();
-        }
-
-        function recordListenTime(delta) {
-            if (!delta || delta <= 0 || delta > 5) return;
-            const lesson = lessons[currentLesson];
-            if (!lesson) return;
-
-            appState.stats.totalListenSeconds += delta;
-            getLessonProgress(lesson.id).listenTime += delta;
-            updateStreak();
-            persistState();
-            updateProgressUI();
-        }
-
-        function markLessonComplete(lessonId) {
-            const progress = getLessonProgress(lessonId);
-            if (progress.completed) return;
-            progress.completed = true;
-            progress.completedAt = new Date().toISOString();
-            persistState();
-            renderLessons();
-            updateProgressUI();
-        }
-
-        function savePlaybackPosition(lessonId, time) {
-            getLessonProgress(lessonId).lastPosition = time;
-            persistState();
-        }
-
-        function showNotesStatus(message, isSaved = false) {
-            const el = document.getElementById('notes-status');
-            el.textContent = message;
-            el.classList.toggle('text-emerald-400', isSaved);
-            el.classList.toggle('text-zinc-500', !isSaved);
-        }
-
-        function saveNotesForLesson(lessonId, text, showFeedback = true) {
-            appState.notes[lessonId] = text;
-            persistState();
-            if (showFeedback) showNotesStatus('Saved', true);
-        }
-
-        function loadNotesForLesson(lessonId) {
-            const notesEl = document.getElementById('notes');
-            notesEl.value = appState.notes[lessonId] || '';
-            showNotesStatus(appState.notes[lessonId] ? 'Loaded' : '');
-        }
-
-        function persistCustomLesson(lesson) {
-            if (lesson.src && lesson.src.startsWith('blob:')) return;
-            const existing = appState.customLessons.findIndex(l => l.id === lesson.id);
-            const stored = {
-                id: lesson.id,
-                title: lesson.title,
-                subtitle: lesson.subtitle,
-                duration: lesson.duration,
-                src: lesson.src,
-                transcript: lesson.transcript,
-                vocab: lesson.vocab || []
-            };
-            if (existing >= 0) appState.customLessons[existing] = stored;
-            else appState.customLessons.unshift(stored);
-            persistState();
-        }
-
-        function restoreCustomLessons() {
-            if (!appState.customLessons.length) return;
-            const builtInIds = new Set(lessons.map(l => l.id));
-            const custom = appState.customLessons.filter(l => !builtInIds.has(l.id));
-            if (custom.length) lessons = [...custom, ...lessons];
-        }
-
-        function applySettings() {
-            const { volume, playbackRate, repeatMode: savedRepeat } = appState.settings;
-            audio.volume = volume / 100;
-            document.getElementById('volume').value = volume;
-            audio.playbackRate = playbackRate;
-            setSpeed(playbackRate);
-            repeatMode = savedRepeat;
-            audio.loop = savedRepeat;
-            document.getElementById('repeat-btn').classList.toggle('text-pink-500', savedRepeat);
-        }
-
-        function persistSettings() {
-            appState.settings = {
-                volume: Number(document.getElementById('volume').value),
-                playbackRate: audio.playbackRate,
-                repeatMode
-            };
-            persistState();
-        }
-
-        function updateProgressUI() {
-            const hours = (appState.stats.totalListenSeconds / 3600).toFixed(1);
-            const completed = Object.values(appState.progress).filter(p => p.completed).length;
-            document.getElementById('streak-value').textContent = appState.stats.streak;
-            document.getElementById('hours-value').textContent = hours;
-            document.getElementById('completed-value').textContent = completed;
-            document.getElementById('completed-subtitle').textContent = `of ${lessons.length} lessons`;
-        }
-
-        function setupNotesAutoSave() {
-            document.getElementById('notes').addEventListener('input', () => {
-                showNotesStatus('Saving...');
-                clearTimeout(notesSaveTimer);
-                notesSaveTimer = setTimeout(() => {
-                    const lesson = lessons[currentLesson];
-                    if (!lesson) return;
-                    saveNotesForLesson(lesson.id, document.getElementById('notes').value, true);
-                }, 500);
-            });
-        }
-
-        function switchTab(n) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
-            document.getElementById(`tab-${n}`).classList.remove('hidden');
-            
-            document.querySelectorAll('.tab-link').forEach(link => {
-                link.classList.remove('bg-zinc-800', 'text-white');
-                link.classList.add('text-zinc-400');
-            });
-            document.querySelectorAll('.tab-link')[n].classList.add('bg-zinc-800', 'text-white');
-
-            if (n === 3) updateProgressUI();
-        }
-
-        function renderLessons() {
-            const grid = document.getElementById('lessons-grid');
-            grid.innerHTML = '';
-            
-            lessons.forEach((lesson, i) => {
-                const completed = getLessonProgress(lesson.id).completed;
-                const card = document.createElement('div');
-                card.className = "bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer hover:ring-2 hover:ring-pink-500 transition";
-                card.innerHTML = `
-                    <div class="h-48 bg-gradient-to-br from-violet-500/20 to-pink-500/20 flex items-center justify-center text-6xl relative">
-                        🇰🇷
-                        ${completed ? '<span class="absolute top-4 right-4 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-sm"><i class="fa-solid fa-check"></i></span>' : ''}
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-semibold">${lesson.title}</h4>
-                        <p class="text-xs text-zinc-500">${lesson.subtitle} • ${lesson.duration}</p>
-                    </div>
-                `;
-                card.onclick = () => loadLesson(i);
-                grid.appendChild(card);
-            });
-        }
-
-        function loadLesson(index, resumeTab = true) {
-            const prevLesson = lessons[currentLesson];
-            if (prevLesson) {
-                saveNotesForLesson(prevLesson.id, document.getElementById('notes').value, false);
-                if (audio.src) savePlaybackPosition(prevLesson.id, audio.currentTime);
-            }
-
-            currentLesson = index;
-            appState.currentLesson = index;
-            persistState();
-
-            const lesson = lessons[index];
-            
-            document.getElementById('lesson-title').textContent = lesson.title;
-            document.getElementById('lesson-subtitle').textContent = lesson.subtitle;
-            document.getElementById('header-lesson-badge').textContent = `${lesson.subtitle} • ${lesson.title}`;
-            document.getElementById('transcript').innerHTML = lesson.transcript || '<p class="text-zinc-500 italic">No transcript yet. Paste one!</p>';
-            
-            const vocabHTML = lesson.vocab ? lesson.vocab.map(v => `
-                <div class="flex justify-between items-center">
-                    <span class="korean">${v.ko}</span>
-                    <span class="text-zinc-400">${v.en}</span>
-                </div>
-            `).join('') : '';
-            document.getElementById('vocab-list').innerHTML = vocabHTML;
-            loadNotesForLesson(lesson.id);
-            
-            if (lesson.src) {
-                const resumeAt = getLessonProgress(lesson.id).lastPosition;
-                audio.src = encodeURI(lesson.src);
-                if (resumeAt > 0) {
-                    audio.addEventListener('loadedmetadata', function restorePosition() {
-                        if (audio.duration && resumeAt < audio.duration - 5) {
-                            audio.currentTime = resumeAt;
-                        }
-                        audio.removeEventListener('loadedmetadata', restorePosition);
-                    });
-                }
-            }
-            
-            if (resumeTab) switchTab(0);
-        }
-
-        function togglePlay() {
-            if (!audio.src) {
-                alert("Choose a built-in lesson or upload an MP3 to start listening.");
-                return;
-            }
-            
-            if (isPlaying) {
-                audio.pause();
-                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
-            } else {
-                audio.play();
-                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-pause"></i>`;
-            }
-            isPlaying = !isPlaying;
-        }
-
-        function setSpeed(speed) {
-            audio.playbackRate = speed;
-            document.querySelectorAll('.speed-btn').forEach(btn => {
-                const label = parseFloat(btn.textContent);
-                const active = label === speed;
-                btn.classList.toggle('bg-white', active);
-                btn.classList.toggle('text-zinc-900', active);
-            });
-            persistSettings();
-        }
-
-        function handleFileUpload(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const url = URL.createObjectURL(file);
-            audio.src = url;
-            
-            // Add as new lesson
-            const uploadedLesson = {
-                id: Date.now(),
-                title: file.name.replace(/\.mp3$/i, ''),
-                subtitle: "Your TTMIK Upload",
-                duration: "??:??",
-                src: url,
-                transcript: "<p>Paste transcript here...</p>",
-                vocab: []
-            };
-            lessons.unshift(uploadedLesson);
-            
-            renderLessons();
-            loadLesson(0);
-            alert("MP3 loaded! Uploads are session-only — add a permanent lesson via New Lesson to keep it after refresh.");
-        }
-
-        function addNewLesson() {
-            const title = prompt("Lesson title (e.g. Level 1 Lesson 5):");
-            if (!title) return;
-            
-            const newLesson = {
-                id: Date.now(),
-                title: title,
-                subtitle: "Talk To Me In Korean",
-                duration: "00:00",
-                src: "",
-                transcript: "",
-                vocab: []
-            };
-            lessons.unshift(newLesson);
-            persistCustomLesson(newLesson);
-            renderLessons();
-            loadLesson(0);
-        }
-
-        function saveNotes() {
-            const lesson = lessons[currentLesson];
-            if (!lesson) return;
-            saveNotesForLesson(lesson.id, document.getElementById('notes').value, true);
-        }
-
-        function toggleRepeat() {
-            repeatMode = !repeatMode;
-            audio.loop = repeatMode;
-            document.getElementById('repeat-btn').classList.toggle('text-pink-500', repeatMode);
-            persistSettings();
-        }
-
-        function toggleShuffle() {
-            alert("Shuffle coming soon! For now enjoy sequential playback.");
-        }
-
-        function prevTrack() {
-            if (currentLesson > 0) loadLesson(currentLesson - 1);
-        }
-
-        function nextTrack() {
-            if (currentLesson < lessons.length - 1) loadLesson(currentLesson + 1);
-        }
-
-        function startShadowing() {
-            const phrases = [
-                "안녕하세요! 만나서 반가워요.",
-                "오늘 날씨가 정말 좋네요.",
-                "커피 한 잔 마실까요?"
-            ];
-            let i = 0;
-            const el = document.getElementById('shadowing-text');
-            
-            setInterval(() => {
-                el.textContent = phrases[i];
-                i = (i + 1) % phrases.length;
-            }, 4000);
-        }
-
-        // Audio event listeners
-        function setupAudio() {
-            audio.addEventListener('timeupdate', () => {
-                const progress = document.getElementById('progress');
-                if (audio.duration) {
-                    progress.value = (audio.currentTime / audio.duration) * 100;
-                    if (audio.currentTime / audio.duration >= 0.9) {
-                        markLessonComplete(lessons[currentLesson]?.id);
-                    }
-                }
-                document.getElementById('playback-time').textContent = formatTime(audio.currentTime);
-
-                if (!audio.paused && lastListenTimestamp !== null) {
-                    const delta = audio.currentTime - lastListenTimestamp;
-                    if (delta > 0 && delta < 2) recordListenTime(delta);
-                }
-                lastListenTimestamp = audio.currentTime;
-
-                clearTimeout(positionSaveTimer);
-                positionSaveTimer = setTimeout(() => {
-                    const lesson = lessons[currentLesson];
-                    if (lesson && audio.src) savePlaybackPosition(lesson.id, audio.currentTime);
-                }, 2000);
-            });
-            
-            audio.addEventListener('loadedmetadata', () => {
-                document.getElementById('duration').textContent = formatTime(audio.duration);
-            });
-
-            audio.addEventListener('play', () => {
-                lastListenTimestamp = audio.currentTime;
-                updateStreak();
-            });
-
-            audio.addEventListener('pause', () => {
-                const lesson = lessons[currentLesson];
-                if (lesson) savePlaybackPosition(lesson.id, audio.currentTime);
-                lastListenTimestamp = null;
-            });
-            
-            audio.addEventListener('ended', () => {
-                isPlaying = false;
-                document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
-                const lesson = lessons[currentLesson];
-                if (lesson) {
-                    markLessonComplete(lesson.id);
-                    savePlaybackPosition(lesson.id, 0);
-                }
-            });
-            
-            const progressSlider = document.getElementById('progress');
-            progressSlider.addEventListener('input', () => {
-                if (audio.duration) {
-                    audio.currentTime = (progressSlider.value / 100) * audio.duration;
-                }
-            });
-            
-            document.getElementById('volume').addEventListener('input', (e) => {
-                audio.volume = e.target.value / 100;
-                persistSettings();
-            });
-        }
-
-        function formatTime(seconds) {
-            if (!seconds || isNaN(seconds)) return "00:00";
-            const min = Math.floor(seconds / 60);
-            const sec = Math.floor(seconds % 60);
-            return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', e => {
-            if (e.code === 'Space') {
-                e.preventDefault();
-                togglePlay();
-            }
-        });
-
-        // Init
-        window.onload = () => {
-            appState = loadState();
-            restoreCustomLessons();
-            setupAudio();
-            applySettings();
-            setupNotesAutoSave();
-            renderLessons();
-            updateProgressUI();
-
-            const resumeIndex = Math.min(appState.currentLesson, lessons.length - 1);
-            loadLesson(Math.max(0, resumeIndex), false);
-            switchTab(0);
-            
-            console.log("%cTTMIK WebApp ready! Progress and notes persist in localStorage.", "color:#ec4899; font-size:13px");
-        };
-    </script>
+    <script src="utils.js"></script>
+    <script src="sovereign-data.js"></script>
+    <script src="lesson-data.js"></script>
+    <script src="storage.js"></script>
+    <script src="social.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

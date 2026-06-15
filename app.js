@@ -386,6 +386,7 @@ function stopShadowingTimer() {
 function renderShadowingUI() {
     const phrases = getShadowingPhrases();
     const phrase = phrases[shadowingIndex % phrases.length];
+    const jaEl = document.getElementById('shadowing-ja');
     const koEl = document.getElementById('shadowing-ko');
     const enEl = document.getElementById('shadowing-en');
     const hintEl = document.getElementById('shadowing-hint');
@@ -393,6 +394,15 @@ function renderShadowingUI() {
     const btnEl = document.getElementById('shadowing-toggle-btn');
     const dotsEl = document.getElementById('shadowing-dots');
 
+    if (jaEl) {
+        if (phrase?.ja) {
+            jaEl.textContent = phrase.ja;
+            jaEl.classList.remove('hidden');
+        } else {
+            jaEl.textContent = '';
+            jaEl.classList.add('hidden');
+        }
+    }
     if (koEl) koEl.textContent = phrase?.ko || '';
     const showBtn = document.getElementById('shadowing-show-btn');
     if (enEl) {
@@ -410,8 +420,11 @@ function renderShadowingUI() {
         const lesson = lessons[currentLesson];
         const hasVocab = lesson?.vocab?.length > 0;
         const activeSkill = typeof getActiveSkill === 'function' ? getActiveSkill() : null;
-        if (phrase?.ilo) {
-            hintEl.textContent = `Ignan: ${phrase.ilo} · Korean: ${phrase.ko || ''}`;
+        const nativeHint = typeof formatShadowNativeHint === 'function'
+            ? formatShadowNativeHint(phrase)
+            : null;
+        if (nativeHint) {
+            hintEl.textContent = nativeHint;
         } else if (activeSkill) {
             hintEl.textContent = `Active skill: ${activeSkill.name} + lesson vocab`;
         } else if (hasVocab) {
@@ -725,7 +738,7 @@ window.onload = () => {
 
         const bootParams = new URLSearchParams(window.location.search);
         if (bootParams.has('preset') || bootParams.has('pin') || bootParams.has('heal')
-            || bootParams.has('ignan') || bootParams.has('step')) {
+            || bootParams.has('ignan') || bootParams.has('asuka') || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'ignan') {
             startIgnanCategory(bootParams.get('category') || 'Trilingual Shadowing');

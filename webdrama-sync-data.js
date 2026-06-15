@@ -476,6 +476,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: '10:30 — Mari trilingual walk · Ilokano + Korean + English',
         autoShadow: true
+    },
+    {
+        id: 11,
+        label: 'FED · Ep 5 · The Maybe',
+        shortLabel: 'ASUKA',
+        pin: 'FED',
+        episode: 5,
+        reel: null,
+        note: 'Rain glass · Brisbane maybe · Japanese native + Korean shadow',
+        autoShadow: true
     }
 ];
 

@@ -239,6 +239,38 @@ function practiceIgnanHealingJourney(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceAsukaMaybe(opts = {}) {
+    const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode(5) : null;
+    const skillId = epCfg?.skillId || 'asuka-brisbane';
+    const shadowIdx = epCfg?.shadowingIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(11)) {
+        setWebdramaSyncValues('FED', 5, null);
+    } else {
+        setWebdramaSyncValues('FED', 5, null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('main-others');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceTtmikSyncShadowing() {
     const cfg = getResolvedSyncConfig();
     applyTtmikSync();
@@ -303,6 +335,10 @@ function applyTtmikSyncRouteStep(step) {
 
 function handleTtmikSyncBoot() {
     const params = new URLSearchParams(window.location.search);
+    if (params.get('asuka') === '1' || params.get('step') === '5') {
+        practiceAsukaMaybe();
+        return;
+    }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
         practiceIgnanHealingJourney();
         return;
@@ -382,7 +418,7 @@ function renderSyncPanel() {
 
         const presetsLabel = document.createElement('p');
         presetsLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-3';
-        presetsLabel.textContent = 'On-set presets (1–10)';
+        presetsLabel.textContent = 'On-set presets (1–11)';
         presetsWrap.appendChild(presetsLabel);
 
         const presetsRow = document.createElement('div');
@@ -510,9 +546,15 @@ function renderSyncPanel() {
         ko.textContent = phrase.ko;
         if (phrase.ilo) {
             const ilo = document.createElement('p');
-            ilo.className = 'text-emerald-400/90 text-sm mt-1 font-medium';
+            ilo.className = 'text-emerald-400/90 text-sm font-medium';
             ilo.textContent = phrase.ilo;
             phraseBox.appendChild(ilo);
+        }
+        if (phrase.ja) {
+            const ja = document.createElement('p');
+            ja.className = 'text-rose-400/90 text-sm font-medium';
+            ja.textContent = phrase.ja;
+            phraseBox.appendChild(ja);
         }
         const en = document.createElement('p');
         en.className = 'text-zinc-400 text-sm mt-1';
@@ -548,7 +590,7 @@ function renderSyncPanel() {
         copyBtn.type = 'button';
         copyBtn.className = 'px-5 py-3 bg-zinc-800 rounded-2xl text-sm font-medium hover:bg-zinc-700';
         copyBtn.textContent = 'Copy phrase';
-        copyBtn.onclick = () => copyToClipboard([phrase.ilo, phrase.ko, phrase.en].filter(Boolean).join('\n'));
+        copyBtn.onclick = () => copyToClipboard(shadowPhraseCopyText(phrase));
         actions.appendChild(copyBtn);
     }
 
@@ -567,6 +609,14 @@ function renderSyncPanel() {
     ignanBtn.title = 'Mari trilingual walk · preset 10 · BOTANIC';
     ignanBtn.onclick = () => practiceIgnanHealingJourney();
     actions.appendChild(ignanBtn);
+
+    const asukaBtn = document.createElement('button');
+    asukaBtn.type = 'button';
+    asukaBtn.className = 'px-5 py-3 bg-rose-900/50 text-rose-200 rounded-2xl text-sm font-medium hover:bg-rose-800/70 ring-1 ring-rose-500/30';
+    asukaBtn.textContent = 'Asuka maybe (Ep 5 · JA)';
+    asukaBtn.title = 'Japanese native input · preset 11 · FED rain glass';
+    asukaBtn.onclick = () => practiceAsukaMaybe();
+    actions.appendChild(asukaBtn);
 
     actions.appendChild(syncBtn);
     actions.appendChild(lessonsBtn);
@@ -763,8 +813,17 @@ function renderSkillsGrid() {
     SKILLS.forEach(skill => {
         const active = appState.activeSkillId === skill.id;
         const isIgnan = skill.linkedGroups?.includes('ignan');
-        const ringActive = isIgnan ? 'ring-emerald-500 hover:ring-emerald-400' : 'ring-pink-500 hover:ring-pink-400';
-        const ringIdle = isIgnan ? 'hover:ring-emerald-500/50' : 'hover:ring-pink-500/50';
+        const isAsuka = skill.id === 'asuka-brisbane';
+        const ringActive = isIgnan
+            ? 'ring-emerald-500 hover:ring-emerald-400'
+            : isAsuka
+                ? 'ring-rose-500 hover:ring-rose-400'
+                : 'ring-pink-500 hover:ring-pink-400';
+        const ringIdle = isIgnan
+            ? 'hover:ring-emerald-500/50'
+            : isAsuka
+                ? 'hover:ring-rose-500/50'
+                : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -787,7 +846,9 @@ function renderSkillsGrid() {
             const pill = document.createElement('span');
             pill.className = isIgnan
                 ? 'inline-block mt-3 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full'
-                : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                : isAsuka
+                    ? 'inline-block mt-3 text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full'
+                    : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -889,6 +950,30 @@ function renderSkillDetail() {
         runBtn.onclick = () => practiceDibAftercare();
         aftercare.appendChild(runBtn);
         panel.appendChild(aftercare);
+    }
+
+    if (skill.id === 'asuka-brisbane') {
+        const asukaBlock = document.createElement('div');
+        asukaBlock.className = 'mb-6 bg-rose-500/10 border border-rose-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-rose-300 mb-2';
+        label.textContent = 'Japanese native input · Ep 5';
+        asukaBlock.appendChild(label);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.ja, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        asukaBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-rose-600/30 text-rose-200 hover:bg-rose-600/50';
+        runBtn.textContent = 'Invoke Asuka maybe (JA → KO)';
+        runBtn.onclick = () => practiceAsukaMaybe();
+        asukaBlock.appendChild(runBtn);
+        panel.appendChild(asukaBlock);
     }
 
     const notesLabel = document.createElement('h4');

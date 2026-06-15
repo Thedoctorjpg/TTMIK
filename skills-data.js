@@ -259,9 +259,10 @@ const SKILLS = [
         linkedGroups: ['melbourne'],
         linkedCategories: ['Melbourne Arrival', 'Transportation'],
         shadowingPhrases: [
-            { ko: '멜버른이 제 선택이에요.', en: 'Melbourne is my choice.' },
-            { ko: '아름다운 “만약에”도 놓을 수 있어요.', en: 'I can release a beautiful “what if.”' },
-            { ko: '제 길을 믿어요.', en: 'I trust my path.' }
+            { ja: 'メルボルンが私の選択です。', ko: '멜버른이 제 선택이에요.', en: 'Melbourne is my choice.' },
+            { ja: '美しい「もしも」も手放せます。', ko: '아름다운 “만약에”도 놓을 수 있어요.', en: 'I can release a beautiful “what if.”' },
+            { ja: '自分の道を信じます。', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { ja: 'ブリスベンは美しい「もしかしたら」。メルボルンが私の「はい」。', ko: '브리스번은 아름다운 “아마도”. 멜버른이 제 “예”예요.', en: 'Brisbane was a beautiful maybe. Melbourne is my yes.' }
         ],
         ritualSteps: [
             'Name the “maybe” without regret',

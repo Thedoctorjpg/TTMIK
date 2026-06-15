@@ -4,6 +4,18 @@
 
 const DEFAULT_TRANSCRIPT = 'Transcript not available.';
 
+function formatShadowNativeHint(phrase) {
+    if (!phrase) return null;
+    if (phrase.ilo) return `Ignan: ${phrase.ilo} · Korean: ${phrase.ko || ''}`;
+    if (phrase.ja) return `Japanese: ${phrase.ja} · Korean: ${phrase.ko || ''}`;
+    return null;
+}
+
+function shadowPhraseCopyText(phrase) {
+    if (!phrase) return '';
+    return [phrase.ilo, phrase.ja, phrase.ko, phrase.en].filter(Boolean).join('\n');
+}
+
 function formatTime(seconds) {
     if (!seconds || isNaN(seconds)) return '00:00';
     const min = Math.floor(seconds / 60);

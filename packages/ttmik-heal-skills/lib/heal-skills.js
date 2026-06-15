@@ -178,19 +178,22 @@ const SKILLS = [
     {
         id: 'asuka-brisbane',
         rootFile: 'Asuka_Brisbane_Archetype.skill.md',
-        description: 'Asuka distant-flame muse for sovereign choice and releasing "what if" paths. Use when user reflects on Brisbane maybe vs Melbourne yes, or graceful release of extra trip legs.',
+        description: 'Asuka distant-flame muse for sovereign choice and releasing "what if" paths. Japanese native input + Korean TTMIK shadowing. Use when user reflects on Brisbane maybe vs Melbourne yes, Ep 5, or graceful release of extra trip legs.',
         activation: 'Brisbane was a beautiful maybe. Melbourne is my yes.',
         whenToUse: [
             'Choosing self over an tempting extra trip leg',
             'Creative reflection on distant flames and possibility',
-            'Skit: almost extending the trip for a connection'
+            'Skit: almost extending the trip for a connection',
+            'Ep 5 rain-glass monologue — Japanese native before Korean shadow',
+            'TTMIK.html?asuka=1 — invoke Asuka maybe practice'
         ],
         procedure: [
+            'Japanese native first: メルボルンが私の選択です — name the yes calmly',
             'Name the "maybe" without regret or fantasy replay',
             'Affirm the "yes" actually chosen (Melbourne path)',
+            'Korean shadow: 멜버른이 제 선택이에요 · 제 길을 믿어요',
             'Draft one creative line or skit hook celebrating sovereign choice',
-            'Release: no extra leg required',
-            'Practice Korean phrases about trusting one’s path'
+            'Release: no extra leg required · preset 11 · quest main-others'
         ],
         pitfalls: [
             'Do not induce FOMO or second-guessing',
@@ -202,7 +205,18 @@ const SKILLS = [
             'Output celebrates sovereignty',
             'No suggestion to re-open Brisbane extension'
         ],
-        korean: ['멜버른이 제 선택이에요.', '아름다운 "만약에"도 놓을 수 있어요.', '제 길을 믿어요.']
+        korean: ['멜버른이 제 선택이에요.', '아름다운 "만약에"도 놓을 수 있어요.', '제 길을 믿어요.'],
+        japanese: [
+            'メルボルンが私の選択です。',
+            '美しい「もしも」も手放せます。',
+            '自分の道を信じます。',
+            'ブリスベンは美しい「もしかしたら」。メルボルンが私の「はい」。'
+        ],
+        integrations: [
+            'Ep 5 · preset 11 · FED rain glass',
+            'TTMIK.html?asuka=1 — Japanese native input boot',
+            'Quest main-others · Transportation + Melbourne Arrival lessons'
+        ]
     },
     {
         id: 'rach3l',
@@ -352,6 +366,9 @@ function buildSkillMd(skill) {
     const ilo = skill.ilokano?.length
         ? `\n## Ilokano Practice (Ignan)\n\n${skill.ilokano.map((p) => `- ${p}`).join('\n')}\n`
         : '';
+    const ja = skill.japanese?.length
+        ? `\n## Japanese Practice (Asuka)\n\n${skill.japanese.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -389,7 +406,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${integrations}
+${ilo}${ja}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

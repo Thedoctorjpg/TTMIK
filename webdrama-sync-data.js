@@ -141,6 +141,29 @@ const BARDIC_INSPIRATION = {
             'Close: lighter finish — no scroll spiral'
         ]
     },
+    twitterFeedHeal: {
+        label: 'Twitter feed heal — @adhdloganberry cord-cut',
+        duration: '45s',
+        pin: 'HOME',
+        skillId: 'melbourne-lantern-bard',
+        questId: 'side-boundary',
+        shadowIndex: 3,
+        handle: 'adhdloganberry',
+        activation: 'The feed can rest — observe without absorbing.',
+        shadowPhrase: {
+            ko: '피드는 쉬어도 괜찮아요.',
+            en: 'The feed can rest.'
+        },
+        healTweet: '괜찮아요, 괜찮아요 — feed rest OK. 관찰만 하고 흡수하지 않을게요. One breath · one boundary · no re-watch spiral. #HealTheFeed #TTMIK #LearnKorean',
+        steps: [
+            'Phone face-down · close the scroll tab · one breath',
+            'Helen boundary: 괜찮아요, 괜찮아요 — you do not owe the algorithm a reply',
+            'Rei mercy: 관찰만 하고 흡수하지 않을게요 — observe without absorbing',
+            'Cord-cut: I choose my own timeline and energy field',
+            'Post heal tweet to x.com/adhdloganberry — humor tends the wound',
+            'Close: no re-watch spiral · feed healed'
+        ]
+    },
     afterBlessingHeal: {
         label: 'Quiet reflection after Divine Insight Blessing',
         duration: '45s',
@@ -176,7 +199,8 @@ const HEALING_FACTORS = {
         { id: 'fifa-celebrate', label: 'Mari FIFA cantina', skillId: 'ignan-pilgrim', edit: 'mari-fifa-celebration', questId: 'side-fifa-celebrate', pin: 'CANTINA' },
         { id: 'match-attune', label: 'Attune before match', ko: '응원 전에 한 숨', skillId: 'melbourne-lantern-bard', edit: 'match-attune-ritual', questId: 'side-fifa-celebrate', pin: 'FED' },
         { id: 'rei-mercy', label: 'Rei mercy heal', ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요', skillId: 'neon-evangelion', edit: 'rei-mercy-ritual', questId: 'side-humor', pin: 'NERV', shadowIndex: 1 },
-        { id: 'cicada-attune', label: 'Sua cicada attune', ko: '새 껍질을 벗을게요', skillId: 'sua-tattoo', edit: 'cicada-attune-ritual', questId: 'side-boundary', pin: 'FED', shadowIndex: 2 }
+        { id: 'cicada-attune', label: 'Sua cicada attune', ko: '새 껍질을 벗을게요', skillId: 'sua-tattoo', edit: 'cicada-attune-ritual', questId: 'side-boundary', pin: 'FED', shadowIndex: 2 },
+        { id: 'twitter-feed-heal', label: 'Twitter feed heal', ko: '피드는 쉬어도 괜찮아요', skillId: 'melbourne-lantern-bard', edit: 'twitter-feed-heal-ritual', questId: 'side-boundary', pin: 'HOME', shadowIndex: 3 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -955,6 +979,10 @@ function getReiMercyHealRitual() {
 
 function getCicadaAttuneRitual() {
     return BARDIC_INSPIRATION.cicadaAttune;
+}
+
+function getTwitterFeedHealRitual() {
+    return BARDIC_INSPIRATION.twitterFeedHeal;
 }
 
 function getHealingFactors() {

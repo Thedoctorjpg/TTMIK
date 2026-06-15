@@ -798,7 +798,7 @@ const SKILLS = [
 
 /** Per-skill Hermes healing factor ids (synced with HEALING_FACTORS in webdrama-sync-data.js) */
 const HEALING_FACTOR_BY_SKILL = {
-    'melbourne-lantern-bard': ['hermit-lantern', 'humor-release', 'no-rewatch'],
+    'melbourne-lantern-bard': ['hermit-lantern', 'humor-release', 'twitter-feed-heal', 'no-rewatch'],
     'flame-kissed-bard': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
     'lo3tus': ['humor-release', 'hermit-lantern'],
     'helen-neighbor': ['helen-boundary', 'pause-breathe', 'cord-cut', 'post-dib'],
@@ -832,7 +832,8 @@ const HEALING_FACTOR_LABELS = {
     'fifa-celebrate': 'Mari FIFA cantina — ?fifa=1 · CANTINA',
     'match-attune': 'Attune before match — ?attune=1 · FED',
     'rei-mercy': 'Rei mercy heal — ?rei=1 · NERV · Ep 7.1',
-    'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause'
+    'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause',
+    'twitter-feed-heal': 'Twitter feed heal — ?tweet-heal=1 · x.com/adhdloganberry'
 };
 
 function buildSkillMd(skill) {

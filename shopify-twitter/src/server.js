@@ -123,13 +123,86 @@ app.get('/', (req, res) => {
       'POST /generate-image, /edit-image, /generate-product-ad, /generate-video   (xAI Grok Imagine)',
       'POST /tweet-marketing, /tweet-special-event, GET /tweet-metrics/:id, /twitter/ads-access, /promote-tweet',
       'GET /grocery/:store/products (incl. Uber Eats/DoorDash), POST /tweet-grocery, /generate-grocery-ad, /import/grocery-to-shopify',
-      'GET /tsundere-dating/:niche/products, GET /tsundere-dating/optimal-list, POST /tweet-tsundere-dating, /generate-tsundere-ad, /import/tsundere-to-shopify'
+      'GET /tsundere-dating/:niche/products, GET /tsundere-dating/optimal-list, POST /tweet-tsundere-dating, /generate-tsundere-ad, /import/tsundere-to-shopify',
+      'POST /api/ttmik-webhook   (TTMIK Tweet app → x.com/adhdloganberry)',
+      'POST /api/ttmik-heal-feed (Heal @adhdloganberry Twitter feed)'
     ]
   });
 });
 
 app.get('/health', async (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
+});
+
+function sanitizeLessonForTweet(lesson) {
+  if (typeof lesson !== 'string') return 'Korean practice';
+  const cleaned = lesson
+    .replace(/[\r\n\u0000-\u001f]/g, ' ')
+    .replace(/["'`]/g, '')
+    .replace(/[^\w\s\u0080-\uFFFF.,!?#%-]/g, '')
+    .trim()
+    .slice(0, 100);
+  return cleaned || 'Korean practice';
+}
+
+const HEAL_FEED_TWEET = '괜찮아요, 괜찮아요 — feed rest OK. 관찰만 하고 흡수하지 않을게요. One breath · one boundary · no re-watch spiral. #HealTheFeed #TTMIK #LearnKorean';
+
+// ---------- TTMIK TWEET APP WEBHOOK ----------
+app.post('/api/ttmik-heal-feed', async (req, res) => {
+  try {
+    const { event, user, tweet } = req.body || {};
+    if (event !== 'ttmik_heal_feed') {
+      return res.status(400).json({ error: 'Invalid event' });
+    }
+
+    const handle = (user || process.env.X_TWITTER_HANDLE || 'adhdloganberry').replace(/^@/, '');
+    const tweetText = (typeof tweet === 'string' && tweet.trim())
+      ? tweet.trim().slice(0, 280)
+      : HEAL_FEED_TWEET;
+
+    logger.info(`[TTMIK Heal Feed] x.com/${handle} — feed heal tweet`);
+    const result = await postToTwitter(tweetText);
+
+    return res.status(200).json({
+      success: true,
+      healed: true,
+      profile: `https://x.com/${handle}`,
+      tweet: result,
+    });
+  } catch (err) {
+    logger.error('TTMIK heal feed failed', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/ttmik-webhook', async (req, res) => {
+  try {
+    const { event, lesson, progress, platform, user } = req.body || {};
+    if (event !== 'ttmik_progress') {
+      return res.status(400).json({ error: 'Invalid event' });
+    }
+    if (!lesson || typeof progress !== 'number' || progress < 0 || progress > 100) {
+      return res.status(400).json({ error: 'Missing or invalid lesson/progress' });
+    }
+
+    const handle = (user || process.env.X_TWITTER_HANDLE || 'adhdloganberry').replace(/^@/, '');
+    const safeLesson = sanitizeLessonForTweet(lesson);
+    const safePlatform = sanitizeLessonForTweet(platform || 'TTMIK Tweet App');
+    const tweetText = `Just finished "${safeLesson}" with TTMIK! 🇰🇷🔥 Progress: ${Math.round(progress)}% #LearnKorean #TTMIK`;
+
+    logger.info(`[TTMIK Webhook] "${safeLesson}" — ${progress}% → x.com/${handle}`);
+    const result = await postToTwitter(tweetText);
+
+    return res.status(200).json({
+      success: true,
+      received: { event, lesson: safeLesson, progress, platform: safePlatform },
+      tweet: result,
+      profile: `https://x.com/${handle}`,
+    });
+  } catch (err) {
+    logger.error('TTMIK webhook failed', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // ---------- PRODUCTS ----------

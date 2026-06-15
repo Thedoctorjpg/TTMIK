@@ -51,6 +51,7 @@ metadata:
 - **hermit-lantern** — Hermit Lantern — one breath, one laugh · Boot: `TTMIK.html?heal-factor=hermit-lantern`
 - **humor-release** — Humor alchemy — 유머로 풀어낼게요 · Boot: `TTMIK.html?heal-factor=humor-release`
 - **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
+- **twitter-feed-heal** — Twitter feed heal — 피드는 쉬어도 괜찮아요 · Boot: `TTMIK.html?heal-factor=twitter-feed-heal` · `?tweet-heal=1`
 - Mantra: *One breath · one boundary · no re-watch spiral*
 - Library: `TTMIK.html?library=heal`
 

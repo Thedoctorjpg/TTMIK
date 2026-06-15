@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-15 · 18 tracks
+ * Healed: 2026-06-15 · 19 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -27,6 +27,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     "Pre-Match Attune",
     "Moon Card",
     "Cicada Attune",
+    "Twitter Feed",
     "Daily Integration"
 ];
 
@@ -190,6 +191,20 @@ const HEALING_FACTOR_DECK = [
         "ko": "새 껍질을 벗을게요",
         "en": "I will shed my old skin.",
         "phrase": "One breath before I shed my old skin."
+    },
+    {
+        "factorId": "twitter-feed-heal",
+        "title": "Twitter feed heal — @adhdloganberry cord-cut",
+        "subtitle": "Twitter Feed",
+        "boot": "TTMIK.html?tweet-heal=1",
+        "note": "twitter-feed-heal-ritual · quest side-boundary",
+        "skillId": "melbourne-lantern-bard",
+        "pin": "HOME",
+        "shadowIndex": 3,
+        "questId": "side-boundary",
+        "edit": "twitter-feed-heal-ritual",
+        "ko": "피드는 쉬어도 괜찮아요",
+        "en": "The feed can rest."
     }
 ];
 

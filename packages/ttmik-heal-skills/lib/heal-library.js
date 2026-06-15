@@ -18,6 +18,7 @@ const HEALING_LIBRARY_CATEGORIES = [
     'Pre-Match Attune',
     'Moon Card',
     'Cicada Attune',
+    'Twitter Feed',
     'Daily Integration'
 ];
 
@@ -33,6 +34,7 @@ const FACTOR_CATEGORIES = {
     'match-attune': 'Pre-Match Attune',
     'rei-mercy': 'Moon Card',
     'cicada-attune': 'Cicada Attune',
+    'twitter-feed-heal': 'Twitter Feed',
     'daily-ritual': 'Daily Integration',
     'no-rewatch': 'Daily Integration'
 };
@@ -43,7 +45,8 @@ const FACTOR_BOOTS = {
     'fifa-celebrate': 'TTMIK.html?fifa=1',
     'match-attune': 'TTMIK.html?attune=1',
     'rei-mercy': 'TTMIK.html?rei=1',
-    'cicada-attune': 'TTMIK.html?sua=1'
+    'cicada-attune': 'TTMIK.html?sua=1',
+    'twitter-feed-heal': 'TTMIK.html?tweet-heal=1'
 };
 
 const FACTOR_TITLES = {
@@ -58,6 +61,7 @@ const FACTOR_TITLES = {
     'match-attune': 'Attune before match — Federation pause',
     'rei-mercy': 'Rei mercy heal — observe without absorbing',
     'cicada-attune': 'Sua cicada attune — shed before you cheer',
+    'twitter-feed-heal': 'Twitter feed heal — @adhdloganberry cord-cut',
     'daily-ritual': 'Daily integration ritual',
     'no-rewatch': 'No re-watch spiral'
 };
@@ -71,6 +75,7 @@ const FACTOR_EN = {
     'match-attune': 'One breath before the cheer.',
     'rei-mercy': 'I observe without absorbing.',
     'cicada-attune': 'I will shed my old skin.',
+    'twitter-feed-heal': 'The feed can rest.',
     'no-rewatch': 'GoPro off before mirror · phone face-down',
     'post-dib': "It's okay, it's okay."
 };

@@ -257,6 +257,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'CA6', time: '0:46', pin: 'HOSIER', note: 'Shed the skin, not the self — open lane', dur: 14 }
         ]
     },
+    'twitter-feed-heal-ritual': {
+        id: 'twitter-feed-heal-ritual',
+        label: 'Twitter Feed Heal · @adhdloganberry Cord-Cut (45s)',
+        duration: 45,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'cinematic',
+        overlay: 'FEED HEAL',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'HOME', episode: null, reel: null },
+        pins: ['HOME', 'HOTEL'],
+        exportTargets: ['TTMIK Tweet app', 'x.com/adhdloganberry feed heal'],
+        pipeline: ['twitter-feed-heal-ritual'],
+        shots: [
+            { id: 'TF1', time: '0:00', pin: 'HOME', note: 'Phone face-down · scroll tab closed · one breath', dur: 8 },
+            { id: 'TF2', time: '0:08', pin: 'HOME', note: 'Helen boundary · 괜찮아요, 괜찮아요', dur: 8 },
+            { id: 'TF3', time: '0:16', pin: 'HOME', note: 'Rei mercy · 관찰만 하고 흡수하지 않을게요', dur: 8 },
+            { id: 'TF4', time: '0:24', pin: 'HOTEL', note: 'Cord-cut · own timeline · no algorithm reply owed', dur: 8 },
+            { id: 'TF5', time: '0:32', pin: 'HOTEL', note: 'Post heal tweet → x.com/adhdloganberry', dur: 13 }
+        ]
+    },
     'rei-mercy-ritual': {
         id: 'rei-mercy-ritual',
         label: 'Rei Mercy · Observe Without Absorbing · NERV Pause (60s)',

@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Play, Pause, SkipBack, SkipForward, Repeat, Upload,
-  BookOpen, BarChart3, GraduationCap, Menu, X, Sun, Moon, Send,
+  BookOpen, BarChart3, GraduationCap, Menu, X, Sun, Moon, Send, Heart,
 } from 'lucide-react';
 import defaultLessons from './data/lessons';
 import { useProgress } from './hooks/useProgress';
 import ShadowingPractice from './components/ShadowingPractice';
 import ProgressDashboard from './components/ProgressDashboard';
 
-const WEBHOOK_URL = import.meta.env.VITE_TTMIK_WEBHOOK_URL || '';
+const WEBHOOK_URL = import.meta.env.VITE_TTMIK_WEBHOOK_URL || '/api/ttmik-webhook';
+const HEAL_FEED_URL = import.meta.env.VITE_TTMIK_HEAL_FEED_URL || '/api/ttmik-heal-feed';
+const X_HANDLE = (import.meta.env.VITE_X_HANDLE || 'adhdloganberry').replace(/^@/, '');
+const HEAL_FEED_TWEET = '괜찮아요, 괜찮아요 — feed rest OK. 관찰만 하고 흡수하지 않을게요. One breath · one boundary · no re-watch spiral. #HealTheFeed #TTMIK #LearnKorean';
 
 function escapeText(str) {
   if (typeof str !== 'string') return '';
@@ -166,10 +169,41 @@ export default function App() {
     setTimeout(() => setNotesSaved(false), 1500);
   };
 
-  // ---- Tweet + Webhook ----
+  // ---- Heal feed + Tweet ----
+  const healFeed = useCallback(() => {
+    const text = HEAL_FEED_TWEET;
+    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+
+    const payload = {
+      event: 'ttmik_heal_feed',
+      lesson: 'Twitter feed heal',
+      progress: 100,
+      timestamp: new Date().toISOString(),
+      platform: 'TTMIK Feed Heal',
+      user: X_HANDLE,
+      tweet: text,
+    };
+
+    fetch(HEAL_FEED_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(`💚 Feed healed @${X_HANDLE}:`, data))
+      .catch((err) => console.warn('Heal feed error:', err));
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('heal-feed') === '1' || params.get('tweet-heal') === '1') {
+      healFeed();
+    }
+  }, [healFeed]);
+
   const tweetProgress = () => {
     const text = `Just finished "${escapeText(lesson?.title)}" with TTMIK! 🇰🇷🔥 Progress: ${Math.round(progressPct)}% #LearnKorean #TTMIK`;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
 
     const payload = {
       event: 'ttmik_progress',
@@ -177,16 +211,17 @@ export default function App() {
       progress: Math.round(progressPct),
       timestamp: new Date().toISOString(),
       platform: 'TTMIK Tweet App',
+      user: X_HANDLE,
     };
 
-    if (WEBHOOK_URL) {
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }).catch((err) => console.warn('Webhook error:', err));
-    }
-    console.log('📤 Webhook payload:', payload);
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(`📤 Posted to x.com/${X_HANDLE}:`, data))
+      .catch((err) => console.warn('Webhook error:', err));
   };
 
   // ---- Keyboard shortcuts ----
@@ -370,13 +405,19 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Tweet button */}
-                    <div className="flex justify-center mt-6">
+                    {/* Tweet + heal feed */}
+                    <div className="flex flex-wrap justify-center gap-3 mt-6">
+                      <button
+                        onClick={healFeed}
+                        className="flex items-center gap-3 bg-sky-600/20 border border-sky-500/30 text-sky-100 px-6 py-3 rounded-3xl hover:bg-sky-600/30 transition"
+                      >
+                        <Heart className="w-5 h-5" /> Heal @{X_HANDLE} feed
+                      </button>
                       <button
                         onClick={tweetProgress}
                         className="flex items-center gap-3 bg-black border border-white/20 text-white px-6 py-3 rounded-3xl hover:bg-zinc-900 transition"
                       >
-                        <Send className="w-5 h-5" /> Tweet Progress
+                        <Send className="w-5 h-5" /> Post to @{X_HANDLE}
                       </button>
                     </div>
                   </div>

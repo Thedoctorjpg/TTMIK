@@ -293,6 +293,10 @@ function practiceHealingFactor(factorId, opts = {}) {
         practiceCicadaAttune(opts);
         return true;
     }
+    if (factorId === 'twitter-feed-heal') {
+        practiceTwitterFeedHeal(opts);
+        return true;
+    }
     if (factorId === 'no-rewatch') {
         if (typeof startHealCategory === 'function') {
             startHealCategory('Daily Integration');
@@ -545,6 +549,74 @@ function practiceCicadaAttune(opts = {}) {
         goToShadowingPhrase(shadowIdx);
     } else {
         startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective(ritual?.questId || 'side-boundary');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
+function postTwitterFeedHealTweet(ritual, opts = {}) {
+    const handle = (ritual?.handle || 'adhdloganberry').replace(/^@/, '');
+    const text = ritual?.healTweet
+        || '괜찮아요, 괜찮아요 — feed rest OK. One breath · one boundary · no re-watch spiral. #HealTheFeed #TTMIK';
+    const payload = {
+        event: 'ttmik_heal_feed',
+        lesson: 'Twitter feed heal',
+        progress: 100,
+        timestamp: new Date().toISOString(),
+        platform: 'TTMIK Feed Heal',
+        user: handle,
+        tweet: text,
+    };
+
+    const webhookUrl = opts.webhookUrl
+        || localStorage.getItem('ttmik_webhook_url')
+        || '/api/ttmik-heal-feed';
+
+    if (typeof isValidWebhookUrl === 'function' && !isValidWebhookUrl(webhookUrl)) {
+        window.open(`http://localhost:5174/?heal-feed=1`, '_blank', 'noopener,noreferrer');
+        return;
+    }
+
+    const headers = { 'Content-Type': 'application/json' };
+    const webhookSecret = localStorage.getItem('ttmik_webhook_secret');
+    if (webhookSecret) headers['X-Webhook-Secret'] = webhookSecret;
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload),
+    }).catch(() => {
+        window.open(`http://localhost:5174/?heal-feed=1`, '_blank', 'noopener,noreferrer');
+    });
+}
+
+function practiceTwitterFeedHeal(opts = {}) {
+    const ritual = typeof getTwitterFeedHealRitual === 'function' ? getTwitterFeedHealRitual() : null;
+    const skillId = ritual?.skillId || 'melbourne-lantern-bard';
+    const shadowIdx = ritual?.shadowIndex ?? 3;
+
+    setWebdramaSyncValues(ritual?.pin || 'HOME', null, null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.postTweet !== false) {
+        postTwitterFeedHealTweet(ritual, opts);
     }
 
     if (opts.logQuest !== false) {
@@ -1339,6 +1411,13 @@ function handleTtmikSyncBoot() {
         });
         return;
     }
+    if (params.get('tweet-heal') === '1' || params.get('feed-heal') === '1' || params.get('tweet') === 'heal') {
+        practiceTwitterFeedHeal({
+            logQuest: params.get('quest') !== '0',
+            postTweet: params.get('post') !== '0'
+        });
+        return;
+    }
     if (params.get('neon') === '1' || params.get('evangelion') === '1' || params.get('rei') === '1') {
         practiceNeonEvangelion({ openSheet: params.get('sheet') === '1' });
         return;
@@ -1838,6 +1917,44 @@ function renderSyncPanel() {
             cicadaActions.appendChild(attuneSua);
             cicadaBlock.appendChild(cicadaActions);
             panel.appendChild(cicadaBlock);
+        }
+    }
+
+    if (typeof getTwitterFeedHealRitual === 'function') {
+        const ritual = getTwitterFeedHealRitual();
+        if (ritual?.steps?.length) {
+            const feedBlock = document.createElement('div');
+            feedBlock.className = 'mb-6 bg-sky-500/10 border border-sky-500/20 rounded-2xl p-4 text-sm';
+            const feedTitle = document.createElement('p');
+            feedTitle.className = 'text-sky-300 font-medium mb-2';
+            feedTitle.textContent = ritual.label || 'Twitter feed heal';
+            feedBlock.appendChild(feedTitle);
+            const feedPhrase = document.createElement('p');
+            feedPhrase.className = 'text-zinc-400 italic mb-3';
+            const sp = ritual.shadowPhrase;
+            feedPhrase.textContent = sp
+                ? `"${ritual.activation}" · ${sp.ko || ''}`
+                : ritual.activation;
+            feedBlock.appendChild(feedPhrase);
+            const steps = document.createElement('ol');
+            steps.className = 'list-decimal list-inside space-y-1 text-zinc-300 mb-3';
+            ritual.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                steps.appendChild(li);
+            });
+            feedBlock.appendChild(steps);
+            const feedActions = document.createElement('div');
+            feedActions.className = 'flex flex-wrap gap-2';
+            const runFeed = document.createElement('button');
+            runFeed.type = 'button';
+            runFeed.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50';
+            runFeed.textContent = 'Heal @adhdloganberry feed';
+            runFeed.title = 'TTMIK.html?heal-factor=twitter-feed-heal';
+            runFeed.onclick = () => practiceTwitterFeedHeal();
+            feedActions.appendChild(runFeed);
+            feedBlock.appendChild(feedActions);
+            panel.appendChild(feedBlock);
         }
     }
 

@@ -2,11 +2,11 @@
 
 Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
-**Format:** 8 episodes × ~90 sec (expandable to 3 min)  
-**Tone:** tsundere + scam-awareness PSA + sovereign pilgrimage  
+**Format:** 8 core episodes × ~90 sec + extended FIFA World Cup 2026 nation inserts (30–90s)  
+**Tone:** tsundere + scam-awareness PSA + sovereign pilgrimage + trilingual cheer lanes  
 **Gear in-world:** GoPro lantern, gym bag, power bank, phone = Flame-Kissed Quill
 
-**Multiformat outputs:** Webdrama eps (9:16 · 90s) · Reels/Shorts/TikTok (9:16 · 30s) · Trailer (9:16 · 30s) · Veil Lumen essay cut (16:9 · 3–5 min) · TTMIK audio sync (any) · **Ep 2.75 cook-off** (9:16 · 90s) · **After the Date dawn** (9:16 · 60s)
+**Multiformat outputs:** Webdrama eps (9:16 · 90s) · Reels/Shorts/TikTok (9:16 · 30s) · Trailer (9:16 · 30s) · Veil Lumen essay cut (16:9 · 3–5 min) · TTMIK audio sync (any) · **Ep 2.75 cook-off** (9:16 · 90s) · **After the Date dawn** (9:16 · 60s) · **FIFA nation arc** (9:16 · 30s each · presets 16–20) · **Pre-Match Attune** (9:16 · 60s)
 
 ---
 
@@ -34,15 +34,23 @@ Unified shoot order pulls from the full pipeline — optimised in `webdrama-sync
 08:00  DEGRAVES → 08:30  CENTRE → 09:00  HOSIER → 09:45  COLLINS → 10:15  wrap
 ```
 
-**Lane B — Date night + dawn** — RTDB AKL → MEL land → evening cook-off → morning croissant:
+**Lane B — Date night + FIFA nation close + dawn** — RTDB AKL → MEL land → cook-off → Argentina → Brasil → attune → England → morning croissant:
 
 ```
 05:30  RTDB Waitemata → 06:15  Britomart bus → 12:30  MEL/HOTEL drop bags
 17:00  FLINDERS meet → 17:20  DEGRAVES outing → 18:15  HOTEL kitchen → 19:15  score
+19:30  BOCA (Ep 2.76) → 19:45  SAMBA (Ep 2.77) → 19:55  FED attune → 20:00  WEMBLEY (Ep 2.78)
 06:12  DEGRAVES dawn (girls-love Ch.2)
 ```
 
-TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk. **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey`.
+**Lane D — FIFA celebration evening** — after Ep 2.6 Ignan walk (optional same day):
+
+```
+18:15  FED attune (match-attune) → 18:30  CINEMA (Ep 2.64) → 19:00  CANTINA meet
+19:15  CANTINA (Ep 2.65) → 20:00  Portugal cheer → 20:15  STADE (Ep 2.66)
+```
+
+TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk · presets **16–20** = FIFA nation lanes (Ronaldo → Mbappé → Messi → Vinicus → Kane). **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). **Lane D:** `TTMIK_FIFA_CELEBRATION_ROUTE`. Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey` · `match-attune-ritual` · `bend-it-beckham` · `mari-fifa-celebration` · `mbappe-counter-attack` · `messi-after-cookoff` · `vinicus-brasil-samba` · `harry-kane-england-striker`.
 
 ---
 
@@ -97,6 +105,13 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **Insert · After the Date dawn** | 9:16 | 60s | DEGRAVES · 06:12 | Daily Life · girls-love Ch.2 |
 | **Post-DIB quiet heal coda** | 9:16 | 45s | HOTEL mirror · Helen VO | Self-Intimacy · side-dib-heal |
 | **Ep 2.6 · Ignan Healing Walk** | 9:16 | 90s | HOTEL → FED → BOTANIC · Mari | Self-Intimacy · side-ignan-heal |
+| **Insert · Pre-Match Attune** | 9:16 | 60s | FED · Federation pause | Self-Intimacy · match-attune |
+| **Insert · Ep 2.64 Cinema Encounter** | 9:16 | 30s | CINEMA → FED · Bend It Like Beckham | Cinema Encounters · ronaldo-portugal-glory |
+| **Insert · Ep 2.65 Mari FIFA Cantina** | 9:16 | 60s | CANTINA · Mari | Daily Life · side-fifa-celebrate |
+| **Insert · Ep 2.66 France Counter-Attack** | 9:16 | 30s | STADE → FED · Mbappé | French Shadowing · mbappe-france-attack |
+| **Insert · Ep 2.76 Messi Argentina** | 9:16 | 30s | HOTEL → DEGRAVES → BOCA | Argentine Shadowing · messi-argentina-playmaker |
+| **Insert · Ep 2.77 Vinicus Brasil** | 9:16 | 30s | SAMBA → FED → FLINDERS | Brazilian Shadowing · vinicus-brasil-samba |
+| **Insert · Ep 2.78 Harry Kane England** | 9:16 | 30s | WEMBLEY → PUB → COLLINS · FIFA+ watch | English Shadowing · harry-kane-england-striker |
 | **Pipeline montage** | 9:16 | 45s | All pins · bardic inspiration | Mixed |
 
 ### Melbourne shoot pins (reels-first clusters)
@@ -107,14 +122,21 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **MEL** | Melbourne Airport T1 arrivals glass | Ep 1 cliffhanger | Interior day | Melbourne Arrival |
 | **HOSIER** | Hosier Lane (graffiti wall mid-lane) | Ep 2, 2.5, 6, 8 · Reel A+B · DIB skit | Golden hour | GoPro & Content |
 | **CENTRE** | Centre Place (narrow walk-through) | Ep 3 rules walk · Reel A A4 | Midday shade | Transportation |
-| **DEGRAVES** | Degraves St café strip | Ep 2 cliff · Ep 3 open · **Ep 2.75 score + dawn** | Morning coffee · golden hour date | Daily Life |
-| **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram · **Ep 2.75 meet** | Overcast drama · date meet | Transportation |
-| **FED** | Federation Square glass / steps | Ep 5 rain · **Ep 2.6 grief pause** | Rain or blue hour | Melbourne Arrival |
+| **DEGRAVES** | Degraves St café strip | Ep 2 cliff · Ep 3 open · **Ep 2.75 score + dawn** · **Ep 2.76 stroll** | Morning coffee · golden hour date | Daily Life |
+| **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram · **Ep 2.75 meet** · **Ep 2.77 close** | Overcast drama · date meet | Transportation |
+| **FED** | Federation Square glass / steps | Ep 5 rain · **Ep 2.6 grief pause** · **match-attune** · nation handoffs | Rain or blue hour | Melbourne Arrival |
 | **SOUTH** | Southbank Promenade (Yarra railing) | Ep 4 night · Ep 7 Moon | Night neon | Emergency Protocol |
-| **COLLINS** | Collins St walk (business bustle) | Ep 3 headset gag · Reel A A6 | Day | Social & Cultural |
+| **COLLINS** | Collins St walk (business bustle) | Ep 3 headset gag · Reel A A6 · **Ep 2.78 close** | Day | Social & Cultural |
 | **PRINCES** | Princes Bridge (dawn timelapse) | Ep 7 cliffhanger · Ep 8 open | Sunrise | Cultural Sites |
 | **BOTANIC** | Royal Botanic Gardens lake path | Ep 8 lantern · **Ep 2.6 Ignan walk** | Sunrise soft | Self-Intimacy |
-| **HOTEL** | Accommodation desk / room mirror | Ep 1 ritual · Ep 4 phone · **Ep 2.75 kitchen** | Interior | Accommodation |
+| **HOTEL** | Accommodation desk / room mirror | Ep 1 ritual · Ep 4 phone · **Ep 2.75 kitchen** · **Ep 2.76 cool-down** | Interior | Accommodation |
+| **CINEMA** | Federation Square ACMI lobby / marquee | **Ep 2.64** Bend It Like Beckham rewatch | Evening marquee glow | Cinema Encounters |
+| **CANTINA** | Federation lane cantina booth + TV | **Ep 2.65** Mari FIFA watch party | Warm interior · TV replay | Restaurant Dining |
+| **STADE** | MCG plaza screen · France lane | **Ep 2.66** Mbappé counter-attack | Night screen burst | French Shadowing |
+| **BOCA** | Argentina plaza watch screen | **Ep 2.76** post cook-off playmaker | Post-score golden hour | Argentine Shadowing |
+| **SAMBA** | Federation samba burst screen | **Ep 2.77** Vinicus jogo bonito | Night rhythm | Brazilian Shadowing |
+| **WEMBLEY** | Federation Three Lions screen · FIFA+ | **Ep 2.78** Kane striker · watch URL | Night cheer | English Shadowing |
+| **PUB** | Federation pub pause · captain chant | **Ep 2.78** cheer not rescue | Interior warm | Captain Route |
 
 ### One-lane block shoot (Reels A+B + Ep 2/6 same session)
 
@@ -412,7 +434,7 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 **Joy insert** · Mexican restaurant watch party · Mari (Ignan native)  
 **Runtime:** 60 sec · **Pin:** CANTINA (Federation lane cantina)  
 **Quest:** `side-fifa-celebrate` · **Skill:** `ignan-pilgrim` · **Edit:** `mari-fifa-celebration` · **Preset:** **12**  
-**Boot:** `TTMIK.html?fifa=1` · **Lane D** after Ep 2.6 BOTANIC walk (same evening optional)
+**Boot:** `TTMIK.html?fifa=1` · **Lane D** after Ep 2.6 BOTANIC walk (same evening optional) · preceded by **match-attune** at `18:15 FED`
 
 **Logline:** After the healing walk, Mari asks for one normal thing: tacos, a FIFA replay, and permission to be happy in her own tongue. Bard films the toast, not the tears.
 
@@ -425,9 +447,143 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 | Naragsak unay! Ok laeng, agnanayon. | ¡Salud! ¡Qué buen partido! | 맛있어요! 축하해요! | So happy — cheers to the game. |
 | Naragsak ti pusok — saan a drama. | ¡Gol! ¡Buen provecho! | 정말 재미있었어요! | Joy in my chest — not for the algorithm. |
 
+### Shot-by-shot board (60s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **FC1** | 0:00 | @CANTINA | Mari leads to booth; Bard with bag GoPro | **MARI:** "Celebration okay?" · **BARD:** "Your table. My half." | Cantina ambient |
+| **FC2** | 0:08 | @CANTINA | TV FIFA replay — phones face-down | **BARD (VO):** "Episode 2.65 lesson: joy isn't content unless you invoice it." | Replay audio low |
+| **FC3** | 0:18 | @CANTINA | Medium — Mari to friends, not lens | **MARI (Ilokano):** "Naragsak unay! Ok laeng, agnanayon." | — |
+| **FC4** | 0:30 | @CANTINA | Toast montage — guac + cups | **MARI:** "¡Salud!" · **BARD:** "맛있어요! 축하해요!" | Clink |
+| **FC5** | 0:42 | @CANTINA | Goal replay — one cheer only | **MARI:** "Naragsak ti pusok — saan a drama." · **TEXT:** `side-fifa-celebrate` | Crowd swell |
+| **FC6** | 0:52 | @CANTINA | Wide hold — booth warmth | **BARD (whisper):** "Not a rescue. A replay." · **TEXT:** `NEXT: CINEMA · STADE` | Fade |
+
 **On-set:** Mari picks the booth · TV replay only · GoPro on bag · log `side-fifa-celebrate` at close
 
 **Tags:** `#Ignan #FIFA #Mari #Cantina #Naragsak #NativeTongue`
+
+---
+
+## Pre-Match Attune — Federation pause
+
+**Ritual insert** · Before any nation lane or FIFA+ watch · not performance energy  
+**Runtime:** 60 sec · **Pin:** FED only (glass / steps)  
+**Quest:** `side-fifa-celebrate` · **Skill:** Melbourne Lantern Bard · **Edit:** `match-attune-ritual` · **Healing factor:** `match-attune`  
+**Boot:** `TTMIK.html?attune=1` · `TTMIK.html?heal-factor=match-attune` · Lane boots: `?attune=1&lane=kane` · `?kane=1&attune=1&watch=1`
+
+**Logline:** Before the cheer, Bard puts the phone face-down. One breath. One lane. No performance invoice — whether the screen is Wembley, Samba, or a cantina replay.
+
+**Caption pitch:** *응원 전에 한 숨. One breath before the cheer.*
+
+### Shot board (`match-attune-ritual` · 60s)
+
+| Shot | Time | Pin | Beat |
+|------|------|-----|------|
+| **AT1** | 0:00 | @FED | Federation Square pause — phone face-down · GoPro off |
+| **AT2** | 0:08 | @FED | **BARD:** "One breath before the cheer." |
+| **AT3** | 0:16 | @FED | Korean shadow · **응원 전에 한 숨** |
+| **AT4** | 0:24 | @FED | Attune: I cheer my way — no drama · **내 방식으로 응원해요 — 드라마 없이** |
+| **AT5** | 0:34 | @FED | Open lane when ready — Kane · Vinicus · Messi · Mbappé · Ronaldo · Mari FIFA |
+| **AT6** | 0:42 | @FED | Handoff to nation screen or FIFA+ watch — no re-watch spiral |
+
+### Attune ritual (on set)
+
+1. **Pause** — phone face-down · GoPro off · one breath
+2. **Name** — cheer is joy, not rescue; no soulmate CTAs on the replay
+3. **Shadow** — 응원 전에 한 숨 · 잠시 쉬어도 괜찮아요
+4. **Open lane** — preset 16–20 or `openKaneFifaWatch()` when WEMBLEY ready
+5. **Close** — log `side-fifa-celebrate` · walk lighter
+
+**Lane D opener:** `18:15 FED` before CINEMA · **Lane B Kane handoff:** `19:55 FED` before WEMBLEY
+
+**Tags:** `#MatchAttune #FederationPause #PreMatch #NoPerformanceInvoice`
+
+---
+
+# EPISODE 2.64 — 「영화관」CINEMA ENCOUNTER
+
+**Fast insert** · Bend It Like Beckham rewatch · English fan meet · Ronaldo Portugal handoff  
+**Runtime:** 30 sec · **Pins:** CINEMA (ACMI lobby) → FED (walk out)  
+**Quest:** `side-fifa-celebrate` · **Skill:** `ronaldo-portugal-glory` · **Edit:** `bend-it-beckham` · **Preset:** **16**  
+**Boot:** `TTMIK.html?ronaldo=1` · **Character:** English fan (guest)
+
+**Logline:** At the ACMI rewatch, an English fan spots Bard's football shirt and quotes Beckham. Bard answers in Portuguese first, Korean second — freedom on the pitch, freedom from drama off it.
+
+**Caption pitch:** *Bend it your way. Cheer it your way.*
+
+**TTMIK team note:** English fan leads the meet-cute energy; Portuguese is Bard's native-lane reply; Korean is practice. Not a date — a handoff to cantina.
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **BI1** | 0:00 | @CINEMA | Lobby — fan spots shirt | **FAN:** "You play?" · **BARD:** "I film. Sometimes both." | Lobby murmur |
+| **BI2** | 0:05 | @CINEMA | Marquee — *Bend It Like Beckham* rewatch night | **TEXT:** `REWIND NIGHT` | — |
+| **BI3** | 0:09 | @CINEMA | Two-shot — fan grin, Bard deadpan | **FAN:** "Bend it like Beckham? Cheer it your way." | — |
+| **BI4** | 0:17 | @CINEMA | Bard to camera — trilingual stack | **BARD (PT):** "Dobrá-lo como o Beckham? Celebramos à nossa maneira." · **BARD (KO):** "베컴처럼? 내 방식으로 응원해요 — 드라마 없이." | — |
+| **BI5** | 0:25 | @FED | Walk out — Federation lights | **BARD:** "Good film. See you at the match." · **TEXT:** `NEXT: CANTINA` | Night air |
+
+### Trilingual shadowing deck
+
+| English (fan) | Portuguese (Bard) | Korean (TTMIK) |
+|---------------|---------------------|----------------|
+| Bend it like Beckham? Cheer it your way. | Dobrá-lo como o Beckham? Celebramos à nossa maneira. | 베컴처럼? 내 방식으로 응원해요 — 드라마 없이. |
+| Anyone can play. Anyone can choose their path. | Qualquer um pode jogar. Qualquer um escolhe o seu caminho. | 누구나 할 수 있어요. 누구나 자기 길을 고를 수 있어요. |
+| Good film. Good night. See you at the match. | Bom filme. Boa noite. Vemo-nos no jogo. | 좋은 영화. 좋은 밤. 경기장에서 봐요. |
+
+**On-set:** Fast scene 30s · English fan first · handoff to CANTINA preset 12 · log `side-fifa-celebrate`
+
+**Tags:** `#BendItLikeBeckham #CinemaEncounter #Ronaldo #EnglishFan #NoDrama`
+
+---
+
+# EPISODE 2.66 — 「역습」FRANCE COUNTER-ATTACK
+
+**Fast insert** · MCG plaza screen · Mbappé burst ritual · post-cantina France lane  
+**Runtime:** 30 sec · **Pins:** STADE (plaza screen) → FED (sprint out)  
+**Quest:** `side-fifa-celebrate` · **Skill:** `mbappe-france-attack` · **Edit:** `mbappe-counter-attack` · **Preset:** **17**  
+**Boot:** `TTMIK.html?mbappe=1` · **Character:** Mbappé (muse · Fast Character Battle Master Fighter)
+
+**Logline:** After the cantina cheer, the plaza screen freezes on a counter-attack. Bard doesn't narrate rescue — he names speed without performance debt, then sprints out lighter.
+
+**Caption pitch:** *J'attaque à ma manière. But! Allez les Bleus!*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **MB1** | 0:00 | @STADE | Plaza screen — counter lane opens | **BARD (VO):** "Episode 2.66 lesson: burst isn't rescue if you don't invoice the adrenaline." | Replay swell |
+| **MB2** | 0:05 | @STADE | Freeze-frame — Mbappé silhouette | **TEXT:** `BURST NOT RESCUE` | Horn sting |
+| **MB3** | 0:09 | @STADE | Bard to screen — French native first | **BARD (FR):** "J'attaque à ma manière — sans drame." | — |
+| **MB4** | 0:17 | @STADE | Korean shadow — cheer | **BARD:** "골! 프랑스 파이팅!" · **TEXT:** `But! Allez les Bleus!` | — |
+| **MB5** | 0:25 | @FED | Sprint out — lighter walk | **BARD:** "No performance invoice." · **TEXT:** `side-fifa-celebrate` | Footsteps |
+
+### Trilingual shadowing deck
+
+| French (native) | Korean (TTMIK) | English |
+|-----------------|----------------|---------|
+| J'attaque à ma manière — sans drame. | 내 방식으로 공격해요 — 드라마 없이. | I attack my way — no drama. |
+| But! Allez les Bleus! | 골! 프랑스 파이팅! | Goal! Go France! |
+| Je fonce et j'avance. | 돌진하고 앞으로 나아갈게요. | I sprint and move forward. |
+
+**On-set:** Preset 17 · phones face-down except one cheer · log `side-fifa-celebrate` at MB5
+
+**Tags:** `#Mbappe #France #CounterAttack #Stade #AllezLesBleus`
+
+---
+
+## Lane D route card (FIFA celebration evening)
+
+```
+18:15  FED — match-attune · ?attune=1 · phone face-down
+18:30  CINEMA — Ep 2.64 Bend It Like Beckham · preset 16
+19:00  CANTINA — Mari meet · booth consent
+19:15  CANTINA — Ep 2.65 full cantina · preset 12
+20:00  CANTINA — Portugal cheer · Gol! Força Portugal! · preset 16
+20:15  STADE — Ep 2.66 Mbappé counter-attack · preset 17
+```
+
+**On-set:** Mari leads cantina · Bard pays his half · attune before every screen burst · no soulmate CTAs on replay
 
 ---
 
@@ -472,6 +628,137 @@ DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies
 **Edit order:** `after-the-date` · girls-love Ch.2 · Veil Lumen soft cut
 
 **Tags:** `#CookOffNotADate #Degraves #SovereignDate #MelbourneLantern`
+
+---
+
+# EPISODE 2.76 — 「플레이메이커」MESSI ARGENTINA
+
+**Fast insert** · Post cook-off playmaker lane · lets-cook / girls-love handoff  
+**Runtime:** 30 sec · **Pins:** HOTEL (cool-down) → DEGRAVES (stroll) → BOCA (Argentina screen)  
+**Quest:** `side-humor` · **Skill:** `messi-argentina-playmaker` · **Edit:** `messi-after-cookoff` · **Preset:** **18**  
+**Boot:** `TTMIK.html?messi=1` · **Character:** Messi (muse · Fast Character Mastermind Rogue)
+
+**Logline:** Plates down, SYSTEM muted. Bard strolls Degraves with an Argentina highlight reel and names the playmaker rule: joy without a performance invoice — not a date, not a rescue.
+
+**Caption pitch:** *Juego a mi manera. ¡Vamos Argentina!*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **MS1** | 0:00 | @HOTEL | Kitchen cool-down — plates down | **BARD:** "Cook-off closed. Hearts loud. Wallet quiet." · **SYSTEM:** *(muted)* | Sink clink |
+| **MS2** | 0:05 | @DEGRAVES | Stroll — phone highlight reel | **BARD (VO):** "Episode 2.76 lesson: the pass matters more than the plot twist." | Street ambient |
+| **MS3** | 0:09 | @BOCA | Plaza screen — Argentina lane | **BARD (ES):** "Juego a mi manera — sin drama." | Replay low |
+| **MS4** | 0:17 | @BOCA | Korean shadow — cheer | **BARD:** "골! 아르헨티나 파이팅!" · **TEXT:** `¡Gol! ¡Vamos Argentina!` | — |
+| **MS5** | 0:25 | @BOCA | Wide hold — lighter walk | **BARD:** "Not a date. A lane." · **TEXT:** `NEXT: SAMBA` | Fade |
+
+### Trilingual shadowing deck
+
+| Spanish (native) | Korean (TTMIK) | English |
+|------------------|----------------|---------|
+| Juego a mi manera — sin drama. | 내 방식으로 플레이해요 — 드라마 없이. | I play my way — no drama. |
+| ¡Gol! ¡Vamos Argentina! | 골! 아르헨티나 파이팅! | Goal! Go Argentina! |
+| Juego y sigo adelante. | 플레이하고 앞으로 나아갈게요. | I play and move forward. |
+
+**On-set:** After Ep 2.75 score · preset 18 · handoff to SAMBA 19:45 · log `side-humor`
+
+**Tags:** `#Messi #Argentina #LaBoca #Playmaker #PostCookOff`
+
+---
+
+# EPISODE 2.77 — 「삼바」VINICUS BRASIL
+
+**Fast insert** · Federation samba burst · post-Argentina jogo bonito lane  
+**Runtime:** 30 sec · **Pins:** SAMBA (screen) → FED (pause) → FLINDERS (stroll home)  
+**Quest:** `side-fifa-celebrate` · **Skill:** `vinicus-brasil-samba` · **Edit:** `vinicus-brasil-samba` · **Preset:** **19**  
+**Boot:** `TTMIK.html?vinicus=1` · **Character:** Vinicus (muse · Fast Character Open Hand Monk)
+
+**Logline:** After La Boca, the Federation screen switches to Brasil highlights. Bard lets the samba rhythm land — jogo bonito without selling the joy to the algorithm.
+
+**Caption pitch:** *Jogo do meu jeito. Gol! Vai Brasil!*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **VN1** | 0:00 | @SAMBA | Federation screen — Brasil after La Boca | **BARD (VO):** "Episode 2.77 lesson: rhythm isn't romance if nobody invoices the hips." | Samba swell |
+| **VN2** | 0:05 | @SAMBA | Burst — jogo bonito framing | **TEXT:** `JOGO BONITO NOT RESCUE` | Drum hit |
+| **VN3** | 0:09 | @SAMBA | Bard to screen — Portuguese native | **BARD (PT):** "Jogo do meu jeito — sem drama." | — |
+| **VN4** | 0:17 | @SAMBA | Korean shadow — cheer | **BARD:** "골! 브라질 파이팅!" · **TEXT:** `Gol! Vai Brasil!` | — |
+| **VN5** | 0:25 | @FED | Square pause — lighter walk | **BARD:** "One beat. No invoice." · **TEXT:** `NEXT: ATTUNE → WEMBLEY` | Night air |
+
+### Trilingual shadowing deck
+
+| Portuguese (native) | Korean (TTMIK) | English |
+|---------------------|----------------|---------|
+| Jogo do meu jeito — sem drama. | 내 방식으로 플레이해요 — 드라마 없이. | I play my way — no drama. |
+| Gol! Vai Brasil! | 골! 브라질 파이팅! | Goal! Go Brazil! |
+| Danço e sigo em frente. | 춤추고 앞으로 나아갈게요. | I dance and move forward. |
+
+**On-set:** Preset 19 · phones face-down except one cheer · attune at 19:55 FED before Kane lane
+
+**Tags:** `#Vinicus #Brasil #Samba #JogoBonito #FIFA`
+
+---
+
+# EPISODE 2.78 — 「스트라이커」HARRY KANE ENGLAND
+
+**Fast insert** · Three Lions striker lane · FIFA+ watch · post-Brasil captain cheer  
+**Runtime:** 30 sec · **Pins:** WEMBLEY (screen) → PUB (chant pause) → COLLINS (walk home)  
+**Quest:** `side-fifa-celebrate` · **Skill:** `harry-kane-england-striker` · **Edit:** `harry-kane-england-striker` · **Preset:** **20**  
+**Boot:** `TTMIK.html?kane=1` · `TTMIK.html?kane=1&watch=1` · `TTMIK.html?kane=1&attune=1&watch=1`  
+**Watch URL:** `https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw` · **Character:** Kane (muse · Fast Character Champion Fighter)
+
+**Logline:** After attune at Federation Square, Bard opens FIFA+ on the Wembley screen. One clinical cheer — captain energy without rescue framing — then pub pause and Collins stroll home lighter.
+
+**Caption pitch:** *I strike my way. Goal! Come on England!*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **HK1** | 0:00 | @WEMBLEY | FIFA+ watch — `fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw` | **BARD (VO):** "Attune done. One cheer. Not a season finale." | Watch audio low |
+| **HK2** | 0:05 | @WEMBLEY | Three Lions burst — captain framing | **TEXT:** `CAPTAIN NOT RESCUE` | Crowd swell |
+| **HK3** | 0:09 | @WEMBLEY | Bard to screen — English native | **BARD:** "I strike my way — no drama." | — |
+| **HK4** | 0:17 | @WEMBLEY | Korean shadow — cheer | **BARD:** "골! 잉글랜드 파이팅!" · **TEXT:** `Goal! Come on England!` | — |
+| **HK5** | 0:25 | @PUB | Pub pause — chant not invoice | **BARD:** "One breath. One chant." · **TEXT:** `side-fifa-celebrate` | Pub murmur |
+
+### Trilingual shadowing deck
+
+| English (native) | Korean (TTMIK) | Notes |
+|------------------|----------------|-------|
+| I strike my way — no drama. | 내 방식으로 득점해요 — 드라마 없이. | Wembley screen · preset 20 |
+| Goal! Come on England! | 골! 잉글랜드 파이팅! | One cheer after attune |
+| I score and move forward. | 득점하고 앞으로 나아갈게요. | Collins close optional |
+
+### FIFA+ watch ritual
+
+1. **Attune** — `19:55 FED` · `?attune=1&lane=kane` · phone face-down first
+2. **Open watch** — `openKaneFifaWatch()` or `?kane=1&watch=1`
+3. **One cheer** — English native → Korean shadow · phones down except toast moment
+4. **Pub pause** — captain chant without performance debt
+5. **Close** — Collins stroll · log `side-fifa-celebrate` · dawn croissant at 06:12 optional
+
+**On-set:** Preset 20 · WEMBLEY screen · PUB warm interior · no soulmate CTAs on replay
+
+**Tags:** `#HarryKane #England #ThreeLions #Wembley #FIFAPlus #CaptainNotRescue`
+
+---
+
+## Lane B extended evening (FIFA nation close)
+
+```
+17:00  FLINDERS — Ep 2.75 meet (DN1)
+17:20  DEGRAVES — outing + flat white (DN2–DN3)
+18:15  HOTEL — kitchen 45 min (DN4–DN5)
+19:15  DEGRAVES — score + eat (DN6) · dishes @ HOTEL (DN7)
+19:30  BOCA — Ep 2.76 Messi Argentina · preset 18
+19:45  SAMBA — Ep 2.77 Vinicus Brasil · preset 19
+19:55  FED — match-attune · ?attune=1&lane=kane
+20:00  WEMBLEY — Ep 2.78 Kane · FIFA+ watch · preset 20
+20:10  PUB — captain chant pause · COLLINS stroll home
+06:12  DEGRAVES — dawn croissant (AT1–AT6)
+```
 
 ---
 
@@ -736,13 +1023,15 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | Day | Eps | Route (pins in order) | Webdrama | Reels / Shorts | Other |
 |-----|-----|------------------------|----------|----------------|-------|
 | Jun 16–18 | 1 | HOME | Ep 1 | — | Trailer VO record |
-| Jun 19 AM | 2, 6 | DEGRAVES → CENTRE → HOSIER → COLLINS | Ep 2, 6 | **Reel A** + **Reel B** + TikTok 15s | 60s YouTube Short |
+| Jun 19 AM | 2, 2.5, 2.6, 6 | DEGRAVES → CENTRE → HOSIER → HOTEL → BOTANIC | Ep 2, 2.5, 2.6, 6 | **Reel A** + **Reel B** + TikTok 15s · DIB · dib-aftercare | 60s YouTube Short |
 | Jun 19 PM | 3 | HOSIER pickup shots | Ep 3 | Reel A pickups | — |
+| Jun 19 eve | 2.65, 2.64, 2.66 | FED attune → CINEMA → CANTINA → STADE | Lane D inserts | bend-it-beckham · mari-fifa · mbappe-counter-attack | match-attune-ritual |
 | Jun 20 AM | 3, 4 | COLLINS → DEGRAVES | Ep 3 cont. | — | — |
 | Jun 20 PM | 4 | HOTEL → SOUTH | Ep 4 | Helen 20s clip | — |
+| Jun 20 eve | 2.75, 2.76–2.78 | FLINDERS → DEGRAVES → HOTEL → BOCA → SAMBA → FED → WEMBLEY | Cook-off + nation arc | date-night-cookoff · messi · vinicus · kane | FIFA+ watch |
 | Jun 21 AM | 5 | FED (rain) → FLINDERS | Ep 5 | Veil Lumen 45s | — |
 | Jun 21 PM | 7 | SOUTH → FLINDERS night | Ep 7 | Essay seed footage | — |
-| Jun 22 AM | 7, 8 | PRINCES dawn → HOSIER → BOTANIC | Ep 8 | Recap Short · Trailer final | Veil Lumen 16:9 |
+| Jun 22 AM | 7, 8, dawn | PRINCES → HOSIER → BOTANIC · DEGRAVES 06:12 | Ep 8 · after-the-date | Recap Short · Trailer final | Veil Lumen 16:9 |
 
 ### Reel A — shot × location × format
 
@@ -784,14 +1073,30 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 10:15  Wrap — battery swap, SD offload, TTMIK shadowing at pin
 ```
 
-**Lane B — date night + dawn (presets 6–8)**
+**Lane B — date night + FIFA nation close + dawn (presets 6–8 · 18–20)**
 
 ```
 17:00  FLINDERS — meet · ingredient cap (DN1)
 17:20  DEGRAVES — outing + flat white (DN2–DN3)
 18:15  HOTEL — kitchen stations 45 min (DN4–DN5)
 19:15  DEGRAVES — score + eat (DN6) · dishes @ HOTEL (DN7)
+19:30  BOCA — Ep 2.76 Messi · preset 18 (MS1–MS5)
+19:45  SAMBA — Ep 2.77 Vinicus · preset 19 (VN1–VN5)
+19:55  FED — match-attune · ?attune=1&lane=kane (AT1–AT6)
+20:00  WEMBLEY — Ep 2.78 Kane · FIFA+ watch · preset 20 (HK1–HK5)
+20:10  PUB — captain chant · COLLINS stroll home
 06:12  DEGRAVES — dawn croissant · girls-love Ch.2 (AT1–AT6)
+```
+
+**Lane D — FIFA celebration evening (presets 12 · 16–17)**
+
+```
+18:15  FED — match-attune before cinema lane
+18:30  CINEMA — Ep 2.64 Bend It Like Beckham (BI1–BI5)
+19:00  CANTINA — Mari meet · booth consent
+19:15  CANTINA — Ep 2.65 full cantina (FC1–FC6)
+20:00  CANTINA — Portugal cheer · preset 16
+20:15  STADE — Ep 2.66 Mbappé (MB1–MB5)
 ```
 
 ### Visual language
@@ -813,7 +1118,14 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | 2.5 | Melbourne Lantern Bard | 유머로 풀어낼게요 · divine insight block |
 | 2.5 heal | Helen | 괜찮아요, 괜찮아요 · 잠시 쉬어도 괜찮아요 (post-DIB coda) |
 | 2.6 | Mari · Ignan pilgrim | Ok laeng ↔ 괜찮아요, 괜찮아요 · Piliem ti bukodko a dalan ↔ 제 길을 믿어요 |
+| attune | Melbourne Lantern Bard | 응원 전에 한 숨 · 내 방식으로 응원해요 — 드라마 없이 |
+| 2.64 | Ronaldo · English fan | 베컴처럼? 내 방식으로 응원해요 — 드라마 없이 |
+| 2.65 | Mari · Ignan pilgrim | Naragsak unay · 맛있어요! 축하해요! |
+| 2.66 | Mbappé · Battle Master | J'attaque à ma manière — sans drame · 골! 프랑스 파이팅! |
 | 2.75 | Melbourne Lantern Bard · Lo3tus · Helen | 멜버른 골목이 정말 예뻐요 · cook-off host line |
+| 2.76 | Messi · Mastermind Rogue | Juego a mi manera — sin drama · 골! 아르헨티나 파이팅! |
+| 2.77 | Vinicus · Open Hand Monk | Jogo do meu jeito — sem drama · Gol! Vai Brasil! |
+| 2.78 | Kane · Champion Fighter | I strike my way — no drama · Goal! Come on England! |
 | 3 | Melbourne Lantern Bard | 유머로 풀어낼게요 |
 | 4 | Helen | 죄송하지만 지금은 어려워요 |
 | 5 | Asuka | 멜버른이 제 선택이에요 |
@@ -848,9 +1160,23 @@ TEXT: MELBOURNE LANTERN · 8 EPISODES · VERTICAL
 BARD: "Lantern's lit."
 ```
 
-**Trailer visual order:** MEL (2s) → HOSIER (3s) → DEGRAVES (2s) → HOTEL cook-off (3s) → FLINDERS (2s) → SOUTH night (3s) → DEGRAVES dawn (2s) → PRINCES (3s) → HOSIER lantern (2s)
+**Trailer visual order:** MEL (2s) → HOSIER (3s) → DEGRAVES (2s) → HOTEL cook-off (3s) → CINEMA Beckham (2s) → CANTINA cheer (2s) → BOCA → SAMBA → WEMBLEY FIFA+ (2s) → FLINDERS (2s) → SOUTH night (2s) → DEGRAVES dawn (2s) → PRINCES (2s) → HOSIER lantern (2s)
 
-**Pipeline montage (45s):** `pipeline-montage` — RTDB AKL → morning block → date night → dawn → World close
+**Pipeline montage (45s):** `pipeline-montage` — RTDB AKL → morning block → Ignan walk → Lane D FIFA → date night cook-off → nation arc close → dawn → World close
+
+### FIFA nation arc — 30s cutdown order
+
+**Ep 2.64 Bend It Like Beckham:** `BI1@CINEMA → BI2@CINEMA → BI3@CINEMA → BI4@CINEMA → BI5@FED`
+
+**Ep 2.66 Mbappé Counter-Attack:** `MB1@STADE → MB2@STADE → MB3@STADE → MB4@STADE → MB5@FED`
+
+**Pre-Match Attune:** `AT1@FED → AT2@FED → AT3@FED → AT4@FED → AT5@FED → AT6@FED`
+
+**Ep 2.76 Messi Argentina:** `MS1@HOTEL → MS2@DEGRAVES → MS3@BOCA → MS4@BOCA → MS5@BOCA`
+
+**Ep 2.77 Vinicus Brasil:** `VN1@SAMBA → VN2@SAMBA → VN3@SAMBA → VN4@SAMBA → VN5@FED`
+
+**Ep 2.78 Harry Kane England:** `HK1@WEMBLEY → HK2@WEMBLEY → HK3@WEMBLEY → HK4@WEMBLEY → HK5@PUB`
 
 ### Veil Lumen essay assembly (16:9 · 3–5 min)
 
@@ -871,6 +1197,9 @@ BARD: "Lantern's lit."
 | CENTRE / FLINDERS | Transportation · Daily Life |
 | SOUTH / HOTEL | Emergency Protocol · Accommodation |
 | BOTANIC / PRINCES | Self-Intimacy Practice · Cultural Sites |
+| FED (attune) | Self-Intimacy · match-attune · pause-breathe |
+| CINEMA / CANTINA | Cinema Encounters · Restaurant Dining · ronaldo-portugal-glory |
+| STADE / BOCA / SAMBA / WEMBLEY / PUB | Nation shadowing decks · presets 16–20 |
 
 ---
 

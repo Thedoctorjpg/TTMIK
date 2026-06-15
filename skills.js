@@ -483,6 +483,46 @@ function continueMatchAttuneLane(laneId, opts = {}) {
     if (run) run();
 }
 
+function runHealAllStep(step, opts = {}) {
+    if (!step?.invoke || typeof window[step.invoke] !== 'function') return false;
+    window[step.invoke]({ logQuest: opts.logQuest !== false, ...(step.opts || {}) });
+    return true;
+}
+
+function practiceHealAll(opts = {}) {
+    const lane = typeof getHealAllLane === 'function' ? getHealAllLane() : [];
+    if (!lane.length) return false;
+
+    const stepIdx = opts.step != null ? parseInt(opts.step, 10) : 0;
+    const idx = Math.min(Math.max(0, isNaN(stepIdx) ? 0 : stepIdx), lane.length - 1);
+
+    if (opts.logQuest !== false && opts.logAllQuests !== false) {
+        const questIds = new Set();
+        lane.forEach((s) => { if (s.questId) questIds.add(s.questId); });
+        questIds.forEach((q) => completeQuestObjective(q));
+    }
+
+    if (opts.chain) {
+        lane.forEach((s, i) => {
+            runHealAllStep(s, { ...opts, logQuest: false });
+            if (i < lane.length - 1) return;
+        });
+    } else {
+        runHealAllStep(lane[idx], {
+            ...opts,
+            logQuest: opts.logAllQuests ? false : opts.logQuest
+        });
+    }
+
+    if (opts.openLibrary && typeof startHealCategory === 'function') {
+        startHealCategory('Post-DIB Landing');
+    }
+
+    switchTab(3);
+    renderSyncPanel();
+    return true;
+}
+
 function practiceReiMercyHeal(opts = {}) {
     const ritual = typeof getReiMercyHealRitual === 'function' ? getReiMercyHealRitual() : null;
     const skillId = ritual?.skillId || 'neon-evangelion';
@@ -1056,6 +1096,16 @@ function renderBootAllPanel() {
     runAll.onclick = () => bootAllLibrariesAndSkills();
     panel.appendChild(runAll);
 
+    if (typeof getHealAllLane === 'function') {
+        const healAllBtn = document.createElement('button');
+        healAllBtn.type = 'button';
+        healAllBtn.className = 'mb-6 px-5 py-2.5 rounded-xl text-sm font-semibold bg-sky-600 text-white hover:bg-sky-500';
+        healAllBtn.textContent = 'Heal all lane (step 4 → Rei mercy → attune)';
+        healAllBtn.title = 'TTMIK.html?heal=all';
+        healAllBtn.onclick = () => practiceHealAll({ logAllQuests: true });
+        panel.appendChild(healAllBtn);
+    }
+
     if (typeof getHermesPreloadCmd === 'function') {
         const preloadRow = document.createElement('div');
         preloadRow.className = 'mb-6 flex flex-wrap gap-2';
@@ -1129,7 +1179,8 @@ function renderBootAllPanel() {
         })), (item) => {
             const params = new URLSearchParams(item.boot);
             const boot = Object.fromEntries(params);
-            if (boot.heal === '1') practiceDibAftercare();
+            if (boot['heal-factor']) practiceHealingFactor(boot['heal-factor']);
+            else if (boot.heal === '1') practiceDibAftercare();
             else if (boot.asuka === '1') practiceAsukaMaybe();
             else if (boot.heidi === '1') practiceHeidiWayfarer({ openSheet: boot.sheet === '1' });
             else if (boot.sven === '1') practiceSvenRanger({ openSheet: boot.sheet === '1' });
@@ -1262,6 +1313,16 @@ function handleTtmikSyncBoot() {
         practiceHealingFactor(healFactor, {
             logQuest: params.get('quest') !== '0',
             openLibrary: params.get('lessons') === '1'
+        });
+        return;
+    }
+    if (params.get('heal') === 'all') {
+        practiceHealAll({
+            logQuest: params.get('quest') !== '0',
+            logAllQuests: params.get('quests') !== '0',
+            openLibrary: params.get('lessons') === '1',
+            chain: params.get('chain') === '1',
+            step: params.get('lane-step') ?? params.get('step-index')
         });
         return;
     }
@@ -1805,6 +1866,12 @@ function renderSyncPanel() {
         healBlock.appendChild(list);
         const healActions = document.createElement('div');
         healActions.className = 'mt-3 flex flex-wrap gap-2';
+        const healAllRun = document.createElement('button');
+        healAllRun.type = 'button';
+        healAllRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/50 text-white hover:bg-sky-600/70';
+        healAllRun.textContent = 'Heal all lane';
+        healAllRun.title = 'Post-DIB → Rei mercy → Asuka → Ignan → FIFA → attune · TTMIK.html?heal=all';
+        healAllRun.onclick = () => practiceHealAll({ logAllQuests: true });
         const healRun = document.createElement('button');
         healRun.type = 'button';
         healRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-600/30 text-sky-200 hover:bg-sky-600/50';
@@ -1837,6 +1904,7 @@ function renderSyncPanel() {
         healLibRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-800/40 text-sky-100 hover:bg-sky-700/50';
         healLibRun.textContent = 'Open Healing Factors Library';
         healLibRun.onclick = () => startHealCategory('Post-DIB Landing');
+        healActions.appendChild(healAllRun);
         healActions.appendChild(healRun);
         healActions.appendChild(ignanRun);
         healActions.appendChild(attuneRun);

@@ -481,19 +481,27 @@ function getAllLibraryBootEntries() {
     }));
 }
 
-/** Ordered lane boots — skills · libraries · heal steps · FIFA 2026 */
-const BOOT_ALL_HEAL_STEPS = [
-    { id: 'heal-4', label: 'Post-DIB landing', boot: 'heal=1', alt: 'step=4' },
-    { id: 'heal-5', label: 'Asuka maybe', boot: 'asuka=1', alt: 'step=5' },
-    { id: 'heal-6', label: 'Ignan healing walk', boot: 'ignan=1', alt: 'step=6' },
-    { id: 'heal-7', label: 'Mari FIFA cantina', boot: 'fifa=1', alt: 'step=7' },
-    { id: 'heal-8', label: 'Attune before match', boot: 'attune=1', alt: 'before-match=1' }
+/** Full heal lane — post-DIB through attune (single source for boot panel + heal=all) */
+const HEAL_ALL_LANE = [
+    { id: 'heal-4', label: 'Post-DIB landing', boot: 'heal=1', alt: 'step=4', invoke: 'practiceDibAftercare', questId: 'side-dib-heal' },
+    { id: 'rei-mercy', label: 'Rei mercy heal', boot: 'heal-factor=rei-mercy', alt: 'rei=1', invoke: 'practiceReiMercyHeal', questId: 'side-humor' },
+    { id: 'heal-5', label: 'Asuka maybe', boot: 'asuka=1', alt: 'step=5', invoke: 'practiceAsukaMaybe', questId: 'main-others' },
+    { id: 'heal-6', label: 'Ignan healing walk', boot: 'ignan=1', alt: 'step=6', invoke: 'practiceIgnanHealingJourney', questId: 'side-ignan-heal' },
+    { id: 'heal-7', label: 'Mari FIFA cantina', boot: 'fifa=1', alt: 'step=7', invoke: 'practiceMariFifaCelebrate', questId: 'side-fifa-celebrate' },
+    { id: 'heal-8', label: 'Attune before match', boot: 'attune=1', alt: 'before-match=1', invoke: 'practiceMatchAttune', questId: 'side-fifa-celebrate' }
 ];
+
+const BOOT_ALL_HEAL_STEPS = HEAL_ALL_LANE;
+
+function getHealAllLane() {
+    return HEAL_ALL_LANE;
+}
 
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 344
+    healAll: 'heal=all',
+    trackCount: 345
 };
 
 function openComposedLibrary(libId) {

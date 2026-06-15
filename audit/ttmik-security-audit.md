@@ -1,11 +1,11 @@
 # Security Audit: TTMIK Audio Lab (Re-audit)
 
 **Repository:** https://github.com/Thedoctorjpg/TTMIK  
-**Commit:** `82b5c0f` — *Heal Healing Factors Library from source files*  
-**Prior audit:** `39cb3d9` (2026-06-16) · supply-chain re-run below  
-**Auditor:** Hermes CLI (`security audit`, `doctor`) + `node scripts/boot-all.js`  
+**Commit:** `7326c1a` — *Add companion projects and healed FIFA skill archetypes*  
+**Prior audit:** `a41b518` (2026-06-16 Messi lane) · remote re-run below  
+**Auditor:** Hermes CLI (`security audit`, `doctor`, `status`) + `node scripts/boot-all.js` + companion `npm audit`  
 **Date:** 2026-06-16  
-**Scope:** Full client app + specialty libraries (`healing-library-data.js`, `fifa-nations-data.js`, `ignan-data.js`, `asuka-data.js`, `skill-library-data.js`), serverless webhook (`api/ttmik-webhook.js`), Hermes tooling (`scripts/heal-skills.js`, `scripts/heal-library.js`, `scripts/boot-all.js`, `packages/ttmik-heal-skills/`)
+**Scope:** Full client app + specialty libraries (`healing-library-data.js`, `fifa-nations-data.js`, `ignan-data.js`, `asuka-data.js`, `messi-data.js`, `ronaldo-data.js`, `mbappe-data.js`, `skill-library-data.js`), serverless webhook (`api/ttmik-webhook.js`), Hermes tooling (`packages/ttmik-heal-skills/`), companion apps (`lets-cook/`, `shopify-twitter/`, `girls-love/`, `Veil-Lumen/`, `video-editor/`)
 
 ---
 
@@ -27,12 +27,15 @@ The `089a60a` hardening pass resolved all prior **high** and most **medium** fin
 
 ---
 
-## Hermes CLI Results (2026-06-16 re-run)
+## Hermes CLI Results (2026-06-16 remote re-run)
 
 ```bash
 hermes security audit --json
 hermes doctor
+hermes status
 node scripts/boot-all.js
+npm.cmd audit --prefix lets-cook
+npm.cmd audit --prefix shopify-twitter
 ```
 
 ### Supply chain (`hermes security audit --json`)
@@ -43,17 +46,26 @@ node scripts/boot-all.js
 | Findings | **0** |
 | TTMIK app lockfile deps | **None** (root); `packages/ttmik-*` workspaces validated via `npm pack --dry-run` in `scripts/build.js` |
 
-TTMIK browser runtime has no npm lockfile at repo root. Prior PyJWT/pip advisories are **cleared** in the current Hermes install.
+TTMIK browser runtime has no npm lockfile at repo root. Hermes venv advisories remain **cleared**.
 
-### Environment (`hermes doctor`)
+### Companion projects (`npm audit`)
+
+| Project | Findings | Notes |
+| ------- | -------- | ----- |
+| `lets-cook/` | 2 **high** (esbuild/vite dev chain) | Dev-only; not served in TTMIK browser runtime |
+| `shopify-twitter/` | 1 **high** (form-data CRLF) | Server-side; run `npm audit fix` before deploy |
+| Root / `packages/ttmik-*` | No root lockfile | Validated via `scripts/build.js` pack dry-run |
+
+### Environment (`hermes doctor` + `hermes status`)
 
 | Check | Status |
 | ----- | ------ |
 | `~/.hermes/.env` | ✓ exists |
 | `~/.hermes/config.yaml` | ✓ v24 |
-| `~/.hermes/skills/` | ✓ includes `creative/` (10 healed archetypes) |
-| xAI OAuth | ✓ logged in |
+| `~/.hermes/skills/creative/` | ✓ **16** healed archetypes (incl. Messi, Ronaldo, Mbappé) |
+| xAI OAuth | ✓ logged in (refreshed 2026-06-16) |
 | Security advisories | ✓ none active |
+| Model | grok-4-1-fast-reasoning via xAI Grok OAuth |
 | Optional tools (browser, web search, discord) | ⚠ not configured — expected for static TTMIK client |
 
 ### File / library audit (`node scripts/boot-all.js`)
@@ -61,9 +73,9 @@ TTMIK browser runtime has no npm lockfile at repo root. Prior PyJWT/pip advisori
 | Step | Result |
 | ---- | ------ |
 | Heal library from sources | 15 tracks (`healing-library-data.js` generated) |
-| Hermes heal-skills | 10 `.skill.md` → `.devin/skills/` + `~/.hermes/skills/creative/` |
-| Library build | 267 tracks · syntax + HTML script refs **passed** |
-| Boot registry | 10 skills · 8 composed libraries · all `.skill.md` present |
+| Hermes heal-skills | 16 `.skill.md` → `.devin/skills/` + `~/.hermes/skills/creative/` |
+| Library build | **318** tracks · syntax + HTML script refs **passed** |
+| Boot registry | **16** skills · **14** composed libraries · all `.skill.md` present |
 
 ---
 

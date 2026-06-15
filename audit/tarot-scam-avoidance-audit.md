@@ -1,10 +1,11 @@
 # Hermes Audit: Avoiding Tarot-Predicted Scams
 
 **Repository:** https://github.com/Thedoctorjpg/TTMIK  
+**Commit:** `7326c1a`  
 **Hermes CLI:** `D:\Scripts\hermes.exe`  
-**Date:** 2026-06-16  
-**Scope:** Spiritual/tarot romance scam threat model · Hermes supply chain · TTMIK skills/quest/webdrama · shopify-twitter tsundere catalog  
-**Auditor:** Hermes `security audit` + `doctor` + static creative-security review (Grok Build)
+**Date:** 2026-06-16 (remote re-run)  
+**Scope:** Spiritual/tarot romance scam threat model · Hermes supply chain · TTMIK skills/quest/webdrama · shopify-twitter tsundere catalog · companion apps  
+**Auditor:** Hermes `security audit` + `doctor` + `status` + static creative-security review (Grok Build)
 
 ---
 
@@ -12,16 +13,16 @@
 
 **Overall tarot-scam exposure: moderate → low** (with playbook use)
 
-Tarot-predicted scams weaponize **destiny language** (soulmate, twin flame, “the cards showed your face”) to bypass skepticism that blocks ordinary romance fraud. Your stack already counters this through **Helen boundaries**, **Reel A scam PSA**, **RED FLAG props**, and webdrama lines like *“4G > fate.”* Gaps: no dedicated **tarot-decode checklist** in-app, skills treat tarot as creative fuel without a mandatory **scam-exit procedure**, and Hermes venv still carries **PyJWT/pip** advisories unrelated to scams but worth patching.
+Tarot-predicted scams weaponize **destiny language** (soulmate, twin flame, “the cards showed your face”) to bypass skepticism that blocks ordinary romance fraud. Your stack counters this through **Helen boundaries**, **Reel A scam PSA**, **RED FLAG props**, webdrama lines like *“4G > fate,”* and the in-app **`TAROT_SCAM_RED_FLAGS`** checklist on the Skills quest panel. Remaining gaps: skills still treat tarot primarily as creative fuel (no mandatory scam-exit in every archetype), and shopify-twitter lacks a dedicated `tarot-scam` commerce lane.
 
-**Severity counts (tarot-scam layer):** 0 critical · 1 high · 3 medium · 4 low · 6 informational
+**Severity counts (tarot-scam layer):** 0 critical · 1 high · 2 medium · 4 low · 5 informational
 
 | Layer | Status |
 | ----- | ------ |
-| Hermes supply chain | 6 findings (PyJWT ×5, pip ×1) — dev agent only |
+| Hermes supply chain | **0 findings** — dev agent clean |
 | Tarot scam playbook | **Added** — see §Playbook |
-| TTMIK in-app checklist | **Recommended** — quest panel tie-in |
-| Creative assets (webdrama/skills) | Strong coverage, needs explicit tarot branch |
+| TTMIK in-app checklist | **Shipped** — `skills.js` quest panel + `side-tarot-scam` objective |
+| Creative assets (webdrama/skills) | Strong coverage; Messi/cook-off lane adds post-date humor without rescue energy |
 | Commerce catalog (shopify-twitter) | Partial — scam zine + red flags; add tarot-lane items |
 
 ---
@@ -33,27 +34,24 @@ Tarot-predicted scams weaponize **destiny language** (soulmate, twin flame, “t
 | Metric | Result |
 | ------ | ------ |
 | Components scanned | 64 (Hermes venv) |
-| Findings | 6 |
+| Findings | **0** |
 | TTMIK runtime deps | **None** (static client + serverless webhook) |
 
-| Severity | Package | Advisory | Fix |
-| -------- | ------- | -------- | --- |
-| LOW | PyJWT 2.12.1 | GHSA-fhv5-28vv-h8m8 | ≥ 2.13.0 |
-| UNKNOWN | pip 26.1.1 | PYSEC-2026-196 | ≥ 26.1.2 |
-| UNKNOWN | PyJWT 2.12.1 | PYSEC-2026-175–179 | ≥ 2.13.0 |
+Prior PyJWT/pip advisories are **cleared** in the current Hermes install.
 
-**Tarot-scam relevance:** None direct. Patch Hermes venv so agent sessions handling DMs/readings aren’t running known JWT parser issues.
+**Tarot-scam relevance:** None direct. Supply chain clean for agent sessions handling DMs/readings.
 
-### Doctor (`hermes doctor`)
+### Doctor (`hermes doctor` + `hermes status`)
 
 | Check | Result |
 | ----- | ------ |
 | Security advisories (runtime) | ✓ None active |
-| Creative skills loaded | ✓ 7 local (melbourne-lantern-bard, flame-kissed-bard, helen-neighbor, lo3tus, asuka-brisbane, rach3l, sua-tattoo-artist) |
-| `~/.hermes/.env` | ✗ Missing — run `hermes setup` for API keys |
-| Auth providers | ⚠ Not logged in (xAI, Nous, etc.) |
+| Creative skills synced | ✓ **16** in `~/.hermes/skills/creative/` (incl. helen-neighbor, melbourne-lantern-bard, messi-argentina-playmaker) |
+| `~/.hermes/.env` | ✓ exists |
+| Auth providers | ✓ xAI OAuth logged in (grok-4-1-fast-reasoning) |
+| Optional web/browser tools | ⚠ not configured — static review only |
 
-**Tarot-scam relevance:** Helen + Melbourne Lantern Bard skills are the correct archetypes for boundary + scam PSA work. Ensure scam sessions preload `-s helen-neighbor,melbourne-lantern-bard`.
+**Tarot-scam relevance:** Helen + Melbourne Lantern Bard remain the correct archetypes for boundary + scam PSA work. Preload `-s helen-neighbor,melbourne-lantern-bard,flame-kissed-bard` on scam-heavy sessions.
 
 ---
 
@@ -101,15 +99,23 @@ Scammers blend **divination** with **romance fraud** to manufacture urgency and 
 | shopify-twitter `td-014` Scam Survival Zine | Holdable PSA |
 | TTMIK Sync preset 1 (HOSIER · Ep 2 · Reel B) | On-set scam/tsundere lane |
 
-### Gaps (pre-remediation)
+### Gaps (remaining)
 
 | Gap | Risk | Remediation |
 | --- | ---- | ----------- |
-| Tarot named explicitly in skills as **creative** only | Medium — no decode step | Add tarot-scam procedure to Helen + Flame-Kissed Bard |
-| Quest “Deck of Synchronicities” without scam branch | Medium — tool doubles as weapon | Add side objective: name tarot scam before takeoff |
-| No in-app RED FLAG checklist | Medium — on-trip friction | Quest panel tarot scam flags (this audit → code) |
-| shopify catalog lacks `tarot-scam` lane | Low | Add psychic-scam awareness items |
+| Tarot named explicitly in skills as **creative** only | Medium — no decode step in every archetype | Add tarot-scam procedure to Helen + Flame-Kissed Bard skill.md |
+| shopify catalog lacks `tarot-scam` lane | Low | Add psychic-scam awareness items (td-025/026) |
 | Hermes sessions without skill preload | Low | `hermes -s helen-neighbor,melbourne-lantern-bard` |
+| `shopify-twitter` form-data advisory | Low (server) | `npm audit fix` before deploy |
+
+### Resolved since prior audit
+
+| Item | Status |
+| ---- | ------ |
+| Quest `side-tarot-scam` objective | ✓ `skills-data.js` |
+| In-app RED FLAG checklist | ✓ `skills.js` quest panel (`TAROT_SCAM_RED_FLAGS`) |
+| Hermes PyJWT/pip advisories | ✓ 0 findings |
+| `~/.hermes/.env` | ✓ exists |
 
 ---
 
@@ -149,8 +155,9 @@ Scammers blend **divination** with **romance fraud** to manufacture urgency and 
 
 ### Finding 6–10: Informational
 
-- Hermes PyJWT/pip — patch venv (`pip install --upgrade PyJWT pip` in Hermes env)
-- `hermes doctor` — create `~/.hermes/.env` for full tool access
+- Hermes supply chain — **cleared** (0 findings, 2026-06-16)
+- `lets-cook` esbuild/vite — 2 high (dev-only); patch before publishing cook-off app
+- `shopify-twitter` form-data — 1 high; `npm audit fix` before App Runner deploy
 - TTMIK CSP/Tailwind CDN — unchanged from `audit/ttmik-security-audit.md`
 - Preload skills on scam-heavy sessions
 - Export `npm run build:tsundere-catalog -- --lane=sovereign` before trip
@@ -228,13 +235,15 @@ Tweet hook example: *“The cards didn’t show your bank details. Block.”*
 
 ## Remediation Checklist
 
-- [x] Hermes `security audit` run (2026-06-16)
-- [x] Hermes `doctor` run (2026-06-16)
+- [x] Hermes `security audit` run (2026-06-16 remote re-run — 0 findings)
+- [x] Hermes `doctor` + `status` run (2026-06-16)
+- [x] `node scripts/boot-all.js` (318 tracks · 16 skills · 14 libraries)
 - [x] Tarot-scam playbook documented (this file)
-- [ ] Patch Hermes venv: PyJWT ≥ 2.13.0, pip ≥ 26.1.2
-- [ ] `hermes setup` — create `~/.hermes/.env`
-- [ ] TTMIK quest panel — tarot RED FLAG checklist (code)
+- [x] Hermes venv advisories cleared (0 findings)
+- [x] `~/.hermes/.env` present
+- [x] TTMIK quest panel — tarot RED FLAG checklist (`skills.js`)
 - [ ] shopify-twitter — `tarot-scam` lane + items td-025/026
+- [ ] `shopify-twitter` — `npm audit fix` (form-data)
 - [ ] On trip: preload `helen-neighbor` + `melbourne-lantern-bard` on Hermes sessions
 
 ---

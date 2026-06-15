@@ -1,0 +1,90 @@
+name: Deploy to AWS App Runner
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required secrets
+        run: |
+          if [ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ] || [ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]; then
+            echo "::error::Missing required secrets: AWS_ACCESS_KEY_ID and/or AWS_SECRET_ACCESS_KEY"
+            echo "Go to GitHub repo Settings > Secrets and variables > Actions to add them."
+            echo "The IAM user must have permissions for ECR (ecr:*) and App Runner (apprunner:UpdateService, apprunner:DescribeService, etc.)."
+            exit 1
+          fi
+          echo "AWS secrets are set."
+          if [ -z "${{ secrets.AWS_ACCOUNT_ID }}" ]; then
+            echo "::warning::AWS_ACCOUNT_ID not set. Update-service may fail if ARN construction needs it."
+          fi
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-west-2' }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Ensure ECR repository exists
+        run: |
+          REGION="${{ secrets.AWS_REGION || 'us-west-2' }}"
+          aws ecr describe-repositories --repository-names shopify-x-integration --region $REGION || \
+          aws ecr create-repository --repository-name shopify-x-integration --region $REGION --image-scanning-configuration scanOnPush=true || true
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/shopify-x-integration:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/shopify-x-integration:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/shopify-x-integration:$IMAGE_TAG $ECR_REGISTRY/shopify-x-integration:latest
+          docker push $ECR_REGISTRY/shopify-x-integration:latest
+
+      - name: Deploy to App Runner (update service)
+        # Prerequisites:
+        # - Create the App Runner service FIRST in AWS Console (recommended for first deploy):
+        #   - Source: Container registry (ECR) or GitHub (zero-config, builds Dockerfile automatically)
+        #   - Service name: shopify-x-integration (or update below)
+        #   - Port: 3000
+        #   - Health check path: /health
+        # - For ECR path: the service must exist and be linked to the ECR repo.
+        # - Required secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION (optional), AWS_ACCOUNT_ID
+        # GitHub source is simpler (no ECR keys needed, App Runner handles build).
+        run: |
+          REGION="${{ secrets.AWS_REGION || 'us-west-2' }}"
+          ACCOUNT_ID="${{ secrets.AWS_ACCOUNT_ID }}"
+          SERVICE_NAME="shopify-x-integration"
+          SERVICE_ARN="arn:aws:apprunner:$REGION:$ACCOUNT_ID:service/$SERVICE_NAME"
+
+          # Try ECR update (assumes you have ECR image pushed). If fails (e.g. service not exist), try to create it.
+          aws apprunner update-service \
+            --service-arn $SERVICE_ARN \
+            --source-configuration "{\"ImageRepository\":{\"ImageIdentifier\":\"${{ steps.login-ecr.outputs.registry }}/shopify-x-integration:latest\",\"ImageRepositoryType\":\"ECR\"}}" \
+            --region $REGION || \
+          aws apprunner create-service \
+            --service-name $SERVICE_NAME \
+            --source-configuration "{\"ImageRepository\":{\"ImageIdentifier\":\"${{ steps.login-ecr.outputs.registry }}/shopify-x-integration:latest\",\"ImageRepositoryType\":\"ECR\",\"ImageConfiguration\":{\"Port\":\"3000\",\"RuntimeEnvironmentVariables\":{\"NODE_ENV\":\"production\"}}}}" \
+            --instance-configuration Cpu=1vCPU,Memory=2GB \
+            --health-check-configuration Protocol=HTTP,Path=/health,Interval=10,Timeout=5,HealthyThreshold=1,UnhealthyThreshold=5 \
+            --region $REGION || echo "Create/update may have failed (service may exist or needs manual setup). Check AWS Console. For simpler deploys use GitHub source."
+
+      - name: Output
+        run: |
+          echo "✅ Deploy triggered (if service existed)."
+          echo "Check AWS App Runner console for the service status and public URL."
+          echo "After first successful deploy:"
+          echo "  - Set environment variables (XAI_API_KEY, SHOPIFY_*, TWITTER_*, etc.) in App Runner service config or via SSM."
+          echo "  - Set WEBHOOK_BASE_URL to the new public URL."
+          echo "  - Call POST /webhooks/setup , /cron/trigger-events etc."
+          echo "For easier deploys: use GitHub source in App Runner console (it auto-builds the Dockerfile on push)."

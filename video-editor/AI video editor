@@ -1,0 +1,247 @@
+Here is the Complete Project with Separate worker.js
+Project Structure
+textvideo-editor-pro-ai/
+├── index.html
+├── worker.js
+├── manifest.json
+├── sw.js
+└── assets/ (add your icons here)
+
+1. index.html
+HTML<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00ffcc">
+  <title>Video Editor Pro • AI</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    :root { --accent: #00ffcc; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a14; color: #eee; margin: 0; padding: 20px; }
+    h1 { color: var(--accent); text-align: center; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .upload-area { border: 3px dashed var(--accent); border-radius: 16px; padding: 70px 20px; text-align: center; cursor: pointer; }
+    .upload-area:hover { background: #1a1a2e; border-color: #00ffaa; }
+    .panel { background: #111827; padding: 24px; border-radius: 12px; margin: 20px 0; }
+    .preview-container { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin: 20px 0; }
+    video, canvas { max-width: 480px; background: #000; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,255,204,0.2); }
+    button { background: var(--accent); color: #000; border: none; padding: 14px 32px; font-weight: bold; border-radius: 10px; cursor: pointer; margin: 6px; }
+    button:hover:not(:disabled) { background: #00ffaa; }
+    button.red { background: #ef4444; color: white; }
+    .ai-section { border: 2px solid #00ccff; padding: 16px; border-radius: 12px; margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Video Editor Pro • AI</h1>
+    <p style="text-align:center; color:#888;">Real-time Preview • Whisper Subtitles • Smart Filters</p>
+
+    <div class="upload-area" id="uploadArea">
+      <h2>Drop video files here or click to upload</h2>
+      <input type="file" id="fileInput" accept="video/*" multiple style="display:none;">
+    </div>
+
+    <div class="panel" id="editorPanel" style="display:none;">
+      <div class="preview-container">
+        <div><p><strong>Original</strong></p><video id="originalVideo" controls></video></div>
+        <div><p><strong>Live Preview</strong></p><canvas id="livePreview" width="520" height="300"></canvas></div>
+        <div><p><strong>Result</strong></p><video id="resultVideo" controls></video></div>
+      </div>
+
+      <div class="ai-section">
+        <label><strong>🤖 AI Tools</strong></label>
+        <button id="transcribeBtn">Generate Subtitles (Whisper AI)</button>
+        <select id="aiFilter">
+          <option value="none">No AI Filter</option>
+          <option value="cartoon">Cartoon Style</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="progress" id="progressContainer" style="display:none;">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div style="text-align:center; margin:30px 0;">
+      <button id="convertBtn" disabled>Export All Video(s)</button>
+      <button id="cancelBtn" class="red" style="display:none;">Cancel</button>
+    </div>
+  </div>
+
+  <script src="worker.js"></script>
+  <script type="module">
+    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1';
+
+    let worker = null;
+    let filesToProcess = [];
+    let isProcessing = false;
+    let generatedSrt = null;
+
+    const statusEl = document.getElementById('status');
+    const transcribeBtn = document.getElementById('transcribeBtn');
+    const convertBtn = document.getElementById('convertBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    // Whisper AI
+    transcribeBtn.addEventListener('click', async () => {
+      if (!filesToProcess.length) return;
+      transcribeBtn.disabled = true;
+      statusEl.textContent = "Loading Whisper AI...";
+
+      try {
+        const transcriber = await pipeline('automatic-speech-recognition', 'Xenova/whisper-tiny');
+        statusEl.textContent = "Transcribing...";
+
+        const result = await transcriber(filesToProcess[0]);
+        generatedSrt = result.text;
+
+        statusEl.textContent = `✅ Subtitles generated! Ready for burn-in.`;
+      } catch (err) {
+        statusEl.textContent = "❌ AI Error: " + err.message;
+      } finally {
+        transcribeBtn.disabled = false;
+      }
+    });
+
+    // Export
+    convertBtn.addEventListener('click', () => {
+      if (!filesToProcess.length) return;
+      isProcessing = true;
+      convertBtn.disabled = true;
+      cancelBtn.style.display = 'inline-block';
+
+      if (!worker) worker = new Worker('worker.js');
+
+      worker.onmessage = (e) => {
+        if (e.data.type === 'progress') {
+          document.getElementById('progressBar').style.width = e.data.progress + '%';
+          statusEl.textContent = `Processing ${e.data.fileIndex + 1}/${filesToProcess.length} — ${e.data.progress}%`;
+        }
+        if (e.data.type === 'complete') {
+          const blob = new Blob([e.data.result], { type: 'video/mp4' });
+          const url = URL.createObjectURL(blob);
+          document.getElementById('resultVideo').src = url;
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = e.data.fileName.replace(/\.\w+$/, '_ai_edited.mp4');
+          a.click();
+
+          statusEl.textContent = "✅ Export Complete!";
+          isProcessing = false;
+          convertBtn.disabled = false;
+          cancelBtn.style.display = 'none';
+        }
+      };
+
+      // Send first file (expand for batch)
+      filesToProcess[0].arrayBuffer().then(buffer => {
+        worker.postMessage({
+          type: 'process',
+          payload: {
+            fileIndex: 0,
+            fileName: filesToProcess[0].name,
+            buffer: buffer,
+            options: {
+              aiFilter: document.getElementById('aiFilter').value
+            },
+            subtitleSrt: generatedSrt
+          }
+        }, [buffer]);
+      });
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      if (worker) worker.terminate();
+      worker = null;
+      isProcessing = false;
+      statusEl.textContent = "Cancelled";
+      convertBtn.disabled = false;
+      cancelBtn.style.display = 'none';
+    });
+
+    // Upload
+    document.getElementById('uploadArea').addEventListener('click', () => document.getElementById('fileInput').click());
+    document.getElementById('fileInput').addEventListener('change', e => {
+      filesToProcess = Array.from(e.target.files);
+      if (filesToProcess.length) {
+        document.getElementById('originalVideo').src = URL.createObjectURL(filesToProcess[0]);
+        document.getElementById('editorPanel').style.display = 'block';
+        convertBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
+
+2. worker.js
+JavaScriptimportScripts('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.min.js');
+
+let ffmpeg = null;
+
+self.onmessage = async (e) => {
+  const { type, payload } = e.data;
+
+  if (type === 'init') {
+    const { FFmpeg } = ffmpeg;
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load({
+      corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js',
+      wasmPath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.wasm'
+    });
+    self.postMessage({ type: 'ready' });
+  }
+
+  if (type === 'process') {
+    const { fileIndex, fileName, buffer, options, subtitleSrt } = payload;
+
+    try {
+      await ffmpeg.writeFile('input.mp4', new Uint8Array(buffer));
+
+      let vf = [];
+
+      // AI Filters (FFmpeg approximation)
+      if (options.aiFilter === 'cartoon') {
+        vf.push('edgedetect=low=10:high=20,colorchannelmixer=0.3:0.4:0.3:0:0.3:0.4:0.3:0:0.3:0.4:0.3:0');
+      }
+
+      // Burn Subtitles
+      if (subtitleSrt) {
+        await ffmpeg.writeFile('subs.srt', new TextEncoder().encode(subtitleSrt));
+        vf.push("subtitles='subs.srt':force_style='FontSize=24,PrimaryColour=&H00FFFFFF'");
+      }
+
+      const args = ['-i', 'input.mp4'];
+      if (vf.length) args.push('-vf', vf.join(','));
+      args.push('-c:v', 'libx264', '-crf', '18', '-preset', 'medium', '-c:a', 'aac', '-b:a', '128k', 'output.mp4');
+
+      ffmpeg.on('progress', p => {
+        self.postMessage({ type: 'progress', progress: Math.round(p.progress * 100), fileIndex });
+      });
+
+      await ffmpeg.exec(args);
+
+      const outputData = await ffmpeg.readFile('output.mp4');
+      self.postMessage({
+        type: 'complete',
+        fileIndex,
+        fileName,
+        result: outputData.buffer
+      }, [outputData.buffer]);
+
+      // Cleanup
+      await ffmpeg.deleteFile('input.mp4');
+      await ffmpeg.deleteFile('output.mp4');
+      if (subtitleSrt) await ffmpeg.deleteFile('subs.srt');
+
+    } catch (err) {
+      self.postMessage({ type: 'error', fileIndex, error: err.message });
+    }
+  }
+};
+
+Ready to Use!
+Save these files in one folder and open index.html.

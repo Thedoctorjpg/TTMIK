@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00ffcc">
+  <title>Video Editor Suite</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon-192.svg" type="image/svg+xml">
+  <style>
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #070b16; color: #e8fdf5; }
+    .page { max-width: 980px; margin: 0 auto; padding: 40px 24px; }
+    header { text-align: center; margin-bottom: 32px; }
+    header h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0; color: #00ffcc; }
+    header p { color: #9fb2c0; margin: 12px auto 0; max-width: 720px; }
+    .cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 18px; padding: 24px; transition: transform .2s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-3px); border-color: #00ffcc; }
+    .card a { color: #cbd5e1; text-decoration: none; }
+    .card h2 { margin: 0 0 12px; color: #00ffcc; }
+    .card p { margin: 0; line-height: 1.6; color: #cbd5e1; }
+    .footer { margin-top: 40px; color: #94a3b8; font-size: .95rem; }
+    .meta { display: grid; gap: 10px; margin-top: 20px; }
+    .meta code { background: #020617; padding: 3px 6px; border-radius: 6px; color: #7dd3fc; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Video Editor Suite</h1>
+      <p>Launch any of the bundled web editing experiences from a shared entrypoint. This repository includes AI-powered preview, worker-backed editing, and FFmpeg.wasm editing demos.</p>
+    </header>
+
+    <section class="cards">
+      <article class="card">
+        <a href="AI%20video%20editor" target="_blank" rel="noreferrer noopener">
+          <h2>AI Video Editor</h2>
+          <p>Opens the original AI-powered editor build with separate worker support, live preview, and Whisper subtitle generation.</p>
+        </a>
+      </article>
+      <article class="card">
+        <a href="Video%20Editor%20Pro" target="_blank" rel="noreferrer noopener">
+          <h2>Video Editor Pro</h2>
+          <p>Primary orchestrator for the pro editor variation, including TF.js integration and real-time export controls.</p>
+        </a>
+      </article>
+      <article class="card">
+        <a href="video-editor-pro-worker.html" target="_blank" rel="noreferrer noopener">
+          <h2>Worker Edition</h2>
+          <p>Worker-backed editor demo for more advanced processing with a dedicated background thread.</p>
+        </a>
+      </article>
+      <article class="card">
+        <a href="video-editor-ultimate.html" target="_blank" rel="noreferrer noopener">
+          <h2>Ultimate FFmpeg</h2>
+          <p>FFmpeg.wasm-based editor with cropping, trimming, presets, and overlay controls.</p>
+        </a>
+      </article>
+    </section>
+
+    <section style="margin-top:32px;">
+      <h2 style="color:#00ffcc; text-align:center; margin-bottom:16px;">Melbourne Lantern · Multiformat</h2>
+      <p style="text-align:center; color:#9fb2c0; max-width:720px; margin:0 auto 20px;">
+        Shot timelines from <code style="background:#020617;padding:2px 6px;border-radius:6px;color:#7dd3fc;">Melbourne_Lantern_Webdrama.md</code> — open FFmpeg Ultimate with preset, overlay, and trim loaded.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <a href="video-editor-ultimate.html?project=melbourne-lantern&format=reel-a&preset=warm&overlay=MELBOURNE+LANTERN&duration=30&aspect=9:16" target="_blank" rel="noreferrer noopener">
+            <h2>Reel A · Scam PSA</h2>
+            <p>30s vertical · A1→A10 · warm preset · Hosier → Centre → Collins</p>
+          </a>
+        </article>
+        <article class="card">
+          <a href="video-editor-ultimate.html?project=melbourne-lantern&format=reel-b&preset=cinematic&overlay=NOT+IMPRESSED&duration=30&aspect=9:16" target="_blank" rel="noreferrer noopener">
+            <h2>Reel B · Tsundere</h2>
+            <p>30s vertical · W1→B9 · cinematic · Hosier → Centre</p>
+          </a>
+        </article>
+        <article class="card">
+          <a href="video-editor-ultimate.html?project=melbourne-lantern&format=ep-2-5-dib&preset=warm&overlay=4G+%3E+FATE&duration=30&aspect=9:16" target="_blank" rel="noreferrer noopener">
+            <h2>Ep 2.5 · Divine Insight</h2>
+            <p>30s cut · DIB2→DIB12 · tarot-scam PSA · Hosier only</p>
+          </a>
+        </article>
+        <article class="card">
+          <a href="video-editor-ultimate.html?project=melbourne-lantern&format=dib-aftercare&preset=noir&overlay=%EA%B4%9C%EC%B0%AE%EC%95%84%EC%9A%94&duration=45&aspect=9:16&pin=HOTEL&episode=2.5" target="_blank" rel="noreferrer noopener">
+            <h2>Post-DIB · Quiet Heal</h2>
+            <p>45s · HEAL1→HEAL6 · HOTEL mirror · Helen self-healing coda</p>
+          </a>
+        </article>
+        <article class="card">
+          <a href="video-editor-ultimate.html?project=melbourne-lantern&format=veil-lumen&preset=noir&overlay=VEIL+LUMEN&duration=240&aspect=16:9" target="_blank" rel="noreferrer noopener">
+            <h2>Veil Lumen Essay</h2>
+            <p>16:9 · 3–5 min assembly · noir preset</p>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="meta">
+      <p><strong>Note:</strong> Use <code>python3 -m http.server 8000</code> from the repository root to run the app locally and avoid browser restrictions on file URLs.</p>
+      <p>Open <code>index.html</code> first for the cleanest entrypoint experience.</p>
+    </section>
+
+    <footer class="footer">
+      <p>Published from <code>https://github.com/Thedoctorjpg/video-editor</code>. Use the manifest and service worker for a lightweight PWA experience.</p>
+    </footer>
+  </main>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

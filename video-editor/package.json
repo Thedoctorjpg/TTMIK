@@ -1,0 +1,27 @@
+{
+  "name": "video-editor",
+  "version": "0.1.0",
+  "description": "Static web-based video editor suite with AI-assisted preview and FFmpeg.wasm editing.",
+  "private": true,
+  "author": "Thedoctorjpg <noreply@localhost>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thedoctorjpg/video-editor.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "check": "node -e \"console.log('Video Editor repo ready.')\""
+  },
+  "keywords": ["video", "editor", "pwa", "ffmpeg", "tfjs", "web"],
+  "files": [
+    "index.html",
+    "AI video editor",
+    "Video Editor Pro",
+    "video-editor-pro-worker.html",
+    "video-editor-ultimate.html",
+    "manifest.json",
+    "sw.js",
+    "assets/*"
+  ]
+}

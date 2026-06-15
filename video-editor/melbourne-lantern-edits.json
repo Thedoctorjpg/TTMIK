@@ -1,0 +1,74 @@
+{
+  "project": "melbourne-lantern",
+  "source": "https://github.com/Thedoctorjpg/TTMIK",
+  "videoEditor": "https://github.com/Thedoctorjpg/video-editor",
+  "formats": {
+    "reel-a": {
+      "label": "Reel A · Tsundere Scam PSA",
+      "duration": 30,
+      "aspect": "9:16",
+      "visualPreset": "warm",
+      "overlay": "MELBOURNE LANTERN",
+      "pins": ["HOSIER", "CENTRE", "COLLINS", "DEGRAVES"],
+      "editOrder": "A1@HOSIER → A3@HOSIER → A4@CENTRE → A6@COLLINS → A7@DEGRAVES → A8@HOSIER → A9@HOSIER → A10@CENTRE"
+    },
+    "reel-b": {
+      "label": "Reel B · Not Enjoying Melbourne",
+      "duration": 30,
+      "aspect": "9:16",
+      "visualPreset": "cinematic",
+      "overlay": "NOT IMPRESSED",
+      "pins": ["HOSIER", "CENTRE"],
+      "editOrder": "W1@HOSIER → W2@HOSIER → B3@HOSIER → B5@HOSIER → B6@CENTRE → B7@HOSIER → B8@HOSIER → B9@CENTRE"
+    },
+    "ep-2-5-dib": {
+      "label": "Ep 2.5 · Divine Insight Blessing",
+      "duration": 30,
+      "aspect": "9:16",
+      "visualPreset": "warm",
+      "overlay": "4G > FATE",
+      "pins": ["HOSIER"],
+      "editOrder": "DIB2@HOSIER → DIB3@HOSIER → DIB4@HOSIER → DIB8@HOSIER → DIB9@HOSIER → DIB10@HOSIER → DIB11@HOSIER → DIB12@HOSIER"
+    },
+    "tiktok-15": {
+      "label": "TikTok 15s duet cuts",
+      "duration": 15,
+      "aspect": "9:16",
+      "pins": ["HOSIER"],
+      "editOrder": "B3@HOSIER · A9@HOSIER · DIB10@HOSIER (pick one)"
+    },
+    "webdrama-ep2": {
+      "label": "Webdrama Ep 2 · Arrival Tsundere",
+      "duration": 90,
+      "aspect": "9:16",
+      "visualPreset": "cinematic",
+      "pins": ["HOSIER", "DEGRAVES"],
+      "editOrder": "cold → kind-of → content → 4g-fate → cliff@DEGRAVES"
+    },
+    "trailer-30": {
+      "label": "Season 1 Trailer",
+      "duration": 30,
+      "aspect": "9:16",
+      "visualPreset": "cinematic",
+      "pins": ["MEL", "HOSIER", "DEGRAVES", "FLINDERS", "SOUTH", "PRINCES"],
+      "editOrder": "MEL(2s) → HOSIER(4s) → DEGRAVES(3s) → FLINDERS(3s) → SOUTH(3s) → PRINCES(3s) → HOSIER lantern(2s)"
+    },
+    "veil-lumen": {
+      "label": "Veil Lumen Essay",
+      "duration": 240,
+      "aspect": "16:9",
+      "visualPreset": "noir",
+      "overlay": "VEIL LUMEN",
+      "pins": ["FED", "COLLINS", "HOTEL", "FLINDERS", "SOUTH", "BOTANIC"],
+      "editOrder": "FED → COLLINS → HOTEL → FLINDERS → SOUTH → BOTANIC"
+    },
+    "youtube-short-60": {
+      "label": "YouTube Short 60s",
+      "duration": 60,
+      "aspect": "9:16",
+      "visualPreset": "warm",
+      "pins": ["HOSIER", "CENTRE", "DEGRAVES"],
+      "editOrder": "W1 → A3 → B5 → A4 → DIB9 → B7 → A8 → B9"
+    }
+  }
+}

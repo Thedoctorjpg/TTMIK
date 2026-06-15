@@ -1,0 +1,565 @@
+# Shopify + X (Twitter) + eBay + AliExpress Integration
+
+**Built with Grok as your primary AI coding partner.**
+
+A production-ready Node.js/Express backend + React/Vite frontend that connects **Shopify, eBay, and AliExpress** to X (Twitter), WordPress, and any external endpoint, with:
+
+- Real-time Shopify webhooks
+- Multi-platform product/order fetching and announcement tweeting
+- Easy deployment to **Amazon Web Services** (Docker + App Runner ready)
+
+- Real-time Shopify webhooks (products/create, orders/create, etc.)
+- Automatic tweet posting with product images (OAuth 1.0a via `twitter-api-v2`)
+- Manual tweet endpoints
+- Server-rendered dashboard widgets (HTML)
+- Excellent structured logging + "prompt log" style output perfect for feeding back into AI
+- Clean, reusable code you can extend
+
+## Project Structure
+
+```
+shopify-x-integration/
+├── package.json
+├── .env.example
+├── .gitignore
+├── README.md
+└── src/
+    ├── server.js        # Main Express app + routes + webhook handler
+    ├── shopify.js       # Shopify Admin API client (axios)
+    ├── twitter.js       # Full X posting with image support
+    ├── utils.js         # Logger, formatters, HMAC verifier, tweet generators
+    └── widgets.js       # HTML + data widgets for dashboards
+```
+
+## Quick Start
+
+1. **Clone / create the folder** and install deps (already done if you followed the session):
+
+   ```bash
+   cd shopify-x-integration
+   npm install
+   ```
+
+2. **Setup environment**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Fill in `.env`:
+
+   ```env
+   SHOPIFY_ACCESS_TOKEN=shpat_xxx...
+   SHOPIFY_SHOP_DOMAIN=your-store.myshopify.com
+   SHOPIFY_WEBHOOK_SECRET=your_random_webhook_secret   # Generate a strong one!
+
+   TWITTER_API_KEY=...
+   TWITTER_API_SECRET=...
+   TWITTER_ACCESS_TOKEN=...
+   TWITTER_ACCESS_SECRET=...
+   ```
+
+3. **Run**
+
+   ```bash
+   npm start
+   # or for auto-reload on changes:
+   npm run dev
+   ```
+
+4. Visit:
+   - `http://localhost:3000/dashboard` — server-rendered sales + product widgets
+   - `http://localhost:3000/products`
+   - `http://localhost:3000/orders`
+
+## Key Features Implemented
+
+- **Full Twitter posting** (OAuth 1.0a) with image upload
+- **Multi-platform support**: Shopify + **eBay** + **AliExpress**
+- Real-time **Shopify webhooks** → X + WordPress + external (Google, n8n, etc.)
+- Fetch products/orders from eBay and AliExpress and tweet them
+- **AWS-ready**: Dockerfile + healthchecks + instructions for App Runner / ECS + GitHub Actions + SSM loader
+- **React/Vite Dashboard**: Unified view across all platforms with tweet & import buttons
+- Convenient `POST /webhooks/setup` + platform-specific tweet + import endpoints + daily cron
+- Rich prompt-log style logging for AI-assisted development
+
+## Webhook Setup (Real-time Triggers)
+
+**Your public webhook URL must be HTTPS and reachable by Shopify.**
+
+### 1. For Local Development
+Use a tunnel:
+```bash
+npx ngrok http 3000
+# or cloudflared, localtunnel, etc.
+```
+Then register:
+```bash
+curl -X POST http://localhost:3000/webhooks/register \
+  -H "Content-Type: application/json" \
+  -d '{"topic":"products/create","address":"https://abc123.ngrok.io/webhooks"}'
+```
+
+### 2. For Production / Remote Hosting (Recommended)
+Set `WEBHOOK_BASE_URL` in your `.env` (or hosting platform env vars):
+
+```env
+WEBHOOK_BASE_URL=https://your-app.onrender.com
+# or https://your-service-xxx-uc.a.run.app   (Google Cloud Run)
+# or https://shopify-x-xxx.fly.dev
+```
+
+Then use the one-command setup:
+```bash
+curl -X POST https://your-app.onrender.com/webhooks/setup
+```
+
+This registers the most useful topics (`products/create`, `products/update`, `orders/create`, `orders/paid`) pointing at your public `/webhooks` endpoint.
+
+You can also still use individual `POST /webhooks/register` or set them manually inside Shopify Admin.
+
+### 3. In Shopify Admin (Manual)
+Settings → Notifications → Webhooks → Create webhook  
+Use the exact same `SHOPIFY_WEBHOOK_SECRET` from your `.env`.
+
+The secret + HMAC verification protects your endpoint.
+
+## WordPress Integration
+
+When you create a new product in Shopify, the system can automatically create a draft (or published) post on your WordPress site.
+
+### Setup
+1. In WordPress: Users → Profile → Add New Application Password (give it a name like "Shopify Integration").
+2. Add to `.env`:
+
+```env
+WORDPRESS_SITE_URL=https://your-site.com
+WORDPRESS_USERNAME=admin
+WORDPRESS_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx
+```
+
+3. Restart the server. New `products/create` webhooks will now create WordPress posts.
+
+The post includes title, price, featured image (as HTML), description, and a link back to the Shopify product. Tags are synced too.
+
+You can change `status: 'draft'` to `'publish'` in `src/integrations.js`.
+
+**Test connection** (optional):
+```bash
+curl -X POST http://localhost:3000/webhooks/setup
+# (or just trigger a product/create webhook)
+```
+
+## Forwarding to Remote / Google-Hosted Websites
+
+Use the `EXTERNAL_WEBHOOK_URLS` variable to fan out every Shopify event to any number of HTTPS endpoints.
+
+This is perfect for:
+- Google Apps Script Web Apps
+- Google Cloud Functions / Cloud Run
+- Firebase
+- Your own remote Node/Python/PHP site
+- n8n, Make.com (Integromat), Zapier Catch Hooks, etc.
+
+### Setup
+```env
+EXTERNAL_WEBHOOK_URLS=https://script.google.com/macros/s/XXXXXXXXXXXXXXXX/exec,https://my-cloud-function.run.app/shopify-webhook
+```
+
+Every webhook (regardless of topic) will be `POST`ed as JSON to all listed URLs, with extra headers:
+- `X-Shopify-Topic`
+- `X-Shopify-Shop-Domain`
+- `X-Source: shopify-x-integration`
+
+Your remote endpoint just needs to accept `POST` with a JSON body.
+
+### Example: Google Apps Script Receiver (copy-paste ready)
+
+1. Go to https://script.google.com → New project
+2. Paste this code:
+
+```javascript
+function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+  const topic = e.parameter['X-Shopify-Topic'] || e.postData.headers?.['X-Shopify-Topic'] || 'unknown';
+
+  // Example: Log everything to a Google Sheet
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('ShopifyEvents') 
+                || SpreadsheetApp.getActiveSpreadsheet().insertSheet('ShopifyEvents');
+  sheet.appendRow([new Date(), topic, JSON.stringify(data)]);
+
+  // Example actions:
+  if (topic === 'products/create') {
+    // Send yourself an email, update a site, create a Calendar event, etc.
+    GmailApp.sendEmail('you@gmail.com', 'New Shopify Product', 
+      `New product: ${data.title}\nPrice: ${data.variants?.[0]?.price}`);
+  }
+
+  if (topic === 'orders/create' || topic === 'orders/paid') {
+    // Forward to your internal system, update inventory in another tool, etc.
+  }
+
+  return ContentService.createTextOutput('OK').setMimeType(ContentService.MimeType.TEXT);
+}
+```
+
+3. Deploy → New deployment → Web app → Execute as "Me" → Who has access: "Anyone"
+4. Copy the `/exec` URL and put it in `EXTERNAL_WEBHOOK_URLS`
+5. Re-deploy after changes.
+
+This gives you a completely free, serverless Google-hosted receiver that can do almost anything.
+
+## More Webhook Topics
+
+The receiver already listens for any topic Shopify sends. Out of the box we react to:
+
+- `products/create` → Tweet + (optional) WordPress post + external
+- `orders/create` → Tweet + external
+- `products/update`, `orders/paid` → logged + forwarded to externals
+
+Add your own reactions easily in `src/server.js` inside the webhook handler.
+
+## Deploying to Amazon Web Services (AWS)
+
+This app is now a **unified full-stack container** (backend API + React frontend served from the same port).
+
+### Recommended: AWS App Runner (easiest)
+
+**Option 1: GitHub source (zero-config, recommended for first deploy)**
+1. Push to GitHub.
+2. AWS Console → App Runner → Create service → Source = GitHub repository.
+3. Select repo/branch.
+4. Build settings:
+   - Runtime: **Node.js** (or "Deploy with a Dockerfile" for full control)
+   - If Node.js: Build command `npm install && npm run build:frontend`
+   - Start command: `npm start`
+   - Port: 3000
+5. Health check path: `/health`
+6. After deploy, set environment variables (all your `SHOPIFY_*`, `TWITTER_*`, `XAI_API_KEY`, `USE_GROK_COPY=true`, `WEBHOOK_BASE_URL= the public URL`, etc.) in the service configuration.
+7. Deploy / update → get public URL like `https://abc123.us-west-2.awsapprunner.com`
+8. Post-deploy:
+   ```bash
+   curl -X POST https://your-app.../webhooks/setup
+   curl -X POST https://your-app.../cron/trigger-events
+   ```
+
+**Option 2: Container (ECR + our Dockerfile)**
+- Use the included `Dockerfile` (it now builds the React frontend + serves it + API from one container).
+- GitHub Action (`.github/workflows/deploy.yml`) builds/pushes to ECR and updates the service on push to main.
+- Or run locally: `powershell -File scripts/deploy-app-runner.ps1 -FromGitHub` or with ECR.
+
+The Dockerfile + server now automatically serves the built UI at `/` and API routes take precedence.
+
+### GitHub Action Deploy
+- Triggers on push to main or manual.
+- Requires repo secrets:
+  - `AWS_ACCESS_KEY_ID`
+  - `AWS_SECRET_ACCESS_KEY`
+  - `AWS_REGION` (default us-west-2)
+  - `AWS_ACCOUNT_ID`
+- First time: create the App Runner service in console (pointing to your ECR repo or use GitHub source).
+- The workflow will then update it.
+
+See the workflow file and scripts/ for details. The action now handles the unified build.
+
+App Runner gives you automatic HTTPS, scaling, and a stable public URL — perfect for webhooks.
+
+### Alternative: Docker on ECS / Fargate / Elastic Beanstalk
+
+Use the production `Dockerfile` + `.dockerignore`.
+
+```bash
+docker build -t shopify-x-integration .
+# push to ECR or your registry
+docker tag ... your-ecr-repo
+docker push ...
+```
+
+Deploy the image. The container serves both frontend and backend.
+
+### Secrets on AWS (Advanced)
+- Use the built-in SSM loader: set `AWS_SSM_ENABLED=true` and `AWS_SSM_PARAM_PREFIX=/shopify-x-integration/prod/`
+- Or App Runner environment variables / secrets.
+- Scripts in `scripts/` help.
+
+See `src/aws.js`.
+
+**Important for production**: Set `WEBHOOK_BASE_URL` (and `AWS_WEBHOOK_BASE_URL`) to your public App Runner URL so webhooks and crons know the correct address.
+
+### Troubleshooting "Deploy to AWS App Runner: All jobs have failed"
+- The GitHub Action typically fails fast on:
+  - Missing or invalid GitHub secrets (AWS_ACCESS_KEY_ID etc.). Go to repo Settings > Secrets and variables > Actions and add them. The key needs permissions for ECR (ecr:*) and App Runner.
+    The workflow now has an early "Check required secrets" step that will fail clearly with instructions if missing.
+  - App Runner service not pre-created in the AWS account/region (the update-service fails). Create it first in the AWS Console (App Runner > Create service), using either GitHub source (easiest) or the ECR image after a manual push.
+  - ECR repository not existing (docker push fails). The workflow now auto-creates it.
+  - IAM policy too restrictive on the AWS key.
+- Check the full logs in the GitHub Actions run for the exact failing step and error message (the "Check required secrets" or "Build, tag, and push" steps are common culprits).
+- For first-time or simplest: Use GitHub source in the App Runner console (it will auto-build the Dockerfile on pushes, no ECR needed). You can disable or ignore the GitHub Action for that.
+- After any deploy, always configure the environment variables in the App Runner service (or use the SSM loader) and set WEBHOOK_BASE_URL to the public URL.
+- Test locally first: `npm run build:frontend && node src/server.js` then visit http://localhost:3000 .
+
+## eBay Integration
+
+### Setup
+1. Create an app at https://developer.ebay.com/my/keys
+2. Get **App ID (Client ID)** and **App Secret (Client Secret)**
+3. For accessing **your own listings and orders**, generate a user access token (OAuth2 user consent flow or use the "Get Token" tool in the developer portal for testing).
+4. Add to `.env`:
+
+```env
+EBAY_ENV=production          # or "sandbox"
+EBAY_APP_ID=...
+EBAY_APP_SECRET=...
+EBAY_ACCESS_TOKEN=...        # user token for seller data
+```
+
+### Usage
+
+```bash
+# Search / list eBay products
+curl "http://localhost:3000/ebay/products?limit=10&q=wireless%20headphones"
+
+# Tweet an eBay item (you can pass the full item JSON or just an ID in advanced usage)
+curl -X POST http://localhost:3000/tweet-ebay-product \
+  -H "Content-Type: application/json" \
+  -d '{"itemId": "1234567890"}'
+```
+
+The code supports both public Browse API and authenticated seller Inventory/Fulfillment APIs.
+
+**eBay Webhooks**: eBay has "Event Notifications". You can point them at `/webhooks` (or add a dedicated `/ebay/webhooks` receiver) and use `verifyEbayWebhook` from `ebay.js`.
+
+## AliExpress Integration
+
+### Setup
+1. Go to the AliExpress Open Platform (https://open.aliexpress.com/) or Alibaba Cloud.
+2. Create an app and get **App Key** + **App Secret**.
+3. Some advanced calls need an access token.
+4. Add to `.env`:
+
+```env
+ALIBABA_APP_KEY=...
+ALIBABA_APP_SECRET=...
+```
+
+### Usage
+
+```bash
+# Search products (very useful for inspiration / deals accounts)
+curl "http://localhost:3000/aliexpress/search?q=smart%20watch&limit=8"
+
+# Tweet a trending AliExpress product
+curl -X POST http://localhost:3000/tweet-aliexpress-product \
+  -H "Content-Type: application/json" \
+  -d '{"keywords": "portable blender"}'
+```
+
+AliExpress is excellent for:
+- Finding trending low-cost products to promote
+- Cross-posting between your Shopify/eBay store and AliExpress supplier links
+- Building "daily deals" Twitter accounts
+
+## Manual Tweeting
+
+```bash
+# Tweet a specific product (auto-generates nice text + image)
+curl -X POST http://localhost:3000/tweet-product \
+  -H "Content-Type: application/json" \
+  -d '{"productId": 1234567890}'
+
+# With custom text
+curl -X POST http://localhost:3000/tweet-product \
+  -H "Content-Type: application/json" \
+  -d '{"productId": 1234567890, "customText": "Check out our new limited drop! 🔥 https://..."}'
+```
+
+## Scheduled Jobs (Daily Cross-Platform Summaries)
+
+Enable automatic daily tweets that pull "best" items from **all three platforms** and post a combined summary.
+
+### Setup
+```env
+ENABLE_DAILY_SUMMARY_CRON=true
+DAILY_SUMMARY_CRON_SCHEDULE="0 18 * * *"   # 6pm UTC (cron syntax)
+DAILY_SUMMARY_KEYWORDS="trending gadgets,wireless earbuds,smart watch,portable blender"
+```
+
+The cron runs at the schedule, fetches latest/popular from Shopify + eBay + AliExpress, picks representatives, and tweets something like:
+
+```
+🛍️ Daily Cross-Platform Picks (6/4/2026)
+
+1. Shopify: Wireless Noise Cancelling Headphones — $89
+   https://yourstore.myshopify.com/...
+2. eBay: ...
+3. AliExpress: ...
+
+#Deals #Shopify #eBay #AliExpress
+```
+
+### Manual trigger
+```bash
+curl -X POST https://your-app.awsapprunner.com/cron/trigger-summary
+```
+
+Great for "daily deals" Twitter accounts that aggregate across stores.
+
+## eBay Event Notifications (Real Webhooks)
+
+eBay can push events (ItemListed, ItemRevised, Order, etc.) to your server.
+
+### Setup
+1. In eBay Developer portal, subscribe to Event Notifications for your app.
+2. Point the destination to `https://your-public-url/ebay/webhooks`
+3. Your server will verify the `X-EBAY-SIGNATURE` (full ECDSA verification implemented in src/ebay.js).
+
+The receiver currently auto-tweets on item listing events. Extend in `src/server.js` for orders, returns, etc.
+
+See also the legacy Platform Notifications if using older Trading API (different signature).
+
+## Product Import Flows
+
+Easily import products from AliExpress (or eBay) into your Shopify store as **drafts**.
+
+### Example: AliExpress → Shopify
+```bash
+curl -X POST https://your-app.../import/aliexpress-to-shopify \
+  -H "Content-Type: application/json" \
+  -d '{"keywords": "portable mini projector"}'
+```
+
+This:
+- Searches AliExpress
+- Normalizes the product (title, price, image, url)
+- Creates a **draft** product in Shopify via Admin API (safe — you review & publish)
+
+You can also pass `itemId` for exact product.
+
+Extend `importToShopifyFromExternal` in `src/shopify.js` for more fields (variants, options, SEO, etc.).
+
+Similar flows can be added for eBay → Shopify.
+
+## Logging & AI-Friendly Output
+
+The logger has a special `promptLog` method. Whenever important actions happen (tweets, etc.), it prints a block like:
+
+```
+============================================================
+PROMPT LOG: TWEETED PRODUCT
+============================================================
+{
+  "product": { ... },
+  "result": { ... }
+}
+============================================================
+```
+
+Copy-paste these straight into your next prompt to Cursor / Grok / Claude for perfect context.
+
+## Enhanced X/Twitter Features (Marketing, Ads, Special Events)
+
+- Marketing tweets: `POST /tweet-marketing` with UTM params, campaign tracking, auto Imagine ad images. Uses Grok for smart copy if `USE_GROK_COPY=true`.
+- Ads support: `GET /tweet-metrics/:tweetId` for analytics (public + organic metrics). `GET /twitter/ads-access` check. `POST /promote-tweet` for full promotion (requires `TWITTER_ADS_ACCOUNT_ID` and Ads account).
+- Special events: `POST /tweet-special-event` for holidays, sales, launches (now includes by default: Chinese New Year (Lunar New Year, ~Feb 1, varies), Valentines Feb 14, Mother's Day May 12, Father's Day June 16, Halloween Oct 31, EOFY June 30, Singles Day 11/11, Black Friday, etc.). **Cron wired**: daily events check via `runEventTweets()` alongside summary. Config in src/cron.js SPECIAL_EVENTS.
+- Frontend Twitter Hub: Test buttons, metrics lookup, ads status, event trigger.
+- Grok text gen integrated for dynamic marketing/event copy (via xAI chat API).
+- See `src/twitter.js`, `src/grok.js`, `src/cron.js` and utils for generators.
+
+## Grocery, Fast Food & Delivery Integration
+
+New support for real-world grocery and QSR retailers:
+
+**Supported stores** (with realistic mock products):
+- Walmart, Target (US)
+- Pak N Save, Woolworths (NZ/AU)
+- Konbini (Japanese convenience stores)
+- Jollibee (Philippine fast food)
+- Fast Food (generic burgers, pizza, chicken)
+- Uber Eats, DoorDash (delivery platforms - popular meals + grocery delivery bundles)
+
+**Features**:
+- Backend: `GET /grocery/:store/products` (with search), `POST /tweet-grocery`, `/generate-grocery-ad` (via xAI Imagine), `/import/grocery-to-shopify`
+- Frontend: Dedicated "🛒 Grocery, Fast Food & Delivery" section with store dropdown (Walmart/Target/Pak N Save/Woolworths/Konbini/Jollibee/Fast Food/Uber Eats/DoorDash), search, product cards showing store, and full action buttons (Tweet, Import, Generate Ad, Marketing Tweet, Special Event).
+- Integrates seamlessly with Twitter marketing (Grok-generated copy + Imagine visuals), cron special events, and Shopify imports.
+- Great for cross-retail deal promotion, weekly grocery tweets, fast food campaigns.
+
+Add more stores or real APIs (e.g. Walmart Affiliate) easily in `src/grocery.js`.
+
+## Extending the Project (High-Velocity Next Steps)
+
+Current status (built with Grok):
+
+- ✅ Shopify + eBay + AliExpress product/order fetching + import flows (Ali/eBay → Shopify, bulk supported)
+- ✅ Multi-platform tweeting (X) + daily cross-platform summary cron (scoring + email fallback)
+- ✅ Shopify webhooks + eBay Event Notifications (verified) + WordPress + arbitrary external forwards
+- ✅ AWS hosting ready (Dockerfile + App Runner scripts + SSM secrets loader + GitHub Actions)
+- ✅ Frontend Dashboard (React/Vite - unified view + tweet/import + xAI Grok Imagine + Twitter Marketing Hub)
+- ✅ xAI Grok Imagine API integration (image gen, product ad mockups, edits, video)
+- ✅ Enhanced X/Twitter: Marketing integration, Ads support (metrics + full promote), Special events (Chinese New Year, Valentines, Mother's, Father's, Halloween, EOFY, Singles Day, etc.) + cron wiring, Grok text copy gen
+- ✅ Grocery, Fast Food & Delivery: Walmart, Target, Pak N Save, Woolworths, Konbini, Jollibee, Fast Food, Uber Eats, DoorDash – product search, tweets, Imagine ads, import to Shopify
+- ✅ Excellent docs + prompt logs
+
+Run frontend: `npm run frontend` (after `cd frontend && npm install` if needed)
+Full dev: `npm run dev:full` (requires concurrently)
+
+Next high-value additions could be:
+- Real eBay Event Notifications receiver
+- Full product sync (e.g. import AliExpress item → create Shopify draft)
+- React frontend that shows all three platforms in one dashboard
+- Daily summary cron that posts "Today's best from Shopify + eBay + AliExpress"
+
+### Suggested next chunks (pick one):
+
+**A. Daily summary cron** (add `node-cron`)
+
+```js
+import cron from 'node-cron';
+cron.schedule('0 18 * * *', async () => {
+  const orders = await getRecentOrders(50);
+  const summary = generateDailySummaryTweet(orders);
+  await postToTwitter(summary);
+});
+```
+
+**B. React + Vite frontend** (separate `frontend/` folder)
+- Use the existing widgets as inspiration or call the API routes.
+- Show live product grid + "Tweet this" buttons.
+
+**C. More webhook topics + database persistence**
+- Add Postgres/SQLite + store tweeted items so you never double-post.
+- Handle `orders/paid`, `products/update`, `refunds/create`.
+
+**D. Better media handling**
+- Support multiple images per tweet.
+- Video uploads (more complex).
+
+## Environment Variables Reference
+
+See [.env.example](.env.example).
+
+## Security Notes
+
+- Never commit `.env`
+- Webhook verification is mandatory — the code will reject unsigned requests
+- Twitter OAuth 1.0a keys have full posting permission — guard them
+
+## Tech Stack
+
+- Node 18+
+- Express 5
+- axios
+- twitter-api-v2 (best maintained X client)
+- No database yet (easy to add)
+
+---
+
+**This entire project was built in high-velocity mode with Grok.**
+
+Ready for the next piece? Just say the number or describe (e.g. "add daily cron summaries + a nice summary tweet generator" or "scaffold the React dashboard").
+
+Prompt example you can reuse:
+
+> Continue the shopify-x-integration project at C:\Users\david\projects\shopify-x-integration. We now support Shopify + eBay + AliExpress + AWS hosting + webhooks to multiple destinations. Next: [describe exactly, e.g. "add a /cron/daily-summary route + node-cron that pulls best products from all platforms and tweets a combined summary"].
+> Keep the same style: excellent comments, logger.promptLog where useful, ESM, minimal deps.
+
+Let's ship the next chunk!

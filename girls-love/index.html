@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Girls Love — Story Creator & After the Date</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <h1>Girls Love</h1>
+      <p>Queer mythic romance — and the Melbourne Lantern novel that starts <em>after</em> the cook-off date.</p>
+      <nav class="mode-tabs" aria-label="App modes">
+        <button type="button" class="mode-tab active" data-mode="creator">Story Creator</button>
+        <button type="button" class="mode-tab" data-mode="novel">After the Date</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <!-- Original story creator -->
+    <div id="creatorMode" class="mode-panel active">
+      <section class="intro-card">
+        <h2>Build Your Story</h2>
+        <p>Enter your characters, select themes, and press generate to turn your inputs into a short Girls' Love modern myth.</p>
+      </section>
+
+      <section class="form-card">
+        <div class="field-grid">
+          <label>
+            Lead A Name
+            <input id="nameA" type="text" placeholder="Mara" />
+          </label>
+          <label>
+            Lead B Name
+            <input id="nameB" type="text" placeholder="June" />
+          </label>
+        </div>
+
+        <label>
+          Setting
+          <input id="setting" type="text" placeholder="Oklahoma highway, laundromat shrine, desert diner" />
+        </label>
+
+        <fieldset>
+          <legend>Choose story tropes</legend>
+          <label><input type="checkbox" value="road trip" checked /> Road Trip</label>
+          <label><input type="checkbox" value="modern goddess" checked /> Modern Goddess</label>
+          <label><input type="checkbox" value="secret shrine" /> Secret Shrine</label>
+          <label><input type="checkbox" value="food truck" /> Food Truck</label>
+          <label><input type="checkbox" value="late night coding" /> Late Night Ritual</label>
+        </fieldset>
+
+        <label>
+          Keywords and mood
+          <input id="keywords" type="text" placeholder="warm, tender, rebellious, neon, magic" />
+        </label>
+
+        <div class="button-row">
+          <button id="generateBtn" type="button">Generate Story</button>
+          <button id="copyBtn" type="button">Copy Story</button>
+        </div>
+      </section>
+
+      <section class="output-card">
+        <div class="output-header">
+          <h2>Your Story Preview</h2>
+          <span id="storyStatus">Ready to generate</span>
+        </div>
+        <div id="storyOutput" class="story-output">The generated story will appear here after you click <strong>Generate Story</strong>.</div>
+      </section>
+
+      <section class="example-card">
+        <h2>How It Works</h2>
+        <p>This app turns your names, setting, and chosen tropes into a brief, atmospheric queer romance scene you can build on. Every generation chooses a goddess archetype, a shared project, and a rising emotional moment.</p>
+      </section>
+    </div>
+
+    <!-- After the Date romance novel -->
+    <div id="novelMode" class="mode-panel">
+      <section class="intro-card novel-intro">
+        <h2>After the Date</h2>
+        <p>
+          The Degraves cook-off is over. Plates are down. Pick who won, whose POV you want, and read four chapters of slow-burn Melbourne Lantern romance — sovereign, tsundere, and HR-approved.
+        </p>
+        <p class="novel-bridge">
+          Continues from <a href="http://localhost:5173/date-night" target="_blank" rel="noopener">lets-cook · Date Night</a>
+          — Lo3tus, Helen, Asuka, Rach3l &amp; the Bard.
+        </p>
+      </section>
+
+      <section class="form-card novel-controls">
+        <div class="field-grid">
+          <label>
+            Cook-off winner
+            <select id="winnerSelect"></select>
+          </label>
+          <label>
+            POV
+            <select id="focusSelect"></select>
+          </label>
+        </div>
+        <div class="field-grid">
+          <label>
+            Romance trope
+            <select id="tropeSelect"></select>
+          </label>
+          <label>
+            Your name (optional)
+            <input id="readerName" type="text" placeholder="you" />
+          </label>
+        </div>
+        <div class="button-row">
+          <button id="readChapterBtn" type="button" class="primary">Read chapter</button>
+          <button id="readAllBtn" type="button">Read full novel</button>
+          <button id="copyNovelBtn" type="button">Copy chapter</button>
+        </div>
+      </section>
+
+      <section class="novel-layout">
+        <aside class="chapter-sidebar">
+          <h3>Chapters</h3>
+          <div id="chapterList" class="chapter-list"></div>
+        </aside>
+
+        <article class="novel-reader output-card">
+          <div class="output-header">
+            <div>
+              <p class="novel-eyebrow" id="novelTitle">After the Date</p>
+              <h2 id="chapterHeading">Chapter 1</h2>
+              <p class="chapter-time" id="chapterTime"></p>
+              <p class="novel-meta-line" id="novelMeta"></p>
+            </div>
+            <span id="novelStatus">Ready</span>
+          </div>
+          <div id="chapterBody" class="novel-body"></div>
+          <div class="chapter-nav">
+            <button id="prevChapterBtn" type="button">← Previous</button>
+            <button id="nextChapterBtn" type="button">Next →</button>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>Girls Love · Story Creator &amp; After the Date novel · Melbourne Lantern universe</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script type="module" src="novel.js"></script>
+  <script>
+    document.querySelectorAll('.mode-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.mode-tab').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.mode-panel').forEach((p) => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.mode === 'novel' ? 'novelMode' : 'creatorMode').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

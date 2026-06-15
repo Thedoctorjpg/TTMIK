@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(dir)",
+      "Exec(mkdir)",
+      "Exec(copy)",
+      "Exec(git init)",
+      "Exec(git add)",
+      "Exec(git config)",
+      "Exec(git commit)",
+      "Exec(git status)",
+      "Exec(git log)",
+      "Exec(git remote)",
+      "Exec(git push)",
+      "Exec(git pull)"
+    ]
+  }
+}

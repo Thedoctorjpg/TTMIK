@@ -1,0 +1,57 @@
+Korr Vandersteen
+Goliath Forge Cleric (Knowledge Domain), Level 3
+The Hook
+Goliaths are mountain-clan wanderers, all about physical contests and tribal honor — not exactly "investigator" material. That's the unconventional pick: a hulking 7-foot mountain warrior who, through a strange spiritual event in his youth, was chosen by a god of knowledge and truth he doesn't fully understand. His clan exiled him as "cursed" for abandoning their warrior ascetic in favor of obsessive study. He's enormous, intimidating, and constantly the smartest person in the room — and constantly underestimated because of how he looks.
+This gives you: a frontline tank who can also pass Investigation/Insight checks and cast detection/utility spells. Best of both worlds for solo play.
+Stats (Standard Array, adjust as you like)
+
+STR 16 (+3) — Goliath +2
+DEX 10 (+0)
+CON 15 (+2)
+INT 13 (+1)
+WIS 14 (+2) — Goliath +1, spellcasting stat
+CHA 8 (-1)
+
+Combat Stats
+
+HP: 28 (1d8 + Con per level, Goliath bonus HP)
+AC: 16 (scale mail + shield)
+Speed: 30 ft
+Proficiency Bonus: +2
+
+Class Features
+
+Channel Divinity: Knowledge of the Ages — gain proficiency in any skill/tool for 10 minutes
+Channel Divinity: Read Thoughts (if you'd rather lean Insight-heavy, this is gold for interrogations)
+Blessing of Knowledge — two extra skill proficiencies + languages
+Goliath's Stone's Endurance — reduce damage once per short rest
+
+Skills
+Investigation, History, Religion, Insight, Athletics, Medicine
+Prepared Spells (Level 3 Cleric)
+
+Guidance, Sacred Flame (cantrips)
+Bless, Cure Wounds, Detect Magic, Command
+Spiritual Weapon, Zone of Truth (signature spell — fits the mystery theme perfectly)
+
+Equipment
+Warhammer, shield, scale mail, holy symbol (an open book carved from river stone), a satchel of borrowed library texts he never returned, traveler's clothes that don't fit a goliath frame so he's altered them himself.
+
+Companion: Pip Ashgrove
+Halfling Rogue (Inquisitive), Level 3
+Role
+Where Korr is brute force and book-knowledge, Pip is street smarts, sleight of hand, and social manipulation. An ex-pickpocket who reformed (mostly) after Korr caught her trying to lift his coin purse and instead of turning her in, hired her as a research assistant. She owes him, resents owing him, and would never admit she's grown fond of the giant nerd.
+Combat Stats
+
+HP: 21
+AC: 14 (leather armor + Dex)
+Speed: 25 ft
+
+Key Features
+
+Insightful Fighting — use Insight instead of Wisdom for combat reads, bonus action Sneak Attack setup
+Steady Eye — advantage on Investigation/Perception if she doesn't move
+Expertise in Investigation and Stealth
+
+Personality
+Sarcastic, fast-talking, allergic to authority. Provides comic relief and a second voice in scenes — useful for solo play since I can run her as a sounding board, or have her notice things Korr misses.

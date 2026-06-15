@@ -79,7 +79,7 @@
                 <div class="flex items-center gap-4">
                     <div class="bg-zinc-900 rounded-3xl px-4 py-2 flex items-center gap-3 text-sm">
                         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                        <span>Level 1 • Lesson 5</span>
+                        <span id="header-lesson-badge">Level 1 • Lesson 1</span>
                     </div>
                     <button onclick="toggleDark()" class="w-10 h-10 flex items-center justify-center rounded-2xl hover:bg-zinc-800">
                         <i class="fa-solid fa-moon"></i>
@@ -188,8 +188,11 @@
                             <textarea id="notes" rows="6"
                                 class="w-full bg-zinc-800 border-0 rounded-2xl p-4 text-sm focus:ring-2 focus:ring-pink-500"
                                 placeholder="Write your thoughts, new words..."></textarea>
-                            <button onclick="saveNotes()" 
-                                    class="mt-3 text-xs bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-2xl">Save Notes</button>
+                            <div class="mt-3 flex items-center justify-between">
+                                <button onclick="saveNotes()" 
+                                        class="text-xs bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-2xl">Save Notes</button>
+                                <span id="notes-status" class="text-xs text-zinc-500"></span>
+                            </div>
                         </div>
 
                         <!-- Upload -->
@@ -235,16 +238,21 @@
 
             <!-- Progress Tab -->
             <div id="tab-3" class="tab-content hidden">
-                <div class="grid grid-cols-2 gap-6">
+                <div class="grid grid-cols-3 gap-6">
                     <div class="bg-zinc-900 rounded-3xl p-8">
                         <h3 class="font-semibold text-xl mb-6">Listening Streak</h3>
-                        <div class="text-7xl font-bold text-emerald-400">7</div>
+                        <div id="streak-value" class="text-7xl font-bold text-emerald-400">0</div>
                         <p class="text-zinc-400">days in a row 🔥</p>
                     </div>
                     <div class="bg-zinc-900 rounded-3xl p-8">
                         <h3 class="font-semibold text-xl mb-6">Total Hours</h3>
-                        <div class="text-7xl font-bold">14.8</div>
+                        <div id="hours-value" class="text-7xl font-bold">0</div>
                         <p class="text-zinc-400">hours practiced</p>
+                    </div>
+                    <div class="bg-zinc-900 rounded-3xl p-8">
+                        <h3 class="font-semibold text-xl mb-6">Lessons Completed</h3>
+                        <div id="completed-value" class="text-7xl font-bold text-pink-400">0</div>
+                        <p id="completed-subtitle" class="text-zinc-400">of 0 lessons</p>
                     </div>
                 </div>
             </div>
@@ -443,10 +451,181 @@
         let isPlaying = false;
         let audio = document.getElementById('main-audio');
         let repeatMode = false;
+        let appState = null;
+        let lastListenTimestamp = null;
+        let notesSaveTimer = null;
+        let positionSaveTimer = null;
 
-        // Tailwind script
-        function initTailwind() {
-            // Already loaded via CDN
+        const STORAGE_KEY = 'ttmik_lab_v1';
+
+        function getDefaultState() {
+            return {
+                version: 1,
+                currentLesson: 0,
+                settings: { volume: 80, playbackRate: 1, repeatMode: false },
+                notes: {},
+                progress: {},
+                stats: { totalListenSeconds: 0, streak: 0, lastActiveDate: null },
+                customLessons: []
+            };
+        }
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return getDefaultState();
+                return { ...getDefaultState(), ...JSON.parse(raw) };
+            } catch {
+                return getDefaultState();
+            }
+        }
+
+        function persistState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        }
+
+        function getLessonProgress(lessonId) {
+            if (!appState.progress[lessonId]) {
+                appState.progress[lessonId] = {
+                    lastPosition: 0,
+                    completed: false,
+                    listenTime: 0,
+                    completedAt: null
+                };
+            }
+            return appState.progress[lessonId];
+        }
+
+        function todayString() {
+            return new Date().toISOString().slice(0, 10);
+        }
+
+        function updateStreak() {
+            const today = todayString();
+            const last = appState.stats.lastActiveDate;
+            if (last === today) return;
+
+            if (last) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayStr = yesterday.toISOString().slice(0, 10);
+                appState.stats.streak = last === yesterdayStr ? appState.stats.streak + 1 : 1;
+            } else {
+                appState.stats.streak = 1;
+            }
+            appState.stats.lastActiveDate = today;
+            persistState();
+        }
+
+        function recordListenTime(delta) {
+            if (!delta || delta <= 0 || delta > 5) return;
+            const lesson = lessons[currentLesson];
+            if (!lesson) return;
+
+            appState.stats.totalListenSeconds += delta;
+            getLessonProgress(lesson.id).listenTime += delta;
+            updateStreak();
+            persistState();
+            updateProgressUI();
+        }
+
+        function markLessonComplete(lessonId) {
+            const progress = getLessonProgress(lessonId);
+            if (progress.completed) return;
+            progress.completed = true;
+            progress.completedAt = new Date().toISOString();
+            persistState();
+            renderLessons();
+            updateProgressUI();
+        }
+
+        function savePlaybackPosition(lessonId, time) {
+            getLessonProgress(lessonId).lastPosition = time;
+            persistState();
+        }
+
+        function showNotesStatus(message, isSaved = false) {
+            const el = document.getElementById('notes-status');
+            el.textContent = message;
+            el.classList.toggle('text-emerald-400', isSaved);
+            el.classList.toggle('text-zinc-500', !isSaved);
+        }
+
+        function saveNotesForLesson(lessonId, text, showFeedback = true) {
+            appState.notes[lessonId] = text;
+            persistState();
+            if (showFeedback) showNotesStatus('Saved', true);
+        }
+
+        function loadNotesForLesson(lessonId) {
+            const notesEl = document.getElementById('notes');
+            notesEl.value = appState.notes[lessonId] || '';
+            showNotesStatus(appState.notes[lessonId] ? 'Loaded' : '');
+        }
+
+        function persistCustomLesson(lesson) {
+            if (lesson.src && lesson.src.startsWith('blob:')) return;
+            const existing = appState.customLessons.findIndex(l => l.id === lesson.id);
+            const stored = {
+                id: lesson.id,
+                title: lesson.title,
+                subtitle: lesson.subtitle,
+                duration: lesson.duration,
+                src: lesson.src,
+                transcript: lesson.transcript,
+                vocab: lesson.vocab || []
+            };
+            if (existing >= 0) appState.customLessons[existing] = stored;
+            else appState.customLessons.unshift(stored);
+            persistState();
+        }
+
+        function restoreCustomLessons() {
+            if (!appState.customLessons.length) return;
+            const builtInIds = new Set(lessons.map(l => l.id));
+            const custom = appState.customLessons.filter(l => !builtInIds.has(l.id));
+            if (custom.length) lessons = [...custom, ...lessons];
+        }
+
+        function applySettings() {
+            const { volume, playbackRate, repeatMode: savedRepeat } = appState.settings;
+            audio.volume = volume / 100;
+            document.getElementById('volume').value = volume;
+            audio.playbackRate = playbackRate;
+            setSpeed(playbackRate);
+            repeatMode = savedRepeat;
+            audio.loop = savedRepeat;
+            document.getElementById('repeat-btn').classList.toggle('text-pink-500', savedRepeat);
+        }
+
+        function persistSettings() {
+            appState.settings = {
+                volume: Number(document.getElementById('volume').value),
+                playbackRate: audio.playbackRate,
+                repeatMode
+            };
+            persistState();
+        }
+
+        function updateProgressUI() {
+            const hours = (appState.stats.totalListenSeconds / 3600).toFixed(1);
+            const completed = Object.values(appState.progress).filter(p => p.completed).length;
+            document.getElementById('streak-value').textContent = appState.stats.streak;
+            document.getElementById('hours-value').textContent = hours;
+            document.getElementById('completed-value').textContent = completed;
+            document.getElementById('completed-subtitle').textContent = `of ${lessons.length} lessons`;
+        }
+
+        function setupNotesAutoSave() {
+            document.getElementById('notes').addEventListener('input', () => {
+                showNotesStatus('Saving...');
+                clearTimeout(notesSaveTimer);
+                notesSaveTimer = setTimeout(() => {
+                    const lesson = lessons[currentLesson];
+                    if (!lesson) return;
+                    saveNotesForLesson(lesson.id, document.getElementById('notes').value, true);
+                }, 500);
+            });
         }
 
         function switchTab(n) {
@@ -458,6 +637,8 @@
                 link.classList.add('text-zinc-400');
             });
             document.querySelectorAll('.tab-link')[n].classList.add('bg-zinc-800', 'text-white');
+
+            if (n === 3) updateProgressUI();
         }
 
         function renderLessons() {
@@ -465,11 +646,13 @@
             grid.innerHTML = '';
             
             lessons.forEach((lesson, i) => {
+                const completed = getLessonProgress(lesson.id).completed;
                 const card = document.createElement('div');
                 card.className = "bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer hover:ring-2 hover:ring-pink-500 transition";
                 card.innerHTML = `
-                    <div class="h-48 bg-gradient-to-br from-violet-500/20 to-pink-500/20 flex items-center justify-center text-6xl">
+                    <div class="h-48 bg-gradient-to-br from-violet-500/20 to-pink-500/20 flex items-center justify-center text-6xl relative">
                         🇰🇷
+                        ${completed ? '<span class="absolute top-4 right-4 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-sm"><i class="fa-solid fa-check"></i></span>' : ''}
                     </div>
                     <div class="p-6">
                         <h4 class="font-semibold">${lesson.title}</h4>
@@ -481,12 +664,22 @@
             });
         }
 
-        function loadLesson(index) {
+        function loadLesson(index, resumeTab = true) {
+            const prevLesson = lessons[currentLesson];
+            if (prevLesson) {
+                saveNotesForLesson(prevLesson.id, document.getElementById('notes').value, false);
+                if (audio.src) savePlaybackPosition(prevLesson.id, audio.currentTime);
+            }
+
             currentLesson = index;
+            appState.currentLesson = index;
+            persistState();
+
             const lesson = lessons[index];
             
             document.getElementById('lesson-title').textContent = lesson.title;
             document.getElementById('lesson-subtitle').textContent = lesson.subtitle;
+            document.getElementById('header-lesson-badge').textContent = `${lesson.subtitle} • ${lesson.title}`;
             document.getElementById('transcript').innerHTML = lesson.transcript || '<p class="text-zinc-500 italic">No transcript yet. Paste one!</p>';
             
             const vocabHTML = lesson.vocab ? lesson.vocab.map(v => `
@@ -496,12 +689,22 @@
                 </div>
             `).join('') : '';
             document.getElementById('vocab-list').innerHTML = vocabHTML;
+            loadNotesForLesson(lesson.id);
             
             if (lesson.src) {
+                const resumeAt = getLessonProgress(lesson.id).lastPosition;
                 audio.src = encodeURI(lesson.src);
+                if (resumeAt > 0) {
+                    audio.addEventListener('loadedmetadata', function restorePosition() {
+                        if (audio.duration && resumeAt < audio.duration - 5) {
+                            audio.currentTime = resumeAt;
+                        }
+                        audio.removeEventListener('loadedmetadata', restorePosition);
+                    });
+                }
             }
             
-            switchTab(0);
+            if (resumeTab) switchTab(0);
         }
 
         function togglePlay() {
@@ -523,9 +726,12 @@
         function setSpeed(speed) {
             audio.playbackRate = speed;
             document.querySelectorAll('.speed-btn').forEach(btn => {
-                btn.classList.toggle('bg-white', btn.textContent === speed + 'x');
-                btn.classList.toggle('text-zinc-900', btn.textContent === speed + 'x');
+                const label = parseFloat(btn.textContent);
+                const active = label === speed;
+                btn.classList.toggle('bg-white', active);
+                btn.classList.toggle('text-zinc-900', active);
             });
+            persistSettings();
         }
 
         function handleFileUpload(e) {
@@ -536,26 +742,27 @@
             audio.src = url;
             
             // Add as new lesson
-            lessons.unshift({
+            const uploadedLesson = {
                 id: Date.now(),
-                title: file.name.replace('.mp3', ''),
+                title: file.name.replace(/\.mp3$/i, ''),
                 subtitle: "Your TTMIK Upload",
                 duration: "??:??",
                 src: url,
                 transcript: "<p>Paste transcript here...</p>",
                 vocab: []
-            });
+            };
+            lessons.unshift(uploadedLesson);
             
             renderLessons();
             loadLesson(0);
-            alert("MP3 loaded! Great work on your Korean journey 💪");
+            alert("MP3 loaded! Uploads are session-only — add a permanent lesson via New Lesson to keep it after refresh.");
         }
 
         function addNewLesson() {
             const title = prompt("Lesson title (e.g. Level 1 Lesson 5):");
             if (!title) return;
             
-            lessons.unshift({
+            const newLesson = {
                 id: Date.now(),
                 title: title,
                 subtitle: "Talk To Me In Korean",
@@ -563,20 +770,24 @@
                 src: "",
                 transcript: "",
                 vocab: []
-            });
+            };
+            lessons.unshift(newLesson);
+            persistCustomLesson(newLesson);
             renderLessons();
             loadLesson(0);
         }
 
         function saveNotes() {
-            const notes = document.getElementById('notes').value;
-            alert("Notes saved! (In a real app these would persist)");
+            const lesson = lessons[currentLesson];
+            if (!lesson) return;
+            saveNotesForLesson(lesson.id, document.getElementById('notes').value, true);
         }
 
         function toggleRepeat() {
             repeatMode = !repeatMode;
             audio.loop = repeatMode;
             document.getElementById('repeat-btn').classList.toggle('text-pink-500', repeatMode);
+            persistSettings();
         }
 
         function toggleShuffle() {
@@ -612,20 +823,50 @@
                 const progress = document.getElementById('progress');
                 if (audio.duration) {
                     progress.value = (audio.currentTime / audio.duration) * 100;
+                    if (audio.currentTime / audio.duration >= 0.9) {
+                        markLessonComplete(lessons[currentLesson]?.id);
+                    }
                 }
                 document.getElementById('playback-time').textContent = formatTime(audio.currentTime);
+
+                if (!audio.paused && lastListenTimestamp !== null) {
+                    const delta = audio.currentTime - lastListenTimestamp;
+                    if (delta > 0 && delta < 2) recordListenTime(delta);
+                }
+                lastListenTimestamp = audio.currentTime;
+
+                clearTimeout(positionSaveTimer);
+                positionSaveTimer = setTimeout(() => {
+                    const lesson = lessons[currentLesson];
+                    if (lesson && audio.src) savePlaybackPosition(lesson.id, audio.currentTime);
+                }, 2000);
             });
             
             audio.addEventListener('loadedmetadata', () => {
                 document.getElementById('duration').textContent = formatTime(audio.duration);
             });
+
+            audio.addEventListener('play', () => {
+                lastListenTimestamp = audio.currentTime;
+                updateStreak();
+            });
+
+            audio.addEventListener('pause', () => {
+                const lesson = lessons[currentLesson];
+                if (lesson) savePlaybackPosition(lesson.id, audio.currentTime);
+                lastListenTimestamp = null;
+            });
             
             audio.addEventListener('ended', () => {
                 isPlaying = false;
                 document.getElementById('play-btn').innerHTML = `<i class="fa-solid fa-play ml-1"></i>`;
+                const lesson = lessons[currentLesson];
+                if (lesson) {
+                    markLessonComplete(lesson.id);
+                    savePlaybackPosition(lesson.id, 0);
+                }
             });
             
-            // Progress scrub
             const progressSlider = document.getElementById('progress');
             progressSlider.addEventListener('input', () => {
                 if (audio.duration) {
@@ -633,9 +874,9 @@
                 }
             });
             
-            audio.volume = 0.8;
             document.getElementById('volume').addEventListener('input', (e) => {
                 audio.volume = e.target.value / 100;
+                persistSettings();
             });
         }
 
@@ -656,13 +897,19 @@
 
         // Init
         window.onload = () => {
-            renderLessons();
-            loadLesson(0);
+            appState = loadState();
+            restoreCustomLessons();
             setupAudio();
+            applySettings();
+            setupNotesAutoSave();
+            renderLessons();
+            updateProgressUI();
+
+            const resumeIndex = Math.min(appState.currentLesson, lessons.length - 1);
+            loadLesson(Math.max(0, resumeIndex), false);
             switchTab(0);
             
-            // Demo vocab
-            console.log("%cTTMIK WebApp ready! Upload your MP3s and start practicing.", "color:#ec4899; font-size:13px");
+            console.log("%cTTMIK WebApp ready! Progress and notes persist in localStorage.", "color:#ec4899; font-size:13px");
         };
     </script>
 </body>

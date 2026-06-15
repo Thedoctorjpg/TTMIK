@@ -737,6 +737,10 @@ function practiceHarryKaneStriker(opts = {}) {
         openFastCharacterKane();
     }
 
+    if (opts.openWatch && typeof openKaneFifaWatch === 'function') {
+        openKaneFifaWatch();
+    }
+
     if (opts.logQuest !== false) {
         completeQuestObjective('side-fifa-celebrate');
     }
@@ -1004,7 +1008,7 @@ function renderBootAllPanel() {
             else if (boot.mbappe === '1') practiceMbappeAttack({ openSheet: boot.sheet === '1' });
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
-            else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1' });
+            else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1', openWatch: boot.watch === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -1075,7 +1079,10 @@ function handleTtmikSyncBoot() {
         return;
     }
     if (params.get('kane') === '1') {
-        practiceHarryKaneStriker({ openSheet: params.get('sheet') === '1' });
+        practiceHarryKaneStriker({
+            openSheet: params.get('sheet') === '1',
+            openWatch: params.get('watch') === '1'
+        });
         return;
     }
     if (params.get('cinema') === '1' || params.get('beckham') === '1') {
@@ -2255,6 +2262,15 @@ function renderSkillDetail() {
             if (typeof openFastCharacterKane === 'function') openFastCharacterKane();
         };
         kaneBlock.appendChild(sheetBtn);
+        const watchBtn = document.createElement('button');
+        watchBtn.type = 'button';
+        watchBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-rose-900/40 text-rose-100 hover:bg-rose-800/50 ml-2';
+        watchBtn.textContent = 'Open FIFA+ watch';
+        watchBtn.title = 'Wembley screen · FIFA+ England clip';
+        watchBtn.onclick = () => {
+            if (typeof openKaneFifaWatch === 'function') openKaneFifaWatch();
+        };
+        kaneBlock.appendChild(watchBtn);
         panel.appendChild(kaneBlock);
     }
 

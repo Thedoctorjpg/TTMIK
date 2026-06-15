@@ -249,7 +249,7 @@ const MULTIFORMAT_EDITS = {
         exportTargets: ['Webdrama insert', 'Kane English deck', 'FIFA England clip'],
         pipeline: ['harry-kane-england-striker'],
         shots: [
-            { id: 'HK1', time: '0:00', pin: 'WEMBLEY', note: 'Federation screen — England highlight after Brasil samba', dur: 5 },
+            { id: 'HK1', time: '0:00', pin: 'WEMBLEY', note: 'FIFA+ watch — fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw', dur: 5 },
             { id: 'HK2', time: '0:05', pin: 'WEMBLEY', note: 'Three Lions burst — captain striker not rescue framing', dur: 4 },
             { id: 'HK3', time: '0:09', pin: 'WEMBLEY', note: 'English: I strike my way — no drama.', dur: 8 },
             { id: 'HK4', time: '0:17', pin: 'WEMBLEY', note: 'Korean shadow · Goal! Come on England!', dur: 8 },

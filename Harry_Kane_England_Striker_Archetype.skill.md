@@ -19,9 +19,11 @@ metadata:
 - Ep 2.78 after Brasil samba — captain striker joy without performance debt
 - Companion to Ep 2.77 Vinicus Brasil and Bend It Like Beckham cinema lane
 - TTMIK.html?kane=1 — invoke Kane English shadowing boot
+- TTMIK.html?kane=1&watch=1 — Wembley FIFA+ watch then shadow
 
 ## Procedure
 
+- FIFA+ watch at WEMBLEY: https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw — one cheer, phone face-down
 - English native first: Melbourne is my yes — name the yes calmly
 - Open Fast Character sheet: Kane · Fighter (Champion) · Soldier · Level 5
 - Korean shadow: 멜버른이 제 예예요 · 내 방식으로 득점해요
@@ -69,6 +71,7 @@ metadata:
 - Ep 2.78 · preset 20 · WEMBLEY England lane
 - fastcharacter.com — openFastCharacterKane() preset
 - TTMIK.html?kane=1 — English native input boot
+- FIFA+ watch: https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw
 - bend-it-beckham · ronaldo-portugal-glory · side-fifa-celebrate quest
 
 ## TTMIK App Integration

@@ -7,6 +7,15 @@
 
 const KANE_BASE = 'Kane_Library';
 
+/** FIFA+ watch — Wembley screen source for Ep 2.78 */
+const KANE_FIFA_WATCH = {
+    id: 'KpcWpp8Yj0WimV_mwGsZgw',
+    url: 'https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw',
+    label: 'FIFA+ · England watch',
+    pin: 'WEMBLEY',
+    episode: '2.78'
+};
+
 const KANE_LIBRARY_CATEGORIES = [
     'English Shadowing',
     'Captain Route',
@@ -52,7 +61,8 @@ const KANE_CAPTAIN_ROUTE = [
         en: 'One step. One strike. My path.',
         ko: '한 걸음. 한 슛. 제 길.',
         gloss: 'One step. One strike. My path.',
-        note: 'Preset 20 · clinical finish after Brasil lane'
+        note: 'Preset 20 · clinical finish after Brasil lane',
+        watchUrl: KANE_FIFA_WATCH.url
     },
     {
         pin: 'PUB',
@@ -99,8 +109,15 @@ function buildKaneTranscript(parts) {
     if (parts.beat) lines.push(`Beat: ${parts.beat}`);
     if (parts.pin) lines.push(`Pin: ${parts.pin}`);
     lines.push('\nSkill: harry-kane-england-striker · Boot: TTMIK.html?kane=1');
+    lines.push('Watch: TTMIK.html?kane=1&watch=1 · FIFA+ England clip');
     lines.push('Sheet: fastcharacter.com · Kane · Fighter (Champion) · Soldier');
+    if (parts.watchUrl) lines.push(`FIFA+: ${parts.watchUrl}`);
     return lines.join('\n\n');
+}
+
+function openKaneFifaWatch() {
+    if (typeof KANE_FIFA_WATCH === 'undefined') return;
+    window.open(KANE_FIFA_WATCH.url, '_blank', 'noopener,noreferrer');
 }
 
 function buildKanePhraseLessons(startId) {

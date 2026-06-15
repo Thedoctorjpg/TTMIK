@@ -577,11 +577,18 @@ const SKILLS = [
         ],
         ritualSteps: [
             'After Brasil samba — Wembley screen at WEMBLEY · phones face-down except cheer',
+            'FIFA+ watch: https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw · ?kane=1&watch=1',
             'Open Fast Character — Kane · Fighter Champion · Soldier',
             'English native first: Melbourne is my yes',
             'Korean shadow: 멜버른이 제 예예요 · 내 방식으로 득점해요',
             'One pass — no re-watch spiral · preset 20'
-        ]
+        ],
+        fifaWatch: {
+            id: 'KpcWpp8Yj0WimV_mwGsZgw',
+            url: 'https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw',
+            pin: 'WEMBLEY',
+            episode: '2.78'
+        }
     },
     {
         id: 'rach3l',

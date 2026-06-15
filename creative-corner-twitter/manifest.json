@@ -1,0 +1,24 @@
+{
+  "name": "Creative Corner",
+  "short_name": "CreativeCorner",
+  "description": "Showcase, collaborate, and promote creative work with seamless X integration. For artists, tattoo studios, VTubers, photographers, musicians and more.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#22f3d8",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%230a0a12'/%3E%3Ccircle cx='96' cy='96' r='52' fill='%2322f3d8' fill-opacity='0.9'/%3E%3Cpath d='M70 70 L122 122 M70 122 L122 70' stroke='%230a0a12' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230a0a12'/%3E%3Ccircle cx='256' cy='256' r='140' fill='%2322f3d8' fill-opacity='0.9'/%3E%3Cpath d='M180 180 L332 332 M180 332 L332 180' stroke='%230a0a12' stroke-width='32' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["art", "social", "productivity", "entertainment"],
+  "screenshots": []
+}

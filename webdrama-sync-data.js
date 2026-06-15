@@ -25,10 +25,16 @@ const PIPELINE_SOURCES = {
         role: 'Ch.1–4 novel beats · dawn Degraves · post-score dishes'
     },
     veilLumen: {
-        label: 'Veil-Lumen · Creative Corner',
+        label: 'Veil-Lumen · mesh & softbody',
         paths: ['Veil-Lumen/js/skills-data.js'],
-        url: 'http://localhost:5180',
+        url: 'http://localhost:5181',
         role: 'Bardic ritual · skill veil outputs · essay assembly'
+    },
+    creativeCorner: {
+        label: 'Creative Corner · X for creatives',
+        paths: ['creative-corner-twitter/index.html'],
+        url: 'http://localhost:5180',
+        role: 'Portfolio · one-click X posts · @adhdloganberry webhook'
     },
     rtdb: {
         label: 'RTDB-Auckland',

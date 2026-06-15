@@ -1,0 +1,3806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#22f3d8">
+  <link rel="manifest" href="manifest.json">
+  <title>Creative Corner • Showcase • Collaborate • X</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+    
+    :root {
+      --accent: #22f3d8;
+      --accent2: #c084fc;
+    }
+    
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .font-display {
+      font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+      font-weight: 600;
+    }
+
+    .creative-bg {
+      background: #0a0a12;
+    }
+    
+    .panel {
+      background: #111827;
+      border: 1px solid #1f2937;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                  box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1),
+                  border-color 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      border-color: #374151;
+    }
+
+    .accent {
+      color: #22f3d8;
+    }
+
+    .accent-bg {
+      background: #22f3d8;
+      color: #0a0a12;
+    }
+
+    .nav-tab {
+      position: relative;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .nav-tab.active {
+      background: #1f2937;
+      color: white;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+    }
+    
+    .nav-tab:not(.active):hover {
+      background: #1f2937;
+    }
+
+    .section {
+      display: none;
+    }
+    
+    .section.active {
+      display: block;
+    }
+
+    .masonry {
+      column-count: 1;
+      column-gap: 1rem;
+    }
+    
+    @media (min-width: 640px) { .masonry { column-count: 2; } }
+    @media (min-width: 1024px) { .masonry { column-count: 3; } }
+    @media (min-width: 1280px) { .masonry { column-count: 4; } }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+    }
+
+    /* Pinterest-style save pin action */
+    .pin-action {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e2e8f0;
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      transition: all 0.1s ease;
+    }
+    .feed-card:hover .pin-action, .card:hover .pin-action { 
+      background: #22f3d8; 
+      color: #0a0a12; 
+      border-color: #22f3d8;
+    }
+
+    /* Boards (Pinterest boards) */
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .board-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #1f2937;
+      background: #111827;
+      transition: transform 0.2s;
+    }
+    .board-card:hover { transform: translateY(-2px); }
+    .board-cover {
+      height: 108px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .board-count {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      font-size: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 0 6px;
+      border-radius: 999px;
+    }
+
+    /* Instagram Reels vertical feed */
+    .reels-container {
+      max-height: 72vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: thin;
+    }
+    .reel-item {
+      scroll-snap-align: start;
+      height: 520px;
+      max-height: 72vh;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.6);
+    }
+    .reel-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .reel-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      padding: 60px 16px 14px;
+      font-size: 13px;
+    }
+    .reel-actions {
+      position: absolute;
+      right: 12px;
+      bottom: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .reel-action-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: transform .1s;
+    }
+    .reel-action-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.2); }
+
+    .media-container {
+      position: relative;
+      background: #0f172a;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .media-container img, .media-container video, .media-container audio {
+      width: 100%;
+      display: block;
+    }
+
+    .upload-zone {
+      border: 2px dashed #475569;
+      transition: all 0.2s;
+    }
+    
+    .upload-zone.dragover {
+      border-color: #22f3d8;
+      background: rgba(34, 243, 216, 0.05);
+    }
+
+    .work-card .media {
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .modal {
+      animation: modalPop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.95) translateY(10px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 1px 9px;
+      border-radius: 9999px;
+      background: #1f2937;
+      color: #94a3b8;
+    }
+
+    .niche-artist { background: #22f3d8; color: #0a0a12; }
+    .niche-tattoo { background: #f472b6; color: white; }
+    .niche-vtuber { background: #a78bfa; color: white; }
+    .niche-photo { background: #60a5fa; color: white; }
+    .niche-music { background: #f59e0b; color: #0a0a12; }
+
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .x-intent {
+      transition: all 0.1s;
+    }
+    
+    .x-intent:hover {
+      background: #1d9bf0 !important;
+      transform: translateY(-1px);
+    }
+
+    .post-metrics {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .creative-gradient {
+      background: linear-gradient(135deg, #22f3d8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feed-card {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .feed-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .toast {
+      animation: toastIn 0.2s ease forwards;
+    }
+
+    .nav-active-indicator {
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 2px;
+      background: #22f3d8;
+      border-radius: 2px;
+    }
+
+    .community-sub.active-sub {
+      background: #22f3d8 !important;
+      color: #0a0a12 !important;
+      font-weight: 600;
+    }
+
+    .maturity-safe { background: #166534; color: #86efac; }
+    .maturity-mature { background: #854d0e; color: #fde047; }
+    .maturity-explicit { background: #9f1239; color: #fda4af; }
+
+    .club-card, .journal-card {
+      transition: transform 0.2s;
+    }
+    .club-card:hover, .journal-card:hover { transform: translateY(-2px); }
+
+    .live-indicator {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body class="creative-bg text-slate-200">
+  <!-- Top Navigation -->
+  <header class="border-b border-slate-800 bg-[#0a0a12]/95 backdrop-blur-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex items-center gap-x-3">
+          <div class="w-9 h-9 rounded-2xl accent-bg flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-palette text-xl"></i>
+          </div>
+          <div>
+            <div class="font-display text-2xl tracking-tighter font-semibold">Creative Corner</div>
+            <div class="text-[10px] text-slate-500 -mt-1">X-powered for creatives</div>
+          </div>
+        </div>
+
+        <button type="button" onclick="healTwitterFeed()"
+                class="hidden sm:flex items-center gap-x-1.5 px-3 py-1.5 text-xs rounded-2xl border border-sky-700/50 text-sky-200 hover:bg-sky-900/30 transition"
+                title="Heal @adhdloganberry feed">
+          <i class="fa-solid fa-heart text-xs"></i>
+          <span>Heal feed</span>
+        </button>
+
+        <!-- X Connection Status -->
+        <div id="x-status" onclick="showConnectModal()"
+             class="flex items-center gap-x-2 px-3 py-1.5 rounded-2xl bg-slate-900 border border-slate-700 hover:border-slate-500 cursor-pointer text-sm">
+          <div class="flex items-center gap-x-2">
+            <i class="fa-brands fa-x-twitter text-lg"></i>
+            <div>
+              <span id="x-handle-display" class="font-medium text-slate-300">Connect X</span>
+              <span id="x-status-text" class="text-xs text-emerald-400 ml-1.5 hidden">● synced</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PWA Install (appears when browser offers it) -->
+        <button id="pwa-install-btn"
+                class="hidden items-center gap-x-1.5 px-3 py-1.5 text-xs rounded-2xl border border-slate-700 hover:bg-slate-800 hover:border-slate-500 transition mr-1">
+          <i class="fa-solid fa-download text-xs"></i>
+          <span class="hidden sm:inline">Install</span>
+        </button>
+
+        <!-- User -->
+        <div class="flex items-center gap-x-3">
+          <div onclick="showProfileModal()" class="flex items-center gap-x-2.5 cursor-pointer">
+            <div id="user-avatar" 
+                 class="w-8 h-8 rounded-2xl bg-gradient-to-br from-violet-400 to-cyan-400 flex items-center justify-center text-xs font-bold ring-2 ring-offset-2 ring-offset-[#0a0a12] ring-slate-700">
+            </div>
+            <div class="hidden sm:block">
+              <div id="user-handle" class="text-sm font-medium"></div>
+              <div id="user-niche" class="text-[10px] text-slate-500"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 border-t border-slate-800">
+      <div class="flex items-center gap-x-1 py-2 overflow-x-auto hide-scrollbar">
+        <button onclick="switchTab('discover')" id="tab-discover"
+                class="nav-tab active flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-compass w-4"></i>
+          <span>Discover</span>
+        </button>
+        <button onclick="switchTab('reels')" id="tab-reels"
+                class="nav-tab flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-play w-4"></i>
+          <span>Reels</span>
+        </button>
+        <button onclick="switchTab('studio')" id="tab-studio"
+                class="nav-tab flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-upload w-4"></i>
+          <span>Studio</span>
+        </button>
+        <button onclick="switchTab('challenges')" id="tab-challenges"
+                class="nav-tab flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-trophy w-4"></i>
+          <span>Challenges</span>
+        </button>
+        <button onclick="switchTab('community')" id="tab-community"
+                class="nav-tab flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-users w-4"></i>
+          <span>Community</span>
+        </button>
+        <button onclick="switchTab('toolkit')" id="tab-toolkit"
+                class="nav-tab flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-toolbox w-4"></i>
+          <span>Toolkit</span>
+        </button>
+        <button onclick="switchTab('marketplace')" id="tab-marketplace"
+                class="nav-tab flex items-center gap-x-2 text-sm">
+          <i class="fa-solid fa-store w-4"></i>
+          <span>Marketplace</span>
+        </button>
+        
+        <div class="flex-1"></div>
+        
+        <button onclick="loadDemoData()" 
+                class="text-xs flex items-center gap-x-1.5 px-3 py-1 rounded-2xl border border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-slate-200">
+          <i class="fa-solid fa-magic"></i>
+          <span class="hidden sm:inline">Load demo works</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    
+    <!-- DISCOVER -->
+    <div id="section-discover" class="section active">
+      <div class="flex items-end justify-between mb-4">
+        <div>
+          <h1 class="font-display text-4xl tracking-tighter">Discover</h1>
+          <p class="text-slate-400">Fresh work from the community. Engage, repost, get inspired.</p>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <div class="relative w-64">
+            <input id="feed-search" type="text" placeholder="Search works or creators..." 
+                   onkeyup="filterFeed()"
+                   class="w-full bg-slate-900 border border-slate-700 focus:border-slate-500 text-sm rounded-3xl pl-9 py-2 outline-none">
+            <i class="fa-solid fa-search absolute left-3.5 top-2.5 text-slate-500"></i>
+          </div>
+          <select id="feed-filter-type" onchange="filterFeed()" 
+                  class="bg-slate-900 border border-slate-700 text-sm rounded-3xl px-3 py-2 outline-none">
+            <option value="">All types</option>
+            <option value="artist">Artists</option>
+            <option value="tattoo">Tattoo</option>
+            <option value="vtuber">VTubers</option>
+            <option value="photo">Photography</option>
+            <option value="music">Music</option>
+            <option value="__faves__">My Faves (dA)</option>
+            <option value="__watching__">Watching (dA)</option>
+            <option value="__popular__">Popular (most faved)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-2 flex justify-between items-center flex-wrap gap-2">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-slate-400">Maturity:</span>
+          <select id="maturity-filter" onchange="applyMaturityFilter()" class="bg-slate-900 border border-slate-700 rounded-2xl px-2 py-0.5 text-xs">
+            <option value="all">All</option>
+            <option value="safe">Safe only</option>
+            <option value="mature">Hide Explicit</option>
+          </select>
+          <label class="flex items-center gap-1 ml-2 text-xs"><input type="checkbox" id="critique-only" onchange="toggleCritiqueOnly()" class="accent-[#22f3d8]"> Critique only</label>
+        </div>
+        <button onclick="showBoardsModal()" class="text-xs flex items-center gap-1 px-3 py-1 rounded-2xl border border-slate-700 hover:bg-slate-800">
+          <i class="fa-solid fa-bookmark"></i>
+          <span>My Boards (Pinterest)</span>
+        </button>
+      </div>
+
+      <!-- Feed -->
+      <div id="feed-grid" class="masonry"></div>
+
+      <!-- Pinterest-style quick actions hint -->
+      <div class="mt-2 text-[10px] text-slate-500 flex items-center gap-2">
+        <span>💡 Tip: Click the save icon on any pin to add to your Boards (Pinterest-style)</span>
+      </div>
+
+      <!-- Quick Touring teaser (dA + touring schedules) -->
+      <div class="mt-4">
+        <div class="flex justify-between text-xs mb-1"><span class="font-medium">Upcoming Tour Dates</span> <span onclick="switchTab('community'); switchCommunitySub('touring')" class="underline cursor-pointer">View full calendar →</span></div>
+        <div id="discover-tour-teaser" class="flex gap-2 overflow-x-auto text-xs"></div>
+      </div>
+    </div>
+
+    <!-- REELS (Instagram Reels inspired vertical short-form) -->
+    <div id="section-reels" class="section">
+      <div class="flex items-end justify-between mb-3">
+        <div>
+          <h1 class="font-display text-4xl tracking-tighter flex items-center gap-2">
+            Reels <span class="text-xs px-2 py-0.5 rounded bg-violet-500/20 text-violet-400 font-normal">shorts</span>
+          </h1>
+          <p class="text-slate-400 text-sm">Vertical video moments • swipe or scroll • music + process clips</p>
+        </div>
+        <button onclick="openCreateReel()" class="text-xs px-3 py-1.5 rounded-2xl border border-slate-600 hover:bg-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-video"></i>
+          <span>Create Reel</span>
+        </button>
+      </div>
+
+      <div id="reels-grid" class="reels-container space-y-3 max-w-[380px] mx-auto">
+        <!-- Populated by JS: tall vertical video players -->
+      </div>
+
+      <div class="max-w-[380px] mx-auto mt-3 text-center text-[10px] text-slate-500">
+        Tap video to play/pause • Use ↑ ↓ or scroll • Support creators while watching
+      </div>
+    </div>
+
+    <!-- STUDIO -->
+    <div id="section-studio" class="section">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h1 class="font-display text-4xl tracking-tighter">Studio</h1>
+          <p class="text-slate-400">Upload your latest work. Craft posts for X in seconds.</p>
+        </div>
+        <button onclick="showUploadModal()"
+                class="accent-bg hover:bg-[#1de9c9] transition-colors text-black font-semibold px-5 py-2.5 rounded-3xl flex items-center gap-x-2 text-sm shadow">
+          <i class="fa-solid fa-plus"></i>
+          <span>Upload new work</span>
+        </button>
+        <button onclick="showPostTourModal()" class="text-xs px-3 py-2 rounded-3xl border border-slate-600 hover:bg-slate-800 flex items-center gap-1">
+          <i class="fa-solid fa-calendar"></i> <span class="hidden sm:inline">Post Tour Date</span>
+        </button>
+      </div>
+
+      <!-- Quick creator type switch -->
+      <div class="mb-4 flex items-center gap-2 text-sm">
+        <span class="text-slate-400">You are a:</span>
+        <div id="niche-pills" class="flex gap-1 flex-wrap"></div>
+      </div>
+
+      <!-- Portfolio -->
+      <div class="mb-2 flex items-center justify-between flex-wrap gap-2">
+        <div class="font-semibold text-lg flex items-center gap-x-2">
+          <span>My Portfolio</span> 
+          <span id="portfolio-count" class="text-xs font-mono bg-slate-800 px-2 py-px rounded">0</span>
+        </div>
+        <div class="flex gap-1 text-xs">
+          <button onclick="renderPortfolio('published')" class="px-2 py-0.5 rounded border border-slate-600">Published</button>
+          <button onclick="renderPortfolio('wip')" class="px-2 py-0.5 rounded border border-orange-600 text-orange-300">WIP</button>
+          <button onclick="renderPortfolio('drafts')" class="px-2 py-0.5 rounded border border-slate-600">Drafts</button>
+        </div>
+        <button onclick="openThreadConverter()" 
+                class="text-xs px-3 py-1 rounded-2xl border border-slate-600 hover:bg-slate-800 flex items-center gap-x-1.5">
+          <i class="fa-solid fa-link"></i>
+          <span>Portfolio → X Thread</span>
+        </button>
+      </div>
+
+      <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+    </div>
+
+    <!-- CHALLENGES -->
+    <div id="section-challenges" class="section">
+      <div class="mb-5">
+        <h1 class="font-display text-4xl tracking-tighter">Challenges</h1>
+        <p class="text-slate-400">Join trending creative prompts. Auto-tagged for maximum X reach.</p>
+      </div>
+
+      <div id="challenges-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- COMMUNITY (dA Clubs / Journals / Live / Academy) -->
+    <div id="section-community" class="section">
+      <div class="mb-4">
+        <h1 class="font-display text-4xl tracking-tighter">Community</h1>
+        <p class="text-slate-400">Clubs (Groups), Journals, Live Streams, Classes &amp; Lessons — DeviantArt depth</p>
+      </div>
+
+      <!-- Subnav pills -->
+      <div class="flex gap-2 mb-4 flex-wrap" id="community-subnav">
+        <button onclick="switchCommunitySub('clubs')" class="community-sub px-3 py-1 text-xs rounded-2xl bg-slate-800 hover:bg-slate-700 active-sub" data-sub="clubs">Clubs</button>
+        <button onclick="switchCommunitySub('journals')" class="community-sub px-3 py-1 text-xs rounded-2xl bg-slate-800 hover:bg-slate-700" data-sub="journals">Journals</button>
+        <button onclick="switchCommunitySub('live')" class="community-sub px-3 py-1 text-xs rounded-2xl bg-slate-800 hover:bg-slate-700" data-sub="live">Live Now</button>
+        <button onclick="switchCommunitySub('academy')" class="community-sub px-3 py-1 text-xs rounded-2xl bg-slate-800 hover:bg-slate-700" data-sub="academy">Academy / Classes</button>
+        <button onclick="switchCommunitySub('touring')" class="community-sub px-3 py-1 text-xs rounded-2xl bg-slate-800 hover:bg-slate-700" data-sub="touring">Tour Dates</button>
+      </div>
+
+      <div id="community-content">
+        <!-- Populated by switchCommunitySub JS -->
+      </div>
+    </div>
+
+    <!-- TOOLKIT -->
+    <div id="section-toolkit" class="section">
+      <div class="mb-5">
+        <h1 class="font-display text-4xl tracking-tighter">Creator Toolkit</h1>
+        <p class="text-slate-400">Post templates, analytics, and growth tools — tuned for X.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <!-- Templates -->
+        <div class="panel rounded-3xl p-5">
+          <div class="font-semibold mb-3 flex items-center gap-x-2">
+            <i class="fa-solid fa-copy accent"></i> 
+            <span>Post Templates</span>
+          </div>
+          <div id="templates-list" class="space-y-2 text-sm"></div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="panel rounded-3xl p-5 lg:col-span-2">
+          <div class="flex justify-between items-center mb-3">
+            <div class="font-semibold flex items-center gap-x-2">
+              <i class="fa-solid fa-chart-line accent"></i> 
+              <span>X Analytics (simulated)</span>
+            </div>
+            <div class="text-xs text-slate-400">Last 7 days • <span class="font-medium text-emerald-400">+18%</span></div>
+          </div>
+          
+          <div id="analytics-summary" class="grid grid-cols-3 gap-3 mb-4"></div>
+          
+          <div class="text-xs text-slate-400 mb-1">Top performing posts</div>
+          <div id="top-posts" class="space-y-2 text-sm"></div>
+        </div>
+
+        <!-- Collab matcher -->
+        <div class="panel rounded-3xl p-5 lg:col-span-3">
+          <div class="font-semibold mb-3 flex items-center gap-x-2">
+            <i class="fa-solid fa-handshake accent"></i> 
+            <span>Collab Matcher</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="collab-suggestions"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKETPLACE -->
+    <div id="section-marketplace" class="section">
+      <div class="mb-5">
+        <h1 class="font-display text-4xl tracking-tighter">Marketplace Lite</h1>
+        <p class="text-slate-400">Commissions, prints &amp; bookings. DM directly on X.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <!-- Open commissions -->
+        <div class="panel rounded-3xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div class="font-semibold">Open Commissions</div>
+            <button onclick="postMarketListing('commission')" 
+                    class="text-xs accent-bg text-black px-3 py-1 rounded-2xl font-medium">Post your slot</button>
+          </div>
+          <div id="market-commissions" class="space-y-3"></div>
+        </div>
+
+        <!-- Prints & bookings -->
+        <div class="panel rounded-3xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div class="font-semibold">Prints &amp; Bookings</div>
+            <button onclick="postMarketListing('print')" 
+                    class="text-xs px-3 py-1 rounded-2xl border border-slate-600 hover:bg-slate-800">List something</button>
+          </div>
+          <div id="market-prints" class="space-y-3"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom growth reminder -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-8">
+    <div class="panel rounded-3xl px-5 py-3 text-xs flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400">
+      <div class="flex items-center gap-x-1.5">
+        <i class="fa-solid fa-lightbulb text-amber-400"></i>
+        <span class="font-medium">X best practice:</span> 70% value/engagement • 30% promo. Media performs best.
+      </div>
+      <button onclick="showGrowthModal()" class="underline hover:no-underline text-slate-300">View full growth guide →</button>
+    </div>
+  </div>
+
+  <!-- Upload Modal -->
+  <div id="upload-modal" onclick="if (event.target.id === 'upload-modal') hideUploadModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur z-[100] flex items-center justify-center p-4">
+    <div onclick="event.stopImmediatePropagation()" class="modal panel rounded-3xl w-full max-w-lg p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div class="font-semibold text-xl">Upload to Studio</div>
+        <button onclick="hideUploadModal()" class="text-2xl leading-none text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <div id="upload-zone" 
+           class="upload-zone rounded-3xl p-9 text-center cursor-pointer mb-4"
+           ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)"
+           onclick="document.getElementById('file-input').click()">
+        <i class="fa-solid fa-cloud-upload-alt text-4xl text-slate-400 mb-3"></i>
+        <div class="font-medium">Drop images, videos or audio here</div>
+        <div class="text-xs text-slate-400 mt-1">or click to browse • PNG, JPG, MP4, MP3, WEBP</div>
+        <input type="file" id="file-input" multiple accept="image/*,video/*,audio/*" class="hidden" onchange="handleFileSelect(event)">
+      </div>
+
+      <div id="upload-preview" class="hidden mb-4"></div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Title</label>
+          <input id="upload-title" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2 text-sm" placeholder="Piece title or project name">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Description / story</label>
+          <textarea id="upload-desc" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2 text-sm" placeholder="Process notes, inspiration, client story..."></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Location (optional)</label>
+            <input id="upload-location" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2 text-sm" placeholder="Miami, FL">
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Collab credit</label>
+            <input id="upload-collab" type="text" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2 text-sm" placeholder="@artistname">
+          </div>
+        </div>
+
+        <!-- dA Maturity + Status (DeviantArt depth) -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Maturity Rating</label>
+            <select id="upload-maturity" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2 text-sm">
+              <option value="safe">Safe (All ages)</option>
+              <option value="mature">Mature (18+)</option>
+              <option value="explicit">Explicit (NSFW)</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Status</label>
+            <select id="upload-status" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-2 text-sm" onchange="toggleProgressField(this)">
+              <option value="published">Publish now</option>
+              <option value="draft">Save as Draft (private)</option>
+              <option value="wip">In Progress (WIP)</option>
+            </select>
+          </div>
+        </div>
+        <div id="progress-field" class="hidden">
+          <label class="text-xs text-slate-400 block mb-1">Progress % (for WIP)</label>
+          <input type="range" id="upload-progress" min="0" max="100" value="45" class="w-full accent-[#22f3d8]">
+          <div class="text-xs text-right text-slate-400"><span id="progress-val">45</span>%</div>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <input type="checkbox" id="upload-critique" class="accent-[#22f3d8]">
+          <label for="upload-critique" class="text-slate-400">Request Critiques (DeviantArt style)</label>
+        </div>
+      </div>
+
+      <div class="mt-5 flex gap-3">
+        <button onclick="hideUploadModal()" class="flex-1 py-2.5 rounded-3xl border border-slate-600">Cancel</button>
+        <button onclick="saveUpload()" class="flex-1 accent-bg py-2.5 rounded-3xl font-semibold text-black">Save to Portfolio</button>
+      </div>
+      <div class="text-[10px] text-center text-slate-500 mt-3">Files stay in your browser only. Export anytime.</div>
+    </div>
+  </div>
+
+  <!-- X Composer Modal -->
+  <div id="composer-modal" onclick="if (event.target.id === 'composer-modal') hideComposer()" class="hidden fixed inset-0 bg-black/70 backdrop-blur z-[100] flex items-center justify-center p-4">
+    <div onclick="event.stopImmediatePropagation()" class="modal panel rounded-3xl w-full max-w-xl p-6">
+      <div class="flex items-center justify-between mb-3">
+        <div>
+          <span class="font-semibold">Post to X</span>
+          <span id="composer-work-title" class="ml-2 text-sm text-slate-400"></span>
+        </div>
+        <button onclick="hideComposer()" class="text-slate-400 hover:text-white text-xl">&times;</button>
+      </div>
+
+      <div class="mb-3">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="text-xs text-slate-400">Caption</div>
+          <button onclick="regenerateCaption()" class="text-xs flex items-center gap-1 text-cyan-400 hover:text-cyan-300">
+            <i class="fa-solid fa-sync fa-sm"></i> <span>Regenerate</span>
+          </button>
+        </div>
+        <textarea id="composer-text" rows="5" class="w-full bg-slate-950 border border-slate-700 focus:border-slate-500 rounded-2xl p-3 font-light text-[15px] leading-snug" oninput="updatePostPreview()"></textarea>
+      </div>
+
+      <!-- Hashtags -->
+      <div class="mb-4">
+        <div class="text-xs text-slate-400 mb-1.5">Hashtags (tap to toggle)</div>
+        <div id="composer-hashtags" class="flex flex-wrap gap-1.5"></div>
+      </div>
+
+      <!-- Media preview in post -->
+      <div id="composer-media-preview" class="mb-4 hidden">
+        <div class="text-xs text-slate-400 mb-1">Attached media</div>
+        <div class="flex gap-2" id="composer-media-thumbs"></div>
+      </div>
+
+      <!-- Schedule -->
+      <div class="mb-5">
+        <div class="text-xs text-slate-400 mb-1.5">Schedule (optional — peak times suggested)</div>
+        <div class="flex flex-wrap gap-2" id="schedule-pills"></div>
+        <div class="mt-2">
+          <input type="datetime-local" id="schedule-datetime" class="bg-slate-900 border border-slate-700 text-sm rounded-2xl px-3 py-1.5">
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <button onclick="copyPostText()" 
+                class="flex-1 sm:flex-none px-4 py-2 rounded-3xl border border-slate-600 hover:bg-slate-800 flex items-center justify-center gap-x-2 text-sm">
+          <i class="fa-solid fa-copy"></i> <span>Copy for X</span>
+        </button>
+        
+        <button onclick="openInX()" 
+                class="flex-1 sm:flex-none px-4 py-2 rounded-3xl bg-[#1d9bf0] hover:bg-[#1a8cd8] flex items-center justify-center gap-x-2 text-sm font-medium">
+          <i class="fa-brands fa-x-twitter"></i> <span>Open in X</span>
+        </button>
+
+        <button onclick="postAndTrack()" 
+                class="flex-1 accent-bg text-black font-semibold px-4 py-2 rounded-3xl flex items-center justify-center gap-x-2 text-sm">
+          <i class="fa-solid fa-paper-plane"></i> <span>Post &amp; Track</span>
+        </button>
+      </div>
+      
+      <div class="text-[10px] text-center text-slate-500 mt-4">Opens real X compose window. Simulation adds analytics for demo purposes.</div>
+    </div>
+  </div>
+
+  <!-- Post Detail Modal -->
+  <div id="detail-modal" onclick="if (event.target.id === 'detail-modal') hideDetailModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur z-[100] flex items-center justify-center p-4">
+    <div onclick="event.stopImmediatePropagation()" class="modal panel rounded-3xl w-full max-w-md overflow-hidden">
+      <div id="detail-media" class="bg-slate-950"></div>
+      <div class="p-5">
+        <div id="detail-header" class="flex items-center gap-3 mb-2"></div>
+        <div id="detail-text" class="text-sm leading-relaxed mb-3"></div>
+        <div id="detail-tags" class="flex gap-1 flex-wrap mb-4"></div>
+        
+        <div class="flex gap-2">
+          <button onclick="likeFromDetail()" class="flex-1 py-2 text-sm border border-slate-600 rounded-3xl hover:bg-slate-800">♥ Like</button>
+          <button onclick="repostFromDetail()" class="flex-1 py-2 text-sm border border-slate-600 rounded-3xl hover:bg-slate-800 flex justify-center items-center gap-1.5">
+            <i class="fa-solid fa-retweet"></i> <span>Repost on X</span>
+          </button>
+          <button onclick="quoteFromDetail()" class="flex-1 py-2 text-sm accent-bg rounded-3xl text-black font-medium">Quote post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patreon-style Support / Tiers Modal -->
+  <div id="support-modal" onclick="if (event.target.id === 'support-modal') hideSupportModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur z-[110] flex items-center justify-center p-4">
+    <div onclick="event.stopImmediatePropagation()" class="modal panel rounded-3xl w-full max-w-md p-6">
+      <div class="flex justify-between items-start mb-2">
+        <div>
+          <div class="font-semibold text-xl">Support <span id="support-creator-name"></span></div>
+          <div class="text-xs text-emerald-400">Patreon-style memberships • cancel anytime (demo)</div>
+        </div>
+        <button onclick="hideSupportModal()" class="text-2xl leading-none text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <div id="support-tiers" class="space-y-3 mt-4"></div>
+
+      <div class="mt-4 p-3 bg-slate-900 rounded-2xl text-xs text-slate-400">
+        Your support unlocks exclusive posts, early access, and direct messages. 100% of demo contributions go to the creator's "earnings".
+      </div>
+
+      <div class="text-[10px] text-center mt-3 text-slate-500">In a real app this would use Stripe + Patreon OAuth.</div>
+    </div>
+  </div>
+
+  <!-- Boards picker / My Boards modal (Pinterest) -->
+  <div id="boards-modal" onclick="if (event.target.id === 'boards-modal') hideBoardsModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur z-[110] flex items-center justify-center p-4">
+    <div onclick="event.stopImmediatePropagation()" class="modal panel rounded-3xl w-full max-w-lg p-5">
+      <div class="flex items-center justify-between mb-3">
+        <div class="font-semibold">My Boards <span id="boards-count" class="text-xs text-slate-400"></span></div>
+        <div class="flex gap-2">
+          <button onclick="createNewBoard()" class="text-xs px-3 py-1 rounded-2xl border border-slate-600">+ New Board</button>
+          <button onclick="hideBoardsModal()" class="text-xl leading-none px-1 text-slate-400 hover:text-white">&times;</button>
+        </div>
+      </div>
+
+      <div id="boards-list" class="board-grid"></div>
+
+      <div id="board-items-view" class="hidden mt-4">
+        <div class="flex items-center gap-2 mb-2">
+          <button onclick="backToBoardsList()" class="text-xs px-2 py-1 rounded border border-slate-600">← Back</button>
+          <div id="current-board-name" class="font-semibold"></div>
+        </div>
+        <div id="board-pins-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==================== TAILWIND CONFIG ====================
+    function initTailwind() {
+      document.querySelectorAll('script[src*="tailwind"]').forEach(s => {
+        // already loaded
+      });
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif']
+            }
+          }
+        }
+      };
+    }
+
+    // ==================== TTMIK / X WEBHOOK CONFIG ====================
+    const CC_CONFIG = {
+      webhookUrl: localStorage.getItem('cc_webhook_url') || 'http://localhost:3000/api/ttmik-webhook',
+      healFeedUrl: localStorage.getItem('cc_heal_feed_url') || 'http://localhost:3000/api/ttmik-heal-feed',
+      defaultHandle: '@adhdloganberry',
+      ttmikUrl: 'http://localhost:8080/TTMIK.html',
+      ttmikTweetUrl: 'http://localhost:5174/',
+    };
+
+    async function postToXWebhook(text, event = 'ttmik_progress') {
+      const handle = (state.currentUser.xConnected || CC_CONFIG.defaultHandle).replace(/^@/, '');
+      const url = event === 'ttmik_heal_feed' ? CC_CONFIG.healFeedUrl : CC_CONFIG.webhookUrl;
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event,
+            lesson: String(text).slice(0, 200),
+            progress: 100,
+            timestamp: new Date().toISOString(),
+            platform: 'Creative Corner',
+            user: handle,
+            tweet: String(text).slice(0, 280),
+          }),
+        });
+        return await res.json();
+      } catch (err) {
+        console.warn('[Creative Corner] Webhook failed (X intent still works):', err);
+        return null;
+      }
+    }
+
+    async function healTwitterFeed() {
+      const text = '괜찮아요, 괜찮아요 — feed rest OK. 관찰만 하고 흡수하지 않을게요. One breath · one boundary · no re-watch spiral. #HealTheFeed #TTMIK #CreativeCorner';
+      window.open('https://x.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+      const data = await postToXWebhook(text, 'ttmik_heal_feed');
+      showToast(data?.healed ? 'Feed healed → x.com/adhdloganberry' : 'Heal intent opened (webhook offline)');
+    }
+
+    // ==================== STATE ====================
+    let state = {
+      currentUser: {
+        id: 'u1',
+        handle: '@adhdloganberry',
+        displayName: 'Logan Berry',
+        niche: 'artist',
+        bio: 'Creative Corner · TTMIK Korean practice · sovereign art lane.',
+        location: 'Melbourne, AU',
+        xConnected: '@adhdloganberry',
+        joined: '2025-11-12',
+        isPatron: false,           // Patreon-style
+        monthlySupport: 0
+      },
+      myWorks: [],
+      myPosts: [],
+      scheduledPosts: [],
+      feedPosts: [],
+      challengesJoined: [],
+      boards: [],                  // Pinterest-style: [{id, name, itemIds: []}]
+      patronage: {                 // Patreon mock
+        monthlyTotal: 0,
+        supported: []              // array of creator handles
+      },
+      currentReelIndex: 0,
+      // DeviantArt-style elements
+      faves: [],                   // global faves (like "fave" on dA)
+      watchedArtists: [],          // ["@lunaillustrates", ...]
+      comments: {},                // { "itemId": [{user, text, time, type:'comment'|'critique', rating?:{...}}, ...] }
+      // More dA depth
+      clubs: [],                   // [{id, name, desc, members: [], posts: []}]
+      journals: [],                // [{id, author, title, body, time}]
+      activeLives: [],             // mock live streams
+      classes: [],                 // teaching/lessons
+      bookings: [],                // user bookings
+      userPrefs: {
+        maturity: 'all',           // 'all' | 'mature' | 'safe'
+        critiqueOnly: false
+      },
+      // Enhance works with: maturity, status, progress, critiqueRequested
+      tourDates: []                // [{id, date, location, venue, desc, ticketLink, type: 'tour'|'popup'|'guest', posted: bool}]
+    };
+
+    const NICHES = {
+      artist: { label: 'Artist', emoji: '🎨', color: 'niche-artist', hashtags: ['#ArtShare', '#DigitalArt', '#Illustration', '#CreativeCorner'] },
+      tattoo: { label: 'Tattoo Studio', emoji: '🖤', color: 'niche-tattoo', hashtags: ['#TattooArtist', '#Ink', '#TattooOfTheDay', '#FlashSheet'] },
+      vtuber: { label: 'VTuber', emoji: '👾', color: 'niche-vtuber', hashtags: ['#VTuber', '#ENVTuber', '#VTuberEN', '#ModelReveal'] },
+      photo: { label: 'Photographer', emoji: '📷', color: 'niche-photo', hashtags: ['#Photography', '#PhotoOfTheDay', '#ShotOn', '#PrintsAvailable'] },
+      music: { label: 'Musician', emoji: '🎵', color: 'niche-music', hashtags: ['#NewMusic', '#MusicProducer', '#IndieArtist', '#BeatDrop'] }
+    };
+
+    const CHALLENGES = [
+      { id: 'c1', tag: '#CreativeCornerDTIYS', title: 'Draw This In Your Style', desc: 'Redraw the official Creative Corner mascot in your style. Most creative wins a feature.', ends: 'Feb 28', participants: 184, example: 'artist' },
+      { id: 'c2', tag: '#TattooReveal', title: 'Tattoo Reveal', desc: 'Show the full process + healed result. Client stories encouraged.', ends: 'Mar 5', participants: 67, example: 'tattoo' },
+      { id: 'c3', tag: '#VTuberDebut', title: 'VTuber Debut Week', desc: 'Post your model reveal, lore drop, or stream clip. Tag the challenge.', ends: 'Mar 1', participants: 122, example: 'vtuber' },
+      { id: 'c4', tag: '#MusicMonday', title: 'Music Monday', desc: 'Share 15-60s clips or stems. Collabs welcome.', ends: 'Ongoing', participants: 91, example: 'music' }
+    ];
+
+    // ==================== HELPERS ====================
+    function saveState() {
+      try {
+        const toSave = { ...state };
+        // Don't persist blob URLs or large media - only metadata + small dataURLs
+        toSave.myWorks = state.myWorks.map(w => {
+          const copy = { ...w };
+          if (copy.dataUrl && copy.dataUrl.length > 180000) {
+            delete copy.dataUrl; // too big for localStorage reliably
+          }
+          delete copy._blobUrl;
+          return copy;
+        });
+        localStorage.setItem('cc_state_v1', JSON.stringify(toSave));
+      } catch (e) {
+        console.warn('Could not persist full state', e);
+      }
+    }
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('cc_state_v1');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          Object.assign(state, parsed);
+          // Rehydrate blob URLs where possible (from dataUrl)
+          state.myWorks.forEach(w => {
+            if (w.dataUrl) {
+              w._blobUrl = w.dataUrl;
+            }
+          });
+        }
+      } catch (e) {}
+    }
+
+    function getNicheConfig(niche) {
+      return NICHES[niche] || NICHES.artist;
+    }
+
+    function formatDate(d) {
+      return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d));
+    }
+
+    function showToast(msg, type = 'success') {
+      const t = document.createElement('div');
+      t.className = `toast fixed bottom-4 right-4 px-4 py-3 rounded-3xl shadow-xl flex items-center gap-2 z-[200] text-sm ${type === 'success' ? 'bg-emerald-900 border border-emerald-700' : 'bg-slate-800 border border-slate-600'}`;
+      t.innerHTML = `
+        <i class="fa-solid ${type === 'success' ? 'fa-check-circle text-emerald-400' : 'fa-info-circle'}"></i>
+        <span>${msg}</span>
+      `;
+      document.body.appendChild(t);
+      setTimeout(() => {
+        t.style.transition = 'all .2s';
+        t.style.opacity = '0';
+        setTimeout(() => t.remove(), 180);
+      }, 2600);
+    }
+
+    function updateUserUI() {
+      const u = state.currentUser;
+      document.getElementById('user-handle').textContent = u.handle;
+      document.getElementById('user-niche').innerHTML = `${getNicheConfig(u.niche).emoji} ${getNicheConfig(u.niche).label}`;
+      
+      const av = document.getElementById('user-avatar');
+      av.innerHTML = `<span class="text-xs font-bold">${u.displayName.split(' ').map(s => s[0]).join('').slice(0,2)}</span>`;
+      av.className = `w-8 h-8 rounded-2xl flex items-center justify-center text-xs font-bold ring-2 ring-offset-2 ring-offset-[#0a0a12] ring-slate-700 ${getNicheConfig(u.niche).color}`;
+
+      // X status
+      const xWrap = document.getElementById('x-status');
+      const xDisp = document.getElementById('x-handle-display');
+      const xTxt = document.getElementById('x-status-text');
+      
+      if (u.xConnected) {
+        xDisp.textContent = u.xConnected;
+        xTxt.classList.remove('hidden');
+        xWrap.classList.add('!border-emerald-800');
+      } else {
+        xDisp.textContent = 'Connect X';
+        xTxt.classList.add('hidden');
+        xWrap.classList.remove('!border-emerald-800');
+      }
+
+      // Patreon status badge (simple)
+      if (u.isPatron || u.monthlySupport > 0) {
+        if (!document.getElementById('patron-badge')) {
+          const badge = document.createElement('span');
+          badge.id = 'patron-badge';
+          badge.className = 'ml-2 text-[10px] px-1.5 py-px bg-emerald-900 text-emerald-400 rounded';
+          badge.textContent = 'Patron';
+          xWrap.appendChild(badge);
+        }
+      }
+    }
+
+    function renderNichePills() {
+      const container = document.getElementById('niche-pills');
+      container.innerHTML = '';
+      Object.keys(NICHES).forEach(key => {
+        const n = NICHES[key];
+        const isActive = state.currentUser.niche === key;
+        const el = document.createElement('button');
+        el.className = `px-3 py-1 rounded-2xl text-xs flex items-center gap-1 transition ${isActive ? n.color + ' font-medium' : 'bg-slate-800 hover:bg-slate-700 border border-slate-700'}`;
+        el.innerHTML = `<span>${n.emoji}</span> <span>${n.label}</span>`;
+        el.onclick = () => {
+          state.currentUser.niche = key;
+          updateUserUI();
+          renderNichePills();
+          renderPortfolio();
+          saveState();
+          showToast(`Switched to ${n.label} profile`);
+        };
+        container.appendChild(el);
+      });
+    }
+
+    // ==================== X POST GENERATOR ====================
+    function generateXPost(work) {
+      const niche = work.niche || state.currentUser.niche;
+      const cfg = getNicheConfig(niche);
+      const user = state.currentUser;
+      let base = '';
+
+      const title = work.title || 'New piece';
+      const desc = work.description || '';
+
+      if (niche === 'artist') {
+        base = `WIP timelapse + final reveal ✨ ${title}. ${desc.slice(0, 70)}${desc.length > 70 ? '...' : ''} `;
+      } else if (niche === 'tattoo') {
+        base = `Fresh ink. Healing in stories. ${title}. ${desc ? desc.slice(0, 60) : 'Book your own custom piece.'} `;
+      } else if (niche === 'vtuber') {
+        base = `Model drop / stream moment ✨ ${title}. ${desc.slice(0, 65)}${desc.length > 65 ? '...' : ''} Who’s tuning in? `;
+      } else if (niche === 'photo') {
+        base = `${title}. Shot in ${work.location || 'the field'}. ${desc.slice(0, 55)} Gear notes in replies. `;
+      } else if (niche === 'music') {
+        base = `New clip from the studio 🎹 ${title}. ${desc.slice(0, 60)} Full track link in bio. `;
+      } else {
+        base = `${title}. ${desc.slice(0, 80)} `;
+      }
+
+      // Add CTA
+      const ctas = [
+        'Link in bio for commissions.',
+        'More process shots in the thread.',
+        'DM for collabs.',
+        'Prints available — link in bio.',
+        'Who should I collab with next?'
+      ];
+      base += ctas[Math.floor(Math.random() * ctas.length)] + ' ';
+
+      // Add personal handle if connected
+      if (user.xConnected) {
+        base += user.xConnected + ' ';
+      }
+
+      const hashtags = [...new Set([...cfg.hashtags, '#CreativeCorner'])];
+      const selected = hashtags.slice(0, 3 + (Math.random() > 0.6 ? 1 : 0));
+
+      return {
+        text: base.trim(),
+        hashtags: selected,
+        suggestedTime: getSuggestedTime(niche)
+      };
+    }
+
+    function getSuggestedTime(niche) {
+      // Simple optimal windows per spec
+      const windows = ['12:00', '14:30', '19:00', '21:15'];
+      return windows[Math.floor(Math.random() * windows.length)];
+    }
+
+    function regenerateCaption() {
+      if (!window.currentComposeWork) return;
+      const gen = generateXPost(window.currentComposeWork);
+      const ta = document.getElementById('composer-text');
+      ta.value = gen.text;
+      
+      // reset hashtags
+      window.currentHashtags = gen.hashtags;
+      renderHashtagToggles();
+      updatePostPreview();
+    }
+
+    function renderHashtagToggles() {
+      const container = document.getElementById('composer-hashtags');
+      container.innerHTML = '';
+      
+      if (!window.currentHashtags) window.currentHashtags = [];
+      
+      window.currentHashtags.forEach((tag, idx) => {
+        const pill = document.createElement('div');
+        pill.className = `tag cursor-pointer active px-3 py-px text-xs flex items-center gap-1 ${tag.startsWith('#CreativeCorner') ? 'ring-1 ring-offset-1 ring-offset-[#111827] ring-[#22f3d8]/50' : ''}`;
+        pill.innerHTML = `<span>${tag}</span>`;
+        pill.onclick = () => {
+          window.currentHashtags.splice(idx, 1);
+          renderHashtagToggles();
+          updatePostPreview();
+        };
+        container.appendChild(pill);
+      });
+
+      // Add more button
+      const add = document.createElement('div');
+      add.className = 'tag cursor-pointer px-2.5 flex items-center';
+      add.innerHTML = `<i class="fa-solid fa-plus text-xs mr-1"></i> <span>add</span>`;
+      add.onclick = () => {
+        const extra = prompt('Add hashtag (without #):', 'ArtProcess');
+        if (extra) {
+          window.currentHashtags.push('#' + extra.replace(/^#/, ''));
+          renderHashtagToggles();
+          updatePostPreview();
+        }
+      };
+      container.appendChild(add);
+    }
+
+    function updatePostPreview() {
+      // Could update a live preview card if desired
+    }
+
+    function getFullPostText() {
+      const ta = document.getElementById('composer-text');
+      let text = ta.value.trim();
+      if (window.currentHashtags && window.currentHashtags.length) {
+        text += '\n\n' + window.currentHashtags.join(' ');
+      }
+      return text;
+    }
+
+    function copyPostText() {
+      const text = getFullPostText();
+      navigator.clipboard.writeText(text + '\n\n(Attached media from Creative Corner)').then(() => {
+        showToast('Copied! Paste into X with your media.');
+      }).catch(() => {
+        prompt('Copy this text:', text);
+      });
+    }
+
+    function openInX() {
+      const text = getFullPostText();
+      const url = 'https://x.com/intent/tweet?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+      postToXWebhook(text);
+      if (window.currentComposeWork) {
+        showToast('Opened X compose → x.com/adhdloganberry pipeline');
+      }
+    }
+
+    function postAndTrack() {
+      const text = getFullPostText();
+      const work = window.currentComposeWork;
+      const schedule = document.getElementById('schedule-datetime').value;
+
+      const post = {
+        id: 'p_' + Date.now(),
+        workId: work ? work.id : null,
+        text: text,
+        createdAt: new Date().toISOString(),
+        impressions: Math.floor(Math.random() * 420) + 180,
+        engagements: Math.floor(Math.random() * 64) + 19,
+        niche: (work && work.niche) || state.currentUser.niche,
+        scheduledFor: schedule || null
+      };
+
+      if (schedule) {
+        state.scheduledPosts.push(post);
+        showToast('Scheduled for ' + new Date(schedule).toLocaleString());
+      } else {
+        state.myPosts.unshift(post);
+        
+        // Simulate growth over time (demo only)
+        setTimeout(() => {
+          if (post && state.myPosts.find(p => p.id === post.id)) {
+            post.impressions += Math.floor(Math.random() * 850) + 400;
+            post.engagements += Math.floor(Math.random() * 70) + 30;
+            saveState();
+            if (document.getElementById('section-toolkit').classList.contains('active')) {
+              renderAnalytics();
+            }
+          }
+        }, 24000);
+        
+        postToXWebhook(text).then((data) => {
+          if (data?.tweet?.mock) {
+            showToast('Tracked locally · webhook mock (add X OAuth in shopify-twitter)');
+          } else if (data?.success) {
+            showToast('Posted via webhook → x.com/' + (state.currentUser.xConnected || CC_CONFIG.defaultHandle).replace(/^@/, ''));
+          }
+        });
+        showToast('Posted & tracking! + analytics updating in Toolkit.');
+      }
+
+      // If from a work, optionally mark it
+      if (work) {
+        work.lastPosted = new Date().toISOString();
+      }
+
+      hideComposer();
+      saveState();
+      renderPortfolio();
+      renderAnalytics();
+    }
+
+    // ==================== UPLOAD / STUDIO ====================
+    let pendingFiles = [];
+    let pendingFilePreviews = [];
+
+    function showUploadModal(files = null) {
+      document.getElementById('upload-modal').classList.remove('hidden');
+      document.getElementById('upload-modal').classList.add('flex');
+      document.getElementById('upload-preview').innerHTML = '';
+      document.getElementById('upload-preview').classList.add('hidden');
+      pendingFiles = [];
+      pendingFilePreviews = [];
+
+      if (files && files.length) {
+        handleFilesInternal(files);
+      }
+    }
+
+    function hideUploadModal() {
+      const m = document.getElementById('upload-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+      pendingFiles = [];
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('dragover');
+    }
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove('dragover');
+    }
+    function handleDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('dragover');
+      handleFilesInternal(e.dataTransfer.files);
+    }
+    function handleFileSelect(e) {
+      handleFilesInternal(e.target.files);
+    }
+
+    async function handleFilesInternal(fileList) {
+      const preview = document.getElementById('upload-preview');
+      preview.innerHTML = '';
+      preview.classList.remove('hidden');
+      pendingFiles = Array.from(fileList);
+      pendingFilePreviews = [];
+
+      for (let i = 0; i < pendingFiles.length; i++) {
+        const f = pendingFiles[i];
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-3 p-2 bg-slate-900 rounded-2xl mb-2';
+        
+        let mediaEl = '';
+        const url = URL.createObjectURL(f);
+
+        if (f.type.startsWith('image/')) {
+          mediaEl = `<img src="${url}" class="w-14 h-14 object-cover rounded-xl">`;
+        } else if (f.type.startsWith('video/')) {
+          mediaEl = `<video src="${url}" class="w-14 h-14 object-cover rounded-xl" muted></video>`;
+        } else if (f.type.startsWith('audio/')) {
+          mediaEl = `<div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center"><i class="fa-solid fa-music text-2xl"></i></div>`;
+        } else {
+          mediaEl = `<div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center"><i class="fa-solid fa-file text-2xl"></i></div>`;
+        }
+
+        div.innerHTML = `
+          ${mediaEl}
+          <div class="flex-1 min-w-0">
+            <div class="text-sm truncate">${f.name}</div>
+            <div class="text-xs text-slate-500">${(f.size / 1024 / 1024).toFixed(1)} MB • ${f.type.split('/')[0]}</div>
+          </div>
+          <button class="text-red-400 text-xs px-2" onclick="removePendingFile(${i}, this)">✕</button>
+        `;
+        preview.appendChild(div);
+        pendingFilePreviews.push(url);
+      }
+    }
+
+    function removePendingFile(idx, btn) {
+      pendingFiles.splice(idx, 1);
+      pendingFilePreviews.splice(idx, 1);
+      const preview = document.getElementById('upload-preview');
+      // simple: re-render whole thing
+      preview.innerHTML = '';
+      if (!pendingFiles.length) {
+        preview.classList.add('hidden');
+        return;
+      }
+      // re-render remaining (quick hack)
+      for (let i = 0; i < pendingFiles.length; i++) {
+        // re-trigger a simplified version
+      }
+      // for demo simplicity just hide after first removal
+      preview.classList.add('hidden');
+    }
+
+    function toggleProgressField(select) {
+      const field = document.getElementById('progress-field');
+      if (!field) return;
+      if (select.value === 'wip') {
+        field.classList.remove('hidden');
+        const range = document.getElementById('upload-progress');
+        const valEl = document.getElementById('progress-val');
+        if (range && valEl) {
+          range.oninput = () => valEl.textContent = range.value;
+        }
+      } else {
+        field.classList.add('hidden');
+      }
+    }
+
+    async function saveUpload() {
+      if (!pendingFiles.length) {
+        alert('Please add at least one file.');
+        return;
+      }
+
+      const title = document.getElementById('upload-title').value.trim() || 'Untitled work';
+      const desc = document.getElementById('upload-desc').value.trim();
+      const location = document.getElementById('upload-location').value.trim();
+      const collab = document.getElementById('upload-collab').value.trim();
+
+      const maturity = document.getElementById('upload-maturity').value || 'safe';
+      const status = document.getElementById('upload-status').value || 'published';
+      const progressEl = document.getElementById('upload-progress');
+      const progress = (status === 'wip' && progressEl) ? parseInt(progressEl.value) : (status === 'wip' ? 50 : 100);
+      const critiqueRequested = document.getElementById('upload-critique') ? document.getElementById('upload-critique').checked : false;
+
+      const niche = state.currentUser.niche;
+
+      for (let i = 0; i < pendingFiles.length; i++) {
+        const f = pendingFiles[i];
+        const work = {
+          id: 'w_' + Date.now() + '_' + i,
+          title: pendingFiles.length > 1 ? `${title} (${i+1})` : title,
+          description: desc,
+          niche,
+          location,
+          collab,
+          createdAt: new Date().toISOString(),
+          type: f.type.startsWith('image') ? 'image' : f.type.startsWith('video') ? 'video' : 'audio',
+          filename: f.name,
+          size: f.size,
+          // dA + new depth
+          maturity,
+          status,
+          progress: status === 'wip' ? progress : (status === 'draft' ? 0 : 100),
+          critiqueRequested,
+          isDraft: status === 'draft',
+          isWIP: status === 'wip'
+        };
+
+        // Store data URL for images (good for persistence), objectURL for others (session only)
+        try {
+          if (work.type === 'image') {
+            const dataUrl = await fileToDataURL(f);
+            work.dataUrl = dataUrl;
+            work._blobUrl = dataUrl;
+          } else {
+            work._blobUrl = URL.createObjectURL(f);
+          }
+        } catch (e) {
+          work._blobUrl = pendingFilePreviews[i];
+        }
+
+        state.myWorks.unshift(work);
+      }
+
+      saveState();
+      renderPortfolio();
+      hideUploadModal();
+      
+      // Reset form
+      document.getElementById('upload-title').value = '';
+      document.getElementById('upload-desc').value = '';
+      document.getElementById('upload-location').value = '';
+      document.getElementById('upload-collab').value = '';
+      document.getElementById('upload-maturity').value = 'safe';
+      document.getElementById('upload-status').value = 'published';
+      const pf = document.getElementById('progress-field');
+      if (pf) pf.classList.add('hidden');
+      const uc = document.getElementById('upload-critique');
+      if (uc) uc.checked = false;
+
+      showToast(`${pendingFiles.length} work(s) added to portfolio!`);
+
+      // Nice nudge
+      setTimeout(() => {
+        if (confirm('Want to craft an X post for your newest upload right now?')) {
+          const newest = state.myWorks[0];
+          showComposer(newest);
+        }
+      }, 650);
+    }
+
+    function fileToDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderPortfolio(filter = 'published') {
+      const grid = document.getElementById('portfolio-grid');
+      grid.innerHTML = '';
+
+      let works = state.myWorks;
+      if (filter === 'published') works = works.filter(w => !w.isDraft && !w.isWIP);
+      else if (filter === 'wip') works = works.filter(w => w.isWIP);
+      else if (filter === 'drafts') works = works.filter(w => w.isDraft);
+
+      const countEl = document.getElementById('portfolio-count');
+      countEl.textContent = works.length;
+
+      if (!works.length) {
+        grid.innerHTML = `
+          <div class="col-span-full panel rounded-3xl p-8 text-center text-sm text-slate-400">
+            ${filter === 'drafts' ? 'No drafts yet. Save uploads as Draft in the upload form.' : filter === 'wip' ? 'No works marked In Progress.' : 'Your uploads will appear here.<br><button onclick="showUploadModal()" class="mt-3 text-xs underline">Upload your first piece</button>'}
+          </div>
+        `;
+        return;
+      }
+
+      works.forEach(work => {
+        const cfg = getNicheConfig(work.niche);
+        const card = document.createElement('div');
+        card.className = 'card rounded-3xl overflow-hidden group';
+
+        let mediaHTML = '';
+        const src = work._blobUrl || work.dataUrl || '';
+        
+        if (work.type === 'image') {
+          mediaHTML = `<img src="${src}" class="work-card media w-full object-cover" alt="${work.title}">`;
+        } else if (work.type === 'video') {
+          mediaHTML = `<video src="${src}" class="work-card media w-full" muted loop playsinline></video>`;
+        } else {
+          mediaHTML = `<div class="work-card media w-full flex items-center justify-center bg-slate-900"><i class="fa-solid fa-music text-5xl opacity-60"></i></div>`;
+        }
+
+        card.innerHTML = `
+          <div class="relative">
+            ${mediaHTML}
+            <div class="absolute top-2 left-2">
+              <span class="text-[10px] px-2.5 py-px rounded-2xl ${cfg.color} font-medium shadow">${cfg.emoji} ${cfg.label}</span>
+            </div>
+            ${work.lastPosted ? `<div class="absolute top-2 right-2 text-[10px] bg-black/60 px-1.5 rounded">posted</div>` : ''}
+            ${work.maturity ? `<span class="absolute bottom-2 left-2 text-[9px] px-1.5 rounded ${work.maturity==='safe'?'maturity-safe':work.maturity==='mature'?'maturity-mature':'maturity-explicit'}">${work.maturity}</span>` : ''}
+            ${work.isWIP ? `<span class="absolute bottom-2 right-2 text-[9px] px-1 bg-orange-900 text-orange-300 rounded">WIP ${work.progress || 0}%</span>` : ''}
+            ${work.isDraft ? `<span class="absolute top-8 right-2 text-[9px] px-1 bg-slate-700 rounded">DRAFT</span>` : ''}
+          </div>
+          <div class="p-3">
+            <div class="font-medium text-sm truncate">${work.title}</div>
+            ${work.description ? `<div class="text-xs text-slate-400 line-clamp-2 mt-0.5">${work.description}</div>` : ''}
+            
+            <div class="flex items-center gap-1 mt-2 flex-wrap">
+              ${work.location ? `<span class="tag text-[10px]">${work.location}</span>` : ''}
+              ${work.collab ? `<span class="tag text-[10px]">w/ ${work.collab}</span>` : ''}
+            </div>
+
+            <div class="flex items-center gap-x-1.5 mt-3">
+              <button onclick="showComposer(${JSON.stringify(work).replace(/"/g, '&quot;')}); event.stopImmediatePropagation()" 
+                      class="flex-1 text-xs py-1.5 rounded-2xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center gap-1">
+                <i class="fa-brands fa-x-twitter"></i>
+                <span class="font-medium">Post to X</span>
+              </button>
+              <button onclick="deleteWork('${work.id}'); event.stopImmediatePropagation()" 
+                      class="px-3 text-xs py-1.5 rounded-2xl border border-slate-700 hover:bg-red-950 hover:border-red-900 text-red-400">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+
+        // Make the media area clickable for detail (but not buttons)
+        const mediaArea = card.querySelector('.relative');
+        if (mediaArea) {
+          mediaArea.onclick = () => showWorkDetail(work);
+        }
+
+        // Hover preview for video
+        const vid = card.querySelector('video');
+        if (vid) {
+          card.onmouseenter = () => { vid.play().catch(()=>{}); };
+          card.onmouseleave = () => { vid.pause(); vid.currentTime = 0; };
+        }
+
+        grid.appendChild(card);
+
+        // Add Pinterest save + Patreon support + DA fave (on portfolio cards too)
+        addPinAndSupportButtons(card, work, false);
+      });
+    }
+
+    function deleteWork(id) {
+      if (!confirm('Delete this work?')) return;
+      state.myWorks = state.myWorks.filter(w => w.id !== id);
+      saveState();
+      renderPortfolio();
+    }
+
+    // ==================== COMPOSER ====================
+    window.currentComposeWork = null;
+    window.currentHashtags = [];
+
+    function showComposer(work) {
+      window.currentComposeWork = work;
+      const modal = document.getElementById('composer-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      document.getElementById('composer-work-title').textContent = work ? '• ' + work.title : '';
+
+      const gen = generateXPost(work);
+      const ta = document.getElementById('composer-text');
+      ta.value = gen.text;
+
+      window.currentHashtags = [...gen.hashtags];
+      renderHashtagToggles();
+
+      // media thumbs
+      const mediaPrev = document.getElementById('composer-media-preview');
+      const thumbs = document.getElementById('composer-media-thumbs');
+      thumbs.innerHTML = '';
+      
+      if (work && work._blobUrl) {
+        mediaPrev.classList.remove('hidden');
+        let thumb = '';
+        if (work.type === 'image') {
+          thumb = `<img src="${work._blobUrl}" class="w-12 h-12 object-cover rounded-xl border border-slate-700">`;
+        } else if (work.type === 'video') {
+          thumb = `<video src="${work._blobUrl}" class="w-12 h-12 object-cover rounded-xl border border-slate-700"></video>`;
+        } else {
+          thumb = `<div class="w-12 h-12 flex items-center justify-center bg-slate-800 rounded-xl border border-slate-700"><i class="fa-solid fa-music"></i></div>`;
+        }
+        thumbs.innerHTML = thumb;
+      } else {
+        mediaPrev.classList.add('hidden');
+      }
+
+      // schedule pills
+      renderSchedulePills(gen.suggestedTime);
+    }
+
+    function renderSchedulePills(suggested) {
+      const container = document.getElementById('schedule-pills');
+      container.innerHTML = '';
+      const times = [suggested, '12:30', '19:45', '22:00'];
+      
+      times.forEach(t => {
+        const pill = document.createElement('div');
+        pill.className = `text-xs px-3 py-1 rounded-2xl cursor-pointer border ${t === suggested ? 'border-[#22f3d8] text-[#22f3d8]' : 'border-slate-700 hover:bg-slate-800'}`;
+        pill.textContent = t;
+        pill.onclick = () => {
+          document.querySelectorAll('#schedule-pills > div').forEach(p => p.classList.remove('border-[#22f3d8]', 'text-[#22f3d8]'));
+          pill.classList.add('border-[#22f3d8]', 'text-[#22f3d8]');
+          const dt = document.getElementById('schedule-datetime');
+          const d = new Date();
+          d.setHours(parseInt(t), parseInt(t.split(':')[1] || 0));
+          dt.value = d.toISOString().slice(0,16);
+        };
+        container.appendChild(pill);
+      });
+    }
+
+    function hideComposer() {
+      const m = document.getElementById('composer-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+      window.currentComposeWork = null;
+    }
+
+    // ==================== FEED ====================
+    function seedFeedIfEmpty() {
+      if (state.feedPosts.length > 0) return;
+
+      const seeds = [
+        { id: 'f1', creator: '@lunaillustrates', niche: 'artist', title: 'Midnight Garden', mediaType: 'image', caption: 'Final version after 3 weeks of late nights. Which detail is your favorite?', likes: 1240, reposts: 312, impressions: 18400, tags: ['#ArtShare', '#CreativeCorner'] },
+        { id: 'f2', creator: '@inkbysoren', niche: 'tattoo', title: 'Phoenix sleeve, session 2', mediaType: 'image', caption: 'Healing update in stories. Client flew in from Denver for this one.', likes: 892, reposts: 141, impressions: 9200, tags: ['#TattooOfTheDay'] },
+        { id: 'f3', creator: '@neonKitsuneVT', niche: 'vtuber', title: 'New winter model + lore teaser', mediaType: 'video', caption: 'She has a new tail and a secret. Debut stream this Saturday 8pm EST.', likes: 2100, reposts: 680, impressions: 31000, tags: ['#VTuber', '#ENVTuber'] },
+        { id: 'f4', creator: '@atlasframes', niche: 'photo', title: 'Fog over the Keys', mediaType: 'image', caption: '5:47am. Shot on 35mm + Portra 400. Limited prints dropping soon.', likes: 673, reposts: 88, impressions: 6700, tags: ['#Photography'] },
+        { id: 'f5', creator: '@echobeats', niche: 'music', title: 'untitled_02 snippet', mediaType: 'audio', caption: 'New beat for the tape. 808s hitting different this month.', likes: 540, reposts: 192, impressions: 8100, tags: ['#NewMusic'] },
+      ];
+
+      state.feedPosts = seeds.map(s => ({
+        ...s,
+        createdAt: new Date(Date.now() - Math.random() * 1000 * 3600 * 48).toISOString(),
+        userLiked: false
+      }));
+    }
+
+    function renderFeed(filterType = '', searchTerm = '') {
+      const grid = document.getElementById('feed-grid');
+      grid.innerHTML = '';
+
+      let posts = [...state.feedPosts];
+      
+      // Merge in some of user's posted works as feed items
+      state.myPosts.slice(0, 3).forEach(p => {
+        const w = state.myWorks.find(ww => ww.id === p.workId);
+        if (w) {
+          posts.unshift({
+            id: 'user-' + p.id,
+            creator: state.currentUser.xConnected || state.currentUser.handle,
+            niche: p.niche,
+            title: w.title,
+            mediaType: w.type,
+            caption: p.text,
+            likes: p.engagements || 42,
+            reposts: Math.floor((p.engagements || 20) * 0.4),
+            impressions: p.impressions || 800,
+            tags: [],
+            createdAt: p.createdAt,
+            isUser: true,
+            _work: w
+          });
+        }
+      });
+
+      // Apply filters (normal + DeviantArt-style)
+      if (filterType) {
+        if (filterType === '__faves__') {
+          posts = posts.filter(p => isFaved(p.id) || (p._work && isFaved(p._work.id)));
+        } else if (filterType === '__watching__') {
+          posts = posts.filter(p => isWatched(p.creator));
+        } else if (filterType === '__popular__') {
+          // sort by "faves" proxy (use likes or random high)
+          posts.sort((a,b) => (b.likes || b.impressions || 0) - (a.likes || a.impressions || 0));
+        } else {
+          posts = posts.filter(p => p.niche === filterType);
+        }
+      }
+
+      // Maturity filter (dA)
+      const matPref = state.userPrefs.maturity || 'all';
+      posts = posts.filter(p => {
+        const m = p.maturity || (p._work && p._work.maturity) || 'safe';
+        if (matPref === 'safe') return m === 'safe';
+        if (matPref === 'mature') return m !== 'explicit';
+        return true;
+      });
+
+      // Critique only filter
+      if (state.userPrefs.critiqueOnly) {
+        posts = posts.filter(p => {
+          const itemId = p.id || (p._work && p._work.id);
+          const comms = getComments(itemId);
+          return comms.some(c => c.type === 'critique');
+        });
+      }
+
+      if (searchTerm) {
+        const q = searchTerm.toLowerCase();
+        posts = posts.filter(p => 
+          (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.caption && p.caption.toLowerCase().includes(q)) ||
+          p.creator.toLowerCase().includes(q)
+        );
+      }
+
+      if (!posts.length) {
+        grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400">No matches. Try clearing filters.</div>`;
+        return;
+      }
+
+      posts.forEach(post => {
+        const cfg = getNicheConfig(post.niche);
+        const item = document.createElement('div');
+        item.className = `masonry-item feed-card card rounded-3xl overflow-hidden ${post.isUser ? 'ring-1 ring-[#22f3d8]/30' : ''}`;
+
+        let media = '';
+        if (post.mediaType === 'image' && post._work && post._work._blobUrl) {
+          media = `<img src="${post._work._blobUrl}" class="w-full aspect-[16/11] object-cover">`;
+        } else if (post.mediaType === 'video' && post._work && post._work._blobUrl) {
+          media = `<video src="${post._work._blobUrl}" class="w-full aspect-[16/11] object-cover" muted loop></video>`;
+        } else if (post.mediaType === 'audio') {
+          media = `<div class="w-full aspect-[16/11] bg-gradient-to-br from-slate-900 to-black flex items-center justify-center"><i class="fa-solid fa-play text-4xl opacity-75"></i></div>`;
+        } else {
+          // Generic beautiful placeholder
+          media = `<div class="w-full aspect-[16/11] bg-gradient-to-br from-slate-800 to-black flex items-center justify-center text-5xl">${cfg.emoji}</div>`;
+        }
+
+        item.innerHTML = `
+          <div class="relative">
+            ${media}
+            <div class="absolute top-2.5 left-2.5">
+              <span onclick="event.stopImmediatePropagation(); showArtistProfile('${post.creator}')" class="px-2.5 py-0.5 text-xs rounded-2xl ${cfg.color} font-medium shadow cursor-pointer hover:opacity-90">${post.creator}</span>
+            </div>
+            ${post.isUser ? `<div class="absolute top-2.5 right-2.5 text-[10px] px-2 bg-black/70 rounded">you</div>` : ''}
+            ${(() => {
+              const m = post.maturity || (post._work && post._work.maturity) || 'safe';
+              const mClass = m==='safe' ? 'maturity-safe' : m==='mature' ? 'maturity-mature' : 'maturity-explicit';
+              const status = (post._work && post._work.status) || (post.status);
+              let extra = `<span class="absolute bottom-2 left-2 text-[9px] px-1.5 rounded ${mClass}">${m}</span>`;
+              if (status === 'wip') extra += `<span class="absolute bottom-2 right-2 text-[9px] px-1 bg-orange-900 text-orange-300 rounded">WIP ${post._work ? post._work.progress : ''}%</span>`;
+              if (post.isDraft || (post._work && post._work.isDraft)) extra += `<span class="absolute top-8 right-2 text-[9px] px-1 bg-slate-700 rounded">DRAFT</span>`;
+              return extra;
+            })()}
+          </div>
+          <div class="p-3">
+            <div class="text-sm font-medium line-clamp-2">${post.title || post.caption.slice(0, 60)}</div>
+            <div class="mt-1 text-xs text-slate-300/90 line-clamp-2">${post.caption}</div>
+            
+            <div class="flex items-center gap-1 mt-2.5">
+              ${post.tags && post.tags.length ? post.tags.map(t => `<span class="tag">${t}</span>`).join('') : ''}
+            </div>
+
+            <div class="flex items-center justify-between mt-3 text-xs">
+              <div class="flex gap-x-3 text-slate-400">
+                <div><i class="fa-solid fa-heart mr-1 text-rose-400"></i>${(post.likes || 0).toLocaleString()}</div>
+                <div><i class="fa-solid fa-retweet mr-1"></i>${post.reposts || 0}</div>
+              </div>
+              <div class="post-metrics">${Math.floor((post.impressions||800)/1000)}k impressions</div>
+            </div>
+
+            <div class="mt-2 grid grid-cols-3 gap-2 text-xs">
+              <button onclick="likeFeedPost('${post.id}', this); event.stopImmediatePropagation()" class="py-1 rounded-2xl border border-slate-700 hover:bg-slate-800">♥ Like</button>
+              <button onclick="repostToX('${post.id}', this); event.stopImmediatePropagation()" class="py-1 rounded-2xl border border-slate-700 hover:bg-slate-800">Repost</button>
+              <button onclick="quotePost('${post.id}'); event.stopImmediatePropagation()" class="py-1 rounded-2xl accent-bg text-black font-medium">Quote</button>
+            </div>
+          </div>
+        `;
+
+        // Click whole card for detail (except buttons)
+        item.onclick = (e) => {
+          if (!e.target.closest('button')) {
+            showFeedPostDetail(post);
+          }
+        };
+
+        grid.appendChild(item);
+
+        // Add Pinterest save + Patreon support actions (Pinterest + Patreon style)
+        addPinAndSupportButtons(item, post, true);
+      });
+
+      // populate tour teaser if in discover
+      const teaser = document.getElementById('discover-tour-teaser');
+      if (teaser && state.tourDates && state.tourDates.length) {
+        teaser.innerHTML = state.tourDates.slice(0,3).map(t => `<div class="px-2 py-1 bg-slate-900 rounded whitespace-nowrap cursor-pointer text-xs" onclick="switchTab('community'); switchCommunitySub('touring')">${t.date} ${t.location}</div>`).join('');
+      }
+    }
+
+    function filterFeed() {
+      const type = document.getElementById('feed-filter-type').value;
+      const term = document.getElementById('feed-search').value;
+      renderFeed(type, term);
+    }
+
+    function applyMaturityFilter() {
+      const pref = document.getElementById('maturity-filter').value;
+      state.userPrefs.maturity = pref;
+      saveState();
+      if (document.getElementById('section-discover').classList.contains('active')) {
+        const type = document.getElementById('feed-filter-type').value;
+        const term = document.getElementById('feed-search').value;
+        renderFeed(type, term);
+        // populate quick tour teaser
+        const teaser = document.getElementById('discover-tour-teaser');
+        if (teaser && state.tourDates && state.tourDates.length) {
+          teaser.innerHTML = state.tourDates.slice(0,3).map(t => `<div class="px-2 py-1 bg-slate-900 rounded whitespace-nowrap cursor-pointer" onclick="switchTab('community'); switchCommunitySub('touring')">${t.date} ${t.location}</div>`).join('');
+        }
+      }
+      if (document.getElementById('section-reels').classList.contains('active')) {
+        renderReels();
+      }
+    }
+
+    function toggleCritiqueOnly() {
+      state.userPrefs.critiqueOnly = document.getElementById('critique-only').checked;
+      saveState();
+      // Re-render current detail if open, or feeds
+      if (document.getElementById('section-discover').classList.contains('active')) {
+        const type = document.getElementById('feed-filter-type').value;
+        renderFeed(type, document.getElementById('feed-search').value);
+      }
+    }
+
+    function likeFeedPost(id, btn) {
+      const post = state.feedPosts.find(p => p.id === id) || state.myPosts.find(p => 'user-' + p.id === id);
+      if (!post) return;
+      
+      if (post.userLiked) {
+        post.likes = Math.max(0, (post.likes || 0) - 1);
+        post.userLiked = false;
+        btn.innerHTML = '♥ Like';
+      } else {
+        post.likes = (post.likes || 0) + 1;
+        post.userLiked = true;
+        btn.innerHTML = '♥ Liked';
+        btn.style.borderColor = '#fda4af';
+      }
+      // re-render is expensive but fine for demo
+      setTimeout(() => renderFeed(
+        document.getElementById('feed-filter-type').value, 
+        document.getElementById('feed-search').value
+      ), 120);
+    }
+
+    function repostToX(id, btn) {
+      const post = state.feedPosts.find(p => p.id === id);
+      if (!post) return;
+      
+      const text = `RT: ${post.caption || post.title} — ${post.creator}`;
+      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+      
+      post.reposts = (post.reposts || 0) + 1;
+      btn.textContent = 'Reposted ✓';
+      setTimeout(() => {
+        renderFeed(document.getElementById('feed-filter-type').value, document.getElementById('feed-search').value);
+      }, 800);
+    }
+
+    function quotePost(id) {
+      const post = state.feedPosts.find(p => p.id === id);
+      if (!post) return;
+      
+      // Open composer with prefilled quote context (no specific work)
+      showComposer({
+        id: 'quote-' + id,
+        title: 'Quote of ' + post.creator,
+        description: post.caption,
+        niche: post.niche
+      });
+      
+      // Prepend quote context
+      setTimeout(() => {
+        const ta = document.getElementById('composer-text');
+        ta.value = `"${post.caption.slice(0, 110)}..." — ${post.creator}\n\n` + ta.value;
+      }, 80);
+    }
+
+    function showFeedPostDetail(post) {
+      const modal = document.getElementById('detail-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      const mediaWrap = document.getElementById('detail-media');
+      mediaWrap.innerHTML = '';
+
+      let m = '';
+      if (post._work && post._work._blobUrl) {
+        if (post.mediaType === 'image') m = `<img src="${post._work._blobUrl}" class="w-full">`;
+        else if (post.mediaType === 'video') m = `<video src="${post._work._blobUrl}" controls class="w-full">`;
+        else m = `<div class="p-8 text-center"><i class="fa-solid fa-music fa-3x"></i><div class="mt-2">${post.title}</div></div>`;
+      } else {
+        const cfg = getNicheConfig(post.niche);
+        m = `<div class="p-10 text-center text-6xl bg-slate-900">${cfg.emoji}</div>`;
+      }
+      mediaWrap.innerHTML = m;
+
+      document.getElementById('detail-header').innerHTML = `
+        <div>
+          <div class="font-semibold">${post.creator}</div>
+          <div class="text-xs text-slate-400">${formatDate(post.createdAt)}</div>
+        </div>
+        <div class="ml-auto text-right">
+          <div class="text-xs">${(post.impressions || 800).toLocaleString()} impressions</div>
+        </div>
+      `;
+      document.getElementById('detail-text').textContent = post.caption || post.title;
+      
+      const tagsEl = document.getElementById('detail-tags');
+      tagsEl.innerHTML = (post.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+
+      // Add Pinterest save + Patreon support in feed details too
+      const actionBar = document.createElement('div');
+      actionBar.className = 'flex gap-2 mt-3 text-xs';
+      actionBar.innerHTML = `
+        <button onclick="saveToBoard('${post.id}', 'post'); hideDetailModal()" class="flex-1 py-1.5 border border-slate-600 rounded-2xl">Save to Board</button>
+        <button onclick="showSupportModal('${post.creator}'); hideDetailModal()" class="flex-1 py-1.5 accent-bg text-black font-medium rounded-2xl">Support Creator</button>
+      `;
+      const existing = document.querySelector('#detail-modal .detail-actions');
+      if (existing) existing.remove();
+      actionBar.classList.add('detail-actions');
+      tagsEl.parentNode.appendChild(actionBar);
+
+      // DeviantArt faves + comments
+      enhanceDetailWithDA(tagsEl.parentNode, post.id, post);
+    }
+
+    function hideDetailModal() {
+      const m = document.getElementById('detail-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function showWorkDetail(work) {
+      // Reuse the detail modal for portfolio works (simple & effective)
+      const modal = document.getElementById('detail-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      const mediaWrap = document.getElementById('detail-media');
+      mediaWrap.innerHTML = '';
+
+      const src = work._blobUrl || work.dataUrl || '';
+      let mhtml = '';
+      if (work.type === 'image' && src) {
+        mhtml = `<img src="${src}" class="w-full">`;
+      } else if (work.type === 'video' && src) {
+        mhtml = `<video src="${src}" controls class="w-full"></video>`;
+      } else if (work.type === 'audio') {
+        mhtml = `<div class="p-10 text-center"><i class="fa-solid fa-music fa-3x mb-2"></i><div>${work.title}</div></div>`;
+      } else {
+        mhtml = `<div class="p-10 text-center text-6xl">${getNicheConfig(work.niche).emoji}</div>`;
+      }
+      mediaWrap.innerHTML = mhtml;
+
+      const cfg = getNicheConfig(work.niche);
+      document.getElementById('detail-header').innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 text-xs rounded-2xl ${cfg.color}">${cfg.emoji} ${cfg.label}</span>
+          <div>
+            <div class="font-semibold">${work.title}</div>
+            <div class="text-xs text-slate-400">${work.location || ''} ${work.collab ? '• w/ ' + work.collab : ''}</div>
+          </div>
+        </div>
+      `;
+      document.getElementById('detail-text').innerHTML = `
+        ${work.description || 'Beautiful work.'}
+        ${work.exclusive ? `<div class="mt-2 text-emerald-400 text-xs">★ Exclusive for patrons</div>` : ''}
+      `;
+
+      const tagsEl = document.getElementById('detail-tags');
+      tagsEl.innerHTML = (work.tags || getNicheConfig(work.niche).hashtags.slice(0,3)).map(t => `<span class="tag">${t}</span>`).join('');
+
+      // Add quick actions
+      const actions = document.createElement('div');
+      actions.className = 'mt-3 flex gap-2 text-xs';
+      actions.innerHTML = `
+        <button onclick="showComposer(${JSON.stringify(work).replace(/"/g,'&quot;')}); hideDetailModal()" class="flex-1 py-1.5 border border-slate-600 rounded-2xl">Post to X</button>
+        <button onclick="saveToBoard('${work.id}'); hideDetailModal()" class="flex-1 py-1.5 border border-slate-600 rounded-2xl">Save to Board</button>
+        <button onclick="showSupportModal(); hideDetailModal()" class="flex-1 py-1.5 accent-bg text-black font-medium rounded-2xl">Support Creator</button>
+      `;
+      // append if not already there
+      const existingActions = modal.querySelector('.detail-actions');
+      if (existingActions) existingActions.remove();
+      actions.classList.add('detail-actions');
+      mediaWrap.parentNode.appendChild(actions);
+
+      // DeviantArt-style Fave + Comments on portfolio deviation view
+      enhanceDetailWithDA(mediaWrap.parentNode, work.id, work);
+    }
+
+    function likeFromDetail() {
+      // Simple global bump
+      showToast('Thanks for the engagement! (demo)');
+      hideDetailModal();
+    }
+    function repostFromDetail() {
+      hideDetailModal();
+      showToast('Opening repost on X...');
+      setTimeout(() => window.open('https://x.com/intent/tweet', '_blank'), 200);
+    }
+    function quoteFromDetail() {
+      hideDetailModal();
+      // trigger a generic quote
+      showComposer({ title: 'Community highlight', description: 'Loving this direction from the community', niche: 'artist' });
+    }
+
+    // ==================== CHALLENGES ====================
+    function renderChallenges() {
+      const grid = document.getElementById('challenges-grid');
+      grid.innerHTML = '';
+
+      CHALLENGES.forEach(ch => {
+        const cfg = getNicheConfig(ch.example);
+        const joined = state.challengesJoined.includes(ch.id);
+        
+        const card = document.createElement('div');
+        card.className = 'card rounded-3xl p-5';
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="font-semibold text-lg">${ch.title}</div>
+              <div class="text-xs ${cfg.color} inline-block px-2 rounded mt-0.5">${ch.tag}</div>
+            </div>
+            <div class="text-right text-xs text-slate-400">
+              <div>${ch.ends}</div>
+              <div>${ch.participants} joined</div>
+            </div>
+          </div>
+          <div class="mt-3 text-sm text-slate-300">${ch.desc}</div>
+          
+          <div class="mt-4 flex gap-2">
+            <button onclick="joinChallenge('${ch.id}', this)" class="flex-1 text-sm py-2 rounded-2xl ${joined ? 'bg-emerald-900 text-emerald-300' : 'accent-bg text-black font-semibold'}">
+              ${joined ? '✓ Joined — Post again' : 'Join & Post'}
+            </button>
+            <button onclick="showChallengeComposer('${ch.id}')" class="px-4 text-sm border border-slate-600 rounded-2xl">Quick post</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function joinChallenge(id, btn) {
+      if (!state.challengesJoined.includes(id)) state.challengesJoined.push(id);
+      
+      const ch = CHALLENGES.find(c => c.id === id);
+      showToast(`Joined ${ch.tag}!`);
+      
+      // Auto open studio with prefilled
+      btn.textContent = '✓ Joined — Post again';
+      btn.className = 'flex-1 text-sm py-2 rounded-2xl bg-emerald-900 text-emerald-300';
+      
+      setTimeout(() => {
+        showUploadModal();
+        // After upload they can post with the tag
+        showToast('Upload something for the challenge, then use "Post to X"');
+      }, 1100);
+    }
+
+    function showChallengeComposer(chId) {
+      const ch = CHALLENGES.find(c => c.id === chId);
+      const mockWork = {
+        id: 'challenge-temp',
+        title: ch.title,
+        description: `Participating in ${ch.tag}`,
+        niche: ch.example
+      };
+      showComposer(mockWork);
+      
+      setTimeout(() => {
+        const ta = document.getElementById('composer-text');
+        ta.value = ta.value + `\n\n${ch.tag} — who else is in?`;
+        window.currentHashtags = [...(window.currentHashtags || []), ch.tag];
+        renderHashtagToggles();
+      }, 30);
+    }
+
+    // ==================== TOOLKIT ====================
+    function renderTemplates() {
+      const container = document.getElementById('templates-list');
+      container.innerHTML = '';
+      
+      const templates = [
+        { name: 'WIP + Final', text: 'Process shot → final reveal. Timelapse in replies. #ArtShare' },
+        { name: 'Client Story', text: 'Before/after + the story. Healed photos coming soon. DM for yours.' },
+        { name: 'Model Reveal', text: 'New model + lore drop. Debut stream this weekend. Come say hi!' },
+        { name: 'Clip Tease', text: '15s of the new drop. Full thing live on all platforms. What do you think?' }
+      ];
+
+      templates.forEach(t => {
+        const row = document.createElement('div');
+        row.className = 'flex gap-2 items-start p-2 hover:bg-slate-800 rounded-2xl cursor-pointer';
+        row.innerHTML = `
+          <div class="flex-1">
+            <div class="font-medium text-sm">${t.name}</div>
+            <div class="text-xs text-slate-400 line-clamp-1">${t.text}</div>
+          </div>
+          <button class="text-xs px-2 py-px border border-slate-600 rounded">Use</button>
+        `;
+        row.onclick = () => {
+          showComposer({ title: t.name, description: t.text, niche: state.currentUser.niche });
+          setTimeout(() => {
+            document.getElementById('composer-text').value = t.text;
+          }, 40);
+        };
+        container.appendChild(row);
+      });
+    }
+
+    function renderAnalytics() {
+      // Summary stats
+      const sum = document.getElementById('analytics-summary');
+      const posts = state.myPosts;
+      const totalImp = posts.reduce((a, p) => a + (p.impressions || 0), 0);
+      const totalEng = posts.reduce((a, p) => a + (p.engagements || 0), 0);
+      const avgEng = posts.length ? Math.round(totalEng / posts.length) : 34;
+
+      const patronLine = (state.currentUser.isPatron || state.currentUser.monthlySupport > 0)
+        ? `<div class="col-span-3 mt-1 text-xs bg-emerald-900/30 text-emerald-300 rounded p-1 text-center">You support creators • $${state.currentUser.monthlySupport || state.patronage.monthlyTotal || 0}/mo (demo)</div>` : '';
+
+      sum.innerHTML = `
+        <div class="bg-slate-900 rounded-2xl p-3">
+          <div class="text-xs text-slate-400">Total Reach</div>
+          <div class="text-2xl font-semibold stat-number">${(totalImp || 12400).toLocaleString()}</div>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-3">
+          <div class="text-xs text-slate-400">Engagements</div>
+          <div class="text-2xl font-semibold stat-number">${(totalEng || 1480).toLocaleString()}</div>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-3">
+          <div class="text-xs text-slate-400">Avg / Post</div>
+          <div class="text-2xl font-semibold stat-number">${avgEng}</div>
+        </div>
+        ${patronLine}
+      `;
+
+      // Top posts
+      const top = document.getElementById('top-posts');
+      top.innerHTML = '';
+      const sorted = [...posts].sort((a, b) => (b.impressions || 0) - (a.impressions || 0)).slice(0, 3);
+      
+      if (!sorted.length) {
+        top.innerHTML = `<div class="text-xs text-slate-400">Post some work to see analytics here.</div>`;
+        return;
+      }
+
+      sorted.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'flex justify-between bg-slate-900 p-2 rounded-2xl text-xs';
+        div.innerHTML = `
+          <div class="truncate pr-3">${p.text.slice(0, 55)}...</div>
+          <div class="text-right tabular-nums text-emerald-400">${p.impressions} imp<br><span class="text-[10px] text-slate-400">${p.engagements} eng</span></div>
+        `;
+        top.appendChild(div);
+      });
+    }
+
+    function renderCollabSuggestions() {
+      const c = document.getElementById('collab-suggestions');
+      c.innerHTML = '';
+      
+      const suggestions = [
+        { handle: '@lunaillustrates', type: 'Artist', note: 'Loves DTIYS collabs' },
+        { handle: '@inkbysoren', type: 'Tattoo', note: 'Miami guest spots' },
+        { handle: '@neonKitsuneVT', type: 'VTuber', note: 'Looking for emotes' },
+        { handle: '@atlasframes', type: 'Photo', note: 'Print swap?' }
+      ];
+
+      suggestions.forEach(s => {
+        const el = document.createElement('div');
+        el.className = 'bg-slate-900 rounded-2xl p-3 text-xs';
+        el.innerHTML = `
+          <div class="font-medium">${s.handle}</div>
+          <div class="text-emerald-400 text-[10px]">${s.type}</div>
+          <div class="text-slate-400 mt-1 text-[10px]">${s.note}</div>
+          <button onclick="followOnX('${s.handle}')" class="mt-2 text-[10px] px-2.5 py-0.5 border border-slate-600 rounded-2xl hover:bg-slate-800">Follow on X</button>
+        `;
+        c.appendChild(el);
+      });
+    }
+
+    function followOnX(handle) {
+      window.open(`https://x.com/${handle.replace('@', '')}`, '_blank');
+    }
+
+    // ==================== MARKETPLACE ====================
+    function renderMarketplace() {
+      // Commissions
+      const comm = document.getElementById('market-commissions');
+      comm.innerHTML = `
+        <div class="flex justify-between text-sm bg-slate-900 p-3 rounded-2xl">
+          <div>
+            <div class="font-medium">@lunaillustrates — character portraits</div>
+            <div class="text-xs text-slate-400">3 slots left • starting $180</div>
+          </div>
+          <button onclick="contactOnX('@lunaillustrates')" class="text-xs px-3 py-1 bg-slate-800 rounded-2xl self-center">DM on X</button>
+        </div>
+        <div class="flex justify-between text-sm bg-slate-900 p-3 rounded-2xl">
+          <div>
+            <div class="font-medium">@inkbysoren — custom flash</div>
+            <div class="text-xs text-slate-400">Booking March • Miami only</div>
+          </div>
+          <button onclick="contactOnX('@inkbysoren')" class="text-xs px-3 py-1 bg-slate-800 rounded-2xl self-center">DM on X</button>
+        </div>
+      `;
+
+      const prints = document.getElementById('market-prints');
+      prints.innerHTML = `
+        <div class="flex justify-between text-sm bg-slate-900 p-3 rounded-2xl">
+          <div>
+            <div class="font-medium">Limited "Midnight Garden" print — @lunaillustrates</div>
+            <div class="text-xs text-emerald-400">14 left • $45</div>
+          </div>
+          <button onclick="contactOnX('@lunaillustrates', 'print')" class="text-xs px-3 py-1 bg-slate-800 rounded-2xl self-center">Get on X</button>
+        </div>
+        <div class="flex justify-between text-sm bg-slate-900 p-3 rounded-2xl">
+          <div>
+            <div class="font-medium">1:1 booking slot — neonKitsune live painting</div>
+          </div>
+          <button onclick="contactOnX('@neonKitsuneVT')" class="text-xs px-3 py-1 bg-slate-800 rounded-2xl self-center">Book</button>
+        </div>
+      `;
+    }
+
+    function contactOnX(handle, type = '') {
+      const msg = type === 'print' ? `Interested in the print you posted on Creative Corner!` : `Hi! Saw your listing on Creative Corner.`;
+      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(msg)}&url=https://x.com/${handle.replace('@','')}`, '_blank');
+    }
+
+    window.postMarketListing = function(kind) {
+      const title = prompt(`What are you offering? (${kind})`, kind === 'commission' ? '3 portrait slots this month' : 'New limited print drop');
+      if (!title) return;
+      
+      showToast(`Listing created! (demo) Others will see it in Marketplace.`);
+      
+      // Add to the lists dynamically
+      if (kind === 'commission') {
+        const el = document.getElementById('market-commissions');
+        const div = document.createElement('div');
+        div.className = 'flex justify-between text-sm bg-slate-900 p-3 rounded-2xl';
+        div.innerHTML = `
+          <div>
+            <div class="font-medium">You — ${title}</div>
+            <div class="text-xs text-emerald-400">Just posted • visible to community</div>
+          </div>
+          <div class="text-xs self-center text-slate-400">listed</div>
+        `;
+        el.prepend(div);
+      }
+    };
+
+    // ==================== PINTEREST + PATREON + REELS HELPERS ====================
+
+    /* ---------- Boards (Pinterest style) ---------- */
+    function ensureDefaultBoards() {
+      if (!state.boards || state.boards.length === 0) {
+        state.boards = [
+          { id: 'b1', name: 'Inspiration', itemIds: [], cover: null },
+          { id: 'b2', name: 'WIP Process', itemIds: [], cover: null },
+          { id: 'b3', name: 'Client Favorites', itemIds: [], cover: null }
+        ];
+      }
+    }
+
+    function saveToBoard(itemId, itemType = 'work') {
+      ensureDefaultBoards();
+      // Show boards modal in "picker" mode
+      window._pendingSaveItem = { id: itemId, type: itemType };
+      showBoardsModal(true);
+    }
+
+    function addItemToBoard(boardId, itemId) {
+      const board = state.boards.find(b => b.id === boardId);
+      if (!board) return;
+      if (!board.itemIds.includes(itemId)) {
+        board.itemIds.push(itemId);
+      }
+      saveState();
+      showToast('Saved to board!');
+      hideBoardsModal();
+      // Refresh feed/portfolio if visible
+      if (document.getElementById('section-discover').classList.contains('active')) {
+        renderFeed();
+      }
+    }
+
+    function createNewBoard() {
+      const name = prompt('Board name:', 'New Collection');
+      if (!name) return;
+      ensureDefaultBoards();
+      const newBoard = {
+        id: 'b_' + Date.now(),
+        name: name.trim(),
+        itemIds: [],
+        cover: null
+      };
+      state.boards.unshift(newBoard);
+      saveState();
+      renderBoardsList(true);
+    }
+
+    let _showingBoardPicker = false;
+
+    function showBoardsModal(pickerMode = false) {
+      _showingBoardPicker = pickerMode;
+      const modal = document.getElementById('boards-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      document.getElementById('board-items-view').classList.add('hidden');
+      document.getElementById('boards-list').classList.remove('hidden');
+
+      ensureDefaultBoards();
+      renderBoardsList(pickerMode);
+    }
+
+    function hideBoardsModal() {
+      const modal = document.getElementById('boards-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      window._pendingSaveItem = null;
+      _showingBoardPicker = false;
+    }
+
+    function renderBoardsList(pickerMode = false) {
+      const list = document.getElementById('boards-list');
+      list.innerHTML = '';
+      document.getElementById('boards-count').textContent = `(${state.boards.length})`;
+
+      if (state.boards.length === 0) {
+        list.innerHTML = `<div class="text-sm text-slate-400 p-4">No boards yet. Create one!</div>`;
+        return;
+      }
+
+      state.boards.forEach(board => {
+        const count = board.itemIds.length;
+        const div = document.createElement('div');
+        div.className = 'board-card cursor-pointer';
+        const coverStyle = board.cover ? `background-image:url('${board.cover}')` : 'background: linear-gradient(135deg, #1e2937, #0f172a)';
+        div.innerHTML = `
+          <div class="board-cover" style="${coverStyle}">
+            <div class="board-count text-white px-1.5">${count} pins</div>
+          </div>
+          <div class="p-2">
+            <div class="font-medium text-sm truncate">${board.name}</div>
+            <div class="text-[10px] text-slate-400">${count} saved</div>
+          </div>
+        `;
+
+        if (pickerMode && window._pendingSaveItem) {
+          div.onclick = () => addItemToBoard(board.id, window._pendingSaveItem.id);
+        } else {
+          div.onclick = () => showBoardItems(board.id);
+        }
+        list.appendChild(div);
+      });
+    }
+
+    function showBoardItems(boardId) {
+      const board = state.boards.find(b => b.id === boardId);
+      if (!board) return;
+
+      document.getElementById('boards-list').classList.add('hidden');
+      const view = document.getElementById('board-items-view');
+      view.classList.remove('hidden');
+
+      document.getElementById('current-board-name').textContent = board.name + ` (${board.itemIds.length})`;
+
+      const grid = document.getElementById('board-pins-grid');
+      grid.innerHTML = '';
+
+      if (board.itemIds.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-xs text-slate-400 p-4">This board is empty. Save pins from Discover or Studio!</div>`;
+        return;
+      }
+
+      board.itemIds.forEach(itemId => {
+        // Try to find in myWorks or feedPosts
+        let found = state.myWorks.find(w => w.id === itemId);
+        if (!found) found = state.feedPosts.find(p => p.id === itemId);
+
+        const card = document.createElement('div');
+        card.className = 'card rounded-xl overflow-hidden text-xs relative';
+        let media = '';
+        if (found && found._blobUrl && found.type === 'image') {
+          media = `<img src="${found._blobUrl}" class="w-full aspect-square object-cover">`;
+        } else if (found && found._blobUrl && found.type === 'video') {
+          media = `<div class="w-full aspect-square bg-black flex items-center justify-center text-xl">▶</div>`;
+        } else {
+          media = `<div class="w-full aspect-square bg-gradient-to-br from-slate-800 to-black flex items-center justify-center">📌</div>`;
+        }
+        card.innerHTML = `
+          ${media}
+          <div class="p-1.5 truncate">${found ? (found.title || found.caption || 'Saved pin') : 'Saved item'}</div>
+        `;
+        // clicking opens detail if possible
+        card.onclick = () => {
+          hideBoardsModal();
+          if (found) {
+            if (state.myWorks.includes(found)) showWorkDetail(found);
+            else showFeedPostDetail(found);
+          }
+        };
+        grid.appendChild(card);
+      });
+    }
+
+    function backToBoardsList() {
+      document.getElementById('board-items-view').classList.add('hidden');
+      document.getElementById('boards-list').classList.remove('hidden');
+    }
+
+    /* ---------- Patreon-style Support ---------- */
+    function showSupportModal(creatorHandle = '@lunaillustrates') {
+      const modal = document.getElementById('support-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      document.getElementById('support-creator-name').textContent = creatorHandle;
+
+      const tiersEl = document.getElementById('support-tiers');
+      tiersEl.innerHTML = `
+        <div onclick="selectSupportTier(3, '${creatorHandle}')" class="cursor-pointer p-3 rounded-2xl border border-slate-700 hover:border-emerald-500 flex justify-between">
+          <div>
+            <div class="font-semibold">Supporter — $3/mo</div>
+            <div class="text-xs text-slate-400">Early access + process shots • Shoutout</div>
+          </div>
+          <div class="text-emerald-400 font-semibold self-center">Join</div>
+        </div>
+        <div onclick="selectSupportTier(7, '${creatorHandle}')" class="cursor-pointer p-3 rounded-2xl border border-slate-700 hover:border-emerald-500 flex justify-between">
+          <div>
+            <div class="font-semibold">Creative — $7/mo</div>
+            <div class="text-xs text-slate-400">Exclusive posts + polls • 15% off commissions</div>
+          </div>
+          <div class="text-emerald-400 font-semibold self-center">Join</div>
+        </div>
+        <div onclick="selectSupportTier(15, '${creatorHandle}')" class="cursor-pointer p-3 rounded-2xl border border-slate-700 hover:border-emerald-500 flex justify-between">
+          <div>
+            <div class="font-semibold">Inner Circle — $15/mo</div>
+            <div class="text-xs text-slate-400">1:1 feedback + monthly live • All previous perks</div>
+          </div>
+          <div class="text-emerald-400 font-semibold self-center">Join</div>
+        </div>
+      `;
+    }
+
+    function hideSupportModal() {
+      const modal = document.getElementById('support-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectSupportTier(amount, creator) {
+      state.currentUser.isPatron = true;
+      state.currentUser.monthlySupport = (state.currentUser.monthlySupport || 0) + amount;
+      if (!state.patronage.supported.includes(creator)) {
+        state.patronage.supported.push(creator);
+      }
+      state.patronage.monthlyTotal = (state.patronage.monthlyTotal || 0) + amount;
+
+      saveState();
+      updateUserUI();
+      hideSupportModal();
+
+      showToast(`Thank you! You're now supporting ${creator} at $${amount}/mo (demo).`);
+
+      // Unlock some "exclusive" content by refreshing relevant views
+      setTimeout(() => {
+        if (document.getElementById('section-discover').classList.contains('active')) renderFeed();
+        if (document.getElementById('section-toolkit').classList.contains('active')) renderAnalytics();
+      }, 300);
+    }
+
+    /* ---------- Reels (IG style vertical) ---------- */
+    function renderReels() {
+      const container = document.getElementById('reels-grid');
+      container.innerHTML = '';
+
+      // Collect video works from my portfolio + some feed videos
+      let videos = state.myWorks.filter(w => w.type === 'video' && passesMaturity(w));
+      // Add a couple demo reels if none
+      if (videos.length < 2) {
+        // create lightweight demo reel entries
+        videos = videos.concat([
+          { id: 'reel_demo1', title: 'Process timelapse', type: 'video', _blobUrl: '', niche: 'artist', description: '3 minute process condensed' },
+          { id: 'reel_demo2', title: 'Tattoo reveal clip', type: 'video', _blobUrl: '', niche: 'tattoo', description: 'Fresh ink in 30s' }
+        ]);
+      }
+
+      videos.forEach((reel, index) => {
+        const cfg = getNicheConfig(reel.niche || 'artist');
+        const div = document.createElement('div');
+        div.className = 'reel-item mx-auto w-full max-w-[340px]';
+
+        const src = reel._blobUrl || '';
+        const isDemo = !reel._blobUrl;
+
+        div.innerHTML = `
+          ${isDemo 
+            ? `<div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-black to-slate-900 text-center p-6">
+                 <div class="text-5xl mb-3">${cfg.emoji}</div>
+                 <div class="font-semibold">${reel.title}</div>
+                 <div class="text-xs mt-1 text-slate-400">${reel.description}</div>
+                 <div class="mt-4 text-[10px] px-3 py-1 rounded bg-white/10">Demo reel — drag your own video in Studio</div>
+               </div>` 
+            : `<video src="${src}" class="w-full h-full" loop playsinline></video>`
+          }
+
+          <div class="reel-overlay">
+            <div class="flex items-center gap-2">
+              <span class="text-xs px-2 py-px rounded ${cfg.color}">${cfg.emoji} ${cfg.label}</span>
+              <span class="font-semibold text-sm">${reel.title || 'Untitled Reel'}</span>
+            </div>
+            <div class="text-[11px] text-slate-300 mt-0.5 line-clamp-2">${reel.description || 'Short creative moment'}</div>
+          </div>
+
+          <div class="reel-actions">
+            <div onclick="event.stopImmediatePropagation(); likeReel('${reel.id}', this)" class="reel-action-btn text-rose-400">♥</div>
+            <div onclick="event.stopImmediatePropagation(); supportFromReel('${reel.id}')" class="reel-action-btn text-emerald-400"><i class="fa-solid fa-handshake"></i></div>
+            <div onclick="event.stopImmediatePropagation(); saveReelToBoard('${reel.id}')" class="reel-action-btn"><i class="fa-solid fa-bookmark"></i></div>
+            <div onclick="event.stopImmediatePropagation(); shareReelToX('${reel.id}')" class="reel-action-btn text-[#1d9bf0]"><i class="fa-brands fa-x-twitter"></i></div>
+          </div>
+        `;
+
+        const vid = div.querySelector('video');
+        if (vid) {
+          // tap to play/pause
+          div.onclick = (e) => {
+            if (e.target.tagName === 'VIDEO' || e.target.closest('video')) {
+              if (vid.paused) vid.play(); else vid.pause();
+            }
+          };
+          // auto play the first one lightly
+          if (index === 0) setTimeout(() => vid.play().catch(()=>{}), 600);
+        }
+
+        container.appendChild(div);
+      });
+    }
+
+    function likeReel(id, el) {
+      el.style.color = '#fda4af';
+      showToast('Reel liked!');
+    }
+
+    function supportFromReel(id) {
+      // find a creator from the reel if possible
+      const w = state.myWorks.find(x => x.id === id);
+      const handle = w ? '@' + (state.currentUser.xConnected || 'you') : '@creativecorner';
+      showSupportModal(handle);
+    }
+
+    function saveReelToBoard(id) {
+      saveToBoard(id, 'reel');
+    }
+
+    function shareReelToX(id) {
+      const w = state.myWorks.find(x => x.id === id) || { title: 'My new reel' };
+      const text = `Check this short: ${w.title} — made with love on Creative Corner`;
+      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function openCreateReel() {
+      switchTab('studio');
+      setTimeout(() => {
+        showUploadModal();
+        showToast('Upload a short video clip (<60s ideal) then post it as a Reel from your portfolio.');
+      }, 450);
+    }
+
+    /* Enhance existing cards with Pinterest/Patreon actions */
+    function addPinAndSupportButtons(cardEl, item, isFeedItem = false) {
+      // Find the media container relative
+      const mediaWrap = cardEl.querySelector('.relative') || cardEl;
+      if (!mediaWrap) return;
+
+      // Save / Pin button (Pinterest)
+      const pinBtn = document.createElement('div');
+      pinBtn.className = 'pin-action text-[10px] cursor-pointer';
+      pinBtn.innerHTML = `<i class="fa-solid fa-bookmark"></i> <span class="hidden sm:inline">Save</span>`;
+      pinBtn.onclick = (e) => {
+        e.stopImmediatePropagation();
+        const id = item.id;
+        saveToBoard(id, isFeedItem ? 'post' : 'work');
+      };
+      mediaWrap.style.position = 'relative';
+      mediaWrap.appendChild(pinBtn);
+
+      // Quick Fave (DeviantArt star)
+      const faveBtn = document.createElement('div');
+      faveBtn.className = `pin-action text-[10px] cursor-pointer ${isFaved(item.id) ? 'text-yellow-400' : ''}`;
+      faveBtn.style.right = '70px';
+      faveBtn.innerHTML = isFaved(item.id) ? `<i class="fa-solid fa-star text-yellow-400"></i>` : `<i class="fa-solid fa-star"></i>`;
+      faveBtn.onclick = (e) => {
+        e.stopImmediatePropagation();
+        toggleFave(item.id, faveBtn);
+      };
+      mediaWrap.appendChild(faveBtn);
+
+      // Support button (Patreon) - small floating bottom left on some cards
+      const support = document.createElement('div');
+      support.className = 'absolute bottom-2 left-2 text-[10px] px-2 py-px rounded-2xl bg-emerald-900/80 text-emerald-300 cursor-pointer flex items-center gap-1';
+      support.innerHTML = `<i class="fa-solid fa-handshake fa-xs"></i> <span>Support</span>`;
+      support.onclick = (e) => {
+        e.stopImmediatePropagation();
+        const creator = isFeedItem && item.creator ? item.creator : (state.currentUser.xConnected || '@creativecorner');
+        showSupportModal(creator);
+      };
+      mediaWrap.appendChild(support);
+    }
+
+    /* ---------- DeviantArt-style features ---------- */
+    function isFaved(itemId) {
+      return state.faves && state.faves.includes(itemId);
+    }
+
+    function toggleFave(itemId, btnEl = null) {
+      if (!state.faves) state.faves = [];
+      if (isFaved(itemId)) {
+        state.faves = state.faves.filter(id => id !== itemId);
+        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-star"></i> Fave`;
+      } else {
+        state.faves.push(itemId);
+        if (btnEl) btnEl.innerHTML = `<i class="fa-solid fa-star text-yellow-400"></i> Faved`;
+        // small animation
+        if (btnEl) btnEl.style.transform = 'scale(1.2)';
+        setTimeout(() => { if (btnEl) btnEl.style.transform = ''; }, 150);
+      }
+      saveState();
+      // refresh any visible lists
+      if (document.getElementById('section-discover').classList.contains('active')) {
+        const type = document.getElementById('feed-filter-type') ? document.getElementById('feed-filter-type').value : '';
+        renderFeed(type, document.getElementById('feed-search') ? document.getElementById('feed-search').value : '');
+      }
+    }
+
+    function isWatched(handle) {
+      return state.watchedArtists && state.watchedArtists.includes(handle);
+    }
+
+    function toggleWatch(handle, btnEl = null) {
+      if (!state.watchedArtists) state.watchedArtists = [];
+      if (isWatched(handle)) {
+        state.watchedArtists = state.watchedArtists.filter(h => h !== handle);
+        if (btnEl) btnEl.textContent = 'Watch';
+      } else {
+        state.watchedArtists.push(handle);
+        if (btnEl) btnEl.textContent = 'Watching';
+      }
+      saveState();
+      showToast(isWatched(handle) ? `Watching ${handle}` : `Unwatched ${handle}`);
+      // refresh feed to update badges
+      if (document.getElementById('section-discover').classList.contains('active')) renderFeed();
+    }
+
+    function addComment(itemId, text, user = null) {
+      if (!state.comments) state.comments = {};
+      if (!state.comments[itemId]) state.comments[itemId] = [];
+      const entry = {
+        id: 'c_' + Date.now(),
+        user: user || state.currentUser.handle,
+        text: text.trim(),
+        time: new Date().toISOString(),
+        type: 'comment'  // default; can be set to 'critique' after
+      };
+      state.comments[itemId].unshift(entry);
+      saveState();
+      return entry;
+    }
+
+    function getComments(itemId) {
+      if (!state.comments || !state.comments[itemId]) return [];
+      return state.comments[itemId];
+    }
+
+    function showArtistProfile(creatorHandle) {
+      // DeviantArt-style profile modal
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 backdrop-blur z-[120] flex items-center justify-center p-4';
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+      const isSelf = creatorHandle === state.currentUser.handle || creatorHandle === state.currentUser.xConnected;
+      const watching = isWatched(creatorHandle);
+
+      // Collect some of "their" works (demo: filter by mock or show recent)
+      const theirWorks = state.myWorks.filter(w => isSelf).slice(0, 6); // for demo use own, or random
+
+      let profileHTML = `
+        <div onclick="event.stopImmediatePropagation()" class="modal panel rounded-3xl w-full max-w-2xl p-6 overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center text-2xl font-bold ring-4 ring-offset-2 ring-offset-[#111827] ring-slate-700">
+                ${creatorHandle.slice(1,3).toUpperCase()}
+              </div>
+              <div>
+                <div class="font-display text-2xl">${creatorHandle}</div>
+                <div class="text-emerald-400 text-sm">${isSelf ? 'You' : 'Digital Artist • Member since 2024'}</div>
+                <div class="flex gap-3 mt-1 text-xs">
+                  <span><strong>12.4k</strong> deviations</span>
+                  <span><strong>48.2k</strong> views</span>
+                  <span><strong>${Math.floor(Math.random()*9000)+1200}</strong> watchers</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              ${!isSelf ? `<button id="watch-btn" onclick="toggleWatch('${creatorHandle}', this); event.target.textContent = isWatched('${creatorHandle}') ? 'Watching' : 'Watch'" class="px-4 py-1 text-sm rounded-2xl ${watching ? 'bg-emerald-900 text-emerald-300' : 'border border-slate-600 hover:bg-slate-800'}">${watching ? 'Watching' : 'Watch'}</button>` : ''}
+              <button onclick="this.closest('.fixed').remove()" class="ml-2 text-xl text-slate-400 hover:text-white">×</button>
+            </div>
+          </div>
+
+          <div class="mt-4 text-sm">
+            ${isSelf ? state.currentUser.bio : 'Passionate creator sharing process, finished pieces, and experiments. Open for collabs and commissions.'}
+          </div>
+
+          <div class="mt-4 flex gap-2">
+            <button onclick="showSupportModal('${creatorHandle}'); this.closest('.fixed').remove()" class="text-xs px-3 py-1 rounded-2xl accent-bg text-black font-medium">Support on Patreon-style</button>
+            <button onclick="this.closest('.fixed').remove(); switchTab('discover');" class="text-xs px-3 py-1 rounded-2xl border border-slate-600">Browse their work</button>
+            <button onclick="showProfileTourDates('${creatorHandle}', this.closest('.fixed'))" class="text-xs px-3 py-1 rounded-2xl border border-slate-600">View Tour Dates</button>
+          </div>
+
+          <div class="mt-5">
+            <div class="font-semibold mb-2 text-sm flex items-center gap-2">Recent Deviations <span class="text-xs text-slate-400">(like dA gallery)</span></div>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+              ${theirWorks.length ? theirWorks.map(w => {
+                const s = w._blobUrl || w.dataUrl || '';
+                return `<div class="aspect-square rounded-xl overflow-hidden border border-slate-700 cursor-pointer" onclick="this.closest('.fixed').remove(); showWorkDetail(${JSON.stringify(w)})">
+                  ${s ? (w.type==='image' ? `<img src="${s}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-black flex items-center justify-center text-xl">▶</div>`) : `<div class="w-full h-full bg-slate-800 flex items-center justify-center">${getNicheConfig(w.niche).emoji}</div>`}
+                </div>`;
+              }).join('') : `<div class="col-span-full text-xs text-slate-400">No recent uploads yet.</div>` }
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <div class="font-semibold text-sm mb-1 flex justify-between"><span>Upcoming Tour Dates</span> <span onclick="showProfileTourDates('${creatorHandle}', this.closest('.fixed'))" class="text-xs underline cursor-pointer">view all →</span></div>
+            <div class="text-xs text-slate-400">${(state.tourDates || []).slice(0,2).map(t => `${t.date} ${t.location}`).join(' • ') || 'No dates posted yet.'}</div>
+          </div>
+
+          <div class="mt-4 text-xs text-slate-400 flex gap-4">
+            <div>Journals: <strong>23</strong></div>
+            <div>Faves received: <strong>9.1k</strong></div>
+            <div>Critiques given: <strong>312</strong></div>
+          </div>
+
+          ${!isSelf ? `<div class="mt-3 text-[10px] text-center text-slate-500">Watching this artist will surface more of their work in your Discover feed (demo).</div>` : ''}
+        </div>
+      `;
+      modal.innerHTML = profileHTML;
+      document.body.appendChild(modal);
+
+      // Make sure the watch button state is correct after render
+      setTimeout(() => {
+        const wb = modal.querySelector('#watch-btn');
+        if (wb) wb.textContent = isWatched(creatorHandle) ? 'Watching' : 'Watch';
+      }, 0);
+    }
+
+    function enhanceDetailWithDA(modalOrContainer, itemId, itemData) {
+      // Add Fave + Comments (DeviantArt "fave" + comment threads) to detail views
+      // This gets called from the existing detail functions
+      const faveBtn = document.createElement('button');
+      faveBtn.className = `px-3 py-1 text-xs rounded-2xl border flex items-center gap-1 ${isFaved(itemId) ? 'border-yellow-400 text-yellow-400' : 'border-slate-600'}`;
+      faveBtn.innerHTML = isFaved(itemId) ? `<i class="fa-solid fa-star text-yellow-400"></i> Faved` : `<i class="fa-solid fa-star"></i> Fave`;
+      faveBtn.onclick = () => {
+        toggleFave(itemId, faveBtn);
+      };
+
+      // Insert near existing action buttons if possible
+      const actionArea = modalOrContainer.querySelector('.detail-actions') || modalOrContainer.querySelector('.flex.gap-2.mt-3');
+      if (actionArea) {
+        actionArea.prepend(faveBtn);
+      } else {
+        // fallback append
+        const bar = document.createElement('div');
+        bar.className = 'mt-3 flex gap-2';
+        bar.appendChild(faveBtn);
+        modalOrContainer.appendChild(bar);
+      }
+
+      // Comments section (dA style)
+      const commentsWrap = document.createElement('div');
+      commentsWrap.className = 'mt-4 border-t border-slate-700 pt-3';
+      commentsWrap.innerHTML = `
+        <div class="text-xs font-semibold mb-2 flex items-center gap-2">Comments & Critiques <span class="text-emerald-400">(${getComments(itemId).length})</span></div>
+        <div id="comments-list-${itemId}" class="space-y-2 max-h-40 overflow-auto text-xs mb-2 pr-1"></div>
+        <div class="flex gap-2 items-center">
+          <input id="comment-input-${itemId}" type="text" placeholder="Leave a critique or comment..." class="flex-1 bg-slate-900 border border-slate-700 rounded-2xl px-3 py-1 text-xs">
+          <label class="text-[10px] flex items-center gap-1 text-yellow-400"><input type="checkbox" id="critique-checkbox-${itemId}"> Critique</label>
+          <button id="comment-submit-${itemId}" class="px-3 py-1 text-xs rounded-2xl accent-bg text-black font-medium">Post</button>
+        </div>
+      `;
+      modalOrContainer.appendChild(commentsWrap);
+
+      const listEl = commentsWrap.querySelector(`#comments-list-${itemId}`);
+      function renderCommentsList() {
+        listEl.innerHTML = '';
+        let comms = getComments(itemId);
+        if (state.userPrefs.critiqueOnly) {
+          comms = comms.filter(c => c.type === 'critique');
+        }
+        if (comms.length === 0) {
+          listEl.innerHTML = `<div class="text-slate-500">No comments yet. Be the first to critique!</div>`;
+          return;
+        }
+        comms.forEach(c => {
+          const d = document.createElement('div');
+          d.className = `bg-slate-900 rounded p-2 ${c.type==='critique' ? 'border-l-2 border-yellow-400' : ''}`;
+          const rating = c.rating ? ` <span class="text-[10px] text-yellow-400">[${Object.values(c.rating).join('/')}]</span>` : '';
+          d.innerHTML = `<span class="font-medium text-emerald-300">${c.user}</span> <span class="text-[10px] text-slate-500">${new Date(c.time).toLocaleDateString()}</span>${rating}<div class="text-slate-200 mt-0.5">${c.text}</div>`;
+          listEl.appendChild(d);
+        });
+      }
+      renderCommentsList();
+
+      const input = commentsWrap.querySelector(`#comment-input-${itemId}`);
+      const submit = commentsWrap.querySelector(`#comment-submit-${itemId}`);
+      const doComment = () => {
+        const val = input.value.trim();
+        if (!val) return;
+        const isCrit = document.getElementById('critique-checkbox-' + itemId) && document.getElementById('critique-checkbox-' + itemId).checked;
+        const entry = addComment(itemId, val);
+        if (isCrit) entry.type = 'critique';
+        // optional quick rating for critique
+        if (isCrit) {
+          entry.rating = {comp: Math.ceil(Math.random()*5), tech: Math.ceil(Math.random()*5)};
+        }
+        input.value = '';
+        renderCommentsList();
+        showToast(isCrit ? 'Critique posted!' : 'Comment posted (DeviantArt style)');
+      };
+      submit.onclick = doComment;
+      input.onkeydown = (e) => { if (e.key === 'Enter') doComment(); };
+    }
+
+    // ==================== COMMUNITY (dA Clubs/Journals/Live/Academy) + more depth ====================
+
+    function switchCommunitySub(sub) {
+      // Deactivate pills
+      document.querySelectorAll('.community-sub').forEach(el => el.classList.remove('active-sub'));
+      const activePill = document.querySelector(`.community-sub[data-sub="${sub}"]`);
+      if (activePill) activePill.classList.add('active-sub');
+
+      const content = document.getElementById('community-content');
+      content.innerHTML = '';
+
+      ensureCommunityData();
+
+      if (sub === 'clubs') {
+        renderClubs(content);
+      } else if (sub === 'journals') {
+        renderJournals(content);
+      } else if (sub === 'live') {
+        renderLive(content);
+      } else if (sub === 'academy') {
+        renderAcademy(content);
+      } else if (sub === 'touring') {
+        renderTourDates(content);
+      }
+    }
+
+    function ensureCommunityData() {
+      if (!state.clubs || state.clubs.length === 0) {
+        state.clubs = [
+          { id: 'club1', name: 'DTIYS Collective', desc: 'Draw This In Your Style challenges and shares', members: 1240, posts: [{id:'cp1', author:'@lunaillustrates', text:'New mascot drop! Who is in for round 47?', time:new Date().toISOString()}] },
+          { id: 'club2', name: 'Tattoo Process', desc: 'Healing, flash, and behind the needle', members: 892, posts: [] },
+          { id: 'club3', name: 'VTuber Creators', desc: 'Model shares, rigging tips, debut support', members: 2100, posts: [] }
+        ];
+      }
+      if (!state.journals || state.journals.length === 0) {
+        state.journals = [
+          { id: 'j1', author: '@creativecorner', title: 'My 2026 Art Goals + Process Changes', body: 'This year I am focusing more on personal work and less on client deadlines. First experiment: 30 day texture study.', time: new Date().toISOString() },
+          { id: 'j2', author: '@lunaillustrates', title: 'How I paint glowing effects', body: 'A quick breakdown of my layer setup for neon and magical lighting.', time: new Date(Date.now()-86400000*2).toISOString() }
+        ];
+      }
+      if (!state.activeLives || state.activeLives.length === 0) {
+        state.activeLives = [
+          { id: 'live1', host: '@neonKitsuneVT', title: 'Live model painting + Q&A', viewers: 312, started: 'just now' },
+          { id: 'live2', host: '@atlasframes', title: 'Street photography walk & talk', viewers: 87, started: '14m ago' }
+        ];
+      }
+      if (!state.classes || state.classes.length === 0) {
+        state.classes = [
+          { id: 'class1', title: 'Digital Painting Fundamentals', teacher: '@lunaillustrates', price: 45, duration: '4 weeks', slots: 12, desc: 'Layer management, color theory, brushes' },
+          { id: 'class2', title: 'Critique Workshop (small group)', teacher: '@creativecorner', price: 25, duration: '1 session', slots: 8, desc: 'Submit your work, get live feedback' }
+        ];
+      }
+      if (!state.tourDates || state.tourDates.length === 0) {
+        state.tourDates = [
+          { id: 't1', date: '2026-03-15', location: 'Miami, FL', venue: 'The Underground', desc: 'Full band set + merch pop-up', ticketLink: 'tickets.example.com', type: 'tour', posted: false },
+          { id: 't2', date: '2026-03-22', location: 'Atlanta, GA', venue: 'Starlight Lounge', desc: 'Acoustic set + Q&A', ticketLink: '', type: 'tour', posted: true },
+          { id: 't3', date: '2026-04-05', location: 'Austin, TX', venue: 'Convention Center', desc: 'Guest tattoo flash day (tattoo artists)', ticketLink: 'bookings.example.com', type: 'popup', posted: false }
+        ];
+      }
+    }
+
+    function renderClubs(container) {
+      let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+      state.clubs.forEach(club => {
+        const joined = (state.currentUser.joinedClubs || []).includes(club.id);
+        html += `
+          <div class="panel rounded-3xl p-4 club-card">
+            <div class="flex justify-between">
+              <div>
+                <div class="font-semibold">${club.name}</div>
+                <div class="text-xs text-emerald-400">${club.members.toLocaleString()} members</div>
+              </div>
+              <button onclick="joinClub('${club.id}', this)" class="text-xs px-3 py-1 rounded-2xl ${joined ? 'bg-emerald-900 text-emerald-300' : 'accent-bg text-black font-medium'}">
+                ${joined ? 'Joined' : 'Join Club'}
+              </button>
+            </div>
+            <div class="text-sm mt-2 text-slate-300">${club.desc}</div>
+            ${club.posts.length ? `<div class="mt-3 text-xs bg-slate-900 p-2 rounded">Latest: ${club.posts[0].text.slice(0,70)}...</div>` : ''}
+            <div class="mt-2 text-[10px] flex gap-2">
+              <button onclick="postToClub('${club.id}')" class="underline text-cyan-400">Post to club</button>
+              <button onclick="viewClubFeed('${club.id}')" class="underline text-cyan-400">View feed</button>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function joinClub(clubId, btn) {
+      if (!state.currentUser.joinedClubs) state.currentUser.joinedClubs = [];
+      if (!state.currentUser.joinedClubs.includes(clubId)) {
+        state.currentUser.joinedClubs.push(clubId);
+        saveState();
+        btn.textContent = 'Joined';
+        btn.classList.add('bg-emerald-900', 'text-emerald-300');
+        btn.classList.remove('accent-bg', 'text-black');
+        showToast('Welcome to the club!');
+      }
+    }
+
+    function postToClub(clubId) {
+      const text = prompt('What do you want to post to the club?');
+      if (!text) return;
+      const club = state.clubs.find(c => c.id === clubId);
+      if (club) {
+        if (!club.posts) club.posts = [];
+        club.posts.unshift({id: 'cp' + Date.now(), author: state.currentUser.handle, text, time: new Date().toISOString()});
+        saveState();
+        showToast('Posted to club!');
+        // refresh
+        const content = document.getElementById('community-content');
+        renderClubs(content);
+      }
+    }
+
+    function viewClubFeed(clubId) {
+      const club = state.clubs.find(c => c.id === clubId);
+      if (!club) return;
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-[130] p-4';
+      let postsHtml = club.posts && club.posts.length ? club.posts.map(p => `<div class="p-2 bg-slate-900 rounded mb-1"><span class="font-medium">${p.author}</span>: ${p.text}</div>`).join('') : '<div class="text-slate-400">No posts yet.</div>';
+      modal.innerHTML = `
+        <div class="panel rounded-3xl p-5 max-w-md w-full">
+          <div class="flex justify-between"><div class="font-semibold">${club.name} Feed</div><button onclick="this.closest('.fixed').remove()" class="text-xl">×</button></div>
+          <div class="mt-3 max-h-60 overflow-auto">${postsHtml}</div>
+          <button onclick="postToClub('${clubId}'); this.closest('.fixed').remove()" class="mt-3 w-full py-2 accent-bg text-black rounded-3xl text-sm font-medium">Post something new</button>
+        </div>`;
+      document.body.appendChild(modal);
+    }
+
+    function renderJournals(container) {
+      let html = `<div class="space-y-3">`;
+      const userJournals = state.journals.filter(j => j.author === state.currentUser.handle);
+      if (userJournals.length === 0) {
+        html += `<div class="text-sm">No journals yet. <button onclick="postNewJournal()" class="underline">Write one</button></div>`;
+      }
+      state.journals.forEach(j => {
+        html += `
+          <div class="journal-card panel p-4 rounded-3xl">
+            <div class="flex justify-between text-xs text-slate-400"><span>${j.author}</span><span>${formatDate(j.time)}</span></div>
+            <div class="font-semibold mt-1">${j.title}</div>
+            <div class="text-sm mt-1 text-slate-300 line-clamp-3">${j.body}</div>
+            <button onclick="showJournal('${j.id}')" class="text-xs mt-2 text-cyan-400 underline">Read full journal</button>
+          </div>`;
+      });
+      html += `<button onclick="postNewJournal()" class="mt-2 text-xs px-3 py-1 rounded-2xl border border-slate-600">+ Write new journal entry</button></div>`;
+      container.innerHTML = html;
+    }
+
+    function postNewJournal() {
+      const title = prompt('Journal title:');
+      if (!title) return;
+      const body = prompt('Journal body (keep it short for demo):', 'Today I learned...');
+      if (!body) return;
+      state.journals.unshift({ id: 'j' + Date.now(), author: state.currentUser.handle, title, body, time: new Date().toISOString() });
+      saveState();
+      const content = document.getElementById('community-content');
+      renderJournals(content);
+      showToast('Journal posted (DeviantArt style)');
+    }
+
+    function showJournal(jid) {
+      const j = state.journals.find(x => x.id === jid);
+      if (!j) return;
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-[130] p-4';
+      modal.innerHTML = `
+        <div class="panel rounded-3xl p-6 max-w-lg w-full">
+          <div class="text-xs text-slate-400">${j.author} • ${formatDate(j.time)}</div>
+          <div class="font-semibold text-xl mt-1">${j.title}</div>
+          <div class="mt-3 text-sm whitespace-pre-wrap">${j.body}</div>
+          <button onclick="this.closest('.fixed').remove()" class="mt-4 w-full py-2 border border-slate-600 rounded-3xl text-sm">Close</button>
+        </div>`;
+      document.body.appendChild(modal);
+    }
+
+    function renderLive(container) {
+      let html = `<div class="space-y-3">`;
+      if (state.activeLives.length === 0) {
+        html += `<div class="text-sm text-slate-400">No one is live right now. Be the first!</div>`;
+      }
+      state.activeLives.forEach(live => {
+        html += `
+          <div class="panel p-4 rounded-3xl flex gap-4 items-center">
+            <div class="flex-1">
+              <div class="flex items-center gap-2"><span class="live-indicator w-2 h-2 bg-red-500 rounded-full inline-block"></span> <span class="font-semibold">${live.host}</span> <span class="text-xs text-red-400">LIVE</span></div>
+              <div class="text-sm">${live.title}</div>
+              <div class="text-xs text-slate-400">${live.viewers} watching • started ${live.started}</div>
+            </div>
+            <button onclick="joinLive('${live.id}')" class="accent-bg text-black px-4 py-1.5 rounded-2xl text-sm font-medium">Join Stream</button>
+          </div>`;
+      });
+      html += `<button onclick="startLiveStream()" class="mt-2 px-4 py-2 rounded-3xl border border-red-600 text-red-400 text-sm flex items-center gap-2"><i class="fa-solid fa-video"></i> Go Live (start your stream)</button></div>`;
+      container.innerHTML = html;
+    }
+
+    function joinLive(liveId) {
+      const live = state.activeLives.find(l => l.id === liveId);
+      if (!live) return;
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black z-[140] flex flex-col';
+      modal.innerHTML = `
+        <div class="p-3 bg-[#0a0a12] flex items-center justify-between border-b border-slate-800">
+          <div><span class="text-red-500 font-bold">● LIVE</span> ${live.host} — ${live.title}</div>
+          <div class="flex items-center gap-3 text-sm"><span>${live.viewers} viewers</span> <button onclick="this.closest('.fixed').remove()" class="px-3 py-1 border rounded">Leave</button></div>
+        </div>
+        <div class="flex-1 flex items-center justify-center bg-black text-center">
+          <div>
+            <div class="text-6xl mb-4">📹</div>
+            <div class="text-xl">Simulated live stream</div>
+            <div class="text-xs text-slate-400 mt-1">In real app this would be WebRTC / OBS embed</div>
+          </div>
+        </div>
+        <div class="p-3 bg-[#0a0a12] border-t border-slate-800">
+          <div class="text-xs mb-1">Live Chat (mock)</div>
+          <div class="h-24 overflow-auto bg-slate-900 rounded p-2 text-xs mb-2" id="live-chat">
+            <div>@user1: Love the brushwork!</div>
+            <div>@user2: What brush is that?</div>
+          </div>
+          <div class="flex gap-2"><input id="live-chat-input" class="flex-1 bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs" placeholder="Say something..."> <button onclick="sendLiveChat(this)" class="px-3 rounded bg-slate-700 text-xs">Send</button></div>
+        </div>`;
+      document.body.appendChild(modal);
+    }
+
+    window.sendLiveChat = function(btn) {
+      const input = btn.parentNode.querySelector('input');
+      if (!input || !input.value.trim()) return;
+      const chat = btn.parentNode.parentNode.querySelector('#live-chat');
+      const div = document.createElement('div');
+      div.textContent = `${state.currentUser.handle}: ${input.value}`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+      input.value = '';
+    };
+
+    function startLiveStream() {
+      const title = prompt('Stream title?', 'Painting live + Q&A');
+      if (!title) return;
+      const newLive = { id: 'live' + Date.now(), host: state.currentUser.handle, title, viewers: 1, started: 'just now' };
+      state.activeLives.unshift(newLive);
+      saveState();
+      const content = document.getElementById('community-content');
+      renderLive(content);
+      showToast('You are now live! (demo)');
+      setTimeout(() => joinLive(newLive.id), 600);
+    }
+
+    function renderAcademy(container) {
+      let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+      state.classes.forEach(cls => {
+        html += `
+          <div class="panel p-4 rounded-3xl">
+            <div class="font-semibold">${cls.title}</div>
+            <div class="text-xs text-slate-400">by ${cls.teacher} • ${cls.duration} • $${cls.price}</div>
+            <div class="text-sm mt-2">${cls.desc}</div>
+            <div class="text-xs mt-1 text-emerald-400">${cls.slots} slots left</div>
+            <button onclick="bookClass('${cls.id}', this)" class="mt-3 text-xs px-3 py-1 rounded-2xl accent-bg text-black font-medium w-full">Book / Enroll</button>
+          </div>`;
+      });
+      html += `</div><div class="mt-3 text-xs text-slate-400">Classes integrate with booking system + your calendar (demo).</div>`;
+      container.innerHTML = html;
+    }
+
+    function bookClass(classId, btn) {
+      const cls = state.classes.find(c => c.id === classId);
+      if (!cls) return;
+      const date = prompt('Preferred date (YYYY-MM-DD)?', '2026-03-15');
+      if (!date) return;
+      state.bookings.push({ id: 'bk' + Date.now(), type: 'class', item: cls.title, date, teacher: cls.teacher, price: cls.price });
+      saveState();
+      btn.textContent = 'Booked ✓';
+      btn.disabled = true;
+      showToast(`Booked ${cls.title} for ${date}. Check your bookings in profile or toolkit.`);
+    }
+
+    function renderTourDates(container) {
+      let html = `
+        <div class="mb-3 flex justify-between items-center">
+          <div>
+            <div class="font-semibold">Tour Dates &amp; Schedules</div>
+            <div class="text-xs text-slate-400">Post your touring calendar • Share to X • Fans can save/RSVP</div>
+          </div>
+          <button onclick="showPostTourModal()" class="text-xs px-3 py-1.5 rounded-2xl accent-bg text-black font-medium">+ Post Tour Date / Schedule</button>
+        </div>
+        <div class="space-y-2">`;
+
+      const sorted = [...(state.tourDates || [])].sort((a,b) => a.date.localeCompare(b.date));
+
+      if (sorted.length === 0) {
+        html += `<div class="text-sm text-slate-400">No tour dates yet. Post your first one!</div>`;
+      } else {
+        sorted.forEach(td => {
+          const isPast = new Date(td.date) < new Date();
+          html += `
+            <div class="panel p-3 rounded-3xl flex flex-col sm:flex-row gap-3 items-start">
+              <div class="w-20 text-center">
+                <div class="text-xs text-slate-400">${new Date(td.date).toLocaleString('en', {month:'short'})}</div>
+                <div class="text-2xl font-semibold">${new Date(td.date).getDate()}</div>
+                <div class="text-[10px]">${new Date(td.date).getFullYear()}</div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold">${td.location}</span>
+                  <span class="text-xs px-1.5 py-px rounded ${td.type==='tour' ? 'bg-blue-900 text-blue-300' : 'bg-purple-900 text-purple-300'}">${td.type}</span>
+                  ${isPast ? '<span class="text-xs text-red-400">PAST</span>' : ''}
+                  ${td.posted ? '<span class="text-xs text-emerald-400">Posted to X</span>' : ''}
+                </div>
+                <div class="text-sm">${td.venue} — ${td.desc}</div>
+                ${td.ticketLink ? `<a href="#" onclick="window.open('https://x.com/intent/tweet?text=' + encodeURIComponent('Touring ${td.location} ${td.date}! ' + td.desc), '_blank'); return false;" class="text-xs text-cyan-400 underline">Get tickets</a>` : ''}
+              </div>
+              <div class="flex flex-col gap-1 text-xs">
+                <button onclick="postTourToX('${td.id}')" class="px-2 py-1 rounded border border-slate-600 hover:bg-slate-800">Post to X</button>
+                <button onclick="saveTourDate('${td.id}')" class="px-2 py-1 rounded border border-slate-600 hover:bg-slate-800">Save to my calendar</button>
+                <button onclick="rsvpTour('${td.id}', this)" class="px-2 py-1 rounded border border-slate-600 hover:bg-slate-800">RSVP</button>
+              </div>
+            </div>`;
+        });
+      }
+      html += `</div>
+        <div class="mt-3 flex gap-2">
+          <button onclick="postFullTourCalendar()" class="text-xs px-3 py-1 rounded-2xl border border-slate-600 hover:bg-slate-800">Post full calendar as X thread</button>
+          <button onclick="switchTab('community'); switchCommunitySub('touring')" class="text-xs px-3 py-1 rounded-2xl border border-slate-600 hover:bg-slate-800">Refresh</button>
+        </div>
+        <div class="mt-1 text-xs text-slate-400">Pro tip: Post your full schedule as an X thread from here for maximum reach.</div>`;
+
+      container.innerHTML = html;
+    }
+
+    function showPostTourModal() {
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 backdrop-blur z-[130] flex items-center justify-center p-4';
+      modal.innerHTML = `
+        <div class="modal panel rounded-3xl w-full max-w-md p-6">
+          <div class="font-semibold mb-3">Post Tour Date / Schedule</div>
+          <div class="space-y-3 text-sm">
+            <div>
+              <label class="text-xs block mb-1">Date</label>
+              <input id="tour-date" type="date" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" value="2026-04-10">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-xs block mb-1">Location</label>
+                <input id="tour-loc" value="New York, NY" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+              </div>
+              <div>
+                <label class="text-xs block mb-1">Type</label>
+                <select id="tour-type" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+                  <option value="tour">Tour Stop</option>
+                  <option value="popup">Pop-up / Guest Spot</option>
+                  <option value="con">Convention / Festival</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="text-xs block mb-1">Venue</label>
+              <input id="tour-venue" value="The Hall" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+            </div>
+            <div>
+              <label class="text-xs block mb-1">Description</label>
+              <textarea id="tour-desc" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" rows="2">Full set + signing. Limited merch.</textarea>
+            </div>
+            <div>
+              <label class="text-xs block mb-1">Ticket / Booking Link (optional)</label>
+              <input id="tour-link" value="https://tickets.example.com" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+            </div>
+          </div>
+          <div class="mt-4 flex gap-2">
+            <button onclick="this.closest('.fixed').remove()" class="flex-1 py-2 border rounded-3xl text-sm">Cancel</button>
+            <button onclick="addTourDateFromModal(this)" class="flex-1 py-2 accent-bg text-black font-semibold rounded-3xl text-sm">Post Date</button>
+          </div>
+          <div class="text-[10px] mt-2 text-center text-slate-500">This will appear in your profile + Community > Tour Dates. One-click X post available.</div>
+        </div>`;
+      document.body.appendChild(modal);
+    }
+
+    function addTourDateFromModal(btn) {
+      const modal = btn.closest('.fixed');
+      const date = document.getElementById('tour-date').value;
+      const loc = document.getElementById('tour-loc').value;
+      const type = document.getElementById('tour-type').value;
+      const venue = document.getElementById('tour-venue').value;
+      const desc = document.getElementById('tour-desc').value;
+      const link = document.getElementById('tour-link').value;
+
+      if (!state.tourDates) state.tourDates = [];
+      state.tourDates.push({
+        id: 't' + Date.now(),
+        date, location: loc, venue, desc, ticketLink: link, type, posted: false,
+        author: state.currentUser.handle
+      });
+      saveState();
+      modal.remove();
+
+      showToast('Tour date added!');
+
+      // Refresh if in community touring
+      const content = document.getElementById('community-content');
+      if (content && content.parentNode.querySelector('.active-sub[data-sub="touring"]')) {
+        renderTourDates(content);
+      }
+
+      // Offer to post to X immediately
+      setTimeout(() => {
+        if (confirm('Post this tour date to X now?')) {
+          const newTd = state.tourDates[state.tourDates.length-1];
+          postTourToX(newTd.id);
+        }
+      }, 400);
+    }
+
+    function postTourToX(tdId) {
+      const td = (state.tourDates || []).find(t => t.id === tdId);
+      if (!td) return;
+
+      const text = `Touring ${td.location} on ${td.date}! ${td.desc} ${td.venue} ${td.ticketLink ? td.ticketLink : ''} #Tour #CreativeCorner`;
+      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+
+      td.posted = true;
+      saveState();
+      showToast('Opened X compose with optimized tour post.');
+
+      // Refresh view
+      const content = document.getElementById('community-content');
+      if (content) renderTourDates(content);
+    }
+
+    function saveTourDate(tdId) {
+      // Mock "add to my calendar"
+      if (!state.currentUser.savedTours) state.currentUser.savedTours = [];
+      if (!state.currentUser.savedTours.includes(tdId)) {
+        state.currentUser.savedTours.push(tdId);
+        saveState();
+        showToast('Added to your personal tour calendar (saved locally).');
+      } else {
+        showToast('Already saved!');
+      }
+    }
+
+    function rsvpTour(tdId, btn) {
+      btn.textContent = 'RSVP\'d ✓';
+      btn.disabled = true;
+      showToast('RSVP recorded (demo). You\'ll get X DM reminders in real version.');
+    }
+
+    function postFullTourCalendar() {
+      const dates = (state.tourDates || []).slice(0, 6);
+      if (!dates.length) {
+        alert('Add some tour dates first!');
+        return;
+      }
+      let thread = `My 2026 Tour Schedule 🗓️\n\n`;
+      dates.forEach((d, i) => {
+        thread += `${i+1}. ${d.date} — ${d.location} @ ${d.venue}\n${d.desc}\n\n`;
+      });
+      thread += `Full details + tickets in bio / DMs. See you on the road! #Tour #CreativeCorner`;
+
+      if (confirm('Copy full tour thread to clipboard and open X?')) {
+        navigator.clipboard.writeText(thread);
+        window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(dates[0].location + ' ' + dates[0].date + ' — full schedule in thread! #Tour')}`, '_blank');
+        showToast('Thread copied! Paste into X for multi-tweet.');
+      }
+    }
+
+    function showProfileTourDates(handle, parentModal) {
+      if (parentModal) parentModal.remove();
+      const content = document.getElementById('community-content');
+      switchTab('community');
+      setTimeout(() => {
+        switchCommunitySub('touring');
+        // Optional: filter to this artist's dates if we tracked author, but for demo show all + note
+        showToast(`Showing tour schedules (filter by ${handle} in full version)`);
+      }, 300);
+    }
+
+    // Helper to filter content by maturity
+    function passesMaturity(item) {
+      const pref = state.userPrefs.maturity || 'all';
+      const m = item.maturity || 'safe';
+      if (pref === 'all') return true;
+      if (pref === 'safe') return m === 'safe';
+      if (pref === 'mature') return m !== 'explicit';
+      return true;
+    }
+
+    // ==================== THREAD CONVERTER ====================
+    function openThreadConverter() {
+      if (state.myWorks.length < 2) {
+        alert('Upload at least 2 works to build a thread.');
+        switchTab('studio');
+        return;
+      }
+
+      const selected = prompt(`Enter IDs or titles of works to thread (comma separated). Your works:\n` + 
+        state.myWorks.map((w, i) => `${i}: ${w.title}`).join('\n'), '0,1');
+      
+      if (!selected) return;
+
+      const indices = selected.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
+      const works = indices.map(i => state.myWorks[i]).filter(Boolean);
+      if (!works.length) return;
+
+      let thread = '';
+      works.forEach((w, idx) => {
+        const gen = generateXPost(w);
+        thread += `${idx + 1}/${works.length} ${gen.text}\n\n`;
+      });
+      thread += `\nFull portfolio + process: [link in bio] #CreativeCorner`;
+
+      if (confirm('Copy full thread to clipboard?')) {
+        navigator.clipboard.writeText(thread);
+        showToast('Thread copied! You can paste as multiple tweets.');
+      } else {
+        // show in composer
+        showComposer(works[0]);
+        setTimeout(() => {
+          document.getElementById('composer-text').value = thread;
+        }, 60);
+      }
+    }
+
+    // ==================== CONNECT X ====================
+    function showConnectModal() {
+      const u = state.currentUser;
+      const current = u.xConnected || '';
+      const handle = prompt('Enter your X handle (e.g. @yourname):', current || '@');
+      
+      if (!handle) return;
+      
+      u.xConnected = handle.startsWith('@') ? handle : '@' + handle;
+      updateUserUI();
+      saveState();
+      showToast(`Connected as ${u.xConnected}. Posts will credit you.`);
+    }
+
+    // ==================== TAB SWITCHING ====================
+    function switchTab(tab) {
+      // Hide all
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      // Deactivate tabs
+      document.querySelectorAll('[id^="tab-"]').forEach(t => t.classList.remove('active'));
+
+      // Show target
+      const section = document.getElementById('section-' + tab);
+      if (section) section.classList.add('active');
+
+      const tabBtn = document.getElementById('tab-' + tab);
+      if (tabBtn) tabBtn.classList.add('active');
+
+      // Lazy render
+      if (tab === 'discover') {
+        seedFeedIfEmpty();
+        renderFeed();
+        const matSel = document.getElementById('maturity-filter');
+        if (matSel) matSel.value = state.userPrefs.maturity || 'all';
+        const critCb = document.getElementById('critique-only');
+        if (critCb) critCb.checked = !!state.userPrefs.critiqueOnly;
+      } else if (tab === 'reels') {
+        renderReels();
+      } else if (tab === 'studio') {
+        renderPortfolio('published');
+      } else if (tab === 'challenges') {
+        renderChallenges();
+      } else if (tab === 'community') {
+        switchCommunitySub('clubs');
+      } else if (tab === 'toolkit') {
+        renderTemplates();
+        renderAnalytics();
+        renderCollabSuggestions();
+      } else if (tab === 'marketplace') {
+        renderMarketplace();
+      }
+    }
+
+    // ==================== PROFILE / GROWTH ====================
+    function showProfileModal() {
+      const u = state.currentUser;
+      const cfg = getNicheConfig(u.niche);
+      
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 backdrop-blur z-[110] flex items-center justify-center p-4';
+      modal.innerHTML = `
+        <div class="panel rounded-3xl p-6 max-w-sm w-full modal">
+          <div class="flex justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-2xl ${cfg.color} flex items-center justify-center text-lg">${cfg.emoji}</div>
+              <div>
+                <div class="font-semibold">${u.displayName}</div>
+                <div class="text-sm text-slate-400">${u.handle}</div>
+              </div>
+            </div>
+            <button onclick="this.closest('.fixed').remove()" class="text-3xl text-slate-400 leading-none">&times;</button>
+          </div>
+          
+          <div class="mt-4 text-sm">
+            <div class="mb-1 text-xs text-slate-400">BIO</div>
+            <textarea id="edit-bio" class="w-full bg-slate-900 border border-slate-700 rounded-2xl p-3 text-sm" rows="3">${u.bio}</textarea>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-3 mt-3 text-sm">
+            <div>
+              <div class="text-xs text-slate-400">LOCATION</div>
+              <input id="edit-loc" value="${u.location || ''}" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-3 py-1.5">
+            </div>
+            <div>
+              <div class="text-xs text-slate-400">X HANDLE</div>
+              <div class="flex gap-2">
+                <input id="edit-x" value="${u.xConnected || ''}" class="flex-1 bg-slate-900 border border-slate-700 rounded-2xl px-3 py-1.5">
+                <button onclick="document.getElementById('edit-x').value='@';showConnectModal();this.closest('.fixed').remove()" class="text-xs px-2 border border-slate-600 rounded">reconnect</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 flex gap-3">
+            <button onclick="this.closest('.fixed').remove()" class="flex-1 py-2 rounded-3xl border border-slate-600">Cancel</button>
+            <button onclick="saveProfileFromModal(this)" class="flex-1 accent-bg text-black font-semibold py-2 rounded-3xl">Save Profile</button>
+          </div>
+          <div class="mt-3 p-2 bg-slate-900 rounded-2xl text-xs flex justify-around text-center">
+            <div><div class="font-semibold">${state.faves ? state.faves.length : 0}</div><div class="text-[10px] text-slate-400">Faves</div></div>
+            <div><div class="font-semibold">${state.watchedArtists ? state.watchedArtists.length : 0}</div><div class="text-[10px] text-slate-400">Watching</div></div>
+            <div><div class="font-semibold">${state.myWorks.length}</div><div class="text-[10px] text-slate-400">Deviations</div></div>
+          </div>
+
+          ${state.bookings && state.bookings.length ? `<div class="mt-2 text-xs bg-emerald-900/30 p-2 rounded">Bookings: ${state.bookings.map(b => b.item || b.type).join(', ')}</div>` : ''}
+
+          ${state.currentUser.savedTours && state.currentUser.savedTours.length ? `<div class="mt-2 text-xs">Saved Tour Dates: ${state.currentUser.savedTours.length} (view in Community > Tour Dates)</div>` : ''}
+
+          ${state.tourDates && state.tourDates.filter(t => (state.currentUser.tourDates || []).includes(t.id) || t.author === state.currentUser.handle).length ? `<div class="mt-1 text-xs">Your posted tour dates: <span class="underline cursor-pointer" onclick="switchTab('community'); switchCommunitySub('touring'); this.closest('.fixed').remove()">View & manage →</span></div>` : ''}
+
+          <div class="text-center mt-3 flex gap-2">
+            <button onclick="exportData(); this.closest('.fixed').remove()" class="flex-1 text-xs py-1 rounded-2xl border border-slate-600">Export data</button>
+            <button onclick="this.closest('.fixed').remove(); showArtistProfile('${u.handle}')" class="flex-1 text-xs py-1 rounded-2xl accent-bg text-black">View full dA-style profile</button>
+          </div>
+          <div class="text-center mt-1">
+            <button onclick="switchTab('community'); switchCommunitySub('touring'); this.closest('.fixed').remove()" class="text-xs underline">Manage my Tour Schedule / Calendar</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    function saveProfileFromModal(btn) {
+      const modal = btn.closest('.fixed');
+      const u = state.currentUser;
+      u.bio = document.getElementById('edit-bio').value;
+      u.location = document.getElementById('edit-loc').value;
+      const newX = document.getElementById('edit-x').value.trim();
+      if (newX) u.xConnected = newX.startsWith('@') ? newX : '@' + newX;
+      
+      updateUserUI();
+      saveState();
+      modal.remove();
+      showToast('Profile updated');
+    }
+
+    function showGrowthModal() {
+      const modal = document.createElement('div');
+      modal.className = `fixed inset-0 bg-black/70 flex items-center justify-center z-[110] p-4`;
+      modal.innerHTML = `
+        <div class="panel max-w-md rounded-3xl p-6 modal">
+          <h3 class="font-semibold mb-3">X Growth Best Practices (from the spec)</h3>
+          <ul class="text-sm space-y-2 text-slate-300">
+            <li><strong>Content Mix</strong> — 70% value/engagement (tips, polls, reposts, questions), 30% direct promo.</li>
+            <li><strong>Posting Cadence</strong> — Consistent. Media posts crush it. 1-3 relevant hashtags.</li>
+            <li><strong>Be Personal</strong> — Share process, humor, inspirations. Authenticity wins.</li>
+            <li><strong>Engage Genuinely</strong> — Reply to comments, follow real accounts back, join niche conversations.</li>
+            <li><strong>Profile</strong> — Clear bio with links (Linktree), good header/photo, pin a strong post.</li>
+            <li><strong>Optimal times</strong> — Noon–3pm and evenings (local to your audience).</li>
+          </ul>
+          <div class="mt-4 text-xs text-center text-slate-400">Creative Corner helps you execute these perfectly.</div>
+          <button onclick="this.closest('.fixed').remove()" class="mt-4 w-full py-2 rounded-3xl border border-slate-600">Got it</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    function exportData() {
+      const data = {
+        exportedAt: new Date().toISOString(),
+        user: state.currentUser,
+        works: state.myWorks.map(w => ({...w, _blobUrl: undefined, dataUrl: w.dataUrl ? '(image data)' : undefined })),
+        posts: state.myPosts,
+        scheduled: state.scheduledPosts
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'creative-corner-export.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ==================== DEMO DATA ====================
+    async function loadDemoData() {
+      if (state.myWorks.length > 4 && !confirm('Add more demo works?')) return;
+
+      const demoWorks = [
+        { title: 'Midnight Garden', desc: 'Final illustration after weeks of exploring color palettes.', niche: 'artist', type: 'image', location: 'Miami' },
+        { title: 'Phoenix half sleeve', desc: 'Session 2 of 4. Client wanted rebirth symbolism.', niche: 'tattoo', type: 'image', location: 'Miami' },
+        { title: 'Kitsune winter model', desc: 'New outfit + particle effects on the tail. Debut soon.', niche: 'vtuber', type: 'image', location: '' },
+        { title: 'Dawn over the marina', desc: 'Shot at 6:12am on Portra 400. Cold but worth it.', niche: 'photo', type: 'image', location: 'Key West' },
+        { title: 'lofi study 04', desc: 'Beat made with dusty vinyl + new synth plugin.', niche: 'music', type: 'audio', location: '' }
+      ];
+
+      for (let i = 0; i < demoWorks.length; i++) {
+        const d = demoWorks[i];
+        const w = {
+          id: 'demo_' + Date.now() + i,
+          ...d,
+          createdAt: new Date(Date.now() - i * 86400000 * 1.3).toISOString(),
+          tags: getNicheConfig(d.niche).hashtags.slice(0, 2),
+          maturity: i % 3 === 0 ? 'mature' : 'safe',
+          status: i === 3 ? 'wip' : 'published',
+          progress: i === 3 ? 65 : 100,
+          isWIP: i === 3,
+          critiqueRequested: i === 0
+        };
+
+        // Create nice placeholder media (SVG or gradient data urls)
+        if (d.type === 'image') {
+          w.dataUrl = createPlaceholderDataUrl(d.niche, d.title);
+          w._blobUrl = w.dataUrl;
+        } else if (d.type === 'audio') {
+          w._blobUrl = ''; // no real audio, but UI will show music icon
+        } else {
+          w._blobUrl = createPlaceholderDataUrl(d.niche, d.title);
+        }
+
+        state.myWorks.push(w);
+      }
+
+      // Mark one as Patreon exclusive (inspired by Patreon gated content)
+      if (state.myWorks[2]) state.myWorks[2].exclusive = true;
+
+      // Add a couple demo posts
+      if (!state.myPosts.length) {
+        const p1 = {
+          id: 'demo_p1',
+          workId: state.myWorks[0].id,
+          text: 'WIP timelapse + final reveal ✨ Midnight Garden. Link in bio for the full series. #ArtShare #CreativeCorner',
+          createdAt: new Date(Date.now() - 1000 * 3600 * 19).toISOString(),
+          impressions: 14200,
+          engagements: 1340,
+          niche: 'artist'
+        };
+        state.myPosts.push(p1);
+      }
+
+      // Seed Pinterest-style boards + one saved item
+      ensureDefaultBoards();
+      if (state.boards[0] && state.myWorks[0]) {
+        state.boards[0].itemIds.push(state.myWorks[0].id);
+        state.boards[0].cover = state.myWorks[0]._blobUrl || null;
+      }
+
+      // DeviantArt seed: some faves + watching popular creators + comments
+      if (!state.faves || state.faves.length === 0) {
+        if (state.myWorks[0]) state.faves.push(state.myWorks[0].id);
+        if (state.myWorks[1]) state.faves.push(state.myWorks[1].id);
+      }
+      if (!state.watchedArtists || state.watchedArtists.length === 0) {
+        state.watchedArtists = ['@lunaillustrates', '@inkbysoren', '@neonKitsuneVT'];
+      }
+
+      // Touring seed for current user
+      if (!state.currentUser.tourDates || state.currentUser.tourDates.length === 0) {
+        state.currentUser.tourDates = ['t1', 't3']; // reference ids
+      }
+      // seed a couple comments on first work
+      if (state.myWorks[0] && (!state.comments || !state.comments[state.myWorks[0].id])) {
+        state.comments = state.comments || {};
+        state.comments[state.myWorks[0].id] = [
+          {id:'c1', user:'@atlasframes', text:'Love the color palette on this one. The lighting is incredible.', time: new Date().toISOString()},
+          {id:'c2', user:'@echobeats', text:'Critique: the foreground could use a bit more contrast but overall stunning work!', time: new Date().toISOString()}
+        ];
+      }
+
+      saveState();
+      renderPortfolio();
+      showToast('Demo works loaded. Try posting one to X!');
+      switchTab('studio');
+    }
+
+    function createPlaceholderDataUrl(niche, title) {
+      // Simple colored SVG data URL for offline beauty
+      const colors = {
+        artist: ['#312e81', '#22f3d8'],
+        tattoo: ['#4c1d95', '#f472b6'],
+        vtuber: ['#312e81', '#a78bfa'],
+        photo: ['#164e63', '#60a5fa'],
+        music: ['#431407', '#f59e0b']
+      };
+      const [bg, accent] = colors[niche] || colors.artist;
+      
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420">
+          <defs>
+            <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:${bg};stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <rect width="640" height="420" fill="url(#g)"/>
+          <circle cx="320" cy="210" r="88" fill="${accent}" fill-opacity="0.15"/>
+          <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="28" font-weight="600">${title}</text>
+          <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="15">${NICHES[niche]?.label || ''}</text>
+        </svg>
+      `.trim();
+      return 'data:image/svg+xml;base64,' + btoa(svg);
+    }
+
+    // ==================== INIT ====================
+    function applyBootParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('handle')) {
+        state.currentUser.xConnected = '@' + params.get('handle').replace(/^@/, '');
+      }
+      if (!state.currentUser.xConnected) {
+        state.currentUser.xConnected = CC_CONFIG.defaultHandle;
+      }
+      if (params.get('heal-feed') === '1') {
+        setTimeout(() => healTwitterFeed(), 800);
+      }
+    }
+
+    function init() {
+      loadState();
+      applyBootParams();
+      initTailwind();
+      ensureDefaultBoards();
+      ensureCommunityData();
+
+      // PWA: Register service worker for offline + installable shell
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').then(() => {
+          // optional: console.log('[CC] SW registered');
+        }).catch(() => {});
+      }
+
+      // Default user if none
+      if (!state.currentUser) {
+        state.currentUser = { ...state.currentUser }; // already set
+      }
+
+      updateUserUI();
+      renderNichePills();
+
+      // Seed some feed always
+      seedFeedIfEmpty();
+
+      // Initial tab
+      switchTab('discover');
+
+      // Keyboard hints
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+          e.preventDefault();
+          const search = document.getElementById('feed-search');
+          if (search) {
+            switchTab('discover');
+            search.focus();
+          }
+        }
+        if (e.key.toLowerCase() === 'u' && e.target === document.body) {
+          e.preventDefault();
+          switchTab('studio');
+          setTimeout(() => showUploadModal(), 120);
+        }
+      });
+
+      // Welcome toast first time
+      if (!localStorage.getItem('cc_welcomed')) {
+        setTimeout(() => {
+          showToast('Welcome! Drag real files into Studio or load demo works. Installable as PWA.');
+          localStorage.setItem('cc_welcomed', '1');
+        }, 1400);
+      }
+
+      // Expose a couple helpers for power users
+      window.CC = { state, loadDemoData, exportData };
+
+      // PWA install prompt handling
+      let deferredPrompt = null;
+      const installBtn = document.getElementById('pwa-install-btn');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (installBtn) {
+          installBtn.classList.remove('hidden');
+          installBtn.classList.add('flex');
+        }
+      });
+
+      if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+          if (!deferredPrompt) return;
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          deferredPrompt = null;
+          installBtn.classList.add('hidden');
+          installBtn.classList.remove('flex');
+          if (outcome === 'accepted') {
+            showToast('Thanks! App installed.');
+          }
+        });
+      }
+
+      console.log('%c[Creative Corner] Prototype ready — fully client-side with real X web intents.', 'color:#64748b');
+    }
+
+    // Boot
+    init();
+  </script>
+</body>
+</html>

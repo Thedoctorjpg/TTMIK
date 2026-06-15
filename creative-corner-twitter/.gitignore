@@ -1,0 +1,51 @@
+# Creative Corner .gitignore
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment / secrets (in case we add backend later)
+.env
+.env.local
+.env.*.local
+
+# OS / Editor specifics
+ehthumbs.db
+Desktop.ini
+
+# Optional: If we ever add a build step or node_modules in future
+node_modules/
+dist/
+build/
+*.min.js.map
+
+# Python (from start.sh / http.server)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Keep the prototype clean - no need for lockfiles unless we add deps
+package-lock.json
+yarn.lock

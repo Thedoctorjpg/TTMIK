@@ -17,7 +17,7 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import { getProducts, getOrders, getProductById, getOrderById, registerWebhook, listWebhooks, createProduct, importToShopifyFromExternal } from './shopify.js';
-import { postToTwitter, tweetNewProduct, tweetNewOrder, postMarketingTweet, getTweetMetrics, tweetSpecialEvent, checkAdsAccess, promoteTweet } from './twitter.js';
+import { postToTwitter, tweetNewProduct, tweetNewOrder, postMarketingTweet, getTweetMetrics, tweetSpecialEvent, checkAdsAccess, promoteTweet, verifyTwitterCredentials } from './twitter.js';
 import { 
   logger, 
   verifyShopifyWebhook, 
@@ -121,7 +121,7 @@ app.get('/', (req, res) => {
       'POST /import/to-shopify',
       'POST /ebay/webhooks   (eBay Event Notifications)',
       'POST /generate-image, /edit-image, /generate-product-ad, /generate-video   (xAI Grok Imagine)',
-      'POST /tweet-marketing, /tweet-special-event, GET /tweet-metrics/:id, /twitter/ads-access, /promote-tweet',
+      'POST /tweet-marketing, /tweet-special-event, GET /tweet-metrics/:id, GET /twitter/verify, /twitter/ads-access, /promote-tweet',
       'GET /grocery/:store/products (incl. Uber Eats/DoorDash), POST /tweet-grocery, /generate-grocery-ad, /import/grocery-to-shopify',
       'GET /tsundere-dating/:niche/products, GET /tsundere-dating/optimal-list, POST /tweet-tsundere-dating, /generate-tsundere-ad, /import/tsundere-to-shopify',
       'POST /api/ttmik-webhook   (TTMIK Tweet app → x.com/adhdloganberry)',
@@ -651,6 +651,17 @@ app.post('/tweet-special-event', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Special event tweet failed' });
   }
+});
+
+app.get('/twitter/verify', async (req, res) => {
+  const handle = (process.env.X_TWITTER_HANDLE || 'adhdloganberry').replace(/^@/, '');
+  const result = await verifyTwitterCredentials();
+  res.json({
+    ...result,
+    targetHandle: handle,
+    match: result.user?.username === handle,
+    profile: `https://x.com/${handle}`,
+  });
 });
 
 app.get('/twitter/ads-access', async (req, res) => {

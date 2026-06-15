@@ -11,6 +11,16 @@ import { generateMarketingCopy, generateEventCopy } from './grok.js';
 
 let rwClient = null;
 
+function isPlaceholderCredential(value) {
+  if (!value || typeof value !== 'string') return true;
+  const v = value.trim().toLowerCase();
+  return !v
+    || v.startsWith('your_')
+    || v.includes('xxx')
+    || v === 'changeme'
+    || v === 'placeholder';
+}
+
 function getTwitterClient() {
   if (rwClient) return rwClient;
 
@@ -19,8 +29,8 @@ function getTwitterClient() {
   const accessToken = process.env.TWITTER_ACCESS_TOKEN;
   const accessSecret = process.env.TWITTER_ACCESS_SECRET;
 
-  if (!appKey || !appSecret || !accessToken || !accessSecret) {
-    logger.warn('Twitter credentials missing. Using mock mode.');
+  if ([appKey, appSecret, accessToken, accessSecret].some(isPlaceholderCredential)) {
+    logger.warn('Twitter credentials missing or placeholder. Using mock mode.');
     return null;
   }
 

@@ -44,6 +44,14 @@ metadata:
 - 웃음으로 놓아줄게요.
 - 혼자서도 충분해요.
 
+## Hermes Healing Factors
+
+- **daily-ritual** — Daily integration — flame-kissed-bard · side-ritual · Boot: `TTMIK.html?heal-factor=daily-ritual`
+- **hermit-lantern** — Hermit Lantern — one breath, one laugh · Boot: `TTMIK.html?heal-factor=hermit-lantern`
+- **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## TTMIK App Integration
 
 - Skill id: `flame-kissed-bard` in `skills-data.js`

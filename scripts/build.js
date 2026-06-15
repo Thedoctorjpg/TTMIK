@@ -38,6 +38,7 @@ const JS_FILES = [
     'packages/ttmik-heal-skills/lib/heal-library.js',
     'scripts/build-libraries.js',
     'scripts/boot-all.js',
+    'scripts/preload-skills.js',
     'packages/ttmik-webhook/index.js',
     'packages/ttmik-heal-skills/lib/heal-skills.js',
     'packages/ttmik-heal-skills/bin/cli.js'

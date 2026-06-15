@@ -44,6 +44,13 @@ metadata:
 - 나만의 불꽃이면 충분해요.
 - 새 껍질을 벗을게요.
 
+## Hermes Healing Factors
+
+- **cord-cut** — Cord-cut — own timeline and energy field · Boot: `TTMIK.html?heal-factor=cord-cut`
+- **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## TTMIK App Integration
 
 - Skill id: `sua-tattoo-artist` in `skills-data.js`

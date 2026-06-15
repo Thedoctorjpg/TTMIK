@@ -44,6 +44,13 @@ metadata:
 - 관찰만 하고 흡수하지 않을게요.
 - 다시 제 길로 돌아갈게요.
 
+## Hermes Healing Factors
+
+- **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
+- **pause-breathe** — Pause OK — 잠시 쉬어도 괜찮아요 · Boot: `TTMIK.html?heal-factor=pause-breathe`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## TTMIK App Integration
 
 - Skill id: `rach3l` in `skills-data.js`

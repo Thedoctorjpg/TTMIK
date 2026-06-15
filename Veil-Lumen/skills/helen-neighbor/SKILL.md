@@ -58,6 +58,15 @@ metadata:
 - 공유는 괜찮아요. 거래는 아니에요.
 - 잠시 쉬어도 괜찮아요.
 
+## Hermes Healing Factors
+
+- **helen-boundary** — Helen boundary — 괜찮아요, 괜찮아요 · Boot: `TTMIK.html?heal-factor=helen-boundary`
+- **pause-breathe** — Pause OK — 잠시 쉬어도 괜찮아요 · Boot: `TTMIK.html?heal-factor=pause-breathe`
+- **cord-cut** — Cord-cut — own timeline and energy field · Boot: `TTMIK.html?heal-factor=cord-cut`
+- **post-dib** — Post-DIB landing — HOTEL · preset 9 · ?heal=1 · Boot: `TTMIK.html?heal-factor=post-dib`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## Cross-App Links
 
 - lets-cook `/date-night` — Helen station: Boundary Miso-Ginger Soup

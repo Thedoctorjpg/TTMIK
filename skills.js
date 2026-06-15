@@ -853,6 +853,28 @@ function renderBootAllPanel() {
     runAll.onclick = () => bootAllLibrariesAndSkills();
     panel.appendChild(runAll);
 
+    if (typeof getHermesPreloadCmd === 'function') {
+        const preloadRow = document.createElement('div');
+        preloadRow.className = 'mb-6 flex flex-wrap gap-2';
+        const preloadBtn = document.createElement('button');
+        preloadBtn.type = 'button';
+        preloadBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-900/50 text-emerald-200 hover:bg-emerald-800/70 ring-1 ring-emerald-500/30';
+        preloadBtn.textContent = `Copy Hermes preload (all ${HERMES_PRELOAD_SKILL_IDS.length})`;
+        preloadBtn.title = getHermesPreloadCmd();
+        preloadBtn.onclick = () => copyToClipboard(getHermesPreloadCmd());
+        preloadRow.appendChild(preloadBtn);
+        if (typeof getHermesBundleCmd === 'function') {
+            const bundleBtn = document.createElement('button');
+            bundleBtn.type = 'button';
+            bundleBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-800 text-zinc-300 hover:bg-zinc-700';
+            bundleBtn.textContent = 'Copy Hermes bundle (/ttmik-all)';
+            bundleBtn.title = getHermesBundleCmd();
+            bundleBtn.onclick = () => copyToClipboard(getHermesBundleCmd());
+            preloadRow.appendChild(bundleBtn);
+        }
+        panel.appendChild(preloadRow);
+    }
+
     const appendSection = (title, items, onItem) => {
         const block = document.createElement('div');
         block.className = 'mb-6';
@@ -2177,6 +2199,15 @@ function renderSkillLibraryComposer() {
     composeBtn.onclick = () => switchTab(4);
     bootActions.appendChild(bootAll);
     bootActions.appendChild(composeBtn);
+    if (typeof getHermesPreloadCmd === 'function') {
+        const preloadBtn = document.createElement('button');
+        preloadBtn.type = 'button';
+        preloadBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-900/50 text-emerald-200 hover:bg-emerald-800/70';
+        preloadBtn.textContent = `Hermes preload (${HERMES_PRELOAD_SKILL_IDS.length})`;
+        preloadBtn.title = getHermesPreloadCmd();
+        preloadBtn.onclick = () => copyToClipboard(getHermesPreloadCmd());
+        bootActions.appendChild(preloadBtn);
+    }
     panel.appendChild(bootActions);
 
     COMPOSED_LIBRARIES.forEach(lib => {

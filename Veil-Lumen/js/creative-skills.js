@@ -191,6 +191,6 @@ export function initCreativeSkills() {
   renderDetail(getSkillById(activeId));
 
   el("skills-preload-all")?.addEventListener("click", () => {
-    copyText(hermesPreloadCmd(SKILLS.map((s) => s.id)), "Full skill stack copied");
+    copyText(hermesPreloadCmd(), "Full Hermes stack copied (all 16)");
   });
 }

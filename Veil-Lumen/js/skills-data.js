@@ -59,7 +59,27 @@ export const CROSS_APPS = [
   { label: "TTMIK Journey", url: "../TTMIK.html", note: "Skills tab + shadowing" },
   { label: "dib-aftercare edit", url: HEALING_FACTORS.urls.dibAftercare, note: "45s HOTEL mirror · Helen VO" },
   { label: "RTDB-Auckland", url: "https://github.com/Thedoctorjpg/RTDB-Auckland", note: "Waitemata · Britomart · Ferry boards" },
-  { label: "Hermes preload", cmd: "hermes -s melbourne-lantern-bard,helen-neighbor,flame-kissed-bard" },
+  { label: "Hermes preload (all 16)", cmd: "hermes -s melbourne-lantern-bard,flame-kissed-bard,lo3tus,helen-neighbor,sua-tattoo-artist,asuka-brisbane,heidi-alpine-wayfarer,sven-nordic-ranger,martin-nordic-guide,ronaldo-portugal-glory,mbappe-france-attack,messi-argentina-playmaker,rach3l,ignan-pilgrim,ignan-grounding,ignan-dalan" },
+  { label: "Hermes bundle", cmd: "hermes /ttmik-all" },
+];
+
+export const HERMES_PRELOAD_SKILL_IDS = [
+  "melbourne-lantern-bard",
+  "flame-kissed-bard",
+  "lo3tus",
+  "helen-neighbor",
+  "sua-tattoo-artist",
+  "asuka-brisbane",
+  "heidi-alpine-wayfarer",
+  "sven-nordic-ranger",
+  "martin-nordic-guide",
+  "ronaldo-portugal-glory",
+  "mbappe-france-attack",
+  "messi-argentina-playmaker",
+  "rach3l",
+  "ignan-pilgrim",
+  "ignan-grounding",
+  "ignan-dalan",
 ];
 
 export const SKILLS = [
@@ -313,5 +333,12 @@ export function getSkillById(id) {
 }
 
 export function hermesPreloadCmd(skillIds) {
-  return `hermes -s ${skillIds.map((s) => getSkillById(s)?.hermesSkill || s).join(",")}`;
+  const ids = skillIds?.length
+    ? skillIds.map((s) => getSkillById(s)?.hermesSkill || s)
+    : HERMES_PRELOAD_SKILL_IDS;
+  return `hermes -s ${ids.join(",")}`;
+}
+
+export function hermesBundleCmd() {
+  return "hermes /ttmik-all";
 }

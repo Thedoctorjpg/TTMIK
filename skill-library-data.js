@@ -358,6 +358,46 @@ function getComposedLibrary(id) {
     return COMPOSED_LIBRARIES.find(l => l.id === id) || null;
 }
 
+/** Boot registry id → Hermes agentskills.io id (when they differ) */
+const HERMES_SKILL_ID_ALIASES = {
+    'sua-tattoo': 'sua-tattoo-artist'
+};
+
+/** Stable preload order — matches packages/ttmik-heal-skills SKILLS array */
+const HERMES_PRELOAD_SKILL_IDS = [
+    'melbourne-lantern-bard',
+    'flame-kissed-bard',
+    'lo3tus',
+    'helen-neighbor',
+    'sua-tattoo-artist',
+    'asuka-brisbane',
+    'heidi-alpine-wayfarer',
+    'sven-nordic-ranger',
+    'martin-nordic-guide',
+    'ronaldo-portugal-glory',
+    'mbappe-france-attack',
+    'messi-argentina-playmaker',
+    'rach3l',
+    'ignan-pilgrim',
+    'ignan-grounding',
+    'ignan-dalan'
+];
+
+const HERMES_PRELOAD_BUNDLE = 'ttmik-all';
+
+function getHermesSkillId(bootId) {
+    return HERMES_SKILL_ID_ALIASES[bootId] || bootId;
+}
+
+function getHermesPreloadCmd(skillIds) {
+    const ids = skillIds || HERMES_PRELOAD_SKILL_IDS;
+    return `hermes -s ${ids.join(',')}`;
+}
+
+function getHermesBundleCmd() {
+    return `hermes /${HERMES_PRELOAD_BUNDLE}`;
+}
+
 function getAllSkillBootIds() {
     return Object.keys(SKILL_BOOT_REGISTRY);
 }

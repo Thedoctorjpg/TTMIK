@@ -93,4 +93,9 @@ bootIds.forEach((id) => {
     console.log(`   TTMIK.html?skill=${id}  (${url})`);
 });
 
+const preloadIds = SKILLS.map((s) => s.id);
+console.log('\n6. Hermes preload (all .skill.md archetypes)');
+console.log(`   hermes -s ${preloadIds.join(',')}`);
+console.log('   hermes /ttmik-all  (bundle — run node scripts/preload-skills.js to create)');
+
 console.log('\nBoot-all complete.');

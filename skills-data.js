@@ -17,9 +17,22 @@ const MELBOURNE_QUEST = {
         { id: 'side-boundary', text: 'Maintain clear energetic and practical boundaries', type: 'side' },
         { id: 'side-ritual', text: 'Perform daily self-intimacy integration ritual', type: 'side' },
         { id: 'side-gear', text: 'Travel light — power bank, GoPro, gym bag sorted', type: 'side' },
-        { id: 'side-humor', text: 'Turn one triggering moment into creative fuel', type: 'side' }
+        { id: 'side-humor', text: 'Turn one triggering moment into creative fuel', type: 'side' },
+        { id: 'side-tarot-scam', text: 'Name a tarot-predicted scam pattern before takeoff — block, don\'t fund fate', type: 'side' }
     ]
 };
+
+/** Hermes tarot-scam audit — RED FLAG checklist (any 2 = abort) */
+const TAROT_SCAM_RED_FLAGS = [
+    'Payment requested before identity verified',
+    '"The cards say you must act today"',
+    'Curse / blockage / ritual fee for love or money',
+    'Pushed off-platform (WhatsApp, Telegram, crypto)',
+    'Soulmate / twin flame declared before surname',
+    'Prediction mirrors your trip, laneway, or private ritual',
+    'Free reading hooks paid "emergency" session',
+    'Synchronicity (4:44, etc.) used as proof you owe trust'
+];
 
 const SKILLS = [
     {

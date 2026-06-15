@@ -514,6 +514,38 @@ function renderQuestPanel() {
     });
     panel.appendChild(list);
 
+    if (typeof TAROT_SCAM_RED_FLAGS !== 'undefined' && TAROT_SCAM_RED_FLAGS.length) {
+        const tarotBlock = document.createElement('div');
+        tarotBlock.className = 'mt-6';
+
+        const tarotLabel = document.createElement('h4');
+        tarotLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-2';
+        tarotLabel.textContent = 'Hermes audit · tarot-predicted scam (any 2 = abort)';
+        tarotBlock.appendChild(tarotLabel);
+
+        const tarotHint = document.createElement('p');
+        tarotHint.className = 'text-xs text-zinc-500 mb-3';
+        tarotHint.textContent = '4G > fate — don\'t fund predictions. Helen: 죄송하지만 지금은 어려워요.';
+        tarotBlock.appendChild(tarotHint);
+
+        const tarotList = document.createElement('ul');
+        tarotList.className = 'space-y-1 text-sm text-zinc-400';
+        TAROT_SCAM_RED_FLAGS.forEach((flag, i) => {
+            const li = document.createElement('li');
+            li.className = 'flex gap-2';
+            const num = document.createElement('span');
+            num.className = 'text-pink-400 font-mono shrink-0 w-4';
+            num.textContent = String(i + 1);
+            const text = document.createElement('span');
+            text.textContent = flag;
+            li.appendChild(num);
+            li.appendChild(text);
+            tarotList.appendChild(li);
+        });
+        tarotBlock.appendChild(tarotList);
+        panel.appendChild(tarotBlock);
+    }
+
     if (done === total) {
         const win = document.createElement('p');
         win.className = 'mt-4 text-emerald-400 text-sm font-medium';

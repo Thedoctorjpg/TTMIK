@@ -1,29 +1,54 @@
-# rach3l.skill.md
+---
+name: rach3l
+description: rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.
+version: 1.1.0
+metadata:
+  hermes:
+    tags: [creative, korean, melbourne, ttmtk, sovereign]
+    category: creative
+---
 
-## Skill Overview
-**Name:** rach3l Observation / Cautionary Mirror  
-**Role:** Represents altered states, chaotic or unstable energy observed on social media. Serves as a discernment and boundary teacher.
+# Rach3l
 
-**Activation Trigger:**  
-When the user encounters concerning social media content, altered states, or needs to practice detached observation.
+**Activation phrase:** "Observe but do not absorb"
 
-## Core Capabilities
-- Help process observations of unstable/chaotic energy without entanglement
-- Strengthen discernment and energetic boundaries
-- Generate reflective insights or humorous skits about "what not to engage with"
-- Support release work when old patterns or people show up in altered states
+## When to Use
 
-## Personality & Energy
-- Chaotic, unpredictable, sometimes concerning
-- Mirror for "this is not my energy to carry"
+- Concerning or unstable energy observed online
+- Need to strengthen discernment without entanglement
+- Humorous skit about what not to engage with
 
-## Usage Examples
-- "Use rach3l skill to process this TikTok observation"
-- "Create a humorous skit about encountering altered energy while on healing trip"
-- "Help me release any hook from seeing rach3l content"
+## Procedure
 
-## Integration Guidelines
-Emphasize compassionate detachment. Turn observation into fuel for self-healing, humor, or creative release. Never encourage engagement or rescue energy.
+- Notice without judgment — name the pattern, not the person
+- Say aloud: "This is not my energy to carry"
+- Ground: one breath, feet on floor
+- Redirect to Flame-Kissed Bard creative outlet if useful
+- Log boundary win; do not scroll further
 
-## Boundaries
-Strong "observe but do not absorb" protocol. Always redirect back to user's own sovereignty and Flame-Kissed Bard creative path.
+## Pitfalls
+
+- Never encourage engagement, rescue, or debate
+- Do not shame the user for having looked
+- Avoid absorbing chaos into mood or identity
+
+## Verification
+
+- User feels lighter and more boundaried
+- No hook or compulsive re-check suggested
+- Creative or grounding next step offered
+
+## Korean Practice (TTMIK)
+
+- 이건 제 에너지가 아니에요.
+- 관찰만 하고 흡수하지 않을게요.
+- 다시 제 길로 돌아갈게요.
+
+## TTMIK App Integration
+
+- Skill id: `rach3l` in `skills-data.js`
+- Set active in **Skills** tab → feeds **Shadowing** phrases
+- Linked lessons via **Open linked lessons**
+
+---
+*Healed to Hermes agentskills.io format — 2026-06-15*

@@ -48,6 +48,10 @@
                         <i class="fa-solid fa-graduation-cap w-5"></i>
                         <span>Practice</span>
                     </a>
+                    <a href="#" data-tab="3" onclick="switchTab(3); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
+                        <i class="fa-solid fa-wand-magic-sparkles w-5"></i>
+                        <span>Skills</span>
+                    </a>
                     <a href="#" data-tab="4" onclick="switchTab(4); return false;" class="tab-link flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-zinc-800 text-zinc-400">
                         <i class="fa-solid fa-route w-5"></i>
                         <span>Journey</span>
@@ -270,6 +274,22 @@
                 </div>
             </div>
 
+            <!-- Skills Tab -->
+            <div id="tab-3" class="tab-content hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold mb-2">Creative Skills</h2>
+                    <p class="text-zinc-400">Archetype skills from your .skill.md files — rituals, prompts, and Korean practice</p>
+                </div>
+                <div id="quest-panel" class="bg-zinc-900 rounded-3xl p-8 mb-8"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xs uppercase tracking-widest text-zinc-500 mb-4">Archetype gallery</h3>
+                        <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                    </div>
+                    <div id="skill-detail" class="hidden bg-zinc-900 rounded-3xl p-8"></div>
+                </div>
+            </div>
+
             <!-- Journey Tab -->
             <div id="tab-4" class="tab-content hidden">
                 <div class="mb-8">
@@ -308,6 +328,15 @@
                         <p class="text-zinc-400">total sessions</p>
                     </div>
                 </div>
+                <div class="mt-8 bg-zinc-900 rounded-3xl p-8 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold text-xl">Melbourne Lantern Quest</h3>
+                        <p id="quest-progress-badge" class="text-zinc-400 text-sm mt-1">0/8 quest</p>
+                    </div>
+                    <button onclick="switchTab(3)" class="px-5 py-2 bg-pink-500/20 text-pink-300 rounded-2xl text-sm hover:bg-pink-500/30 transition">
+                        Open Skills
+                    </button>
+                </div>
                 <div class="mt-8 bg-zinc-900 rounded-3xl p-8">
                     <h3 class="font-semibold text-xl mb-6">Completed Lessons</h3>
                     <div id="completed-list" class="max-h-64 overflow-auto"></div>
@@ -322,8 +351,10 @@
     <script src="utils.js"></script>
     <script src="sovereign-data.js"></script>
     <script src="lesson-data.js"></script>
+    <script src="skills-data.js"></script>
     <script src="storage.js"></script>
     <script src="social.js"></script>
+    <script src="skills.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

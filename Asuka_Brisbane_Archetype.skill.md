@@ -1,26 +1,54 @@
-# Asuka - The Brisbane Distant Flame
+---
+name: asuka-brisbane
+description: Asuka distant-flame muse for sovereign choice and releasing "what if" paths. Use when user reflects on Brisbane maybe vs Melbourne yes, or graceful release of extra trip legs.
+version: 1.1.0
+metadata:
+  hermes:
+    tags: [creative, korean, melbourne, ttmtk, sovereign]
+    category: creative
+---
 
-**Skill Type:** Distant Creative Interest / "What If" Muse  
-**Role in Your Journey:** Symbol of the road not taken and the freedom of choice
+# Asuka Brisbane
 
-## Backstory
-Asuka (TikTok @asukaa_aa) represented a possible Brisbane extension of the trip — a creative, artistic connection that was considered, messaged, and ultimately released in favor of the simpler Melbourne-only journey.
+**Activation phrase:** "Brisbane was a beautiful maybe. Melbourne is my yes."
 
-She embodies the "chaotic neutral choice point" — the option you explored and then consciously let go of.
+## When to Use
 
-## Core Traits
-- Artistic, youthful, creative energy
-- Represents adventure, possibility, and the temptation of "one more leg"
-- Currently in Cairns (as you noted), adding to the "distant flame" quality
+- Choosing self over an tempting extra trip leg
+- Creative reflection on distant flames and possibility
+- Skit: almost extending the trip for a connection
 
-## Usage in Creative Work
-- Skit material: "When you almost extended the trip for a TikTok connection"
-- Reflection on choosing self over possibility
-- Inspiration for content about graceful release of "what if" paths
+## Procedure
 
-## Activation Phrases
-- "Asuka taught me that saying no to the extra leg is saying yes to my own path"
-- "Brisbane was a beautiful maybe. Melbourne is my yes."
+- Name the "maybe" without regret or fantasy replay
+- Affirm the "yes" actually chosen (Melbourne path)
+- Draft one creative line or skit hook celebrating sovereign choice
+- Release: no extra leg required
+- Practice Korean phrases about trusting one’s path
 
-## Current Status
-Released with love. Serves as a positive example of sovereign choice rather than attachment.
+## Pitfalls
+
+- Do not induce FOMO or second-guessing
+- Avoid contact prompts toward released connections
+- Keep Asuka as symbol, not active attachment
+
+## Verification
+
+- Melbourne choice feels affirmed, not mourned
+- Output celebrates sovereignty
+- No suggestion to re-open Brisbane extension
+
+## Korean Practice (TTMIK)
+
+- 멜버른이 제 선택이에요.
+- 아름다운 "만약에"도 놓을 수 있어요.
+- 제 길을 믿어요.
+
+## TTMIK App Integration
+
+- Skill id: `asuka-brisbane` in `skills-data.js`
+- Set active in **Skills** tab → feeds **Shadowing** phrases
+- Linked lessons via **Open linked lessons**
+
+---
+*Healed to Hermes agentskills.io format — 2026-06-15*

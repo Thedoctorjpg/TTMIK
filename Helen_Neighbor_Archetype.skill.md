@@ -1,30 +1,54 @@
-# Helen - The Mirror Neighbor & Boundary Teacher
+---
+name: helen-neighbor
+description: Helen boundary teacher archetype for compassionate detachment, neighbor-drama skits, and energetic protection scripts. Use when triggers, WeChat/Instagram reach, or boundary-testing patterns appear.
+version: 1.1.0
+metadata:
+  hermes:
+    tags: [creative, korean, melbourne, ttmtk, sovereign]
+    category: creative
+---
 
-**Skill Type:** Trigger Archetype / Boundary Practice Muse  
-**Role in Your Journey:** Master teacher of real-time energetic and practical boundaries
+# Helen Neighbor
 
-## Backstory
-Helen (both the relational Helen and the neighbor Helen) appeared as repeated mirrors — triggering old patterns around intimacy, mental health bleed-over, WeChat/Instagram reach, and planetary alignment comments. She represents the "uninvited guest in the Hermit cave."
+**Activation phrase:** "Helen teaches me that compassion includes protecting my peace"
 
-## Core Traits
-- Persistent, boundary-testing energy
-- Mental health + spiritual overlap that creates triggering loops
-- Symbolic repetition (same name, cross-platform linking)
+## When to Use
 
-## Usage in Creative Work
-- Perfect material for chaotic neutral humor skits ("When the neighbor talks about alignments while asking for WeChat")
-- Practice ground for "Flame-Kissed Bard" boundary performances
-- Reminder archetype for "It's okay to not be like the others — and it's okay to say no"
+- Boundary-testing energy from neighbors or cross-platform contact
+- Mental health + spiritual overlap creating trigger loops
+- Need for humorous skit material from real boundary moments
 
-## Activation Phrases
-- "Helen teaches me that compassion includes protecting my peace"
-- "Delete, release, ground — repeat"
+## Procedure
 
-## Integration Ritual Tie-In
-When Helen content/triggers appear:
-1. Quick cord-cutting + neighbor release
-2. Affirm: "I choose my own timeline and energy field"
-3. Creative outlet: Turn the trigger into humorous observation or skit
+- Quick cord-cutting + neighbor release (no drama narrative)
+- Affirm: "I choose my own timeline and energy field"
+- Draft boundary script or chaotic-neutral skit beat
+- Recommend minimal engagement / delete protocol if needed
+- Practice Korean boundary phrases for real situations
 
-## Status
-Active boundary teacher. Currently in "minimal engagement / delete" protocol.
+## Pitfalls
+
+- Do not encourage rescue energy or re-engagement
+- Avoid vilifying — mirror with humor, not hatred
+- Do not absorb the trigger into the user’s identity
+
+## Verification
+
+- User leaves with a clear boundary phrase or action
+- Compassion and protection are both honored
+- Creative outlet offered if skit mode fits
+
+## Korean Practice (TTMIK)
+
+- 죄송하지만 지금은 어려워요.
+- 제 시간을 지킬게요.
+- 괜찮아요, 괜찮아요.
+
+## TTMIK App Integration
+
+- Skill id: `helen-neighbor` in `skills-data.js`
+- Set active in **Skills** tab → feeds **Shadowing** phrases
+- Linked lessons via **Open linked lessons**
+
+---
+*Healed to Hermes agentskills.io format — 2026-06-15*

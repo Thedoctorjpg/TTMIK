@@ -17,7 +17,10 @@ function getDefaultState() {
         notes: {},
         progress: {},
         stats: { totalListenSeconds: 0, streak: 0, lastActiveDate: null, lessonsPlayed: 0 },
-        customLessons: []
+        customLessons: [],
+        activeSkillId: null,
+        questProgress: {},
+        skillNotes: {}
     };
 }
 
@@ -58,7 +61,10 @@ function loadState() {
             stats: { ...defaults.stats, ...(saved.stats || {}) },
             notes: saved.notes && typeof saved.notes === 'object' ? saved.notes : defaults.notes,
             progress: saved.progress && typeof saved.progress === 'object' ? saved.progress : defaults.progress,
-            customLessons
+            customLessons,
+            activeSkillId: typeof saved.activeSkillId === 'string' ? saved.activeSkillId : defaults.activeSkillId,
+            questProgress: saved.questProgress && typeof saved.questProgress === 'object' ? saved.questProgress : defaults.questProgress,
+            skillNotes: saved.skillNotes && typeof saved.skillNotes === 'object' ? saved.skillNotes : defaults.skillNotes
         };
     } catch (err) {
         console.error('Failed to load saved state:', err);
@@ -207,6 +213,13 @@ function updateProgressUI() {
     if (completedEl) completedEl.textContent = completedLessons.length;
     if (completedSubEl) completedSubEl.textContent = `of ${lessons.length} lessons`;
     if (playedEl) playedEl.textContent = appState.stats.lessonsPlayed || 0;
+
+    const questEl = document.getElementById('quest-progress-badge');
+    if (questEl && typeof getQuestCompletionCount === 'function') {
+        const done = getQuestCompletionCount();
+        const total = MELBOURNE_QUEST?.objectives?.length || 0;
+        questEl.textContent = total ? `${done}/${total} quest` : '';
+    }
 
     if (completedList) {
         completedList.textContent = '';

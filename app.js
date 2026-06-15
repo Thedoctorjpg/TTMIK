@@ -44,6 +44,7 @@ function switchTab(tabId) {
         link.classList.toggle('text-zinc-400', !active);
     });
     if (tabId === 2) renderShadowingUI();
+    if (tabId === 3) renderSkillsUI();
     if (tabId === 4) renderJourneyDashboard();
     if (tabId === 5) updateProgressUI();
 }
@@ -364,7 +365,9 @@ function getShadowingPhrases() {
         ko: v.ko,
         en: v.en || ''
     }));
-    return vocab.length ? [...vocab, ...DEFAULT_SHADOWING_PHRASES] : DEFAULT_SHADOWING_PHRASES;
+    const skillPhrases = typeof getSkillShadowingPhrases === 'function' ? getSkillShadowingPhrases() : [];
+    const base = vocab.length ? [...vocab, ...DEFAULT_SHADOWING_PHRASES] : DEFAULT_SHADOWING_PHRASES;
+    return skillPhrases.length ? [...skillPhrases, ...base] : base;
 }
 
 function stopShadowingTimer() {
@@ -400,9 +403,14 @@ function renderShadowingUI() {
     if (hintEl) {
         const lesson = lessons[currentLesson];
         const hasVocab = lesson?.vocab?.length > 0;
-        hintEl.textContent = hasVocab
-            ? 'Practicing vocab from current lesson + general phrases'
-            : 'General Korean phrases';
+        const activeSkill = typeof getActiveSkill === 'function' ? getActiveSkill() : null;
+        if (activeSkill) {
+            hintEl.textContent = `Active skill: ${activeSkill.name} + lesson vocab`;
+        } else if (hasVocab) {
+            hintEl.textContent = 'Practicing vocab from current lesson + general phrases';
+        } else {
+            hintEl.textContent = 'General Korean phrases';
+        }
         hintEl.classList.toggle('hidden', false);
     }
     if (counterEl) {
@@ -658,6 +666,7 @@ window.onload = () => {
         renderCategoryFilters();
         renderLessons();
         renderShadowingUI();
+        renderSkillsUI();
         renderJourneyDashboard();
         updateProgressUI();
 

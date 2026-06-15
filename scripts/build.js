@@ -16,6 +16,8 @@ const JS_FILES = [
     'skills.js',
     'skills-data.js',
     'webdrama-sync-data.js',
+    'webdrama-edit-data.js',
+    'video-editor-bridge.js',
     'lesson-data.js',
     'sovereign-data.js',
     'api/ttmik-webhook.js',
@@ -33,6 +35,8 @@ const HTML_SCRIPTS = [
     'social.js',
     'skills-data.js',
     'webdrama-sync-data.js',
+    'webdrama-edit-data.js',
+    'video-editor-bridge.js',
     'skills.js',
     'app.js'
 ];

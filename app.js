@@ -45,7 +45,10 @@ function switchTab(tabId) {
     });
     if (tabId === 2) renderShadowingUI();
     if (tabId === 3) renderSkillsUI();
-    if (tabId === 4) renderJourneyDashboard();
+    if (tabId === 4) {
+        renderJourneyDashboard();
+        renderMultiformatEditorPanel();
+    }
     if (tabId === 5) updateProgressUI();
 }
 
@@ -668,14 +671,17 @@ window.onload = () => {
         renderShadowingUI();
         renderSkillsUI();
         renderJourneyDashboard();
+        renderMultiformatEditorPanel();
         updateProgressUI();
 
         const resumeIndex = Math.min(appState.currentLesson, lessons.length - 1);
         loadLesson(Math.max(0, resumeIndex), false);
 
-        if (new URLSearchParams(window.location.search).has('preset')
-            || new URLSearchParams(window.location.search).has('pin')) {
+        const bootParams = new URLSearchParams(window.location.search);
+        if (bootParams.has('preset') || bootParams.has('pin')) {
             handleTtmikSyncBoot();
+        } else if (bootParams.has('format')) {
+            switchTab(4);
         } else {
             switchTab(0);
         }

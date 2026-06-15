@@ -507,6 +507,14 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 
 ## Production master doc
 
+### Video editor bridge
+
+Multiformat cut lists sync to [video-editor](https://github.com/Thedoctorjpg/video-editor) via TTMIK **Journey → Multiformat Editor** (`webdrama-edit-data.js`). Deep-link example:
+
+`video-editor-ultimate.html?project=melbourne-lantern&format=ep-2-5-dib&preset=warm&duration=30&aspect=9:16`
+
+Serve locally: `cd video-editor && python -m http.server 8000`
+
 ### Multiformat shoot map (locations × outputs)
 
 | Day | Eps | Route (pins in order) | Webdrama | Reels / Shorts | Other |

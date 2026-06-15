@@ -46,6 +46,14 @@ metadata:
 - 오늘 영상 찍을까요?
 - 유머로 풀어낼게요.
 
+## Hermes Healing Factors
+
+- **hermit-lantern** — Hermit Lantern — one breath, one laugh · Boot: `TTMIK.html?heal-factor=hermit-lantern`
+- **humor-release** — Humor alchemy — 유머로 풀어낼게요 · Boot: `TTMIK.html?heal-factor=humor-release`
+- **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## TTMIK App Integration
 
 - Skill id: `melbourne-lantern-bard` in `skills-data.js`

@@ -44,6 +44,13 @@ metadata:
 - 오늘 기분 어때요?
 - 재미있게 살아요!
 
+## Hermes Healing Factors
+
+- **humor-release** — Humor alchemy — 유머로 풀어낼게요 · Boot: `TTMIK.html?heal-factor=humor-release`
+- **hermit-lantern** — Hermit Lantern — one breath, one laugh · Boot: `TTMIK.html?heal-factor=hermit-lantern`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## TTMIK App Integration
 
 - Skill id: `lo3tus` in `skills-data.js`

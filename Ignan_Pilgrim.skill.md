@@ -53,6 +53,15 @@ metadata:
 - Piliem ti bukodko a dalan.
 - Naragsak unay! Ok laeng, agnanayon.
 
+## Hermes Healing Factors
+
+- **ignan-walk** — Ignan healing walk — ?ignan=1 · BOTANIC · Boot: `TTMIK.html?heal-factor=ignan-walk`
+- **fifa-celebrate** — Mari FIFA cantina — ?fifa=1 · CANTINA · Boot: `TTMIK.html?heal-factor=fifa-celebrate`
+- **post-dib** — Post-DIB landing — HOTEL · preset 9 · ?heal=1 · Boot: `TTMIK.html?heal-factor=post-dib`
+- **helen-boundary** — Helen boundary — 괜찮아요, 괜찮아요 · Boot: `TTMIK.html?heal-factor=helen-boundary`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## Cross-App Links
 
 - Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC

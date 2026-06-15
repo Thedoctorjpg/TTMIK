@@ -54,6 +54,13 @@ metadata:
 - 自分の道を信じます。
 - ブリスベンは美しい「もしかしたら」。メルボルンが私の「はい」。
 
+## Hermes Healing Factors
+
+- **pause-breathe** — Pause OK — 잠시 쉬어도 괜찮아요 · Boot: `TTMIK.html?heal-factor=pause-breathe`
+- **cord-cut** — Cord-cut — own timeline and energy field · Boot: `TTMIK.html?heal-factor=cord-cut`
+- Mantra: *One breath · one boundary · no re-watch spiral*
+- Library: `TTMIK.html?library=heal`
+
 ## Cross-App Links
 
 - Ep 5 · preset 11 · FED rain glass

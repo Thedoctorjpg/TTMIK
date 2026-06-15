@@ -57,12 +57,19 @@ if (typeof generateAsukaLibraryLessons === 'function') {
     nextId += asukaLessons.length;
 }
 
+if (typeof generateHealingLibraryLessons === 'function') {
+    const healLessons = generateHealingLibraryLessons(nextId);
+    lessons = lessons.concat(healLessons);
+    nextId += healLessons.length;
+}
+
 let categories = deriveCategories(lessons);
 let libraryGroups = [
     'All',
     'TTMIK Courses',
     'Sovereign Guide',
     'Melbourne Journey',
+    'Healing Factors Library',
     'Ignan Library',
     'Asuka Library'
 ];

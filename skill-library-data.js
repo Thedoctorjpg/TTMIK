@@ -88,6 +88,40 @@ const SKILL_BOOT_REGISTRY = {
     }
 };
 
+/** Maps specialty libraries ↔ Hermes healing factors */
+const LIBRARY_BUILD_MANIFEST = {
+    'Healing Factors Library': {
+        group: 'heal',
+        factors: [
+            'post-dib', 'hermit-lantern', 'humor-release', 'helen-boundary',
+            'pause-breathe', 'cord-cut', 'ignan-walk', 'fifa-celebrate',
+            'daily-ritual', 'no-rewatch'
+        ],
+        boot: 'library=heal',
+        mantra: 'One breath · one boundary · no re-watch spiral'
+    },
+    'Ignan Library': {
+        group: 'ignan',
+        factors: ['ignan-walk', 'fifa-celebrate', 'post-dib'],
+        boot: 'library=ignan'
+    },
+    'Asuka Library': {
+        group: 'asuka',
+        factors: ['pause-breathe', 'cord-cut'],
+        boot: 'library=asuka'
+    },
+    'Melbourne Journey': {
+        group: 'melbourne',
+        factors: ['hermit-lantern', 'humor-release', 'helen-boundary', 'post-dib'],
+        boot: 'library=melbourne-skills'
+    },
+    'Sovereign Guide': {
+        group: 'sovereign',
+        factors: ['daily-ritual', 'cord-cut', 'no-rewatch'],
+        boot: 'library=sovereign-skills'
+    }
+};
+
 const COMPOSED_LIBRARIES = [
     {
         id: 'ignan',
@@ -120,6 +154,14 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=sovereign-skills',
         skills: ['flame-kissed-bard', 'rach3l', 'sua-tattoo'],
         accent: 'violet'
+    },
+    {
+        id: 'heal',
+        label: 'Healing Factors Library',
+        description: 'Hermes heal pipeline — post-DIB · boundaries · Ignan · FIFA celebration',
+        boot: 'library=heal',
+        skills: ['helen-neighbor', 'melbourne-lantern-bard', 'flame-kissed-bard', 'ignan-pilgrim', 'ignan-grounding'],
+        accent: 'sky'
     }
 ];
 

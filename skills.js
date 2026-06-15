@@ -86,7 +86,13 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const asukaCats = typeof ASUKA_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => ASUKA_LIBRARY_CATEGORIES.includes(c))
         : [];
-    if (ignanCats.length) {
+    const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
+        : [];
+    if (healCats.length) {
+        activeLibraryGroup = 'Healing Factors Library';
+        activeCategory = healCats[0];
+    } else if (ignanCats.length) {
         activeLibraryGroup = 'Ignan Library';
         activeCategory = ignanCats[0];
     } else if (asukaCats.length) {
@@ -185,6 +191,74 @@ function openTtmikSyncLessons() {
     openLessonsForCategories(cfg.categories, true);
 }
 
+function practiceHealingFactor(factorId, opts = {}) {
+    const deckEntry = typeof getHealingFactorById === 'function' ? getHealingFactorById(factorId) : null;
+    const syncFactor = typeof HEALING_FACTORS !== 'undefined'
+        ? HEALING_FACTORS.factors.find(f => f.id === factorId)
+        : null;
+    const factor = syncFactor || deckEntry;
+    if (!factor) return false;
+
+    if (factorId === 'post-dib') {
+        practiceDibAftercare(opts);
+        return true;
+    }
+    if (factorId === 'ignan-walk') {
+        practiceIgnanHealingJourney(opts);
+        return true;
+    }
+    if (factorId === 'fifa-celebrate') {
+        practiceMariFifaCelebrate(opts);
+        return true;
+    }
+    if (factorId === 'no-rewatch') {
+        if (typeof startHealCategory === 'function') {
+            startHealCategory('Daily Integration');
+        }
+        return true;
+    }
+
+    const skillId = factor.skillId || deckEntry?.skillId;
+    if (!skillId) return false;
+
+    if (factor.pin) {
+        const episode = factorId === 'post-dib' ? '2.5' : (factor.pin === 'BOTANIC' ? '2.6' : factor.pin === 'CANTINA' ? '2.65' : null);
+        if (episode) setWebdramaSyncValues(factor.pin, episode, null);
+    } else if (factor.preset && typeof getSyncPreset === 'function' && getSyncPreset(factor.preset)) {
+        const preset = getSyncPreset(factor.preset);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    }
+
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    const shadowIdx = factor.shadowIndex ?? deckEntry?.shadowIndex ?? 0;
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.logQuest !== false && (factor.questId || deckEntry?.questId)) {
+        completeQuestObjective(factor.questId || deckEntry.questId);
+    }
+
+    if (opts.openLibrary && typeof startHealCategory === 'function') {
+        const cat = deckEntry?.subtitle || 'Post-DIB Landing';
+        startHealCategory(cat);
+        return true;
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+    return true;
+}
+
 function practiceDibAftercare(opts = {}) {
     const ritual = typeof getDibAftercareRitual === 'function' ? getDibAftercareRitual() : null;
     const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode('2.5') : null;
@@ -281,7 +355,9 @@ function bootSkillById(skillId, opts = {}) {
     }
 
     if (opts.lessons || opts.openLibrary) {
-        if (entry?.libraryGroup === 'Ignan Library' && entry.libraryCategory) {
+        if (entry?.libraryGroup === 'Healing Factors Library' && entry.libraryCategory) {
+            startHealCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Ignan Library' && entry.libraryCategory) {
             startIgnanCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Asuka Library' && entry.libraryCategory) {
             startAsukaCategory(entry.libraryCategory);
@@ -447,6 +523,14 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
         practiceIgnanHealingJourney();
+        return;
+    }
+    const healFactor = params.get('heal-factor');
+    if (healFactor) {
+        practiceHealingFactor(healFactor, {
+            logQuest: params.get('quest') !== '0',
+            openLibrary: params.get('lessons') === '1'
+        });
         return;
     }
     if (params.get('heal') === '1' || params.get('dib-aftercare') === '1' || params.get('step') === '4') {
@@ -769,11 +853,17 @@ function renderSyncPanel() {
         healBlock.appendChild(healTitle);
         healBlock.appendChild(healMantra);
         const list = document.createElement('ul');
-        list.className = 'space-y-1 text-zinc-400 text-xs';
+        list.className = 'space-y-1 text-xs';
         HEALING_FACTORS.factors.forEach(f => {
             const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'text-left w-full text-zinc-400 hover:text-sky-200 rounded-lg px-1 py-0.5 hover:bg-sky-900/20 transition';
             const bit = f.ko || f.phrase || f.note || f.edit || f.questId || '';
-            li.textContent = `${f.label}${bit ? ` — ${bit}` : ''}`;
+            btn.textContent = `${f.label}${bit ? ` — ${bit}` : ''}`;
+            btn.title = `TTMIK.html?heal-factor=${f.id}`;
+            btn.onclick = () => practiceHealingFactor(f.id);
+            li.appendChild(btn);
             list.appendChild(li);
         });
         healBlock.appendChild(list);
@@ -789,8 +879,20 @@ function renderSyncPanel() {
         ignanRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-600/30 text-emerald-200 hover:bg-emerald-600/50';
         ignanRun.textContent = 'Ignan healing walk (step 6)';
         ignanRun.onclick = () => practiceIgnanHealingJourney();
+        const fifaHealRun = document.createElement('button');
+        fifaHealRun.type = 'button';
+        fifaHealRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-amber-600/30 text-amber-200 hover:bg-amber-600/50';
+        fifaHealRun.textContent = 'Mari FIFA cantina (step 7)';
+        fifaHealRun.onclick = () => practiceMariFifaCelebrate();
+        const healLibRun = document.createElement('button');
+        healLibRun.type = 'button';
+        healLibRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-sky-800/40 text-sky-100 hover:bg-sky-700/50';
+        healLibRun.textContent = 'Open Healing Factors Library';
+        healLibRun.onclick = () => startHealCategory('Post-DIB Landing');
         healActions.appendChild(healRun);
         healActions.appendChild(ignanRun);
+        healActions.appendChild(fifaHealRun);
+        healActions.appendChild(healLibRun);
         healBlock.appendChild(healActions);
         panel.appendChild(healBlock);
     }
@@ -1260,6 +1362,7 @@ function renderSkillLibraryComposer() {
         if (lib.accent === 'emerald') title.className += ' text-emerald-300';
         else if (lib.accent === 'rose') title.className += ' text-rose-300';
         else if (lib.accent === 'violet') title.className += ' text-violet-300';
+        else if (lib.accent === 'sky') title.className += ' text-sky-300';
         else title.className += ' text-pink-300';
         title.textContent = lib.label;
         block.appendChild(title);
@@ -1316,7 +1419,8 @@ function renderSkillLibraryComposer() {
             openLib.className = 'mt-3 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700';
             openLib.textContent = `Open ${lib.label}`;
             openLib.onclick = () => {
-                if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
+                if (lib.id === 'heal') startHealCategory('Post-DIB Landing');
+                else if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
                 else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
                 else switchTab(3);
             };

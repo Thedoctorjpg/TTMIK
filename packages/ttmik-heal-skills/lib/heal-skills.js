@@ -372,6 +372,33 @@ const SKILLS = [
     }
 ];
 
+/** Per-skill Hermes healing factor ids (synced with HEALING_FACTORS in webdrama-sync-data.js) */
+const HEALING_FACTOR_BY_SKILL = {
+    'melbourne-lantern-bard': ['hermit-lantern', 'humor-release', 'no-rewatch'],
+    'flame-kissed-bard': ['daily-ritual', 'hermit-lantern', 'no-rewatch'],
+    'lo3tus': ['humor-release', 'hermit-lantern'],
+    'helen-neighbor': ['helen-boundary', 'pause-breathe', 'cord-cut', 'post-dib'],
+    'sua-tattoo-artist': ['cord-cut', 'no-rewatch'],
+    'asuka-brisbane': ['pause-breathe', 'cord-cut'],
+    'rach3l': ['no-rewatch', 'pause-breathe'],
+    'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
+    'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
+    'ignan-dalan': ['ignan-walk', 'cord-cut']
+};
+
+const HEALING_FACTOR_LABELS = {
+    'hermit-lantern': 'Hermit Lantern — one breath, one laugh',
+    'humor-release': 'Humor alchemy — 유머로 풀어낼게요',
+    'helen-boundary': 'Helen boundary — 괜찮아요, 괜찮아요',
+    'pause-breathe': 'Pause OK — 잠시 쉬어도 괜찮아요',
+    'cord-cut': 'Cord-cut — own timeline and energy field',
+    'post-dib': 'Post-DIB landing — HOTEL · preset 9 · ?heal=1',
+    'daily-ritual': 'Daily integration — flame-kissed-bard · side-ritual',
+    'no-rewatch': 'No re-watch spiral — GoPro off · phone face-down',
+    'ignan-walk': 'Ignan healing walk — ?ignan=1 · BOTANIC',
+    'fifa-celebrate': 'Mari FIFA cantina — ?fifa=1 · CANTINA'
+};
+
 function buildSkillMd(skill) {
     const title = skill.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     const list = (items) => items.map(i => `- ${i}`).join('\n');
@@ -384,6 +411,10 @@ function buildSkillMd(skill) {
         : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
+        : '';
+    const factorIds = HEALING_FACTOR_BY_SKILL[skill.id] || [];
+    const healingFactors = factorIds.length
+        ? `\n## Hermes Healing Factors\n\n${factorIds.map((id) => `- **${id}** — ${HEALING_FACTOR_LABELS[id] || id} · Boot: \`TTMIK.html?heal-factor=${id}\``).join('\n')}\n- Mantra: *One breath · one boundary · no re-watch spiral*\n- Library: \`TTMIK.html?library=heal\`\n`
         : '';
 
     return `---
@@ -419,7 +450,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${integrations}
+${ilo}${ja}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`
@@ -478,4 +509,4 @@ function healSkills(root) {
     return healed;
 }
 
-module.exports = { healSkills, SKILLS };
+module.exports = { healSkills, SKILLS, HEALING_FACTOR_BY_SKILL, HEALING_FACTOR_LABELS };

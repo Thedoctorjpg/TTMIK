@@ -6,6 +6,8 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 **Tone:** tsundere + scam-awareness PSA + sovereign pilgrimage  
 **Gear in-world:** GoPro lantern, gym bag, power bank, phone = Flame-Kissed Quill
 
+**Multiformat outputs:** Webdrama eps (9:16 · 90s) · Reels/Shorts/TikTok (9:16 · 30s) · Trailer (9:16 · 30s) · Veil Lumen essay cut (16:9 · 3–5 min) · TTMIK audio sync (any)
+
 ---
 
 ## Series bible
@@ -38,9 +40,51 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
 ---
 
+## Multiformat location bible
+
+### Format matrix
+
+| Deliverable | Aspect | Length | Primary locations | TTMIK category |
+|-------------|--------|--------|-------------------|----------------|
+| Webdrama ep | 9:16 | 90s | 2–3 pins per ep | See ep header |
+| Reel A · Scam PSA | 9:16 | 30s | Hosier + Centre Place walk | GoPro & Content |
+| Reel B · Tsundere | 9:16 | 30s | Hosier + Degraves café | Melbourne Arrival |
+| Season trailer | 9:16 | 30s | Montage all pins | Mixed |
+| Veil Lumen essay | 16:9 | 3–5 min | Southbank night + Botanic sunrise | Self-Intimacy |
+| TikTok duet cut | 9:16 | 15s | Single selfie wall at Hosier | Daily Life |
+| YouTube Short | 9:16 | 60s | Reel A+B combined | Social & Cultural |
+
+### Melbourne shoot pins (reels-first clusters)
+
+| Pin ID | Location | Best for | Light | TTMIK audio |
+|--------|----------|----------|-------|-------------|
+| **HOME** | Pre-trip accommodation | Ep 1 pack, VO | Any | Essential Foundations |
+| **MEL** | Melbourne Airport T1 arrivals glass | Ep 1 cliffhanger | Interior day | Melbourne Arrival |
+| **HOSIER** | Hosier Lane (graffiti wall mid-lane) | Ep 2, 6, 8 · Reel B wides | Golden hour | GoPro & Content |
+| **CENTRE** | Centre Place (narrow walk-through) | Ep 3 rules walk · Reel A A4 | Midday shade | Transportation |
+| **DEGRAVES** | Degraves St café strip | Ep 2 cliffhanger · Ep 3 open | Morning coffee | Daily Life |
+| **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram monologue | Overcast drama | Transportation |
+| **FED** | Federation Square glass / steps | Ep 5 rain reflection | Rain or blue hour | Melbourne Arrival |
+| **SOUTH** | Southbank Promenade (Yarra railing) | Ep 4 night · Ep 7 Moon | Night neon | Emergency Protocol |
+| **COLLINS** | Collins St walk (business bustle) | Ep 3 headset gag · Reel A A6 | Day | Social & Cultural |
+| **PRINCES** | Princes Bridge (dawn timelapse) | Ep 7 cliffhanger · Ep 8 open | Sunrise | Cultural Sites |
+| **BOTANIC** | Royal Botanic Gardens lake path | Ep 8 lantern pass alt | Sunrise soft | Self-Intimacy |
+| **HOTEL** | Accommodation desk / room mirror | Ep 1 ritual · Ep 4 phone | Interior | Accommodation |
+
+### One-lane block shoot (Reels A+B + Ep 2/6 same session)
+
+Film in this order to avoid backtracking (~2 hr):
+
+```
+DEGRAVES (coffee pickup) → CENTRE (walk rules) → HOSIER (all wides + selfies) → COLLINS (invoice beat optional)
+```
+
+---
+
 # EPISODE 1 — 「점화」IGNITION
 
-**Runtime:** 90 sec · **Location:** Home / airport gate · **Quest:** Pack lantern, name the scam before takeoff
+**Runtime:** 90 sec · **Pins:** HOME → MEL · **Quest:** Pack lantern, name the scam before takeoff  
+**Formats:** Webdrama · Trailer tease · TTMIK voiceover clip (30s)
 
 ### COLD OPEN
 **SHOT:** Selfie, messy room, gym bag open.
@@ -99,7 +143,8 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
 # EPISODE 2 — 「도착」ARRIVAL TSUNDERE
 
-**Runtime:** 90 sec · **Location:** Melbourne laneway · **Quest:** Film "not impressed" lie
+**Runtime:** 90 sec · **Pins:** HOSIER (W1,W2,B3,B7,B8) → DEGRAVES (cliffhanger) · **Quest:** Film "not impressed" lie  
+**Formats:** Webdrama · **Reel B** (full) · TikTok 15s (B3 only) · TTMIK: Melbourne Arrival
 
 ### COLD OPEN
 **SHOT:** Wide — stunning alley. Golden hour.
@@ -148,7 +193,8 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
 # EPISODE 3 — 「러브폭탄」LOVE BOMB SPEEDRUN
 
-**Runtime:** 90 sec · **Location:** Café + laneway walk · **Quest:** Abort scam speedrun
+**Runtime:** 90 sec · **Pins:** CENTRE (A4 walk) → COLLINS (A6 invoice) → DEGRAVES (cold open HUD) · **Quest:** Abort scam speedrun  
+**Formats:** Webdrama · **Reel A** (rules montage) · Short 60s · TTMIK: Daily Life + Social & Cultural
 
 ### COLD OPEN
 **TEXT:** `ROMANCE SCAM SPEEDRUN · ANY%`
@@ -192,7 +238,8 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
 # EPISODE 4 — 「경계」HELEN INTERVENTION
 
-**Runtime:** 90 sec · **Location:** Hotel / alley night · **Quest:** Boundary mastery
+**Runtime:** 90 sec · **Pins:** HOTEL (phone scenes) → SOUTH (night cord-cut) · **Quest:** Boundary mastery  
+**Formats:** Webdrama · Reel clip (Helen VO only · 20s) · TTMIK: Emergency Protocol
 
 ### COLD OPEN
 **SHOT:** Night laneway. Bard tired but wired.
@@ -239,7 +286,8 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
 # EPISODE 5 — 「아마도」THE MAYBE
 
-**Runtime:** 90 sec · **Location:** Tram / rain glass · **Quest:** Melbourne is my yes
+**Runtime:** 90 sec · **Pins:** FED (rain glass) → FLINDERS (tram monologue) → HOSIER (clear-weather cliff) · **Quest:** Melbourne is my yes  
+**Formats:** Webdrama · Veil Lumen mood piece (45s silent+BARD VO) · TTMIK: Transportation
 
 ### COLD OPEN
 **SHOT:** Rain on window. City lights.
@@ -282,7 +330,8 @@ Full webdrama script · vertical 9:16 · chaotic neutral rom-com satire
 
 # EPISODE 6 — 「촬영」ACTION!
 
-**Runtime:** 90 sec · **Location:** Hosier-style lane · **Quest:** Main quest skit filmed
+**Runtime:** 90 sec · **Pins:** HOSIER (Reel A+B reshoot + bloopers) · **Quest:** Main quest skit filmed  
+**Formats:** Webdrama meta · **Reel A + Reel B** master exports · TikTok blooper cut · TTMIK: GoPro & Content
 
 ### COLD OPEN
 **SHOT:** Slate clap (hand chop).
@@ -316,7 +365,8 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 
 # EPISODE 7 — 「달」THE MOON CARD
 
-**Runtime:** 90 sec · **Location:** Night alley / tram stop · **Quest:** Humor integration
+**Runtime:** 90 sec · **Pins:** SOUTH (scroll trigger) → FLINDERS (tram stop night) → PRINCES (dawn cliff) · **Quest:** Humor integration  
+**Formats:** Webdrama · Veil Lumen essay seed (notes monologue) · TTMIK: Tech & Connectivity
 
 ### COLD OPEN
 **SHOT:** Low battery %. Optional 4:44 timestamp.
@@ -355,7 +405,8 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 
 # EPISODE 8 — 「세계」THE WORLD
 
-**Runtime:** 90 sec · **Location:** Final laneway · sunrise · **Hidden quest:** The World
+**Runtime:** 90 sec · **Pins:** PRINCES (wide dawn) → HOSIER (final line) → BOTANIC (lantern pass alt) · **Hidden quest:** The World  
+**Formats:** Webdrama finale · Season recap Short · TTMIK: all shadowing phrases montage
 
 ### COLD OPEN
 **SHOT:** Wide. Bard small in frame. Quiet city.
@@ -388,15 +439,54 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 
 ## Production master doc
 
-### Shoot map
+### Multiformat shoot map (locations × outputs)
 
-| Day | Ep | Location |
-|-----|-----|----------|
-| Jun 16–18 | 1 (partial) | Home pack + VO |
-| Jun 19 | 2, 6 | Laneways |
-| Jun 20 | 3, 4 | Café + night alley |
-| Jun 21 | 5, 7 | Tram/rain + night |
-| Jun 22 | 8 | Sunrise wrap |
+| Day | Eps | Route (pins in order) | Webdrama | Reels / Shorts | Other |
+|-----|-----|------------------------|----------|----------------|-------|
+| Jun 16–18 | 1 | HOME | Ep 1 | — | Trailer VO record |
+| Jun 19 AM | 2, 6 | DEGRAVES → CENTRE → HOSIER → COLLINS | Ep 2, 6 | **Reel A** + **Reel B** + TikTok 15s | 60s YouTube Short |
+| Jun 19 PM | 3 | HOSIER pickup shots | Ep 3 | Reel A pickups | — |
+| Jun 20 AM | 3, 4 | COLLINS → DEGRAVES | Ep 3 cont. | — | — |
+| Jun 20 PM | 4 | HOTEL → SOUTH | Ep 4 | Helen 20s clip | — |
+| Jun 21 AM | 5 | FED (rain) → FLINDERS | Ep 5 | Veil Lumen 45s | — |
+| Jun 21 PM | 7 | SOUTH → FLINDERS night | Ep 7 | Essay seed footage | — |
+| Jun 22 AM | 7, 8 | PRINCES dawn → HOSIER → BOTANIC | Ep 8 | Recap Short · Trailer final | Veil Lumen 16:9 |
+
+### Reel A — shot × location × format
+
+| Shot | Time | Pin | Setup | Export |
+|------|------|-----|-------|--------|
+| A1 cold open | 0:00 | HOSIER | Selfie MCU, graffiti bokeh | Reel · Ep 3 · Trailer |
+| A3 tsundere | 0:03 | HOSIER | Pan wall → selfie snap | Reel · Ep 2 |
+| A4 rule 1 | 0:07 | CENTRE | Front-cam walk north | Reel · Ep 3 |
+| A6 rule 2 | 0:12 | COLLINS | Selfie stopped, wallet prop | Reel · Ep 3 |
+| A7 not blushing | 0:17 | DEGRAVES | Tight selfie, coffee cup | Reel · Ep 2 cliff |
+| A8 sovereign | 0:21 | HOSIER | Chest tap, mural back | Reel · Ep 3 |
+| A9 Korean | 0:25 | HOSIER | Soft selfie | Reel · Ep 6 · Ep 8 |
+| A10 button | 0:28 | CENTRE | Walk-off exit frame | Reel · Trailer end |
+
+### Reel B — shot × location × format
+
+| Shot | Time | Pin | Setup | Export |
+|------|------|-----|-------|--------|
+| W1 not impressed | 0:00 | HOSIER | Wide vertical, subject small | Reel · Ep 2 · Trailer |
+| W2 kind of | 0:03 | HOSIER | Graffiti CU drift | Reel · Ep 2 |
+| B3 snap | 0:06 | HOSIER | Selfie MCU snap | Reel · TikTok 15s · Ep 2 |
+| B5 content dept | 0:10 | HOSIER | GoPro mount on bag | Reel · Ep 2 · Ep 6 |
+| B6 4G > fate | 0:15 | CENTRE | Selfie walk | Reel · Ep 2 |
+| B7 Korean slip | 0:20 | HOSIER | Golden hour selfie | Reel · Ep 8 line |
+| B8 fine face | 0:26 | HOSIER or BOTANIC | Medium wide | Reel · Ep 8 |
+| B9 walk-off | 0:29 | CENTRE | Exit frame OC line | Reel · Ep 6 blooper |
+
+### Location route card (Jun 19 block — print this)
+
+```
+08:00  DEGRAVES — coffee + A7 + Ep 2 cliffhanger
+08:30  CENTRE — A4, A10, B6, B9, rule walk
+09:00  HOSIER — W1 W2 B3 B5 B7 B8, A1 A3 A8 A9, Ep 2/6 main
+09:45  COLLINS — A6 invoice beat (optional Ep 3)
+10:15  Wrap — battery swap, SD offload, TTMIK shadowing at pin
+```
 
 ### Visual language
 
@@ -421,12 +511,17 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 | 7 | rach3l / Lo3tus | 제 길을 믿어요 |
 | 8 | All | Quest completion |
 
-### 30s cutdowns (Reels)
+### 30s cutdowns (Reels) — edit order
 
-**Reel A — Tsundere Scam PSA:** A1→A3→A4→A6→A7→A8→A9→A10  
-**Reel B — Not Enjoying Melbourne:** W1→W2→B3→B5→B6→B7→B8→B9
+**Reel A — Tsundere Scam PSA** (pins: HOSIER → CENTRE → COLLINS → DEGRAVES)  
+`A1@HOSIER → A3@HOSIER → A4@CENTRE → A6@COLLINS → A7@DEGRAVES → A8@HOSIER → A9@HOSIER → A10@CENTRE`
 
-### Season 1 trailer (30s)
+**Reel B — Not Enjoying Melbourne** (pins: HOSIER → CENTRE)  
+`W1@HOSIER → W2@HOSIER → B3@HOSIER → B5@HOSIER → B6@CENTRE → B7@HOSIER → B8@HOSIER → B9@CENTRE`
+
+**15s TikTok duet cuts:** B3@HOSIER only · A9@HOSIER Korean line only
+
+### Season 1 trailer (30s) — location montage
 
 ```
 BARD: "This isn't a romance."
@@ -439,6 +534,28 @@ BARD: "It's Melbourne."
 TEXT: MELBOURNE LANTERN · 8 EPISODES · VERTICAL
 BARD: "Lantern's lit."
 ```
+
+**Trailer visual order:** MEL (2s) → HOSIER (4s) → DEGRAVES (3s) → FLINDERS (3s) → SOUTH night (3s) → PRINCES dawn (3s) → HOSIER lantern (2s)
+
+### Veil Lumen essay assembly (16:9 · 3–5 min)
+
+| Segment | Pin | Source ep | Notes |
+|---------|-----|-----------|-------|
+| Opening mood | FED rain | Ep 5 | No dialogue, city bokeh |
+| Scam as myth | COLLINS | Ep 3 | VO from Reel A rules |
+| Boundary body | HOTEL mirror | Ep 4 | Helen ritual VO |
+| Maybe released | FLINDERS | Ep 5 | Tram monologue full |
+| Moon / scroll | SOUTH | Ep 7 | Rach3l observe line |
+| World close | BOTANIC | Ep 8 | Lantern pass, slow fade |
+
+### TTMIK app — pin → lesson category (on-location practice)
+
+| After filming at… | Open in app |
+|-------------------|-------------|
+| HOSIER / DEGRAVES | GoPro & Content · Melbourne Arrival |
+| CENTRE / FLINDERS | Transportation · Daily Life |
+| SOUTH / HOTEL | Emergency Protocol · Accommodation |
+| BOTANIC / PRINCES | Self-Intimacy Practice · Cultural Sites |
 
 ---
 

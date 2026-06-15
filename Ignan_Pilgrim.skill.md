@@ -46,6 +46,12 @@ metadata:
 - 잠시 쉬어도 괜찮아요.
 - 제 길을 믿어요.
 
+## Ilokano Practice (Ignan)
+
+- Ok laeng, ok laeng.
+- Nasaem met ti aginana.
+- Piliem ti bukodko a dalan.
+
 ## Cross-App Links
 
 - Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC

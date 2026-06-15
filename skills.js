@@ -80,12 +80,19 @@ function startSkillPractice(skillId) {
 
 function openLessonsForCategories(categories, preferMelbourne = true) {
     const cats = Array.isArray(categories) ? categories.filter(Boolean) : [];
-    if (preferMelbourne) {
+    const ignanCats = typeof IGNAN_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => IGNAN_LIBRARY_CATEGORIES.includes(c))
+        : [];
+    if (ignanCats.length) {
+        activeLibraryGroup = 'Ignan Library';
+        activeCategory = ignanCats[0];
+    } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
+        activeCategory = cats.length ? cats[0] : 'All';
     } else {
         activeLibraryGroup = 'Sovereign Guide';
+        activeCategory = cats.length ? cats[0] : 'All';
     }
-    activeCategory = cats.length ? cats[0] : 'All';
     renderLibraryGroupFilters();
     renderCategoryFilters();
     renderLessons();
@@ -96,8 +103,15 @@ function openSkillLessons(skillId) {
     const skill = getSkillById(skillId);
     if (!skill) return;
 
-    const preferMelbourne = skill.linkedGroups?.includes('melbourne')
-        || !(skill.linkedGroups?.includes('sovereign'));
+    const hasIgnan = skill.linkedGroups?.includes('ignan');
+    const preferMelbourne = !hasIgnan && (
+        skill.linkedGroups?.includes('melbourne')
+        || !(skill.linkedGroups?.includes('sovereign'))
+    );
+    if (hasIgnan) {
+        openLessonsForCategories(skill.linkedCategories, false);
+        return;
+    }
     if (skill.linkedGroups?.includes('sovereign') && !skill.linkedGroups?.includes('melbourne')) {
         activeLibraryGroup = 'Sovereign Guide';
     } else if (skill.linkedGroups?.includes('melbourne')) {
@@ -748,11 +762,14 @@ function renderSkillsGrid() {
 
     SKILLS.forEach(skill => {
         const active = appState.activeSkillId === skill.id;
+        const isIgnan = skill.linkedGroups?.includes('ignan');
+        const ringActive = isIgnan ? 'ring-emerald-500 hover:ring-emerald-400' : 'ring-pink-500 hover:ring-pink-400';
+        const ringIdle = isIgnan ? 'hover:ring-emerald-500/50' : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
-            ? 'text-left bg-zinc-900 rounded-3xl p-6 ring-2 ring-pink-500 hover:ring-pink-400 transition'
-            : 'text-left bg-zinc-900 rounded-3xl p-6 hover:ring-2 hover:ring-pink-500/50 transition';
+            ? `text-left bg-zinc-900 rounded-3xl p-6 ring-2 ${ringActive} transition`
+            : `text-left bg-zinc-900 rounded-3xl p-6 hover:ring-2 ${ringIdle} transition`;
 
         const icon = document.createElement('div');
         icon.className = 'text-4xl mb-3';
@@ -768,7 +785,9 @@ function renderSkillsGrid() {
 
         if (active) {
             const pill = document.createElement('span');
-            pill.className = 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+            pill.className = isIgnan
+                ? 'inline-block mt-3 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full'
+                : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);

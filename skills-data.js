@@ -328,8 +328,8 @@ const SKILLS = [
             'Veil Lumen spoken clip: Ok laeng over lake-path ambient',
             'TTMIK team deck: Korean line + Ilokano line side by side'
         ],
-        linkedGroups: ['melbourne', 'sovereign'],
-        linkedCategories: ['Self-Intimacy Practice', 'Cultural Sites', 'Daily Life'],
+        linkedGroups: ['ignan', 'melbourne', 'sovereign'],
+        linkedCategories: ['Trilingual Shadowing', 'Healing Walk Route', 'Ilokano Grounding', 'Self-Intimacy Practice', 'Cultural Sites'],
         shadowingPhrases: [
             { ko: '괜찮아요, 괜찮아요.', ilo: 'Ok laeng, ok laeng.', en: "It's okay, it's okay." },
             { ko: '잠시 쉬어도 괜찮아요.', ilo: 'Nasaem met ti aginana.', en: "It's okay to pause and breathe." },
@@ -347,6 +347,80 @@ const SKILLS = [
             'After preset 9 — ask Mari if she wants the Ignan walk (never assume)',
             'FED rain optional · BOTANIC required for Ep 2.6',
             'Export ignan-healing-journey only if Mari says yes'
+        ]
+    },
+    {
+        id: 'ignan-grounding',
+        name: 'Ignan Grounding',
+        icon: '\u{1F343}',
+        tagline: 'Ilokano body-first · ok laeng before Korean',
+        role: 'Body-led release — speak Ilokano to the shoulders before TTMIK shadowing',
+        source: 'Ignan_Grounding.skill.md',
+        activationPhrases: [
+            'Ok laeng, aginana — Ilokano first',
+            'Ignan grounding before Korean practice'
+        ],
+        capabilities: [
+            'Ilokano breath pairs (Ok laeng · Nasaem met ti aginana)',
+            'Post-DIB shoulder-drop without re-watch spiral',
+            'Pair with helen-neighbor Korean lines after body lands',
+            'FED rain pause optional — grief named once'
+        ],
+        creativePrompts: [
+            'Voice memo: three ok laeng breaths over hotel window ambient',
+            'TTMIK team drill: Ilokano line aloud, then Korean shadow',
+            'Veil Lumen whisper clip — no face, feet on path only'
+        ],
+        linkedGroups: ['ignan'],
+        linkedCategories: ['Ilokano Grounding', 'Trilingual Shadowing'],
+        shadowingPhrases: [
+            { ko: '괜찮아요, 괜찮아요.', ilo: 'Ok laeng, ok laeng.', en: "It's okay, it's okay." },
+            { ko: '잠시 쉬어도 괜찮아요.', ilo: 'Nasaem met ti aginana.', en: "It's okay to pause and breathe." },
+            { ko: '숨 쉬어도 괜찮아요.', ilo: 'Aginana met.', en: 'It is okay to breathe.' }
+        ],
+        ritualSteps: [
+            'Phone face-down · GoPro off',
+            'Ilokano first: Ok laeng, ok laeng — shoulders drop',
+            'One slow breath — aginana',
+            'Then Korean shadow: 괜찮아요, 괜찮아요',
+            'Hand off to ignan-pilgrim walk when body is calm'
+        ]
+    },
+    {
+        id: 'ignan-dalan',
+        name: 'Ignan Dalan',
+        icon: '\u{1F9ED}',
+        tagline: 'Bukodko a dalan · choose your own path',
+        role: 'Sovereignty anchor — diaspora grief without rescue framing',
+        source: 'Ignan_Dalan.skill.md',
+        activationPhrases: [
+            'Piliem ti bukodko a dalan',
+            'I choose my own timeline and energy field'
+        ],
+        capabilities: [
+            'Own-path phrases (Piliem ti bukodko a dalan · 제 길을 믿어요)',
+            'English anchor for Melbourne walk close',
+            'BOTANIC wide-hold ritual — Maysa nga anges, maysa a talna',
+            'Quest side-ignan-heal close without performance invoice'
+        ],
+        creativePrompts: [
+            'Lake-path wide shot — one breath, one peace, no CTA',
+            'Journal: one homeward grief named, not posted',
+            'TTMIK deck row: Ilokano / Korean / English path sovereignty'
+        ],
+        linkedGroups: ['ignan'],
+        linkedCategories: ['Trilingual Shadowing', 'Healing Walk Route'],
+        shadowingPhrases: [
+            { ko: '제 길을 믿어요.', ilo: 'Piliem ti bukodko a dalan.', en: 'Choose your own path.' },
+            { ko: '나는 나만의 이야기를 씁니다.', ilo: 'Maysa nga anges, maysa a talna.', en: 'One breath, one peace.' },
+            { ko: '제 시간표를 선택해요.', ilo: 'Bukodko a panawen.', en: 'I choose my own timeline.' }
+        ],
+        ritualSteps: [
+            'Name one borrowed shame — no dramatizing',
+            'Ilokano: Piliem ti bukodko a dalan',
+            'Korean: 제 길을 믿어요',
+            'English anchor aloud — own timeline, own energy field',
+            'BOTANIC close · log side-ignan-heal · preset 10'
         ]
     }
 ];

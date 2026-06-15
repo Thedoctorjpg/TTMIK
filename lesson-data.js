@@ -45,5 +45,11 @@ SOVEREIGN_COURSE_DEFS.forEach(def => {
     nextId += def.tracks.length;
 });
 
+if (typeof generateIgnanLibraryLessons === 'function') {
+    const ignanLessons = generateIgnanLibraryLessons(nextId);
+    lessons = lessons.concat(ignanLessons);
+    nextId += ignanLessons.length;
+}
+
 let categories = deriveCategories(lessons);
-let libraryGroups = ['All', 'TTMIK Courses', 'Sovereign Guide', 'Melbourne Journey'];
+let libraryGroups = ['All', 'TTMIK Courses', 'Sovereign Guide', 'Melbourne Journey', 'Ignan Library'];

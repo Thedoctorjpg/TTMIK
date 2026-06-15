@@ -268,6 +268,79 @@ const SKILLS = [
             'Post-DIB preset 9 → hand off when Mari is ready',
             'TTMIK.html?ignan=1 — Ignan healing journey boot',
             'Veil Lumen — trilingual spoken clip'
+        ],
+        ilokano: ['Ok laeng, ok laeng.', 'Nasaem met ti aginana.', 'Piliem ti bukodko a dalan.']
+    },
+    {
+        id: 'ignan-grounding',
+        rootFile: 'Ignan_Grounding.skill.md',
+        description: 'Ignan grounding skill — Ilokano body-first release before Korean TTMIK shadowing. Use after post-DIB landing, scam humor wrap, or when user needs ok laeng breath pairs without performance.',
+        activation: 'Ok laeng, aginana — Ilokano first',
+        whenToUse: [
+            'Shoulders still tight after preset 9 quiet heal',
+            'User wants Ilokano before Korean in trilingual practice',
+            'FED rain optional — body calm before ignan-pilgrim walk',
+            'TTMIK team drill: Ilokano aloud, then Korean shadow'
+        ],
+        procedure: [
+            'Phone face-down · GoPro off — no re-watch spiral',
+            'Ilokano first: Ok laeng, ok laeng — shoulders drop',
+            'One slow breath — aginana / Nasaem met ti aginana',
+            'Korean shadow only after body lands: 괜찮아요, 괜찮아요',
+            'Hand off to ignan-pilgrim or ignan-dalan when calm'
+        ],
+        pitfalls: [
+            'Do not rush Korean before Ilokano body release',
+            'Do not film tears or voice cracks for content',
+            'Honor Ilokano — not a gag subtitle line'
+        ],
+        verification: [
+            'Shoulders visibly lower or user reports calmer breath',
+            'At least one Ilokano + one Korean phrase spoken',
+            'No compulsive re-check of DIB or scam skit'
+        ],
+        korean: ['괜찮아요, 괜찮아요.', '잠시 쉬어도 괜찮아요.', '숨 쉬어도 괜찮아요.'],
+        ilokano: ['Ok laeng, ok laeng.', 'Nasaem met ti aginana.', 'Aginana met.'],
+        integrations: [
+            'Ignan Library · Ilokano Grounding category',
+            'Post-DIB preset 9 → ignan-grounding → ignan-pilgrim',
+            'HEALING_FACTORS step 4 companion'
+        ]
+    },
+    {
+        id: 'ignan-dalan',
+        rootFile: 'Ignan_Dalan.skill.md',
+        description: 'Ignan dalan sovereignty skill — bukodko a dalan own-path anchor in Ilokano, Korean, and English. Use at BOTANIC walk close, diaspora grief naming, or when user needs path sovereignty without rescue framing.',
+        activation: 'Piliem ti bukodko a dalan',
+        whenToUse: [
+            'BOTANIC lake-path close — preset 10',
+            'Naming homeward grief once without dramatizing',
+            'English anchor after trilingual shadowing deck',
+            'Quest side-ignan-heal log at walk end'
+        ],
+        procedure: [
+            'Name one borrowed shame — no post before feet stop',
+            'Ilokano: Piliem ti bukodko a dalan',
+            'Korean: 제 길을 믿어요',
+            'English: I choose my own timeline and energy field',
+            'Wide hold — Maysa nga anges, maysa a talna · log side-ignan-heal'
+        ],
+        pitfalls: [
+            'No soulmate, Gofundme, or rescue hooks on diaspora pain',
+            'Do not make Mari a Bard romance subplot',
+            'Export ignan-healing-journey only with consent'
+        ],
+        verification: [
+            'Three languages spoken for path sovereignty',
+            'Calmer close than DIB wrap',
+            'Quest side-ignan-heal logged if walk completed'
+        ],
+        korean: ['제 길을 믿어요.', '나는 나만의 이야기를 씁니다.', '제 시간표를 선택해요.'],
+        ilokano: ['Piliem ti bukodko a dalan.', 'Maysa nga anges, maysa a talna.', 'Bukodko a panawen.'],
+        integrations: [
+            'Ignan Library · Healing Walk Route + Trilingual Shadowing',
+            'Ep 2.6 IG7–IG8 · preset 10',
+            'TTMIK.html?ignan=1&step=6'
         ]
     }
 ];
@@ -276,6 +349,9 @@ function buildSkillMd(skill) {
     const title = skill.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     const list = (items) => items.map(i => `- ${i}`).join('\n');
     const ko = skill.korean.map((k) => `- ${k}`).join('\n');
+    const ilo = skill.ilokano?.length
+        ? `\n## Ilokano Practice (Ignan)\n\n${skill.ilokano.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
         : '';
@@ -313,7 +389,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${integrations}
+${ilo}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

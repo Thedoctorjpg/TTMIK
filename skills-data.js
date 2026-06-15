@@ -608,7 +608,7 @@ const SKILLS = [
             'Veil Lumen neon outfit install — installNeonEvangelionLook()'
         ],
         creativePrompts: [
-            'Create Neon Fast Character sheet — Monk Way of Mercy · Hermit · Level 5',
+            'Create Rei Ayanami Fast Character sheet — Cleric Life · Hermit · Level 5',
             'Skit: Japanese observe line before Korean shadow at SOUTH neon',
             'NERV neon ritual for Ep 7.1 Moon-card lane'
         ],
@@ -619,12 +619,12 @@ const SKILLS = [
             { ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요.', en: 'Observe only. Do not absorb.' },
             { ja: 'ネオンは私の境界線。', ko: '네온은 제 경계선이에요.', en: 'Neon is my boundary.' },
             { ja: '自分の道を信じます。', ko: '제 길을 믿어요.', en: 'I trust my path.' },
-            { ja: '私はネオン、旅の観測者です。', ko: '저는 네온, 여정의 관측자예요.', en: 'I am Neon, an observer on the pilgrimage.' }
+            { ja: '私はレイ、観測者です。', ko: '저는 레이, 관측자예요.', en: 'I am Rei, an observer on the pilgrimage.' }
         ],
         ritualSteps: [
             'SOUTH neon railing — phone face-down · GoPro off',
             'installNeonEvangelionLook() — Veil outfit neon · background nerv',
-            'Open Fast Character — Neon · Monk Way of Mercy · Hermit',
+            'Open Fast Character — Rei Ayanami · Cleric Life · Hermit',
             'Japanese native first: 混乱は通過点です',
             'Korean shadow: 혼란은 지나가는 곳이에요 · 관찰만 하고 흡수하지 않을게요',
             'One pass — no scroll spiral · preset 21'

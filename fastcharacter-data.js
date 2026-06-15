@@ -65,22 +65,28 @@ const FAST_CHARACTER_MARTIN = {
     note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
 };
 
-/** Kane — English Champion Fighter muse · Three Lions striker after Brasil samba */
-const FAST_CHARACTER_NEON = {
-    id: 'neon',
-    label: 'Neon — Evangelion Observer',
+/** Rei Ayanami — Neon Evangelion muse · Moon-card observe without absorbing */
+const FAST_CHARACTER_REI = {
+    id: 'rei',
+    label: 'Rei Ayanami — Evangelion Observer',
     playername: 'Melbourne Lantern Pilgrimage',
-    playercode: 'TTMIK-Neon',
+    playercode: 'TTMIK-Rei',
     randomname: 'no',
-    pcname: 'Neon',
-    pcclass: 'MonkWayOfMercy',
+    pcname: 'Rei',
+    pcclass: 'ClericLife',
     pclevel: '5',
     pcrace: 'human',
     pcbkgrd: 'Hermit',
     pcgender: 'female',
     pcalignment: 'LN',
-    note: 'Way of Mercy · Level 5 · Moon-card neon ally'
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Life Domain · Level 5 · Lawful Neutral — NERV Moon-card neon ally'
 };
+
+/** @deprecated alias — use FAST_CHARACTER_REI */
+const FAST_CHARACTER_NEON = FAST_CHARACTER_REI;
 
 const FAST_CHARACTER_KANE = {
     id: 'kane',
@@ -190,7 +196,8 @@ const FAST_CHARACTER_PRESETS = {
     messi: FAST_CHARACTER_MESSI,
     vinicus: FAST_CHARACTER_VINICUS,
     kane: FAST_CHARACTER_KANE,
-    neon: FAST_CHARACTER_NEON
+    rei: FAST_CHARACTER_REI,
+    neon: FAST_CHARACTER_REI
 };
 
 function buildFastCharacterFormData(preset) {
@@ -264,6 +271,10 @@ function openFastCharacterKane() {
     openFastCharacterSheet(FAST_CHARACTER_KANE);
 }
 
+function openFastCharacterRei() {
+    openFastCharacterSheet(FAST_CHARACTER_REI);
+}
+
 function openFastCharacterNeon() {
-    openFastCharacterSheet(FAST_CHARACTER_NEON);
+    openFastCharacterRei();
 }

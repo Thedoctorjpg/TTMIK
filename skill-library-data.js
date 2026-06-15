@@ -128,7 +128,7 @@ const SKILL_BOOT_REGISTRY = {
     'neon-evangelion': {
         source: 'Neon_Evangelion_Archetype.skill.md',
         invoke: 'practiceNeonEvangelion',
-        altBoot: 'neon=1',
+        altBoot: 'rei=1',
         preset: 21,
         libraryGroup: 'Evangelion Library',
         libraryCategory: 'Japanese Shadowing',

@@ -77,10 +77,10 @@ const EVANGELION_ROUTE_BEATS = [
 const EVANGELION_MOON_DRILLS = [
     {
         title: 'Fast Character sheet invoke',
-        ja: '私はネオン、旅の観測者です。',
-        ko: '저는 네온, 여정의 관측자예요.',
-        en: 'I am Neon, an observer on the pilgrimage.',
-        note: 'fastcharacter.com · Monk Way of Mercy · Level 5 · Hermit'
+        ja: '私はレイ、観測者です。',
+        ko: '저는 레이, 관측자예요.',
+        en: 'I am Rei, an observer on the pilgrimage.',
+        note: 'fastcharacter.com · Rei Ayanami · Cleric Life · Hermit · Level 5'
     },
     {
         title: 'Veil Lumen neon install',
@@ -122,7 +122,7 @@ function buildEvangelionTranscript(parts) {
     if (parts.pin) lines.push(`Pin: ${parts.pin}`);
     lines.push('\nSkill: neon-evangelion · Boot: TTMIK.html?neon=1');
     lines.push('Veil: installNeonEvangelionLook() · outfit neon · background nerv');
-    lines.push('Sheet: fastcharacter.com · Neon · Monk (Way of Mercy) · Hermit');
+    lines.push('Sheet: fastcharacter.com · Rei Ayanami · Cleric (Life) · Hermit');
     return lines.join('\n\n');
 }
 

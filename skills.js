@@ -792,8 +792,8 @@ function practiceNeonEvangelion(opts = {}) {
         installNeonEvangelionLook();
     }
 
-    if (opts.openSheet && typeof openFastCharacterNeon === 'function') {
-        openFastCharacterNeon();
+    if (opts.openSheet && typeof openFastCharacterRei === 'function') {
+        openFastCharacterRei();
     }
 
     if (opts.logQuest !== false) {
@@ -1099,7 +1099,7 @@ function renderBootAllPanel() {
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
             else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1', openWatch: boot.watch === '1' });
-            else if (boot.neon === '1' || boot.evangelion === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
+            else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
@@ -1205,7 +1205,7 @@ function handleTtmikSyncBoot() {
         });
         return;
     }
-    if (params.get('neon') === '1' || params.get('evangelion') === '1') {
+    if (params.get('neon') === '1' || params.get('evangelion') === '1' || params.get('rei') === '1') {
         practiceNeonEvangelion({ openSheet: params.get('sheet') === '1' });
         return;
     }
@@ -2498,10 +2498,10 @@ function renderSkillDetail() {
         const sheetBtn = document.createElement('button');
         sheetBtn.type = 'button';
         sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
-        sheetBtn.textContent = 'Create Neon sheet';
-        sheetBtn.title = 'fastcharacter.com · Monk Way of Mercy · Hermit · Level 5';
+        sheetBtn.textContent = 'Create Rei Ayanami sheet';
+        sheetBtn.title = 'fastcharacter.com · Rei · Cleric Life · Hermit · Level 5';
         sheetBtn.onclick = () => {
-            if (typeof openFastCharacterNeon === 'function') openFastCharacterNeon();
+            if (typeof openFastCharacterRei === 'function') openFastCharacterRei();
         };
         neonBlock.appendChild(sheetBtn);
         panel.appendChild(neonBlock);

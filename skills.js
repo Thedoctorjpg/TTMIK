@@ -37,6 +37,16 @@ function toggleQuestObjective(objectiveId) {
     updateProgressUI();
 }
 
+function completeQuestObjective(objectiveId) {
+    if (!appState.questProgress) appState.questProgress = {};
+    if (isQuestObjectiveDone(objectiveId)) return false;
+    appState.questProgress[objectiveId] = true;
+    persistState();
+    renderQuestPanel();
+    updateProgressUI();
+    return true;
+}
+
 function isQuestObjectiveDone(objectiveId) {
     return Boolean(appState.questProgress?.[objectiveId]);
 }
@@ -138,24 +148,33 @@ function openTtmikSyncLessons() {
     openLessonsForCategories(cfg.categories, true);
 }
 
-function practiceDibAftercare() {
-    if (typeof getDibAftercareRitual === 'function') {
-        const ritual = getDibAftercareRitual();
-        if (ritual?.skillId) setActiveSkill(ritual.skillId);
+function practiceDibAftercare(opts = {}) {
+    const ritual = typeof getDibAftercareRitual === 'function' ? getDibAftercareRitual() : null;
+    const epCfg = typeof getSyncEpisode === 'function' ? getSyncEpisode('2.5') : null;
+    const healSkillId = ritual?.skillId || epCfg?.aftercare || 'helen-neighbor';
+    const shadowIdx = ritual?.shadowIndex ?? epCfg?.aftercareShadowIndex ?? 2;
+
+    setWebdramaSyncValues('HOTEL', '2.5', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(healSkillId);
+    selectedSkillId = healSkillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
     } else {
-        setActiveSkill('helen-neighbor');
+        startSkillPractice(healSkillId);
     }
-    selectedSkillId = appState.activeSkillId || 'helen-neighbor';
-    if (typeof getSyncPreset === 'function' && getSyncPreset(9)) {
-        applyTtmikSyncPreset(9, { skillsTab: false });
-    } else {
-        setWebdramaSyncValues('HOTEL', '2.5', null);
-        applyTtmikSync();
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective(ritual?.questId || 'side-dib-heal');
     }
-    switchTab(5);
+
+    switchTab(2);
     renderSkillDetail();
     renderSkillsGrid();
-    practiceTtmikSyncShadowing();
 }
 
 function practiceTtmikSyncShadowing() {
@@ -219,7 +238,7 @@ function applyTtmikSyncRouteStep(step) {
 
 function handleTtmikSyncBoot() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('heal') === '1' || params.get('dib-aftercare') === '1') {
+    if (params.get('heal') === '1' || params.get('dib-aftercare') === '1' || params.get('step') === '4') {
         practiceDibAftercare();
         return;
     }

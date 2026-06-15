@@ -72,6 +72,8 @@ const BARDIC_INSPIRATION = {
         pin: 'HOTEL',
         skillId: 'helen-neighbor',
         questId: 'side-dib-heal',
+        shadowIndex: 2,
+        shadowPhrase: { ko: '괜찮아요, 괜찮아요.', en: "It's okay, it's okay." },
         steps: [
             'GoPro off · phone face-down · one breath',
             'Name what the skit released — no re-watch spiral',
@@ -240,7 +242,8 @@ const TTMIK_SYNC_EPISODES = {
         shadowingIndex: 2,
         duration: '45s',
         formats: ['ep-2-5-dib', 'dib-aftercare'],
-        aftercare: 'helen-neighbor'
+        aftercare: 'helen-neighbor',
+        aftercareShadowIndex: 2
     },
     '2.75': {
         title: 'Cook-Off Not a Date',

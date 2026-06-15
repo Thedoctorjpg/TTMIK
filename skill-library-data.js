@@ -53,6 +53,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'Japanese Shadowing',
         tag: 'asuka'
     },
+    'heidi-alpine-wayfarer': {
+        source: 'Heidi_Alpine_Wayfarer_Archetype.skill.md',
+        invoke: 'practiceHeidiWayfarer',
+        altBoot: 'heidi=1',
+        preset: 13,
+        libraryGroup: 'Heidi Library',
+        libraryCategory: 'German Shadowing',
+        tag: 'heidi'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -114,6 +123,11 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: ['pause-breathe', 'cord-cut'],
         boot: 'library=asuka'
     },
+    'Heidi Library': {
+        group: 'heidi',
+        factors: ['hermit-lantern', 'daily-ritual', 'humor-release'],
+        boot: 'library=heidi'
+    },
     'Melbourne Journey': {
         group: 'melbourne',
         factors: ['hermit-lantern', 'humor-release', 'helen-boundary', 'post-dib'],
@@ -160,6 +174,14 @@ const COMPOSED_LIBRARIES = [
         boot: 'library=asuka',
         skills: ['asuka-brisbane'],
         accent: 'rose'
+    },
+    {
+        id: 'heidi',
+        label: 'Heidi Library',
+        description: 'German native · Korean shadow — Fast Character Wayfarer Bard',
+        boot: 'library=heidi',
+        skills: ['heidi-alpine-wayfarer'],
+        accent: 'yellow'
     },
     {
         id: 'melbourne-skills',
@@ -251,7 +273,7 @@ const BOOT_ALL_HEAL_STEPS = [
 const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
-    trackCount: 267
+    trackCount: 275
 };
 
 function openComposedLibrary(libId) {
@@ -263,6 +285,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'usa') startUsaCategory('English Shadowing');
     else if (lib.id === 'ignan') startIgnanCategory('Trilingual Shadowing');
     else if (lib.id === 'asuka') startAsukaCategory('Japanese Shadowing');
+    else if (lib.id === 'heidi') startHeidiCategory('German Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

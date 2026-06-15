@@ -361,10 +361,10 @@ const TTMIK_SYNC_EPISODES = {
         title: 'Action!',
         ko: '촬영',
         pins: ['HOSIER'],
-        skillId: 'flame-kissed-bard',
-        categories: ['GoPro & Content'],
+        skillId: 'heidi-alpine-wayfarer',
+        categories: ['GoPro & Content', 'German Shadowing'],
         questIds: ['main-skit', 'main-film'],
-        shadowingIndex: 1
+        shadowingIndex: 0
     },
     7: {
         title: 'The Moon Card',
@@ -522,6 +522,16 @@ const TTMIK_SYNC_PRESETS = [
         episode: '2.65',
         reel: null,
         note: 'Mexican restaurant · Mari Ilokano native · FIFA joy · preset after BOTANIC walk',
+        autoShadow: true
+    },
+    {
+        id: 13,
+        label: 'Hosier · Ep 6 · Heidi Wayfarer',
+        shortLabel: 'HEIDI',
+        pin: 'HOSIER',
+        episode: 6,
+        reel: null,
+        note: 'Laneway lantern · German native + Korean shadow · Fast Character Bard sheet',
         autoShadow: true
     }
 ];

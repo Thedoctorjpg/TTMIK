@@ -86,6 +86,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     const asukaCats = typeof ASUKA_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => ASUKA_LIBRARY_CATEGORIES.includes(c))
         : [];
+    const heidiCats = typeof HEIDI_LIBRARY_CATEGORIES !== 'undefined'
+        ? cats.filter(c => HEIDI_LIBRARY_CATEGORIES.includes(c))
+        : [];
     const healCats = typeof HEALING_LIBRARY_CATEGORIES !== 'undefined'
         ? cats.filter(c => HEALING_LIBRARY_CATEGORIES.includes(c))
         : [];
@@ -116,6 +119,9 @@ function openLessonsForCategories(categories, preferMelbourne = true) {
     } else if (asukaCats.length) {
         activeLibraryGroup = 'Asuka Library';
         activeCategory = asukaCats[0];
+    } else if (heidiCats.length) {
+        activeLibraryGroup = 'Heidi Library';
+        activeCategory = heidiCats[0];
     } else if (preferMelbourne) {
         activeLibraryGroup = 'Melbourne Journey';
         activeCategory = cats.length ? cats[0] : 'All';
@@ -135,14 +141,15 @@ function openSkillLessons(skillId) {
 
     const hasIgnan = skill.linkedGroups?.includes('ignan');
     const hasAsuka = skill.linkedGroups?.includes('asuka');
+    const hasHeidi = skill.linkedGroups?.includes('heidi');
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasMexico && !hasCanada && !hasUsa && (
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasMexico && !hasCanada && !hasUsa && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
-    if (hasIgnan || hasAsuka || hasMexico || hasCanada || hasUsa) {
+    if (hasIgnan || hasAsuka || hasHeidi || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
     }
@@ -467,6 +474,41 @@ function practiceAsukaMaybe(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceHeidiWayfarer(opts = {}) {
+    const skillId = 'heidi-alpine-wayfarer';
+    const shadowIdx = 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(13)) {
+        setWebdramaSyncValues('HOSIER', 6, null);
+    } else {
+        setWebdramaSyncValues('HOSIER', 6, null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterHeidi === 'function') {
+        openFastCharacterHeidi();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('main-film');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceTtmikSyncShadowing() {
     const cfg = getResolvedSyncConfig();
     applyTtmikSync();
@@ -626,6 +668,7 @@ function renderBootAllPanel() {
             const boot = Object.fromEntries(params);
             if (boot.heal === '1') practiceDibAftercare();
             else if (boot.asuka === '1') practiceAsukaMaybe();
+            else if (boot.heidi === '1') practiceHeidiWayfarer({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
         });
@@ -664,6 +707,10 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('asuka') === '1' || params.get('step') === '5') {
         practiceAsukaMaybe();
+        return;
+    }
+    if (params.get('heidi') === '1') {
+        practiceHeidiWayfarer({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
@@ -891,6 +938,12 @@ function renderSyncPanel() {
             ja.textContent = phrase.ja;
             phraseBox.appendChild(ja);
         }
+        if (phrase.de) {
+            const de = document.createElement('p');
+            de.className = 'text-yellow-400/90 text-sm font-medium';
+            de.textContent = phrase.de;
+            phraseBox.appendChild(de);
+        }
         if (phrase.es) {
             const es = document.createElement('p');
             es.className = 'text-amber-400/90 text-sm font-medium';
@@ -958,6 +1011,14 @@ function renderSyncPanel() {
     asukaBtn.title = 'Japanese native input · preset 11 · FED rain glass';
     asukaBtn.onclick = () => practiceAsukaMaybe();
     actions.appendChild(asukaBtn);
+
+    const heidiBtn = document.createElement('button');
+    heidiBtn.type = 'button';
+    heidiBtn.className = 'px-5 py-3 bg-yellow-900/50 text-yellow-200 rounded-2xl text-sm font-medium hover:bg-yellow-800/70 ring-1 ring-yellow-500/30';
+    heidiBtn.textContent = 'Heidi wayfarer (Ep 6 · DE)';
+    heidiBtn.title = 'German native input · preset 13 · Fast Character Bard sheet';
+    heidiBtn.onclick = () => practiceHeidiWayfarer();
+    actions.appendChild(heidiBtn);
 
     const fifaBtn = document.createElement('button');
     fifaBtn.type = 'button';
@@ -1184,16 +1245,21 @@ function renderSkillsGrid() {
         const active = appState.activeSkillId === skill.id;
         const isIgnan = skill.linkedGroups?.includes('ignan');
         const isAsuka = skill.id === 'asuka-brisbane';
+        const isHeidi = skill.id === 'heidi-alpine-wayfarer';
         const ringActive = isIgnan
             ? 'ring-emerald-500 hover:ring-emerald-400'
             : isAsuka
                 ? 'ring-rose-500 hover:ring-rose-400'
-                : 'ring-pink-500 hover:ring-pink-400';
+                : isHeidi
+                    ? 'ring-yellow-500 hover:ring-yellow-400'
+                    : 'ring-pink-500 hover:ring-pink-400';
         const ringIdle = isIgnan
             ? 'hover:ring-emerald-500/50'
             : isAsuka
                 ? 'hover:ring-rose-500/50'
-                : 'hover:ring-pink-500/50';
+                : isHeidi
+                    ? 'hover:ring-yellow-500/50'
+                    : 'hover:ring-pink-500/50';
         const card = document.createElement('button');
         card.type = 'button';
         card.className = active
@@ -1218,7 +1284,9 @@ function renderSkillsGrid() {
                 ? 'inline-block mt-3 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full'
                 : isAsuka
                     ? 'inline-block mt-3 text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full'
-                    : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
+                    : isHeidi
+                        ? 'inline-block mt-3 text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full'
+                        : 'inline-block mt-3 text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full';
             pill.textContent = 'Active';
             card.appendChild(icon);
             card.appendChild(name);
@@ -1380,6 +1448,39 @@ function renderSkillDetail() {
         runBtn.onclick = () => practiceAsukaMaybe();
         asukaBlock.appendChild(runBtn);
         panel.appendChild(asukaBlock);
+    }
+
+    if (skill.id === 'heidi-alpine-wayfarer') {
+        const heidiBlock = document.createElement('div');
+        heidiBlock.className = 'mb-6 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl p-4';
+        const label = document.createElement('h4');
+        label.className = 'text-xs uppercase tracking-widest text-yellow-300 mb-2';
+        label.textContent = 'German native input · Ep 6 · Fast Character';
+        heidiBlock.appendChild(label);
+        const deck = document.createElement('ul');
+        deck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.de, p.ko].filter(Boolean).join(' · ');
+            deck.appendChild(li);
+        });
+        heidiBlock.appendChild(deck);
+        const runBtn = document.createElement('button');
+        runBtn.type = 'button';
+        runBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-yellow-600/30 text-yellow-200 hover:bg-yellow-600/50 mr-2';
+        runBtn.textContent = 'Invoke Heidi wayfarer (DE → KO)';
+        runBtn.onclick = () => practiceHeidiWayfarer();
+        heidiBlock.appendChild(runBtn);
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        sheetBtn.textContent = 'Create Heidi sheet';
+        sheetBtn.title = 'fastcharacter.com · Bard Lore · Wayfarer · Level 5';
+        sheetBtn.onclick = () => {
+            if (typeof openFastCharacterHeidi === 'function') openFastCharacterHeidi();
+        };
+        heidiBlock.appendChild(sheetBtn);
+        panel.appendChild(heidiBlock);
     }
 
     const notesLabel = document.createElement('h4');

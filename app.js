@@ -80,6 +80,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Asuka Library') {
         return lessons.filter(l => l.group === 'asuka');
     }
+    if (activeLibraryGroup === 'Heidi Library') {
+        return lessons.filter(l => l.group === 'heidi');
+    }
     return lessons;
 }
 
@@ -549,6 +552,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'asuka') {
         activeLibraryGroup = 'Asuka Library';
         activeCategory = 'Japanese Shadowing';
+    } else if (groupId === 'heidi') {
+        activeLibraryGroup = 'Heidi Library';
+        activeCategory = 'German Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -584,6 +590,15 @@ function startIgnanCategory(subtitle) {
 
 function startAsukaCategory(subtitle) {
     activeLibraryGroup = 'Asuka Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startHeidiCategory(subtitle) {
+    activeLibraryGroup = 'Heidi Library';
     activeCategory = subtitle;
     renderLibraryGroupFilters();
     renderCategoryFilters();
@@ -651,6 +666,9 @@ function renderJourneyDashboard() {
     if (typeof ASUKA_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(ASUKA_JOURNEY_CATEGORY);
     }
+    if (typeof HEIDI_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(HEIDI_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -666,7 +684,9 @@ function renderJourneyDashboard() {
             ? 'hover:ring-emerald-500'
             : journey.id === 'asuka'
                 ? 'hover:ring-rose-500'
-                : 'hover:ring-pink-500';
+                : journey.id === 'heidi'
+                    ? 'hover:ring-yellow-500'
+                    : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -687,7 +707,9 @@ function renderJourneyDashboard() {
             ? 'text-emerald-400 text-sm font-medium'
             : journey.id === 'asuka'
                 ? 'text-rose-400 text-sm font-medium'
-                : 'text-pink-400 text-sm font-medium';
+                : journey.id === 'heidi'
+                    ? 'text-yellow-400 text-sm font-medium'
+                    : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -704,6 +726,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'ignan').length} tracks`;
         } else if (journey.id === 'asuka') {
             count.textContent = `${lessons.filter(l => l.group === 'asuka').length} tracks`;
+        } else if (journey.id === 'heidi') {
+            count.textContent = `${lessons.filter(l => l.group === 'heidi').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -836,23 +860,42 @@ function renderJourneyDashboard() {
     }
 
     const asukaGrid = document.getElementById('asuka-quick-grid');
-    if (!asukaGrid || typeof ASUKA_COURSE_DEFS === 'undefined') return;
-    asukaGrid.textContent = '';
+    if (asukaGrid && typeof ASUKA_COURSE_DEFS !== 'undefined') {
+        asukaGrid.textContent = '';
+        ASUKA_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-rose-900/30 hover:bg-rose-800/40 ring-1 ring-rose-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-rose-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-rose-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startAsukaCategory(def.subtitle);
+            asukaGrid.appendChild(btn);
+        });
+    }
 
-    ASUKA_COURSE_DEFS.forEach(def => {
-        const btn = document.createElement('button');
-        btn.className = 'bg-rose-900/30 hover:bg-rose-800/40 ring-1 ring-rose-500/20 rounded-2xl px-4 py-3 text-left transition';
-        const titleSpan = document.createElement('span');
-        titleSpan.className = 'font-medium block text-rose-100';
-        titleSpan.textContent = def.subtitle;
-        const countSpan = document.createElement('span');
-        countSpan.className = 'text-xs text-rose-400/70';
-        countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
-        btn.appendChild(titleSpan);
-        btn.appendChild(countSpan);
-        btn.onclick = () => startAsukaCategory(def.subtitle);
-        asukaGrid.appendChild(btn);
-    });
+    const heidiGrid = document.getElementById('heidi-quick-grid');
+    if (heidiGrid && typeof HEIDI_COURSE_DEFS !== 'undefined') {
+        heidiGrid.textContent = '';
+        HEIDI_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-yellow-900/30 hover:bg-yellow-800/40 ring-1 ring-yellow-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-yellow-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-yellow-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startHeidiCategory(def.subtitle);
+            heidiGrid.appendChild(btn);
+        });
+    }
 
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
@@ -990,7 +1033,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
         } else if (bootParams.get('library') === 'melbourne-skills') {
@@ -1009,6 +1052,8 @@ window.onload = () => {
             startIgnanCategory(bootParams.get('category') || 'Trilingual Shadowing');
         } else if (bootParams.get('library') === 'asuka') {
             startAsukaCategory(bootParams.get('category') || 'Japanese Shadowing');
+        } else if (bootParams.get('library') === 'heidi') {
+            startHeidiCategory(bootParams.get('category') || 'German Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

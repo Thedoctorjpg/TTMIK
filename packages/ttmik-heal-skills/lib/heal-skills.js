@@ -219,6 +219,50 @@ const SKILLS = [
         ]
     },
     {
+        id: 'heidi-alpine-wayfarer',
+        rootFile: 'Heidi_Alpine_Wayfarer_Archetype.skill.md',
+        description: 'Heidi German Wayfarer Bard muse for lantern pilgrimage creative expression. German native input + Korean TTMIK shadowing. Use with Fast Character sheet generation, Ep 6 filming, or Flame-Kissed Bard companion rituals.',
+        activation: 'I sing my own story — Melbourne is my yes.',
+        whenToUse: [
+            'German native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Heidi preset)',
+            'Ep 6 laneway filming — sovereign flame without performance debt',
+            'Companion to Flame-Kissed Bard skits and rituals',
+            'TTMIK.html?heidi=1 — invoke Heidi German shadowing boot'
+        ],
+        procedure: [
+            'German native first: Melbourne ist mein Ja — name the yes calmly',
+            'Open Fast Character sheet: Heidi · Bard (College of Lore) · Wayfarer · Level 5',
+            'Korean shadow: 멜버른이 제 예예요 · 나는 나만의 이야기를 씁니다',
+            'One creative line or skit hook celebrating sovereign lantern path',
+            'Release: one breath · one laugh · preset 13 · no re-watch spiral'
+        ],
+        pitfalls: [
+            'Do not make Heidi a rescue mission or romance subplot',
+            'Honor German — not a gag subtitle line',
+            'Keep sheet generation separate from attachment hooks'
+        ],
+        verification: [
+            'German phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Output celebrates sovereignty and humor alchemy'
+        ],
+        korean: ['멜버른이 제 예예요.', '나는 나만의 이야기를 씁니다.', '웃음으로 놓아줄게요.', '제 길을 믿어요.'],
+        german: [
+            'Melbourne ist mein Ja.',
+            'Ich singe meine eigene Geschichte.',
+            'Mit Humor lasse ich los.',
+            'Ich vertraue meinem Weg.',
+            'Ich bin Heidi, eine Wanderin der Lieder.'
+        ],
+        integrations: [
+            'Ep 6 · preset 13 · HOSIER laneway lantern',
+            'fastcharacter.com — openFastCharacterHeidi() preset',
+            'TTMIK.html?heidi=1 — German native input boot',
+            'Flame-Kissed Bard · sovereign-skills compose lane'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -380,6 +424,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'helen-neighbor': ['helen-boundary', 'pause-breathe', 'cord-cut', 'post-dib'],
     'sua-tattoo-artist': ['cord-cut', 'no-rewatch'],
     'asuka-brisbane': ['pause-breathe', 'cord-cut'],
+    'heidi-alpine-wayfarer': ['hermit-lantern', 'daily-ritual', 'humor-release'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -408,6 +453,9 @@ function buildSkillMd(skill) {
         : '';
     const ja = skill.japanese?.length
         ? `\n## Japanese Practice (Asuka)\n\n${skill.japanese.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
+    const de = skill.german?.length
+        ? `\n## German Practice (Heidi)\n\n${skill.german.map((p) => `- ${p}`).join('\n')}\n`
         : '';
     const integrations = skill.integrations?.length
         ? `\n## Cross-App Links\n\n${list(skill.integrations)}\n`
@@ -450,7 +498,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${healingFactors}${integrations}
+${ilo}${ja}${de}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

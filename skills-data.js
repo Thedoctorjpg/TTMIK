@@ -273,6 +273,44 @@ const SKILLS = [
         ]
     },
     {
+        id: 'heidi-alpine-wayfarer',
+        name: 'Heidi — Alpine Wayfarer',
+        icon: '\u{1F3D4}',
+        tagline: 'German Bard muse for lantern pilgrimage',
+        role: 'Fast Character Wayfarer ally — German native before Korean shadow',
+        source: 'Heidi_Alpine_Wayfarer_Archetype.skill.md',
+        activationPhrases: [
+            'Heidi sings her own story — Melbourne is my yes',
+            'Ich singe meine eigene Geschichte'
+        ],
+        capabilities: [
+            'Generate Heidi D&D sheet via Fast Character preset',
+            'German native input + Korean TTMIK shadowing drills',
+            'Laneway filming companion to Flame-Kissed Bard',
+            'Wayfarer pilgrimage rituals with humor alchemy'
+        ],
+        creativePrompts: [
+            'Create Heidi Fast Character sheet — Bard Lore · Wayfarer · Level 5',
+            'Skit: German lantern monologue before Korean shadow',
+            'Wayfarer ritual for Ep 6 laneway filming'
+        ],
+        linkedGroups: ['heidi', 'melbourne', 'sovereign'],
+        linkedCategories: ['German Shadowing', 'Lantern Walk Route', 'Wayfarer Drills', 'GoPro & Content', 'Essential Foundations'],
+        shadowingPhrases: [
+            { de: 'Melbourne ist mein Ja.', ko: '멜버른이 제 예예요.', en: 'Melbourne is my yes.' },
+            { de: 'Ich singe meine eigene Geschichte.', ko: '나는 나만의 이야기를 씁니다.', en: 'I sing my own story.' },
+            { de: 'Mit Humor lasse ich los.', ko: '웃음으로 놓아줄게요.', en: 'I release with humor.' },
+            { de: 'Ich vertraue meinem Weg.', ko: '제 길을 믿어요.', en: 'I trust my path.' },
+            { de: 'Ich bin Heidi, eine Wanderin der Lieder.', ko: '저는 노래의 방랑자 하이디예요.', en: 'I am Heidi, a wanderer of songs.' }
+        ],
+        ritualSteps: [
+            'Open Fast Character — Heidi · Bard Lore · Wayfarer',
+            'German native first: Melbourne ist mein Ja',
+            'Korean shadow: 멜버른이 제 예예요 · 나는 나만의 이야기를 씁니다',
+            'One laugh — release re-watch spiral'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

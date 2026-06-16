@@ -364,6 +364,48 @@ const MULTIFORMAT_EDITS = {
             { id: 'VN5', time: '0:25', pin: 'FED', note: 'Square pause — lighter walk, no performance invoice', dur: 5 }
         ]
     },
+    'minecraft-wiki-meme': {
+        id: 'minecraft-wiki-meme',
+        label: 'Ep 7.3 · Minecraft Wiki Meme Generator (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'warm',
+        overlay: 'CRAFT',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'CRAFT', episode: '7.3', reel: null },
+        pins: ['CRAFT', 'HOSIER', 'DEGRAVES'],
+        exportTargets: ['Webdrama insert', 'Minecraft wiki meme deck', 'Humor alchemy reel'],
+        pipeline: ['minecraftWikiMeme'],
+        shots: [
+            { id: 'MC1', time: '0:00', pin: 'CRAFT', note: 'Crafting table pause — open meme generator', dur: 5 },
+            { id: 'MC2', time: '0:05', pin: 'CRAFT', note: 'English: I meme from flame — not from lack', dur: 8 },
+            { id: 'MC3', time: '0:13', pin: 'HOSIER', note: 'Bean Block / Lantern Block overlay on graffiti', dur: 6 },
+            { id: 'MC4', time: '0:19', pin: 'CRAFT', note: 'Korean shadow · 유머로 풀어낼게요', dur: 8 },
+            { id: 'MC5', time: '0:27', pin: 'DEGRAVES', note: 'Phone face-down · preset 23', dur: 3 }
+        ]
+    },
+    'rickmorty-multiverse-sql': {
+        id: 'rickmorty-multiverse-sql',
+        label: 'Ep 7.2 · Rick & Morty Multiverse SQL (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'neon',
+        overlay: 'CITADEL',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'CITADEL', episode: '7.2', reel: null },
+        pins: ['CITADEL', 'CABLE', 'SOUTH'],
+        exportTargets: ['Webdrama insert', 'Rick & Morty multiverse deck', 'PostgreSQL SQL library demo'],
+        pipeline: ['rick-morty-multiverse', 'rickmortySql'],
+        shots: [
+            { id: 'RMV1', time: '0:00', pin: 'CITADEL', note: 'Citadel portal — phone face-down · one breath', dur: 5 },
+            { id: 'RMV2', time: '0:05', pin: 'CITADEL', note: 'English: Melbourne is my dimension — not your adventure invoice', dur: 8 },
+            { id: 'RMV3', time: '0:13', pin: 'CABLE', note: 'One Interdimensional Cable clip — observe only', dur: 6 },
+            { id: 'RMV4', time: '0:19', pin: 'CITADEL', note: 'Korean shadow · Wubba Lubba dub-dub — index not absorb', dur: 8 },
+            { id: 'RMV5', time: '0:27', pin: 'SOUTH', note: 'Return to Melbourne dimension · preset 22', dur: 3 }
+        ]
+    },
     'messi-after-cookoff': {
         id: 'messi-after-cookoff',
         label: 'Ep 2.76 · Messi Argentina · After Cook-Off (30s)',

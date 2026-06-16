@@ -51,6 +51,18 @@ const PIPELINE_SOURCES = {
         label: 'Tarot-scam audit',
         paths: ['audit/tarot-scam-avoidance-audit.md'],
         role: 'Scam PSA · divine insight · RED FLAG inventory'
+    },
+    rickmortySql: {
+        label: 'Rick & Morty SQL multiverse',
+        paths: ['rickmorty-sql/README.md', 'rickmorty-data.js'],
+        url: 'TTMIK.html?rickmorty=1',
+        role: 'PostgreSQL rickmorty schema · Ep 7.2 Citadel · dimension index'
+    },
+    minecraftWikiMeme: {
+        label: 'Minecraft Wiki meme generator',
+        paths: ['minecraft-meme-data.js', 'minecraft-meme-generator.js'],
+        url: 'TTMIK.html?minecraft-meme=1',
+        role: 'Hipposgrumm parody articles · humor alchemy · minecraft.wiki'
     }
 };
 
@@ -96,8 +108,54 @@ const BARDIC_INSPIRATION = {
             mbappe: { boot: 'mbappe=1', label: 'Mbappé France · STADE' },
             ronaldo: { boot: 'ronaldo=1', label: 'Ronaldo Portugal · CANTINA' },
             fifa: { boot: 'fifa=1', label: 'Mari FIFA cantina' },
-            sua: { boot: 'sua=1', label: 'Sua cicada attune · shedding pause' }
+            sua: { boot: 'sua=1', label: 'Sua cicada attune · shedding pause' },
+            rickmorty: { boot: 'rickmorty=1', label: 'Rick & Morty multiverse · CITADEL SQL' },
+            minecraftMeme: { boot: 'minecraft-meme=1', label: 'Minecraft Wiki meme · CRAFT humor' }
         }
+    },
+    minecraftWikiMeme: {
+        label: 'Minecraft Wiki meme — humor without absorbing',
+        duration: '45s',
+        pin: 'CRAFT',
+        skillId: 'melbourne-lantern-bard',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: '유머로 풀어낼게요 — one wiki meme, then phone face-down.',
+        shadowPhrase: {
+            en: 'I meme from flame — not from lack.',
+            ko: '밈도 불꽃에서 — 부족함에서가 아니에요.'
+        },
+        steps: [
+            'Open minecraft.wiki Hipposgrumm memes navbox',
+            'Pick template — Bean Block · Lantern Block · RED FLAG Block',
+            'Generate parody article · copy markdown',
+            'Korean shadow: 유머로 풀어낼게요',
+            'Post or discard — no scroll spiral'
+        ],
+        wikiUrl: 'https://minecraft.wiki/w/User:Hipposgrumm/Memes',
+        template: 'Template:User-Hipposgrumm/Memes'
+    },
+    multiverseSql: {
+        label: 'Rick & Morty multiverse — index without absorbing',
+        duration: '60s',
+        pin: 'CITADEL',
+        skillId: 'rick-morty-multiverse',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: 'Melbourne is my dimension — I index, I do not absorb.',
+        shadowPhrase: {
+            en: 'Wubba Lubba dub-dub — but I index, I do not absorb.',
+            ko: '우바 루바 더브 더브 — 색인만 하고 흡수하지 않아요.'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one breath at Citadel portal',
+            'English: Melbourne is my dimension — not your adventure invoice',
+            'Korean shadow: 멜버른이 제 차원이에요',
+            'Optional: rickmorty-sql schema · parameterized SELECT only',
+            'Return to Melbourne dimension — no nihilism spiral'
+        ],
+        wikiUrl: 'https://rickandmorty.fandom.com/it/wiki/Rick_and_Morty_Wiki',
+        schema: 'rickmorty'
     },
     cicadaAttune: {
         label: 'Sua cicada attune — shed before you cheer',
@@ -206,7 +264,9 @@ const HEALING_FACTORS = {
         { id: 'match-attune', label: 'Attune before match', ko: '응원 전에 한 숨', skillId: 'melbourne-lantern-bard', edit: 'match-attune-ritual', questId: 'side-fifa-celebrate', pin: 'FED' },
         { id: 'rei-mercy', label: 'Rei mercy heal', ja: '観測するだけ。吸収しない。', ko: '관찰만 하고 흡수하지 않을게요', skillId: 'neon-evangelion', edit: 'rei-mercy-ritual', questId: 'side-humor', pin: 'NERV', shadowIndex: 1 },
         { id: 'cicada-attune', label: 'Sua cicada attune', ko: '새 껍질을 벗을게요', skillId: 'sua-tattoo', edit: 'cicada-attune-ritual', questId: 'side-boundary', pin: 'FED', shadowIndex: 2 },
-        { id: 'twitter-feed-heal', label: 'Twitter feed heal', ko: '피드는 쉬어도 괜찮아요', skillId: 'melbourne-lantern-bard', edit: 'twitter-feed-heal-ritual', questId: 'side-boundary', pin: 'HOME', shadowIndex: 3 }
+        { id: 'twitter-feed-heal', label: 'Twitter feed heal', ko: '피드는 쉬어도 괜찮아요', skillId: 'melbourne-lantern-bard', edit: 'twitter-feed-heal-ritual', questId: 'side-boundary', pin: 'HOME', shadowIndex: 3 },
+        { id: 'multiverse-query', label: 'Multiverse SQL index', ko: '차원은 색인만 해요', skillId: 'rick-morty-multiverse', edit: 'rickmorty-multiverse-sql', questId: 'side-humor', pin: 'CITADEL', shadowIndex: 0 },
+        { id: 'wiki-meme', label: 'Minecraft Wiki meme', ko: '유머로 풀어낼게요', skillId: 'melbourne-lantern-bard', edit: 'minecraft-wiki-meme', questId: 'side-humor', pin: 'CRAFT', shadowIndex: 0 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -318,6 +378,41 @@ const TTMIK_SYNC_PINS = {
         questIds: ['side-humor', 'side-boundary'],
         formats: ['webdrama', 'neon-evangelion-moon'],
         character: 'Neon'
+    },
+    CITADEL: {
+        label: 'Citadel of Ricks Portal',
+        place: 'Federation/ACMI portal aesthetic · PostgreSQL dimension index',
+        episodes: ['7.2'],
+        reels: [],
+        skillId: 'rick-morty-multiverse',
+        categories: ['Multiverse Shadowing', 'SQL Dimension Drills', 'Tech & Connectivity'],
+        questIds: ['side-humor', 'side-boundary'],
+        formats: ['webdrama', 'rickmorty-multiverse-sql'],
+        character: 'Rick',
+        pipeline: ['rickmortySql']
+    },
+    CABLE: {
+        label: 'Interdimensional Cable',
+        place: 'One absurd clip · observe · phone face-down',
+        episodes: ['7.2'],
+        reels: [],
+        skillId: 'rick-morty-multiverse',
+        categories: ['Multiverse Shadowing', 'GoPro & Content'],
+        questIds: ['side-humor'],
+        formats: ['webdrama', 'rickmorty-multiverse-sql'],
+        character: 'Morty'
+    },
+    CRAFT: {
+        label: 'Crafting Table Meme Pause',
+        place: 'Hipposgrumm wiki parody · humor alchemy · observe memes without absorbing',
+        episodes: ['7.3'],
+        reels: [],
+        skillId: 'melbourne-lantern-bard',
+        categories: ['GoPro & Content', 'Humor Alchemy'],
+        questIds: ['side-humor'],
+        formats: ['webdrama', 'minecraft-wiki-meme'],
+        character: 'Lo3tus',
+        pipeline: ['minecraftWikiMeme']
     },
     COLLINS: {
         label: 'Collins Street',
@@ -597,6 +692,40 @@ const TTMIK_SYNC_EPISODES = {
         character: 'Neon',
         languages: ['ja', 'ko', 'en'],
         event: 'Moon-card neon observe lane'
+    },
+    '7.2': {
+        title: 'Rick & Morty Multiverse SQL',
+        ko: '멀티버스',
+        display: 'Ep 7.2',
+        pins: ['CITADEL', 'CABLE', 'SOUTH'],
+        skillId: 'rick-morty-multiverse',
+        categories: ['Multiverse Shadowing', 'Citadel Portal Route', 'SQL Dimension Drills', 'Tech & Connectivity'],
+        questIds: ['side-humor', 'side-boundary'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['rickmorty-multiverse-sql', 'neon-evangelion-moon'],
+        character: 'Rick',
+        languages: ['en', 'ko'],
+        event: 'Citadel portal SQL index · observe dimensions without absorbing',
+        pipeline: ['rickmortySql'],
+        wikiUrl: 'https://rickandmorty.fandom.com/it/wiki/Rick_and_Morty_Wiki'
+    },
+    '7.3': {
+        title: 'Minecraft Wiki Meme Generator',
+        ko: '위키밈',
+        display: 'Ep 7.3',
+        pins: ['CRAFT', 'HOSIER', 'DEGRAVES'],
+        skillId: 'melbourne-lantern-bard',
+        categories: ['GoPro & Content', 'Humor Alchemy'],
+        questIds: ['side-humor'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['minecraft-wiki-meme'],
+        character: 'Lo3tus',
+        languages: ['en', 'ko'],
+        event: 'Hipposgrumm parody wiki articles · humor-release lane',
+        pipeline: ['minecraftWikiMeme'],
+        wikiUrl: 'https://minecraft.wiki/w/User:Hipposgrumm/Memes'
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -894,8 +1023,49 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Moon-card neon · Japanese + Korean shadow · installNeonEvangelionLook() · Fast Character Monk sheet',
         autoShadow: true
+    },
+    {
+        id: 22,
+        label: 'Citadel · Ep 7.2 · Rick & Morty Multiverse',
+        shortLabel: 'RICK',
+        pin: 'CITADEL',
+        episode: '7.2',
+        reel: null,
+        note: 'Citadel portal · English + Korean shadow · rickmorty SQL schema · Fast Character Artificer sheet',
+        autoShadow: true
+    },
+    {
+        id: 23,
+        label: 'CRAFT · Ep 7.3 · Minecraft Wiki Meme',
+        shortLabel: 'MEME',
+        pin: 'CRAFT',
+        episode: '7.3',
+        reel: null,
+        note: 'Hipposgrumm parody articles · humor alchemy · minecraft.wiki meme generator',
+        autoShadow: true
     }
 ];
+
+/** Webseries multiverse — dimension lanes across Melbourne Bardic Adventure */
+const WEBSERIES_MULTIVERSE = {
+    theme: 'Every dimension is a row — Melbourne is my yes.',
+    mantra: 'I index, I do not absorb.',
+    sqlSchema: 'rickmorty',
+    wikiHub: 'https://rickandmorty.fandom.com/it/wiki/Rick_and_Morty_Wiki',
+    lanes: [
+        { id: 'fifa', label: 'FIFA nation arcs', episodes: ['2.64', '2.65', '2.66', '2.76', '2.77', '2.78'], presets: [16, 17, 18, 19, 20] },
+        { id: 'ignan', label: 'Ignan healing walk', episode: '2.6', preset: 10 },
+        { id: 'cookoff', label: 'Date-night cook-off', episode: '2.75', presets: [6, 7, 8] },
+        { id: 'neon', label: 'Neon Evangelion observe', episode: '7.1', preset: 21 },
+        { id: 'rickmorty', label: 'Rick & Morty SQL multiverse', episode: '7.2', preset: 22, boot: 'rickmorty=1' },
+        { id: 'minecraft-meme', label: 'Minecraft Wiki meme generator', episode: '7.3', preset: 23, boot: 'minecraft-meme=1' }
+    ],
+    handoff: {
+        from: '7.2',
+        to: '7.3',
+        note: 'Citadel SQL index → Crafting Table meme pause — humor alchemy without feed absorption'
+    }
+};
 
 /** Lane D — Mari FIFA celebration (after Ignan walk · optional same evening) */
 const TTMIK_FIFA_CELEBRATION_ROUTE = [
@@ -939,6 +1109,20 @@ const TTMIK_DATE_NIGHT_ROUTE = [
     { time: '19:55', pin: 'FED', note: 'Attune before match — one breath before Kane lane · ?attune=1&lane=kane', sync: { pin: 'FED', episode: '2.78', reel: null } },
     { time: '20:00', pin: 'WEMBLEY', note: 'After Brasil — Harry Kane England striker · FIFA+ watch · Goal! Come on England! · preset 20', presetId: 20, sync: { pin: 'WEMBLEY', episode: '2.78', reel: null }, watchUrl: 'https://www.fifa.com/en/watch/KpcWpp8Yj0WimV_mwGsZgw' },
     { time: '06:12', pin: 'DEGRAVES', note: 'Dawn croissant — girls-love Ch.2 · phones optional', presetId: 8 }
+];
+
+/** Lane F — Minecraft Wiki meme (after Ep 7.2 · optional late night) */
+const TTMIK_MINECRAFT_MEME_ROUTE = [
+    { time: '22:30', pin: 'CRAFT', note: 'Crafting table pause — Hipposgrumm meme generator · ?minecraft-meme=1 · preset 23', presetId: 23, sync: { pin: 'CRAFT', episode: '7.3', reel: null } },
+    { time: '22:40', pin: 'HOSIER', note: 'One meme screenshot — graffiti bean block overlay · phone face-down', sync: { pin: 'HOSIER', episode: '7.3', reel: null } },
+    { time: '22:50', pin: 'DEGRAVES', note: '유머로 풀어낼게요 — lighter walk home', sync: { pin: 'DEGRAVES', episode: '7.3', reel: null } }
+];
+
+/** Lane E — Multiverse SQL (after Ep 7.1 NERV · optional same evening) */
+const TTMIK_MULTIVERSE_ROUTE = [
+    { time: '22:00', pin: 'CITADEL', note: 'Citadel portal — SQL index pause · ?rickmorty=1 · preset 22', presetId: 22, sync: { pin: 'CITADEL', episode: '7.2', reel: null } },
+    { time: '22:10', pin: 'CABLE', note: 'One Interdimensional Cable clip — observe · phone face-down', sync: { pin: 'CABLE', episode: '7.2', reel: null } },
+    { time: '22:20', pin: 'SOUTH', note: 'Return to Melbourne dimension — handoff from NERV neon', sync: { pin: 'SOUTH', episode: '7.2', reel: null } }
 ];
 
 function resolveEpisodeKey(value) {
@@ -989,6 +1173,26 @@ function getCicadaAttuneRitual() {
 
 function getTwitterFeedHealRitual() {
     return BARDIC_INSPIRATION.twitterFeedHeal;
+}
+
+function getMultiverseSqlRitual() {
+    return BARDIC_INSPIRATION.multiverseSql;
+}
+
+function getMinecraftWikiMemeRitual() {
+    return BARDIC_INSPIRATION.minecraftWikiMeme;
+}
+
+function getWebseriesMultiverse() {
+    return WEBSERIES_MULTIVERSE;
+}
+
+function getMultiverseRoute() {
+    return TTMIK_MULTIVERSE_ROUTE;
+}
+
+function getMinecraftMemeRoute() {
+    return TTMIK_MINECRAFT_MEME_ROUTE;
 }
 
 function getHealingFactors() {

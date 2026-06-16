@@ -50,7 +50,20 @@ Unified shoot order pulls from the full pipeline — optimised in `webdrama-sync
 19:15  CANTINA (Ep 2.65) → 20:00  Portugal cheer → 20:15  STADE (Ep 2.66)
 ```
 
-TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk · presets **16–20** = FIFA nation lanes (Ronaldo → Mbappé → Messi → Vinicus → Kane). **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). **Lane D:** `TTMIK_FIFA_CELEBRATION_ROUTE`. Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey` · `match-attune-ritual` · `bend-it-beckham` · `mari-fifa-celebration` · `mbappe-counter-attack` · `messi-after-cookoff` · `vinicus-brasil-samba` · `harry-kane-england-striker`.
+TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk · presets **16–20** = FIFA nation lanes (Ronaldo → Mbappé → Messi → Vinicus → Kane) · preset **21** = Ep 7.1 NERV neon · preset **22** = Ep 7.2 Citadel multiverse SQL. **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). **Lane D:** `TTMIK_FIFA_CELEBRATION_ROUTE`. **Lane E:** `TTMIK_MULTIVERSE_ROUTE` (Rick & Morty SQL index · after Ep 7.1). **Lane F:** `TTMIK_MINECRAFT_MEME_ROUTE` (Minecraft Wiki meme generator · after Ep 7.2). Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey` · `match-attune-ritual` · `bend-it-beckham` · `mari-fifa-celebration` · `mbappe-counter-attack` · `messi-after-cookoff` · `vinicus-brasil-samba` · `harry-kane-england-striker` · `rei-mercy-ritual` · `rickmorty-multiverse-sql` · `minecraft-wiki-meme`.
+
+### Webseries multiverse (`WEBSERIES_MULTIVERSE`)
+
+| Lane | Episode | Preset | Boot | Metaphor |
+|------|---------|--------|------|----------|
+| FIFA nation arcs | 2.64–2.78 | 16–20 | `?kane=1` etc. | Captain cheer without rescue |
+| Ignan healing walk | 2.6 | 10 | `?ignan=1` | Trilingual own-path |
+| Date-night cook-off | 2.75 | 6–8 | `?step=6` | Hydration not romance |
+| Neon Evangelion observe | 7.1 | 21 | `?neon=1` | Observe · do not absorb |
+| Rick & Morty SQL multiverse | 7.2 | 22 | `?rickmorty=1` | Index dimensions · Melbourne is my yes |
+| Minecraft Wiki meme generator | 7.3 | 23 | `?minecraft-meme=1` | Hipposgrumm parody · humor alchemy |
+
+**Handoff:** Ep 7.2 Citadel SQL index → Ep 7.3 Crafting Table meme pause — humor alchemy without feed absorption. **Wiki:** [Hipposgrumm Memes](https://minecraft.wiki/w/User:Hipposgrumm/Memes) · **Schema:** `rickmorty` (postgresql-sql-helper library).
 
 ---
 
@@ -112,6 +125,8 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **Insert · Ep 2.76 Messi Argentina** | 9:16 | 30s | HOTEL → DEGRAVES → BOCA | Argentine Shadowing · messi-argentina-playmaker |
 | **Insert · Ep 2.77 Vinicus Brasil** | 9:16 | 30s | SAMBA → FED → FLINDERS | Brazilian Shadowing · vinicus-brasil-samba |
 | **Insert · Ep 2.78 Harry Kane England** | 9:16 | 30s | WEMBLEY → PUB → COLLINS · FIFA+ watch | English Shadowing · harry-kane-england-striker |
+| **Insert · Ep 7.1 Neon Evangelion** | 9:16 | 30s | NERV → SOUTH → FLINDERS · Moon-card neon | Japanese Shadowing · neon-evangelion-moon |
+| **Insert · Ep 7.2 Rick & Morty Multiverse** | 9:16 | 30s | CITADEL → CABLE → SOUTH · SQL index | Multiverse Shadowing · rickmorty-multiverse-sql |
 | **Pipeline montage** | 9:16 | 45s | All pins · bardic inspiration | Mixed |
 
 ### Melbourne shoot pins (reels-first clusters)
@@ -125,7 +140,11 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | **DEGRAVES** | Degraves St café strip | Ep 2 cliff · Ep 3 open · **Ep 2.75 score + dawn** · **Ep 2.76 stroll** | Morning coffee · golden hour date | Daily Life |
 | **FLINDERS** | Flinders St Station steps / clocks | Ep 5 tram · **Ep 2.75 meet** · **Ep 2.77 close** | Overcast drama · date meet | Transportation |
 | **FED** | Federation Square glass / steps | Ep 5 rain · **Ep 2.6 grief pause** · **match-attune** · nation handoffs | Rain or blue hour | Melbourne Arrival |
-| **SOUTH** | Southbank Promenade (Yarra railing) | Ep 4 night · Ep 7 Moon | Night neon | Emergency Protocol |
+| **SOUTH** | Southbank Promenade (Yarra railing) | Ep 4 night · Ep 7 Moon · **Ep 7.1 neon** · **Ep 7.2 return** | Night neon | Emergency Protocol |
+| **NERV** | ACMI / Federation neon command pause | **Ep 7.1** Moon-card observe | Night screen glow | Japanese Shadowing |
+| **CITADEL** | Federation Citadel portal aesthetic | **Ep 7.2** multiverse SQL index | Night portal neon | Multiverse Shadowing |
+| **CABLE** | Interdimensional Cable observe clip | **Ep 7.2** one gag · phone face-down | Interior screen | Tech & Connectivity |
+| **CRAFT** | Crafting table meme generator pause | **Ep 7.3** Hipposgrumm parody · humor alchemy | Interior UI glow | GoPro & Content |
 | **COLLINS** | Collins St walk (business bustle) | Ep 3 headset gag · Reel A A6 · **Ep 2.78 close** | Day | Social & Cultural |
 | **PRINCES** | Princes Bridge (dawn timelapse) | Ep 7 cliffhanger · Ep 8 open | Sunrise | Cultural Sites |
 | **BOTANIC** | Royal Botanic Gardens lake path | Ep 8 lantern · **Ep 2.6 Ignan walk** | Sunrise soft | Self-Intimacy |
@@ -972,6 +991,123 @@ Intercut **Reel B** (not impressed → kind of → HR said no) then **Reel A** (
 
 **TEXT:** `NEXT: THE WORLD`
 
+**Optional Lane E inserts (same evening · after Ep 7 main unit):** Ep 7.1 NERV neon (preset 21) → Ep 7.2 Citadel multiverse SQL (preset 22). Boot: `TTMIK.html?neon=1` · `TTMIK.html?rickmorty=1` · `TTMIK.html?heal-factor=multiverse-query`
+
+---
+
+# EPISODE 7.1 — 「ネオン」NEON EVANGELION MOON
+
+**Fast insert** · NERV observe lane · post-Moon-card scroll trigger · Japanese native + Korean shadow  
+**Runtime:** 30 sec · **Pins:** NERV (command pause) → SOUTH (neon railing) → FLINDERS (tram close)  
+**Quest:** `side-humor` · **Skill:** `neon-evangelion` · **Edit:** `rei-mercy-ritual` · **Preset:** **21**  
+**Boot:** `TTMIK.html?neon=1` · `TTMIK.html?rei=1` · `TTMIK.html?heal-factor=rei-mercy`  
+**Character:** Rei muse · Fast Character Monk (Way of Mercy)
+
+**Logline:** After the Moon-card scroll temptation, Bard pauses at NERV command aesthetic. One Rei mercy line — observe without absorbing — then Southbank neon boundary and lighter tram walk.
+
+**Caption pitch:** *Observe only. Neon is my boundary.*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **NE1** | 0:00 | @NERV | Command pause — phone face-down | **BARD (VO):** "Episode 7.1 lesson: confusion is a passage point." | Neon hum |
+| **NE2** | 0:05 | @NERV | Japanese native — observe line | **BARD (JA):** "観測するだけ。吸収しない。" | — |
+| **NE3** | 0:13 | @SOUTH | Yarra railing neon | **TEXT:** `OBSERVE NOT ABSORB` | Night air |
+| **NE4** | 0:19 | @SOUTH | Korean shadow | **BARD:** "관찰만 하고 흡수하지 않을게요." | — |
+| **NE5** | 0:27 | @FLINDERS | Tram stop — lighter walk | **BARD:** "One breath. My path." · **TEXT:** `preset 21` | Tram murmur |
+
+**On-set:** Preset 21 · `installNeonEvangelionLook()` optional · no scroll spiral
+
+**Tags:** `#NeonEvangelion #NERV #MoonCard #ObserveNotAbsorb #Ep71`
+
+---
+
+# EPISODE 7.2 — 「멀티버스」RICK & MORTY MULTIVERSE SQL
+
+**Fast insert** · Citadel portal lane · PostgreSQL dimension index metaphor · English native + Korean shadow  
+**Runtime:** 30 sec · **Pins:** CITADEL (portal pause) → CABLE (one clip) → SOUTH (Melbourne return)  
+**Quest:** `side-humor` · **Skill:** `rick-morty-multiverse` · **Edit:** `rickmorty-multiverse-sql` · **Preset:** **22**  
+**Boot:** `TTMIK.html?rickmorty=1` · `TTMIK.html?rick=1` · `TTMIK.html?multiverse=1` · `TTMIK.html?heal-factor=multiverse-query`  
+**SQL bridge:** `rickmorty-sql/README.md` → postgresql-sql-helper `rickmorty` schema  
+**Character:** Rick muse · Fast Character Artificer (Sage)
+
+**Logline:** After NERV observe lane, Bard opens the Citadel portal at Federation Square. One Interdimensional Cable gag — index without absorbing — then Southbank return with Melbourne as the sovereign dimension row.
+
+**Caption pitch:** *Melbourne is my dimension — I index, I do not absorb.*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **RMV1** | 0:00 | @CITADEL | Portal pause — GoPro off | **BARD (VO):** "Episode 7.2 lesson: every dimension is a row." | Portal swell |
+| **RMV2** | 0:05 | @CITADEL | English native — boundary | **BARD:** "Melbourne is my dimension — not your adventure invoice." | — |
+| **RMV3** | 0:13 | @CABLE | One Cable clip — observe only | **TEXT:** `INDEX NOT ABSORB` | Cable gag low |
+| **RMV4** | 0:19 | @CITADEL | Korean shadow | **BARD:** "우바 루바 더브 더브 — 색인만 하고 흡수하지 않아요." | — |
+| **RMV5** | 0:27 | @SOUTH | Return to Melbourne dimension | **BARD:** "I observe the multiverse — Melbourne is my yes." · **TEXT:** `preset 22` | Night air |
+
+### Trilingual shadowing deck
+
+| English (native) | Korean (TTMIK) | Notes |
+|------------------|----------------|-------|
+| Melbourne is my dimension — not your adventure invoice. | 멜버른이 제 차원이에요 — 당신 모험 청구서가 아니에요. | Citadel portal · preset 22 |
+| Wubba Lubba dub-dub — but I index, I do not absorb. | 우바 루바 더브 더브 — 근데 저는 색인만 하고 흡수하지 않아요. | SQL metaphor · parameterized SELECT |
+| I observe the multiverse — Melbourne is my yes. | 멀티버스를 관찰해요 — 멜버른이 제 예예요. | SOUTH return · handoff from 7.1 |
+
+**On-set:** Preset 22 · phone face-down at CITADEL · optional `rickmorty-sql` schema review · no nihilism spiral
+
+**Tags:** `#RickAndMorty #Multiverse #Citadel #PostgreSQL #Ep72 #MelbourneDimension`
+
+---
+
+## Lane E — Multiverse SQL (after Ep 7.1 NERV · optional same evening)
+
+```
+22:00  CITADEL — Ep 7.2 Citadel portal · SQL index pause · ?rickmorty=1 · preset 22
+22:10  CABLE — One Interdimensional Cable clip — observe · phone face-down
+22:20  SOUTH — Return to Melbourne dimension — handoff from NERV neon
+```
+
+**Lane E opener:** `21:30 NERV` before CITADEL (Ep 7.1 preset 21 optional)
+
+---
+
+# EPISODE 7.3 — 「위키밈」MINECRAFT WIKI MEME GENERATOR
+
+**Fast insert** · Hipposgrumm parody wiki lane · humor alchemy after multiverse SQL  
+**Runtime:** 30 sec · **Pins:** CRAFT (generator pause) → HOSIER (graffiti overlay) → DEGRAVES (walk home)  
+**Quest:** `side-humor` · **Skill:** `melbourne-lantern-bard` · **Edit:** `minecraft-wiki-meme` · **Preset:** **23**  
+**Boot:** `TTMIK.html?minecraft-meme=1` · `TTMIK.html?meme=1` · `TTMIK.html?heal-factor=wiki-meme`  
+**Wiki source:** [User:Hipposgrumm/Memes](https://minecraft.wiki/w/User:Hipposgrumm/Memes) · navbox `Template:User-Hipposgrumm/Memes`
+
+**Logline:** After the Citadel portal lane, Bard opens the Journey tab meme generator. One Bean Block or Lantern Block parody article — 유머로 풀어낼게요 — then Hosier graffiti screenshot and Degraves stroll lighter.
+
+**Caption pitch:** *I meme from flame — not from lack.*
+
+### Shot-by-shot board (30s)
+
+| Shot | Time | Pin | Framing / move | Dialogue / overlay | Audio |
+|------|------|-----|----------------|-------------------|-------|
+| **MC1** | 0:00 | @CRAFT | Crafting table UI pause | **BARD (VO):** "Episode 7.3 lesson: wiki memes are observation, not absorption." | Crafting plink |
+| **MC2** | 0:05 | @CRAFT | English native — humor line | **BARD:** "I meme from flame — not from lack." | — |
+| **MC3** | 0:13 | @HOSIER | Bean Block sprite on graffiti | **TEXT:** `HUMOR NOT RESCUE` | Street murmur |
+| **MC4** | 0:19 | @CRAFT | Korean shadow | **BARD:** "유머로 풀어낼게요." | — |
+| **MC5** | 0:27 | @DEGRAVES | Flat white close · phone face-down | **TEXT:** `preset 23` | Café ambience |
+
+**On-set:** Preset 23 · copy markdown from generator · optional tweet · no scroll spiral
+
+**Tags:** `#MinecraftWiki #Hipposgrumm #BeanBlock #HumorAlchemy #Ep73`
+
+---
+
+## Lane F — Minecraft Wiki meme (after Ep 7.2 · optional late night)
+
+```
+22:30  CRAFT — Ep 7.3 meme generator · ?minecraft-meme=1 · preset 23
+22:40  HOSIER — graffiti bean block overlay · one screenshot
+22:50  DEGRAVES — 유머로 풀어낼게요 · lighter walk home
+```
+
 ---
 
 # EPISODE 8 — 「세계」THE WORLD
@@ -1030,7 +1166,7 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | Jun 20 PM | 4 | HOTEL → SOUTH | Ep 4 | Helen 20s clip | — |
 | Jun 20 eve | 2.75, 2.76–2.78 | FLINDERS → DEGRAVES → HOTEL → BOCA → SAMBA → FED → WEMBLEY | Cook-off + nation arc | date-night-cookoff · messi · vinicus · kane | FIFA+ watch |
 | Jun 21 AM | 5 | FED (rain) → FLINDERS | Ep 5 | Veil Lumen 45s | — |
-| Jun 21 PM | 7 | SOUTH → FLINDERS night | Ep 7 | Essay seed footage | — |
+| Jun 21 PM | 7, 7.1, 7.2 | SOUTH → FLINDERS night · NERV → CITADEL → CABLE | Ep 7 · Lane E inserts | rei-mercy-ritual · rickmorty-multiverse-sql | Essay seed footage |
 | Jun 22 AM | 7, 8, dawn | PRINCES → HOSIER → BOTANIC · DEGRAVES 06:12 | Ep 8 · after-the-date | Recap Short · Trailer final | Veil Lumen 16:9 |
 
 ### Reel A — shot × location × format
@@ -1131,6 +1267,9 @@ Serve locally: `cd video-editor && python -m http.server 8000`
 | 5 | Asuka | 멜버른이 제 선택이에요 |
 | 6 | Flame-Kissed Bard | 웃음으로 놓아줄게요 |
 | 7 | rach3l / Lo3tus | 제 길을 믿어요 |
+| 7.1 | Neon · Rei mercy | 관찰만 하고 흡수하지 않을게요 · 観測するだけ。吸収しない。 |
+| 7.2 | Rick · Artificer Sage | Melbourne is my dimension · 차원은 색인만 해요 |
+| 7.3 | Lo3tus · humor alchemy | 유머로 풀어낼게요 · I meme from flame |
 | 8 | All | Quest completion |
 
 ### 30s cutdowns (Reels) — edit order
@@ -1178,6 +1317,12 @@ BARD: "Lantern's lit."
 
 **Ep 2.78 Harry Kane England:** `HK1@WEMBLEY → HK2@WEMBLEY → HK3@WEMBLEY → HK4@WEMBLEY → HK5@PUB`
 
+**Ep 7.1 Neon Evangelion:** `NE1@NERV → NE2@NERV → NE3@SOUTH → NE4@SOUTH → NE5@FLINDERS`
+
+**Ep 7.2 Rick & Morty Multiverse:** `RMV1@CITADEL → RMV2@CITADEL → RMV3@CABLE → RMV4@CITADEL → RMV5@SOUTH`
+
+**Ep 7.3 Minecraft Wiki Meme:** `MC1@CRAFT → MC2@CRAFT → MC3@HOSIER → MC4@CRAFT → MC5@DEGRAVES`
+
 ### Veil Lumen essay assembly (16:9 · 3–5 min)
 
 | Segment | Pin | Source ep | Notes |
@@ -1200,6 +1345,7 @@ BARD: "Lantern's lit."
 | FED (attune) | Self-Intimacy · match-attune · pause-breathe |
 | CINEMA / CANTINA | Cinema Encounters · Restaurant Dining · ronaldo-portugal-glory |
 | STADE / BOCA / SAMBA / WEMBLEY / PUB | Nation shadowing decks · presets 16–20 |
+| NERV / CITADEL / CABLE | Ep 7.1–7.2 multiverse lanes · presets 21–22 · `library=evangelion` · `library=rickmorty` |
 
 ---
 

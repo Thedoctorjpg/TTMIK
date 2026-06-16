@@ -48,6 +48,9 @@ function switchTab(tabId) {
     if (tabId === 4) {
         renderJourneyDashboard();
         renderMultiformatEditorPanel();
+        if (typeof renderMinecraftMemeGeneratorPanel === 'function') {
+            renderMinecraftMemeGeneratorPanel();
+        }
     }
     if (tabId === 5) updateProgressUI();
 }
@@ -103,6 +106,12 @@ function getLessonsForGroup() {
     }
     if (activeLibraryGroup === 'Kane Library') {
         return lessons.filter(l => l.group === 'kane');
+    }
+    if (activeLibraryGroup === 'Evangelion Library') {
+        return lessons.filter(l => l.group === 'evangelion');
+    }
+    if (activeLibraryGroup === 'Rick & Morty Multiverse Library') {
+        return lessons.filter(l => l.group === 'rickmorty');
     }
     return lessons;
 }
@@ -596,6 +605,12 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'kane') {
         activeLibraryGroup = 'Kane Library';
         activeCategory = 'English Shadowing';
+    } else if (groupId === 'evangelion') {
+        activeLibraryGroup = 'Evangelion Library';
+        activeCategory = 'Japanese Shadowing';
+    } else if (groupId === 'rickmorty') {
+        activeLibraryGroup = 'Rick & Morty Multiverse Library';
+        activeCategory = 'Multiverse Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -719,6 +734,15 @@ function startEvangelionCategory(subtitle) {
     switchTab(1);
 }
 
+function startRickMortyCategory(subtitle) {
+    activeLibraryGroup = 'Rick & Morty Multiverse Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -806,6 +830,9 @@ function renderJourneyDashboard() {
     if (typeof EVANGELION_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(EVANGELION_JOURNEY_CATEGORY);
     }
+    if (typeof RICKMORTY_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(RICKMORTY_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -839,7 +866,9 @@ function renderJourneyDashboard() {
                                                 ? 'hover:ring-rose-500'
                                                 : journey.id === 'evangelion'
                                                     ? 'hover:ring-violet-500'
-                                                    : 'hover:ring-pink-500';
+                                                    : journey.id === 'rickmorty'
+                                                        ? 'hover:ring-teal-500'
+                                                        : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -876,7 +905,11 @@ function renderJourneyDashboard() {
                                             ? 'text-lime-400 text-sm font-medium'
                                             : journey.id === 'kane'
                                                 ? 'text-rose-400 text-sm font-medium'
-                                                : 'text-pink-400 text-sm font-medium';
+                                                : journey.id === 'evangelion'
+                                                    ? 'text-violet-400 text-sm font-medium'
+                                                    : journey.id === 'rickmorty'
+                                                        ? 'text-teal-400 text-sm font-medium'
+                                                        : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -909,6 +942,10 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'vinicus').length} tracks`;
         } else if (journey.id === 'kane') {
             count.textContent = `${lessons.filter(l => l.group === 'kane').length} tracks`;
+        } else if (journey.id === 'evangelion') {
+            count.textContent = `${lessons.filter(l => l.group === 'evangelion').length} tracks`;
+        } else if (journey.id === 'rickmorty') {
+            count.textContent = `${lessons.filter(l => l.group === 'rickmorty').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -1230,6 +1267,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const rickmortyGrid = document.getElementById('rickmorty-quick-grid');
+    if (rickmortyGrid && typeof RICKMORTY_COURSE_DEFS !== 'undefined') {
+        rickmortyGrid.textContent = '';
+        RICKMORTY_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-teal-900/30 hover:bg-teal-800/40 ring-1 ring-teal-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-teal-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-teal-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startRickMortyCategory(def.subtitle);
+            rickmortyGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1356,6 +1412,9 @@ window.onload = () => {
         renderSkillsUI();
         renderJourneyDashboard();
         renderMultiformatEditorPanel();
+        if (typeof renderMinecraftMemeGeneratorPanel === 'function') {
+            renderMinecraftMemeGeneratorPanel();
+        }
         updateProgressUI();
 
         const resumeIndex = Math.min(appState.currentLesson, lessons.length - 1);
@@ -1366,7 +1425,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('tweet-heal') || bootParams.has('feed-heal') || bootParams.get('tweet') === 'heal'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
@@ -1404,6 +1463,8 @@ window.onload = () => {
             startKaneCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'evangelion') {
             startEvangelionCategory(bootParams.get('category') || 'Japanese Shadowing');
+        } else if (bootParams.get('library') === 'rickmorty') {
+            startRickMortyCategory(bootParams.get('category') || 'Multiverse Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

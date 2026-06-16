@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-15 · 19 tracks
+ * Healed: 2026-06-16 · 21 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -205,6 +205,34 @@ const HEALING_FACTOR_DECK = [
         "edit": "twitter-feed-heal-ritual",
         "ko": "피드는 쉬어도 괜찮아요",
         "en": "The feed can rest."
+    },
+    {
+        "factorId": "multiverse-query",
+        "title": "Multiverse SQL index",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=multiverse-query",
+        "note": "rickmorty-multiverse-sql · quest side-humor",
+        "skillId": "rick-morty-multiverse",
+        "pin": "CITADEL",
+        "shadowIndex": 0,
+        "questId": "side-humor",
+        "edit": "rickmorty-multiverse-sql",
+        "ko": "차원은 색인만 해요",
+        "en": ""
+    },
+    {
+        "factorId": "wiki-meme",
+        "title": "Minecraft Wiki meme",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=wiki-meme",
+        "note": "minecraft-wiki-meme · quest side-humor",
+        "skillId": "melbourne-lantern-bard",
+        "pin": "CRAFT",
+        "shadowIndex": 0,
+        "questId": "side-humor",
+        "edit": "minecraft-wiki-meme",
+        "ko": "유머로 풀어낼게요",
+        "en": ""
     }
 ];
 

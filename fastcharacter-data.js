@@ -147,6 +147,26 @@ const FAST_CHARACTER_MESSI = {
     note: 'Mastermind · Level 5 · Neutral Good — post cook-off Argentina ally'
 };
 
+/** Rick — Artificer Sage muse · Ep 7.2 Citadel multiverse SQL */
+const FAST_CHARACTER_RICK = {
+    id: 'rick',
+    label: 'Rick — Multiverse Artificer',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Rick',
+    randomname: 'no',
+    pcname: 'Rick',
+    pcclass: 'Artificer',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Sage',
+    pcgender: 'male',
+    pcalignment: 'CN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Artificer · Level 5 · Chaotic Neutral — Citadel portal SQL index ally'
+};
+
 /** Mbappé — French Battle Master Fighter muse · FIFA counter-attack */
 const FAST_CHARACTER_MBAPPE = {
     id: 'mbappe',
@@ -197,7 +217,9 @@ const FAST_CHARACTER_PRESETS = {
     vinicus: FAST_CHARACTER_VINICUS,
     kane: FAST_CHARACTER_KANE,
     rei: FAST_CHARACTER_REI,
-    neon: FAST_CHARACTER_REI
+    neon: FAST_CHARACTER_REI,
+    rick: FAST_CHARACTER_RICK,
+    rickmorty: FAST_CHARACTER_RICK
 };
 
 function buildFastCharacterFormData(preset) {
@@ -277,4 +299,8 @@ function openFastCharacterRei() {
 
 function openFastCharacterNeon() {
     openFastCharacterRei();
+}
+
+function openFastCharacterRick() {
+    openFastCharacterSheet(FAST_CHARACTER_RICK);
 }

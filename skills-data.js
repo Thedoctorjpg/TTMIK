@@ -631,6 +631,46 @@ const SKILLS = [
         ]
     },
     {
+        id: 'rick-morty-multiverse',
+        name: 'Rick — Multiverse SQL Index',
+        icon: '\u{1F9ED}',
+        tagline: 'Citadel portal — index dimensions without absorbing nihilism',
+        role: 'Fast Character Artificer ally — English native before Korean shadow',
+        source: 'Rick_Morty_Multiverse_Archetype.skill.md',
+        activationPhrases: [
+            'Melbourne is my dimension — I index, I do not absorb',
+            'Wubba Lubba dub-dub — but Melbourne is my yes'
+        ],
+        capabilities: [
+            'Generate Rick D&D sheet via Fast Character preset',
+            'English native input + Korean TTMIK shadowing drills',
+            'PostgreSQL rickmorty schema multiverse index metaphor',
+            'Citadel portal rituals — no nihilism · no adventure invoice'
+        ],
+        creativePrompts: [
+            'Create Rick Fast Character sheet — Artificer · Sage · Level 5',
+            'Skit: Citadel portal before Korean shadow after NERV neon',
+            'SQL dimension drill for Ep 7.2 multiverse lane'
+        ],
+        linkedGroups: ['rickmorty', 'evangelion', 'melbourne', 'sovereign'],
+        linkedCategories: ['Multiverse Shadowing', 'Citadel Portal Route', 'SQL Dimension Drills', 'Tech & Connectivity'],
+        shadowingPhrases: [
+            { en: 'Melbourne is my dimension — not your adventure invoice.', ko: '멜버른이 제 차원이에요 — 당신 모험 청구서가 아니에요.' },
+            { en: 'Wubba Lubba dub-dub — but I index, I do not absorb.', ko: '우바 루바 더브 더브 — 색인만 하고 흡수하지 않아요.' },
+            { en: 'Every dimension is a row — my yes stays in Melbourne.', ko: '모든 차원은 한 행이에요 — 제 예는 멜버른에 있어요.' },
+            { en: 'I travel without becoming Morty on your feed.', ko: '당신 피드의 모티가 되지 않고 여행해요.' },
+            { en: 'I am Rick, an artificer from Dimension C-137.', ko: '저는 C-137 차원에서 온 아티피서 릭이에요.' }
+        ],
+        ritualSteps: [
+            'CITADEL portal — phone face-down · GoPro off',
+            'Open Fast Character — Rick · Artificer · Sage',
+            'English native first: Melbourne is my dimension',
+            'Korean shadow: 멜버른이 제 차원이에요 · 우바 루바 더브 더브',
+            'Optional: rickmorty-sql schema review · parameterized queries only',
+            'One pass — no portal binge spiral · preset 22'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

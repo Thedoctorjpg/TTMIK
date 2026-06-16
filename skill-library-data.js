@@ -137,6 +137,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'Japanese Shadowing',
         tag: 'evangelion'
     },
+    'rick-morty-multiverse': {
+        source: 'Rick_Morty_Multiverse_Archetype.skill.md',
+        invoke: 'practiceRickMortyMultiverse',
+        altBoot: 'rickmorty=1',
+        preset: 22,
+        libraryGroup: 'Rick & Morty Multiverse Library',
+        libraryCategory: 'Multiverse Shadowing',
+        tag: 'rickmorty'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -363,6 +372,14 @@ const COMPOSED_LIBRARIES = [
         accent: 'violet'
     },
     {
+        id: 'rickmorty',
+        label: 'Rick & Morty Multiverse Library',
+        description: 'English native · Korean shadow — Ep 7.2 Citadel · PostgreSQL index',
+        boot: 'library=rickmorty',
+        skills: ['rick-morty-multiverse'],
+        accent: 'teal'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -525,6 +542,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'vinicus') startVinicusCategory('Brazilian Shadowing');
     else if (lib.id === 'kane') startKaneCategory('English Shadowing');
     else if (lib.id === 'evangelion') startEvangelionCategory('Japanese Shadowing');
+    else if (lib.id === 'rickmorty') startRickMortyCategory('Multiverse Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

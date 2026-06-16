@@ -297,6 +297,14 @@ function practiceHealingFactor(factorId, opts = {}) {
         practiceTwitterFeedHeal(opts);
         return true;
     }
+    if (factorId === 'multiverse-query') {
+        practiceRickMortyMultiverse(opts);
+        return true;
+    }
+    if (factorId === 'wiki-meme') {
+        practiceMinecraftWikiMeme(opts);
+        return true;
+    }
     if (factorId === 'no-rewatch') {
         if (typeof startHealCategory === 'function') {
             startHealCategory('Daily Integration');
@@ -455,6 +463,8 @@ function bootSkillById(skillId, opts = {}) {
             startAsukaCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Evangelion Library' && entry.libraryCategory) {
             startEvangelionCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Rick & Morty Multiverse Library' && entry.libraryCategory) {
+            startRickMortyCategory(entry.libraryCategory);
         } else {
             openSkillLessons(skillId);
         }
@@ -955,6 +965,66 @@ function practiceVinicusSamba(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceMinecraftWikiMeme(opts = {}) {
+    setWebdramaSyncValues('CRAFT', '7.3', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill('melbourne-lantern-bard');
+    selectedSkillId = 'melbourne-lantern-bard';
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(0);
+    } else {
+        startSkillPractice('melbourne-lantern-bard');
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    if (typeof openMinecraftMemeGenerator === 'function') {
+        openMinecraftMemeGenerator({
+            templateId: opts.templateId || 'lantern-block',
+            logQuest: false
+        });
+    } else {
+        switchTab(4);
+    }
+}
+
+function practiceRickMortyMultiverse(opts = {}) {
+    const skillId = 'rick-morty-multiverse';
+    const shadowIdx = 0;
+
+    setWebdramaSyncValues('CITADEL', '7.2', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterRick === 'function') {
+        openFastCharacterRick();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceNeonEvangelion(opts = {}) {
     const skillId = 'neon-evangelion';
     const shadowIdx = 0;
@@ -1296,6 +1366,8 @@ function renderBootAllPanel() {
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
             else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1', openWatch: boot.watch === '1' });
             else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true });
+            else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
+            else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
             else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
@@ -1416,6 +1488,14 @@ function handleTtmikSyncBoot() {
             logQuest: params.get('quest') !== '0',
             postTweet: params.get('post') !== '0'
         });
+        return;
+    }
+    if (params.get('rickmorty') === '1' || params.get('rick') === '1' || params.get('multiverse') === '1') {
+        practiceRickMortyMultiverse({ openSheet: params.get('sheet') === '1' });
+        return;
+    }
+    if (params.get('minecraft-meme') === '1' || params.get('meme') === '1') {
+        practiceMinecraftWikiMeme({ templateId: params.get('template') });
         return;
     }
     if (params.get('neon') === '1' || params.get('evangelion') === '1' || params.get('rei') === '1') {
@@ -1838,6 +1918,22 @@ function renderSyncPanel() {
     neonBtn.title = 'Moon-card neon · Japanese native · preset 21 · install neon look';
     neonBtn.onclick = () => practiceNeonEvangelion();
     actions.appendChild(neonBtn);
+
+    const rickmortyBtn = document.createElement('button');
+    rickmortyBtn.type = 'button';
+    rickmortyBtn.className = 'px-5 py-3 bg-teal-900/50 text-teal-200 rounded-2xl text-sm font-medium hover:bg-teal-800/70 ring-1 ring-teal-500/30';
+    rickmortyBtn.textContent = 'Rick & Morty multiverse (Ep 7.2 · EN)';
+    rickmortyBtn.title = 'Citadel portal · English native · preset 22 · rickmorty SQL schema';
+    rickmortyBtn.onclick = () => practiceRickMortyMultiverse();
+    actions.appendChild(rickmortyBtn);
+
+    const memeBtn = document.createElement('button');
+    memeBtn.type = 'button';
+    memeBtn.className = 'px-5 py-3 bg-lime-900/50 text-lime-200 rounded-2xl text-sm font-medium hover:bg-lime-800/70 ring-1 ring-lime-500/30';
+    memeBtn.textContent = 'Minecraft Wiki meme (Ep 7.3)';
+    memeBtn.title = 'Hipposgrumm parody articles · humor alchemy · preset 23';
+    memeBtn.onclick = () => practiceMinecraftWikiMeme();
+    actions.appendChild(memeBtn);
 
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
@@ -2907,6 +3003,50 @@ function renderSkillDetail() {
         };
         neonBlock.appendChild(sheetBtn);
         panel.appendChild(neonBlock);
+    }
+
+    if (skill.id === 'rick-morty-multiverse') {
+        const rmBlock = document.createElement('div');
+        rmBlock.className = 'mb-6 bg-teal-500/10 border border-teal-500/20 rounded-2xl p-4';
+        const rmLabel = document.createElement('h4');
+        rmLabel.className = 'text-xs uppercase tracking-widest text-teal-300 mb-2';
+        rmLabel.textContent = 'Rick & Morty Multiverse · Ep 7.2 · Citadel SQL';
+        rmBlock.appendChild(rmLabel);
+        const rmNote = document.createElement('p');
+        rmNote.className = 'text-sm text-zinc-400 mb-3';
+        rmNote.textContent = 'CITADEL portal → CABLE clip → SOUTH return. PostgreSQL rickmorty schema · index without absorbing.';
+        rmBlock.appendChild(rmNote);
+        const rmDeck = document.createElement('ul');
+        rmDeck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.en, p.ko].filter(Boolean).join(' · ');
+            rmDeck.appendChild(li);
+        });
+        rmBlock.appendChild(rmDeck);
+        const rmRun = document.createElement('button');
+        rmRun.type = 'button';
+        rmRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-teal-600/30 text-teal-200 hover:bg-teal-600/50 mr-2';
+        rmRun.textContent = 'Invoke multiverse lane (EN → KO)';
+        rmRun.onclick = () => practiceRickMortyMultiverse();
+        rmBlock.appendChild(rmRun);
+        const sqlBtn = document.createElement('button');
+        sqlBtn.type = 'button';
+        sqlBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-teal-600/30 text-teal-200 hover:bg-teal-600/50 mr-2';
+        sqlBtn.textContent = 'Multiverse SQL heal';
+        sqlBtn.title = 'TTMIK.html?heal-factor=multiverse-query';
+        sqlBtn.onclick = () => practiceHealingFactor('multiverse-query');
+        rmBlock.appendChild(sqlBtn);
+        const rickSheet = document.createElement('button');
+        rickSheet.type = 'button';
+        rickSheet.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        rickSheet.textContent = 'Create Rick sheet';
+        rickSheet.title = 'fastcharacter.com · Rick · Artificer · Sage · Level 5';
+        rickSheet.onclick = () => {
+            if (typeof openFastCharacterRick === 'function') openFastCharacterRick();
+        };
+        rmBlock.appendChild(rickSheet);
+        panel.appendChild(rmBlock);
     }
 
     const notesLabel = document.createElement('h4');

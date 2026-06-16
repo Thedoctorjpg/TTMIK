@@ -1,10 +1,10 @@
 # Security Audit: TTMIK Audio Lab (Re-audit)
 
 **Repository:** https://github.com/Thedoctorjpg/TTMIK  
-**Commit:** `7326c1a` — *Add companion projects and healed FIFA skill archetypes*  
-**Prior audit:** `a41b518` (2026-06-16 Messi lane) · remote re-run below  
-**Auditor:** Hermes CLI (`security audit`, `doctor`, `status`) + `node scripts/boot-all.js` + companion `npm audit`  
-**Date:** 2026-06-16  
+**Commit:** `5caf0b3` — *Add webseries multiverse lanes: Rick & Morty SQL, Minecraft Wiki meme generator*  
+**Prior audit:** `7326c1a` (2026-06-16 tarot-scam + FIFA lanes) · audit chain re-run below  
+**Auditor:** Hermes CLI (`security audit`, `doctor`, `status`) + `node scripts/boot-all.js` + Rei mercy heal (`neon-evangelion`) + companion `npm audit`  
+**Date:** 2026-06-17  
 **Scope:** Full client app + specialty libraries (`healing-library-data.js`, `fifa-nations-data.js`, `ignan-data.js`, `asuka-data.js`, `messi-data.js`, `ronaldo-data.js`, `mbappe-data.js`, `skill-library-data.js`), serverless webhook (`api/ttmik-webhook.js`), Hermes tooling (`packages/ttmik-heal-skills/`), companion apps (`lets-cook/`, `shopify-twitter/`, `girls-love/`, `Veil-Lumen/`, `video-editor/`)
 
 ---
@@ -27,7 +27,7 @@ The `089a60a` hardening pass resolved all prior **high** and most **medium** fin
 
 ---
 
-## Hermes CLI Results (2026-06-16 remote re-run)
+## Hermes CLI Results (2026-06-17 audit chain re-run)
 
 ```bash
 hermes security audit --json
@@ -62,8 +62,8 @@ TTMIK browser runtime has no npm lockfile at repo root. Hermes venv advisories r
 | ----- | ------ |
 | `~/.hermes/.env` | ✓ exists |
 | `~/.hermes/config.yaml` | ✓ v24 |
-| `~/.hermes/skills/creative/` | ✓ **16** healed archetypes (incl. Messi, Ronaldo, Mbappé) |
-| xAI OAuth | ✓ logged in (refreshed 2026-06-16) |
+| `~/.hermes/skills/creative/` | ✓ **19** healed archetypes (incl. neon-evangelion, rick-morty-multiverse, Messi, Ronaldo) |
+| xAI OAuth | ✓ logged in (refreshed 2026-06-17) |
 | Security advisories | ✓ none active |
 | Model | grok-4-1-fast-reasoning via xAI Grok OAuth |
 | Optional tools (browser, web search, discord) | ⚠ not configured — expected for static TTMIK client |
@@ -72,10 +72,11 @@ TTMIK browser runtime has no npm lockfile at repo root. Hermes venv advisories r
 
 | Step | Result |
 | ---- | ------ |
-| Heal library from sources | 15 tracks (`healing-library-data.js` generated) |
-| Hermes heal-skills | 16 `.skill.md` → `.devin/skills/` + `~/.hermes/skills/creative/` |
-| Library build | **318** tracks · syntax + HTML script refs **passed** |
-| Boot registry | **16** skills · **14** composed libraries · all `.skill.md` present |
+| Heal library from sources | 21 tracks (`healing-library-data.js` generated — 16 factors + 5 post-blessing) |
+| Hermes heal-skills | 19 `.skill.md` → `.devin/skills/` + `~/.hermes/skills/creative/` |
+| Library build | **358** tracks · syntax + HTML script refs **passed** |
+| Boot registry | **20** skills · **18** composed libraries · all `.skill.md` present |
+| Rei mercy heal | `hermes -s neon-evangelion` · `rei-mercy` factor · NERV · Ep 7.1 · **complete** |
 
 ---
 

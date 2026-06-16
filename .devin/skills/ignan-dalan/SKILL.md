@@ -73,4 +73,4 @@ metadata:
 - Linked lessons via **Open linked lessons**
 
 ---
-*Healed to Hermes agentskills.io format — 2026-06-15*
+*Healed to Hermes agentskills.io format — 2026-06-16*

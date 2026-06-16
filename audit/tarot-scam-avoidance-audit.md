@@ -1,9 +1,9 @@
 # Hermes Audit: Avoiding Tarot-Predicted Scams
 
 **Repository:** https://github.com/Thedoctorjpg/TTMIK  
-**Commit:** `7326c1a`  
+**Commit:** `5caf0b3`  
 **Hermes CLI:** `D:\Scripts\hermes.exe`  
-**Date:** 2026-06-16 (remote re-run)  
+**Date:** 2026-06-17 (audit chain + Rei mercy heal re-run)  
 **Scope:** Spiritual/tarot romance scam threat model · Hermes supply chain · TTMIK skills/quest/webdrama · shopify-twitter tsundere catalog · companion apps  
 **Auditor:** Hermes `security audit` + `doctor` + `status` + static creative-security review (Grok Build)
 
@@ -46,7 +46,7 @@ Prior PyJWT/pip advisories are **cleared** in the current Hermes install.
 | Check | Result |
 | ----- | ------ |
 | Security advisories (runtime) | ✓ None active |
-| Creative skills synced | ✓ **16** in `~/.hermes/skills/creative/` (incl. helen-neighbor, melbourne-lantern-bard, messi-argentina-playmaker) |
+| Creative skills synced | ✓ **19** in `~/.hermes/skills/creative/` (incl. neon-evangelion, rick-morty-multiverse, helen-neighbor, melbourne-lantern-bard) |
 | `~/.hermes/.env` | ✓ exists |
 | Auth providers | ✓ xAI OAuth logged in (grok-4-1-fast-reasoning) |
 | Optional web/browser tools | ⚠ not configured — static review only |
@@ -155,7 +155,7 @@ Scammers blend **divination** with **romance fraud** to manufacture urgency and 
 
 ### Finding 6–10: Informational
 
-- Hermes supply chain — **cleared** (0 findings, 2026-06-16)
+- Hermes supply chain — **cleared** (0 findings, 2026-06-17)
 - `lets-cook` esbuild/vite — 2 high (dev-only); patch before publishing cook-off app
 - `shopify-twitter` form-data — 1 high; `npm audit fix` before App Runner deploy
 - TTMIK CSP/Tailwind CDN — unchanged from `audit/ttmik-security-audit.md`
@@ -204,6 +204,25 @@ Skills tab → preset **1** (HOSIER · Ep 2 · Reel B) or lane **sovereign** →
 
 ---
 
+## Hermes Audit Chain + Rei Mercy Heal (2026-06-17)
+
+Chained supply-chain audit → doctor → status → `boot-all` → Rei Ayanami mercy heal on Hermes.
+
+| Step | Command | Result |
+| ---- | ------- | ------ |
+| 1 | `hermes security audit --json` | **0 findings** · 64 components |
+| 2 | `hermes doctor` | ✓ no advisories · xAI OAuth · 1 optional setup note |
+| 3 | `hermes status` | ✓ grok-4-1-fast-reasoning · OAuth refreshed 2026-06-17 |
+| 4 | `node scripts/boot-all.js` | **358** tracks · **19** skills · **18** libraries · build passed |
+| 5 | Rei mercy heal | `hermes -s neon-evangelion -z "…rei-mercy…"` — **complete** |
+
+**Rei Ayanami heal factor:** `rei-mercy` · NERV pin · Ep 7.1 · preset **21**  
+**Observe without absorbing:** 観測するだけ。吸収しない。 · 관찰만 하고 흡수하지 않을게요  
+**Boot:** `TTMIK.html?heal-factor=rei-mercy` · `TTMIK.html?rei=1`  
+**Moon-card counter:** Rei mercy ritual counters tarot-scroll absorption — pair with RED FLAG checklist (Step 1) before any paid-reading DM.
+
+---
+
 ## Hermes Session Commands (recommended)
 
 ```bash
@@ -212,6 +231,13 @@ hermes security audit --json
 
 # Health
 hermes doctor
+hermes status
+
+# Full boot chain
+node scripts/boot-all.js
+
+# Rei mercy heal on audit chain
+hermes -s neon-evangelion -z "Apply Rei mercy heal on Hermes audit chain. NERV · Ep 7.1 · observe without absorbing. Boot: TTMIK.html?heal-factor=rei-mercy"
 
 # Scam-heavy creative session
 hermes -s helen-neighbor,melbourne-lantern-bard,flame-kissed-bard
@@ -235,9 +261,10 @@ Tweet hook example: *“The cards didn’t show your bank details. Block.”*
 
 ## Remediation Checklist
 
-- [x] Hermes `security audit` run (2026-06-16 remote re-run — 0 findings)
-- [x] Hermes `doctor` + `status` run (2026-06-16)
-- [x] `node scripts/boot-all.js` (318 tracks · 16 skills · 14 libraries)
+- [x] Hermes `security audit` run (2026-06-17 audit chain — 0 findings)
+- [x] Hermes `doctor` + `status` run (2026-06-17)
+- [x] `node scripts/boot-all.js` (358 tracks · 19 skills · 18 libraries)
+- [x] Rei mercy heal on Hermes audit chain (`neon-evangelion` · `rei-mercy` · NERV · Ep 7.1)
 - [x] Tarot-scam playbook documented (this file)
 - [x] Hermes venv advisories cleared (0 findings)
 - [x] `~/.hermes/.env` present

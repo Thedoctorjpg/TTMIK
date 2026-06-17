@@ -17,7 +17,7 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import { getProducts, getOrders, getProductById, getOrderById, registerWebhook, listWebhooks, createProduct, importToShopifyFromExternal } from './shopify.js';
-import { postToTwitter, tweetNewProduct, tweetNewOrder, postMarketingTweet, getTweetMetrics, tweetSpecialEvent, checkAdsAccess, promoteTweet, verifyTwitterCredentials } from './twitter.js';
+import { postToTwitter, tweetNewProduct, tweetNewOrder, postMarketingTweet, lookupPost, getTweetMetrics, tweetSpecialEvent, checkAdsAccess, promoteTweet, verifyTwitterCredentials } from './twitter.js';
 import { 
   logger, 
   verifyShopifyWebhook, 
@@ -73,7 +73,7 @@ import {
   generateProductAd 
 } from './imagine.js';
 
-dotenv.config();
+dotenv.config({ path: join(__dirname, '..', '.env') });
 
 // Load secrets from AWS SSM Parameter Store early if enabled (for App Runner/ECS secure config)
 await loadSecretsFromSSM().catch(() => {});
@@ -125,7 +125,8 @@ app.get('/', (req, res) => {
       'GET /grocery/:store/products (incl. Uber Eats/DoorDash), POST /tweet-grocery, /generate-grocery-ad, /import/grocery-to-shopify',
       'GET /tsundere-dating/:niche/products, GET /tsundere-dating/optimal-list, POST /tweet-tsundere-dating, /generate-tsundere-ad, /import/tsundere-to-shopify',
       'POST /api/ttmik-webhook   (TTMIK Tweet app → x.com/adhdloganberry)',
-      'POST /api/ttmik-heal-feed (Heal @adhdloganberry Twitter feed)'
+      'POST /api/ttmik-heal-feed (Heal @adhdloganberry Twitter feed)',
+      'GET  /twitter/post/:id    (X API v2 Post Lookup — verify published Post)'
     ]
   });
 });
@@ -662,6 +663,27 @@ app.get('/twitter/verify', async (req, res) => {
     match: result.user?.username === handle,
     profile: `https://x.com/${handle}`,
   });
+});
+
+/** X API v2 Post Lookup — GET /2/tweets/:id */
+app.get('/twitter/post/:id', async (req, res) => {
+  try {
+    const postId = String(req.params.id || '').replace(/^mock_/, '');
+    if (!/^[0-9]{1,19}$/.test(postId)) {
+      return res.status(400).json({ error: 'Invalid Post ID (numeric, 1–19 digits)' });
+    }
+    const result = await lookupPost(postId);
+    if (result.mock) {
+      return res.status(503).json({ error: 'X API not configured', mock: true });
+    }
+    if (!result.available) {
+      return res.status(result.notFound ? 404 : 502).json(result);
+    }
+    return res.json(result);
+  } catch (err) {
+    logger.error('GET /twitter/post/:id failed', err);
+    return res.status(500).json({ error: 'Post lookup failed' });
+  }
 });
 
 app.get('/twitter/ads-access', async (req, res) => {

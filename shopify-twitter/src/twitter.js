@@ -115,11 +115,15 @@ export async function postToTwitter(text, imageUrls = []) {
     const tweetUrl = `https://x.com/i/web/status/${createdTweet.id}`;
     logger.info('Tweet posted successfully', { id: createdTweet.id, url: tweetUrl });
 
+    const lookup = await lookupPost(createdTweet.id);
+
     return {
       success: true,
       tweetId: createdTweet.id,
       url: tweetUrl,
-      text
+      text,
+      verified: lookup.available === true,
+      lookup,
     };
   } catch (err) {
     // Handle common Twitter errors gracefully
@@ -216,6 +220,57 @@ export async function postMarketingTweet(item, options = {}) {
   }
 
   return postToTwitter(tweetText, imageUrls);
+}
+
+/**
+ * Look up a Post by ID — X API v2 GET /2/tweets/:id
+ * @see https://docs.x.com/x-api/posts/lookup/introduction
+ */
+export async function lookupPost(postId, options = {}) {
+  const client = getTwitterClient();
+  if (!client) {
+    return { mock: true, postId, available: false };
+  }
+
+  const tweetFields = options.tweetFields || [
+    'created_at',
+    'text',
+    'author_id',
+    'public_metrics',
+    'edit_history_tweet_ids',
+    'edit_controls',
+  ];
+
+  try {
+    const result = await client.v2.singleTweet(postId, {
+      'tweet.fields': tweetFields.join(','),
+      expansions: options.expansions || 'author_id',
+      'user.fields': options.userFields || 'username,name',
+    });
+
+    const author = result.includes?.users?.[0];
+    return {
+      success: true,
+      available: true,
+      postId,
+      post: result.data,
+      author,
+      url: `https://x.com/i/web/status/${postId}`,
+      editHistory: result.data?.edit_history_tweet_ids,
+    };
+  } catch (err) {
+    const notFound = err.code === 404
+      || err.data?.status === 404
+      || err.data?.title === 'Not Found Error';
+    logger.warn('Post lookup failed', { postId, error: err.message, notFound });
+    return {
+      success: false,
+      available: false,
+      postId,
+      error: err.message,
+      notFound,
+    };
+  }
 }
 
 /**
@@ -344,6 +399,7 @@ export default {
   tweetNewOrder, 
   verifyTwitterCredentials,
   postMarketingTweet,
+  lookupPost,
   getTweetMetrics,
   tweetSpecialEvent,
   checkAdsAccess

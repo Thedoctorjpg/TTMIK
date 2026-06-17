@@ -14,7 +14,9 @@
     "build": "npm run build:frontend && echo 'Frontend built. Backend is ready (Docker will handle full build).'",
     "build:tsundere-catalog": "node scripts/build-tsundere-catalog.js",
     "setup:twitter": "node scripts/setup-twitter-auth.js",
-    "verify:twitter": "node scripts/verify-twitter-auth.js"
+    "verify:twitter": "node scripts/verify-twitter-auth.js",
+    "twitter:ready": "node scripts/twitter-ready.js",
+    "post:ttmik-status": "node scripts/post-ttmik-status.js"
   },
   "keywords": [
     "shopify",

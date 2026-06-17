@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { healSkills, SKILLS } = require('../packages/ttmik-heal-skills/lib/heal-skills');
+const { healSkills, SKILLS, getHermesLocalUpdateCmd, getHermesCli, updateHermesWorktreeManifest } = require('../packages/ttmik-heal-skills/lib/heal-skills');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -107,5 +107,17 @@ const preloadIds = SKILLS.map((s) => s.id);
 console.log('\n6. Hermes preload (all .skill.md archetypes)');
 console.log(`   hermes -s ${preloadIds.join(',')}`);
 console.log('   hermes /ttmik-all  (bundle — run node scripts/preload-skills.js to create)');
+console.log(`   ${getHermesLocalUpdateCmd(ROOT, getHermesCli())}`);
+console.log('   (terminal.cwd + external_dirs patched via heal-skills — or: node scripts/hermes-patch.js)');
+
+const trackCount = (typeof sandbox.BOOT_ALL_INDEX === 'object' && sandbox.BOOT_ALL_INDEX.trackCount) || 368;
+updateHermesWorktreeManifest(ROOT, {
+    tracks: trackCount,
+    skillsRegistry: bootIds.length,
+    composedLibraries: libs.length,
+    hermesSkills: SKILLS.length,
+    bootAllAt: new Date().toISOString()
+});
+console.log('\n7. Hermes worktree manifest updated (.devin + ~/.hermes)');
 
 console.log('\nBoot-all complete.');

@@ -46,6 +46,7 @@ const JS_FILES = [
     'scripts/build-libraries.js',
     'scripts/boot-all.js',
     'scripts/preload-skills.js',
+    'scripts/hermes-patch.js',
     'packages/ttmik-webhook/index.js',
     'packages/ttmik-heal-skills/lib/heal-skills.js',
     'packages/ttmik-heal-skills/bin/cli.js'

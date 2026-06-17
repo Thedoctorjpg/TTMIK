@@ -1,0 +1,20 @@
+{
+  "worktree": "C:/Users/david/.grok/worktrees/korean/2026-06-16-3776366d",
+  "externalDir": "C:/Users/david/.grok/worktrees/korean/2026-06-16-3776366d/.devin/skills",
+  "bundle": "ttmik-all",
+  "patchedAt": "2026-06-17T19:23:58.102Z",
+  "gitHead": "231ce75",
+  "tracks": 368,
+  "skillsRegistry": 21,
+  "composedLibraries": 19,
+  "hermesSkills": 20,
+  "bootAllAt": "2026-06-17T19:23:53.513Z",
+  "manifestPathHermes": "C:/Users/david/.hermes/ttmik-worktree.json",
+  "manifestPathDevin": "C:/Users/david/.grok/worktrees/korean/2026-06-16-3776366d/.devin/ttmik-worktree.json",
+  "hermesReadFile": "C:/Users/david/.hermes/ttmik-worktree.json",
+  "localUpdateCmd": "Set-Location \"C:\\Users\\david\\.grok\\worktrees\\korean\\2026-06-16-3776366d\"; & \"D:\\Scripts\\hermes.exe\" chat -Q -q \"/ttmik-all local update — read C:/Users/david/.hermes/ttmik-worktree.json (no tilde) and report manifest fields; do not run terminal\"",
+  "bootAllCmd": "node scripts/boot-all.js",
+  "hermesPatchCmd": "node scripts/hermes-patch.js",
+  "powershellBootAll": "Set-Location \"C:\\Users\\david\\.grok\\worktrees\\korean\\2026-06-16-3776366d\"; node scripts/boot-all.js",
+  "note": "Hermes bash cannot cd Windows paths — run boot-all in PowerShell; read hermesReadFile via read_file (no tilde)."
+}

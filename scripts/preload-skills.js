@@ -5,7 +5,7 @@
  */
 const path = require('path');
 const { execSync } = require('child_process');
-const { healSkills, SKILLS } = require('../packages/ttmik-heal-skills/lib/heal-skills');
+const { healSkills, SKILLS, getHermesLocalUpdateCmd } = require('../packages/ttmik-heal-skills/lib/heal-skills');
 
 const ROOT = path.join(__dirname, '..');
 const BUNDLE = 'ttmik-all';
@@ -33,7 +33,8 @@ try {
     console.error(`   Bundle create failed — run manually:\n   hermes bundles create ${BUNDLE} --force ${ids.map((id) => `--skill ${id}`).join(' ')}\n`);
 }
 
-console.log('3. Preload commands');
+console.log('3. Preload commands (worktree patched via heal-skills)');
 console.log(`   ${preloadCmd}`);
 console.log(`   ${bundleCmd}`);
+console.log(`   ${getHermesLocalUpdateCmd(ROOT, HERMES)}`);
 console.log('\nPreload complete.');

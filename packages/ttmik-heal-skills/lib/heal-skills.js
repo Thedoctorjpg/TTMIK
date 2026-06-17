@@ -991,6 +991,228 @@ function writeFileEnsuringDir(filePath, content) {
     return filePath;
 }
 
+function toHermesPath(dir) {
+    return path.resolve(dir).replace(/\\/g, '/');
+}
+
+function getHermesConfigPath() {
+    return path.join(process.env.USERPROFILE || process.env.HOME, '.hermes', 'config.yaml');
+}
+
+function patchYamlTerminalCwd(content, worktree) {
+    if (/^terminal:\r?\n/m.test(content)) {
+        if (/^  cwd: /m.test(content.split(/^terminal:\r?\n/m)[1]?.split(/\r?\n(?=[A-Za-z_])/)[0] || '')) {
+            return content.replace(/(^terminal:\r?\n(?:  .+\r?\n)*?  cwd: )[^\r\n]+/m, `$1${worktree}`);
+        }
+        return content.replace(/^terminal:\r?\n/m, `terminal:\n  cwd: ${worktree}\n`);
+    }
+    return `${content.trimEnd()}\n\nterminal:\n  backend: local\n  cwd: ${worktree}\n`;
+}
+
+function patchYamlExternalDirs(content, dirs) {
+    const dirLines = dirs.map((d) => `  - ${d}`).join('\n');
+    const skillsBlock = /(^skills:\r?\n(?:  .+\r?\n)*?  external_dirs:\r?\n)(?:  - [^\r\n]+\r?\n)+/m;
+    if (skillsBlock.test(content)) {
+        return content.replace(skillsBlock, `$1${dirLines}\n`);
+    }
+    if (/^skills:\r?\n/m.test(content)) {
+        return content.replace(/^skills:\r?\n/m, `skills:\n  external_dirs:\n${dirLines}\n`);
+    }
+    return `${content.trimEnd()}\n\nskills:\n  external_dirs:\n${dirLines}\n`;
+}
+
+function getHermesCli() {
+    return process.env.HERMES_CLI || (process.platform === 'win32' ? 'D:\\Scripts\\hermes.exe' : 'hermes');
+}
+
+function getHermesManifestPath() {
+    return toHermesPath(path.join(getHermesHome(), 'ttmik-worktree.json'));
+}
+
+function getHermesLocalUpdateQuery() {
+    return `/ttmik-all local update — read ${getHermesManifestPath()} (no tilde) and report manifest fields; do not run terminal`;
+}
+
+function getHermesLocalUpdateCmd(root, hermesCli) {
+    const worktree = toHermesPath(root);
+    const cli = hermesCli || getHermesCli();
+    const query = getHermesLocalUpdateQuery();
+    if (process.platform === 'win32') {
+        return `Set-Location "${worktree.replace(/\//g, '\\')}"; & "${cli}" chat -Q -q "${query}"`;
+    }
+    return `cd "${worktree}" && ${cli} chat -Q -q "${query}"`;
+}
+
+function getHermesHome() {
+    return path.join(process.env.USERPROFILE || process.env.HOME, '.hermes');
+}
+
+function getGitHead(root) {
+    try {
+        const { execSync } = require('child_process');
+        return execSync('git rev-parse --short HEAD', { cwd: root, encoding: 'utf8' }).trim();
+    } catch {
+        return null;
+    }
+}
+
+function buildWorktreeManifest(projectRoot, worktree, externalDir, extra = {}) {
+    const manifestPathHermes = getHermesManifestPath();
+    const wtWin = worktree.replace(/\//g, '\\');
+    return {
+        worktree,
+        externalDir,
+        bundle: 'ttmik-all',
+        patchedAt: new Date().toISOString(),
+        gitHead: extra.gitHead ?? getGitHead(projectRoot),
+        tracks: extra.tracks ?? null,
+        skillsRegistry: extra.skillsRegistry ?? null,
+        composedLibraries: extra.composedLibraries ?? null,
+        hermesSkills: extra.hermesSkills ?? SKILLS.length,
+        bootAllAt: extra.bootAllAt ?? null,
+        manifestPathHermes,
+        manifestPathDevin: `${worktree}/.devin/ttmik-worktree.json`,
+        hermesReadFile: manifestPathHermes,
+        localUpdateCmd: getHermesLocalUpdateCmd(projectRoot, getHermesCli()),
+        bootAllCmd: 'node scripts/boot-all.js',
+        hermesPatchCmd: 'node scripts/hermes-patch.js',
+        powershellBootAll: process.platform === 'win32'
+            ? `Set-Location "${wtWin}"; node scripts/boot-all.js`
+            : `cd "${worktree}" && node scripts/boot-all.js`,
+        note: 'Hermes bash cannot cd Windows paths — run boot-all in PowerShell; read hermesReadFile via read_file (no tilde).',
+        ...extra
+    };
+}
+
+function writeHermesWorktreeManifest(projectRoot, worktree, externalDir, extra = {}) {
+    const manifest = buildWorktreeManifest(projectRoot, worktree, externalDir, extra);
+    const written = [];
+
+    const hermesManifest = path.join(getHermesHome(), 'ttmik-worktree.json');
+    fs.mkdirSync(path.dirname(hermesManifest), { recursive: true });
+    fs.writeFileSync(hermesManifest, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+    written.push(hermesManifest);
+
+    const devinManifest = path.join(projectRoot, '.devin', 'ttmik-worktree.json');
+    fs.mkdirSync(path.dirname(devinManifest), { recursive: true });
+    fs.writeFileSync(devinManifest, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+    written.push(devinManifest);
+
+    return { manifest, manifestPath: hermesManifest, devinManifestPath: devinManifest, written };
+}
+
+function readExistingManifestStats() {
+    try {
+        const manifestFile = path.join(getHermesHome(), 'ttmik-worktree.json');
+        if (!fs.existsSync(manifestFile)) return {};
+        const existing = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+        return {
+            tracks: existing.tracks ?? null,
+            skillsRegistry: existing.skillsRegistry ?? null,
+            composedLibraries: existing.composedLibraries ?? null,
+            bootAllAt: existing.bootAllAt ?? null
+        };
+    } catch {
+        return {};
+    }
+}
+
+function updateHermesWorktreeManifest(root, extra = {}) {
+    const projectRoot = path.resolve(root);
+    const worktree = toHermesPath(projectRoot);
+    const externalDir = `${worktree}/.devin/skills`;
+    return writeHermesWorktreeManifest(projectRoot, worktree, externalDir, {
+        ...readExistingManifestStats(),
+        ...extra
+    });
+}
+
+function patchYamlEnvPassthrough(content, vars) {
+    const lines = vars.map((v) => `  - ${v}`).join('\n');
+    const terminalMatch = content.match(/^terminal:\r?\n[\s\S]*?(?=\r?\n[A-Za-z_][\w-]*:|\r?\n$)/m);
+    if (!terminalMatch) return content;
+
+    let section = terminalMatch[0];
+    section = section.replace(/^  env_passthrough: \[\]\r?\n/gm, '');
+    section = section.replace(/^  env_passthrough:\r?\n(?:  - [^\r\n]+\r?\n)+/gm, '');
+
+    if (/^  cwd: /m.test(section)) {
+        section = section.replace(/(^  cwd: [^\r\n]+\r?\n)/m, `$1  env_passthrough:\n${lines}\n`);
+    } else {
+        section = section.replace(/^terminal:\r?\n/m, `terminal:\n  env_passthrough:\n${lines}\n`);
+    }
+
+    return content.replace(terminalMatch[0], section);
+}
+
+function patchHermesEnvWorktree(worktree) {
+    const envPath = path.join(getHermesHome(), '.env');
+    const line = `TTMIK_WORKTREE=${worktree}`;
+    if (!fs.existsSync(envPath)) {
+        fs.writeFileSync(envPath, `${line}\n`, 'utf8');
+        return envPath;
+    }
+    const existing = fs.readFileSync(envPath, 'utf8');
+    if (/^TTMIK_WORKTREE=/m.test(existing)) {
+        fs.writeFileSync(envPath, existing.replace(/^TTMIK_WORKTREE=.*$/m, line), 'utf8');
+    } else {
+        fs.appendFileSync(envPath, `\n${line}\n`, 'utf8');
+    }
+    return envPath;
+}
+
+/** Patch ~/.hermes/config.yaml with TTMIK worktree cwd + external_dirs. */
+function patchHermesConfig(root) {
+    const projectRoot = path.resolve(root);
+    const worktree = toHermesPath(projectRoot);
+    const externalDir = `${worktree}/.devin/skills`;
+    const configPath = getHermesConfigPath();
+
+    if (!fs.existsSync(configPath)) {
+        fs.mkdirSync(path.dirname(configPath), { recursive: true });
+        fs.writeFileSync(
+            configPath,
+            `terminal:\n  backend: local\n  cwd: ${worktree}\n\nskills:\n  external_dirs:\n  - ${externalDir}\n`,
+            'utf8'
+        );
+        console.log(`Created ${configPath}`);
+    } else {
+        const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\..+/, '').slice(0, 15);
+        const backupPath = `${configPath}.bak.${stamp}`;
+        const existing = fs.readFileSync(configPath, 'utf8');
+        fs.writeFileSync(backupPath, existing, 'utf8');
+
+        let patched = patchYamlTerminalCwd(existing, worktree);
+        patched = patchYamlExternalDirs(patched, [externalDir]);
+        patched = patchYamlEnvPassthrough(patched, ['TTMIK_WORKTREE']);
+        fs.writeFileSync(configPath, patched, 'utf8');
+
+        console.log(`Patched ${configPath}`);
+        console.log(`   backup: ${backupPath}`);
+    }
+
+    const manifest = updateHermesWorktreeManifest(projectRoot, {
+        gitHead: getGitHead(projectRoot),
+        hermesSkills: SKILLS.length
+    });
+    const envPath = patchHermesEnvWorktree(worktree);
+
+    console.log(`   terminal.cwd: ${worktree}`);
+    console.log(`   skills.external_dirs: ${externalDir}`);
+    console.log(`   manifest: ${manifest.manifestPath}`);
+    console.log(`   devin mirror: ${manifest.devinManifestPath}`);
+    console.log(`   env: ${envPath} (TTMIK_WORKTREE)`);
+    return {
+        worktree,
+        externalDir,
+        configPath,
+        manifestPath: manifest.manifestPath,
+        devinManifestPath: manifest.devinManifestPath,
+        envPath,
+        manifest: manifest.manifest
+    };
+}
+
 function healSkills(root) {
     const projectRoot = path.resolve(root);
     const devinSkills = path.join(projectRoot, '.devin', 'skills');
@@ -1010,26 +1232,22 @@ function healSkills(root) {
         console.log(`Healed: ${skill.id}`);
     }
 
-    const configPath = path.join(process.env.USERPROFILE || process.env.HOME, '.hermes', 'config.yaml');
-    const externalDir = devinSkills.replace(/\\/g, '/');
-    const configBlock = `skills:
-  external_dirs:
-    - ${externalDir}
-`;
-    if (!fs.existsSync(configPath)) {
-        fs.mkdirSync(path.dirname(configPath), { recursive: true });
-        fs.writeFileSync(configPath, configBlock, 'utf8');
-        console.log(`Created ${configPath}`);
-    } else {
-        const existing = fs.readFileSync(configPath, 'utf8');
-        if (!existing.includes(externalDir)) {
-            fs.appendFileSync(configPath, `\n${configBlock}`, 'utf8');
-            console.log(`Appended external_dirs to ${configPath}`);
-        }
-    }
+    patchHermesConfig(projectRoot);
 
     console.log(`\nDone — ${healed} skills healed to .devin/skills, repo root, and ~/.hermes/skills/creative/`);
     return healed;
 }
 
-module.exports = { healSkills, SKILLS, HEALING_FACTOR_BY_SKILL, HEALING_FACTOR_LABELS };
+module.exports = {
+    healSkills,
+    patchHermesConfig,
+    updateHermesWorktreeManifest,
+    getHermesLocalUpdateCmd,
+    getHermesLocalUpdateQuery,
+    getHermesManifestPath,
+    getHermesCli,
+    toHermesPath,
+    SKILLS,
+    HEALING_FACTOR_BY_SKILL,
+    HEALING_FACTOR_LABELS
+};

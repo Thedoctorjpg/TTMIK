@@ -364,6 +364,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'VN5', time: '0:25', pin: 'FED', note: 'Square pause — lighter walk, no performance invoice', dur: 5 }
         ]
     },
+    'mika-road-ritual': {
+        id: 'mika-road-ritual',
+        label: 'Ep 7.4 · Mika Open Road Dreamer (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'warm',
+        overlay: 'OPEN',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'OPEN', episode: '7.4', reel: null },
+        pins: ['OPEN', 'HOSIER', 'DEGRAVES'],
+        exportTargets: ['Webdrama insert', 'Mika open-road deck', 'Dreamer teleport reel'],
+        pipeline: ['mikaOpenRoad'],
+        shots: [
+            { id: 'MK1', time: '0:00', pin: 'OPEN', note: 'Highway pause — handlebars not cockpit · one heartbeat breath', dur: 5 },
+            { id: 'MK2', time: '0:05', pin: 'OPEN', note: 'English: The open road is my yes — crew loyalty', dur: 8 },
+            { id: 'MK3', time: '0:13', pin: 'HOSIER', note: 'Build people up — {chuckle} optional · graffiti bike overlay', dur: 6 },
+            { id: 'MK4', time: '0:19', pin: 'OPEN', note: 'Korean shadow · 길이 제 예예요 · 다음 목적지를 꿈꿔요', dur: 8 },
+            { id: 'MK5', time: '0:27', pin: 'DEGRAVES', note: 'Coffee dream stop — phone face-down · preset 24', dur: 3 }
+        ]
+    },
     'minecraft-wiki-meme': {
         id: 'minecraft-wiki-meme',
         label: 'Ep 7.3 · Minecraft Wiki Meme Generator (30s)',

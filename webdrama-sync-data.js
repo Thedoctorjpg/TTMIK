@@ -63,6 +63,12 @@ const PIPELINE_SOURCES = {
         paths: ['minecraft-meme-data.js', 'minecraft-meme-generator.js'],
         url: 'TTMIK.html?minecraft-meme=1',
         role: 'Hipposgrumm parody articles · humor alchemy · minecraft.wiki'
+    },
+    mikaOpenRoad: {
+        label: 'Mika open-road dreamer',
+        paths: ['mika-data.js', 'Mika_Road_Dreamer_Archetype.skill.md'],
+        url: 'TTMIK.html?mika=1',
+        role: 'Ep 7.4 OPEN highway pause · crew loyalty · dream-teleport heal'
     }
 };
 
@@ -110,8 +116,30 @@ const BARDIC_INSPIRATION = {
             fifa: { boot: 'fifa=1', label: 'Mari FIFA cantina' },
             sua: { boot: 'sua=1', label: 'Sua cicada attune · shedding pause' },
             rickmorty: { boot: 'rickmorty=1', label: 'Rick & Morty multiverse · CITADEL SQL' },
-            minecraftMeme: { boot: 'minecraft-meme=1', label: 'Minecraft Wiki meme · CRAFT humor' }
+            minecraftMeme: { boot: 'minecraft-meme=1', label: 'Minecraft Wiki meme · CRAFT humor' },
+            mikaRoad: { boot: 'mika=1', label: 'Mika open-road dreamer · OPEN crew loyalty' }
         }
+    },
+    mikaRoadDream: {
+        label: 'Mika open road — crew loyalty without rescue',
+        duration: '60s',
+        pin: 'OPEN',
+        skillId: 'mika-road-dreamer',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: "The open road is my yes — if you're in my crew, I've got you.",
+        shadowPhrase: {
+            en: 'The open road is my yes.',
+            ko: '길이 제 예예요.'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one heartbeat breath at highway pause',
+            'English: The open road is my yes — direct, warm, no performance invoice',
+            'Korean shadow: 길이 제 예예요 · 우리 편이면 내가 있을게요',
+            'Optional dream-teleport: name one imaginary stop — observe without absorbing',
+            'Close: momentum without absorption spiral · preset 24'
+        ],
+        abilities: ['Soundtrack', 'Heartbeat', 'Visual control', 'Dreamer']
     },
     minecraftWikiMeme: {
         label: 'Minecraft Wiki meme — humor without absorbing',
@@ -266,7 +294,9 @@ const HEALING_FACTORS = {
         { id: 'cicada-attune', label: 'Sua cicada attune', ko: '새 껍질을 벗을게요', skillId: 'sua-tattoo', edit: 'cicada-attune-ritual', questId: 'side-boundary', pin: 'FED', shadowIndex: 2 },
         { id: 'twitter-feed-heal', label: 'Twitter feed heal', ko: '피드는 쉬어도 괜찮아요', skillId: 'melbourne-lantern-bard', edit: 'twitter-feed-heal-ritual', questId: 'side-boundary', pin: 'HOME', shadowIndex: 3 },
         { id: 'multiverse-query', label: 'Multiverse SQL index', ko: '차원은 색인만 해요', skillId: 'rick-morty-multiverse', edit: 'rickmorty-multiverse-sql', questId: 'side-humor', pin: 'CITADEL', shadowIndex: 0 },
-        { id: 'wiki-meme', label: 'Minecraft Wiki meme', ko: '유머로 풀어낼게요', skillId: 'melbourne-lantern-bard', edit: 'minecraft-wiki-meme', questId: 'side-humor', pin: 'CRAFT', shadowIndex: 0 }
+        { id: 'wiki-meme', label: 'Minecraft Wiki meme', ko: '유머로 풀어낼게요', skillId: 'melbourne-lantern-bard', edit: 'minecraft-wiki-meme', questId: 'side-humor', pin: 'CRAFT', shadowIndex: 0 },
+        { id: 'open-road', label: 'Open road heal', ko: '길이 제 예예요', skillId: 'mika-road-dreamer', edit: 'mika-road-ritual', questId: 'side-humor', pin: 'OPEN', shadowIndex: 0 },
+        { id: 'dream-teleport', label: 'Dreamer teleport pivot', ko: '다음 목적지를 꿈꿔요', skillId: 'mika-road-dreamer', edit: 'mika-road-ritual', questId: 'side-humor', pin: 'OPEN', shadowIndex: 3 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -413,6 +443,18 @@ const TTMIK_SYNC_PINS = {
         formats: ['webdrama', 'minecraft-wiki-meme'],
         character: 'Lo3tus',
         pipeline: ['minecraftWikiMeme']
+    },
+    OPEN: {
+        label: 'Open Highway Pause',
+        place: 'Handlebars not cockpit · bike momentum · crew loyalty without rescue',
+        episodes: ['7.4'],
+        reels: [],
+        skillId: 'mika-road-dreamer',
+        categories: ['English Shadowing', 'Open Road Route', 'Dreamer Drills'],
+        questIds: ['side-humor', 'main-film'],
+        formats: ['webdrama', 'mika-road-ritual'],
+        character: 'Mika',
+        pipeline: ['mikaOpenRoad']
     },
     COLLINS: {
         label: 'Collins Street',
@@ -726,6 +768,22 @@ const TTMIK_SYNC_EPISODES = {
         event: 'Hipposgrumm parody wiki articles · humor-release lane',
         pipeline: ['minecraftWikiMeme'],
         wikiUrl: 'https://minecraft.wiki/w/User:Hipposgrumm/Memes'
+    },
+    '7.4': {
+        title: 'Mika Open Road Dreamer',
+        ko: '오픈로드',
+        display: 'Ep 7.4',
+        pins: ['OPEN', 'HOSIER', 'DEGRAVES'],
+        skillId: 'mika-road-dreamer',
+        categories: ['English Shadowing', 'Open Road Route', 'Dreamer Drills'],
+        questIds: ['side-humor', 'main-film'],
+        shadowingIndex: 0,
+        duration: '30s',
+        formats: ['mika-road-ritual'],
+        character: 'Mika',
+        languages: ['en', 'ko'],
+        event: 'Highway pause · crew loyalty · mental dream-teleport pivot',
+        pipeline: ['mikaOpenRoad']
     },
     '2.75': {
         title: 'Cook-Off Not a Date',
@@ -1043,6 +1101,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Hipposgrumm parody articles · humor alchemy · minecraft.wiki meme generator',
         autoShadow: true
+    },
+    {
+        id: 24,
+        label: 'OPEN · Ep 7.4 · Mika Road Dreamer',
+        shortLabel: 'MIKA',
+        pin: 'OPEN',
+        episode: '7.4',
+        reel: null,
+        note: 'Open highway pause · English + Korean shadow · crew loyalty · Fast Character Ranger sheet',
+        autoShadow: true
     }
 ];
 
@@ -1058,12 +1126,13 @@ const WEBSERIES_MULTIVERSE = {
         { id: 'cookoff', label: 'Date-night cook-off', episode: '2.75', presets: [6, 7, 8] },
         { id: 'neon', label: 'Neon Evangelion observe', episode: '7.1', preset: 21 },
         { id: 'rickmorty', label: 'Rick & Morty SQL multiverse', episode: '7.2', preset: 22, boot: 'rickmorty=1' },
-        { id: 'minecraft-meme', label: 'Minecraft Wiki meme generator', episode: '7.3', preset: 23, boot: 'minecraft-meme=1' }
+        { id: 'minecraft-meme', label: 'Minecraft Wiki meme generator', episode: '7.3', preset: 23, boot: 'minecraft-meme=1' },
+        { id: 'mika-road', label: 'Mika open-road dreamer', episode: '7.4', preset: 24, boot: 'mika=1' }
     ],
     handoff: {
-        from: '7.2',
-        to: '7.3',
-        note: 'Citadel SQL index → Crafting Table meme pause — humor alchemy without feed absorption'
+        from: '7.3',
+        to: '7.4',
+        note: 'Crafting Table meme pause → Open highway crew loyalty — dream-teleport without absorption'
     }
 };
 
@@ -1116,6 +1185,13 @@ const TTMIK_MINECRAFT_MEME_ROUTE = [
     { time: '22:30', pin: 'CRAFT', note: 'Crafting table pause — Hipposgrumm meme generator · ?minecraft-meme=1 · preset 23', presetId: 23, sync: { pin: 'CRAFT', episode: '7.3', reel: null } },
     { time: '22:40', pin: 'HOSIER', note: 'One meme screenshot — graffiti bean block overlay · phone face-down', sync: { pin: 'HOSIER', episode: '7.3', reel: null } },
     { time: '22:50', pin: 'DEGRAVES', note: '유머로 풀어낼게요 — lighter walk home', sync: { pin: 'DEGRAVES', episode: '7.3', reel: null } }
+];
+
+/** Lane G — Mika open road (after Ep 7.3 · optional late night) */
+const TTMIK_MIKA_OPEN_ROAD_ROUTE = [
+    { time: '23:00', pin: 'OPEN', note: 'Highway pause — open road yes · ?mika=1 · preset 24', presetId: 24, sync: { pin: 'OPEN', episode: '7.4', reel: null } },
+    { time: '23:10', pin: 'HOSIER', note: 'Build the crew up — {chuckle} optional · no performance invoice', sync: { pin: 'HOSIER', episode: '7.4', reel: null } },
+    { time: '23:20', pin: 'DEGRAVES', note: 'Coffee dream stop — 사소한 건 신경 안 써요 · phone face-down', sync: { pin: 'DEGRAVES', episode: '7.4', reel: null } }
 ];
 
 /** Lane E — Multiverse SQL (after Ep 7.1 NERV · optional same evening) */
@@ -1183,6 +1259,10 @@ function getMinecraftWikiMemeRitual() {
     return BARDIC_INSPIRATION.minecraftWikiMeme;
 }
 
+function getMikaRoadDreamRitual() {
+    return BARDIC_INSPIRATION.mikaRoadDream;
+}
+
 function getWebseriesMultiverse() {
     return WEBSERIES_MULTIVERSE;
 }
@@ -1193,6 +1273,10 @@ function getMultiverseRoute() {
 
 function getMinecraftMemeRoute() {
     return TTMIK_MINECRAFT_MEME_ROUTE;
+}
+
+function getMikaOpenRoadRoute() {
+    return TTMIK_MIKA_OPEN_ROAD_ROUTE;
 }
 
 function getHealingFactors() {

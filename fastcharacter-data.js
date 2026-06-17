@@ -147,6 +147,26 @@ const FAST_CHARACTER_MESSI = {
     note: 'Mastermind · Level 5 · Neutral Good — post cook-off Argentina ally'
 };
 
+/** Mika — Ranger Horizon Walker muse · Ep 7.4 open-road dreamer */
+const FAST_CHARACTER_MIKA = {
+    id: 'mika',
+    label: 'Mika — Open Road Dreamer',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Mika',
+    randomname: 'no',
+    pcname: 'Mika',
+    pcclass: 'RangerHorizonWalker',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Outlander',
+    pcgender: 'female',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Horizon Walker · Level 5 · Chaotic Good — open-road crew loyalty ally'
+};
+
 /** Rick — Artificer Sage muse · Ep 7.2 Citadel multiverse SQL */
 const FAST_CHARACTER_RICK = {
     id: 'rick',
@@ -218,6 +238,7 @@ const FAST_CHARACTER_PRESETS = {
     kane: FAST_CHARACTER_KANE,
     rei: FAST_CHARACTER_REI,
     neon: FAST_CHARACTER_REI,
+    mika: FAST_CHARACTER_MIKA,
     rick: FAST_CHARACTER_RICK,
     rickmorty: FAST_CHARACTER_RICK
 };
@@ -299,6 +320,10 @@ function openFastCharacterRei() {
 
 function openFastCharacterNeon() {
     openFastCharacterRei();
+}
+
+function openFastCharacterMika() {
+    openFastCharacterSheet(FAST_CHARACTER_MIKA);
 }
 
 function openFastCharacterRick() {

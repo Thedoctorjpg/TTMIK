@@ -643,6 +643,59 @@ const SKILLS = [
         ]
     },
     {
+        id: 'mika-road-dreamer',
+        rootFile: 'Mika_Road_Dreamer_Archetype.skill.md',
+        description: 'Mika open-road dreamer muse for crew loyalty, high-energy Korean shadowing, and mental teleport without attachment hooks. English native input + TTMIK practice.',
+        activation: "The open road is my yes — if you're in my crew, I've got you.",
+        whenToUse: [
+            'English native input before Korean shadowing practice',
+            'Generating a D&D character sheet via Fast Character (Mika preset)',
+            'Ep 7.4 open-road insert — OPEN highway pause · crew loyalty without rescue energy',
+            'Companion to Melbourne Lantern Bard humor alchemy and sovereign walk lanes',
+            'TTMIK.html?mika=1 — invoke Mika road dreamer boot',
+            'TTMIK.html?heal-factor=open-road — open road heal on Hermes',
+            'TTMIK.html?heal-factor=dream-teleport — dreamer mental teleport pivot'
+        ],
+        procedure: [
+            'English native first: The open road is my yes — direct, warm, no performance invoice',
+            'One heartbeat breath — ground when intensity spikes',
+            'Open Fast Character sheet: Mika · Ranger (Horizon Walker) · Outlander · Level 5',
+            'Korean shadow: 길이 제 예예요 · 우리 편이면 내가 있을게요',
+            'Optional dream-teleport: name one imaginary stop — observe, do not absorb',
+            'Sound cue optional: {chuckle} · {sigh} · {laugh} — then phone face-down',
+            'One pass — no scroll spiral · preset 24'
+        ],
+        pitfalls: [
+            'Do not make Mika a rescue mission or romance subplot',
+            'Honor direct voice — not rude, not a gag subtitle line',
+            'Dream-teleport is mental pivot only — no payment or destiny hooks',
+            'Keep crew loyalty without soulmate CTAs'
+        ],
+        verification: [
+            'English phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter finish — momentum without absorption spiral'
+        ],
+        korean: ['길이 제 예예요.', '우리 편이면 내가 있을게요.', '한 숨 — 계속 가요.', '다음 목적지를 꿈꿔요.', '웃음으로 놓아줄게요.'],
+        english: [
+            'The open road is my yes.',
+            "If you're in my crew, I've got you.",
+            'One breath — keep moving.',
+            "Let's dream the next stop.",
+            "I don't sweat the small stuff."
+        ],
+        integrations: [
+            'Ep 7.4 · preset 24 · OPEN open-road lane',
+            'fastcharacter.com — openFastCharacterMika() preset',
+            'TTMIK.html?mika=1 — English native input boot',
+            'TTMIK.html?mika=1&sheet=1 — Fast Character sheet',
+            'TTMIK.html?heal-factor=open-road — open road heal · OPEN · shadow index 0',
+            'TTMIK.html?heal-factor=dream-teleport — dreamer pivot · shadow index 3',
+            'TTMIK.html?library=mika — Mika Library compose',
+            'Melbourne Lantern Bard · humor-release · side-humor quest'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -814,6 +867,7 @@ const HEALING_FACTOR_BY_SKILL = {
     'harry-kane-england-striker': ['match-attune', 'fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'neon-evangelion': ['rei-mercy', 'pause-breathe', 'no-rewatch', 'cord-cut'],
     'rick-morty-multiverse': ['multiverse-query', 'pause-breathe', 'no-rewatch', 'cord-cut'],
+    'mika-road-dreamer': ['open-road', 'dream-teleport', 'humor-release', 'pause-breathe', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -835,6 +889,8 @@ const HEALING_FACTOR_LABELS = {
     'rei-mercy': 'Rei mercy heal — ?rei=1 · NERV · Ep 7.1',
     'multiverse-query': 'Multiverse SQL index — ?rickmorty=1 · CITADEL · Ep 7.2',
     'wiki-meme': 'Minecraft Wiki meme — ?minecraft-meme=1 · CRAFT · Ep 7.3',
+    'open-road': 'Open road heal — ?mika=1 · OPEN · Ep 7.4',
+    'dream-teleport': 'Dreamer teleport pivot — ?heal-factor=dream-teleport · OPEN · Ep 7.4',
     'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause',
     'twitter-feed-heal': 'Twitter feed heal — ?tweet-heal=1 · x.com/adhdloganberry'
 };

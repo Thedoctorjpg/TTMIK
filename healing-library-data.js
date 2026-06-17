@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-16 · 21 tracks
+ * Healed: 2026-06-17 · 23 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -232,6 +232,34 @@ const HEALING_FACTOR_DECK = [
         "questId": "side-humor",
         "edit": "minecraft-wiki-meme",
         "ko": "유머로 풀어낼게요",
+        "en": ""
+    },
+    {
+        "factorId": "open-road",
+        "title": "Open road heal",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=open-road",
+        "note": "mika-road-ritual · quest side-humor",
+        "skillId": "mika-road-dreamer",
+        "pin": "OPEN",
+        "shadowIndex": 0,
+        "questId": "side-humor",
+        "edit": "mika-road-ritual",
+        "ko": "길이 제 예예요",
+        "en": ""
+    },
+    {
+        "factorId": "dream-teleport",
+        "title": "Dreamer teleport pivot",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=dream-teleport",
+        "note": "mika-road-ritual · quest side-humor",
+        "skillId": "mika-road-dreamer",
+        "pin": "OPEN",
+        "shadowIndex": 3,
+        "questId": "side-humor",
+        "edit": "mika-road-ritual",
+        "ko": "다음 목적지를 꿈꿔요",
         "en": ""
     }
 ];

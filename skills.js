@@ -187,10 +187,15 @@ function openSkillLessons(skillId) {
     const hasMexico = skill.linkedGroups?.includes('mexico');
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && (
+    const hasMika = skill.linkedGroups?.includes('mika');
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
+    if (hasMika && typeof startMikaCategory === 'function') {
+        startMikaCategory(skill.linkedCategories?.[0] || 'English Shadowing');
+        return;
+    }
     if (hasIgnan || hasAsuka || hasHeidi || hasSven || hasMartin || hasRonaldo || hasMbappe || hasMessi || hasVinicus || hasMexico || hasCanada || hasUsa) {
         openLessonsForCategories(skill.linkedCategories, false);
         return;
@@ -303,6 +308,14 @@ function practiceHealingFactor(factorId, opts = {}) {
     }
     if (factorId === 'wiki-meme') {
         practiceMinecraftWikiMeme(opts);
+        return true;
+    }
+    if (factorId === 'open-road') {
+        practiceMikaRoadDreamer({ ...opts, shadowIndex: 0 });
+        return true;
+    }
+    if (factorId === 'dream-teleport') {
+        practiceMikaRoadDreamer({ ...opts, shadowIndex: 3 });
         return true;
     }
     if (factorId === 'no-rewatch') {
@@ -465,6 +478,8 @@ function bootSkillById(skillId, opts = {}) {
             startEvangelionCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Rick & Morty Multiverse Library' && entry.libraryCategory) {
             startRickMortyCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Mika Library' && entry.libraryCategory) {
+            startMikaCategory(entry.libraryCategory);
         } else {
             openSkillLessons(skillId);
         }
@@ -994,6 +1009,42 @@ function practiceMinecraftWikiMeme(opts = {}) {
     }
 }
 
+function practiceMikaRoadDreamer(opts = {}) {
+    const skillId = 'mika-road-dreamer';
+    const shadowIdx = opts.shadowIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(24)) {
+        const preset = getSyncPreset(24);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    } else {
+        setWebdramaSyncValues('OPEN', '7.4', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterMika === 'function') {
+        openFastCharacterMika();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceRickMortyMultiverse(opts = {}) {
     const skillId = 'rick-morty-multiverse';
     const shadowIdx = 0;
@@ -1368,6 +1419,7 @@ function renderBootAllPanel() {
             else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true });
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
+            else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
             else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
@@ -1496,6 +1548,13 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('minecraft-meme') === '1' || params.get('meme') === '1') {
         practiceMinecraftWikiMeme({ templateId: params.get('template') });
+        return;
+    }
+    if (params.get('mika') === '1') {
+        practiceMikaRoadDreamer({
+            openSheet: params.get('sheet') === '1',
+            shadowIndex: params.get('heal-factor') === 'dream-teleport' ? 3 : 0
+        });
         return;
     }
     if (params.get('neon') === '1' || params.get('evangelion') === '1' || params.get('rei') === '1') {
@@ -1934,6 +1993,14 @@ function renderSyncPanel() {
     memeBtn.title = 'Hipposgrumm parody articles · humor alchemy · preset 23';
     memeBtn.onclick = () => practiceMinecraftWikiMeme();
     actions.appendChild(memeBtn);
+
+    const mikaBtn = document.createElement('button');
+    mikaBtn.type = 'button';
+    mikaBtn.className = 'px-5 py-3 bg-orange-900/50 text-orange-200 rounded-2xl text-sm font-medium hover:bg-orange-800/70 ring-1 ring-orange-500/30';
+    mikaBtn.textContent = 'Mika open road (Ep 7.4 · EN)';
+    mikaBtn.title = 'Highway pause · crew loyalty · preset 24 · dream-teleport heal';
+    mikaBtn.onclick = () => practiceMikaRoadDreamer();
+    actions.appendChild(mikaBtn);
 
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
@@ -3047,6 +3114,57 @@ function renderSkillDetail() {
         };
         rmBlock.appendChild(rickSheet);
         panel.appendChild(rmBlock);
+    }
+
+    if (skill.id === 'mika-road-dreamer') {
+        const mikaBlock = document.createElement('div');
+        mikaBlock.className = 'mb-6 bg-orange-500/10 border border-orange-500/20 rounded-2xl p-4';
+        const mikaLabel = document.createElement('h4');
+        mikaLabel.className = 'text-xs uppercase tracking-widest text-orange-300 mb-2';
+        mikaLabel.textContent = 'Mika Open Road · Ep 7.4 · crew loyalty';
+        mikaBlock.appendChild(mikaLabel);
+        const mikaNote = document.createElement('p');
+        mikaNote.className = 'text-sm text-zinc-400 mb-3';
+        mikaNote.textContent = 'OPEN highway → HOSIER cheer → DEGRAVES dream stop. Heartbeat · soundtrack · dream-teleport pivot.';
+        mikaBlock.appendChild(mikaNote);
+        const mikaDeck = document.createElement('ul');
+        mikaDeck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.en, p.ko].filter(Boolean).join(' · ');
+            mikaDeck.appendChild(li);
+        });
+        mikaBlock.appendChild(mikaDeck);
+        const mikaRun = document.createElement('button');
+        mikaRun.type = 'button';
+        mikaRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-orange-600/30 text-orange-200 hover:bg-orange-600/50 mr-2';
+        mikaRun.textContent = 'Invoke open road lane (EN → KO)';
+        mikaRun.onclick = () => practiceMikaRoadDreamer();
+        mikaBlock.appendChild(mikaRun);
+        const openRoadBtn = document.createElement('button');
+        openRoadBtn.type = 'button';
+        openRoadBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-orange-600/30 text-orange-200 hover:bg-orange-600/50 mr-2';
+        openRoadBtn.textContent = 'Open road heal';
+        openRoadBtn.title = 'TTMIK.html?heal-factor=open-road';
+        openRoadBtn.onclick = () => practiceHealingFactor('open-road');
+        mikaBlock.appendChild(openRoadBtn);
+        const dreamBtn = document.createElement('button');
+        dreamBtn.type = 'button';
+        dreamBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-orange-600/30 text-orange-200 hover:bg-orange-600/50 mr-2';
+        dreamBtn.textContent = 'Dream teleport pivot';
+        dreamBtn.title = 'TTMIK.html?heal-factor=dream-teleport';
+        dreamBtn.onclick = () => practiceHealingFactor('dream-teleport');
+        mikaBlock.appendChild(dreamBtn);
+        const mikaSheet = document.createElement('button');
+        mikaSheet.type = 'button';
+        mikaSheet.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        mikaSheet.textContent = 'Create Mika sheet';
+        mikaSheet.title = 'fastcharacter.com · Mika · Ranger Horizon Walker · Outlander · Level 5';
+        mikaSheet.onclick = () => {
+            if (typeof openFastCharacterMika === 'function') openFastCharacterMika();
+        };
+        mikaBlock.appendChild(mikaSheet);
+        panel.appendChild(mikaBlock);
     }
 
     const notesLabel = document.createElement('h4');

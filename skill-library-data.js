@@ -146,6 +146,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'Multiverse Shadowing',
         tag: 'rickmorty'
     },
+    'mika-road-dreamer': {
+        source: 'Mika_Road_Dreamer_Archetype.skill.md',
+        invoke: 'practiceMikaRoadDreamer',
+        altBoot: 'mika=1',
+        preset: 24,
+        libraryGroup: 'Mika Library',
+        libraryCategory: 'English Shadowing',
+        tag: 'mika'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -251,6 +260,11 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'evangelion',
         factors: ['rei-mercy', 'pause-breathe', 'no-rewatch', 'cord-cut'],
         boot: 'library=evangelion'
+    },
+    'Mika Library': {
+        group: 'mika',
+        factors: ['open-road', 'dream-teleport', 'humor-release', 'pause-breathe'],
+        boot: 'library=mika'
     },
     'Melbourne Journey': {
         group: 'melbourne',
@@ -380,6 +394,14 @@ const COMPOSED_LIBRARIES = [
         accent: 'teal'
     },
     {
+        id: 'mika',
+        label: 'Mika Library',
+        description: 'English native · Korean shadow — Ep 7.4 open-road dreamer · crew loyalty',
+        boot: 'library=mika',
+        skills: ['mika-road-dreamer'],
+        accent: 'orange'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -466,6 +488,7 @@ const HERMES_PRELOAD_SKILL_IDS = [
     'vinicus-brasil-samba',
     'harry-kane-england-striker',
     'neon-evangelion',
+    'mika-road-dreamer',
     'rach3l',
     'ignan-pilgrim',
     'ignan-grounding',
@@ -521,7 +544,7 @@ const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
     healAll: 'heal=all',
-    trackCount: 345
+    trackCount: 368
 };
 
 function openComposedLibrary(libId) {
@@ -543,6 +566,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'kane') startKaneCategory('English Shadowing');
     else if (lib.id === 'evangelion') startEvangelionCategory('Japanese Shadowing');
     else if (lib.id === 'rickmorty') startRickMortyCategory('Multiverse Shadowing');
+    else if (lib.id === 'mika') startMikaCategory('English Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

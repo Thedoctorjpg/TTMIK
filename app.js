@@ -113,6 +113,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Rick & Morty Multiverse Library') {
         return lessons.filter(l => l.group === 'rickmorty');
     }
+    if (activeLibraryGroup === 'Mika Library') {
+        return lessons.filter(l => l.group === 'mika');
+    }
     return lessons;
 }
 
@@ -611,6 +614,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'rickmorty') {
         activeLibraryGroup = 'Rick & Morty Multiverse Library';
         activeCategory = 'Multiverse Shadowing';
+    } else if (groupId === 'mika') {
+        activeLibraryGroup = 'Mika Library';
+        activeCategory = 'English Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -743,6 +749,15 @@ function startRickMortyCategory(subtitle) {
     switchTab(1);
 }
 
+function startMikaCategory(subtitle) {
+    activeLibraryGroup = 'Mika Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -833,6 +848,9 @@ function renderJourneyDashboard() {
     if (typeof RICKMORTY_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(RICKMORTY_JOURNEY_CATEGORY);
     }
+    if (typeof MIKA_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(MIKA_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -868,7 +886,9 @@ function renderJourneyDashboard() {
                                                     ? 'hover:ring-violet-500'
                                                     : journey.id === 'rickmorty'
                                                         ? 'hover:ring-teal-500'
-                                                        : 'hover:ring-pink-500';
+                                                        : journey.id === 'mika'
+                                                            ? 'hover:ring-orange-500'
+                                                            : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -909,7 +929,9 @@ function renderJourneyDashboard() {
                                                     ? 'text-violet-400 text-sm font-medium'
                                                     : journey.id === 'rickmorty'
                                                         ? 'text-teal-400 text-sm font-medium'
-                                                        : 'text-pink-400 text-sm font-medium';
+                                                        : journey.id === 'mika'
+                                                            ? 'text-orange-400 text-sm font-medium'
+                                                            : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -946,6 +968,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'evangelion').length} tracks`;
         } else if (journey.id === 'rickmorty') {
             count.textContent = `${lessons.filter(l => l.group === 'rickmorty').length} tracks`;
+        } else if (journey.id === 'mika') {
+            count.textContent = `${lessons.filter(l => l.group === 'mika').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -1286,6 +1310,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const mikaGrid = document.getElementById('mika-quick-grid');
+    if (mikaGrid && typeof MIKA_COURSE_DEFS !== 'undefined') {
+        mikaGrid.textContent = '';
+        MIKA_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-orange-900/30 hover:bg-orange-800/40 ring-1 ring-orange-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-orange-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-orange-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startMikaCategory(def.subtitle);
+            mikaGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1425,7 +1468,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('mika') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('tweet-heal') || bootParams.has('feed-heal') || bootParams.get('tweet') === 'heal'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
@@ -1465,6 +1508,8 @@ window.onload = () => {
             startEvangelionCategory(bootParams.get('category') || 'Japanese Shadowing');
         } else if (bootParams.get('library') === 'rickmorty') {
             startRickMortyCategory(bootParams.get('category') || 'Multiverse Shadowing');
+        } else if (bootParams.get('library') === 'mika') {
+            startMikaCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

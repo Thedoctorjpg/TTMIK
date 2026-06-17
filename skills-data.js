@@ -671,6 +671,47 @@ const SKILLS = [
         ]
     },
     {
+        id: 'mika-road-dreamer',
+        name: 'Mika — Open Road Dreamer',
+        icon: '\u{1F3CD}',
+        tagline: 'Handlebars not cockpit — crew loyalty without rescue energy',
+        role: 'Fast Character Ranger ally — English native before Korean shadow',
+        source: 'Mika_Road_Dreamer_Archetype.skill.md',
+        activationPhrases: [
+            "The open road is my yes — if you're in my crew, I've got you",
+            'One breath — keep moving'
+        ],
+        capabilities: [
+            'Generate Mika D&D sheet via Fast Character preset',
+            'English native input + Korean TTMIK shadowing drills',
+            'Open-road heal rituals — heartbeat · soundtrack · dream-teleport pivot',
+            'Crew loyalty without rescue mission or romance subplot'
+        ],
+        creativePrompts: [
+            'Create Mika Fast Character sheet — Ranger Horizon Walker · Outlander · Level 5',
+            'Skit: Highway pause before Korean shadow after wiki meme lane',
+            'Dreamer drill — name one imaginary stop · observe without absorbing'
+        ],
+        linkedGroups: ['mika', 'melbourne', 'sovereign'],
+        linkedCategories: ['English Shadowing', 'Open Road Route', 'Dreamer Drills', 'GoPro & Content'],
+        shadowingPhrases: [
+            { en: 'The open road is my yes.', ko: '길이 제 예예요.' },
+            { en: "If you're in my crew, I've got you.", ko: '우리 편이면 내가 있을게요.' },
+            { en: 'One breath — keep moving.', ko: '한 숨 — 계속 가요.' },
+            { en: "Let's dream the next stop.", ko: '다음 목적지를 꿈꿔요.' },
+            { en: "I don't sweat the small stuff.", ko: '웃음으로 놓아줄게요.' }
+        ],
+        ritualSteps: [
+            'OPEN highway pause — phone face-down · GoPro off',
+            'One heartbeat breath — ground when intensity spikes',
+            'Open Fast Character — Mika · Ranger Horizon Walker · Outlander',
+            'English native first: The open road is my yes',
+            'Korean shadow: 길이 제 예예요 · 우리 편이면 내가 있을게요',
+            'Optional dream-teleport: name one stop — observe, do not absorb',
+            'One pass — no scroll spiral · preset 24'
+        ]
+    },
+    {
         id: 'rach3l',
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',

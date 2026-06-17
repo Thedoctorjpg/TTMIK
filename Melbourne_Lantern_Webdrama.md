@@ -50,7 +50,7 @@ Unified shoot order pulls from the full pipeline — optimised in `webdrama-sync
 19:15  CANTINA (Ep 2.65) → 20:00  Portugal cheer → 20:15  STADE (Ep 2.66)
 ```
 
-TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk · presets **16–20** = FIFA nation lanes (Ronaldo → Mbappé → Messi → Vinicus → Kane) · preset **21** = Ep 7.1 NERV neon · preset **22** = Ep 7.2 Citadel multiverse SQL. **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). **Lane D:** `TTMIK_FIFA_CELEBRATION_ROUTE`. **Lane E:** `TTMIK_MULTIVERSE_ROUTE` (Rick & Morty SQL index · after Ep 7.1). **Lane F:** `TTMIK_MINECRAFT_MEME_ROUTE` (Minecraft Wiki meme generator · after Ep 7.2). Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey` · `match-attune-ritual` · `bend-it-beckham` · `mari-fifa-celebration` · `mbappe-counter-attack` · `messi-after-cookoff` · `vinicus-brasil-samba` · `harry-kane-england-striker` · `rei-mercy-ritual` · `rickmorty-multiverse-sql` · `minecraft-wiki-meme`.
+TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal · preset **10** = Ep 2.6 Ignan walk · presets **16–20** = FIFA nation lanes (Ronaldo → Mbappé → Messi → Vinicus → Kane) · preset **21** = Ep 7.1 NERV neon · preset **22** = Ep 7.2 Citadel multiverse SQL · preset **23** = Ep 7.3 Minecraft Wiki meme · preset **24** = Ep 7.4 Mika open road. **Lane C:** `TTMIK_IGNAN_HEAL_ROUTE` (Mari · Ilokano + Korean + English). **Lane D:** `TTMIK_FIFA_CELEBRATION_ROUTE`. **Lane E:** `TTMIK_MULTIVERSE_ROUTE` (Rick & Morty SQL index · after Ep 7.1). **Lane F:** `TTMIK_MINECRAFT_MEME_ROUTE` (Minecraft Wiki meme generator · after Ep 7.2). **Lane G:** `TTMIK_MIKA_OPEN_ROAD_ROUTE` (Mika open-road dreamer · after Ep 7.3). Multiformat edits: `date-night-cookoff` · `after-the-date` · `dib-aftercare` · `ignan-healing-journey` · `match-attune-ritual` · `bend-it-beckham` · `mari-fifa-celebration` · `mbappe-counter-attack` · `messi-after-cookoff` · `vinicus-brasil-samba` · `harry-kane-england-striker` · `rei-mercy-ritual` · `rickmorty-multiverse-sql` · `minecraft-wiki-meme` · `mika-road-ritual`.
 
 ### Webseries multiverse (`WEBSERIES_MULTIVERSE`)
 
@@ -62,8 +62,9 @@ TTMIK Sync presets **6–8** map to Lane B · preset **9** = post-DIB quiet heal
 | Neon Evangelion observe | 7.1 | 21 | `?neon=1` | Observe · do not absorb |
 | Rick & Morty SQL multiverse | 7.2 | 22 | `?rickmorty=1` | Index dimensions · Melbourne is my yes |
 | Minecraft Wiki meme generator | 7.3 | 23 | `?minecraft-meme=1` | Hipposgrumm parody · humor alchemy |
+| Mika open-road dreamer | 7.4 | 24 | `?mika=1` | Crew loyalty · dream-teleport pivot |
 
-**Handoff:** Ep 7.2 Citadel SQL index → Ep 7.3 Crafting Table meme pause — humor alchemy without feed absorption. **Wiki:** [Hipposgrumm Memes](https://minecraft.wiki/w/User:Hipposgrumm/Memes) · **Schema:** `rickmorty` (postgresql-sql-helper library).
+**Handoff:** Ep 7.3 Crafting Table meme pause → Ep 7.4 open highway crew loyalty — dream-teleport without absorption. **Wiki:** [Hipposgrumm Memes](https://minecraft.wiki/w/User:Hipposgrumm/Memes) · **Schema:** `rickmorty` (postgresql-sql-helper library).
 
 ---
 

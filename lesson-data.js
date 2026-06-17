@@ -117,6 +117,12 @@ if (typeof generateRickMortyLibraryLessons === 'function') {
     nextId += rickmortyLessons.length;
 }
 
+if (typeof generateMikaLibraryLessons === 'function') {
+    const mikaLessons = generateMikaLibraryLessons(nextId);
+    lessons = lessons.concat(mikaLessons);
+    nextId += mikaLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -150,5 +156,6 @@ let libraryGroups = [
     'Vinicus Library',
     'Kane Library',
     'Evangelion Library',
-    'Rick & Morty Multiverse Library'
+    'Rick & Morty Multiverse Library',
+    'Mika Library'
 ];

@@ -1,0 +1,209 @@
+/**
+ * Solo Leveling Library — English native + Korean TTMIK shadowing
+ * WebNovel comic Ch.1 — 000 Only I Level Up
+ * Source: https://www.webnovel.com/comic/15227640605485101/45196186038101142
+ * Audio folder: SoloLeveling_Library/
+ * Lane: Ep 7.7 GATE · E-rank dungeon · Cartenon Temple
+ */
+
+const SOLO_LEVELING_BASE = 'SoloLeveling_Library';
+
+const SOLO_LEVELING_WEBNOVEL_META = {
+    comicId: '15227640605485101',
+    chapterId: '45196186038101142',
+    url: 'https://www.webnovel.com/comic/15227640605485101/45196186038101142',
+    title: 'Solo Leveling (Only I level up)',
+    chapter: 'Chapter 1 — 000 Only I Level Up',
+    originalTitle: '나 혼자만 레벨업',
+    author: 'Chugong'
+};
+
+const SOLO_LEVELING_LIBRARY_CATEGORIES = [
+    'English Shadowing',
+    'Dungeon Gate Route',
+    'Hunter Drills'
+];
+
+const SOLO_LEVELING_PHRASE_DECK = [
+    {
+        en: "I'm used to it.",
+        ko: '익숙해요.',
+        kr: '익숙해.',
+        beat: 'Ep7.7-ACT',
+        note: 'Iconic Ch.1 line to Joohee — weakness without shame spiral · enFirst',
+        enFirst: true
+    },
+    {
+        en: "It's my fault for being so weak.",
+        ko: '제가 약해서 그래요.',
+        beat: 'Ep7.7-S1',
+        note: 'E-rank boundary — family breadwinner · no rescue invoice'
+    },
+    {
+        en: 'The weakest hunter of all mankind.',
+        ko: '인류 최약 헌터예요.',
+        kr: '인류 최약 헌터',
+        beat: 'Ep7.7-S1',
+        note: 'Sung Jinwoo E-rank — observe label, do not absorb'
+    },
+    {
+        en: 'Gates opened ten years ago.',
+        ko: '십 년 전에 게이트가 열렸어요.',
+        beat: 'Ep7.7-S2',
+        note: 'World intro — hunters ranked E to S · powers fixed until System'
+    },
+    {
+        en: 'Please, be afraid.',
+        ko: '두려워하세요.',
+        beat: 'Ep7.7-CO',
+        note: 'Chairman Go Gunhee — survival over arrogance'
+    },
+    {
+        en: "It's a double dungeon.",
+        ko: '이중 던전이에요.',
+        beat: 'Ep7.7-S3',
+        note: 'Cartenon Temple vote — Jinwoo tie-breaker for family money'
+    },
+    {
+        en: 'Everyone, duck!',
+        ko: '다들 엎드려요!',
+        beat: 'Ep7.7-S4',
+        note: 'Statue of God heat vision — save Joohee · phone face-down after'
+    },
+    {
+        en: 'Better than nothing.',
+        ko: '없는 것보단 나아요.',
+        beat: 'Ep7.7-CL',
+        note: 'Low-power dagger breaks on goblin — essence stone hope cut short'
+    }
+];
+
+const SOLO_LEVELING_ROUTE_BEATS = [
+    {
+        pin: 'GATE',
+        title: 'Dungeon gate — raid party forms',
+        beat: 'Ep7.7-S1',
+        en: 'If Jinwoo is on the team, it will be an easy raid.',
+        ko: '진우가 있으면 쉬운 레이드예요.',
+        note: 'Construction site D-rank gate · preset 27 · Fighter Champion sheet'
+    },
+    {
+        pin: 'STONE',
+        title: 'Essence stone — first loot',
+        beat: 'Ep7.7-S2',
+        en: 'Essence stones pay the bills.',
+        ko: '정수석이 생활비가 돼요.',
+        note: 'Goblin stab · Joohee heal · no re-watch spiral'
+    },
+    {
+        pin: 'TEMPLE',
+        title: 'Cartenon Temple — double dungeon door',
+        beat: 'Ep7.7-CL',
+        en: 'The door shut behind us.',
+        ko: '문이 뒤에서 닫혔어요.',
+        note: 'Statue of God awakens · e-rank-pause heal handoff'
+    }
+];
+
+const SOLO_LEVELING_HUNTER_DRILLS = [
+    {
+        title: 'Fast Character sheet invoke',
+        en: 'I am Sung Jinwoo — E-rank hunter.',
+        ko: '저는 E급 헌터 성진우예요.',
+        note: 'fastcharacter.com · Fighter Champion · Soldier · Level 5 · LN'
+    },
+    {
+        title: 'WebNovel comic anchor',
+        en: 'Chapter zero-zero-zero — Only I Level Up.',
+        ko: '000화 — 나 혼자만 레벨업.',
+        note: SOLO_LEVELING_WEBNOVEL_META.url
+    }
+];
+
+const SOLO_LEVELING_JOURNEY_CATEGORY = {
+    id: 'solo-leveling',
+    label: 'Solo Leveling Library',
+    description: 'English native input + Korean shadowing · WebNovel comic Ch.1 · dungeon gate'
+};
+
+function buildSoloLevelingTranscript(parts) {
+    const lines = [];
+    if (parts.en) lines.push(`English (Jinwoo): ${parts.en}`);
+    if (parts.kr) lines.push(`Korean (source): ${parts.kr}`);
+    if (parts.ko) lines.push(`Korean (TTMIK): ${parts.ko}`);
+    if (parts.note) lines.push(`\nOn-set: ${parts.note}`);
+    if (parts.beat) lines.push(`Beat: ${parts.beat}`);
+    if (parts.pin) lines.push(`Pin: ${parts.pin}`);
+    lines.push(`\nWebNovel comic: ${SOLO_LEVELING_WEBNOVEL_META.url}`);
+    lines.push('Skill: sung-jinwoo-solo-leveling · Boot: TTMIK.html?solo-leveling=1');
+    lines.push('Sheet: fastcharacter.com · Sung Jinwoo · Fighter Champion · Soldier');
+    return lines.join('\n\n');
+}
+
+function buildSoloLevelingPhraseLessons(startId) {
+    return SOLO_LEVELING_PHRASE_DECK.map((p, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        return createLesson({
+            id: startId + i,
+            title: `Ep 7.7 · ${p.en.slice(0, 24)}…`,
+            subtitle: 'English Shadowing',
+            duration: '00:30',
+            src: `${SOLO_LEVELING_BASE}/English_Shadowing/Phrase_${n}.mp3`,
+            transcript: buildSoloLevelingTranscript(p),
+            vocab: [{ ko: p.ko, en: p.en }],
+            group: 'solo-leveling'
+        });
+    });
+}
+
+function buildSoloLevelingRouteLessons(startId) {
+    return SOLO_LEVELING_ROUTE_BEATS.map((b, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        return createLesson({
+            id: startId + i,
+            title: `${b.pin} · ${b.title}`,
+            subtitle: 'Dungeon Gate Route',
+            duration: '01:00',
+            src: `${SOLO_LEVELING_BASE}/Dungeon_Gate_Route/Route_${n}_${b.pin}.mp3`,
+            transcript: buildSoloLevelingTranscript(b),
+            vocab: [{ ko: b.ko, en: b.en }],
+            group: 'solo-leveling'
+        });
+    });
+}
+
+function buildSoloLevelingHunterLessons(startId) {
+    return SOLO_LEVELING_HUNTER_DRILLS.map((d, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        return createLesson({
+            id: startId + i,
+            title: d.title,
+            subtitle: 'Hunter Drills',
+            duration: '00:45',
+            src: `${SOLO_LEVELING_BASE}/Hunter_Drills/Drill_${n}.mp3`,
+            transcript: buildSoloLevelingTranscript(d),
+            vocab: [{ ko: d.ko, en: d.en }],
+            group: 'solo-leveling'
+        });
+    });
+}
+
+function generateSoloLevelingLibraryLessons(startId) {
+    let id = startId;
+    const phrase = buildSoloLevelingPhraseLessons(id);
+    id += phrase.length;
+    const route = buildSoloLevelingRouteLessons(id);
+    id += route.length;
+    const hunter = buildSoloLevelingHunterLessons(id);
+    return phrase.concat(route, hunter);
+}
+
+const SOLO_LEVELING_COURSE_DEFS = [
+    { subtitle: 'English Shadowing', trackCount: SOLO_LEVELING_PHRASE_DECK.length },
+    { subtitle: 'Dungeon Gate Route', trackCount: SOLO_LEVELING_ROUTE_BEATS.length },
+    { subtitle: 'Hunter Drills', trackCount: SOLO_LEVELING_HUNTER_DRILLS.length }
+];
+
+function getSoloLevelingGateRitual() {
+    return typeof BARDIC_INSPIRATION !== 'undefined' ? BARDIC_INSPIRATION.soloLevelingGate : null;
+}

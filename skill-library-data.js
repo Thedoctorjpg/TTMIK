@@ -164,6 +164,24 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'English Shadowing',
         tag: 'haley'
     },
+    'shen-qingqiu-svsss': {
+        source: 'Shen_Qingqiu_SVSSS_Archetype.skill.md',
+        invoke: 'practiceShenQingqiuSvsss',
+        altBoot: 'svsss=1',
+        preset: 26,
+        libraryGroup: 'SVSSS Library',
+        libraryCategory: 'Indonesian Shadowing',
+        tag: 'svsss'
+    },
+    'sung-jinwoo-solo-leveling': {
+        source: 'Sung_Jinwoo_Solo_Leveling_Archetype.skill.md',
+        invoke: 'practiceSungJinwooSoloLeveling',
+        altBoot: 'solo-leveling=1',
+        preset: 27,
+        libraryGroup: 'Solo Leveling Library',
+        libraryCategory: 'English Shadowing',
+        tag: 'solo-leveling'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -279,6 +297,16 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'haley',
         factors: ['justice-seek', 'helen-boundary', 'cord-cut', 'pause-breathe', 'no-rewatch'],
         boot: 'library=haley'
+    },
+    'SVSSS Library': {
+        group: 'svsss',
+        factors: ['b-point-guard', 'pause-breathe', 'no-rewatch', 'humor-release'],
+        boot: 'library=svsss'
+    },
+    'Solo Leveling Library': {
+        group: 'solo-leveling',
+        factors: ['e-rank-pause', 'pause-breathe', 'no-rewatch', 'humor-release'],
+        boot: 'library=solo-leveling'
     },
     'Melbourne Journey': {
         group: 'melbourne',
@@ -424,6 +452,22 @@ const COMPOSED_LIBRARIES = [
         accent: 'rose'
     },
     {
+        id: 'svsss',
+        label: 'SVSSS Library',
+        description: 'Indonesian native · Korean shadow — Ep 7.6 WebNovel Ch.1 · System bound',
+        boot: 'library=svsss',
+        skills: ['shen-qingqiu-svsss'],
+        accent: 'emerald'
+    },
+    {
+        id: 'solo-leveling',
+        label: 'Solo Leveling Library',
+        description: 'English native · Korean shadow — Ep 7.7 WebNovel comic Ch.1 · dungeon gate',
+        boot: 'library=solo-leveling',
+        skills: ['sung-jinwoo-solo-leveling'],
+        accent: 'violet'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -512,6 +556,8 @@ const HERMES_PRELOAD_SKILL_IDS = [
     'neon-evangelion',
     'mika-road-dreamer',
     'haley-vietbonnie',
+    'shen-qingqiu-svsss',
+    'sung-jinwoo-solo-leveling',
     'rach3l',
     'ignan-pilgrim',
     'ignan-grounding',
@@ -591,6 +637,8 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'rickmorty') startRickMortyCategory('Multiverse Shadowing');
     else if (lib.id === 'mika') startMikaCategory('English Shadowing');
     else if (lib.id === 'haley') startHaleyCategory('English Shadowing');
+    else if (lib.id === 'svsss') startSvsssCategory('Indonesian Shadowing');
+    else if (lib.id === 'solo-leveling') startSoloLevelingCategory('English Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

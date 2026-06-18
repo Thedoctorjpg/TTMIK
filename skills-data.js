@@ -740,6 +740,90 @@ const SKILLS = [
         ]
     },
     {
+        id: 'sung-jinwoo-solo-leveling',
+        name: 'Sung Jinwoo — Solo Leveling',
+        icon: '\u{1F6AA}',
+        tagline: "I'm used to it — E-rank gate without weakness spiral",
+        role: 'Fast Character Fighter ally — English native before Korean shadow',
+        source: 'Sung_Jinwoo_Solo_Leveling_Archetype.skill.md',
+        activationPhrases: [
+            "I'm used to it — one breath before the gate",
+            'Please, be afraid — survival over arrogance'
+        ],
+        capabilities: [
+            'Generate Sung Jinwoo D&D sheet via Fast Character preset',
+            'English native input + Korean TTMIK shadowing drills',
+            'WebNovel comic Ch.1 — dungeon gate · essence stone · Cartenon Temple',
+            'E-rank pause rituals — family breadwinner · no shame absorption'
+        ],
+        creativePrompts: [
+            'Create Sung Jinwoo Fast Character sheet — Fighter Champion · Soldier · Level 5',
+            'Skit: Gate entry before Korean shadow after SVSSS System lane',
+            'Double dungeon vote drill — observe danger without identity collapse'
+        ],
+        linkedGroups: ['solo-leveling', 'melbourne', 'sovereign'],
+        linkedCategories: ['English Shadowing', 'Dungeon Gate Route', 'Hunter Drills', 'GoPro & Content'],
+        shadowingPhrases: [
+            { en: "I'm used to it.", ko: '익숙해요.', enFirst: true },
+            { en: "It's my fault for being so weak.", ko: '제가 약해서 그래요.' },
+            { en: 'The weakest hunter of all mankind.', ko: '인류 최약 헌터예요.' },
+            { en: 'Please, be afraid.', ko: '두려워하세요.' },
+            { en: "It's a double dungeon.", ko: '이중 던전이에요.' },
+            { en: 'Everyone, duck!', ko: '다들 엎드려요!' },
+            { en: 'Better than nothing.', ko: '없는 것보단 나아요.' }
+        ],
+        ritualSteps: [
+            'GATE dungeon pause — phone face-down · GoPro off',
+            'English native first: I\'m used to it',
+            'Open Fast Character — Sung Jinwoo · Fighter Champion · Soldier',
+            'Korean shadow: 익숙해요 · 제가 약해서 그래요',
+            'Double dungeon vote — observe, do not absorb weakness label',
+            'One pass — no comic binge spiral · preset 27'
+        ]
+    },
+    {
+        id: 'shen-qingqiu-svsss',
+        name: 'Shen Qingqiu — SVSSS System Bound',
+        icon: '\u{1F4D6}',
+        tagline: 'B-points above zero — stay in character until OOC unlocks',
+        role: 'Fast Character Monk ally — Indonesian native before Korean shadow',
+        source: 'Shen_Qingqiu_SVSSS_Archetype.skill.md',
+        activationPhrases: [
+            'Penulis tolol, novel tolol! — System triggered',
+            'B-points stay above zero — OOC frozen'
+        ],
+        capabilities: [
+            'Generate Shen Qingqiu D&D sheet via Fast Character preset',
+            'Indonesian native input + Korean TTMIK shadowing drills',
+            'WebNovel Ch.1 lane — Qing Jing Peak · System bound · woodshed reveal',
+            'B-point guard rituals — stay in character · no trash-novel absorption'
+        ],
+        creativePrompts: [
+            'Create Shen Qingqiu Fast Character sheet — Monk Kensei · Sage · Level 5',
+            'Skit: System activation before Korean shadow after Campus justice lane',
+            'Woodshed beat drill — observe canon abuse arc without re-watch spiral'
+        ],
+        linkedGroups: ['svsss', 'melbourne', 'sovereign'],
+        linkedCategories: ['Indonesian Shadowing', 'Qing Jing Route', 'System Drills', 'GoPro & Content'],
+        shadowingPhrases: [
+            { id: 'Penulis tolol, novel tolol!', ko: '바보 작가, 바보 소설!', en: 'Stupid author, stupid novel!', idFirst: true },
+            { id: 'YOU CAN YOU UP, NO CAN NO BB', ko: '할 수 있으면 해봐, 못 하면 말고', enFirst: true },
+            { id: 'Ini adalah Puncak Qing Jing milikmu.', ko: '여기는 당신의 청정봉이에요.', idFirst: true },
+            { id: 'Poin B tidak boleh di bawah nol.', ko: 'B 포인트는 0 아래로 내려가면 안 돼요.', idFirst: true },
+            { id: 'Aku harus tetap sesuai karakter.', ko: '캐릭터에서 벗어나면 안 돼요.', idFirst: true },
+            { id: 'Di mana Luo Binghe?', ko: '루오빙허는 어디 있어요?', idFirst: true },
+            { id: 'Dia di gudang kayu.', ko: '그는 나무 창고에 있어요.', idFirst: true }
+        ],
+        ritualSteps: [
+            'QING peak wake — phone face-down · GoPro off',
+            'Indonesian native first: Penulis tolol, novel tolol!',
+            'Open Fast Character — Shen Qingqiu · Monk Kensei · Sage',
+            'Korean shadow: 바보 작가, 바보 소설! · B 포인트는 0 아래로 내려가면 안 돼요',
+            'Stay in character — OOC frozen · no sudden kindness invoice',
+            'One pass — no WebNovel binge spiral · preset 26'
+        ]
+    },
+    {
         id: 'mika-road-dreamer',
         name: 'Mika — Open Road Dreamer',
         icon: '\u{1F3CD}',

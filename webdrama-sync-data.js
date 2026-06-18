@@ -75,6 +75,18 @@ const PIPELINE_SOURCES = {
         paths: ['haley-data.js', 'Haley_Vietbonnie_Archetype.skill.md'],
         url: 'TTMIK.html?haley=1',
         role: 'Ep 7.5 CAMPUS · @vietbonnie · Medea Caster skills · NCII report boundary · no re-share'
+    },
+    svsssWebnovel: {
+        label: 'SVSSS System bound · WebNovel Ch.1',
+        paths: ['svsss-data.js', 'Shen_Qingqiu_SVSSS_Archetype.skill.md'],
+        url: 'TTMIK.html?svsss=1',
+        role: 'Ep 7.6 QING · Indonesian ID translation · B-point guard · OOC frozen'
+    },
+    soloLevelingComic: {
+        label: 'Solo Leveling · WebNovel comic Ch.1',
+        paths: ['solo-leveling-data.js', 'Sung_Jinwoo_Solo_Leveling_Archetype.skill.md'],
+        url: 'TTMIK.html?solo-leveling=1',
+        role: 'Ep 7.7 GATE · E-rank dungeon · Cartenon Temple · e-rank-pause'
     }
 };
 
@@ -124,8 +136,54 @@ const BARDIC_INSPIRATION = {
             rickmorty: { boot: 'rickmorty=1', label: 'Rick & Morty multiverse · CITADEL SQL' },
             minecraftMeme: { boot: 'minecraft-meme=1', label: 'Minecraft Wiki meme · CRAFT humor' },
             mikaRoad: { boot: 'mika=1', label: 'Mika open-road dreamer · OPEN crew loyalty' },
-            haleyJustice: { boot: 'haley=1', label: 'Haley Boba · @vietbonnie · Medea Caster justice' }
+            haleyJustice: { boot: 'haley=1', label: 'Haley Boba · @vietbonnie · Medea Caster justice' },
+            svsssSystem: { boot: 'svsss=1', label: 'SVSSS System bound · QING WebNovel Ch.1' },
+            soloLeveling: { boot: 'solo-leveling=1', label: 'Solo Leveling · GATE dungeon comic Ch.1' }
         }
+    },
+    soloLevelingGate: {
+        label: 'Solo Leveling gate — E-rank without weakness spiral',
+        duration: '60s',
+        pin: 'GATE',
+        skillId: 'sung-jinwoo-solo-leveling',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: "I'm used to it — one breath before the gate.",
+        shadowPhrase: {
+            en: "I'm used to it.",
+            ko: '익숙해요.',
+            kr: '익숙해.'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one breath at dungeon gate',
+            'English: I\'m used to it — no shame spiral · family breadwinner context',
+            'Korean shadow: 익숙해요 · 제가 약해서 그래요',
+            'Double dungeon vote — observe danger · Please, be afraid',
+            'Close: duck phrase boundary · no comic binge spiral · preset 27'
+        ],
+        webnovelUrl: 'https://www.webnovel.com/comic/15227640605485101/45196186038101142'
+    },
+    svsssSystemBound: {
+        label: 'SVSSS System bound — B-point guard without OOC spiral',
+        duration: '60s',
+        pin: 'QING',
+        skillId: 'shen-qingqiu-svsss',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: 'Penulis tolol, novel tolol! — B-points stay above zero.',
+        shadowPhrase: {
+            id: 'Penulis tolol, novel tolol!',
+            ko: '바보 작가, 바보 소설!',
+            en: 'Stupid author, stupid novel!'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one breath at Qing Jing Peak wake',
+            'Indonesian: Penulis tolol, novel tolol! — activation curse, not revenge spiral',
+            'System motto: YOU CAN YOU UP, NO CAN NO BB — observe trash-novel rage',
+            'Korean shadow: B 포인트는 0 아래로 내려가면 안 돼요 · 캐릭터에서 벗어나면 안 돼요',
+            'Close: woodshed beat observed · no WebNovel binge spiral · preset 26'
+        ],
+        webnovelUrl: 'https://www.webnovel.com/book/35203689408704405/94532538348928087'
     },
     haleyJustice: {
         label: 'Haley Boba — justice seek without re-share',
@@ -342,7 +400,9 @@ const HEALING_FACTORS = {
         { id: 'rule-breaker', label: 'Rule Breaker', ko: '거짓 계약을 끊어요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REPORT', shadowIndex: 8 },
         { id: 'argon-coin', label: 'Argon Coin', ko: '착취 없이 자원을 써요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 9 },
         { id: 'teachings-circe', label: 'Teachings of Circe', ko: '헤드라인은 관찰만', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REST', shadowIndex: 10 },
-        { id: 'witch-colchis', label: 'Witch of Colchis', ko: '마녀가 아니라 학생이에요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 11 }
+        { id: 'witch-colchis', label: 'Witch of Colchis', ko: '마녀가 아니라 학생이에요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 11 },
+        { id: 'b-point-guard', label: 'B-point guard', ko: 'B 포인트는 0 아래로 내려가면 안 돼요', skillId: 'shen-qingqiu-svsss', edit: 'svsss-system-bound', questId: 'side-humor', pin: 'QING', shadowIndex: 4 },
+        { id: 'e-rank-pause', label: 'E-rank pause', ko: '익숙해요', skillId: 'sung-jinwoo-solo-leveling', edit: 'solo-leveling-gate', questId: 'side-humor', pin: 'GATE', shadowIndex: 0 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -1167,6 +1227,26 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Library pause · @vietbonnie · Medea Caster skills · NCII boundary · Fast Character Wizard Abjurer sheet',
         autoShadow: true
+    },
+    {
+        id: 26,
+        label: 'QING · Ep 7.6 · SVSSS System Bound',
+        shortLabel: 'SVSSS',
+        pin: 'QING',
+        episode: '7.6',
+        reel: null,
+        note: 'WebNovel Ch.1 · Indonesian ID native · System bound · B-point guard · Fast Character Monk Kensei sheet',
+        autoShadow: true
+    },
+    {
+        id: 27,
+        label: 'GATE · Ep 7.7 · Solo Leveling Hunter',
+        shortLabel: 'SOLO',
+        pin: 'GATE',
+        episode: '7.7',
+        reel: null,
+        note: 'WebNovel comic Ch.1 · English native · E-rank dungeon · Cartenon Temple · Fast Character Fighter Champion sheet',
+        autoShadow: true
     }
 ];
 
@@ -1184,12 +1264,14 @@ const WEBSERIES_MULTIVERSE = {
         { id: 'rickmorty', label: 'Rick & Morty SQL multiverse', episode: '7.2', preset: 22, boot: 'rickmorty=1' },
         { id: 'minecraft-meme', label: 'Minecraft Wiki meme generator', episode: '7.3', preset: 23, boot: 'minecraft-meme=1' },
         { id: 'mika-road', label: 'Mika open-road dreamer', episode: '7.4', preset: 24, boot: 'mika=1' },
-        { id: 'haley-justice', label: 'Haley Boba justice seek', episode: '7.5', preset: 25, boot: 'haley=1' }
+        { id: 'haley-justice', label: 'Haley Boba justice seek', episode: '7.5', preset: 25, boot: 'haley=1' },
+        { id: 'svsss-system', label: 'SVSSS System bound', episode: '7.6', preset: 26, boot: 'svsss=1' },
+        { id: 'solo-leveling-gate', label: 'Solo Leveling dungeon gate', episode: '7.7', preset: 27, boot: 'solo-leveling=1' }
     ],
     handoff: {
-        from: '7.4',
-        to: '7.5',
-        note: 'Open highway crew loyalty → Campus justice seek — document & report without re-share'
+        from: '7.6',
+        to: '7.7',
+        note: 'SVSSS System bound → Solo Leveling gate — I\'m used to it · E-rank without weakness spiral'
     }
 };
 
@@ -1318,6 +1400,14 @@ function getMinecraftWikiMemeRitual() {
 
 function getMikaRoadDreamRitual() {
     return BARDIC_INSPIRATION.mikaRoadDream;
+}
+
+function getSvsssSystemRitual() {
+    return BARDIC_INSPIRATION.svsssSystemBound;
+}
+
+function getSoloLevelingGateRitual() {
+    return BARDIC_INSPIRATION.soloLevelingGate;
 }
 
 function getWebseriesMultiverse() {

@@ -119,6 +119,12 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Haley Library') {
         return lessons.filter(l => l.group === 'haley');
     }
+    if (activeLibraryGroup === 'SVSSS Library') {
+        return lessons.filter(l => l.group === 'svsss');
+    }
+    if (activeLibraryGroup === 'Solo Leveling Library') {
+        return lessons.filter(l => l.group === 'solo-leveling');
+    }
     return lessons;
 }
 
@@ -623,6 +629,12 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'haley') {
         activeLibraryGroup = 'Haley Library';
         activeCategory = 'English Shadowing';
+    } else if (groupId === 'svsss') {
+        activeLibraryGroup = 'SVSSS Library';
+        activeCategory = 'Indonesian Shadowing';
+    } else if (groupId === 'solo-leveling') {
+        activeLibraryGroup = 'Solo Leveling Library';
+        activeCategory = 'English Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -766,6 +778,24 @@ function startMikaCategory(subtitle) {
 
 function startHaleyCategory(subtitle) {
     activeLibraryGroup = 'Haley Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startSvsssCategory(subtitle) {
+    activeLibraryGroup = 'SVSSS Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startSoloLevelingCategory(subtitle) {
+    activeLibraryGroup = 'Solo Leveling Library';
     activeCategory = subtitle;
     renderLibraryGroupFilters();
     renderCategoryFilters();
@@ -1372,6 +1402,44 @@ function renderJourneyDashboard() {
         });
     }
 
+    const soloGrid = document.getElementById('solo-leveling-quick-grid');
+    if (soloGrid && typeof SOLO_LEVELING_COURSE_DEFS !== 'undefined') {
+        soloGrid.textContent = '';
+        SOLO_LEVELING_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-violet-900/30 hover:bg-violet-800/40 ring-1 ring-violet-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-violet-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-violet-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startSoloLevelingCategory(def.subtitle);
+            soloGrid.appendChild(btn);
+        });
+    }
+
+    const svsssGrid = document.getElementById('svsss-quick-grid');
+    if (svsssGrid && typeof SVSSS_COURSE_DEFS !== 'undefined') {
+        svsssGrid.textContent = '';
+        SVSSS_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-emerald-900/30 hover:bg-emerald-800/40 ring-1 ring-emerald-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-emerald-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-emerald-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startSvsssCategory(def.subtitle);
+            svsssGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1555,6 +1623,10 @@ window.onload = () => {
             startMikaCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'haley') {
             startHaleyCategory(bootParams.get('category') || 'English Shadowing');
+        } else if (bootParams.get('library') === 'svsss') {
+            startSvsssCategory(bootParams.get('category') || 'Indonesian Shadowing');
+        } else if (bootParams.get('library') === 'solo-leveling') {
+            startSoloLevelingCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

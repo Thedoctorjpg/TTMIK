@@ -189,10 +189,20 @@ function openSkillLessons(skillId) {
     const hasUsa = skill.linkedGroups?.includes('usa');
     const hasMika = skill.linkedGroups?.includes('mika');
     const hasHaley = skill.linkedGroups?.includes('haley');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && !hasHaley && (
+    const hasSvsss = skill.linkedGroups?.includes('svsss');
+    const hasSoloLeveling = skill.linkedGroups?.includes('solo-leveling');
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && !hasHaley && !hasSvsss && !hasSoloLeveling && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
+    if (hasSoloLeveling && typeof startSoloLevelingCategory === 'function') {
+        startSoloLevelingCategory(skill.linkedCategories?.[0] || 'English Shadowing');
+        return;
+    }
+    if (hasSvsss && typeof startSvsssCategory === 'function') {
+        startSvsssCategory(skill.linkedCategories?.[0] || 'Indonesian Shadowing');
+        return;
+    }
     if (hasHaley && typeof startHaleyCategory === 'function') {
         startHaleyCategory(skill.linkedCategories?.[0] || 'English Shadowing');
         return;
@@ -313,6 +323,14 @@ function practiceHealingFactor(factorId, opts = {}) {
     }
     if (factorId === 'wiki-meme') {
         practiceMinecraftWikiMeme(opts);
+        return true;
+    }
+    if (factorId === 'b-point-guard') {
+        practiceShenQingqiuSvsss({ ...opts, shadowIndex: 4 });
+        return true;
+    }
+    if (factorId === 'e-rank-pause') {
+        practiceSungJinwooSoloLeveling({ ...opts, shadowIndex: 0 });
         return true;
     }
     if (factorId === 'open-road') {
@@ -504,6 +522,10 @@ function bootSkillById(skillId, opts = {}) {
             startRickMortyCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Mika Library' && entry.libraryCategory) {
             startMikaCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'SVSSS Library' && entry.libraryCategory) {
+            startSvsssCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Solo Leveling Library' && entry.libraryCategory) {
+            startSoloLevelingCategory(entry.libraryCategory);
         } else {
             openSkillLessons(skillId);
         }
@@ -1081,6 +1103,78 @@ function practiceHaleyVietbonnie(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceSungJinwooSoloLeveling(opts = {}) {
+    const skillId = 'sung-jinwoo-solo-leveling';
+    const shadowIdx = opts.shadowIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(27)) {
+        const preset = getSyncPreset(27);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    } else {
+        setWebdramaSyncValues('GATE', '7.7', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterSungJinwoo === 'function') {
+        openFastCharacterSungJinwoo();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
+function practiceShenQingqiuSvsss(opts = {}) {
+    const skillId = 'shen-qingqiu-svsss';
+    const shadowIdx = opts.shadowIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(26)) {
+        const preset = getSyncPreset(26);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    } else {
+        setWebdramaSyncValues('QING', '7.6', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterShenQingqiu === 'function') {
+        openFastCharacterShenQingqiu();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceMikaRoadDreamer(opts = {}) {
     const skillId = 'mika-road-dreamer';
     const shadowIdx = opts.shadowIndex ?? 0;
@@ -1502,6 +1596,8 @@ function renderBootAllPanel() {
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
             else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
+            else if (boot['solo-leveling'] === '1' || boot.jinwoo === '1' || boot.comic === '1') practiceSungJinwooSoloLeveling({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'e-rank-pause' ? 0 : 0 });
+            else if (boot.svsss === '1' || boot['shen-qingqiu'] === '1' || boot.webnovel === '1') practiceShenQingqiuSvsss({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'b-point-guard' ? 4 : 0 });
             else if (boot.haley === '1' || boot.vietbonnie === '1') practiceHaleyVietbonnie({ openSheet: boot.sheet === '1' });
             else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
@@ -1657,6 +1753,20 @@ function handleTtmikSyncBoot() {
         practiceMikaRoadDreamer({
             openSheet: params.get('sheet') === '1',
             shadowIndex: params.get('heal-factor') === 'dream-teleport' ? 3 : 0
+        });
+        return;
+    }
+    if (params.get('solo-leveling') === '1' || params.get('jinwoo') === '1' || params.get('comic') === '1') {
+        practiceSungJinwooSoloLeveling({
+            openSheet: params.get('sheet') === '1',
+            shadowIndex: 0
+        });
+        return;
+    }
+    if (params.get('svsss') === '1' || params.get('shen-qingqiu') === '1' || params.get('webnovel') === '1') {
+        practiceShenQingqiuSvsss({
+            openSheet: params.get('sheet') === '1',
+            shadowIndex: params.get('heal-factor') === 'b-point-guard' ? 4 : 0
         });
         return;
     }
@@ -1895,6 +2005,12 @@ function renderSyncPanel() {
         const ko = document.createElement('p');
         ko.className = 'korean text-lg text-white';
         ko.textContent = phrase.ko;
+        if (phrase.id && phrase.idFirst) {
+            const idLead = document.createElement('p');
+            idLead.className = 'text-emerald-400/90 text-sm font-medium';
+            idLead.textContent = phrase.id;
+            phraseBox.appendChild(idLead);
+        }
         if (phrase.ilo) {
             const ilo = document.createElement('p');
             ilo.className = 'text-emerald-400/90 text-sm font-medium';
@@ -1950,6 +2066,12 @@ function renderSyncPanel() {
             phraseBox.appendChild(es);
         }
         phraseBox.appendChild(ko);
+        if (phrase.id && !phrase.idFirst) {
+            const idTrail = document.createElement('p');
+            idTrail.className = 'text-emerald-400/90 text-sm mt-1';
+            idTrail.textContent = phrase.id;
+            phraseBox.appendChild(idTrail);
+        }
         if (phrase.en && !phrase.enFirst) {
             const en = document.createElement('p');
             en.className = 'text-zinc-400 text-sm mt-1';
@@ -2108,6 +2230,22 @@ function renderSyncPanel() {
     mikaBtn.title = 'Highway pause · crew loyalty · preset 24 · dream-teleport heal';
     mikaBtn.onclick = () => practiceMikaRoadDreamer();
     actions.appendChild(mikaBtn);
+
+    const soloBtn = document.createElement('button');
+    soloBtn.type = 'button';
+    soloBtn.className = 'px-5 py-3 bg-violet-900/50 text-violet-200 rounded-2xl text-sm font-medium hover:bg-violet-800/70 ring-1 ring-violet-500/30';
+    soloBtn.textContent = 'Solo Leveling gate (Ep 7.7 · EN)';
+    soloBtn.title = 'WebNovel comic Ch.1 · E-rank dungeon · preset 27 · e-rank-pause';
+    soloBtn.onclick = () => practiceSungJinwooSoloLeveling();
+    actions.appendChild(soloBtn);
+
+    const svsssBtn = document.createElement('button');
+    svsssBtn.type = 'button';
+    svsssBtn.className = 'px-5 py-3 bg-emerald-900/50 text-emerald-200 rounded-2xl text-sm font-medium hover:bg-emerald-800/70 ring-1 ring-emerald-500/30';
+    svsssBtn.textContent = 'SVSSS System bound (Ep 7.6 · ID)';
+    svsssBtn.title = 'WebNovel Ch.1 · Indonesian native · preset 26 · B-point guard';
+    svsssBtn.onclick = () => practiceShenQingqiuSvsss();
+    actions.appendChild(svsssBtn);
 
     const haleyBtn = document.createElement('button');
     haleyBtn.type = 'button';
@@ -3315,6 +3453,94 @@ function renderSkillDetail() {
         };
         mikaBlock.appendChild(mikaSheet);
         panel.appendChild(mikaBlock);
+    }
+
+    if (skill.id === 'sung-jinwoo-solo-leveling') {
+        const slBlock = document.createElement('div');
+        slBlock.className = 'mb-6 bg-violet-500/10 border border-violet-500/20 rounded-2xl p-4';
+        const slLabel = document.createElement('h4');
+        slLabel.className = 'text-xs uppercase tracking-widest text-violet-300 mb-2';
+        slLabel.textContent = 'Solo Leveling · Ep 7.7 · WebNovel Comic Ch.1';
+        slBlock.appendChild(slLabel);
+        const slNote = document.createElement('p');
+        slNote.className = 'text-sm text-zinc-400 mb-3';
+        slNote.textContent = 'GATE raid → STONE essence → TEMPLE double dungeon. I\'m used to it · duck · no weakness spiral.';
+        slBlock.appendChild(slNote);
+        const slDeck = document.createElement('ul');
+        slDeck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.en, p.ko].filter(Boolean).join(' · ');
+            slDeck.appendChild(li);
+        });
+        slBlock.appendChild(slDeck);
+        const slRun = document.createElement('button');
+        slRun.type = 'button';
+        slRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50 mr-2';
+        slRun.textContent = 'Invoke gate lane (EN → KO)';
+        slRun.onclick = () => practiceSungJinwooSoloLeveling();
+        slBlock.appendChild(slRun);
+        const eRankBtn = document.createElement('button');
+        eRankBtn.type = 'button';
+        eRankBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-violet-600/30 text-violet-200 hover:bg-violet-600/50 mr-2';
+        eRankBtn.textContent = 'E-rank pause heal';
+        eRankBtn.title = 'TTMIK.html?heal-factor=e-rank-pause';
+        eRankBtn.onclick = () => practiceHealingFactor('e-rank-pause');
+        slBlock.appendChild(eRankBtn);
+        const slSheet = document.createElement('button');
+        slSheet.type = 'button';
+        slSheet.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        slSheet.textContent = 'Create Sung Jinwoo sheet';
+        slSheet.title = 'fastcharacter.com · Sung Jinwoo · Fighter Champion · Soldier · Level 5';
+        slSheet.onclick = () => {
+            if (typeof openFastCharacterSungJinwoo === 'function') openFastCharacterSungJinwoo();
+        };
+        slBlock.appendChild(slSheet);
+        panel.appendChild(slBlock);
+    }
+
+    if (skill.id === 'shen-qingqiu-svsss') {
+        const svsssBlock = document.createElement('div');
+        svsssBlock.className = 'mb-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4';
+        const svsssLabel = document.createElement('h4');
+        svsssLabel.className = 'text-xs uppercase tracking-widest text-emerald-300 mb-2';
+        svsssLabel.textContent = 'SVSSS System Bound · Ep 7.6 · WebNovel Ch.1';
+        svsssBlock.appendChild(svsssLabel);
+        const svsssNote = document.createElement('p');
+        svsssNote.className = 'text-sm text-zinc-400 mb-3';
+        svsssNote.textContent = 'QING peak wake → SYSTEM bound → WOODS woodshed reveal. B-points · OOC frozen · stay in character.';
+        svsssBlock.appendChild(svsssNote);
+        const svsssDeck = document.createElement('ul');
+        svsssDeck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.id, p.ko].filter(Boolean).join(' · ');
+            svsssDeck.appendChild(li);
+        });
+        svsssBlock.appendChild(svsssDeck);
+        const svsssRun = document.createElement('button');
+        svsssRun.type = 'button';
+        svsssRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-600/30 text-emerald-200 hover:bg-emerald-600/50 mr-2';
+        svsssRun.textContent = 'Invoke SVSSS lane (ID → KO)';
+        svsssRun.onclick = () => practiceShenQingqiuSvsss();
+        svsssBlock.appendChild(svsssRun);
+        const bPointBtn = document.createElement('button');
+        bPointBtn.type = 'button';
+        bPointBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-emerald-600/30 text-emerald-200 hover:bg-emerald-600/50 mr-2';
+        bPointBtn.textContent = 'B-point guard heal';
+        bPointBtn.title = 'TTMIK.html?heal-factor=b-point-guard';
+        bPointBtn.onclick = () => practiceHealingFactor('b-point-guard');
+        svsssBlock.appendChild(bPointBtn);
+        const svsssSheet = document.createElement('button');
+        svsssSheet.type = 'button';
+        svsssSheet.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        svsssSheet.textContent = 'Create Shen Qingqiu sheet';
+        svsssSheet.title = 'fastcharacter.com · Shen Qingqiu · Monk Kensei · Sage · Level 5';
+        svsssSheet.onclick = () => {
+            if (typeof openFastCharacterShenQingqiu === 'function') openFastCharacterShenQingqiu();
+        };
+        svsssBlock.appendChild(svsssSheet);
+        panel.appendChild(svsssBlock);
     }
 
     if (skill.id === 'haley-vietbonnie') {

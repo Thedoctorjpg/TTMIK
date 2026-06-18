@@ -456,6 +456,46 @@ const FAST_CHARACTER_MIKA = {
     note: 'Horizon Walker · Level 5 · Chaotic Good — open-road crew loyalty ally'
 };
 
+/** Sung Jinwoo — Fighter Champion muse · Ep 7.7 Solo Leveling dungeon gate */
+const FAST_CHARACTER_SUNG_JINWOO = {
+    id: 'sung-jinwoo-solo-leveling',
+    label: 'Sung Jinwoo — Solo Leveling Hunter',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-SL',
+    randomname: 'no',
+    pcname: 'Sung Jinwoo',
+    pcclass: 'FighterChampion',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Soldier',
+    pcgender: 'male',
+    pcalignment: 'LN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Champion · Level 5 · E-rank proxy — family breadwinner · dagger better than nothing'
+};
+
+/** Shen Qingqiu — Monk Kensei muse · Ep 7.6 SVSSS System bound */
+const FAST_CHARACTER_SHEN_QINGQIU = {
+    id: 'shen-qingqiu-svsss',
+    label: 'Shen Qingqiu — SVSSS System Bound',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-SVQ',
+    randomname: 'no',
+    pcname: 'Shen Qingqiu',
+    pcclass: 'MonkKensei',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Sage',
+    pcgender: 'male',
+    pcalignment: 'LN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Kensei · Level 5 · Pedang Xiu Ya — trash-villain facade · B-point guard'
+};
+
 /** Rick — Artificer Sage muse · Ep 7.2 Citadel multiverse SQL */
 const FAST_CHARACTER_RICK = {
     id: 'rick',
@@ -544,7 +584,12 @@ const FAST_CHARACTER_PRESETS = {
     haley: FAST_CHARACTER_HALEY,
     vietbonnie: FAST_CHARACTER_HALEY,
     rick: FAST_CHARACTER_RICK,
-    rickmorty: FAST_CHARACTER_RICK
+    rickmorty: FAST_CHARACTER_RICK,
+    'shen-qingqiu-svsss': FAST_CHARACTER_SHEN_QINGQIU,
+    svsss: FAST_CHARACTER_SHEN_QINGQIU,
+    'sung-jinwoo-solo-leveling': FAST_CHARACTER_SUNG_JINWOO,
+    'solo-leveling': FAST_CHARACTER_SUNG_JINWOO,
+    jinwoo: FAST_CHARACTER_SUNG_JINWOO
 };
 
 function getFastCharacterPresetForSkill(skillId) {
@@ -634,6 +679,10 @@ function openFastCharacterMika() { openFastCharacterSheet(FAST_CHARACTER_MIKA); 
 function openFastCharacterHaley() { openFastCharacterSheet(FAST_CHARACTER_HALEY); }
 function openFastCharacterVietbonnie() { openFastCharacterHaley(); }
 function openFastCharacterRick() { openFastCharacterSheet(FAST_CHARACTER_RICK); }
+function openFastCharacterShenQingqiu() { openFastCharacterSheet(FAST_CHARACTER_SHEN_QINGQIU); }
+function openFastCharacterSvsss() { openFastCharacterShenQingqiu(); }
+function openFastCharacterSungJinwoo() { openFastCharacterSheet(FAST_CHARACTER_SUNG_JINWOO); }
+function openFastCharacterSoloLeveling() { openFastCharacterSungJinwoo(); }
 
 /** D&D Beyond gap-fill class anchors — not tied to a single archetype skill */
 const FAST_CHARACTER_CLASS_ANCHORS = [

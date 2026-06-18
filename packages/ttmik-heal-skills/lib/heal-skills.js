@@ -802,6 +802,103 @@ const SKILLS = [
         ]
     },
     {
+        id: 'sung-jinwoo-solo-leveling',
+        rootFile: 'Sung_Jinwoo_Solo_Leveling_Archetype.skill.md',
+        description: 'Sung Jinwoo Solo Leveling muse for English native input, Korean TTMIK shadowing, and E-rank dungeon boundary. WebNovel comic Ch.1 lane.',
+        activation: "I'm used to it — one breath before the gate.",
+        whenToUse: [
+            'English native input before Korean shadowing practice',
+            'WebNovel comic Ch.1 — dungeon gate · essence stone · Cartenon Temple',
+            'Generating a D&D character sheet via Fast Character (Sung Jinwoo preset)',
+            'TTMIK.html?solo-leveling=1 — invoke Solo Leveling hunter boot',
+            'TTMIK.html?heal-factor=e-rank-pause — E-rank boundary heal on Hermes'
+        ],
+        procedure: [
+            'Phone face-down · GoPro off · one breath at dungeon gate',
+            'English native first: I\'m used to it — no shame spiral',
+            'Open Fast Character sheet: Sung Jinwoo · Fighter Champion · Soldier · Level 5',
+            'Korean shadow: 익숙해요 · 제가 약해서 그래요',
+            'Double dungeon vote — observe danger, do not absorb weakness into identity',
+            'One pass — no comic binge spiral · preset 27'
+        ],
+        pitfalls: [
+            'Do not make Jinwoo a rescue mission or pity subplot',
+            'E-rank is context, not destiny — no weakness performance invoice',
+            'Cartenon Temple beat is intense — phone face-down after, no re-watch spiral'
+        ],
+        verification: [
+            'English phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter finish — humor tended the wound, not the algorithm'
+        ],
+        korean: ['익숙해요.', '제가 약해서 그래요.', '인류 최약 헌터예요.', '두려워하세요.', '이중 던전이에요.', '다들 엎드려요!'],
+        english: [
+            "I'm used to it.",
+            "It's my fault for being so weak.",
+            'The weakest hunter of all mankind.',
+            'Please, be afraid.',
+            "It's a double dungeon.",
+            'Everyone, duck!'
+        ],
+        integrations: [
+            'Ep 7.7 · preset 27 · GATE dungeon gate lane',
+            'WebNovel comic: https://www.webnovel.com/comic/15227640605485101/45196186038101142',
+            'fastcharacter.com — openFastCharacterSungJinwoo() preset',
+            'TTMIK.html?solo-leveling=1 — English native input boot',
+            'TTMIK.html?solo-leveling=1&sheet=1 — Fast Character sheet',
+            'TTMIK.html?heal-factor=e-rank-pause — E-rank pause · GATE · shadow index 0',
+            'TTMIK.html?library=solo-leveling — Solo Leveling Library compose'
+        ]
+    },
+    {
+        id: 'shen-qingqiu-svsss',
+        rootFile: 'Shen_Qingqiu_SVSSS_Archetype.skill.md',
+        description: 'Shen Qingqiu SVSSS System-bound muse for Indonesian native input, Korean TTMIK shadowing, and B-point character guard. WebNovel Ch.1 lane.',
+        activation: 'Penulis tolol, novel tolol! — B-points stay above zero.',
+        whenToUse: [
+            'Indonesian native input before Korean shadowing practice',
+            'WebNovel Ch.1 — Qing Jing Peak wake · System activation · woodshed reveal',
+            'Generating a D&D character sheet via Fast Character (Shen Qingqiu preset)',
+            'TTMIK.html?svsss=1 — invoke SVSSS System bound boot',
+            'TTMIK.html?heal-factor=b-point-guard — B-point ledger heal on Hermes'
+        ],
+        procedure: [
+            'Phone face-down · GoPro off · one breath at Qing Jing Peak wake',
+            'Indonesian native first: Penulis tolol, novel tolol!',
+            'Open Fast Character sheet: Shen Qingqiu · Monk (Kensei) · Sage · Level 5',
+            'Korean shadow: 바보 작가, 바보 소설! · B 포인트는 0 아래로 내려가면 안 돼요',
+            'Stay in character — OOC frozen until System unlocks',
+            'One pass — no WebNovel binge spiral · preset 26'
+        ],
+        pitfalls: [
+            'Do not make Shen Qingqiu a sudden kindness rescue mission',
+            'B-points below zero = deportation — treat as boundary, not gamification shame',
+            'Observe trash-novel rage without absorbing it into the feed'
+        ],
+        verification: [
+            'Indonesian phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter finish — humor tended the wound, not the algorithm'
+        ],
+        korean: [
+            '바보 작가, 바보 소설!',
+            '할 수 있으면 해봐, 못 하면 말고',
+            '여기는 당신의 청정봉이에요.',
+            'B 포인트는 0 아래로 내려가면 안 돼요.',
+            '캐릭터에서 벗어나면 안 돼요.',
+            '루오빙허는 어디 있어요?'
+        ],
+        integrations: [
+            'Ep 7.6 · preset 26 · QING Qing Jing lane',
+            'WebNovel: https://www.webnovel.com/book/35203689408704405/94532538348928087',
+            'fastcharacter.com — openFastCharacterShenQingqiu() preset',
+            'TTMIK.html?svsss=1 — Indonesian native input boot',
+            'TTMIK.html?svsss=1&sheet=1 — Fast Character sheet',
+            'TTMIK.html?heal-factor=b-point-guard — B-point guard · QING · shadow index 4',
+            'TTMIK.html?library=svsss — SVSSS Library compose'
+        ]
+    },
+    {
         id: 'rach3l',
         rootFile: 'rach3l.skill.md',
         description: 'rach3l cautionary mirror for discerning chaotic social media energy without absorption. Use when user processes concerning TikTok content, altered states, or observe-but-do-not-absorb practice.',
@@ -993,6 +1090,8 @@ const HEALING_FACTOR_BY_SKILL = {
         'argon-coin', 'teachings-circe', 'witch-colchis', 'helen-boundary', 'cord-cut', 'pause-breathe', 'no-rewatch'
     ],
     'mika-road-dreamer': ['open-road', 'dream-teleport', 'humor-release', 'pause-breathe', 'no-rewatch'],
+    'shen-qingqiu-svsss': ['b-point-guard', 'pause-breathe', 'no-rewatch', 'humor-release'],
+    'sung-jinwoo-solo-leveling': ['e-rank-pause', 'pause-breathe', 'no-rewatch', 'humor-release'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
     'ignan-grounding': ['post-dib', 'helen-boundary', 'pause-breathe'],
@@ -1024,6 +1123,8 @@ const HEALING_FACTOR_LABELS = {
     'witch-colchis': 'Witch of Colchis [A] — student not headline · ?heal-factor=witch-colchis',
     'open-road': 'Open road heal — ?mika=1 · OPEN · Ep 7.4',
     'dream-teleport': 'Dreamer teleport pivot — ?heal-factor=dream-teleport · OPEN · Ep 7.4',
+    'b-point-guard': 'B-point guard — ?svsss=1 · QING · Ep 7.6 · WebNovel Ch.1',
+    'e-rank-pause': 'E-rank pause — ?solo-leveling=1 · GATE · Ep 7.7 · WebNovel comic Ch.1',
     'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause',
     'twitter-feed-heal': 'Twitter feed heal — ?tweet-heal=1 · x.com/adhdloganberry'
 };

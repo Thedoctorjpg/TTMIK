@@ -129,6 +129,18 @@ if (typeof generateHaleyLibraryLessons === 'function') {
     nextId += haleyLessons.length;
 }
 
+if (typeof generateSvsssLibraryLessons === 'function') {
+    const svsssLessons = generateSvsssLibraryLessons(nextId);
+    lessons = lessons.concat(svsssLessons);
+    nextId += svsssLessons.length;
+}
+
+if (typeof generateSoloLevelingLibraryLessons === 'function') {
+    const soloLessons = generateSoloLevelingLibraryLessons(nextId);
+    lessons = lessons.concat(soloLessons);
+    nextId += soloLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -163,5 +175,8 @@ let libraryGroups = [
     'Kane Library',
     'Evangelion Library',
     'Rick & Morty Multiverse Library',
-    'Mika Library'
+    'Mika Library',
+    'Haley Library',
+    'SVSSS Library',
+    'Solo Leveling Library'
 ];

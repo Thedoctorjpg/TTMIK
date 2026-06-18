@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-18 · 31 tracks
+ * Healed: 2026-06-18 · 33 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -372,6 +372,34 @@ const HEALING_FACTOR_DECK = [
         "questId": "side-boundary",
         "edit": "haley-justice-ritual",
         "ko": "마녀가 아니라 학생이에요",
+        "en": ""
+    },
+    {
+        "factorId": "b-point-guard",
+        "title": "B-point guard",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=b-point-guard",
+        "note": "svsss-system-bound · quest side-humor",
+        "skillId": "shen-qingqiu-svsss",
+        "pin": "QING",
+        "shadowIndex": 4,
+        "questId": "side-humor",
+        "edit": "svsss-system-bound",
+        "ko": "B 포인트는 0 아래로 내려가면 안 돼요",
+        "en": ""
+    },
+    {
+        "factorId": "e-rank-pause",
+        "title": "E-rank pause",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=e-rank-pause",
+        "note": "solo-leveling-gate · quest side-humor",
+        "skillId": "sung-jinwoo-solo-leveling",
+        "pin": "GATE",
+        "shadowIndex": 0,
+        "questId": "side-humor",
+        "edit": "solo-leveling-gate",
+        "ko": "익숙해요",
         "en": ""
     }
 ];

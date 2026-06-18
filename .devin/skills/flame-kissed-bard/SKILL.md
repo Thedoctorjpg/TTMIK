@@ -21,6 +21,7 @@ metadata:
 ## Procedure
 
 - Identify the emotional thread (attachment, scam, neighbor, WINZ, synchronicity)
+- Open Fast Character sheet: Flame · Bard (Glamour) · Hermit · Level 5
 - Choose output form: skit script, character sheet, or ritual
 - Write in warm, empowering tone with clear structure
 - Center chaotic neutral sovereignty and boundaries
@@ -51,6 +52,11 @@ metadata:
 - **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
 - Mantra: *One breath · one boundary · no re-watch spiral*
 - Library: `TTMIK.html?library=heal`
+
+## Cross-App Links
+
+- fastcharacter.com — openFastCharacterFlameBard() preset
+- TTMIK.html?skill=flame-kissed-bard&sheet=1 — Fast Character sheet boot
 
 ## TTMIK App Integration
 

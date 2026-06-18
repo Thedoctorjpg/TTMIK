@@ -22,6 +22,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Asuka · Bard (Dance) · High Elf · Level 5
 - Japanese native first: メルボルンが私の選択です — name the yes calmly
 - Name the "maybe" without regret or fantasy replay
 - Affirm the "yes" actually chosen (Melbourne path)
@@ -63,8 +64,9 @@ metadata:
 
 ## Cross-App Links
 
+- fastcharacter.com — openFastCharacterAsuka() preset
 - Ep 5 · preset 11 · FED rain glass
-- TTMIK.html?asuka=1 — Japanese native input boot
+- TTMIK.html?asuka=1&sheet=1 — Japanese native input + sheet boot
 - Quest main-others · Transportation + Melbourne Arrival lessons
 
 ## TTMIK App Integration

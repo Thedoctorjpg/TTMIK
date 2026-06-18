@@ -24,6 +24,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Helen · Cleric (Trickery) · Acolyte · Level 5
 - Quick cord-cutting + neighbor release (no drama narrative)
 - Affirm: "I choose my own timeline and energy field"
 - Cook-off rule: no soulmate declarations before plating — apply to texts too
@@ -69,6 +70,8 @@ metadata:
 
 ## Cross-App Links
 
+- fastcharacter.com — openFastCharacterHelen() preset
+- TTMIK.html?heal=1&sheet=1 — post-DIB Helen sheet + quiet heal
 - lets-cook `/date-night` — Helen station: Boundary Miso-Ginger Soup
 - girls-love **After the Date** Ch.2–4 — slow-burn POV, "I like you. Slowly. On purpose."
 - audit/tarot-scam-avoidance-audit.md — RED FLAG checklist + block protocol

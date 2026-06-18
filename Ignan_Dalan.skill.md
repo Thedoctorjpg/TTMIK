@@ -21,6 +21,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Mari · Druid (Circle of the Land) · Wayfarer · Level 5
 - Name one borrowed shame — no post before feet stop
 - Ilokano: Piliem ti bukodko a dalan
 - Korean: 제 길을 믿어요
@@ -60,11 +61,12 @@ metadata:
 
 ## Cross-App Links
 
+- fastcharacter.com — openFastCharacterIgnanDalan() preset
 - Ignan Library · Healing Walk Route + Trilingual Shadowing
-- TTMIK.html?skill=ignan-dalan — boot BOTANIC close + shadowing
+- TTMIK.html?skill=ignan-dalan&sheet=1 — boot BOTANIC close + sheet
 - TTMIK.html?skill=ignan-dalan&lessons=1 — open library lane
 - Ep 2.6 IG7–IG8 · preset 10
-- TTMIK.html?ignan=1&step=6
+- TTMIK.html?ignan=1&step=6&sheet=1
 
 ## TTMIK App Integration
 

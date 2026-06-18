@@ -21,6 +21,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Mari · Druid (Circle of the Sea) · Farmer · Level 5
 - GoPro on Bard bag — Mari leads; consent each frame
 - Three-language release: Ilokano (body), Korean (TTMIK), English (anchor)
 - Walk HOTEL → FED optional rain → BOTANIC lake path
@@ -64,13 +65,14 @@ metadata:
 
 ## Cross-App Links
 
+- fastcharacter.com — openFastCharacterIgnanPilgrim() preset
 - Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC
 - Ep 2.65 · mari-fifa-celebration · preset 12 · CANTINA
 - TTMIK.html?fifa=1 — Mari Mexican restaurant FIFA · Ilokano native first
-- TTMIK.html?skill=ignan-pilgrim — boot registry
+- TTMIK.html?skill=ignan-pilgrim&sheet=1 — boot registry + sheet
 - TTMIK.html?library=ignan — Ignan Library compose
 - Post-DIB preset 9 → hand off when Mari is ready
-- TTMIK.html?ignan=1 — Ignan healing journey boot
+- TTMIK.html?ignan=1&sheet=1 — Ignan healing journey + sheet boot
 - Veil Lumen — trilingual spoken clip
 
 ## TTMIK App Integration

@@ -403,6 +403,10 @@ function practiceDibAftercare(opts = {}) {
         completeQuestObjective(ritual?.questId || 'side-dib-heal');
     }
 
+    if (opts.openSheet && typeof openFastCharacterHelen === 'function') {
+        openFastCharacterHelen();
+    }
+
     switchTab(2);
     renderSkillDetail();
     renderSkillsGrid();
@@ -435,6 +439,10 @@ function practiceIgnanHealingJourney(opts = {}) {
         completeQuestObjective('side-ignan-heal');
     }
 
+    if (opts.openSheet && typeof openFastCharacterIgnanPilgrim === 'function') {
+        openFastCharacterIgnanPilgrim();
+    }
+
     switchTab(2);
     renderSkillDetail();
     renderSkillsGrid();
@@ -447,7 +455,10 @@ function bootSkillById(skillId, opts = {}) {
     const entry = typeof getSkillBootEntry === 'function' ? getSkillBootEntry(skillId) : null;
 
     if (entry?.invoke && typeof window[entry.invoke] === 'function') {
-        window[entry.invoke]({ logQuest: opts.logQuest !== false });
+        window[entry.invoke]({
+            logQuest: opts.logQuest !== false,
+            openSheet: opts.openSheet
+        });
         return true;
     }
 
@@ -504,6 +515,10 @@ function bootSkillById(skillId, opts = {}) {
         renderSkillDetail();
         renderSkillsGrid();
         return true;
+    }
+
+    if (opts.openSheet && typeof openFastCharacterForSkill === 'function') {
+        openFastCharacterForSkill(skillId);
     }
 
     switchTab(2);
@@ -591,6 +606,10 @@ function practiceCicadaAttune(opts = {}) {
 
     if (opts.logQuest !== false) {
         completeQuestObjective(ritual?.questId || 'side-boundary');
+    }
+
+    if (opts.openSheet && typeof openFastCharacterSua === 'function') {
+        openFastCharacterSua();
     }
 
     switchTab(2);
@@ -787,6 +806,10 @@ function practiceAsukaMaybe(opts = {}) {
 
     if (opts.logQuest !== false) {
         completeQuestObjective('main-others');
+    }
+
+    if (opts.openSheet && typeof openFastCharacterAsuka === 'function') {
+        openFastCharacterAsuka();
     }
 
     switchTab(2);
@@ -1437,6 +1460,16 @@ function renderBootAllPanel() {
     });
     appendSection('Archetype skills (.skill.md)', skillItems, (item) => bootSkillById(item.id));
 
+    if (typeof FAST_CHARACTER_CLASS_ANCHORS !== 'undefined' && FAST_CHARACTER_CLASS_ANCHORS.length) {
+        appendSection('D&D Beyond class anchors', FAST_CHARACTER_CLASS_ANCHORS.map((anchor) => ({
+            id: anchor.id,
+            label: anchor.label,
+            boot: `${anchor.id}=1`
+        })), (item) => {
+            if (typeof openFastCharacterClassAnchor === 'function') openFastCharacterClassAnchor(item.id);
+        });
+    }
+
     if (typeof getAllLibraryBootEntries === 'function') {
         const libItems = getAllLibraryBootEntries().map((lib) => ({
             id: lib.id,
@@ -1455,8 +1488,8 @@ function renderBootAllPanel() {
             const params = new URLSearchParams(item.boot);
             const boot = Object.fromEntries(params);
             if (boot['heal-factor']) practiceHealingFactor(boot['heal-factor']);
-            else if (boot.heal === '1') practiceDibAftercare();
-            else if (boot.asuka === '1') practiceAsukaMaybe();
+            else if (boot.heal === '1') practiceDibAftercare({ openSheet: boot.sheet === '1' });
+            else if (boot.asuka === '1') practiceAsukaMaybe({ openSheet: boot.sheet === '1' });
             else if (boot.heidi === '1') practiceHeidiWayfarer({ openSheet: boot.sheet === '1' });
             else if (boot.sven === '1') practiceSvenRanger({ openSheet: boot.sheet === '1' });
             else if (boot.martin === '1') practiceMartinGuide({ openSheet: boot.sheet === '1' });
@@ -1465,14 +1498,17 @@ function renderBootAllPanel() {
             else if (boot.messi === '1') practiceMessiPlaymaker({ openSheet: boot.sheet === '1' });
             else if (boot.vinicus === '1') practiceVinicusSamba({ openSheet: boot.sheet === '1' });
             else if (boot.kane === '1') practiceHarryKaneStriker({ openSheet: boot.sheet === '1', openWatch: boot.watch === '1' });
-            else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true });
+            else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true, openSheet: boot.sheet === '1' });
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
             else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
             else if (boot.haley === '1' || boot.vietbonnie === '1') practiceHaleyVietbonnie({ openSheet: boot.sheet === '1' });
             else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
-            else if (boot.ignan === '1') practiceIgnanHealingJourney();
+            else if (boot.ignan === '1') practiceIgnanHealingJourney({ openSheet: boot.sheet === '1' });
+            else if (boot.sorcerer === '1') openFastCharacterClassAnchor('sorcerer');
+            else if (boot.warlock === '1') openFastCharacterClassAnchor('warlock');
+            else if (boot['monster-slayer'] === '1') openFastCharacterClassAnchor('monster-slayer');
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
             else if (boot.attune === '1' || boot['before-match'] === '1') {
                 practiceMatchAttune({
@@ -1520,8 +1556,24 @@ function handleTtmikSyncBoot() {
         bootSkillById(skillParam, {
             lessons: params.get('lessons') === '1',
             skillsTab: params.get('tab') === 'skills',
-            logQuest: params.get('quest') !== '0'
+            logQuest: params.get('quest') !== '0',
+            openSheet: params.get('sheet') === '1'
         });
+        return;
+    }
+    if (params.get('sorcerer') === '1') {
+        if (typeof openFastCharacterClassAnchor === 'function') openFastCharacterClassAnchor('sorcerer');
+        switchTab(3);
+        return;
+    }
+    if (params.get('warlock') === '1') {
+        if (typeof openFastCharacterClassAnchor === 'function') openFastCharacterClassAnchor('warlock');
+        switchTab(3);
+        return;
+    }
+    if (params.get('monster-slayer') === '1') {
+        if (typeof openFastCharacterClassAnchor === 'function') openFastCharacterClassAnchor('monster-slayer');
+        switchTab(3);
         return;
     }
     if (params.get('attune') === '1' || params.get('before-match') === '1') {
@@ -1539,7 +1591,7 @@ function handleTtmikSyncBoot() {
         return;
     }
     if (params.get('asuka') === '1' || params.get('step') === '5') {
-        practiceAsukaMaybe();
+        practiceAsukaMaybe({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('heidi') === '1') {
@@ -1581,7 +1633,8 @@ function handleTtmikSyncBoot() {
         practiceCicadaAttune({
             logQuest: params.get('quest') !== '0',
             chainLane: params.get('chain') === '1',
-            lane: resolveAttuneLane(params)
+            lane: resolveAttuneLane(params),
+            openSheet: params.get('sheet') === '1'
         });
         return;
     }
@@ -1620,7 +1673,7 @@ function handleTtmikSyncBoot() {
         return;
     }
     if (params.get('ignan') === '1' || params.get('step') === '6') {
-        practiceIgnanHealingJourney();
+        practiceIgnanHealingJourney({ openSheet: params.get('sheet') === '1' });
         return;
     }
     const healFactor = params.get('heal-factor');
@@ -1642,7 +1695,7 @@ function handleTtmikSyncBoot() {
         return;
     }
     if (params.get('heal') === '1' || params.get('dib-aftercare') === '1' || params.get('step') === '4') {
-        practiceDibAftercare();
+        practiceDibAftercare({ openSheet: params.get('sheet') === '1' });
         return;
     }
     const presetId = parseInt(params.get('preset'), 10);
@@ -2595,6 +2648,41 @@ function renderSkillsGrid() {
     });
 }
 
+function appendFastCharacterSheetBlock(panel, skill) {
+    if (!skill?.id || typeof getFastCharacterPresetForSkill !== 'function') return;
+    if (typeof FAST_CHARACTER_DEDICATED_UI_SKILLS !== 'undefined' && FAST_CHARACTER_DEDICATED_UI_SKILLS.has(skill.id)) return;
+
+    const preset = getFastCharacterPresetForSkill(skill.id);
+    if (!preset) return;
+
+    const block = document.createElement('div');
+    block.className = 'mb-6 bg-zinc-500/10 border border-zinc-500/20 rounded-2xl p-4';
+    const label = document.createElement('h4');
+    label.className = 'text-xs uppercase tracking-widest text-zinc-300 mb-2';
+    label.textContent = 'Fast Character · D&D Beyond mirror';
+    block.appendChild(label);
+
+    if (preset.note) {
+        const note = document.createElement('p');
+        note.className = 'text-sm text-zinc-400 mb-3';
+        note.textContent = preset.note;
+        block.appendChild(note);
+    }
+
+    const sheetBtn = document.createElement('button');
+    sheetBtn.type = 'button';
+    sheetBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+    sheetBtn.textContent = `Create ${preset.pcname || skill.name} sheet`;
+    sheetBtn.title = typeof formatFastCharacterSheetTitle === 'function'
+        ? formatFastCharacterSheetTitle(preset)
+        : 'fastcharacter.com · PHB 2024';
+    sheetBtn.onclick = () => {
+        if (typeof openFastCharacterForSkill === 'function') openFastCharacterForSkill(skill.id);
+    };
+    block.appendChild(sheetBtn);
+    panel.appendChild(block);
+}
+
 function renderSkillDetail() {
     const panel = document.getElementById('skill-detail');
     if (!panel) return;
@@ -3267,6 +3355,8 @@ function renderSkillDetail() {
         haleyBlock.appendChild(haleySheet);
         panel.appendChild(haleyBlock);
     }
+
+    appendFastCharacterSheetBlock(panel, skill);
 
     const notesLabel = document.createElement('h4');
     notesLabel.className = 'text-xs uppercase tracking-widest text-zinc-500 mb-2';

@@ -1,9 +1,18 @@
 /**
  * Fast Character (fastcharacter.com) presets — D&D 5e PHB 2024
  * POST target: https://fastcharacter.com/results2024.php
+ * Mirrors D&D Beyond class/species spread — all 12 core classes represented
  */
 
 const FAST_CHARACTER_ENDPOINT = 'https://fastcharacter.com/results2024.php';
+
+/** Skills with a dedicated sheet button block in skills.js (skip generic block) */
+const FAST_CHARACTER_DEDICATED_UI_SKILLS = new Set([
+    'heidi-alpine-wayfarer', 'sven-nordic-ranger', 'martin-nordic-guide',
+    'ronaldo-portugal-glory', 'mbappe-france-attack', 'messi-argentina-playmaker',
+    'vinicus-brasil-samba', 'harry-kane-england-striker', 'neon-evangelion',
+    'rick-morty-multiverse', 'mika-road-dreamer', 'haley-vietbonnie'
+]);
 
 /** Heidi — German Wayfarer Bard muse · Flame-Kissed Bard companion sheet */
 const FAST_CHARACTER_HEIDI = {
@@ -23,6 +32,266 @@ const FAST_CHARACTER_HEIDI = {
     pcidealbondflaw: 'yes',
     pcrulescrib: 'yes',
     note: 'College of Lore · Level 5 · Chaotic Neutral — lantern pilgrimage ally'
+};
+
+/** Melbourne Lantern Bard — Bard Valor · scam/tsundere skit anchor */
+const FAST_CHARACTER_MELBOURNE_BARD = {
+    id: 'melbourne-lantern-bard',
+    label: 'Melbourne Lantern Bard',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Lantern',
+    randomname: 'no',
+    pcname: 'Lantern',
+    pcclass: 'BardValor',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Entertainer',
+    pcgender: 'female',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'College of Valor · Level 5 · Chaotic Good — laneway skit · sovereign humor'
+};
+
+/** Flame-Kissed Bard — Bard Glamour · alchemy + sheet output */
+const FAST_CHARACTER_FLAME_BARD = {
+    id: 'flame-kissed-bard',
+    label: 'Flame-Kissed Bard',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Flame',
+    randomname: 'no',
+    pcname: 'Flame',
+    pcclass: 'BardGlamour',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Hermit',
+    pcgender: 'female',
+    pcalignment: 'CN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'College of Glamour · Level 5 · Chaotic Neutral — humor alchemy · character sheets'
+};
+
+/** Lo3tus — Rogue Thief · Halfling playful muse */
+const FAST_CHARACTER_LO3TUS = {
+    id: 'lo3tus',
+    label: 'Lo3tus Muse',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Lo3tus',
+    randomname: 'no',
+    pcname: 'Lo3tus',
+    pcclass: 'RogueThief',
+    pclevel: '5',
+    pcrace: 'Halfling',
+    pcbkgrd: 'Charlatan',
+    pcgender: 'female',
+    pcalignment: 'CN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Thief · Level 5 · Halfling — deadpan dating skits · chaotic neutral spark'
+};
+
+/** Helen — Cleric Trickery · boundary teacher */
+const FAST_CHARACTER_HELEN = {
+    id: 'helen-neighbor',
+    label: 'Helen — Boundary Teacher',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Helen',
+    randomname: 'no',
+    pcname: 'Helen',
+    pcclass: 'ClericTrickery',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Acolyte',
+    pcgender: 'female',
+    pcalignment: 'LG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Trickery Domain · Level 5 · Lawful Good — 괜찮아요 boundary · cord-cut'
+};
+
+/** Sua — Monk Mercy · Tiefling shedding muse */
+const FAST_CHARACTER_SUA = {
+    id: 'sua-tattoo',
+    label: 'Sua — Tattoo Flame',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Sua',
+    randomname: 'no',
+    pcname: 'Sua',
+    pcclass: 'MonkMercy',
+    pclevel: '5',
+    pcrace: 'TieflingInfernal',
+    pcbkgrd: 'Artisan',
+    pcgender: 'female',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Way of Mercy · Level 5 · Tiefling Infernal — cicada shed · cord-cut'
+};
+
+/** Asuka — Bard Dance · High Elf distant flame */
+const FAST_CHARACTER_ASUKA = {
+    id: 'asuka-brisbane',
+    label: 'Asuka — Distant Flame',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Asuka',
+    randomname: 'no',
+    pcname: 'Asuka',
+    pcclass: 'BardDance',
+    pclevel: '5',
+    pcrace: 'ElfHigh',
+    pcbkgrd: 'Entertainer',
+    pcgender: 'female',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'College of Dance · Level 5 · High Elf — Brisbane maybe · Melbourne is my yes'
+};
+
+/** Rach3l — Wizard Diviner · observe without absorbing */
+const FAST_CHARACTER_RACH3L = {
+    id: 'rach3l',
+    label: 'Rach3l — Sovereign Observer',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Rach3l',
+    randomname: 'no',
+    pcname: 'Rach3l',
+    pcclass: 'WizardDiviner',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Scribe',
+    pcgender: 'female',
+    pcalignment: 'TN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Diviner · Level 5 · True Neutral — discernment · no absorption spiral'
+};
+
+/** Mari Ignan pilgrim — Druid Circle of the Sea */
+const FAST_CHARACTER_IGNAN_PILGRIM = {
+    id: 'ignan-pilgrim',
+    label: 'Mari — Ignan Pilgrim',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Ignan',
+    randomname: 'no',
+    pcname: 'Mari',
+    pcclass: 'DruidCircleSea',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Farmer',
+    pcgender: 'female',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Circle of the Sea · Level 5 · Neutral Good — trilingual healing walk · BOTANIC'
+};
+
+/** Ignan grounding — Druid Circle of the Land */
+const FAST_CHARACTER_IGNAN_GROUNDING = {
+    id: 'ignan-grounding',
+    label: 'Mari — Ignan Grounding',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Ground',
+    randomname: 'no',
+    pcname: 'Mari',
+    pcclass: 'DruidCircleLand',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Hermit',
+    pcgender: 'female',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Circle of the Land · Level 5 — post-DIB HOTEL landing · Ilokano grounding'
+};
+
+/** Ignan dalan — Druid Land · own-path walk */
+const FAST_CHARACTER_IGNAN_DALAN = {
+    id: 'ignan-dalan',
+    label: 'Mari — Own-Path Dalan',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Dalan',
+    randomname: 'no',
+    pcname: 'Mari',
+    pcclass: 'DruidCircleLand',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Wayfarer',
+    pcgender: 'female',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Circle of the Land · Wayfarer — own dalan · aginana walk'
+};
+
+/** Spellfire anchor — Sorcerer Draconic · Dragonborn */
+const FAST_CHARACTER_SORCERER = {
+    id: 'sorcerer',
+    label: 'Spellfire Sorcery',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Sorcerer',
+    randomname: 'no',
+    pcname: 'Spellfire',
+    pcclass: 'SorcererDraconic',
+    pclevel: '5',
+    pcrace: 'DragonbornGold',
+    pcbkgrd: 'Entertainer',
+    pcgender: 'female',
+    pcalignment: 'CG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Draconic Bloodline · Level 5 · Gold Dragonborn — DDB Spellfire Sorcery build'
+};
+
+/** Citadel cousin — Warlock Great Old One */
+const FAST_CHARACTER_WARLOCK = {
+    id: 'warlock',
+    label: 'Multiverse Warlock',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Warlock',
+    randomname: 'no',
+    pcname: 'Citadel',
+    pcclass: 'WarlockGreatOldOne',
+    pclevel: '5',
+    pcrace: 'TieflingChthonic',
+    pcbkgrd: 'Sage',
+    pcgender: 'neutral',
+    pcalignment: 'CN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Great Old One · Level 5 · Tiefling Chthonic — multiverse pact · observe don\'t absorb'
+};
+
+/** Monster Slayer proxy — Ranger Gloom Stalker (XGtE Monster Slayer not in Fast Character) */
+const FAST_CHARACTER_MONSTER_SLAYER = {
+    id: 'monster-slayer',
+    label: 'Monster Slayer Proxy',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Slayer',
+    randomname: 'no',
+    pcname: 'Slayer',
+    pcclass: 'RangerGloomStalker',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Guard',
+    pcgender: 'female',
+    pcalignment: 'LN',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Gloom Stalker proxy for DDB Monster Slayer · scam/tarot boundary hunt'
 };
 
 /** Sven — Swedish Nordic Ranger muse · rach3l discernment companion */
@@ -45,7 +314,7 @@ const FAST_CHARACTER_SVEN = {
     note: 'Fey Wanderer · Level 5 · True Neutral — Moon-card calm ally'
 };
 
-/** Martin — Norwegian Nordic Guide muse · Ep 8 World-card completion */
+/** Martin — Goliath Nordic Guide · World Tree */
 const FAST_CHARACTER_MARTIN = {
     id: 'martin',
     label: 'Martin — Nordic Guide',
@@ -55,17 +324,17 @@ const FAST_CHARACTER_MARTIN = {
     pcname: 'Martin',
     pcclass: 'BarbarianWorldTree',
     pclevel: '5',
-    pcrace: 'human',
+    pcrace: 'GoliathHill',
     pcbkgrd: 'Guide',
     pcgender: 'male',
     pcalignment: 'NG',
     pcformat: 'text',
     pcidealbondflaw: 'yes',
     pcrulescrib: 'yes',
-    note: 'World Tree · Level 5 · Neutral Good — fjord pilgrimage guide'
+    note: 'World Tree · Level 5 · Goliath Hill — fjord pilgrimage guide'
 };
 
-/** Rei Ayanami — Neon Evangelion muse · Moon-card observe without absorbing */
+/** Rei Ayanami — Cleric Life · High Elf observer */
 const FAST_CHARACTER_REI = {
     id: 'rei',
     label: 'Rei Ayanami — Evangelion Observer',
@@ -75,14 +344,14 @@ const FAST_CHARACTER_REI = {
     pcname: 'Rei',
     pcclass: 'ClericLife',
     pclevel: '5',
-    pcrace: 'human',
+    pcrace: 'ElfHigh',
     pcbkgrd: 'Hermit',
     pcgender: 'female',
     pcalignment: 'LN',
     pcformat: 'text',
     pcidealbondflaw: 'yes',
     pcrulescrib: 'yes',
-    note: 'Life Domain · Level 5 · Lawful Neutral — NERV Moon-card neon ally'
+    note: 'Life Domain · Level 5 · High Elf — NERV Moon-card neon ally'
 };
 
 /** @deprecated alias — use FAST_CHARACTER_REI */
@@ -147,7 +416,7 @@ const FAST_CHARACTER_MESSI = {
     note: 'Mastermind · Level 5 · Neutral Good — post cook-off Argentina ally'
 };
 
-/** Haley Boba (@vietbonnie) — Medea Caster mirror · Wizard Abjurer · Ep 7.5 justice seek */
+/** Haley Boba (@vietbonnie) — Medea Caster mirror · Wizard Abjurer */
 const FAST_CHARACTER_HALEY = {
     id: 'haley',
     label: 'Haley Boba — Medea Caster Mirror',
@@ -157,14 +426,14 @@ const FAST_CHARACTER_HALEY = {
     pcname: 'Haley',
     pcclass: 'WizardAbjurer',
     pclevel: '5',
-    pcrace: 'human',
+    pcrace: 'TieflingChthonic',
     pcbkgrd: 'Sage',
     pcgender: 'female',
     pcalignment: 'LG',
     pcformat: 'text',
     pcidealbondflaw: 'yes',
     pcrulescrib: 'yes',
-    note: 'Abjurer · Level 5 · Lawful Good — Medea Caster mirror · STR E MAN A+ · vietbonnie · age 19'
+    note: 'Abjurer · Level 5 · Tiefling Chthonic — Medea Caster mirror · vietbonnie'
 };
 
 /** Mika — Ranger Horizon Walker muse · Ep 7.4 open-road dreamer */
@@ -249,6 +518,19 @@ const FAST_CHARACTER_RONALDO = {
 
 const FAST_CHARACTER_PRESETS = {
     heidi: FAST_CHARACTER_HEIDI,
+    'melbourne-lantern-bard': FAST_CHARACTER_MELBOURNE_BARD,
+    'flame-kissed-bard': FAST_CHARACTER_FLAME_BARD,
+    lo3tus: FAST_CHARACTER_LO3TUS,
+    'helen-neighbor': FAST_CHARACTER_HELEN,
+    'sua-tattoo': FAST_CHARACTER_SUA,
+    'asuka-brisbane': FAST_CHARACTER_ASUKA,
+    rach3l: FAST_CHARACTER_RACH3L,
+    'ignan-pilgrim': FAST_CHARACTER_IGNAN_PILGRIM,
+    'ignan-grounding': FAST_CHARACTER_IGNAN_GROUNDING,
+    'ignan-dalan': FAST_CHARACTER_IGNAN_DALAN,
+    sorcerer: FAST_CHARACTER_SORCERER,
+    warlock: FAST_CHARACTER_WARLOCK,
+    'monster-slayer': FAST_CHARACTER_MONSTER_SLAYER,
     sven: FAST_CHARACTER_SVEN,
     martin: FAST_CHARACTER_MARTIN,
     ronaldo: FAST_CHARACTER_RONALDO,
@@ -264,6 +546,17 @@ const FAST_CHARACTER_PRESETS = {
     rick: FAST_CHARACTER_RICK,
     rickmorty: FAST_CHARACTER_RICK
 };
+
+function getFastCharacterPresetForSkill(skillId) {
+    return FAST_CHARACTER_PRESETS[skillId] || null;
+}
+
+function formatFastCharacterSheetTitle(preset) {
+    if (!preset) return 'Fast Character sheet';
+    const cls = (preset.pcclass || '').replace(/([A-Z])/g, ' $1').trim();
+    const race = preset.pcrace || 'human';
+    return `fastcharacter.com · ${preset.pcname || 'PC'} · ${cls} · ${race} · L${preset.pclevel || '5'}`;
+}
 
 function buildFastCharacterFormData(preset) {
     const p = preset || FAST_CHARACTER_HEIDI;
@@ -304,58 +597,47 @@ function openFastCharacterSheet(preset) {
     form.remove();
 }
 
-function openFastCharacterHeidi() {
-    openFastCharacterSheet(FAST_CHARACTER_HEIDI);
+function openFastCharacterForSkill(skillId) {
+    const preset = getFastCharacterPresetForSkill(skillId);
+    if (preset) openFastCharacterSheet(preset);
 }
 
-function openFastCharacterSven() {
-    openFastCharacterSheet(FAST_CHARACTER_SVEN);
+function openFastCharacterClassAnchor(anchorId) {
+    const preset = FAST_CHARACTER_PRESETS[anchorId];
+    if (preset) openFastCharacterSheet(preset);
 }
 
-function openFastCharacterMartin() {
-    openFastCharacterSheet(FAST_CHARACTER_MARTIN);
-}
+function openFastCharacterHeidi() { openFastCharacterSheet(FAST_CHARACTER_HEIDI); }
+function openFastCharacterMelbourneBard() { openFastCharacterSheet(FAST_CHARACTER_MELBOURNE_BARD); }
+function openFastCharacterFlameBard() { openFastCharacterSheet(FAST_CHARACTER_FLAME_BARD); }
+function openFastCharacterLo3tus() { openFastCharacterSheet(FAST_CHARACTER_LO3TUS); }
+function openFastCharacterHelen() { openFastCharacterSheet(FAST_CHARACTER_HELEN); }
+function openFastCharacterSua() { openFastCharacterSheet(FAST_CHARACTER_SUA); }
+function openFastCharacterAsuka() { openFastCharacterSheet(FAST_CHARACTER_ASUKA); }
+function openFastCharacterRach3l() { openFastCharacterSheet(FAST_CHARACTER_RACH3L); }
+function openFastCharacterIgnanPilgrim() { openFastCharacterSheet(FAST_CHARACTER_IGNAN_PILGRIM); }
+function openFastCharacterIgnanGrounding() { openFastCharacterSheet(FAST_CHARACTER_IGNAN_GROUNDING); }
+function openFastCharacterIgnanDalan() { openFastCharacterSheet(FAST_CHARACTER_IGNAN_DALAN); }
+function openFastCharacterSorcerer() { openFastCharacterSheet(FAST_CHARACTER_SORCERER); }
+function openFastCharacterWarlock() { openFastCharacterSheet(FAST_CHARACTER_WARLOCK); }
+function openFastCharacterMonsterSlayer() { openFastCharacterSheet(FAST_CHARACTER_MONSTER_SLAYER); }
+function openFastCharacterSven() { openFastCharacterSheet(FAST_CHARACTER_SVEN); }
+function openFastCharacterMartin() { openFastCharacterSheet(FAST_CHARACTER_MARTIN); }
+function openFastCharacterRonaldo() { openFastCharacterSheet(FAST_CHARACTER_RONALDO); }
+function openFastCharacterMbappe() { openFastCharacterSheet(FAST_CHARACTER_MBAPPE); }
+function openFastCharacterMessi() { openFastCharacterSheet(FAST_CHARACTER_MESSI); }
+function openFastCharacterVinicus() { openFastCharacterSheet(FAST_CHARACTER_VINICUS); }
+function openFastCharacterKane() { openFastCharacterSheet(FAST_CHARACTER_KANE); }
+function openFastCharacterRei() { openFastCharacterSheet(FAST_CHARACTER_REI); }
+function openFastCharacterNeon() { openFastCharacterRei(); }
+function openFastCharacterMika() { openFastCharacterSheet(FAST_CHARACTER_MIKA); }
+function openFastCharacterHaley() { openFastCharacterSheet(FAST_CHARACTER_HALEY); }
+function openFastCharacterVietbonnie() { openFastCharacterHaley(); }
+function openFastCharacterRick() { openFastCharacterSheet(FAST_CHARACTER_RICK); }
 
-function openFastCharacterRonaldo() {
-    openFastCharacterSheet(FAST_CHARACTER_RONALDO);
-}
-
-function openFastCharacterMbappe() {
-    openFastCharacterSheet(FAST_CHARACTER_MBAPPE);
-}
-
-function openFastCharacterMessi() {
-    openFastCharacterSheet(FAST_CHARACTER_MESSI);
-}
-
-function openFastCharacterVinicus() {
-    openFastCharacterSheet(FAST_CHARACTER_VINICUS);
-}
-
-function openFastCharacterKane() {
-    openFastCharacterSheet(FAST_CHARACTER_KANE);
-}
-
-function openFastCharacterRei() {
-    openFastCharacterSheet(FAST_CHARACTER_REI);
-}
-
-function openFastCharacterNeon() {
-    openFastCharacterRei();
-}
-
-function openFastCharacterMika() {
-    openFastCharacterSheet(FAST_CHARACTER_MIKA);
-}
-
-function openFastCharacterHaley() {
-    openFastCharacterSheet(FAST_CHARACTER_HALEY);
-}
-
-function openFastCharacterVietbonnie() {
-    openFastCharacterHaley();
-}
-
-function openFastCharacterRick() {
-    openFastCharacterSheet(FAST_CHARACTER_RICK);
-}
+/** D&D Beyond gap-fill class anchors — not tied to a single archetype skill */
+const FAST_CHARACTER_CLASS_ANCHORS = [
+    { id: 'sorcerer', label: 'Sorcerer Draconic · DragonbornGold' },
+    { id: 'warlock', label: 'Warlock Great Old One · TieflingChthonic' },
+    { id: 'monster-slayer', label: 'Monster Slayer · Ranger Gloom Stalker (XGtE proxy)' }
+];

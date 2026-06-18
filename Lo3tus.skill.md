@@ -20,6 +20,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Lo3tus · Rogue (Thief) · Halfling · Level 5
 - Pick one absurd observation and exaggerate x3
 - Draft fast-cut skit beats (hook → twist → punchline)
 - Keep tone playful, bold, whimsical — no heavy attachment
@@ -50,6 +51,11 @@ metadata:
 - **hermit-lantern** — Hermit Lantern — one breath, one laugh · Boot: `TTMIK.html?heal-factor=hermit-lantern`
 - Mantra: *One breath · one boundary · no re-watch spiral*
 - Library: `TTMIK.html?library=heal`
+
+## Cross-App Links
+
+- fastcharacter.com — openFastCharacterLo3tus() preset
+- TTMIK.html?skill=lo3tus&sheet=1 — Fast Character sheet boot
 
 ## TTMIK App Integration
 

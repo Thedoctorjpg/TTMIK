@@ -21,6 +21,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Mari · Druid (Circle of the Land) · Hermit · Level 5
 - Phone face-down · GoPro off — no re-watch spiral
 - Ilokano first: Ok laeng, ok laeng — shoulders drop
 - One slow breath — aginana / Nasaem met ti aginana
@@ -61,8 +62,9 @@ metadata:
 
 ## Cross-App Links
 
+- fastcharacter.com — openFastCharacterIgnanGrounding() preset
 - Ignan Library · Ilokano Grounding category
-- TTMIK.html?skill=ignan-grounding — boot skill + shadowing
+- TTMIK.html?skill=ignan-grounding&sheet=1 — boot skill + sheet
 - TTMIK.html?skill=ignan-grounding&lessons=1 — open library lane
 - Post-DIB preset 9 → ignan-grounding → ignan-pilgrim
 - HEALING_FACTORS step 4 companion

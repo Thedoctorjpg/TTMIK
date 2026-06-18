@@ -21,6 +21,7 @@ metadata:
 ## Procedure
 
 - Center self-healing first — one breath, one laugh (Hermit Lantern)
+- Open Fast Character sheet: Lantern · Bard (Valor) · Entertainer · Level 5
 - Name what is being released without dramatizing it
 - Draft a 30–60s vertical skit hook with chaotic neutral tone
 - Offer optional integration ritual tied to the trip moment
@@ -55,6 +56,11 @@ metadata:
 - **no-rewatch** — No re-watch spiral — GoPro off · phone face-down · Boot: `TTMIK.html?heal-factor=no-rewatch`
 - Mantra: *One breath · one boundary · no re-watch spiral*
 - Library: `TTMIK.html?library=heal`
+
+## Cross-App Links
+
+- fastcharacter.com — openFastCharacterMelbourneBard() preset
+- TTMIK.html?skill=melbourne-lantern-bard&sheet=1 — Fast Character sheet boot
 
 ## TTMIK App Integration
 

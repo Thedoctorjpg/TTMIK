@@ -20,6 +20,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Sua · Monk (Mercy) · Tiefling Infernal · Level 5
 - Acknowledge the beauty of what was shared
 - Release with love: "I return your flame with gratitude"
 - Anchor self-intimacy: "My own creative fire is enough"
@@ -54,7 +55,8 @@ metadata:
 
 ## Cross-App Links
 
-- TTMIK.html?sua=1 — Sua cicada attune boot
+- fastcharacter.com — openFastCharacterSua() preset
+- TTMIK.html?sua=1&sheet=1 — Sua cicada attune + sheet boot
 - TTMIK.html?heal-factor=cicada-attune — cicada shedding · FED attune
 - TTMIK.html?attune=1&lane=sua — Federation pause then Sua shed
 - cicada-attune-ritual · side-boundary quest

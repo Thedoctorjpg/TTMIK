@@ -20,6 +20,7 @@ metadata:
 
 ## Procedure
 
+- Open Fast Character sheet: Rach3l · Wizard (Diviner) · Scribe · Level 5
 - Notice without judgment — name the pattern, not the person
 - Say aloud: "This is not my energy to carry"
 - Ground: one breath, feet on floor
@@ -50,6 +51,12 @@ metadata:
 - **pause-breathe** — Pause OK — 잠시 쉬어도 괜찮아요 · Boot: `TTMIK.html?heal-factor=pause-breathe`
 - Mantra: *One breath · one boundary · no re-watch spiral*
 - Library: `TTMIK.html?library=heal`
+
+## Cross-App Links
+
+- fastcharacter.com — openFastCharacterRach3l() preset
+- TTMIK.html?skill=rach3l&sheet=1 — discernment mirror + sheet boot
+- sven-nordic-ranger · neon-evangelion · observe-but-do-not-absorb lane
 
 ## TTMIK App Integration
 

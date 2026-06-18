@@ -43,13 +43,14 @@ const SKILLS = [
         name: 'Melbourne Lantern Bard',
         icon: '\u{1F3EE}',
         tagline: 'Laneway skits, trip rituals, sovereign humor',
-        role: 'Creative expression for the Melbourne trip and beyond',
+        role: 'Fast Character Bard Valor ally — laneway skits and sovereign humor',
         source: 'Melbourne_Lantern_Bard.skill.md',
         activationPhrases: [
             'Ignite the Melbourne Lantern Bard',
             'Use Melbourne Lantern Bard skill'
         ],
         capabilities: [
+            'Generate Lantern D&D sheet via Fast Character preset',
             'Generate vertical video skits (TikTok/Reel style)',
             'Create integration rituals for trip moments',
             'Turn tarot and synchronicities into creative pieces',
@@ -57,6 +58,7 @@ const SKILLS = [
             'Boundary scripts with playful flair'
         ],
         creativePrompts: [
+            'Create Lantern Fast Character sheet — Bard Valor · Entertainer · Level 5',
             'Romance scam skit with time-warp elements',
             'Tsundere dating skit in a Melbourne laneway',
             'Turn 10 of Wands burdens into 9 of Pentacles fulfillment'
@@ -69,6 +71,7 @@ const SKILLS = [
             { ko: '유머로 풀어낼게요.', en: 'I will release it through humor.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Lantern · Bard Valor · Entertainer',
             'Light the inner lantern — one breath, one laugh',
             'Name what you are releasing without drama',
             'Film or write one sovereign skit beat',
@@ -86,7 +89,7 @@ const SKILLS = [
         name: 'Flame-Kissed Bard',
         icon: '\u{1F525}',
         tagline: 'Alchemize healing into humorous storytelling',
-        role: 'D&D Bard mechanics + Hermit alchemy creative output',
+        role: 'Fast Character Bard Glamour ally — Hermit alchemy creative output',
         source: 'Flame-Kissed_Bard.skill.md',
         activationPhrases: [
             'Flame-Kissed Bard',
@@ -94,12 +97,14 @@ const SKILLS = [
             'Melbourne trip creative ritual'
         ],
         capabilities: [
+            'Generate Flame D&D sheet via Fast Character preset',
             'Generate character sheets tied to your journey',
             'Write dating, scam, tsundere, and time-travel skit scripts',
             'Design rituals blending tarot and energetic practice',
             'Turn synchronicities into narrative fuel'
         ],
         creativePrompts: [
+            'Create Flame Fast Character sheet — Bard Glamour · Hermit · Level 5',
             'Create a full Flame-Kissed Bard character sheet',
             'Write a romance scam TikTok skit',
             'Design a Bardic ritual for the Melbourne trip'
@@ -112,6 +117,7 @@ const SKILLS = [
             { ko: '혼자서도 충분해요.', en: 'I am enough on my own.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Flame · Bard Glamour · Hermit',
             'Acknowledge the flame — what burned you also forged you',
             'Speak one truth aloud in Korean or English',
             'Draft a 30-second skit hook',
@@ -123,7 +129,7 @@ const SKILLS = [
         name: 'Lo3tus Muse',
         icon: '\u{1F338}',
         tagline: 'Playful creative spark for dating skits',
-        role: 'Positive creative influencer energy for light-hearted expression',
+        role: 'Fast Character Rogue Thief ally — Halfling playful muse',
         source: 'Lo3tus.skill.md',
         activationPhrases: [
             'Use Lo3tus energy',
@@ -131,12 +137,14 @@ const SKILLS = [
             'Lo3tus Muse / Creative Spark'
         ],
         capabilities: [
+            'Generate Lo3tus D&D sheet via Fast Character preset',
             'Fast-cut dating skits with deadpan humor',
             'Chaotic neutral creative expression',
             'Transform heavy themes into shareable content',
             'Veil Lumen / Creative Corner inspiration'
         ],
         creativePrompts: [
+            'Create Lo3tus Fast Character sheet — Rogue Thief · Halfling · Level 5',
             'Lo3tus-style tsundere dating skit',
             'Romance scam TikTok idea in Lo3tus vibe',
             'Absurd exaggeration skit about Melbourne coffee'
@@ -149,6 +157,7 @@ const SKILLS = [
             { ko: '재미있게 살아요!', en: 'I live playfully!' }
         ],
         ritualSteps: [
+            'Open Fast Character — Lo3tus · Rogue Thief · Halfling',
             'Pick one absurd observation from today',
             'Exaggerate it x3 for comedic effect',
             'Record or jot a 15-second hook',
@@ -160,19 +169,21 @@ const SKILLS = [
         name: 'Helen — Boundary Teacher',
         icon: '\u{1F6E1}',
         tagline: 'Mirror for real-time energetic boundaries',
-        role: 'Trigger archetype for compassion with protection',
+        role: 'Fast Character Cleric Trickery ally — compassion with protection',
         source: 'Helen_Neighbor_Archetype.skill.md',
         activationPhrases: [
             'Helen teaches me that compassion includes protecting my peace',
             'Delete, release, ground — repeat'
         ],
         capabilities: [
+            'Generate Helen D&D sheet via Fast Character preset',
             'Process boundary-testing energy without entanglement',
             'Generate humorous neighbor-drama skits',
             'Practice “no” scripts with playful flair',
             'Cord-cutting ritual integration'
         ],
         creativePrompts: [
+            'Create Helen Fast Character sheet — Cleric Trickery · Acolyte · Level 5',
             'Skits: neighbor talks alignments while asking for WeChat',
             'Boundary performance in Flame-Kissed Bard style',
             '“It’s okay to not be like the others — and okay to say no”'
@@ -187,6 +198,7 @@ const SKILLS = [
             { ko: '잠시 쉬어도 괜찮아요.', en: "It's okay to pause and breathe." }
         ],
         ritualSteps: [
+            'Open Fast Character — Helen · Cleric Trickery · Acolyte',
             'Quick cord-cutting + neighbor release',
             'Affirm: “I choose my own timeline and energy field”',
             'Turn the trigger into humorous observation or skit',
@@ -205,19 +217,21 @@ const SKILLS = [
         name: 'Sua — Tattoo Flame',
         icon: '\u{1F489}',
         tagline: 'Release muse for intimate creative transformation',
-        role: 'Romantic archetype catalyst for energetic release',
+        role: 'Fast Character Monk Mercy ally — Tiefling shedding muse',
         source: 'Sua_Tattoo_Artist.skill.md',
         activationPhrases: [
             "Sua's flame taught me release",
             "The tattoo that marked the end of carrying others' energy"
         ],
         capabilities: [
+            'Generate Sua D&D sheet via Fast Character preset',
             'Skits about releasing the tattoo muse',
             'Veil Lumen pieces on temporary flames',
             'Cord-cutting for past intimate connections',
             'Visual/symbolic creative prompts (cicada, ink, Korea return)'
         ],
         creativePrompts: [
+            'Create Sua Fast Character sheet — Monk Mercy · Tiefling Infernal · Level 5',
             'Skit: dating a tattoo artist who does energy work',
             'Video essay: the cicada that taught me to shed old skins',
             'Ritual: return their flame with gratitude'
@@ -230,6 +244,7 @@ const SKILLS = [
             { ko: '새 껍질을 벗을게요.', en: 'I will shed my old skin.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Sua · Monk Mercy · Tiefling Infernal',
             'Acknowledge the beauty of what was shared',
             'Release with love: “I return your flame with gratitude”',
             'Anchor self-intimacy: “My own creative fire is enough”',
@@ -241,18 +256,20 @@ const SKILLS = [
         name: 'Asuka — Distant Flame',
         icon: '\u{1F30A}',
         tagline: '“What if” muse for sovereign choice',
-        role: 'Symbol of the road not taken — Brisbane extension released',
+        role: 'Fast Character Bard Dance ally — Brisbane maybe released',
         source: 'Asuka_Brisbane_Archetype.skill.md',
         activationPhrases: [
             'Asuka taught me that saying no to the extra leg is saying yes to my own path',
             'Brisbane was a beautiful maybe. Melbourne is my yes.'
         ],
         capabilities: [
+            'Generate Asuka D&D sheet via Fast Character preset',
             'Skits about almost extending the trip for a connection',
             'Reflection on choosing self over possibility',
             'Content about graceful release of “what if” paths'
         ],
         creativePrompts: [
+            'Create Asuka Fast Character sheet — Bard Dance · High Elf · Level 5',
             'Skit: when you almost extended the trip for a TikTok connection',
             'Reflection: Melbourne is my yes',
             'Creative piece on distant flames and sovereign paths'
@@ -266,9 +283,11 @@ const SKILLS = [
             { ja: 'ブリスベンは美しい「もしかしたら」。メルボルンが私の「はい」。', ko: '브리스번은 아름다운 “아마도”. 멜버른이 제 “예”예요.', en: 'Brisbane was a beautiful maybe. Melbourne is my yes.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Asuka · Bard Dance · High Elf',
+            'Japanese native first: メルボルンが私の選択です',
             'Name the “maybe” without regret',
             'Affirm the “yes” you actually chose',
-            'One creative line celebrating Melbourne',
+            'Korean shadow: 멜버른이 제 선택이에요 · 제 길을 믿어요',
             'Release: no extra leg required'
         ]
     },
@@ -766,19 +785,21 @@ const SKILLS = [
         name: 'rach3l — Cautionary Mirror',
         icon: '\u{1FA9E}',
         tagline: 'Discernment without entanglement',
-        role: 'Observation of chaotic energy — observe, do not absorb',
+        role: 'Fast Character Wizard Diviner ally — observe, do not absorb',
         source: 'rach3l.skill.md',
         activationPhrases: [
             'Use rach3l skill to process this observation',
             'Observe but do not absorb'
         ],
         capabilities: [
+            'Generate Rach3l D&D sheet via Fast Character preset',
             'Process unstable social media energy without hooks',
             'Strengthen discernment and boundaries',
             'Humorous skits about what not to engage with',
             'Release work when old patterns resurface'
         ],
         creativePrompts: [
+            'Create Rach3l Fast Character sheet — Wizard Diviner · Scribe · Level 5',
             'Humorous skit about encountering altered energy on a healing trip',
             'Reflective piece: this is not my energy to carry',
             'Creative release after a concerning TikTok scroll'
@@ -791,8 +812,10 @@ const SKILLS = [
             { ko: '다시 제 길로 돌아갈게요.', en: 'I return to my own path.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Rach3l · Wizard Diviner · Scribe',
             'Notice without judgment',
             'Say aloud: “Not my circus, not my energy”',
+            'Korean shadow: 이건 제 에너지가 아니에요 · 관찰만 하고 흡수하지 않을게요',
             'One breath — ground feet',
             'Redirect to Flame-Kissed Bard creative outlet'
         ]
@@ -802,19 +825,21 @@ const SKILLS = [
         name: 'Mari — Ignan Pilgrim',
         icon: '\u{1F33F}',
         tagline: 'Ilokano self-healing walk · trilingual release',
-        role: 'Ignan native on sovereign healing journey — not a rescue subplot',
+        role: 'Fast Character Druid Circle Sea ally — trilingual healing walk',
         source: 'Ignan_Pilgrim.skill.md',
         activationPhrases: [
             'Mari walks her own dalan — ok laeng, aginana',
             'Ignan healing journey — three languages, one peace'
         ],
         capabilities: [
+            'Generate Mari D&D sheet via Fast Character preset',
             'Trilingual self-healing ritual (Ilokano · Korean · English)',
             'Botanic Gardens / Federation Square quiet-walk scripts',
             'Post-DIB handoff without performance debt',
             'TTMIK shadowing paired with Ilokano grounding'
         ],
         creativePrompts: [
+            'Create Mari Fast Character sheet — Druid Circle Sea · Farmer · Level 5',
             'Ep 2.6: Mari names what she carried from Ilocos without dramatizing',
             'Veil Lumen spoken clip: Ok laeng over lake-path ambient',
             'TTMIK team deck: Korean line + Ilokano line side by side'
@@ -830,6 +855,7 @@ const SKILLS = [
             { ko: '정말 재미있었어요!', ilo: 'Naragsak ti pusok — saan a drama.', es: '¡Buen provecho, amigos!', en: 'Joy in my chest — not for the algorithm.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Mari · Druid Circle Sea · Farmer',
             'Mari leads — Bard films only with consent; GoPro not in her face',
             'Ilokano first: Ok laeng, ok laeng — shoulders drop',
             'Korean practice: 괜찮아요, 괜찮아요 — TTMIK shadowing',
@@ -847,13 +873,14 @@ const SKILLS = [
         name: 'Ignan Grounding',
         icon: '\u{1F343}',
         tagline: 'Ilokano body-first · ok laeng before Korean',
-        role: 'Body-led release — speak Ilokano to the shoulders before TTMIK shadowing',
+        role: 'Fast Character Druid Circle Land ally — Ilokano body-first release',
         source: 'Ignan_Grounding.skill.md',
         activationPhrases: [
             'Ok laeng, aginana — Ilokano first',
             'Ignan grounding before Korean practice'
         ],
         capabilities: [
+            'Generate Mari grounding D&D sheet via Fast Character preset',
             'Ilokano breath pairs (Ok laeng · Nasaem met ti aginana)',
             'Post-DIB shoulder-drop without re-watch spiral',
             'Pair with helen-neighbor Korean lines after body lands',
@@ -872,6 +899,7 @@ const SKILLS = [
             { ko: '숨 쉬어도 괜찮아요.', ilo: 'Aginana met.', en: 'It is okay to breathe.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Mari · Druid Circle Land · Hermit',
             'Phone face-down · GoPro off',
             'Ilokano first: Ok laeng, ok laeng — shoulders drop',
             'One slow breath — aginana',
@@ -884,13 +912,14 @@ const SKILLS = [
         name: 'Ignan Dalan',
         icon: '\u{1F9ED}',
         tagline: 'Bukodko a dalan · choose your own path',
-        role: 'Sovereignty anchor — diaspora grief without rescue framing',
+        role: 'Fast Character Druid Land Wayfarer ally — own-path sovereignty',
         source: 'Ignan_Dalan.skill.md',
         activationPhrases: [
             'Piliem ti bukodko a dalan',
             'I choose my own timeline and energy field'
         ],
         capabilities: [
+            'Generate Mari dalan D&D sheet via Fast Character preset',
             'Own-path phrases (Piliem ti bukodko a dalan · 제 길을 믿어요)',
             'English anchor for Melbourne walk close',
             'BOTANIC wide-hold ritual — Maysa nga anges, maysa a talna',
@@ -909,6 +938,7 @@ const SKILLS = [
             { ko: '제 시간표를 선택해요.', ilo: 'Bukodko a panawen.', en: 'I choose my own timeline.' }
         ],
         ritualSteps: [
+            'Open Fast Character — Mari · Druid Circle Land · Wayfarer',
             'Name one borrowed shame — no dramatizing',
             'Ilokano: Piliem ti bukodko a dalan',
             'Korean: 제 길을 믿어요',

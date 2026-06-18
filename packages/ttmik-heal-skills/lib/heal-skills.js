@@ -17,6 +17,7 @@ const SKILLS = [
         ],
         procedure: [
             'Center self-healing first — one breath, one laugh (Hermit Lantern)',
+            'Open Fast Character sheet: Lantern · Bard (Valor) · Entertainer · Level 5',
             'Name what is being released without dramatizing it',
             'Draft a 30–60s vertical skit hook with chaotic neutral tone',
             'Offer optional integration ritual tied to the trip moment',
@@ -34,7 +35,11 @@ const SKILLS = [
             'Includes at least one actionable creative next step',
             'Boundaries and sovereignty are explicit'
         ],
-        korean: ['멜버른 골목이 정말 예뻐요!', '오늘 영상 찍을까요?', '유머로 풀어낼게요.']
+        korean: ['멜버른 골목이 정말 예뻐요!', '오늘 영상 찍을까요?', '유머로 풀어낼게요.'],
+        integrations: [
+            'fastcharacter.com — openFastCharacterMelbourneBard() preset',
+            'TTMIK.html?skill=melbourne-lantern-bard&sheet=1 — Fast Character sheet boot'
+        ]
     },
     {
         id: 'flame-kissed-bard',
@@ -48,6 +53,7 @@ const SKILLS = [
         ],
         procedure: [
             'Identify the emotional thread (attachment, scam, neighbor, WINZ, synchronicity)',
+            'Open Fast Character sheet: Flame · Bard (Glamour) · Hermit · Level 5',
             'Choose output form: skit script, character sheet, or ritual',
             'Write in warm, empowering tone with clear structure',
             'Center chaotic neutral sovereignty and boundaries',
@@ -63,7 +69,11 @@ const SKILLS = [
             'Structure is copy-paste ready (script, sheet, or ritual steps)',
             'User can film or journal immediately from the output'
         ],
-        korean: ['나는 나만의 이야기를 씁니다.', '웃음으로 놓아줄게요.', '혼자서도 충분해요.']
+        korean: ['나는 나만의 이야기를 씁니다.', '웃음으로 놓아줄게요.', '혼자서도 충분해요.'],
+        integrations: [
+            'fastcharacter.com — openFastCharacterFlameBard() preset',
+            'TTMIK.html?skill=flame-kissed-bard&sheet=1 — Fast Character sheet boot'
+        ]
     },
     {
         id: 'lo3tus',
@@ -76,6 +86,7 @@ const SKILLS = [
             'Melbourne coffee-shop or social practice scenarios'
         ],
         procedure: [
+            'Open Fast Character sheet: Lo3tus · Rogue (Thief) · Halfling · Level 5',
             'Pick one absurd observation and exaggerate x3',
             'Draft fast-cut skit beats (hook → twist → punchline)',
             'Keep tone playful, bold, whimsical — no heavy attachment',
@@ -92,7 +103,11 @@ const SKILLS = [
             'Humor serves release, not distraction only',
             'Boundaries on attachment are stated'
         ],
-        korean: ['커피 한 잔 할래요?', '오늘 기분 어때요?', '재미있게 살아요!']
+        korean: ['커피 한 잔 할래요?', '오늘 기분 어때요?', '재미있게 살아요!'],
+        integrations: [
+            'fastcharacter.com — openFastCharacterLo3tus() preset',
+            'TTMIK.html?skill=lo3tus&sheet=1 — Fast Character sheet boot'
+        ]
     },
     {
         id: 'helen-neighbor',
@@ -109,6 +124,7 @@ const SKILLS = [
             'After Divine Insight Blessing skit — quiet reflection, no re-watch spiral'
         ],
         procedure: [
+            'Open Fast Character sheet: Helen · Cleric (Trickery) · Acolyte · Level 5',
             'Quick cord-cutting + neighbor release (no drama narrative)',
             'Affirm: "I choose my own timeline and energy field"',
             'Cook-off rule: no soulmate declarations before plating — apply to texts too',
@@ -141,6 +157,8 @@ const SKILLS = [
             '잠시 쉬어도 괜찮아요.'
         ],
         integrations: [
+            'fastcharacter.com — openFastCharacterHelen() preset',
+            'TTMIK.html?heal=1&sheet=1 — post-DIB Helen sheet + quiet heal',
             'lets-cook `/date-night` — Helen station: Boundary Miso-Ginger Soup',
             'girls-love **After the Date** Ch.2–4 — slow-burn POV, "I like you. Slowly. On purpose."',
             'audit/tarot-scam-avoidance-audit.md — RED FLAG checklist + block protocol'
@@ -157,6 +175,7 @@ const SKILLS = [
             'Video essays or skits about shedding old skins'
         ],
         procedure: [
+            'Open Fast Character sheet: Sua · Monk (Mercy) · Tiefling Infernal · Level 5',
             'Acknowledge the beauty of what was shared',
             'Release with love: "I return your flame with gratitude"',
             'Anchor self-intimacy: "My own creative fire is enough"',
@@ -175,7 +194,8 @@ const SKILLS = [
         ],
         korean: ['고마웠어요. 이제 놓아줄게요.', '나만의 불꽃이면 충분해요.', '새 껍질을 벗을게요.'],
         integrations: [
-            'TTMIK.html?sua=1 — Sua cicada attune boot',
+            'fastcharacter.com — openFastCharacterSua() preset',
+            'TTMIK.html?sua=1&sheet=1 — Sua cicada attune + sheet boot',
             'TTMIK.html?heal-factor=cicada-attune — cicada shedding · FED attune',
             'TTMIK.html?attune=1&lane=sua — Federation pause then Sua shed',
             'cicada-attune-ritual · side-boundary quest'
@@ -194,6 +214,7 @@ const SKILLS = [
             'TTMIK.html?asuka=1 — invoke Asuka maybe practice'
         ],
         procedure: [
+            'Open Fast Character sheet: Asuka · Bard (Dance) · High Elf · Level 5',
             'Japanese native first: メルボルンが私の選択です — name the yes calmly',
             'Name the "maybe" without regret or fantasy replay',
             'Affirm the "yes" actually chosen (Melbourne path)',
@@ -219,8 +240,9 @@ const SKILLS = [
             'ブリスベンは美しい「もしかしたら」。メルボルンが私の「はい」。'
         ],
         integrations: [
+            'fastcharacter.com — openFastCharacterAsuka() preset',
             'Ep 5 · preset 11 · FED rain glass',
-            'TTMIK.html?asuka=1 — Japanese native input boot',
+            'TTMIK.html?asuka=1&sheet=1 — Japanese native input + sheet boot',
             'Quest main-others · Transportation + Melbourne Arrival lessons'
         ]
     },
@@ -790,6 +812,7 @@ const SKILLS = [
             'Humorous skit about what not to engage with'
         ],
         procedure: [
+            'Open Fast Character sheet: Rach3l · Wizard (Diviner) · Scribe · Level 5',
             'Notice without judgment — name the pattern, not the person',
             'Say aloud: "This is not my energy to carry"',
             'Ground: one breath, feet on floor',
@@ -806,7 +829,12 @@ const SKILLS = [
             'No hook or compulsive re-check suggested',
             'Creative or grounding next step offered'
         ],
-        korean: ['이건 제 에너지가 아니에요.', '관찰만 하고 흡수하지 않을게요.', '다시 제 길로 돌아갈게요.']
+        korean: ['이건 제 에너지가 아니에요.', '관찰만 하고 흡수하지 않을게요.', '다시 제 길로 돌아갈게요.'],
+        integrations: [
+            'fastcharacter.com — openFastCharacterRach3l() preset',
+            'TTMIK.html?skill=rach3l&sheet=1 — discernment mirror + sheet boot',
+            'sven-nordic-ranger · neon-evangelion · observe-but-do-not-absorb lane'
+        ]
     },
     {
         id: 'ignan-pilgrim',
@@ -820,6 +848,7 @@ const SKILLS = [
             'Botanic Gardens quiet walk — no performance invoice'
         ],
         procedure: [
+            'Open Fast Character sheet: Mari · Druid (Circle of the Sea) · Farmer · Level 5',
             'GoPro on Bard bag — Mari leads; consent each frame',
             'Three-language release: Ilokano (body), Korean (TTMIK), English (anchor)',
             'Walk HOTEL → FED optional rain → BOTANIC lake path',
@@ -839,13 +868,14 @@ const SKILLS = [
         ],
         korean: ['괜찮아요, 괜찮아요.', '잠시 쉬어도 괜찮아요.', '제 길을 믿어요.'],
         integrations: [
+            'fastcharacter.com — openFastCharacterIgnanPilgrim() preset',
             'Ep 2.6 · ignan-healing-journey · preset 10 · BOTANIC',
             'Ep 2.65 · mari-fifa-celebration · preset 12 · CANTINA',
             'TTMIK.html?fifa=1 — Mari Mexican restaurant FIFA · Ilokano native first',
-            'TTMIK.html?skill=ignan-pilgrim — boot registry',
+            'TTMIK.html?skill=ignan-pilgrim&sheet=1 — boot registry + sheet',
             'TTMIK.html?library=ignan — Ignan Library compose',
             'Post-DIB preset 9 → hand off when Mari is ready',
-            'TTMIK.html?ignan=1 — Ignan healing journey boot',
+            'TTMIK.html?ignan=1&sheet=1 — Ignan healing journey + sheet boot',
             'Veil Lumen — trilingual spoken clip'
         ],
         ilokano: [
@@ -867,6 +897,7 @@ const SKILLS = [
             'TTMIK team drill: Ilokano aloud, then Korean shadow'
         ],
         procedure: [
+            'Open Fast Character sheet: Mari · Druid (Circle of the Land) · Hermit · Level 5',
             'Phone face-down · GoPro off — no re-watch spiral',
             'Ilokano first: Ok laeng, ok laeng — shoulders drop',
             'One slow breath — aginana / Nasaem met ti aginana',
@@ -886,8 +917,9 @@ const SKILLS = [
         korean: ['괜찮아요, 괜찮아요.', '잠시 쉬어도 괜찮아요.', '숨 쉬어도 괜찮아요.'],
         ilokano: ['Ok laeng, ok laeng.', 'Nasaem met ti aginana.', 'Aginana met.'],
         integrations: [
+            'fastcharacter.com — openFastCharacterIgnanGrounding() preset',
             'Ignan Library · Ilokano Grounding category',
-            'TTMIK.html?skill=ignan-grounding — boot skill + shadowing',
+            'TTMIK.html?skill=ignan-grounding&sheet=1 — boot skill + sheet',
             'TTMIK.html?skill=ignan-grounding&lessons=1 — open library lane',
             'Post-DIB preset 9 → ignan-grounding → ignan-pilgrim',
             'HEALING_FACTORS step 4 companion'
@@ -905,6 +937,7 @@ const SKILLS = [
             'Quest side-ignan-heal log at walk end'
         ],
         procedure: [
+            'Open Fast Character sheet: Mari · Druid (Circle of the Land) · Wayfarer · Level 5',
             'Name one borrowed shame — no post before feet stop',
             'Ilokano: Piliem ti bukodko a dalan',
             'Korean: 제 길을 믿어요',
@@ -924,11 +957,12 @@ const SKILLS = [
         korean: ['제 길을 믿어요.', '나는 나만의 이야기를 씁니다.', '제 시간표를 선택해요.'],
         ilokano: ['Piliem ti bukodko a dalan.', 'Maysa nga anges, maysa a talna.', 'Bukodko a panawen.'],
         integrations: [
+            'fastcharacter.com — openFastCharacterIgnanDalan() preset',
             'Ignan Library · Healing Walk Route + Trilingual Shadowing',
-            'TTMIK.html?skill=ignan-dalan — boot BOTANIC close + shadowing',
+            'TTMIK.html?skill=ignan-dalan&sheet=1 — boot BOTANIC close + sheet',
             'TTMIK.html?skill=ignan-dalan&lessons=1 — open library lane',
             'Ep 2.6 IG7–IG8 · preset 10',
-            'TTMIK.html?ignan=1&step=6'
+            'TTMIK.html?ignan=1&step=6&sheet=1'
         ]
     }
 ];

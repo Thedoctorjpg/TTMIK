@@ -54,6 +54,10 @@ const JS_FILES = [
     'scripts/boot-all.js',
     'scripts/preload-skills.js',
     'scripts/hermes-patch.js',
+    'scripts/lib/webnovel-json.js',
+    'scripts/build-webnovel-catalog.js',
+    'scripts/export-webnovel-json.js',
+    'scripts/import-webnovel-json.js',
     'packages/ttmik-webhook/index.js',
     'packages/ttmik-heal-skills/lib/heal-skills.js',
     'packages/ttmik-heal-skills/bin/cli.js'

@@ -1,7 +1,7 @@
 /**
  * WebNovel Package Library — canonical book/comic manifests per webnovel.com
  * SVSSS ID translation (109 ch) · Solo Leveling comic (202 ch · Completed)
- * Regenerate catalog: node scripts/build-webnovel-catalog.js
+ * Source: data/webnovel.json · Regenerate catalog: node scripts/build-webnovel-catalog.js
  * Audio folder: WebNovel_Package/
  */
 

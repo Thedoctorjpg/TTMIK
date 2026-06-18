@@ -1,5 +1,5 @@
 /**
- * WebNovel catalog — generated from WebNovel TOC
+ * WebNovel catalog — generated from data/webnovel.json
  * Regenerate: node scripts/build-webnovel-catalog.js
  * SVSSS: https://www.webnovel.com/book/35203689408704405
  * Solo: https://www.webnovel.com/comic/15227640605485101

@@ -1,0 +1,919 @@
+{
+  "schema": "ttmik-webnovel/v1",
+  "generated": "2026-06-18",
+  "source": {
+    "svsss": "https://www.webnovel.com/book/35203689408704405",
+    "soloLeveling": "https://www.webnovel.com/comic/15227640605485101"
+  },
+  "packages": {
+    "svsss": {
+      "id": "svsss",
+      "type": "book",
+      "bookId": "35203689408704405",
+      "title": "The Scum Villain's Self-Saving System (Terjemahan Indonesia)",
+      "originalTitle": "Ren Zha Fanpai Zijiu Xitong (人渣反派自救系统)",
+      "englishTitle": "The Scum Villain's Self-Saving System",
+      "author": "Mo Xiang Tong Xiu",
+      "translator": "BoaHancock31",
+      "profileUrl": "https://www.webnovel.com/profile/4505298931",
+      "genre": "Fantasy",
+      "tags": [
+        "ROMANCE",
+        "SYSTEM",
+        "COMEDY",
+        "TRANSMIGRATION",
+        "CULTIVATION"
+      ],
+      "language": "id",
+      "chapters": 109,
+      "views": "219.6K",
+      "volume": "Volume 1",
+      "status": "Completed",
+      "latestChapter": "Chapter 107 - Ekstra [ TAMAT ]",
+      "catalogUrl": "https://www.webnovel.com/book/35203689408704405/catalog",
+      "homeUrl": "https://www.webnovel.com/book/35203689408704405",
+      "readUrl": "https://www.webnovel.com/book/35203689408704405/94532538348928087"
+    },
+    "soloLeveling": {
+      "id": "solo-leveling",
+      "type": "comic",
+      "comicId": "15227640605485101",
+      "title": "Solo Leveling(Only I level up)",
+      "originalTitle": "나 혼자만 레벨업",
+      "englishTitle": "Solo Leveling",
+      "publishers": [
+        "DUBU (REDICE STUDIO)",
+        "Chugong",
+        "h-goon"
+      ],
+      "license": "D&C MEDIA",
+      "genre": "Magic",
+      "tags": [
+        "HUNTER",
+        "SYSTEM",
+        "DUNGEON",
+        "LEVEL-UP"
+      ],
+      "language": "en",
+      "chapters": 202,
+      "views": "150.0M",
+      "status": "Completed",
+      "latestChapter": "Chapter 202: Extras 21",
+      "catalogUrl": "https://www.webnovel.com/comic/15227640605485101/catalog",
+      "homeUrl": "https://www.webnovel.com/comic/15227640605485101",
+      "readUrl": "https://www.webnovel.com/comic/15227640605485101/45196186038101142"
+    },
+    "boysLove": {
+      "id": "boys-love",
+      "type": "mirror",
+      "parentPackage": "svsss",
+      "title": "After the Bamboo",
+      "subtitle": "SVSSS slow-burn mirror · Qingqiu/Binghe",
+      "novelApp": "http://localhost:5191",
+      "chapters": 2,
+      "webnovelAnchor": 2
+    }
+  },
+  "catalogs": {
+    "svsss": [
+      {
+        "n": 1,
+        "chapterId": "94532538348928087",
+        "title": "Chapter 1"
+      },
+      {
+        "n": 2,
+        "chapterId": "94532556736753619",
+        "title": "Chapter 2"
+      },
+      {
+        "n": 3,
+        "chapterId": "94547624689985181",
+        "title": "Chapter 3"
+      },
+      {
+        "n": 4,
+        "chapterId": "94547638648624112",
+        "title": "Chapter 4"
+      },
+      {
+        "n": 5,
+        "chapterId": "94532612705535485",
+        "title": "Chapter 5"
+      },
+      {
+        "n": 6,
+        "chapterId": "94547797025548533",
+        "title": "Chapter 6"
+      },
+      {
+        "n": 7,
+        "chapterId": "94547805481264437",
+        "title": "Chapter 7"
+      },
+      {
+        "n": 8,
+        "chapterId": "94547820513643513",
+        "title": "Chapter 8"
+      },
+      {
+        "n": 9,
+        "chapterId": "94554640921720675",
+        "title": "Chapter 9"
+      },
+      {
+        "n": 10,
+        "chapterId": "94554649914308233",
+        "title": "Chapter 10"
+      },
+      {
+        "n": 11,
+        "chapterId": "94554655685663867",
+        "title": "Chapter 11"
+      },
+      {
+        "n": 12,
+        "chapterId": "94556072488006707",
+        "title": "Chapter 12"
+      },
+      {
+        "n": 13,
+        "chapterId": "94556082017464455",
+        "title": "Chapter 13"
+      },
+      {
+        "n": 14,
+        "chapterId": "94556202947635716",
+        "title": "Chapter 14"
+      },
+      {
+        "n": 15,
+        "chapterId": "94556214356143944",
+        "title": "Chapter 15"
+      },
+      {
+        "n": 16,
+        "chapterId": "94556272069759193",
+        "title": "Chapter 16"
+      },
+      {
+        "n": 17,
+        "chapterId": "94556356358498733",
+        "title": "Chapter 17"
+      },
+      {
+        "n": 18,
+        "chapterId": "94556396892253349",
+        "title": "Chapter 18"
+      },
+      {
+        "n": 19,
+        "chapterId": "94556572314824598",
+        "title": "Chapter 19"
+      },
+      {
+        "n": 20,
+        "chapterId": "94556403603143751",
+        "title": "Chapter 20"
+      },
+      {
+        "n": 21,
+        "chapterId": "94595690340087800",
+        "title": "Chapter 21"
+      },
+      {
+        "n": 22,
+        "chapterId": "94595722820774450",
+        "title": "Chapter 22"
+      },
+      {
+        "n": 23,
+        "chapterId": "94595767381059792",
+        "title": "Chapter 23"
+      },
+      {
+        "n": 24,
+        "chapterId": "94595779326434336",
+        "title": "Chapter 24"
+      },
+      {
+        "n": 25,
+        "chapterId": "94765046135055500",
+        "title": "Chapter 25"
+      },
+      {
+        "n": 26,
+        "chapterId": "94768110459996684",
+        "title": "Chapter 26"
+      },
+      {
+        "n": 27,
+        "chapterId": "94781389022486877",
+        "title": "Chapter 27"
+      },
+      {
+        "n": 28,
+        "chapterId": "94782337673384866",
+        "title": "Chapter 28"
+      },
+      {
+        "n": 29,
+        "chapterId": "94595801203926381",
+        "title": "Chapter 29"
+      },
+      {
+        "n": 30,
+        "chapterId": "94595811941348440",
+        "title": "Chapter 30"
+      },
+      {
+        "n": 31,
+        "chapterId": "94672806343670775",
+        "title": "Chapter 31"
+      },
+      {
+        "n": 32,
+        "chapterId": "94672822181351824",
+        "title": "Chapter 32"
+      },
+      {
+        "n": 33,
+        "chapterId": "94824222597116206",
+        "title": "Chapter 33"
+      },
+      {
+        "n": 34,
+        "chapterId": "94672910093969182",
+        "title": "Chapter 34"
+      },
+      {
+        "n": 35,
+        "chapterId": "94825892668297196",
+        "title": "Chapter 35"
+      },
+      {
+        "n": 36,
+        "chapterId": "94672951164592366",
+        "title": "Chapter 36"
+      },
+      {
+        "n": 37,
+        "chapterId": "94834984845638416",
+        "title": "Chapter 37"
+      },
+      {
+        "n": 38,
+        "chapterId": "94672985121679991",
+        "title": "Chapter 38"
+      },
+      {
+        "n": 39,
+        "chapterId": "94835657813320277",
+        "title": "Chapter 39"
+      },
+      {
+        "n": 40,
+        "chapterId": "94673085382320868",
+        "title": "Chapter 40"
+      },
+      {
+        "n": 41,
+        "chapterId": "94869637312865431",
+        "title": "Chapter 41"
+      },
+      {
+        "n": 42,
+        "chapterId": "94909898202073305",
+        "title": "Chapter 42"
+      },
+      {
+        "n": 43,
+        "chapterId": "94673106320279113",
+        "title": "Chapter 43"
+      },
+      {
+        "n": 44,
+        "chapterId": "94915528367327816",
+        "title": "Chapter 44"
+      },
+      {
+        "n": 45,
+        "chapterId": "94673110749463508",
+        "title": "Chapter 45"
+      },
+      {
+        "n": 46,
+        "chapterId": "94673111152126538",
+        "title": "Chapter 46"
+      },
+      {
+        "n": 47,
+        "chapterId": "94935204954697720",
+        "title": "Chapter 47"
+      },
+      {
+        "n": 48,
+        "chapterId": "94673129271520409",
+        "title": "Chapter 48"
+      },
+      {
+        "n": 49,
+        "chapterId": "94673129942602343",
+        "title": "Chapter 49"
+      },
+      {
+        "n": 50,
+        "chapterId": "94686903365858754",
+        "title": "Chapter 50"
+      },
+      {
+        "n": 51,
+        "chapterId": "94686909808298985",
+        "title": "Chapter 51"
+      },
+      {
+        "n": 52,
+        "chapterId": "94949728386612874",
+        "title": "Chapter 52"
+      },
+      {
+        "n": 53,
+        "chapterId": "94686909674087953",
+        "title": "Chapter 53"
+      },
+      {
+        "n": 54,
+        "chapterId": "94970774129007011",
+        "title": "Chapter 54"
+      },
+      {
+        "n": 55,
+        "chapterId": "94686960676828731",
+        "title": "Chapter 55"
+      },
+      {
+        "n": 56,
+        "chapterId": "94686962019006460",
+        "title": "Chapter 56"
+      },
+      {
+        "n": 57,
+        "chapterId": "95042099442929491",
+        "title": "Chapter 57"
+      },
+      {
+        "n": 58,
+        "chapterId": "95042285602914815",
+        "title": "Chapter 58"
+      },
+      {
+        "n": 59,
+        "chapterId": "94691878817028960",
+        "title": "Chapter 59"
+      },
+      {
+        "n": 60,
+        "chapterId": "94691910223973874",
+        "title": "Chapter 60"
+      },
+      {
+        "n": 61,
+        "chapterId": "95055951249329686",
+        "title": "Chapter 61"
+      },
+      {
+        "n": 62,
+        "chapterId": "95056143180684586",
+        "title": "Chapter 62"
+      },
+      {
+        "n": 63,
+        "chapterId": "94763974406494416",
+        "title": "Chapter 63"
+      },
+      {
+        "n": 64,
+        "chapterId": "94764004739699162",
+        "title": "Chapter 64"
+      },
+      {
+        "n": 65,
+        "chapterId": "95079880928051984",
+        "title": "Chapter 65"
+      },
+      {
+        "n": 66,
+        "chapterId": "95084832756919286",
+        "title": "Chapter 66"
+      },
+      {
+        "n": 67,
+        "chapterId": "95105436117691519",
+        "title": "Chapter 67"
+      },
+      {
+        "n": 68,
+        "chapterId": "95105549665888385",
+        "title": "Chapter 68"
+      },
+      {
+        "n": 69,
+        "chapterId": "95105587649507994",
+        "title": "Chapter 69"
+      },
+      {
+        "n": 70,
+        "chapterId": "95106070028009576",
+        "title": "Chapter 70"
+      },
+      {
+        "n": 71,
+        "chapterId": "94764067956256161",
+        "title": "Chapter 71"
+      },
+      {
+        "n": 72,
+        "chapterId": "95105956211387875",
+        "title": "Chapter 72"
+      },
+      {
+        "n": 73,
+        "chapterId": "94764107818921163",
+        "title": "Chapter 73"
+      },
+      {
+        "n": 74,
+        "chapterId": "95134450903475639",
+        "title": "Chapter 74"
+      },
+      {
+        "n": 75,
+        "chapterId": "95134683905455581",
+        "title": "Chapter 75"
+      },
+      {
+        "n": 76,
+        "chapterId": "95134706454024397",
+        "title": "Chapter 76"
+      },
+      {
+        "n": 77,
+        "chapterId": "95134753296020152",
+        "title": "Chapter 77"
+      },
+      {
+        "n": 78,
+        "chapterId": "95134771683845615",
+        "title": "Chapter 78"
+      },
+      {
+        "n": 79,
+        "chapterId": "95135659936770034",
+        "title": "Chapter 79"
+      },
+      {
+        "n": 80,
+        "chapterId": "95135690269971760",
+        "title": "Chapter 80"
+      },
+      {
+        "n": 81,
+        "chapterId": "95135729193110115",
+        "title": "Chapter 81 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 82,
+        "chapterId": "95313253076360881",
+        "title": "Chapter 82 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 83,
+        "chapterId": "95313382059591733",
+        "title": "Chapter 83 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 84,
+        "chapterId": "95135757378843530",
+        "title": "Chapter 84 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 85,
+        "chapterId": "95135780464285759",
+        "title": "Chapter 85 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 86,
+        "chapterId": "95135795765111699",
+        "title": "Chapter 86 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 87,
+        "chapterId": "95314114888395024",
+        "title": "Chapter 86.2 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 88,
+        "chapterId": "95135843680835163",
+        "title": "Chapter 86.3 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 89,
+        "chapterId": "95136475846336843",
+        "title": "Chapter 87 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 90,
+        "chapterId": "95315236411732971",
+        "title": "Chapter 88 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 91,
+        "chapterId": "95136519467105891",
+        "title": "Chapter 89 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 92,
+        "chapterId": "95315728990782221",
+        "title": "Chapter 90 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 93,
+        "chapterId": "95315336940798577",
+        "title": "Chapter 91 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 94,
+        "chapterId": "95315544844063080",
+        "title": "Chapter 92 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 95,
+        "chapterId": "95315984809782386",
+        "title": "Chapter 93 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 96,
+        "chapterId": "95316025343528183",
+        "title": "Chapter 94 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 97,
+        "chapterId": "95854856505445481",
+        "title": "Chapter 95 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 98,
+        "chapterId": "95854897710288417",
+        "title": "Chapter 96 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 99,
+        "chapterId": "95854943344326945",
+        "title": "Chapter 97 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 100,
+        "chapterId": "95854969114120186",
+        "title": "Chapter 98 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 101,
+        "chapterId": "95854989380998639",
+        "title": "Chapter 99 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 102,
+        "chapterId": "95854996897193753",
+        "title": "Chapter 100 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 103,
+        "chapterId": "95855055416121377",
+        "title": "Chapter 101 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 104,
+        "chapterId": "95855080380624327",
+        "title": "Chapter 102 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 105,
+        "chapterId": "95855097292062193",
+        "title": "Chapter 103 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 106,
+        "chapterId": "95855119572193407",
+        "title": "Chapter 104 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 107,
+        "chapterId": "95855147623696393",
+        "title": "Chapter 105 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 108,
+        "chapterId": "95855170306490894",
+        "title": "Chapter 106 - Ekstra",
+        "isExtra": true
+      },
+      {
+        "n": 109,
+        "chapterId": "95855179433298815",
+        "title": "Chapter 107 - Ekstra [ TAMAT ]",
+        "isExtra": true
+      }
+    ],
+    "soloLeveling": [
+      {
+        "chapterId": "45196186038101142",
+        "title": "000 Only I Level Up",
+        "index": 0
+      },
+      {
+        "chapterId": "45196190333068497",
+        "title": "001 The Weakest Hunter",
+        "index": 1
+      },
+      {
+        "chapterId": "45196193805954613",
+        "title": "002 Double Dungeon",
+        "index": 2
+      },
+      {
+        "chapterId": "45196197043954998",
+        "title": "003 Statue",
+        "index": 3
+      },
+      {
+        "chapterId": "45196200802051427",
+        "title": "004 \"The Lord\"",
+        "index": 4
+      },
+      {
+        "chapterId": "45196206153985756",
+        "title": "005 The Rules of the Dungeon",
+        "index": 5
+      },
+      {
+        "chapterId": "45196209643646729",
+        "title": "006 Terror",
+        "index": 6
+      },
+      {
+        "chapterId": "45196213418518039",
+        "title": "007 The Thread Between Life and Death",
+        "index": 7
+      },
+      {
+        "chapterId": "45196219860969065",
+        "title": "008 The Altar of Life",
+        "index": 8
+      },
+      {
+        "chapterId": "45196223602290597",
+        "title": "009 The Exit is Open",
+        "index": 9
+      },
+      {
+        "chapterId": "45196226823516103",
+        "title": "010 Becoming a \"Player\"",
+        "index": 10
+      },
+      {
+        "chapterId": "45196909723305287",
+        "title": "011 The System's Punishment",
+        "index": 11
+      },
+      {
+        "chapterId": "45196913229757563",
+        "title": "012 The Reawakening of the Weak",
+        "index": 12
+      },
+      {
+        "chapterId": "45196916719418548",
+        "title": "013 Solo Against the Wolves",
+        "index": 13
+      },
+      {
+        "chapterId": "45196920192288234",
+        "title": "014 Wolf Slayer",
+        "index": 14
+      },
+      {
+        "chapterId": "45196977385821028",
+        "title": "015 Dungeon Boss",
+        "index": 15
+      },
+      {
+        "chapterId": "45196981412352942",
+        "title": "016 Eliminate Kasaka",
+        "index": 16
+      },
+      {
+        "chapterId": "45196985170449373",
+        "title": "017 A Single Strike!",
+        "index": 17
+      },
+      {
+        "chapterId": "45196988928545833",
+        "title": "018 Attack Force! Set Out!",
+        "index": 18
+      },
+      {
+        "chapterId": "45196992686642261",
+        "title": "019 A Bad Feeling",
+        "index": 19
+      },
+      {
+        "chapterId": "45196996427963760",
+        "title": "020 Betrayal",
+        "index": 20
+      },
+      {
+        "chapterId": "47326017622179431",
+        "title": "Season 2 Arrived!",
+        "index": 112
+      },
+      {
+        "chapterId": "45307001009390453",
+        "title": "110 S1 Ending-I Will Continue Pressing On",
+        "index": 111
+      }
+    ]
+  },
+  "integratedChapters": {
+    "svsss": [
+      {
+        "n": 1,
+        "chapterId": "94532538348928087",
+        "title": "Chapter 1",
+        "pins": [
+          "QING",
+          "SYSTEM"
+        ],
+        "phrases": [
+          {
+            "id": "Penulis tolol, novel tolol!",
+            "ko": "바보 작가, 바보 소설!"
+          },
+          {
+            "id": "Ini adalah Puncak Qing Jing milikmu.",
+            "ko": "여기는 당신의 청정봉이에요."
+          },
+          {
+            "id": "Poin B tidak boleh di bawah nol.",
+            "ko": "B 포인트는 0 아래로 내려가면 안 돼요."
+          }
+        ],
+        "note": "System bound · Qing Jing wake · 100 B-points"
+      },
+      {
+        "n": 2,
+        "chapterId": "94532556736753619",
+        "title": "Chapter 2",
+        "pins": [
+          "SHED",
+          "BAMBOO"
+        ],
+        "phrases": [
+          {
+            "id": "Peringatan! Peringatan OOC!",
+            "ko": "OOC 경고! OOC 경고!"
+          },
+          {
+            "id": "Bawa Binghe ke sini.",
+            "ko": "빙허를 데려와요."
+          },
+          {
+            "id": "Ini obat.",
+            "ko": "이건 약이에요."
+          },
+          {
+            "id": "Terima kasih atas obatnya, Shizun.",
+            "ko": "약 감사합니다, 스승님."
+          }
+        ],
+        "note": "OOC warning · Ming Fan · medicine bottle · boys-love mirror"
+      }
+    ],
+    "soloLeveling": [
+      {
+        "n": 0,
+        "index": 0,
+        "chapterId": "45196186038101142",
+        "title": "000 Only I Level Up",
+        "pins": [
+          "GATE"
+        ],
+        "phrases": [
+          {
+            "en": "I'm used to it.",
+            "ko": "익숙해요."
+          },
+          {
+            "en": "The weakest hunter of all mankind.",
+            "ko": "인류 최약 헌터예요."
+          },
+          {
+            "en": "Gates opened ten years ago.",
+            "ko": "십 년 전에 게이트가 열렸어요."
+          }
+        ],
+        "note": "E-rank intro · construction site gate"
+      },
+      {
+        "n": 1,
+        "index": 1,
+        "chapterId": "45196190333068497",
+        "title": "001 The Weakest Hunter",
+        "pins": [
+          "STONE"
+        ],
+        "phrases": [
+          {
+            "en": "It's my fault for being so weak.",
+            "ko": "제가 약해서 그래요."
+          },
+          {
+            "en": "Better than nothing.",
+            "ko": "없는 것보단 나아요."
+          }
+        ],
+        "note": "Goblin raid · essence stone · Joohee heal"
+      },
+      {
+        "n": 2,
+        "index": 2,
+        "chapterId": "45196193805954613",
+        "title": "002 Double Dungeon",
+        "pins": [
+          "TEMPLE",
+          "VOTE"
+        ],
+        "phrases": [
+          {
+            "en": "It's a double dungeon.",
+            "ko": "이중 던전이에요."
+          },
+          {
+            "en": "I need the money for my family.",
+            "ko": "가족을 위해 돈이 필요해요."
+          },
+          {
+            "en": "The door shut behind us.",
+            "ko": "문이 뒤에서 닫혔어요."
+          }
+        ],
+        "note": "Cartenon Temple vote · family breadwinner"
+      },
+      {
+        "n": 3,
+        "index": 3,
+        "chapterId": "45196197043954998",
+        "title": "003 Statue",
+        "pins": [
+          "TEMPLE"
+        ],
+        "phrases": [
+          {
+            "en": "Everyone, duck!",
+            "ko": "다들 엎드려요!"
+          },
+          {
+            "en": "Please, be afraid.",
+            "ko": "두려워하세요."
+          }
+        ],
+        "note": "Statue of God · heat vision · phone face-down after"
+      }
+    ]
+  }
+}

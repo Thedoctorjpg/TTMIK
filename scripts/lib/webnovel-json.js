@@ -17,6 +17,72 @@ function isA11yTreeDump(obj) {
     return false;
 }
 
+/** Browser "View Source" / saved page — Inkstone shell, not catalog JSON. */
+function isInkstoneHtmlDump(raw) {
+    if (!raw || typeof raw !== 'string') return false;
+    const head = raw.slice(0, 4000).toLowerCase();
+    if (!head.includes('<!doctype html') && !head.includes('<html')) return false;
+    return (
+        head.includes('inkstone') ||
+        head.includes('yueimg.com/inkstone') ||
+        head.includes('hibridge') ||
+        (head.includes('<div id="root">') && head.includes('yueimg.com'))
+    );
+}
+
+/** WebNovel reader catalog page — chapter TOC in HTML (importable). */
+function isWebnovelCatalogHtml(raw) {
+    if (!raw || typeof raw !== 'string') return false;
+    const sample = raw.slice(0, 8000);
+    if (!sample.includes('<!DOCTYPE') && !sample.includes('<html')) return false;
+    return (
+        sample.includes('webnovel.com') &&
+        (sample.includes('/catalog') || sample.includes('Volume 1') || sample.includes('Chapters'))
+    );
+}
+
+function parseWebnovelCatalogHtml(raw, type) {
+    const chapters = [];
+    const seen = new Set();
+
+    // Markdown-style links from fetched catalog pages: **Chapter N** ... _chapterId
+    const mdRe = /\*\*([^*]+)\*\*[^_]*_(\d{15,})/g;
+    let m;
+    while ((m = mdRe.exec(raw)) !== null) {
+        const title = m[1].trim();
+        const chapterId = m[2];
+        if (seen.has(chapterId)) continue;
+        seen.add(chapterId);
+        const isExtra = /ekstra|extra|tamat/i.test(title);
+        const row = { chapterId, title };
+        if (type === 'book') {
+            row.n = chapters.length + 1;
+            if (isExtra) row.isExtra = true;
+        }
+        chapters.push(row);
+    }
+
+    if (!chapters.length) {
+        // Fallback: href paths like chapter-1_94532538348928087
+        const hrefRe = /chapter[^"'\s]*_(\d{15,})/gi;
+        while ((m = hrefRe.exec(raw)) !== null) {
+            const chapterId = m[1];
+            if (seen.has(chapterId)) continue;
+            seen.add(chapterId);
+            chapters.push({ chapterId, title: `Chapter ${chapters.length + 1}` });
+        }
+    }
+
+    if (type === 'comic') {
+        chapters.forEach((ch, i) => {
+            const numMatch = ch.title.match(/^(\d{3})\b/);
+            ch.index = numMatch ? parseInt(numMatch[1], 10) : i;
+        });
+    }
+
+    return chapters;
+}
+
 function validateWebnovelJson(data) {
     const errors = [];
 
@@ -141,6 +207,9 @@ module.exports = {
     SCHEMA,
     DEFAULT_JSON,
     isA11yTreeDump,
+    isInkstoneHtmlDump,
+    isWebnovelCatalogHtml,
+    parseWebnovelCatalogHtml,
     validateWebnovelJson,
     readWebnovelJson,
     buildChapterRows,

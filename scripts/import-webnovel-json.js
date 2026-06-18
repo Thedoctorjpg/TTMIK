@@ -10,8 +10,13 @@ const path = require('path');
 const { execSync } = require('child_process');
 const {
     DEFAULT_JSON,
+    SCHEMA,
     validateWebnovelJson,
-    isA11yTreeDump
+    isA11yTreeDump,
+    isInkstoneHtmlDump,
+    isWebnovelCatalogHtml,
+    parseWebnovelCatalogHtml,
+    readWebnovelJson
 } = require('./lib/webnovel-json');
 
 const ROOT = path.join(__dirname, '..');
@@ -62,18 +67,48 @@ function importFile(sourcePath, destPath = DEFAULT_JSON) {
         throw new Error(`Cannot read ${sourcePath}: ${err.message}`);
     }
 
+    if (isInkstoneHtmlDump(raw)) {
+        console.error('ERROR: Wrong file format — Inkstone author app shell (HTML), not WebNovel catalog.');
+        console.error('');
+        console.error('This is the empty React page from inkstone.webnovel.com / yueimg.com/inkstone.');
+        console.error('It contains HiBridge JS only — no book or chapter data.');
+        console.error('');
+        console.error('Fix — pick one:');
+        console.error('  node scripts/fetch-webnovel-catalog.js --rebuild');
+        console.error('  node scripts/export-webnovel-json.js --out "%USERPROFILE%\\Downloads\\webnovel.json"');
+        process.exit(1);
+    }
+
     let data;
     try {
         data = JSON.parse(raw);
     } catch (err) {
-        throw new Error(`Invalid JSON in ${sourcePath}: ${err.message}`);
+        if (isWebnovelCatalogHtml(raw)) {
+            const base = readWebnovelJson(DEFAULT_JSON);
+            const svsss = parseWebnovelCatalogHtml(raw, 'book');
+            if (svsss.length) {
+                base.catalogs.svsss = svsss;
+                base.generated = new Date().toISOString().slice(0, 10);
+                data = base;
+                console.log(`Parsed WebNovel catalog HTML → ${svsss.length} SVSSS chapters`);
+            } else {
+                throw new Error(`WebNovel catalog HTML found but no chapters parsed in ${sourcePath}`);
+            }
+        } else if (raw.trimStart().startsWith('<')) {
+            console.error('ERROR: HTML file is not a recognized WebNovel catalog page.');
+            console.error('Save the catalog TOC from https://www.webnovel.com/book/.../catalog as .html,');
+            console.error('or run: node scripts/fetch-webnovel-catalog.js --rebuild');
+            process.exit(1);
+        } else {
+            throw new Error(`Invalid JSON in ${sourcePath}: ${err.message}`);
+        }
     }
 
     if (isA11yTreeDump(data)) {
         console.error('ERROR: Wrong file format — accessibility UI tree, not WebNovel catalog.');
         console.error('');
         console.error('Your file looks like a browser accessibility-tree export (button/nodeCssSelector).');
-        console.error('WebNovel catalog JSON must have schema "ttmik-webnovel/v1" with packages and catalogs.');
+        console.error(`WebNovel catalog JSON must have schema "${SCHEMA}" with packages and catalogs.`);
         console.error('');
         console.error('Fix: use the repo export instead:');
         console.error('  node scripts/export-webnovel-json.js --out "%USERPROFILE%\\Downloads\\webnovel.json"');

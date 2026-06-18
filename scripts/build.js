@@ -58,6 +58,7 @@ const JS_FILES = [
     'scripts/build-webnovel-catalog.js',
     'scripts/export-webnovel-json.js',
     'scripts/import-webnovel-json.js',
+    'scripts/fetch-webnovel-catalog.js',
     'packages/ttmik-webhook/index.js',
     'packages/ttmik-heal-skills/lib/heal-skills.js',
     'packages/ttmik-heal-skills/bin/cli.js'

@@ -12,10 +12,16 @@ const SOLO_LEVELING_WEBNOVEL_META = {
     comicId: '15227640605485101',
     chapterId: '45196186038101142',
     url: 'https://www.webnovel.com/comic/15227640605485101/45196186038101142',
-    title: 'Solo Leveling (Only I level up)',
-    chapter: 'Chapter 1 — 000 Only I Level Up',
+    catalogUrl: 'https://www.webnovel.com/comic/15227640605485101/catalog',
+    homeUrl: 'https://www.webnovel.com/comic/15227640605485101',
+    title: 'Solo Leveling(Only I level up)',
+    chapter: '000 Only I Level Up',
     originalTitle: '나 혼자만 레벨업',
-    author: 'Chugong'
+    publishers: ['DUBU (REDICE STUDIO)', 'Chugong', 'h-goon'],
+    license: 'D&C MEDIA',
+    totalChapters: 202,
+    status: 'Completed',
+    language: 'en'
 };
 
 const SOLO_LEVELING_LIBRARY_CATEGORIES = [
@@ -203,6 +209,7 @@ function buildSoloLevelingTranscript(parts) {
     if (parts.beat) lines.push(`Beat: ${parts.beat}`);
     if (parts.pin) lines.push(`Pin: ${parts.pin}`);
     lines.push(`\nWebNovel comic: ${SOLO_LEVELING_WEBNOVEL_META.url}`);
+    lines.push(`Catalog: ${SOLO_LEVELING_WEBNOVEL_META.catalogUrl} · ${SOLO_LEVELING_WEBNOVEL_META.totalChapters} chapters · ${SOLO_LEVELING_WEBNOVEL_META.status}`);
     lines.push('Skill: sung-jinwoo-solo-leveling · Boot: TTMIK.html?solo-leveling=1');
     lines.push('Sheet: fastcharacter.com · Sung Jinwoo · Fighter Champion · Soldier');
     return lines.join('\n\n');

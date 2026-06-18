@@ -34,13 +34,14 @@ const LIBRARY_GROUPS = [
     { label: 'SVSSS Library', group: 'svsss', source: 'svsss-data.js' },
     { label: 'Solo Leveling Library', group: 'solo-leveling', source: 'solo-leveling-data.js' },
     { label: 'Boys Love Library', group: 'boys-love', source: 'boys-love-data.js' },
-    { label: 'Webnovel Crossover Library', group: 'webnovel-crossover', source: 'webnovel-crossover-data.js' }
+    { label: 'Webnovel Crossover Library', group: 'webnovel-crossover', source: 'webnovel-crossover-data.js' },
+    { label: 'WebNovel Package Library', group: 'webnovel-package', source: 'webnovel-package-data.js' }
 ];
 
 function getLibraryCounts() {
     const vm = require('vm');
     const fs = require('fs');
-    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'heidi-data.js', 'sven-data.js', 'martin-data.js', 'ronaldo-data.js', 'mbappe-data.js', 'messi-data.js', 'vinicus-data.js', 'kane-data.js', 'evangelion-data.js', 'rickmorty-data.js', 'mika-data.js', 'haley-data.js', 'svsss-data.js', 'solo-leveling-data.js', 'boys-love-data.js', 'webnovel-crossover-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
+    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'heidi-data.js', 'sven-data.js', 'martin-data.js', 'ronaldo-data.js', 'mbappe-data.js', 'messi-data.js', 'vinicus-data.js', 'kane-data.js', 'evangelion-data.js', 'rickmorty-data.js', 'mika-data.js', 'haley-data.js', 'svsss-data.js', 'solo-leveling-data.js', 'boys-love-data.js', 'webnovel-catalog-data.js', 'webnovel-package-data.js', 'webnovel-crossover-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
         .map((file) => fs.readFileSync(path.join(ROOT, file), 'utf8'))
         .join('\n');
     const code = `${sources}
@@ -70,7 +71,8 @@ function getLibraryCounts() {
     svsss: generateSvsssLibraryLessons(1).length,
     'solo-leveling': generateSoloLevelingLibraryLessons(1).length,
     'boys-love': generateBoysLoveLibraryLessons(1).length,
-    'webnovel-crossover': generateWebnovelCrossoverLibraryLessons(1).length
+    'webnovel-crossover': generateWebnovelCrossoverLibraryLessons(1).length,
+    'webnovel-package': generateWebnovelPackageLessons(1).length
 });`;
     const sandbox = { console };
     vm.createContext(sandbox);

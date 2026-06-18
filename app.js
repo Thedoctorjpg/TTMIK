@@ -131,6 +131,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Webnovel Crossover Library') {
         return lessons.filter(l => l.group === 'webnovel-crossover');
     }
+    if (activeLibraryGroup === 'WebNovel Package Library') {
+        return lessons.filter(l => l.group === 'webnovel-package');
+    }
     return lessons;
 }
 
@@ -647,6 +650,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'webnovel-crossover') {
         activeLibraryGroup = 'Webnovel Crossover Library';
         activeCategory = 'Crossover Shadowing';
+    } else if (groupId === 'webnovel-package') {
+        activeLibraryGroup = 'WebNovel Package Library';
+        activeCategory = 'SVSSS Chapter Pack';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -826,6 +832,15 @@ function startBoysLoveCategory(subtitle) {
 
 function startWebnovelCrossoverCategory(subtitle) {
     activeLibraryGroup = 'Webnovel Crossover Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startWebnovelPackageCategory(subtitle) {
+    activeLibraryGroup = 'WebNovel Package Library';
     activeCategory = subtitle;
     renderLibraryGroupFilters();
     renderCategoryFilters();
@@ -1471,6 +1486,26 @@ function renderJourneyDashboard() {
         });
     }
 
+    const packageGrid = document.getElementById('webnovel-package-quick-grid');
+    if (packageGrid && typeof WEBNOVEL_PACKAGE_COURSE_DEFS !== 'undefined') {
+        packageGrid.textContent = '';
+        WEBNOVEL_PACKAGE_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'px-4 py-3 rounded-2xl text-left bg-amber-900/40 hover:bg-amber-800/60 ring-1 ring-amber-500/30';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'block text-amber-200 font-medium text-sm';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'block text-zinc-500 text-xs mt-1';
+            countSpan.textContent = `${def.trackCount} tracks`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startWebnovelPackageCategory(def.subtitle);
+            packageGrid.appendChild(btn);
+        });
+    }
+
     const crossoverGrid = document.getElementById('webnovel-crossover-quick-grid');
     if (crossoverGrid && typeof WEBNOVEL_CROSSOVER_COURSE_DEFS !== 'undefined') {
         crossoverGrid.textContent = '';
@@ -1701,6 +1736,8 @@ window.onload = () => {
             startBoysLoveCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'webnovel-crossover') {
             startWebnovelCrossoverCategory(bootParams.get('category') || 'Crossover Shadowing');
+        } else if (bootParams.get('library') === 'webnovel-package') {
+            startWebnovelPackageCategory(bootParams.get('category') || 'SVSSS Chapter Pack');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

@@ -99,6 +99,12 @@ const PIPELINE_SOURCES = {
         paths: ['webnovel-crossover-data.js', 'svsss-data.js', 'solo-leveling-data.js', 'boys-love-data.js'],
         url: 'TTMIK.html?library=webnovel-crossover',
         role: 'Ep 7.9 CROSS · three-lane handoff · one breath · no binge spiral'
+    },
+    webnovelPackage: {
+        label: 'WebNovel Package · canonical catalog',
+        paths: ['webnovel-catalog-data.js', 'webnovel-package-data.js', 'scripts/build-webnovel-catalog.js'],
+        url: 'TTMIK.html?library=webnovel-package',
+        role: 'webnovel.com TOC — SVSSS 109 ch ID · Solo 202 ch comic · chapter packs'
     }
 };
 

@@ -12,9 +12,17 @@ const SVSSS_WEBNOVEL_META = {
     bookId: '35203689408704405',
     chapterId: '94532538348928087',
     url: 'https://www.webnovel.com/book/35203689408704405/94532538348928087',
+    catalogUrl: 'https://www.webnovel.com/book/35203689408704405/catalog',
+    homeUrl: 'https://www.webnovel.com/book/35203689408704405',
     title: "The Scum Villain's Self-Saving System (Terjemahan Indonesia)",
+    originalTitle: 'Ren Zha Fanpai Zijiu Xitong (人渣反派自救系统)',
+    author: 'Mo Xiang Tong Xiu',
+    translator: 'BoaHancock31',
     chapter: 'Chapter 1',
-    translator: 'BoaHancock31'
+    volume: 'Volume 1',
+    totalChapters: 109,
+    tags: ['ROMANCE', 'SYSTEM', 'COMEDY', 'TRANSMIGRATION', 'CULTIVATION'],
+    language: 'id'
 };
 
 const SVSSS_LIBRARY_CATEGORIES = [
@@ -210,6 +218,7 @@ function buildSvsssTranscript(parts) {
     if (parts.beat) lines.push(`Beat: ${parts.beat}`);
     if (parts.pin) lines.push(`Pin: ${parts.pin}`);
     lines.push(`\nWebNovel: ${SVSSS_WEBNOVEL_META.url}`);
+    lines.push(`Catalog: ${SVSSS_WEBNOVEL_META.catalogUrl} · ${SVSSS_WEBNOVEL_META.totalChapters} chapters`);
     lines.push('Skill: shen-qingqiu-svsss · Boot: TTMIK.html?svsss=1');
     lines.push('Sheet: fastcharacter.com · Shen Qingqiu · Monk (Kensei) · Sage');
     return lines.join('\n\n');

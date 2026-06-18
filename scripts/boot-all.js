@@ -59,6 +59,7 @@ const LIBRARY_BOOTS = [
     'library=solo-leveling',
     'library=boys-love',
     'library=webnovel-crossover',
+    'library=webnovel-package',
     'library=melbourne-skills',
     'library=sovereign-skills',
     'boot=all'

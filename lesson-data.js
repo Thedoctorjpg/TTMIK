@@ -153,6 +153,12 @@ if (typeof generateWebnovelCrossoverLibraryLessons === 'function') {
     nextId += crossoverLessons.length;
 }
 
+if (typeof generateWebnovelPackageLessons === 'function') {
+    const packageLessons = generateWebnovelPackageLessons(nextId);
+    lessons = lessons.concat(packageLessons);
+    nextId += packageLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -192,5 +198,6 @@ let libraryGroups = [
     'SVSSS Library',
     'Solo Leveling Library',
     'Boys Love Library',
-    'Webnovel Crossover Library'
+    'Webnovel Crossover Library',
+    'WebNovel Package Library'
 ];

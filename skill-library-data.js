@@ -327,6 +327,13 @@ const LIBRARY_BUILD_MANIFEST = {
         factors: ['b-point-guard', 'e-rank-pause', 'slow-burn-boundary', 'no-rewatch'],
         boot: 'library=webnovel-crossover'
     },
+    'WebNovel Package Library': {
+        group: 'webnovel-package',
+        factors: ['b-point-guard', 'e-rank-pause', 'slow-burn-boundary', 'no-rewatch'],
+        boot: 'library=webnovel-package',
+        sources: ['webnovel-catalog-data.js', 'webnovel-package-data.js'],
+        catalog: 'https://www.webnovel.com'
+    },
     'Melbourne Journey': {
         group: 'melbourne',
         factors: ['hermit-lantern', 'humor-release', 'helen-boundary', 'post-dib'],
@@ -503,6 +510,14 @@ const COMPOSED_LIBRARIES = [
         accent: 'sky'
     },
     {
+        id: 'webnovel-package',
+        label: 'WebNovel Package Library',
+        description: 'webnovel.com catalog — SVSSS 109 ch · Solo 202 ch · chapter packs per TOC',
+        boot: 'library=webnovel-package',
+        skills: ['shen-qingqiu-svsss', 'sung-jinwoo-solo-leveling', 'boys-love-qing-binghe'],
+        accent: 'amber'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -677,6 +692,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'solo-leveling') startSoloLevelingCategory('English Shadowing');
     else if (lib.id === 'boys-love') startBoysLoveCategory('English Shadowing');
     else if (lib.id === 'webnovel-crossover') startWebnovelCrossoverCategory('Crossover Shadowing');
+    else if (lib.id === 'webnovel-package') startWebnovelPackageCategory('SVSSS Chapter Pack');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

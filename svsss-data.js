@@ -20,7 +20,8 @@ const SVSSS_WEBNOVEL_META = {
 const SVSSS_LIBRARY_CATEGORIES = [
     'Indonesian Shadowing',
     'Qing Jing Route',
-    'System Drills'
+    'System Drills',
+    'BL Mirror'
 ];
 
 const SVSSS_PHRASE_DECK = [
@@ -80,6 +81,28 @@ const SVSSS_PHRASE_DECK = [
         en: 'He is in the woodshed.',
         beat: 'Ep7.6-CL',
         note: 'Original Shen Qingqiu abuse arc — phone face-down after beat'
+    },
+    {
+        id: 'Jangan menghukumnya lagi, oke?',
+        ko: '더 이상 벌주지 마세요, 알겠죠?',
+        en: "Don't punish him again, okay?",
+        beat: 'Ep7.6-S4',
+        note: 'Yue Qingyuan shixiong worry — woodshed visit incoming'
+    },
+    {
+        id: 'Bukan misi penyelamatan.',
+        ko: '구출 임무가 아니에요.',
+        en: 'Not a rescue mission.',
+        beat: 'Ep7.6-BL',
+        note: 'Ch.2 hidden kindness — boys-love After the Bamboo mirror · enFirst',
+        enFirst: true
+    },
+    {
+        id: 'Air, perban, diam — sesuai karakter.',
+        ko: '물, 붕대, 침묵 — 캐릭터 안에서.',
+        en: 'Water, bandage, silence — in character.',
+        beat: 'Ep7.6-BL',
+        note: 'Third thing between cruel and kind — one knot loosens'
     }
 ];
 
@@ -110,6 +133,24 @@ const SVSSS_ROUTE_BEATS = [
         ko: '더 이상 벌주지 마세요, 알겠죠?',
         en: "Don't punish him again, okay?",
         note: 'Luo Binghe chained in woodshed · b-point-guard heal handoff'
+    },
+    {
+        pin: 'SHED',
+        title: 'Woodshed visit — one knot only',
+        beat: 'Ep7.6-S4',
+        id: 'Satu simpul saja. Cukup.',
+        ko: '매듭 하나만. 그걸로 충분해요.',
+        en: 'One knot only. Enough.',
+        note: 'Ch.2 beat — untie partial rope · B-points: 99 · System silent'
+    },
+    {
+        pin: 'BAMBOO',
+        title: 'Bamboo dawn handoff — boys-love mirror',
+        beat: 'Ep7.6-BL',
+        id: 'Teh dulu, perasaan belakangan.',
+        ko: '감정보다 차를 먼저.',
+        en: 'Tea before feelings.',
+        note: 'After the Bamboo Ch.2 · boys-love :5191 · slow-burn-boundary'
     }
 ];
 
@@ -127,6 +168,30 @@ const SVSSS_SYSTEM_DRILLS = [
         ko: '1장 — 시스템에 묶였어요.',
         en: 'Chapter one — bound to the System.',
         note: SVSSS_WEBNOVEL_META.url
+    },
+    {
+        title: 'Ch.2 woodshed kindness drill',
+        id: 'Pedagogi, bukan penyelamatan.',
+        ko: '교육이지 구출이 아니에요.',
+        en: 'Pedagogy, not salvation.',
+        note: 'Disciple care in-character · boys-love crossover'
+    }
+];
+
+const SVSSS_BL_MIRROR = [
+    {
+        title: 'After the Bamboo novel bridge',
+        en: 'Not a rescue mission — disciple, not beloved.',
+        ko: '구출 임무가 아니에요 — 제자지, 사랑하는 사람이 아니에요.',
+        id: 'Bukan misi penyelamatan — murid, bukan kekasih.',
+        note: 'boys-love/data/afterTheBamboo.js · http://localhost:5191'
+    },
+    {
+        title: 'Slow burn on Qing Jing Peak',
+        en: 'I like you slowly — on purpose, in installments.',
+        ko: '천천히 좋아해요 — 의도적으로, 나눠서.',
+        id: 'Aku suka kamu perlahan — sengaja, bertahap.',
+        note: 'Helen boundary × SVSSS OOC frozen · preset 28 handoff'
     }
 ];
 
@@ -192,7 +257,23 @@ function buildSvsssSystemLessons(startId) {
             duration: '00:45',
             src: `${SVSSS_BASE}/System_Drills/Drill_${n}.mp3`,
             transcript: buildSvsssTranscript(d),
-            vocab: [{ ko: d.ko, en: d.id }],
+            vocab: [{ ko: d.ko, en: d.id || d.en }],
+            group: 'svsss'
+        });
+    });
+}
+
+function buildSvsssBlMirrorLessons(startId) {
+    return SVSSS_BL_MIRROR.map((m, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        return createLesson({
+            id: startId + i,
+            title: m.title,
+            subtitle: 'BL Mirror',
+            duration: '00:45',
+            src: `${SVSSS_BASE}/BL_Mirror/Mirror_${n}.mp3`,
+            transcript: buildSvsssTranscript(m),
+            vocab: [{ ko: m.ko, en: m.en || m.id }],
             group: 'svsss'
         });
     });
@@ -205,13 +286,16 @@ function generateSvsssLibraryLessons(startId) {
     const route = buildSvsssRouteLessons(id);
     id += route.length;
     const system = buildSvsssSystemLessons(id);
-    return phrase.concat(route, system);
+    id += system.length;
+    const blMirror = buildSvsssBlMirrorLessons(id);
+    return phrase.concat(route, system, blMirror);
 }
 
 const SVSSS_COURSE_DEFS = [
     { subtitle: 'Indonesian Shadowing', trackCount: SVSSS_PHRASE_DECK.length },
     { subtitle: 'Qing Jing Route', trackCount: SVSSS_ROUTE_BEATS.length },
-    { subtitle: 'System Drills', trackCount: SVSSS_SYSTEM_DRILLS.length }
+    { subtitle: 'System Drills', trackCount: SVSSS_SYSTEM_DRILLS.length },
+    { subtitle: 'BL Mirror', trackCount: SVSSS_BL_MIRROR.length }
 ];
 
 function getSvsssSystemRitual() {

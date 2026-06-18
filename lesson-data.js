@@ -141,6 +141,18 @@ if (typeof generateSoloLevelingLibraryLessons === 'function') {
     nextId += soloLessons.length;
 }
 
+if (typeof generateBoysLoveLibraryLessons === 'function') {
+    const blLessons = generateBoysLoveLibraryLessons(nextId);
+    lessons = lessons.concat(blLessons);
+    nextId += blLessons.length;
+}
+
+if (typeof generateWebnovelCrossoverLibraryLessons === 'function') {
+    const crossoverLessons = generateWebnovelCrossoverLibraryLessons(nextId);
+    lessons = lessons.concat(crossoverLessons);
+    nextId += crossoverLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);
@@ -178,5 +190,7 @@ let libraryGroups = [
     'Mika Library',
     'Haley Library',
     'SVSSS Library',
-    'Solo Leveling Library'
+    'Solo Leveling Library',
+    'Boys Love Library',
+    'Webnovel Crossover Library'
 ];

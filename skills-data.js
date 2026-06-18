@@ -740,6 +740,46 @@ const SKILLS = [
         ]
     },
     {
+        id: 'boys-love-qing-binghe',
+        name: 'Boys Love — Qingqiu / Binghe',
+        icon: '\u{1F38B}',
+        tagline: 'Not a rescue mission — slow-burn on Qing Jing Peak',
+        role: 'Fast Character Monk ally — English native before Korean shadow',
+        source: 'Boys_Love_Qing_Binghe_Archetype.skill.md',
+        activationPhrases: [
+            'Not a rescue mission — disciple, not beloved',
+            'I like you slowly — on purpose'
+        ],
+        capabilities: [
+            'Generate Shen Qingqiu D&D sheet via Fast Character preset',
+            'English native input + Korean TTMIK shadowing drills',
+            'After the Bamboo Ch.1–2 — woodshed truce · bamboo dawn',
+            'Slow-burn boundary rituals — tea before feelings · OOC frozen'
+        ],
+        creativePrompts: [
+            'Create Shen Qingqiu Fast Character sheet — Monk Kensei · Sage · Level 5',
+            'Skit: Woodshed door before Korean shadow after Solo Leveling gate lane',
+            'Bamboo dawn drill — observe romance flag without System absorption'
+        ],
+        linkedGroups: ['boys-love', 'svsss', 'melbourne', 'sovereign'],
+        linkedCategories: ['English Shadowing', 'Slow-Burn Route', 'Webnovel BL Drills', 'GoPro & Content'],
+        shadowingPhrases: [
+            { en: 'Not a rescue mission.', ko: '구출 임무가 아니에요.', enFirst: true },
+            { en: 'I like you. Slowly. On purpose.', ko: '좋아해요. 천천히. 의도적으로.' },
+            { en: 'Disciple, not beloved — not yet.', ko: '제자예요, 사랑하는 사람이 아니에요 — 아직은.' },
+            { en: 'Tea before feelings.', ko: '감정보다 차를 먼저.' },
+            { en: 'Not a date. Sustenance, not romance.', ko: '데이트가 아니에요. 연애가 아니라 먹을 거예요.' }
+        ],
+        ritualSteps: [
+            'BAMBOO woodshed pause — phone face-down · GoPro off',
+            'English native first: Not a rescue mission',
+            'Open Fast Character — Shen Qingqiu · Monk Kensei · Sage',
+            'Korean shadow: 구출 임무가 아니에요 · 좋아해요. 천천히. 의도적으로.',
+            'Tea before feelings — care in installments · no rescue invoice',
+            'One pass — no WebNovel binge spiral · preset 28'
+        ]
+    },
+    {
         id: 'sung-jinwoo-solo-leveling',
         name: 'Sung Jinwoo — Solo Leveling',
         icon: '\u{1F6AA}',
@@ -762,7 +802,7 @@ const SKILLS = [
             'Double dungeon vote drill — observe danger without identity collapse'
         ],
         linkedGroups: ['solo-leveling', 'melbourne', 'sovereign'],
-        linkedCategories: ['English Shadowing', 'Dungeon Gate Route', 'Hunter Drills', 'GoPro & Content'],
+        linkedCategories: ['English Shadowing', 'Dungeon Gate Route', 'Hunter Drills', 'Daily Grind Drills', 'GoPro & Content'],
         shadowingPhrases: [
             { en: "I'm used to it.", ko: '익숙해요.', enFirst: true },
             { en: "It's my fault for being so weak.", ko: '제가 약해서 그래요.' },
@@ -804,7 +844,7 @@ const SKILLS = [
             'Woodshed beat drill — observe canon abuse arc without re-watch spiral'
         ],
         linkedGroups: ['svsss', 'melbourne', 'sovereign'],
-        linkedCategories: ['Indonesian Shadowing', 'Qing Jing Route', 'System Drills', 'GoPro & Content'],
+        linkedCategories: ['Indonesian Shadowing', 'Qing Jing Route', 'System Drills', 'BL Mirror', 'GoPro & Content'],
         shadowingPhrases: [
             { id: 'Penulis tolol, novel tolol!', ko: '바보 작가, 바보 소설!', en: 'Stupid author, stupid novel!', idFirst: true },
             { id: 'YOU CAN YOU UP, NO CAN NO BB', ko: '할 수 있으면 해봐, 못 하면 말고', enFirst: true },

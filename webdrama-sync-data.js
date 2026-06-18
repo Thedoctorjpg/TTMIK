@@ -87,6 +87,18 @@ const PIPELINE_SOURCES = {
         paths: ['solo-leveling-data.js', 'Sung_Jinwoo_Solo_Leveling_Archetype.skill.md'],
         url: 'TTMIK.html?solo-leveling=1',
         role: 'Ep 7.7 GATE · E-rank dungeon · Cartenon Temple · e-rank-pause'
+    },
+    boysLove: {
+        label: 'boys-love · After the Bamboo',
+        paths: ['boys-love/data/afterTheBamboo.js', 'boys-love-data.js', 'Boys_Love_Qing_Binghe_Archetype.skill.md'],
+        url: 'http://localhost:5191',
+        role: 'Ep 7.8 BAMBOO · Qingqiu/Binghe slow-burn · disciple-not-rescue · woodshed truce'
+    },
+    webnovelCrossover: {
+        label: 'Webnovel crossover · SVSSS · Solo · BL',
+        paths: ['webnovel-crossover-data.js', 'svsss-data.js', 'solo-leveling-data.js', 'boys-love-data.js'],
+        url: 'TTMIK.html?library=webnovel-crossover',
+        role: 'Ep 7.9 CROSS · three-lane handoff · one breath · no binge spiral'
     }
 };
 
@@ -138,8 +150,51 @@ const BARDIC_INSPIRATION = {
             mikaRoad: { boot: 'mika=1', label: 'Mika open-road dreamer · OPEN crew loyalty' },
             haleyJustice: { boot: 'haley=1', label: 'Haley Boba · @vietbonnie · Medea Caster justice' },
             svsssSystem: { boot: 'svsss=1', label: 'SVSSS System bound · QING WebNovel Ch.1' },
-            soloLeveling: { boot: 'solo-leveling=1', label: 'Solo Leveling · GATE dungeon comic Ch.1' }
+            soloLeveling: { boot: 'solo-leveling=1', label: 'Solo Leveling · GATE dungeon comic Ch.1' },
+            boysLoveBamboo: { boot: 'boys-love=1', label: 'Boys Love · BAMBOO After the Bamboo' },
+            webnovelCrossover: { boot: 'library=webnovel-crossover', label: 'Webnovel crossover · three-lane handoff' }
         }
+    },
+    boysLoveBamboo: {
+        label: 'After the Bamboo — slow-burn boundary without rescue invoice',
+        duration: '60s',
+        pin: 'BAMBOO',
+        skillId: 'boys-love-qing-binghe',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: 'Not a rescue mission — I like you slowly, on purpose.',
+        shadowPhrase: {
+            en: 'Not a rescue mission.',
+            ko: '구출 임무가 아니에요.'
+        },
+        steps: [
+            'Phone face-down · GoPro off · one breath at woodshed door',
+            'English: Not a rescue mission — disciple, not beloved',
+            'Woodshed truce — water, bandage, silence · one knot loosens',
+            'Korean shadow: 구출 임무가 아니에요 · 좋아해요. 천천히. 의도적으로.',
+            'Close: tea before feelings · boys-love :5191 · preset 28'
+        ],
+        webnovelUrl: 'https://www.webnovel.com/book/35203689408704405/94532538348928087'
+    },
+    webnovelCrossover: {
+        label: 'Webnovel crossover — three lanes · one boundary',
+        duration: '60s',
+        pin: 'CROSS',
+        skillId: 'boys-love-qing-binghe',
+        questId: 'side-humor',
+        shadowIndex: 0,
+        activation: 'One breath — B-points above zero, gate ahead.',
+        shadowPhrase: {
+            en: 'One breath — B-points above zero, gate ahead.',
+            ko: '한 숨 — B 포인트는 0 위, 게이트는 앞에.'
+        },
+        steps: [
+            'SVSSS QING — B-point guard · stay in character',
+            'Solo GATE — E-rank pause · I\'m used to it',
+            'Boys Love BAMBOO — slow-burn boundary · not a rescue mission',
+            'Korean shadow: 한 경계 · 세 레인 · 알고리즘 부끄 없이',
+            'Close: phone face-down · one pass · no WebNovel binge spiral'
+        ]
     },
     soloLevelingGate: {
         label: 'Solo Leveling gate — E-rank without weakness spiral',
@@ -402,7 +457,8 @@ const HEALING_FACTORS = {
         { id: 'teachings-circe', label: 'Teachings of Circe', ko: '헤드라인은 관찰만', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REST', shadowIndex: 10 },
         { id: 'witch-colchis', label: 'Witch of Colchis', ko: '마녀가 아니라 학생이에요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 11 },
         { id: 'b-point-guard', label: 'B-point guard', ko: 'B 포인트는 0 아래로 내려가면 안 돼요', skillId: 'shen-qingqiu-svsss', edit: 'svsss-system-bound', questId: 'side-humor', pin: 'QING', shadowIndex: 4 },
-        { id: 'e-rank-pause', label: 'E-rank pause', ko: '익숙해요', skillId: 'sung-jinwoo-solo-leveling', edit: 'solo-leveling-gate', questId: 'side-humor', pin: 'GATE', shadowIndex: 0 }
+        { id: 'e-rank-pause', label: 'E-rank pause', ko: '익숙해요', skillId: 'sung-jinwoo-solo-leveling', edit: 'solo-leveling-gate', questId: 'side-humor', pin: 'GATE', shadowIndex: 0 },
+        { id: 'slow-burn-boundary', label: 'Slow-burn boundary', ko: '구출 임무가 아니에요', skillId: 'boys-love-qing-binghe', edit: 'boys-love-bamboo', questId: 'side-humor', pin: 'BAMBOO', shadowIndex: 0 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -1247,6 +1303,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'WebNovel comic Ch.1 · English native · E-rank dungeon · Cartenon Temple · Fast Character Fighter Champion sheet',
         autoShadow: true
+    },
+    {
+        id: 28,
+        label: 'BAMBOO · Ep 7.8 · Boys Love Slow-Burn',
+        shortLabel: 'BAMBOO',
+        pin: 'BAMBOO',
+        episode: '7.8',
+        reel: null,
+        note: 'After the Bamboo Ch.1–2 · Qingqiu/Binghe · woodshed truce · slow-burn boundary · Fast Character Monk Kensei sheet',
+        autoShadow: true
     }
 ];
 
@@ -1266,12 +1332,14 @@ const WEBSERIES_MULTIVERSE = {
         { id: 'mika-road', label: 'Mika open-road dreamer', episode: '7.4', preset: 24, boot: 'mika=1' },
         { id: 'haley-justice', label: 'Haley Boba justice seek', episode: '7.5', preset: 25, boot: 'haley=1' },
         { id: 'svsss-system', label: 'SVSSS System bound', episode: '7.6', preset: 26, boot: 'svsss=1' },
-        { id: 'solo-leveling-gate', label: 'Solo Leveling dungeon gate', episode: '7.7', preset: 27, boot: 'solo-leveling=1' }
+        { id: 'solo-leveling-gate', label: 'Solo Leveling dungeon gate', episode: '7.7', preset: 27, boot: 'solo-leveling=1' },
+        { id: 'boys-love-bamboo', label: 'Boys Love After the Bamboo', episode: '7.8', preset: 28, boot: 'boys-love=1' },
+        { id: 'webnovel-crossover', label: 'Webnovel crossover handoff', episode: '7.9', boot: 'library=webnovel-crossover' }
     ],
     handoff: {
-        from: '7.6',
-        to: '7.7',
-        note: 'SVSSS System bound → Solo Leveling gate — I\'m used to it · E-rank without weakness spiral'
+        from: '7.7',
+        to: '7.8',
+        note: 'Solo Leveling gate → Boys Love bamboo — not a rescue mission · slow-burn on purpose'
     }
 };
 
@@ -1408,6 +1476,14 @@ function getSvsssSystemRitual() {
 
 function getSoloLevelingGateRitual() {
     return BARDIC_INSPIRATION.soloLevelingGate;
+}
+
+function getBoysLoveBambooRitual() {
+    return BARDIC_INSPIRATION.boysLoveBamboo;
+}
+
+function getWebnovelCrossoverRitual() {
+    return BARDIC_INSPIRATION.webnovelCrossover;
 }
 
 function getWebseriesMultiverse() {

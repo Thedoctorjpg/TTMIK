@@ -191,10 +191,15 @@ function openSkillLessons(skillId) {
     const hasHaley = skill.linkedGroups?.includes('haley');
     const hasSvsss = skill.linkedGroups?.includes('svsss');
     const hasSoloLeveling = skill.linkedGroups?.includes('solo-leveling');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && !hasHaley && !hasSvsss && !hasSoloLeveling && (
+    const hasBoysLove = skill.linkedGroups?.includes('boys-love');
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && !hasHaley && !hasSvsss && !hasSoloLeveling && !hasBoysLove && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
+    if (hasBoysLove && typeof startBoysLoveCategory === 'function') {
+        startBoysLoveCategory(skill.linkedCategories?.[0] || 'English Shadowing');
+        return;
+    }
     if (hasSoloLeveling && typeof startSoloLevelingCategory === 'function') {
         startSoloLevelingCategory(skill.linkedCategories?.[0] || 'English Shadowing');
         return;
@@ -331,6 +336,10 @@ function practiceHealingFactor(factorId, opts = {}) {
     }
     if (factorId === 'e-rank-pause') {
         practiceSungJinwooSoloLeveling({ ...opts, shadowIndex: 0 });
+        return true;
+    }
+    if (factorId === 'slow-burn-boundary') {
+        practiceBoysLoveQingBinghe({ ...opts, shadowIndex: 0 });
         return true;
     }
     if (factorId === 'open-road') {
@@ -526,6 +535,8 @@ function bootSkillById(skillId, opts = {}) {
             startSvsssCategory(entry.libraryCategory);
         } else if (entry?.libraryGroup === 'Solo Leveling Library' && entry.libraryCategory) {
             startSoloLevelingCategory(entry.libraryCategory);
+        } else if (entry?.libraryGroup === 'Boys Love Library' && entry.libraryCategory) {
+            startBoysLoveCategory(entry.libraryCategory);
         } else {
             openSkillLessons(skillId);
         }
@@ -1103,6 +1114,42 @@ function practiceHaleyVietbonnie(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceBoysLoveQingBinghe(opts = {}) {
+    const skillId = 'boys-love-qing-binghe';
+    const shadowIdx = opts.shadowIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(28)) {
+        const preset = getSyncPreset(28);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    } else {
+        setWebdramaSyncValues('BAMBOO', '7.8', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterShenQingqiu === 'function') {
+        openFastCharacterShenQingqiu();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceSungJinwooSoloLeveling(opts = {}) {
     const skillId = 'sung-jinwoo-solo-leveling';
     const shadowIdx = opts.shadowIndex ?? 0;
@@ -1596,6 +1643,7 @@ function renderBootAllPanel() {
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
             else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
+            else if (boot['boys-love'] === '1' || boot.bamboo === '1' || boot.qingbinghe === '1') practiceBoysLoveQingBinghe({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'slow-burn-boundary' ? 0 : 0 });
             else if (boot['solo-leveling'] === '1' || boot.jinwoo === '1' || boot.comic === '1') practiceSungJinwooSoloLeveling({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'e-rank-pause' ? 0 : 0 });
             else if (boot.svsss === '1' || boot['shen-qingqiu'] === '1' || boot.webnovel === '1') practiceShenQingqiuSvsss({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'b-point-guard' ? 4 : 0 });
             else if (boot.haley === '1' || boot.vietbonnie === '1') practiceHaleyVietbonnie({ openSheet: boot.sheet === '1' });
@@ -1753,6 +1801,13 @@ function handleTtmikSyncBoot() {
         practiceMikaRoadDreamer({
             openSheet: params.get('sheet') === '1',
             shadowIndex: params.get('heal-factor') === 'dream-teleport' ? 3 : 0
+        });
+        return;
+    }
+    if (params.get('boys-love') === '1' || params.get('bamboo') === '1' || params.get('qingbinghe') === '1') {
+        practiceBoysLoveQingBinghe({
+            openSheet: params.get('sheet') === '1',
+            shadowIndex: params.get('heal-factor') === 'slow-burn-boundary' ? 0 : 0
         });
         return;
     }
@@ -2230,6 +2285,14 @@ function renderSyncPanel() {
     mikaBtn.title = 'Highway pause · crew loyalty · preset 24 · dream-teleport heal';
     mikaBtn.onclick = () => practiceMikaRoadDreamer();
     actions.appendChild(mikaBtn);
+
+    const blBtn = document.createElement('button');
+    blBtn.type = 'button';
+    blBtn.className = 'px-5 py-3 bg-indigo-900/50 text-indigo-200 rounded-2xl text-sm font-medium hover:bg-indigo-800/70 ring-1 ring-indigo-500/30';
+    blBtn.textContent = 'Boys Love bamboo (Ep 7.8 · EN)';
+    blBtn.title = 'After the Bamboo · Qingqiu/Binghe · preset 28 · slow-burn-boundary';
+    blBtn.onclick = () => practiceBoysLoveQingBinghe();
+    actions.appendChild(blBtn);
 
     const soloBtn = document.createElement('button');
     soloBtn.type = 'button';
@@ -3497,6 +3560,57 @@ function renderSkillDetail() {
         };
         slBlock.appendChild(slSheet);
         panel.appendChild(slBlock);
+    }
+
+    if (skill.id === 'boys-love-qing-binghe') {
+        const blBlock = document.createElement('div');
+        blBlock.className = 'mb-6 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl p-4';
+        const blLabel = document.createElement('h4');
+        blLabel.className = 'text-xs uppercase tracking-widest text-indigo-300 mb-2';
+        blLabel.textContent = 'Boys Love · Ep 7.8 · After the Bamboo';
+        blBlock.appendChild(blLabel);
+        const blNote = document.createElement('p');
+        blNote.className = 'text-sm text-zinc-400 mb-3';
+        blNote.textContent = 'BAMBOO woodshed → SHED truce → DAWN tea path. Not a rescue mission · slow-burn on purpose.';
+        blBlock.appendChild(blNote);
+        const blDeck = document.createElement('ul');
+        blDeck.className = 'space-y-2 text-sm text-zinc-300 mb-3';
+        skill.shadowingPhrases?.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = [p.en, p.ko].filter(Boolean).join(' · ');
+            blDeck.appendChild(li);
+        });
+        blBlock.appendChild(blDeck);
+        const blRun = document.createElement('button');
+        blRun.type = 'button';
+        blRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-indigo-600/30 text-indigo-200 hover:bg-indigo-600/50 mr-2';
+        blRun.textContent = 'Invoke bamboo lane (EN → KO)';
+        blRun.onclick = () => practiceBoysLoveQingBinghe();
+        blBlock.appendChild(blRun);
+        const slowBurnBtn = document.createElement('button');
+        slowBurnBtn.type = 'button';
+        slowBurnBtn.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-indigo-600/30 text-indigo-200 hover:bg-indigo-600/50 mr-2';
+        slowBurnBtn.textContent = 'Slow-burn boundary heal';
+        slowBurnBtn.title = 'TTMIK.html?heal-factor=slow-burn-boundary';
+        slowBurnBtn.onclick = () => practiceHealingFactor('slow-burn-boundary');
+        blBlock.appendChild(slowBurnBtn);
+        const blNovel = document.createElement('a');
+        blNovel.href = 'http://localhost:5191';
+        blNovel.target = '_blank';
+        blNovel.rel = 'noopener';
+        blNovel.className = 'inline-block px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50 mr-2';
+        blNovel.textContent = 'Open After the Bamboo';
+        blBlock.appendChild(blNovel);
+        const blSheet = document.createElement('button');
+        blSheet.type = 'button';
+        blSheet.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50';
+        blSheet.textContent = 'Create Shen Qingqiu sheet';
+        blSheet.title = 'fastcharacter.com · Shen Qingqiu · Monk Kensei · Sage · Level 5';
+        blSheet.onclick = () => {
+            if (typeof openFastCharacterShenQingqiu === 'function') openFastCharacterShenQingqiu();
+        };
+        blBlock.appendChild(blSheet);
+        panel.appendChild(blBlock);
     }
 
     if (skill.id === 'shen-qingqiu-svsss') {

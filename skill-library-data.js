@@ -182,6 +182,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'English Shadowing',
         tag: 'solo-leveling'
     },
+    'boys-love-qing-binghe': {
+        source: 'Boys_Love_Qing_Binghe_Archetype.skill.md',
+        invoke: 'practiceBoysLoveQingBinghe',
+        altBoot: 'boys-love=1',
+        preset: 28,
+        libraryGroup: 'Boys Love Library',
+        libraryCategory: 'English Shadowing',
+        tag: 'boys-love'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -307,6 +316,16 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'solo-leveling',
         factors: ['e-rank-pause', 'pause-breathe', 'no-rewatch', 'humor-release'],
         boot: 'library=solo-leveling'
+    },
+    'Boys Love Library': {
+        group: 'boys-love',
+        factors: ['slow-burn-boundary', 'pause-breathe', 'no-rewatch', 'humor-release'],
+        boot: 'library=boys-love'
+    },
+    'Webnovel Crossover Library': {
+        group: 'webnovel-crossover',
+        factors: ['b-point-guard', 'e-rank-pause', 'slow-burn-boundary', 'no-rewatch'],
+        boot: 'library=webnovel-crossover'
     },
     'Melbourne Journey': {
         group: 'melbourne',
@@ -468,6 +487,22 @@ const COMPOSED_LIBRARIES = [
         accent: 'violet'
     },
     {
+        id: 'boys-love',
+        label: 'Boys Love Library',
+        description: 'English native · Korean shadow — Ep 7.8 After the Bamboo · Qingqiu/Binghe slow-burn',
+        boot: 'library=boys-love',
+        skills: ['boys-love-qing-binghe'],
+        accent: 'indigo'
+    },
+    {
+        id: 'webnovel-crossover',
+        label: 'Webnovel Crossover Library',
+        description: 'SVSSS · Solo · BL shared boundaries — Ep 7.9 three-lane handoff',
+        boot: 'library=webnovel-crossover',
+        skills: ['boys-love-qing-binghe', 'shen-qingqiu-svsss', 'sung-jinwoo-solo-leveling'],
+        accent: 'sky'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -558,6 +593,7 @@ const HERMES_PRELOAD_SKILL_IDS = [
     'haley-vietbonnie',
     'shen-qingqiu-svsss',
     'sung-jinwoo-solo-leveling',
+    'boys-love-qing-binghe',
     'rach3l',
     'ignan-pilgrim',
     'ignan-grounding',
@@ -639,6 +675,8 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'haley') startHaleyCategory('English Shadowing');
     else if (lib.id === 'svsss') startSvsssCategory('Indonesian Shadowing');
     else if (lib.id === 'solo-leveling') startSoloLevelingCategory('English Shadowing');
+    else if (lib.id === 'boys-love') startBoysLoveCategory('English Shadowing');
+    else if (lib.id === 'webnovel-crossover') startWebnovelCrossoverCategory('Crossover Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

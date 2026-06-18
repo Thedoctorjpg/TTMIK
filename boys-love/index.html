@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boys Love — After the Bamboo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <h1>Boys Love</h1>
+      <p>SVSSS slow-burn mirror — Shen Qingqiu and Luo Binghe on Qing Jing Peak, with Melbourne Lantern boundaries.</p>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="intro-card novel-intro">
+      <h2>After the Bamboo</h2>
+      <p>
+        The System bound. The woodshed cooled. Pick whose POV you want and read two chapters of disciple-not-rescue slow-burn — trash-villain facade, tea before feelings, HR-approved pacing.
+      </p>
+      <p class="novel-bridge">
+        Continues from <a href="../TTMIK.html?svsss=1" target="_blank" rel="noopener">TTMIK · SVSSS System bound</a>
+        and <a href="https://www.webnovel.com/book/35203689408704405/94532538348928087" target="_blank" rel="noopener">WebNovel Ch.1</a>
+        — Qingqiu, Binghe &amp; the Bard.
+      </p>
+    </section>
+
+    <section class="form-card novel-controls">
+      <div class="field-grid">
+        <label>
+          Focus pair
+          <select id="pairSelect"></select>
+        </label>
+        <label>
+          POV
+          <select id="focusSelect"></select>
+        </label>
+      </div>
+      <div class="field-grid">
+        <label>
+          BL trope
+          <select id="tropeSelect"></select>
+        </label>
+        <label>
+          Your name (optional)
+          <input id="readerName" type="text" placeholder="you" />
+        </label>
+      </div>
+      <div class="button-row">
+        <button id="readChapterBtn" type="button" class="primary">Read chapter</button>
+        <button id="readAllBtn" type="button">Read full novel</button>
+        <button id="copyNovelBtn" type="button">Copy chapter</button>
+      </div>
+    </section>
+
+    <section class="novel-layout">
+      <aside class="chapter-sidebar">
+        <h3>Chapters</h3>
+        <div id="chapterList" class="chapter-list"></div>
+      </aside>
+
+      <article class="novel-reader output-card">
+        <div class="output-header">
+          <div>
+            <p class="novel-eyebrow" id="novelTitle">After the Bamboo</p>
+            <h2 id="chapterHeading">Chapter 1</h2>
+            <p class="chapter-time" id="chapterTime"></p>
+            <p class="novel-meta-line" id="novelMeta"></p>
+          </div>
+          <span id="novelStatus">Ready</span>
+        </div>
+        <div id="chapterBody" class="novel-body"></div>
+        <div class="chapter-nav">
+          <button id="prevChapterBtn" type="button">← Previous</button>
+          <button id="nextChapterBtn" type="button">Next →</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Boys Love · After the Bamboo · Melbourne Lantern universe · TTMIK Ep 7.8</p>
+  </footer>
+
+  <script type="module" src="novel.js"></script>
+</body>
+</html>

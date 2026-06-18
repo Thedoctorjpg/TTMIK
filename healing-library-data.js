@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-18 · 33 tracks
+ * Healed: 2026-06-18 · 34 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -400,6 +400,20 @@ const HEALING_FACTOR_DECK = [
         "questId": "side-humor",
         "edit": "solo-leveling-gate",
         "ko": "익숙해요",
+        "en": ""
+    },
+    {
+        "factorId": "slow-burn-boundary",
+        "title": "Slow-burn boundary",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=slow-burn-boundary",
+        "note": "boys-love-bamboo · quest side-humor",
+        "skillId": "boys-love-qing-binghe",
+        "pin": "BAMBOO",
+        "shadowIndex": 0,
+        "questId": "side-humor",
+        "edit": "boys-love-bamboo",
+        "ko": "구출 임무가 아니에요",
         "en": ""
     }
 ];

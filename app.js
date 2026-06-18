@@ -125,6 +125,12 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Solo Leveling Library') {
         return lessons.filter(l => l.group === 'solo-leveling');
     }
+    if (activeLibraryGroup === 'Boys Love Library') {
+        return lessons.filter(l => l.group === 'boys-love');
+    }
+    if (activeLibraryGroup === 'Webnovel Crossover Library') {
+        return lessons.filter(l => l.group === 'webnovel-crossover');
+    }
     return lessons;
 }
 
@@ -635,6 +641,12 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'solo-leveling') {
         activeLibraryGroup = 'Solo Leveling Library';
         activeCategory = 'English Shadowing';
+    } else if (groupId === 'boys-love') {
+        activeLibraryGroup = 'Boys Love Library';
+        activeCategory = 'English Shadowing';
+    } else if (groupId === 'webnovel-crossover') {
+        activeLibraryGroup = 'Webnovel Crossover Library';
+        activeCategory = 'Crossover Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -796,6 +808,24 @@ function startSvsssCategory(subtitle) {
 
 function startSoloLevelingCategory(subtitle) {
     activeLibraryGroup = 'Solo Leveling Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startBoysLoveCategory(subtitle) {
+    activeLibraryGroup = 'Boys Love Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
+function startWebnovelCrossoverCategory(subtitle) {
+    activeLibraryGroup = 'Webnovel Crossover Library';
     activeCategory = subtitle;
     renderLibraryGroupFilters();
     renderCategoryFilters();
@@ -1421,6 +1451,46 @@ function renderJourneyDashboard() {
         });
     }
 
+    const blGrid = document.getElementById('boys-love-quick-grid');
+    if (blGrid && typeof BOYS_LOVE_COURSE_DEFS !== 'undefined') {
+        blGrid.textContent = '';
+        BOYS_LOVE_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'px-4 py-3 rounded-2xl text-left bg-indigo-900/40 hover:bg-indigo-800/60 ring-1 ring-indigo-500/30';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'block text-indigo-200 font-medium text-sm';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'block text-zinc-500 text-xs mt-1';
+            countSpan.textContent = `${def.trackCount} tracks`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startBoysLoveCategory(def.subtitle);
+            blGrid.appendChild(btn);
+        });
+    }
+
+    const crossoverGrid = document.getElementById('webnovel-crossover-quick-grid');
+    if (crossoverGrid && typeof WEBNOVEL_CROSSOVER_COURSE_DEFS !== 'undefined') {
+        crossoverGrid.textContent = '';
+        WEBNOVEL_CROSSOVER_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'px-4 py-3 rounded-2xl text-left bg-sky-900/40 hover:bg-sky-800/60 ring-1 ring-sky-500/30';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'block text-sky-200 font-medium text-sm';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'block text-zinc-500 text-xs mt-1';
+            countSpan.textContent = `${def.trackCount} tracks`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startWebnovelCrossoverCategory(def.subtitle);
+            crossoverGrid.appendChild(btn);
+        });
+    }
+
     const svsssGrid = document.getElementById('svsss-quick-grid');
     if (svsssGrid && typeof SVSSS_COURSE_DEFS !== 'undefined') {
         svsssGrid.textContent = '';
@@ -1579,7 +1649,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('mika') || bootParams.has('haley') || bootParams.has('vietbonnie') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('mika') || bootParams.has('haley') || bootParams.has('vietbonnie') || bootParams.has('boys-love') || bootParams.has('bamboo') || bootParams.has('qingbinghe') || bootParams.has('svsss') || bootParams.has('solo-leveling') || bootParams.has('jinwoo') || bootParams.has('comic') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('tweet-heal') || bootParams.has('feed-heal') || bootParams.get('tweet') === 'heal'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
@@ -1627,6 +1697,10 @@ window.onload = () => {
             startSvsssCategory(bootParams.get('category') || 'Indonesian Shadowing');
         } else if (bootParams.get('library') === 'solo-leveling') {
             startSoloLevelingCategory(bootParams.get('category') || 'English Shadowing');
+        } else if (bootParams.get('library') === 'boys-love') {
+            startBoysLoveCategory(bootParams.get('category') || 'English Shadowing');
+        } else if (bootParams.get('library') === 'webnovel-crossover') {
+            startWebnovelCrossoverCategory(bootParams.get('category') || 'Crossover Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

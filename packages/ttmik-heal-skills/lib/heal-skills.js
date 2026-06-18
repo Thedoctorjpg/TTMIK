@@ -851,6 +851,54 @@ const SKILLS = [
         ]
     },
     {
+        id: 'boys-love-qing-binghe',
+        rootFile: 'Boys_Love_Qing_Binghe_Archetype.skill.md',
+        description: 'Boys Love Qingqiu/Binghe muse for English native input, Korean TTMIK shadowing, and slow-burn boundary. After the Bamboo novel lane.',
+        activation: 'Not a rescue mission — I like you slowly, on purpose.',
+        whenToUse: [
+            'English native input before Korean shadowing practice',
+            'After the Bamboo Ch.1–2 — woodshed truce · bamboo dawn',
+            'SVSSS WebNovel mirror — disciple-not-rescue · OOC frozen',
+            'TTMIK.html?boys-love=1 — invoke Boys Love bamboo boot',
+            'TTMIK.html?heal-factor=slow-burn-boundary — slow-burn boundary heal on Hermes'
+        ],
+        procedure: [
+            'Phone face-down · GoPro off · one breath at woodshed door',
+            'English native first: Not a rescue mission',
+            'Open Fast Character sheet: Shen Qingqiu · Monk (Kensei) · Sage · Level 5',
+            'Korean shadow: 구출 임무가 아니에요 · 좋아해요. 천천히. 의도적으로.',
+            'Tea before feelings — care in installments',
+            'One pass — no WebNovel binge spiral · preset 28'
+        ],
+        pitfalls: [
+            'Do not make Qingqiu/Binghe a sudden rescue romance subplot',
+            'Disciple is pedagogy — not a salvation invoice',
+            'Romance flag detected — mute the System overlay'
+        ],
+        verification: [
+            'English phrase spoken before Korean shadow',
+            'Fast Character sheet generated or preset noted',
+            'Lighter finish — humor tended the wound, not the algorithm'
+        ],
+        korean: [
+            '구출 임무가 아니에요.',
+            '좋아해요. 천천히. 의도적으로.',
+            '제자예요, 사랑하는 사람이 아니에요 — 아직은.',
+            '감정보다 차를 먼저.',
+            '데이트가 아니에요. 연애가 아니라 먹을 거예요.'
+        ],
+        integrations: [
+            'Ep 7.8 · preset 28 · BAMBOO slow-burn lane',
+            'boys-love After the Bamboo — http://localhost:5191',
+            'WebNovel: https://www.webnovel.com/book/35203689408704405/94532538348928087',
+            'fastcharacter.com — openFastCharacterShenQingqiu() preset',
+            'TTMIK.html?boys-love=1 — English native input boot',
+            'TTMIK.html?heal-factor=slow-burn-boundary — slow-burn boundary · BAMBOO',
+            'TTMIK.html?library=boys-love — Boys Love Library compose',
+            'TTMIK.html?library=webnovel-crossover — three-lane crossover'
+        ]
+    },
+    {
         id: 'shen-qingqiu-svsss',
         rootFile: 'Shen_Qingqiu_SVSSS_Archetype.skill.md',
         description: 'Shen Qingqiu SVSSS System-bound muse for Indonesian native input, Korean TTMIK shadowing, and B-point character guard. WebNovel Ch.1 lane.',
@@ -1090,6 +1138,7 @@ const HEALING_FACTOR_BY_SKILL = {
         'argon-coin', 'teachings-circe', 'witch-colchis', 'helen-boundary', 'cord-cut', 'pause-breathe', 'no-rewatch'
     ],
     'mika-road-dreamer': ['open-road', 'dream-teleport', 'humor-release', 'pause-breathe', 'no-rewatch'],
+    'boys-love-qing-binghe': ['slow-burn-boundary', 'pause-breathe', 'no-rewatch', 'humor-release'],
     'shen-qingqiu-svsss': ['b-point-guard', 'pause-breathe', 'no-rewatch', 'humor-release'],
     'sung-jinwoo-solo-leveling': ['e-rank-pause', 'pause-breathe', 'no-rewatch', 'humor-release'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
@@ -1125,6 +1174,7 @@ const HEALING_FACTOR_LABELS = {
     'dream-teleport': 'Dreamer teleport pivot — ?heal-factor=dream-teleport · OPEN · Ep 7.4',
     'b-point-guard': 'B-point guard — ?svsss=1 · QING · Ep 7.6 · WebNovel Ch.1',
     'e-rank-pause': 'E-rank pause — ?solo-leveling=1 · GATE · Ep 7.7 · WebNovel comic Ch.1',
+    'slow-burn-boundary': 'Slow-burn boundary — ?boys-love=1 · BAMBOO · Ep 7.8 · After the Bamboo',
     'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause',
     'twitter-feed-heal': 'Twitter feed heal — ?tweet-heal=1 · x.com/adhdloganberry'
 };

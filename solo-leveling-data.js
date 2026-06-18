@@ -21,7 +21,8 @@ const SOLO_LEVELING_WEBNOVEL_META = {
 const SOLO_LEVELING_LIBRARY_CATEGORIES = [
     'English Shadowing',
     'Dungeon Gate Route',
-    'Hunter Drills'
+    'Hunter Drills',
+    'Daily Grind Drills'
 ];
 
 const SOLO_LEVELING_PHRASE_DECK = [
@@ -75,6 +76,30 @@ const SOLO_LEVELING_PHRASE_DECK = [
         ko: '없는 것보단 나아요.',
         beat: 'Ep7.7-CL',
         note: 'Low-power dagger breaks on goblin — essence stone hope cut short'
+    },
+    {
+        en: "It's dangerous. You should leave.",
+        ko: '위험해요. 나가야 해요.',
+        beat: 'Ep7.7-S5',
+        note: 'Joohee care line — concern without rescue invoice'
+    },
+    {
+        en: 'I need the money for my family.',
+        ko: '가족을 위해 돈이 필요해요.',
+        beat: 'Ep7.7-S5',
+        note: 'Double dungeon vote — breadwinner context · no shame spiral'
+    },
+    {
+        en: 'Hunters are ranked from E to S.',
+        ko: '헌터는 E부터 S까지 등급이 있어요.',
+        beat: 'Ep7.7-S6',
+        note: 'Rank ladder intro — label is context until System unlocks'
+    },
+    {
+        en: 'Daily grind — same gate, same label.',
+        ko: '매일 같은 게이트, 같은 등급.',
+        beat: 'Ep7.7-DG',
+        note: 'Construction site repeat raid — observe without absorbing'
     }
 ];
 
@@ -102,6 +127,22 @@ const SOLO_LEVELING_ROUTE_BEATS = [
         en: 'The door shut behind us.',
         ko: '문이 뒤에서 닫혔어요.',
         note: 'Statue of God awakens · e-rank-pause heal handoff'
+    },
+    {
+        pin: 'JOOHEE',
+        title: 'Joohee heal — care without pity',
+        beat: 'Ep7.7-S5',
+        en: 'Are you hurt? Let me heal you.',
+        ko: '다쳤어요? 제가 치료할게요.',
+        note: 'Party healer concern · no weakness performance'
+    },
+    {
+        pin: 'VOTE',
+        title: 'Family money vote — tie-breaker',
+        beat: 'Ep7.7-S5',
+        en: 'I vote yes — we need the payout.',
+        ko: '찬성이에요 — 보상이 필요해요.',
+        note: 'Double dungeon party vote · Jinwoo tie-break for bills'
     }
 ];
 
@@ -117,6 +158,33 @@ const SOLO_LEVELING_HUNTER_DRILLS = [
         en: 'Chapter zero-zero-zero — Only I Level Up.',
         ko: '000화 — 나 혼자만 레벨업.',
         note: SOLO_LEVELING_WEBNOVEL_META.url
+    },
+    {
+        title: 'Rank ladder observe drill',
+        en: 'E-rank today — context, not destiny.',
+        ko: '오늘은 E급 — 맥락이지 운명이 아니에요.',
+        note: 'Hunter ladder E→S · no identity collapse'
+    }
+];
+
+const SOLO_LEVELING_DAILY_GRIND = [
+    {
+        title: 'Construction site gate — repeat raid',
+        en: 'Same D-rank gate — I show up anyway.',
+        ko: '같은 D급 게이트 — 그래도 나와요.',
+        note: 'Daily grind boundary · family breadwinner'
+    },
+    {
+        title: 'Essence stone payout — bills first',
+        en: 'Loot pays rent — not pride.',
+        ko: '전리품이 월세예요 — 자존심이 아니에요.',
+        note: 'Goblin stab hope · Joohee heal · no re-watch'
+    },
+    {
+        title: 'Webnovel crossover handoff',
+        en: 'Gate after System — one breath, no binge.',
+        ko: '시스템 다음 게이트 — 한 숨, 폭주 없이.',
+        note: 'SVSSS 7.6 → Solo 7.7 · webnovel-crossover library'
     }
 ];
 
@@ -188,6 +256,22 @@ function buildSoloLevelingHunterLessons(startId) {
     });
 }
 
+function buildSoloLevelingDailyGrindLessons(startId) {
+    return SOLO_LEVELING_DAILY_GRIND.map((d, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        return createLesson({
+            id: startId + i,
+            title: d.title,
+            subtitle: 'Daily Grind Drills',
+            duration: '00:45',
+            src: `${SOLO_LEVELING_BASE}/Daily_Grind_Drills/Drill_${n}.mp3`,
+            transcript: buildSoloLevelingTranscript(d),
+            vocab: [{ ko: d.ko, en: d.en }],
+            group: 'solo-leveling'
+        });
+    });
+}
+
 function generateSoloLevelingLibraryLessons(startId) {
     let id = startId;
     const phrase = buildSoloLevelingPhraseLessons(id);
@@ -195,13 +279,16 @@ function generateSoloLevelingLibraryLessons(startId) {
     const route = buildSoloLevelingRouteLessons(id);
     id += route.length;
     const hunter = buildSoloLevelingHunterLessons(id);
-    return phrase.concat(route, hunter);
+    id += hunter.length;
+    const dailyGrind = buildSoloLevelingDailyGrindLessons(id);
+    return phrase.concat(route, hunter, dailyGrind);
 }
 
 const SOLO_LEVELING_COURSE_DEFS = [
     { subtitle: 'English Shadowing', trackCount: SOLO_LEVELING_PHRASE_DECK.length },
     { subtitle: 'Dungeon Gate Route', trackCount: SOLO_LEVELING_ROUTE_BEATS.length },
-    { subtitle: 'Hunter Drills', trackCount: SOLO_LEVELING_HUNTER_DRILLS.length }
+    { subtitle: 'Hunter Drills', trackCount: SOLO_LEVELING_HUNTER_DRILLS.length },
+    { subtitle: 'Daily Grind Drills', trackCount: SOLO_LEVELING_DAILY_GRIND.length }
 ];
 
 function getSoloLevelingGateRitual() {

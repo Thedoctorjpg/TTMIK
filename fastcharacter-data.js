@@ -589,7 +589,11 @@ const FAST_CHARACTER_PRESETS = {
     svsss: FAST_CHARACTER_SHEN_QINGQIU,
     'sung-jinwoo-solo-leveling': FAST_CHARACTER_SUNG_JINWOO,
     'solo-leveling': FAST_CHARACTER_SUNG_JINWOO,
-    jinwoo: FAST_CHARACTER_SUNG_JINWOO
+    jinwoo: FAST_CHARACTER_SUNG_JINWOO,
+    'boys-love-qing-binghe': FAST_CHARACTER_SHEN_QINGQIU,
+    'boys-love': FAST_CHARACTER_SHEN_QINGQIU,
+    bamboo: FAST_CHARACTER_SHEN_QINGQIU,
+    qingbinghe: FAST_CHARACTER_SHEN_QINGQIU
 };
 
 function getFastCharacterPresetForSkill(skillId) {

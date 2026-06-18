@@ -107,6 +107,27 @@ Registry: [`token-data.js`](token-data.js)
 
 Boot: `TTMIK.html?heavypulp=1` · `?token=heavypulp` · Dex view: `?heavypulp=1&platform=dex`
 
+### DOGE → AUD (CoinMarketCap)
+
+Canonical quote: [coinmarketcap.com/currencies/dogecoin/doge/aud/](https://coinmarketcap.com/currencies/dogecoin/doge/aud/)
+
+Snapshot: [`data/doge-aud.json`](data/doge-aud.json) · live rate in-app via converter panel
+
+```bash
+node scripts/fetch-doge-aud-rate.js
+```
+
+| Conversion | Example (snapshot) |
+|------------|-------------------|
+| 1 DOGE | A$0.1203 |
+| 10 DOGE | A$1.20 |
+| 100 DOGE | A$12.03 |
+| 1 AUD | 8.31 DOGE |
+
+Boot: `TTMIK.html?doge-aud=1` · HeavyPulp + converter: `?heavypulp=1`
+
+USD bridge: `convertUsdToDogeToAud(usd)` in `token-data.js` (USD → DOGE → AUD).
+
 Not financial advice — meme lane pairs with PULP pin and one-glance-then-phone-face-down boundary.
 
 ## Local companion apps

@@ -165,7 +165,8 @@ const BARDIC_INSPIRATION = {
             soloLeveling: { boot: 'solo-leveling=1', label: 'Solo Leveling · GATE dungeon comic Ch.1' },
             boysLoveBamboo: { boot: 'boys-love=1', label: 'Boys Love · BAMBOO After the Bamboo' },
             webnovelCrossover: { boot: 'library=webnovel-crossover', label: 'Webnovel crossover · three-lane handoff' },
-            heavyPulp: { boot: 'heavypulp=1', label: 'HeavyPulp · Solana CA · PULP meme lane' }
+            heavyPulp: { boot: 'heavypulp=1', label: 'HeavyPulp · Solana CA · PULP meme lane' },
+            dogeAud: { boot: 'doge-aud=1', label: 'DOGE → AUD · CoinMarketCap Melbourne quote' }
         }
     },
     boysLoveBamboo: {

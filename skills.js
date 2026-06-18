@@ -1049,6 +1049,25 @@ function practiceVinicusSamba(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceDogeAudConverter(opts = {}) {
+    setWebdramaSyncValues('DOGE', '7.11', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill('melbourne-lantern-bard');
+    selectedSkillId = 'melbourne-lantern-bard';
+
+    if (typeof renderDogeAudConverterPanel === 'function') {
+        renderDogeAudConverterPanel('token-doge-aud-panel', { doge: opts.doge });
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    switchTab(4);
+}
+
 function practiceHeavyPulpToken(opts = {}) {
     setWebdramaSyncValues('PULP', '7.10', null);
     persistState();
@@ -1066,6 +1085,10 @@ function practiceHeavyPulpToken(opts = {}) {
 
     if (opts.logQuest !== false) {
         completeQuestObjective('side-humor');
+    }
+
+    if (typeof renderDogeAudConverterPanel === 'function') {
+        renderDogeAudConverterPanel('token-doge-aud-panel', { doge: opts.doge });
     }
 
     if (opts.openPump !== false && typeof openTokenUrl === 'function') {
@@ -1643,7 +1666,8 @@ function renderBootAllPanel() {
             label: anchor.label,
             boot: `${anchor.id}=1`
         })), (item) => {
-            practiceHeavyPulpToken({ tokenId: item.id, logQuest: false });
+            if (item.id === 'doge-aud') practiceDogeAudConverter({ logQuest: false });
+            else practiceHeavyPulpToken({ tokenId: item.id, logQuest: false });
         });
     }
 
@@ -1678,7 +1702,8 @@ function renderBootAllPanel() {
             else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true, openSheet: boot.sheet === '1' });
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
-            else if (boot.heavypulp === '1' || boot.token === 'heavypulp' || boot.ca === 'heavypulp') practiceHeavyPulpToken({ tokenId: 'heavypulp', platform: boot.platform });
+            else if (boot['doge-aud'] === '1' || boot.doge === '1') practiceDogeAudConverter({ doge: boot.amount });
+            else if (boot.heavypulp === '1' || boot.token === 'heavypulp' || boot.ca === 'heavypulp') practiceHeavyPulpToken({ tokenId: 'heavypulp', platform: boot.platform, doge: boot.amount });
             else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
             else if (boot['boys-love'] === '1' || boot.bamboo === '1' || boot.qingbinghe === '1') practiceBoysLoveQingBinghe({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'slow-burn-boundary' ? 0 : 0 });
             else if (boot['solo-leveling'] === '1' || boot.jinwoo === '1' || boot.comic === '1') practiceSungJinwooSoloLeveling({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'e-rank-pause' ? 0 : 0 });
@@ -1840,10 +1865,15 @@ function handleTtmikSyncBoot() {
         practiceMinecraftWikiMeme({ templateId: params.get('template') });
         return;
     }
+    if (params.get('doge-aud') === '1' || (params.get('doge') === '1' && params.get('heavypulp') !== '1')) {
+        practiceDogeAudConverter({ doge: params.get('amount') });
+        return;
+    }
     if (params.get('heavypulp') === '1' || params.get('token') === 'heavypulp' || params.get('ca') === 'heavypulp') {
         practiceHeavyPulpToken({
             tokenId: 'heavypulp',
-            platform: params.get('platform') || 'pump'
+            platform: params.get('platform') || 'pump',
+            doge: params.get('amount')
         });
         return;
     }
@@ -2335,6 +2365,14 @@ function renderSyncPanel() {
     pulpBtn.title = typeof formatTokenCaLine === 'function' ? formatTokenCaLine('heavypulp') : 'CA: 8G5ayEsJF4Q7FEWEGeF4jtnUWZBEKCqhySTFQf9Ppump';
     pulpBtn.onclick = () => practiceHeavyPulpToken();
     actions.appendChild(pulpBtn);
+
+    const dogeBtn = document.createElement('button');
+    dogeBtn.type = 'button';
+    dogeBtn.className = 'px-5 py-3 bg-amber-900/50 text-amber-200 rounded-2xl text-sm font-medium hover:bg-amber-800/70 ring-1 ring-amber-500/30';
+    dogeBtn.textContent = 'DOGE → AUD (CMC)';
+    dogeBtn.title = 'CoinMarketCap Dogecoin to Australian Dollar converter lane';
+    dogeBtn.onclick = () => practiceDogeAudConverter();
+    actions.appendChild(dogeBtn);
 
     const mikaBtn = document.createElement('button');
     mikaBtn.type = 'button';

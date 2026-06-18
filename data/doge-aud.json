@@ -1,0 +1,11 @@
+{
+  "schema": "ttmik-doge-aud/v1",
+  "generated": "2026-06-18",
+  "fetchedAt": "2026-06-18T05:06:50.832Z",
+  "source": "https://coinmarketcap.com/currencies/dogecoin/doge/aud/",
+  "symbol": "DOGE",
+  "quote": "AUD",
+  "rate": 0.119924,
+  "inverse": 8.3386,
+  "note": "1 DOGE = rate AUD · regenerate: node scripts/fetch-doge-aud-rate.js"
+}

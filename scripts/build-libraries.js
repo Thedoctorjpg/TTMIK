@@ -29,13 +29,14 @@ const LIBRARY_GROUPS = [
     { label: 'Kane Library', group: 'kane', source: 'kane-data.js' },
     { label: 'Evangelion Library', group: 'evangelion', source: 'evangelion-data.js' },
     { label: 'Rick & Morty Multiverse Library', group: 'rickmorty', source: 'rickmorty-data.js' },
-    { label: 'Mika Library', group: 'mika', source: 'mika-data.js' }
+    { label: 'Mika Library', group: 'mika', source: 'mika-data.js' },
+    { label: 'Haley Library', group: 'haley', source: 'haley-data.js' }
 ];
 
 function getLibraryCounts() {
     const vm = require('vm');
     const fs = require('fs');
-    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'heidi-data.js', 'sven-data.js', 'martin-data.js', 'ronaldo-data.js', 'mbappe-data.js', 'messi-data.js', 'vinicus-data.js', 'kane-data.js', 'evangelion-data.js', 'rickmorty-data.js', 'mika-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
+    const sources = ['utils.js', 'sovereign-data.js', 'ignan-data.js', 'asuka-data.js', 'heidi-data.js', 'sven-data.js', 'martin-data.js', 'ronaldo-data.js', 'mbappe-data.js', 'messi-data.js', 'vinicus-data.js', 'kane-data.js', 'evangelion-data.js', 'rickmorty-data.js', 'mika-data.js', 'haley-data.js', 'healing-library-data.js', 'fifa-nations-data.js']
         .map((file) => fs.readFileSync(path.join(ROOT, file), 'utf8'))
         .join('\n');
     const code = `${sources}
@@ -60,7 +61,8 @@ function getLibraryCounts() {
     kane: generateKaneLibraryLessons(1).length,
     evangelion: generateEvangelionLibraryLessons(1).length,
     rickmorty: generateRickMortyLibraryLessons(1).length,
-    mika: generateMikaLibraryLessons(1).length
+    mika: generateMikaLibraryLessons(1).length,
+    haley: generateHaleyLibraryLessons(1).length
 });`;
     const sandbox = { console };
     vm.createContext(sandbox);

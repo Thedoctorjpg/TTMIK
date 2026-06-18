@@ -385,6 +385,27 @@ const MULTIFORMAT_EDITS = {
             { id: 'MK5', time: '0:27', pin: 'DEGRAVES', note: 'Coffee dream stop — phone face-down · preset 24', dur: 3 }
         ]
     },
+    'haley-justice-ritual': {
+        id: 'haley-justice-ritual',
+        label: 'Ep 7.5 · Haley Boba Justice Seek (30s)',
+        duration: 30,
+        aspect: '9:16',
+        editor: 'ultimate',
+        visualPreset: 'calm',
+        overlay: 'CAMPUS',
+        overlayPosition: '10:H-th-10',
+        ttmikSync: { pin: 'CAMPUS', episode: '7.5', reel: null },
+        pins: ['CAMPUS', 'REPORT', 'REST'],
+        exportTargets: ['Webdrama insert', 'Haley justice deck', 'NCII boundary reel'],
+        pipeline: ['haleyJustice'],
+        shots: [
+            { id: 'HB1', time: '0:00', pin: 'CAMPUS', note: 'Library pause — student not headline · phone face-down', dur: 5 },
+            { id: 'HB2', time: '0:05', pin: 'CAMPUS', note: 'English + Vietnamese: My body, my consent — my case', dur: 8 },
+            { id: 'HB3', time: '0:13', pin: 'REPORT', note: 'Document pathway — report · no re-share links', dur: 7 },
+            { id: 'HB4', time: '0:20', pin: 'REPORT', note: 'Korean shadow · 기록하고 신고해요', dur: 7 },
+            { id: 'HB5', time: '0:27', pin: 'REST', note: 'Cord-cut close — preset 25 · @vietbonnie', dur: 3 }
+        ]
+    },
     'minecraft-wiki-meme': {
         id: 'minecraft-wiki-meme',
         label: 'Ep 7.3 · Minecraft Wiki Meme Generator (30s)',

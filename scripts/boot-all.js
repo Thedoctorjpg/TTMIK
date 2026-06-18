@@ -28,6 +28,7 @@ const SKILL_MD_FILES = [
     'Neon_Evangelion_Archetype.skill.md',
     'Rick_Morty_Multiverse_Archetype.skill.md',
     'Mika_Road_Dreamer_Archetype.skill.md',
+    'Haley_Vietbonnie_Archetype.skill.md',
     'rach3l.skill.md',
     'Ignan_Pilgrim.skill.md',
     'Ignan_Grounding.skill.md',
@@ -53,12 +54,13 @@ const LIBRARY_BOOTS = [
     'library=evangelion',
     'library=rickmorty',
     'library=mika',
+    'library=haley',
     'library=melbourne-skills',
     'library=sovereign-skills',
     'boot=all'
 ];
 
-const LANE_BOOTS = ['heal=all', 'heal=1', 'heal-factor=rei-mercy', 'heal-factor=multiverse-query', 'heal-factor=wiki-meme', 'heal-factor=open-road', 'heal-factor=dream-teleport', 'heal-factor=cicada-attune', 'heal-factor=twitter-feed-heal', 'tweet-heal=1', 'sua=1', 'attune=1&lane=sua', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'martin=1', 'martin=1&sheet=1', 'ronaldo=1', 'ronaldo=1&sheet=1', 'mbappe=1', 'mbappe=1&sheet=1', 'messi=1', 'messi=1&sheet=1', 'vinicus=1', 'vinicus=1&sheet=1', 'kane=1', 'kane=1&sheet=1', 'kane=1&watch=1', 'neon=1', 'neon=1&sheet=1', 'rei=1', 'rei=1&sheet=1', 'evangelion=1', 'rickmorty=1', 'rickmorty=1&sheet=1', 'rick=1', 'multiverse=1', 'minecraft-meme=1', 'meme=1', 'mika=1', 'mika=1&sheet=1', 'attune=1', 'attune=1&lane=kane', 'attune=1&lane=kane&watch=1', 'kane=1&attune=1&watch=1', 'cinema=1', 'beckham=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7', 'before-match=1'];
+const LANE_BOOTS = ['heal=all', 'heal=1', 'heal-factor=rei-mercy', 'heal-factor=multiverse-query', 'heal-factor=wiki-meme', 'heal-factor=open-road', 'heal-factor=dream-teleport', 'heal-factor=justice-seek', 'heal-factor=rule-breaker', 'heal-factor=territory-creation', 'heal-factor=item-construction', 'heal-factor=divine-words', 'heal-factor=argon-coin', 'heal-factor=teachings-circe', 'heal-factor=witch-colchis', 'heal-factor=cicada-attune', 'heal-factor=twitter-feed-heal', 'tweet-heal=1', 'sua=1', 'attune=1&lane=sua', 'asuka=1', 'heidi=1', 'heidi=1&sheet=1', 'sven=1', 'sven=1&sheet=1', 'martin=1', 'martin=1&sheet=1', 'ronaldo=1', 'ronaldo=1&sheet=1', 'mbappe=1', 'mbappe=1&sheet=1', 'messi=1', 'messi=1&sheet=1', 'vinicus=1', 'vinicus=1&sheet=1', 'kane=1', 'kane=1&sheet=1', 'kane=1&watch=1', 'neon=1', 'neon=1&sheet=1', 'rei=1', 'rei=1&sheet=1', 'evangelion=1', 'rickmorty=1', 'rickmorty=1&sheet=1', 'rick=1', 'multiverse=1', 'minecraft-meme=1', 'meme=1', 'mika=1', 'mika=1&sheet=1', 'haley=1', 'haley=1&sheet=1', 'vietbonnie=1', 'attune=1', 'attune=1&lane=kane', 'attune=1&lane=kane&watch=1', 'kane=1&attune=1&watch=1', 'cinema=1', 'beckham=1', 'ignan=1', 'fifa=1', 'step=4', 'step=5', 'step=6', 'step=7', 'before-match=1'];
 
 console.log('TTMIK boot-all\n');
 

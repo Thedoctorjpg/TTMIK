@@ -643,6 +643,90 @@ const SKILLS = [
         ]
     },
     {
+        id: 'haley-vietbonnie',
+        rootFile: 'Haley_Vietbonnie_Archetype.skill.md',
+        description: 'Haley Boba (@vietbonnie) Medea Caster mirror — NCII justice via Rule Breaker boundary. Vietnamese student (19) · English + Vietnamese + Korean TTMIK.',
+        activation: 'My consent, my case — justice, not a revenge spiral.',
+        whenToUse: [
+            'Non-consensual intimate images or leaked private content found online',
+            'Need documentation and platform reporting without shame or revenge spirals',
+            'Vietnamese + English native before Korean shadowing',
+            'Medea Caster skill drills — Territory Creation · Rule Breaker · Witch of Colchis',
+            'TTMIK.html?haley=1 or ?vietbonnie=1 — Haley justice boot',
+            'TTMIK.html?heal-factor=rule-breaker — Rule Breaker heal'
+        ],
+        procedure: [
+            'Territory Creation [A] — CAMPUS library temple · phone face-down · GoPro off',
+            'English + Vietnamese: My body, my consent — my case',
+            'Item Construction [A] + Rule Breaker [C] — document once · report · no re-share',
+            'Open Fast Character: Haley · Wizard (Abjurer) · Sage · Medea Caster mirror · Level 5',
+            'Korean shadow: 내 몸, 내 동의 — 기록하고 신고해요',
+            'Teachings of Circe [A] — observe headline · do not become it',
+            'Optional Helen cord-cut: I choose my own timeline and energy field',
+            'One pass — no comment combat · preset 25'
+        ],
+        pitfalls: [
+            'Do not link to or redistribute leaked material',
+            'Do not shame survivor or frame as scandal entertainment',
+            'No vigilante revenge or debate-section combat',
+            'Medea mirror is boundary craft — not villainy or revenge magic',
+            'Encourage proper reporting channels — not DIY warfare'
+        ],
+        verification: [
+            'Boundary phrase + next action (report, rest, referral)',
+            'Medea skill phrase spoken (EN/VI) before Korean shadow',
+            'No compulsive re-check suggested',
+            'Sovereignty finish without absorption spiral'
+        ],
+        medeaMirror: {
+            source: 'https://typemoon.fandom.com/wiki/Medea',
+            parameters: { STR: 'E', END: 'D', AGI: 'C', MAN: 'A+', LCK: 'B', NP: 'C' },
+            skills: [
+                { name: 'Territory Creation', rank: 'A', mapping: 'CAMPUS sacred workspace — consent boundary' },
+                { name: 'Item Construction', rank: 'A', mapping: 'Evidence / report packet crafting' },
+                { name: 'High-Speed Divine Words', rank: 'A', mapping: 'One invocation — file complete' },
+                { name: 'Rule Breaker', rank: 'C', mapping: 'Severs false license to share leaked content' },
+                { name: 'Argon Coin', rank: 'EX', mapping: 'Resources without exploitation spiral' },
+                { name: 'Teachings of Circe', rank: 'A', mapping: 'Observe headline — do not absorb' },
+                { name: 'Witch of Colchis', rank: 'A', mapping: 'Student with a case — not scandal witch' }
+            ]
+        },
+        korean: [
+            '내 몸, 내 동의 — 내 사건이에요.',
+            '유출됐다고 공유 권한은 없어요. 기록하고 신고해요.',
+            '이 도서관이 제 성역이에요 — 동의가 경계예요.',
+            '유출됐다고 허락은 없어요 — 거짓 계약을 끊어요.',
+            '헤드라인은 관찰만 — 흡수하지 않을게요.',
+            '마녀라 불렸지만 — 저는 사건이 있는 학생이에요.'
+        ],
+        english: [
+            'My body, my consent — my case.',
+            'Leaked is not licensed. I document, I report.',
+            'This library is my temple — consent is the boundary.',
+            'Leaked is not licensed — I sever the false contract.',
+            'I observe the headline — I do not become it.',
+            'They called me witch — I am a student with a case.'
+        ],
+        vietnamese: [
+            'Cơ thể tôi, sự đồng ý của tôi — vụ việc của tôi.',
+            'Bị rò rỉ không có nghĩa được phép chia sẻ. Tôi ghi nhận, tôi báo cáo.',
+            'Thư viện này là đền của tôi — sự đồng ý là ranh giới.',
+            'Bị rò rỉ không có nghĩa được phép — tôi cắt hợp đồng giả.',
+            'Tôi quan sát tiêu đề — tôi không trở thành nó.',
+            'Họ gọi tôi là phù thủy — tôi là sinh viên có vụ việc.'
+        ],
+        integrations: [
+            'Medea Caster mirror — typemoon.fandom.com/wiki/Medea · STR E · MAN A+ · NP C',
+            'Ep 7.5 · preset 25 · CAMPUS justice lane · @vietbonnie',
+            'fastcharacter.com — openFastCharacterHaley() · Wizard Abjurer · Sage',
+            'TTMIK.html?haley=1 — justice seek boot',
+            'TTMIK.html?heal-factor=rule-breaker — Rule Breaker · REPORT',
+            'TTMIK.html?heal-factor=territory-creation — Territory Creation · CAMPUS',
+            'TTMIK.html?library=haley&category=Medea+Skill+Drills — Medea skill drills',
+            'helen-neighbor · cord-cut · side-boundary quest'
+        ]
+    },
+    {
         id: 'mika-road-dreamer',
         rootFile: 'Mika_Road_Dreamer_Archetype.skill.md',
         description: 'Mika open-road dreamer muse for crew loyalty, high-energy Korean shadowing, and mental teleport without attachment hooks. English native input + TTMIK practice.',
@@ -867,6 +951,10 @@ const HEALING_FACTOR_BY_SKILL = {
     'harry-kane-england-striker': ['match-attune', 'fifa-celebrate', 'pause-breathe', 'no-rewatch'],
     'neon-evangelion': ['rei-mercy', 'pause-breathe', 'no-rewatch', 'cord-cut'],
     'rick-morty-multiverse': ['multiverse-query', 'pause-breathe', 'no-rewatch', 'cord-cut'],
+    'haley-vietbonnie': [
+        'justice-seek', 'rule-breaker', 'territory-creation', 'item-construction', 'divine-words',
+        'argon-coin', 'teachings-circe', 'witch-colchis', 'helen-boundary', 'cord-cut', 'pause-breathe', 'no-rewatch'
+    ],
     'mika-road-dreamer': ['open-road', 'dream-teleport', 'humor-release', 'pause-breathe', 'no-rewatch'],
     'rach3l': ['no-rewatch', 'pause-breathe'],
     'ignan-pilgrim': ['ignan-walk', 'fifa-celebrate', 'post-dib', 'helen-boundary'],
@@ -889,6 +977,14 @@ const HEALING_FACTOR_LABELS = {
     'rei-mercy': 'Rei mercy heal — ?rei=1 · NERV · Ep 7.1',
     'multiverse-query': 'Multiverse SQL index — ?rickmorty=1 · CITADEL · Ep 7.2',
     'wiki-meme': 'Minecraft Wiki meme — ?minecraft-meme=1 · CRAFT · Ep 7.3',
+    'justice-seek': 'Justice seek — ?haley=1 · CAMPUS · Ep 7.5 · NCII report boundary',
+    'rule-breaker': 'Rule Breaker [C] — leaked is not licensed · ?heal-factor=rule-breaker',
+    'territory-creation': 'Territory Creation [A] — library temple boundary · ?heal-factor=territory-creation',
+    'item-construction': 'Item Construction [A] — evidence packet · ?heal-factor=item-construction',
+    'divine-words': 'High-Speed Divine Words [A] — one invocation file complete · ?heal-factor=divine-words',
+    'argon-coin': 'Argon Coin [EX] — resources without exploitation spiral · ?heal-factor=argon-coin',
+    'teachings-circe': 'Teachings of Circe [A] — observe headline · ?heal-factor=teachings-circe',
+    'witch-colchis': 'Witch of Colchis [A] — student not headline · ?heal-factor=witch-colchis',
     'open-road': 'Open road heal — ?mika=1 · OPEN · Ep 7.4',
     'dream-teleport': 'Dreamer teleport pivot — ?heal-factor=dream-teleport · OPEN · Ep 7.4',
     'cicada-attune': 'Sua cicada attune — ?sua=1 · FED · shedding pause',
@@ -901,6 +997,9 @@ function buildSkillMd(skill) {
     const ko = skill.korean.map((k) => `- ${k}`).join('\n');
     const ilo = skill.ilokano?.length
         ? `\n## Ilokano Practice (Ignan)\n\n${skill.ilokano.map((p) => `- ${p}`).join('\n')}\n`
+        : '';
+    const vi = skill.vietnamese?.length
+        ? `\n## Vietnamese Practice (Haley · vietbonnie)\n\n${skill.vietnamese.map((p) => `- ${p}`).join('\n')}\n`
         : '';
     const ja = skill.japanese?.length
         ? `\n## Japanese Practice (Asuka)\n\n${skill.japanese.map((p) => `- ${p}`).join('\n')}\n`
@@ -939,6 +1038,9 @@ function buildSkillMd(skill) {
     const healingFactors = factorIds.length
         ? `\n## Hermes Healing Factors\n\n${factorIds.map((id) => `- **${id}** — ${HEALING_FACTOR_LABELS[id] || id} · Boot: \`TTMIK.html?heal-factor=${id}\``).join('\n')}\n- Mantra: *One breath · one boundary · no re-watch spiral*\n- Library: \`TTMIK.html?library=heal\`\n`
         : '';
+    const medeaMirror = skill.medeaMirror
+        ? `\n## Medea Skill Mirror (Caster)\n\nSource: [Medea — TYPE-MOON Wiki](${skill.medeaMirror.source})\n\n| Parameter | Rank |\n|-----------|------|\n${Object.entries(skill.medeaMirror.parameters).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}\n\n| Skill | Rank | Justice mapping |\n|-------|------|-----------------|\n${skill.medeaMirror.skills.map((s) => `| ${s.name} | ${s.rank} | ${s.mapping} |`).join('\n')}\n`
+        : '';
 
     return `---
 name: ${skill.id}
@@ -961,7 +1063,7 @@ ${list(skill.whenToUse)}
 ## Procedure
 
 ${list(skill.procedure)}
-
+${medeaMirror}
 ## Pitfalls
 
 ${list(skill.pitfalls)}
@@ -973,7 +1075,7 @@ ${list(skill.verification)}
 ## Korean Practice (TTMIK)
 
 ${ko}
-${ilo}${ja}${de}${sv}${no}${pt}${fr}${es}${br}${enKane}${enFan}${healingFactors}${integrations}
+${ilo}${vi}${ja}${de}${sv}${no}${pt}${fr}${es}${br}${enKane}${enFan}${healingFactors}${integrations}
 ## TTMIK App Integration
 
 - Skill id: \`${skill.id}\` in \`skills-data.js\`

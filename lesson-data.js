@@ -123,6 +123,12 @@ if (typeof generateMikaLibraryLessons === 'function') {
     nextId += mikaLessons.length;
 }
 
+if (typeof generateHaleyLibraryLessons === 'function') {
+    const haleyLessons = generateHaleyLibraryLessons(nextId);
+    lessons = lessons.concat(haleyLessons);
+    nextId += haleyLessons.length;
+}
+
 if (typeof generateHealingLibraryLessons === 'function') {
     const healLessons = generateHealingLibraryLessons(nextId);
     lessons = lessons.concat(healLessons);

@@ -69,6 +69,12 @@ const PIPELINE_SOURCES = {
         paths: ['mika-data.js', 'Mika_Road_Dreamer_Archetype.skill.md'],
         url: 'TTMIK.html?mika=1',
         role: 'Ep 7.4 OPEN highway pause · crew loyalty · dream-teleport heal'
+    },
+    haleyJustice: {
+        label: 'Haley Boba justice seek',
+        paths: ['haley-data.js', 'Haley_Vietbonnie_Archetype.skill.md'],
+        url: 'TTMIK.html?haley=1',
+        role: 'Ep 7.5 CAMPUS · @vietbonnie · Medea Caster skills · NCII report boundary · no re-share'
     }
 };
 
@@ -117,8 +123,40 @@ const BARDIC_INSPIRATION = {
             sua: { boot: 'sua=1', label: 'Sua cicada attune · shedding pause' },
             rickmorty: { boot: 'rickmorty=1', label: 'Rick & Morty multiverse · CITADEL SQL' },
             minecraftMeme: { boot: 'minecraft-meme=1', label: 'Minecraft Wiki meme · CRAFT humor' },
-            mikaRoad: { boot: 'mika=1', label: 'Mika open-road dreamer · OPEN crew loyalty' }
+            mikaRoad: { boot: 'mika=1', label: 'Mika open-road dreamer · OPEN crew loyalty' },
+            haleyJustice: { boot: 'haley=1', label: 'Haley Boba · @vietbonnie · Medea Caster justice' }
         }
+    },
+    haleyJustice: {
+        label: 'Haley Boba — justice seek without re-share',
+        duration: '60s',
+        pin: 'CAMPUS',
+        skillId: 'haley-vietbonnie',
+        questId: 'side-boundary',
+        shadowIndex: 0,
+        activation: 'My consent, my case — justice, not a revenge spiral.',
+        shadowPhrase: {
+            en: 'My body, my consent — my case.',
+            ko: '내 몸, 내 동의 — 내 사건이에요.',
+            vi: 'Cơ thể tôi, sự đồng ý của tôi — vụ việc của tôi.'
+        },
+        steps: [
+            'Territory Creation — CAMPUS library temple · phone face-down · GoPro off',
+            'English + Vietnamese: My body, my consent — my case',
+            'Item Construction + Rule Breaker — document once · report · no re-share',
+            'Korean shadow: 유출됐다고 공유 권한은 없어요 · 기록하고 신고해요',
+            'Teachings of Circe close — observe headline · cord-cut timeline · preset 25'
+        ],
+        abilities: [
+            'Territory Creation [A]',
+            'Item Construction [A]',
+            'High-Speed Divine Words [A]',
+            'Rule Breaker [C]',
+            'Argon Coin [EX]',
+            'Teachings of Circe [A]',
+            'Witch of Colchis [A]'
+        ],
+        parameters: { strength: 'E', endurance: 'D', agility: 'C', mana: 'A+', luck: 'B', np: 'C' }
     },
     mikaRoadDream: {
         label: 'Mika open road — crew loyalty without rescue',
@@ -296,7 +334,15 @@ const HEALING_FACTORS = {
         { id: 'multiverse-query', label: 'Multiverse SQL index', ko: '차원은 색인만 해요', skillId: 'rick-morty-multiverse', edit: 'rickmorty-multiverse-sql', questId: 'side-humor', pin: 'CITADEL', shadowIndex: 0 },
         { id: 'wiki-meme', label: 'Minecraft Wiki meme', ko: '유머로 풀어낼게요', skillId: 'melbourne-lantern-bard', edit: 'minecraft-wiki-meme', questId: 'side-humor', pin: 'CRAFT', shadowIndex: 0 },
         { id: 'open-road', label: 'Open road heal', ko: '길이 제 예예요', skillId: 'mika-road-dreamer', edit: 'mika-road-ritual', questId: 'side-humor', pin: 'OPEN', shadowIndex: 0 },
-        { id: 'dream-teleport', label: 'Dreamer teleport pivot', ko: '다음 목적지를 꿈꿔요', skillId: 'mika-road-dreamer', edit: 'mika-road-ritual', questId: 'side-humor', pin: 'OPEN', shadowIndex: 3 }
+        { id: 'dream-teleport', label: 'Dreamer teleport pivot', ko: '다음 목적지를 꿈꿔요', skillId: 'mika-road-dreamer', edit: 'mika-road-ritual', questId: 'side-humor', pin: 'OPEN', shadowIndex: 3 },
+        { id: 'justice-seek', label: 'Justice seek', ko: '기록하고 신고해요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 0 },
+        { id: 'territory-creation', label: 'Territory Creation', ko: '동의가 경계예요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 5 },
+        { id: 'item-construction', label: 'Item Construction', ko: '신고 서류를 만들어요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REPORT', shadowIndex: 6 },
+        { id: 'divine-words', label: 'High-Speed Divine Words', ko: '한 번의 주문 — 서류 완료', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REPORT', shadowIndex: 7 },
+        { id: 'rule-breaker', label: 'Rule Breaker', ko: '거짓 계약을 끊어요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REPORT', shadowIndex: 8 },
+        { id: 'argon-coin', label: 'Argon Coin', ko: '착취 없이 자원을 써요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 9 },
+        { id: 'teachings-circe', label: 'Teachings of Circe', ko: '헤드라인은 관찰만', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'REST', shadowIndex: 10 },
+        { id: 'witch-colchis', label: 'Witch of Colchis', ko: '마녀가 아니라 학생이에요', skillId: 'haley-vietbonnie', edit: 'haley-justice-ritual', questId: 'side-boundary', pin: 'CAMPUS', shadowIndex: 11 }
     ],
     ignanJourney: {
         character: 'Mari',
@@ -1111,6 +1157,16 @@ const TTMIK_SYNC_PRESETS = [
         reel: null,
         note: 'Open highway pause · English + Korean shadow · crew loyalty · Fast Character Ranger sheet',
         autoShadow: true
+    },
+    {
+        id: 25,
+        label: 'CAMPUS · Ep 7.5 · Haley Boba Justice',
+        shortLabel: 'HALEY',
+        pin: 'CAMPUS',
+        episode: '7.5',
+        reel: null,
+        note: 'Library pause · @vietbonnie · Medea Caster skills · NCII boundary · Fast Character Wizard Abjurer sheet',
+        autoShadow: true
     }
 ];
 
@@ -1127,12 +1183,13 @@ const WEBSERIES_MULTIVERSE = {
         { id: 'neon', label: 'Neon Evangelion observe', episode: '7.1', preset: 21 },
         { id: 'rickmorty', label: 'Rick & Morty SQL multiverse', episode: '7.2', preset: 22, boot: 'rickmorty=1' },
         { id: 'minecraft-meme', label: 'Minecraft Wiki meme generator', episode: '7.3', preset: 23, boot: 'minecraft-meme=1' },
-        { id: 'mika-road', label: 'Mika open-road dreamer', episode: '7.4', preset: 24, boot: 'mika=1' }
+        { id: 'mika-road', label: 'Mika open-road dreamer', episode: '7.4', preset: 24, boot: 'mika=1' },
+        { id: 'haley-justice', label: 'Haley Boba justice seek', episode: '7.5', preset: 25, boot: 'haley=1' }
     ],
     handoff: {
-        from: '7.3',
-        to: '7.4',
-        note: 'Crafting Table meme pause → Open highway crew loyalty — dream-teleport without absorption'
+        from: '7.4',
+        to: '7.5',
+        note: 'Open highway crew loyalty → Campus justice seek — document & report without re-share'
     }
 };
 

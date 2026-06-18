@@ -188,10 +188,15 @@ function openSkillLessons(skillId) {
     const hasCanada = skill.linkedGroups?.includes('canada');
     const hasUsa = skill.linkedGroups?.includes('usa');
     const hasMika = skill.linkedGroups?.includes('mika');
-    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && (
+    const hasHaley = skill.linkedGroups?.includes('haley');
+    const preferMelbourne = !hasIgnan && !hasAsuka && !hasHeidi && !hasSven && !hasMartin && !hasRonaldo && !hasMbappe && !hasMessi && !hasVinicus && !hasMexico && !hasCanada && !hasUsa && !hasMika && !hasHaley && (
         skill.linkedGroups?.includes('melbourne')
         || !(skill.linkedGroups?.includes('sovereign'))
     );
+    if (hasHaley && typeof startHaleyCategory === 'function') {
+        startHaleyCategory(skill.linkedCategories?.[0] || 'English Shadowing');
+        return;
+    }
     if (hasMika && typeof startMikaCategory === 'function') {
         startMikaCategory(skill.linkedCategories?.[0] || 'English Shadowing');
         return;
@@ -316,6 +321,14 @@ function practiceHealingFactor(factorId, opts = {}) {
     }
     if (factorId === 'dream-teleport') {
         practiceMikaRoadDreamer({ ...opts, shadowIndex: 3 });
+        return true;
+    }
+    if (factorId === 'justice-seek' || [
+        'territory-creation', 'item-construction', 'divine-words', 'rule-breaker',
+        'argon-coin', 'teachings-circe', 'witch-colchis'
+    ].includes(factorId)) {
+        const shadowIdx = factor.shadowIndex ?? opts.shadowIndex ?? 0;
+        practiceHaleyVietbonnie({ ...opts, shadowIndex: shadowIdx });
         return true;
     }
     if (factorId === 'no-rewatch') {
@@ -1009,6 +1022,42 @@ function practiceMinecraftWikiMeme(opts = {}) {
     }
 }
 
+function practiceHaleyVietbonnie(opts = {}) {
+    const skillId = 'haley-vietbonnie';
+    const shadowIdx = opts.shadowIndex ?? 0;
+
+    if (typeof getSyncPreset === 'function' && getSyncPreset(25)) {
+        const preset = getSyncPreset(25);
+        setWebdramaSyncValues(preset.pin, preset.episode, preset.reel);
+    } else {
+        setWebdramaSyncValues('CAMPUS', '7.5', null);
+    }
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill(skillId);
+    selectedSkillId = skillId;
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(shadowIdx);
+    } else {
+        startSkillPractice(skillId);
+    }
+
+    if (opts.openSheet && typeof openFastCharacterHaley === 'function') {
+        openFastCharacterHaley();
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-boundary');
+    }
+
+    switchTab(2);
+    renderSkillDetail();
+    renderSkillsGrid();
+}
+
 function practiceMikaRoadDreamer(opts = {}) {
     const skillId = 'mika-road-dreamer';
     const shadowIdx = opts.shadowIndex ?? 0;
@@ -1420,6 +1469,7 @@ function renderBootAllPanel() {
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
             else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
+            else if (boot.haley === '1' || boot.vietbonnie === '1') practiceHaleyVietbonnie({ openSheet: boot.sheet === '1' });
             else if (boot.neon === '1' || boot.evangelion === '1' || boot.rei === '1') practiceNeonEvangelion({ openSheet: boot.sheet === '1' });
             else if (boot.cinema === '1' || boot.beckham === '1') practiceCinemaBeckham({ openSheet: boot.sheet === '1' });
             else if (boot.ignan === '1') practiceIgnanHealingJourney();
@@ -1555,6 +1605,10 @@ function handleTtmikSyncBoot() {
             openSheet: params.get('sheet') === '1',
             shadowIndex: params.get('heal-factor') === 'dream-teleport' ? 3 : 0
         });
+        return;
+    }
+    if (params.get('haley') === '1' || params.get('vietbonnie') === '1') {
+        practiceHaleyVietbonnie({ openSheet: params.get('sheet') === '1' });
         return;
     }
     if (params.get('neon') === '1' || params.get('evangelion') === '1' || params.get('rei') === '1') {
@@ -2001,6 +2055,14 @@ function renderSyncPanel() {
     mikaBtn.title = 'Highway pause · crew loyalty · preset 24 · dream-teleport heal';
     mikaBtn.onclick = () => practiceMikaRoadDreamer();
     actions.appendChild(mikaBtn);
+
+    const haleyBtn = document.createElement('button');
+    haleyBtn.type = 'button';
+    haleyBtn.className = 'px-5 py-3 bg-rose-900/50 text-rose-200 rounded-2xl text-sm font-medium hover:bg-rose-800/70 ring-1 ring-rose-500/30';
+    haleyBtn.textContent = 'Haley Boba justice (Ep 7.5 · EN/VI)';
+    haleyBtn.title = 'vietbonnie · NCII report boundary · preset 25 · no re-share';
+    haleyBtn.onclick = () => practiceHaleyVietbonnie();
+    actions.appendChild(haleyBtn);
 
     const cinemaBtn = document.createElement('button');
     cinemaBtn.type = 'button';
@@ -3165,6 +3227,45 @@ function renderSkillDetail() {
         };
         mikaBlock.appendChild(mikaSheet);
         panel.appendChild(mikaBlock);
+    }
+
+    if (skill.id === 'haley-vietbonnie') {
+        const haleyBlock = document.createElement('div');
+        haleyBlock.className = 'mb-6 bg-rose-500/10 border border-rose-500/20 rounded-2xl p-4';
+        const haleyLabel = document.createElement('h4');
+        haleyLabel.className = 'text-xs uppercase tracking-widest text-rose-300 mb-2';
+        haleyLabel.textContent = 'Haley Boba · Medea Caster mirror · Ep 7.5';
+        haleyBlock.appendChild(haleyLabel);
+        const haleyNote = document.createElement('p');
+        haleyNote.className = 'text-sm text-zinc-400 mb-3';
+        haleyNote.textContent = 'Territory Creation → Item Construction → Rule Breaker → Circe close. STR E · MAN A+ · document · report · no re-share.';
+        haleyBlock.appendChild(haleyNote);
+        const haleyRun = document.createElement('button');
+        haleyRun.type = 'button';
+        haleyRun.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-rose-600/30 text-rose-200 hover:bg-rose-600/50 mr-2 mb-2';
+        haleyRun.textContent = 'Run justice seek';
+        haleyRun.onclick = () => practiceHaleyVietbonnie();
+        haleyBlock.appendChild(haleyRun);
+        const medeaSkills = typeof HALEY_MEDEA_SKILLS !== 'undefined' ? HALEY_MEDEA_SKILLS : [];
+        medeaSkills.forEach((s) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-purple-900/40 text-purple-200 hover:bg-purple-800/50 mr-2 mb-2';
+            btn.textContent = `${s.name} [${s.rank}]`;
+            btn.title = `TTMIK.html?heal-factor=${s.healFactor}`;
+            btn.onclick = () => practiceHealingFactor(s.healFactor);
+            haleyBlock.appendChild(btn);
+        });
+        const haleySheet = document.createElement('button');
+        haleySheet.type = 'button';
+        haleySheet.className = 'px-4 py-2 rounded-xl text-sm font-medium bg-zinc-700/50 text-zinc-200 hover:bg-zinc-600/50 mt-1';
+        haleySheet.textContent = 'Create Haley sheet';
+        haleySheet.title = 'fastcharacter.com · Haley · Wizard Abjurer · Sage · Medea Caster mirror';
+        haleySheet.onclick = () => {
+            if (typeof openFastCharacterHaley === 'function') openFastCharacterHaley();
+        };
+        haleyBlock.appendChild(haleySheet);
+        panel.appendChild(haleyBlock);
     }
 
     const notesLabel = document.createElement('h4');

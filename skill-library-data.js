@@ -155,6 +155,15 @@ const SKILL_BOOT_REGISTRY = {
         libraryCategory: 'English Shadowing',
         tag: 'mika'
     },
+    'haley-vietbonnie': {
+        source: 'Haley_Vietbonnie_Archetype.skill.md',
+        invoke: 'practiceHaleyVietbonnie',
+        altBoot: 'haley=1',
+        preset: 25,
+        libraryGroup: 'Haley Library',
+        libraryCategory: 'English Shadowing',
+        tag: 'haley'
+    },
     'rach3l': {
         source: 'rach3l.skill.md',
         shadowIndex: 0,
@@ -265,6 +274,11 @@ const LIBRARY_BUILD_MANIFEST = {
         group: 'mika',
         factors: ['open-road', 'dream-teleport', 'humor-release', 'pause-breathe'],
         boot: 'library=mika'
+    },
+    'Haley Library': {
+        group: 'haley',
+        factors: ['justice-seek', 'helen-boundary', 'cord-cut', 'pause-breathe', 'no-rewatch'],
+        boot: 'library=haley'
     },
     'Melbourne Journey': {
         group: 'melbourne',
@@ -402,6 +416,14 @@ const COMPOSED_LIBRARIES = [
         accent: 'orange'
     },
     {
+        id: 'haley',
+        label: 'Haley Library',
+        description: 'English + Vietnamese native · Korean shadow — Ep 7.5 justice seek · @vietbonnie',
+        boot: 'library=haley',
+        skills: ['haley-vietbonnie'],
+        accent: 'rose'
+    },
+    {
         id: 'melbourne-skills',
         label: 'Melbourne Archetypes',
         description: 'Lantern Bard · Lo3tus · Helen — on-set skits & boundaries',
@@ -489,6 +511,7 @@ const HERMES_PRELOAD_SKILL_IDS = [
     'harry-kane-england-striker',
     'neon-evangelion',
     'mika-road-dreamer',
+    'haley-vietbonnie',
     'rach3l',
     'ignan-pilgrim',
     'ignan-grounding',
@@ -544,7 +567,7 @@ const BOOT_ALL_INDEX = {
     compose: 'library=compose',
     bootAll: 'boot=all',
     healAll: 'heal=all',
-    trackCount: 368
+    trackCount: 391
 };
 
 function openComposedLibrary(libId) {
@@ -567,6 +590,7 @@ function openComposedLibrary(libId) {
     else if (lib.id === 'evangelion') startEvangelionCategory('Japanese Shadowing');
     else if (lib.id === 'rickmorty') startRickMortyCategory('Multiverse Shadowing');
     else if (lib.id === 'mika') startMikaCategory('English Shadowing');
+    else if (lib.id === 'haley') startHaleyCategory('English Shadowing');
     else if (lib.id === 'melbourne-skills') startMelbourneCategory('GoPro & Content');
     else if (lib.id === 'sovereign-skills') startJourneyCategory('sovereign');
     else switchTab(3);

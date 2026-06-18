@@ -147,6 +147,26 @@ const FAST_CHARACTER_MESSI = {
     note: 'Mastermind · Level 5 · Neutral Good — post cook-off Argentina ally'
 };
 
+/** Haley Boba (@vietbonnie) — Medea Caster mirror · Wizard Abjurer · Ep 7.5 justice seek */
+const FAST_CHARACTER_HALEY = {
+    id: 'haley',
+    label: 'Haley Boba — Medea Caster Mirror',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-Haley',
+    randomname: 'no',
+    pcname: 'Haley',
+    pcclass: 'WizardAbjurer',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Sage',
+    pcgender: 'female',
+    pcalignment: 'LG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Abjurer · Level 5 · Lawful Good — Medea Caster mirror · STR E MAN A+ · vietbonnie · age 19'
+};
+
 /** Mika — Ranger Horizon Walker muse · Ep 7.4 open-road dreamer */
 const FAST_CHARACTER_MIKA = {
     id: 'mika',
@@ -239,6 +259,8 @@ const FAST_CHARACTER_PRESETS = {
     rei: FAST_CHARACTER_REI,
     neon: FAST_CHARACTER_REI,
     mika: FAST_CHARACTER_MIKA,
+    haley: FAST_CHARACTER_HALEY,
+    vietbonnie: FAST_CHARACTER_HALEY,
     rick: FAST_CHARACTER_RICK,
     rickmorty: FAST_CHARACTER_RICK
 };
@@ -324,6 +346,14 @@ function openFastCharacterNeon() {
 
 function openFastCharacterMika() {
     openFastCharacterSheet(FAST_CHARACTER_MIKA);
+}
+
+function openFastCharacterHaley() {
+    openFastCharacterSheet(FAST_CHARACTER_HALEY);
+}
+
+function openFastCharacterVietbonnie() {
+    openFastCharacterHaley();
 }
 
 function openFastCharacterRick() {

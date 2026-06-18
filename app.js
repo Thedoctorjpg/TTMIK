@@ -116,6 +116,9 @@ function getLessonsForGroup() {
     if (activeLibraryGroup === 'Mika Library') {
         return lessons.filter(l => l.group === 'mika');
     }
+    if (activeLibraryGroup === 'Haley Library') {
+        return lessons.filter(l => l.group === 'haley');
+    }
     return lessons;
 }
 
@@ -617,6 +620,9 @@ function startJourneyCategory(groupId) {
     } else if (groupId === 'mika') {
         activeLibraryGroup = 'Mika Library';
         activeCategory = 'English Shadowing';
+    } else if (groupId === 'haley') {
+        activeLibraryGroup = 'Haley Library';
+        activeCategory = 'English Shadowing';
     } else if (groupId === 'melbourne') {
         activeLibraryGroup = 'Melbourne Journey';
     } else if (groupId === 'sovereign') {
@@ -758,6 +764,15 @@ function startMikaCategory(subtitle) {
     switchTab(1);
 }
 
+function startHaleyCategory(subtitle) {
+    activeLibraryGroup = 'Haley Library';
+    activeCategory = subtitle;
+    renderLibraryGroupFilters();
+    renderCategoryFilters();
+    renderLessons();
+    switchTab(1);
+}
+
 function startHealCategory(subtitle) {
     activeLibraryGroup = 'Healing Factors Library';
     activeCategory = subtitle;
@@ -851,6 +866,9 @@ function renderJourneyDashboard() {
     if (typeof MIKA_JOURNEY_CATEGORY !== 'undefined') {
         journeyCards.push(MIKA_JOURNEY_CATEGORY);
     }
+    if (typeof HALEY_JOURNEY_CATEGORY !== 'undefined') {
+        journeyCards.push(HALEY_JOURNEY_CATEGORY);
+    }
 
     journeyCards.forEach(journey => {
         const card = document.createElement('button');
@@ -888,7 +906,9 @@ function renderJourneyDashboard() {
                                                         ? 'hover:ring-teal-500'
                                                         : journey.id === 'mika'
                                                             ? 'hover:ring-orange-500'
-                                                            : 'hover:ring-pink-500';
+                                                            : journey.id === 'haley'
+                                                                ? 'hover:ring-rose-500'
+                                                                : 'hover:ring-pink-500';
         card.className = `text-left bg-zinc-900 rounded-3xl p-8 hover:ring-2 ${ring} transition`;
         const title = document.createElement('h3');
         title.className = 'text-2xl font-semibold mb-2';
@@ -931,7 +951,9 @@ function renderJourneyDashboard() {
                                                         ? 'text-teal-400 text-sm font-medium'
                                                         : journey.id === 'mika'
                                                             ? 'text-orange-400 text-sm font-medium'
-                                                            : 'text-pink-400 text-sm font-medium';
+                                                            : journey.id === 'haley'
+                                                                ? 'text-rose-400 text-sm font-medium'
+                                                                : 'text-pink-400 text-sm font-medium';
         if (journey.id === 'melbourne') {
             count.textContent = `${lessons.filter(l => l.group === 'melbourne').length} tracks`;
         } else if (journey.id === 'sovereign') {
@@ -970,6 +992,8 @@ function renderJourneyDashboard() {
             count.textContent = `${lessons.filter(l => l.group === 'rickmorty').length} tracks`;
         } else if (journey.id === 'mika') {
             count.textContent = `${lessons.filter(l => l.group === 'mika').length} tracks`;
+        } else if (journey.id === 'haley') {
+            count.textContent = `${lessons.filter(l => l.group === 'haley').length} tracks`;
         } else {
             count.textContent = `${lessons.filter(l => l.group === 'sovereign' || l.group === 'melbourne').length} tracks`;
         }
@@ -1329,6 +1353,25 @@ function renderJourneyDashboard() {
         });
     }
 
+    const haleyGrid = document.getElementById('haley-quick-grid');
+    if (haleyGrid && typeof HALEY_COURSE_DEFS !== 'undefined') {
+        haleyGrid.textContent = '';
+        HALEY_COURSE_DEFS.forEach(def => {
+            const btn = document.createElement('button');
+            btn.className = 'bg-rose-900/30 hover:bg-rose-800/40 ring-1 ring-rose-500/20 rounded-2xl px-4 py-3 text-left transition';
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'font-medium block text-rose-100';
+            titleSpan.textContent = def.subtitle;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'text-xs text-rose-400/70';
+            countSpan.textContent = `${def.trackCount} track${def.trackCount === 1 ? '' : 's'}`;
+            btn.appendChild(titleSpan);
+            btn.appendChild(countSpan);
+            btn.onclick = () => startHaleyCategory(def.subtitle);
+            haleyGrid.appendChild(btn);
+        });
+    }
+
     if (typeof renderBootAllPanel === 'function') {
         renderBootAllPanel();
     }
@@ -1468,7 +1511,7 @@ window.onload = () => {
             handleTtmikSyncBoot();
         } else if (bootParams.has('skill') || bootParams.has('preset') || bootParams.has('pin')
             || bootParams.has('heal') || bootParams.has('heal-factor') || bootParams.has('ignan')
-            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('mika') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
+            || bootParams.has('asuka') || bootParams.has('heidi') || bootParams.has('sven') || bootParams.has('martin') || bootParams.has('ronaldo') || bootParams.has('mbappe') || bootParams.has('messi') || bootParams.has('vinicus') || bootParams.has('kane') || bootParams.has('neon') || bootParams.has('rei') || bootParams.has('evangelion') || bootParams.has('rickmorty') || bootParams.has('rick') || bootParams.has('multiverse') || bootParams.has('minecraft-meme') || bootParams.has('meme') || bootParams.has('mika') || bootParams.has('haley') || bootParams.has('vietbonnie') || bootParams.has('sua') || bootParams.has('cicada') || bootParams.has('attune') || bootParams.has('before-match') || bootParams.has('cinema') || bootParams.has('beckham') || bootParams.has('fifa') || bootParams.get('mari') === 'fifa'
             || bootParams.has('tweet-heal') || bootParams.has('feed-heal') || bootParams.get('tweet') === 'heal'
             || bootParams.has('step')) {
             handleTtmikSyncBoot();
@@ -1510,6 +1553,8 @@ window.onload = () => {
             startRickMortyCategory(bootParams.get('category') || 'Multiverse Shadowing');
         } else if (bootParams.get('library') === 'mika') {
             startMikaCategory(bootParams.get('category') || 'English Shadowing');
+        } else if (bootParams.get('library') === 'haley') {
+            startHaleyCategory(bootParams.get('category') || 'English Shadowing');
         } else if (bootParams.get('library') === 'compose') {
             switchTab(4);
         } else if (bootParams.has('format')) {

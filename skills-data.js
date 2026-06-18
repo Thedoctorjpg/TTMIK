@@ -671,6 +671,56 @@ const SKILLS = [
         ]
     },
     {
+        id: 'haley-vietbonnie',
+        name: 'Haley Boba — Vietbonnie Justice',
+        icon: '\u{2696}',
+        tagline: 'My consent, my case — document, report, no re-share',
+        role: 'Medea Caster mirror — Vietnamese student seeking NCII justice via Rule Breaker boundary',
+        source: 'Haley_Vietbonnie_Archetype.skill.md',
+        activationPhrases: [
+            'My consent, my case — justice, not a revenge spiral',
+            'Leaked is not licensed — Rule Breaker severs the false contract'
+        ],
+        capabilities: [
+            'Generate Haley D&D sheet — Wizard Abjurer · Sage · Medea Caster mirror',
+            'Medea skills: Territory Creation · Item Construction · Divine Words · Rule Breaker · Argon Coin · Circe · Witch of Colchis',
+            'English + Vietnamese native input + Korean TTMIK shadowing',
+            'Justice seek rituals — report pathway · cord-cut · no re-watch',
+            'Boundary protection without shame or revenge framing'
+        ],
+        creativePrompts: [
+            'Create Haley Fast Character sheet — Wizard Abjurer · Sage · Level 5 · Caster mirror',
+            'Medea drill — Territory Creation: library temple · consent boundary',
+            'Rule Breaker drill — leaked is not licensed · report once · no re-share'
+        ],
+        linkedGroups: ['haley', 'melbourne', 'sovereign'],
+        linkedCategories: ['English Shadowing', 'Justice Route', 'Medea Skill Drills', 'Sovereignty Drills', 'GoPro & Content'],
+        shadowingPhrases: [
+            { en: 'My body, my consent — my case.', ko: '내 몸, 내 동의 — 내 사건이에요.' },
+            { en: 'Leaked is not licensed. I document, I report.', ko: '유출됐다고 공유 권한은 없어요. 기록하고 신고해요.' },
+            { en: 'Justice, not a revenge spiral.', ko: '정의예요, 보복의 악순환이 아니에요.' },
+            { en: 'One breath — no re-watch.', ko: '한 숨 — 다시 보지 않을게요.' },
+            { en: 'I choose my timeline and energy field.', ko: '제 시간선과 에너지를 선택해요.' },
+            { en: 'This library is my temple — consent is the boundary.', ko: '이 도서관이 제 성역이에요 — 동의가 경계예요.', medea: 'Territory Creation [A]' },
+            { en: 'I craft the report packet — evidence, not revenge.', ko: '신고 서류를 만들어요 — 증거예요, 보복이 아니에요.', medea: 'Item Construction [A]' },
+            { en: 'One invocation — file complete, breath steady.', ko: '한 번의 주문 — 서류 완료, 숨은 고요해요.', medea: 'High-Speed Divine Words [A]' },
+            { en: 'Leaked is not licensed — I sever the false contract.', ko: '유출됐다고 허락은 없어요 — 거짓 계약을 끊어요.', medea: 'Rule Breaker [C]' },
+            { en: 'Resources without the exploitation spiral.', ko: '착취의 악순환 없이 자원을 써요.', medea: 'Argon Coin [EX]' },
+            { en: 'I observe the headline — I do not become it.', ko: '헤드라인은 관찰만 — 흡수하지 않을게요.', medea: 'Teachings of Circe [A]' },
+            { en: 'They called me witch — I am a student with a case.', ko: '마녀라 불렸지만 — 저는 사건이 있는 학생이에요.', medea: 'Witch of Colchis [A]' }
+        ],
+        ritualSteps: [
+            'Territory Creation — CAMPUS library temple · phone face-down · GoPro off',
+            'English + Vietnamese native: My body, my consent — my case',
+            'Open Fast Character — Haley · Wizard Abjurer · Sage · Medea Caster mirror',
+            'Item Construction + Rule Breaker — document once · report · no link re-sharing',
+            'Korean shadow: 내 몸, 내 동의 — 기록하고 신고해요',
+            'Teachings of Circe close — observe headline · do not become it',
+            'Optional Helen cord-cut — I choose my own timeline',
+            'One pass — no comment combat · preset 25'
+        ]
+    },
+    {
         id: 'mika-road-dreamer',
         name: 'Mika — Open Road Dreamer',
         icon: '\u{1F3CD}',

@@ -7,7 +7,7 @@
  *   heal-skills.js         → SKILLS korean phrases
  *   ignan-data.js          → IGNAN_PHRASE_DECK · IGNAN_FIFA_CELEBRATION
  *
- * Healed: 2026-06-17 · 23 tracks
+ * Healed: 2026-06-18 · 31 tracks
  */
 
 const HEALING_LIBRARY_SOURCES = [
@@ -260,6 +260,118 @@ const HEALING_FACTOR_DECK = [
         "questId": "side-humor",
         "edit": "mika-road-ritual",
         "ko": "다음 목적지를 꿈꿔요",
+        "en": ""
+    },
+    {
+        "factorId": "justice-seek",
+        "title": "Justice seek",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=justice-seek",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "CAMPUS",
+        "shadowIndex": 0,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "기록하고 신고해요",
+        "en": ""
+    },
+    {
+        "factorId": "territory-creation",
+        "title": "Territory Creation",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=territory-creation",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "CAMPUS",
+        "shadowIndex": 5,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "동의가 경계예요",
+        "en": ""
+    },
+    {
+        "factorId": "item-construction",
+        "title": "Item Construction",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=item-construction",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "REPORT",
+        "shadowIndex": 6,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "신고 서류를 만들어요",
+        "en": ""
+    },
+    {
+        "factorId": "divine-words",
+        "title": "High-Speed Divine Words",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=divine-words",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "REPORT",
+        "shadowIndex": 7,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "한 번의 주문 — 서류 완료",
+        "en": ""
+    },
+    {
+        "factorId": "rule-breaker",
+        "title": "Rule Breaker",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=rule-breaker",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "REPORT",
+        "shadowIndex": 8,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "거짓 계약을 끊어요",
+        "en": ""
+    },
+    {
+        "factorId": "argon-coin",
+        "title": "Argon Coin",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=argon-coin",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "CAMPUS",
+        "shadowIndex": 9,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "착취 없이 자원을 써요",
+        "en": ""
+    },
+    {
+        "factorId": "teachings-circe",
+        "title": "Teachings of Circe",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=teachings-circe",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "REST",
+        "shadowIndex": 10,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "헤드라인은 관찰만",
+        "en": ""
+    },
+    {
+        "factorId": "witch-colchis",
+        "title": "Witch of Colchis",
+        "subtitle": "Daily Integration",
+        "boot": "TTMIK.html?heal-factor=witch-colchis",
+        "note": "haley-justice-ritual · quest side-boundary",
+        "skillId": "haley-vietbonnie",
+        "pin": "CAMPUS",
+        "shadowIndex": 11,
+        "questId": "side-boundary",
+        "edit": "haley-justice-ritual",
+        "ko": "마녀가 아니라 학생이에요",
         "en": ""
     }
 ];

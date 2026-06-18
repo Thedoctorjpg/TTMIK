@@ -89,6 +89,26 @@ Class anchors (no full archetype lane):
 | Monster Slayer (Ranger proxy) | `monster-slayer=1` |
 | Fijian Indian Warrior (Fighter Champion) | `fijian-indian-warrior=1` · `fiji-warrior=1` · `fiji=1` |
 
+## Solana token CA
+
+**HeavyPulp** (`$HeavyPulp`) on pump.fun:
+
+```
+CA: 8G5ayEsJF4Q7FEWEGeF4jtnUWZBEKCqhySTFQf9Ppump
+```
+
+Registry: [`token-data.js`](token-data.js)
+
+| Link | URL |
+|------|-----|
+| Pump.fun | https://pump.fun/coin/8G5ayEsJF4Q7FEWEGeF4jtnUWZBEKCqhySTFQf9Ppump |
+| DexScreener | https://dexscreener.com/solana/8G5ayEsJF4Q7FEWEGeF4jtnUWZBEKCqhySTFQf9Ppump |
+| Solscan | https://solscan.io/token/8G5ayEsJF4Q7FEWEGeF4jtnUWZBEKCqhySTFQf9Ppump |
+
+Boot: `TTMIK.html?heavypulp=1` · `?token=heavypulp` · Dex view: `?heavypulp=1&platform=dex`
+
+Not financial advice — meme lane pairs with PULP pin and one-glance-then-phone-face-down boundary.
+
 ## Local companion apps
 
 | App | URL |

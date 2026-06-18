@@ -1049,6 +1049,32 @@ function practiceVinicusSamba(opts = {}) {
     renderSkillsGrid();
 }
 
+function practiceHeavyPulpToken(opts = {}) {
+    setWebdramaSyncValues('PULP', '7.10', null);
+    persistState();
+    renderSyncPanel();
+
+    setActiveSkill('melbourne-lantern-bard');
+    selectedSkillId = 'melbourne-lantern-bard';
+
+    resetShadowing();
+    if (typeof goToShadowingPhrase === 'function') {
+        goToShadowingPhrase(0);
+    } else {
+        startSkillPractice('melbourne-lantern-bard');
+    }
+
+    if (opts.logQuest !== false) {
+        completeQuestObjective('side-humor');
+    }
+
+    if (opts.openPump !== false && typeof openTokenUrl === 'function') {
+        openTokenUrl(opts.tokenId || 'heavypulp', opts.platform || 'pump');
+    }
+
+    switchTab(4);
+}
+
 function practiceMinecraftWikiMeme(opts = {}) {
     setWebdramaSyncValues('CRAFT', '7.3', null);
     persistState();
@@ -1611,6 +1637,16 @@ function renderBootAllPanel() {
         });
     }
 
+    if (typeof TOKEN_BOOT_ANCHORS !== 'undefined' && TOKEN_BOOT_ANCHORS.length) {
+        appendSection('Solana token CA', TOKEN_BOOT_ANCHORS.map((anchor) => ({
+            id: anchor.id,
+            label: anchor.label,
+            boot: `${anchor.id}=1`
+        })), (item) => {
+            practiceHeavyPulpToken({ tokenId: item.id, logQuest: false });
+        });
+    }
+
     if (typeof getAllLibraryBootEntries === 'function') {
         const libItems = getAllLibraryBootEntries().map((lib) => ({
             id: lib.id,
@@ -1642,6 +1678,7 @@ function renderBootAllPanel() {
             else if (boot.sua === '1' || boot.cicada === '1') practiceCicadaAttune({ logQuest: true, openSheet: boot.sheet === '1' });
             else if (boot.rickmorty === '1' || boot.rick === '1' || boot.multiverse === '1') practiceRickMortyMultiverse({ openSheet: boot.sheet === '1' });
             else if (boot['minecraft-meme'] === '1' || boot.meme === '1') practiceMinecraftWikiMeme({ templateId: boot.template });
+            else if (boot.heavypulp === '1' || boot.token === 'heavypulp' || boot.ca === 'heavypulp') practiceHeavyPulpToken({ tokenId: 'heavypulp', platform: boot.platform });
             else if (boot.mika === '1') practiceMikaRoadDreamer({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'dream-teleport' ? 3 : 0 });
             else if (boot['boys-love'] === '1' || boot.bamboo === '1' || boot.qingbinghe === '1') practiceBoysLoveQingBinghe({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'slow-burn-boundary' ? 0 : 0 });
             else if (boot['solo-leveling'] === '1' || boot.jinwoo === '1' || boot.comic === '1') practiceSungJinwooSoloLeveling({ openSheet: boot.sheet === '1', shadowIndex: boot['heal-factor'] === 'e-rank-pause' ? 0 : 0 });
@@ -1801,6 +1838,13 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('minecraft-meme') === '1' || params.get('meme') === '1') {
         practiceMinecraftWikiMeme({ templateId: params.get('template') });
+        return;
+    }
+    if (params.get('heavypulp') === '1' || params.get('token') === 'heavypulp' || params.get('ca') === 'heavypulp') {
+        practiceHeavyPulpToken({
+            tokenId: 'heavypulp',
+            platform: params.get('platform') || 'pump'
+        });
         return;
     }
     if (params.get('mika') === '1') {
@@ -2283,6 +2327,14 @@ function renderSyncPanel() {
     memeBtn.title = 'Hipposgrumm parody articles · humor alchemy · preset 23';
     memeBtn.onclick = () => practiceMinecraftWikiMeme();
     actions.appendChild(memeBtn);
+
+    const pulpBtn = document.createElement('button');
+    pulpBtn.type = 'button';
+    pulpBtn.className = 'px-5 py-3 bg-orange-900/50 text-orange-200 rounded-2xl text-sm font-medium hover:bg-orange-800/70 ring-1 ring-orange-500/30';
+    pulpBtn.textContent = 'HeavyPulp CA (Solana)';
+    pulpBtn.title = typeof formatTokenCaLine === 'function' ? formatTokenCaLine('heavypulp') : 'CA: 8G5ayEsJF4Q7FEWEGeF4jtnUWZBEKCqhySTFQf9Ppump';
+    pulpBtn.onclick = () => practiceHeavyPulpToken();
+    actions.appendChild(pulpBtn);
 
     const mikaBtn = document.createElement('button');
     mikaBtn.type = 'button';

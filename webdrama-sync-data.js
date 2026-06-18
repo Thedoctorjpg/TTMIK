@@ -105,6 +105,12 @@ const PIPELINE_SOURCES = {
         paths: ['webnovel-catalog-data.js', 'webnovel-package-data.js', 'scripts/build-webnovel-catalog.js'],
         url: 'TTMIK.html?library=webnovel-package',
         role: 'webnovel.com TOC — SVSSS 109 ch ID · Solo 202 ch comic · chapter packs'
+    },
+    heavyPulpToken: {
+        label: 'HeavyPulp · Solana meme CA',
+        paths: ['token-data.js'],
+        url: 'TTMIK.html?heavypulp=1',
+        role: 'CA 8G5ay…pump · pump.fun · one glance then phone face-down · PULP pin'
     }
 };
 
@@ -158,7 +164,8 @@ const BARDIC_INSPIRATION = {
             svsssSystem: { boot: 'svsss=1', label: 'SVSSS System bound · QING WebNovel Ch.1' },
             soloLeveling: { boot: 'solo-leveling=1', label: 'Solo Leveling · GATE dungeon comic Ch.1' },
             boysLoveBamboo: { boot: 'boys-love=1', label: 'Boys Love · BAMBOO After the Bamboo' },
-            webnovelCrossover: { boot: 'library=webnovel-crossover', label: 'Webnovel crossover · three-lane handoff' }
+            webnovelCrossover: { boot: 'library=webnovel-crossover', label: 'Webnovel crossover · three-lane handoff' },
+            heavyPulp: { boot: 'heavypulp=1', label: 'HeavyPulp · Solana CA · PULP meme lane' }
         }
     },
     boysLoveBamboo: {

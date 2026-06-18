@@ -1653,6 +1653,7 @@ function renderBootAllPanel() {
             else if (boot.sorcerer === '1') openFastCharacterClassAnchor('sorcerer');
             else if (boot.warlock === '1') openFastCharacterClassAnchor('warlock');
             else if (boot['monster-slayer'] === '1') openFastCharacterClassAnchor('monster-slayer');
+            else if (boot['fijian-indian-warrior'] === '1' || boot['fijian-warrior'] === '1' || boot['fiji-warrior'] === '1' || boot.fiji === '1') openFastCharacterClassAnchor('fijian-indian-warrior');
             else if (boot.fifa === '1') practiceMariFifaCelebrate();
             else if (boot.attune === '1' || boot['before-match'] === '1') {
                 practiceMatchAttune({
@@ -1717,6 +1718,11 @@ function handleTtmikSyncBoot() {
     }
     if (params.get('monster-slayer') === '1') {
         if (typeof openFastCharacterClassAnchor === 'function') openFastCharacterClassAnchor('monster-slayer');
+        switchTab(3);
+        return;
+    }
+    if (params.get('fijian-indian-warrior') === '1' || params.get('fijian-warrior') === '1' || params.get('fiji-warrior') === '1' || params.get('fiji') === '1') {
+        if (typeof openFastCharacterClassAnchor === 'function') openFastCharacterClassAnchor('fijian-indian-warrior');
         switchTab(3);
         return;
     }

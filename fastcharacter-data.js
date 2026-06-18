@@ -536,6 +536,26 @@ const FAST_CHARACTER_MBAPPE = {
     note: 'Battle Master · Level 5 · Chaotic Good — counter-attack FIFA ally'
 };
 
+/** Vikash — Indo-Fijian Champion Fighter · Girmit resilience · Pacific warrior */
+const FAST_CHARACTER_FIJIAN_INDIAN_WARRIOR = {
+    id: 'fijian-indian-warrior',
+    label: 'Vikash — Fijian Indian Warrior',
+    playername: 'Melbourne Lantern Pilgrimage',
+    playercode: 'TTMIK-FijiWarrior',
+    randomname: 'no',
+    pcname: 'Vikash',
+    pcclass: 'FighterChampion',
+    pclevel: '5',
+    pcrace: 'human',
+    pcbkgrd: 'Outlander',
+    pcgender: 'male',
+    pcalignment: 'NG',
+    pcformat: 'text',
+    pcidealbondflaw: 'yes',
+    pcrulescrib: 'yes',
+    note: 'Champion · Level 5 · Outlander — Indo-Fijian Girmit courage · village + rugby-field warrior'
+};
+
 /** Ronaldo — Portuguese Glory Paladin muse · FIFA cantina celebration */
 const FAST_CHARACTER_RONALDO = {
     id: 'ronaldo',
@@ -571,6 +591,10 @@ const FAST_CHARACTER_PRESETS = {
     sorcerer: FAST_CHARACTER_SORCERER,
     warlock: FAST_CHARACTER_WARLOCK,
     'monster-slayer': FAST_CHARACTER_MONSTER_SLAYER,
+    'fijian-indian-warrior': FAST_CHARACTER_FIJIAN_INDIAN_WARRIOR,
+    'fijian-warrior': FAST_CHARACTER_FIJIAN_INDIAN_WARRIOR,
+    'fiji-warrior': FAST_CHARACTER_FIJIAN_INDIAN_WARRIOR,
+    fiji: FAST_CHARACTER_FIJIAN_INDIAN_WARRIOR,
     sven: FAST_CHARACTER_SVEN,
     martin: FAST_CHARACTER_MARTIN,
     ronaldo: FAST_CHARACTER_RONALDO,
@@ -687,10 +711,12 @@ function openFastCharacterShenQingqiu() { openFastCharacterSheet(FAST_CHARACTER_
 function openFastCharacterSvsss() { openFastCharacterShenQingqiu(); }
 function openFastCharacterSungJinwoo() { openFastCharacterSheet(FAST_CHARACTER_SUNG_JINWOO); }
 function openFastCharacterSoloLeveling() { openFastCharacterSungJinwoo(); }
+function openFastCharacterFijianIndianWarrior() { openFastCharacterSheet(FAST_CHARACTER_FIJIAN_INDIAN_WARRIOR); }
 
 /** D&D Beyond gap-fill class anchors — not tied to a single archetype skill */
 const FAST_CHARACTER_CLASS_ANCHORS = [
     { id: 'sorcerer', label: 'Sorcerer Draconic · DragonbornGold' },
     { id: 'warlock', label: 'Warlock Great Old One · TieflingChthonic' },
-    { id: 'monster-slayer', label: 'Monster Slayer · Ranger Hunter + Guide (DDB XGtE proxy)' }
+    { id: 'monster-slayer', label: 'Monster Slayer · Ranger Hunter + Guide (DDB XGtE proxy)' },
+    { id: 'fijian-indian-warrior', label: 'Fijian Indian Warrior · Fighter Champion · Outlander' }
 ];

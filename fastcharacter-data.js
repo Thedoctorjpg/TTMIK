@@ -171,7 +171,7 @@ const FAST_CHARACTER_RACH3L = {
     pcformat: 'text',
     pcidealbondflaw: 'yes',
     pcrulescrib: 'yes',
-    note: 'Diviner · Level 5 · True Neutral — discernment · no absorption spiral'
+    note: 'Diviner · Scribe · DDB Investigator (VRGtR) narrative mirror · discernment · no absorption spiral'
 };
 
 /** Mari Ignan pilgrim — Druid Circle of the Sea */
@@ -274,24 +274,24 @@ const FAST_CHARACTER_WARLOCK = {
     note: 'Great Old One · Level 5 · Tiefling Chthonic — multiverse pact · observe don\'t absorb'
 };
 
-/** Monster Slayer proxy — Ranger Gloom Stalker (XGtE Monster Slayer not in Fast Character) */
+/** Monster Slayer proxy — Ranger Hunter + Guide (DDB XGtE Monster Slayer not in Fast Character 2024) */
 const FAST_CHARACTER_MONSTER_SLAYER = {
     id: 'monster-slayer',
-    label: 'Monster Slayer Proxy',
+    label: 'Monster Slayer — Hunter',
     playername: 'Melbourne Lantern Pilgrimage',
     playercode: 'TTMIK-Slayer',
     randomname: 'no',
     pcname: 'Slayer',
-    pcclass: 'RangerGloomStalker',
+    pcclass: 'RangerHunter',
     pclevel: '5',
     pcrace: 'human',
-    pcbkgrd: 'Guard',
+    pcbkgrd: 'Guide',
     pcgender: 'female',
     pcalignment: 'LN',
     pcformat: 'text',
     pcidealbondflaw: 'yes',
     pcrulescrib: 'yes',
-    note: 'Gloom Stalker proxy for DDB Monster Slayer · scam/tarot boundary hunt'
+    note: 'Hunter (Colossus Slayer) + Guide · DDB Monster Slayer mirror · scam/tarot boundary hunt'
 };
 
 /** Sven — Swedish Nordic Ranger muse · rach3l discernment companion */
@@ -639,5 +639,5 @@ function openFastCharacterRick() { openFastCharacterSheet(FAST_CHARACTER_RICK); 
 const FAST_CHARACTER_CLASS_ANCHORS = [
     { id: 'sorcerer', label: 'Sorcerer Draconic · DragonbornGold' },
     { id: 'warlock', label: 'Warlock Great Old One · TieflingChthonic' },
-    { id: 'monster-slayer', label: 'Monster Slayer · Ranger Gloom Stalker (XGtE proxy)' }
+    { id: 'monster-slayer', label: 'Monster Slayer · Ranger Hunter + Guide (DDB XGtE proxy)' }
 ];

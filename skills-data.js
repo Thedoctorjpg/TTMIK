@@ -793,6 +793,8 @@ const SKILLS = [
         ],
         capabilities: [
             'Generate Rach3l D&D sheet via Fast Character preset',
+            'DDB Investigator (VRGtR) narrative mirror — Investigation without entanglement',
+            'Hand off to Monster Slayer lane for supernatural quarry hunts',
             'Process unstable social media energy without hooks',
             'Strengthen discernment and boundaries',
             'Humorous skits about what not to engage with',
@@ -800,6 +802,7 @@ const SKILLS = [
         ],
         creativePrompts: [
             'Create Rach3l Fast Character sheet — Wizard Diviner · Scribe · Level 5',
+            'Pair with TTMIK.html?monster-slayer=1 after a concerning scroll',
             'Humorous skit about encountering altered energy on a healing trip',
             'Reflective piece: this is not my energy to carry',
             'Creative release after a concerning TikTok scroll'

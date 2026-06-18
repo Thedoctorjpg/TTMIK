@@ -833,6 +833,9 @@ const SKILLS = [
         integrations: [
             'fastcharacter.com — openFastCharacterRach3l() preset',
             'TTMIK.html?skill=rach3l&sheet=1 — discernment mirror + sheet boot',
+            'D&D Beyond Investigator (Van Richten\'s) — narrative mirror; sheet uses Scribe + Investigation',
+            'TTMIK.html?monster-slayer=1 — Ranger Hunter + Guide · DDB Monster Slayer proxy',
+            'dndbeyond.com/classes/2190882-ranger#MonsterSlayerXGtE — XGtE subclass reference',
             'sven-nordic-ranger · neon-evangelion · observe-but-do-not-absorb lane'
         ]
     },
